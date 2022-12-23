@@ -21,11 +21,14 @@ All the pages in `src/routes/posts` are using the default theme
 
 ### Code Blocks
 
-```md
+````md
 ```js
-const foo = 'bar'
+export default {
+  name: 'MyComponent',
+  // ...
+}
 ```
-```
+````
 
 ### Svelte in Markdown
 
