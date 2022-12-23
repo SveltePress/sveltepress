@@ -19,18 +19,27 @@ All the pages in `src/routes/posts` are using the default theme
 
 ## Markdown 
 
-`.svelte` and `.md` can be used as pages
+### Code Blocks
 
-For example, you can use `+page.(svelte|md)` as pages
+```md
+```js
+const foo = 'bar'
+```
+```
 
-But only the `.md` files can use the features provided by [mdsvex](https://mdsvex.com/)
+### Svelte in Markdown
 
-* Admonition Block
+* `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages
+* `.md` files can use the features provided by [mdsvex](https://mdsvex.com/)
+
+### Admonition Block
+
 ```md
 :::[tip|info|caution|warning|important|note] Title
 Some admonition content
 :::
 ```
+
 
 ## LICENSE
 
