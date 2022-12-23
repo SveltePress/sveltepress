@@ -23,9 +23,9 @@ All the pages in `src/routes/posts` are using the default theme
 
 ````md
 ```js
-export default {
-  name: 'MyComponent',
-  // ...
+function name(params) {
+
+  return 'foo'
 }
 ```
 ````
