@@ -29,6 +29,7 @@ But only the `.md` files can use the features provided by [mdsvex](https://mdsve
 ```md
 :::[tip|info|caution|warning|important|note] Title
 Some admonition content
+:::
 ```
 
 ## LICENSE
