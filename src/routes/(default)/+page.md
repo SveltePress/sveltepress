@@ -1,4 +1,8 @@
 
+:::tip Tip
+Hi, there!
+:::
+
 ```svelte live foo bar
 <script lang="ts">
   let count = 0
@@ -11,7 +15,3 @@
   Count is {count}
 </button>
 ```
-
-:::tip Tip
-Hi, there!
-:::

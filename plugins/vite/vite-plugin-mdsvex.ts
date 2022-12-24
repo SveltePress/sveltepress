@@ -27,10 +27,7 @@ const vitePluginMdsvex: (options?: PluginOptions) => Plugin = (options = {}) => 
         const highlighter = async (code: any, lang: any) => {
           const shikiTransformedHTML = (await shikiHilighter).codeToHtml(code, { lang })
 
-          return `
-  <div contenteditable="true">
-    ${shikiTransformedHTML.replaceAll(/\{/g, '&#123;').replaceAll(/\}/g, '&#125;')}
-  </div>`
+          return shikiTransformedHTML.replaceAll(/\{/g, '&#123;').replaceAll(/\}/g, '&#125;')
         }
 
         const { code, map } = await compile(src, {
