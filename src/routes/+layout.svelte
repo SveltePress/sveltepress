@@ -1,5 +1,5 @@
 <script lang="ts">
-  import 'mdsvex.css'
+  import '../plugins/remark-live-code/main.css'
 </script>
 
 <slot />

@@ -35,6 +35,33 @@ function name(params) {
 * `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages
 * `.md` files can use the features provided by [mdsvex](https://mdsvex.com/)
 
+
+### Live Code
+
+Code Blocks with svelte lang and live attribute would render in page and show the source code below the render dom
+
+````md
+```svelte live
+<script>
+  let count = 10
+  const add = () => {
+    count++
+  }
+</script>
+
+<button type="button" on:click={add}>
+  Count is {count}
+</button>
+
+
+<style>
+  button {
+    color: orange;
+  }
+</style>
+```
+````
+
 ### Admonition Block
 
 ```md

@@ -3,7 +3,7 @@ title: Title
 ---
 
 <script>
-  let count = 7
+  let count = 1
 </script>
 
 # Heading
@@ -14,7 +14,7 @@ Some tip content
 
 ```svelte live
 <script lang="ts">
-  let count = 10
+  let count = 0
   const add = () => {
     count++
   }
@@ -27,16 +27,7 @@ Some tip content
 
 <style>
   button {
-    color: orange;
+    color: purple;
   }
 </style>
-```
-
-```svelte live
-<script>
-  const foo = 'bar'
-</script>
-<div text-20 text-purple-6>
-  {foo}
-</div>
 ```

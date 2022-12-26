@@ -2,11 +2,10 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import Unocss from 'unocss/vite'
 import { presetAttributify, presetIcons, presetUno } from 'unocss'
 import { defineConfig } from 'vite'
-import vitePluginMdsvex from './plugins/vite/vite-plugin-mdsvex'
+import VitePlugSveltepress from './src/plugins/vite-plugin-sveltepress'
 
 const config = defineConfig({
   plugins: [
-    vitePluginMdsvex(),
     Unocss({
       presets: [
         presetAttributify(),
@@ -15,6 +14,7 @@ const config = defineConfig({
       ],
     }),
     sveltekit(),
+    VitePlugSveltepress(),
   ],
 })
 
