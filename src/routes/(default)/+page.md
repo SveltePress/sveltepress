@@ -8,13 +8,17 @@ title: Title
 
 # Heading
 
+<div text-20 text-purple-8>
+Hello world!
+</div>
+
 :::tip Tip
 Some tip content
 :::
 
 ```svelte live
 <script lang="ts">
-  let count = 10
+  let count = 100
   const add = () => {
     count++
   }
@@ -34,9 +38,9 @@ Some tip content
 
 ```svelte live
 <script>
-  const foo = 'bar'
+  const message = 'Hello world!'
 </script>
 <div text-20 text-purple-6>
-  {foo}
+  {message}
 </div>
 ```
