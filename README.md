@@ -19,7 +19,7 @@ All the pages in `src/routes/posts` are using the default theme
 
 ## Markdown 
 
-### Code Blocks
+### Code Highlight
 
 ````md
 ```js
@@ -32,7 +32,7 @@ function name(params) {
 
 ### Svelte in Markdown
 
-* `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages
+* `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages and `+layout.(md|svelte)` as layouts
 * `.md` files can use the features provided by [mdsvex](https://mdsvex.com/)
 
 
@@ -69,7 +69,6 @@ Code Blocks with svelte lang and live attribute would render in page and show th
 Some admonition content
 :::
 ```
-
 
 ## LICENSE
 
