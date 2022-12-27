@@ -1,8 +1,9 @@
 import { readFileSync } from 'fs'
 import { describe, expect, it } from 'vitest'
 import { compile } from 'mdsvex'
+// @ts-ignore
 import admonitions from 'remark-admonitions'
-import liveCode from '..'
+import liveCode from '../src'
 
 describe('live code', () => {
   it('tree.json', async () => {

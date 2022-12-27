@@ -1,0 +1,36 @@
+{
+  "name": "@svelte-press/remark-live-code",
+  "version": "0.0.1",
+  "description": "",
+  "files": ["dist"],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": ["remark", "remark plugin"],
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "mdsvex": "^0.10.6",
+    "remark-admonitions": "^1.2.1",
+    "svelte": "^3.55.0",
+    "typescript": "^4.9.4",
+    "unified": "^10.1.2",
+    "vitest": "^0.26.2"
+  },
+  "dependencies": {
+    "uid": "^2.0.1",
+    "unist-util-visit": "^4.1.1"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/remark-live-code"
+  },
+  "type": "module"
+}

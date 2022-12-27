@@ -1,0 +1,41 @@
+{
+  "name": "@svelte-press/svelte-preprocessor",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./dist/main.css": "./dist/main.css"
+  },
+  "files": ["dist"],
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && cp src/night-owl.json dist && cp src/main.css dist"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/svelte-preprocessor"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@casual-ui/svelte": "^0.0.9"
+  },
+  "devDependencies": {
+    "@svelte-press/remark-live-code": "workspace:*",
+    "@types/node": "^18.11.18",
+    "svelte": "^3.55.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "mdsvex": "^0.10.6",
+    "remark-admonitions": "^1.2.1",
+    "shiki": "^0.12.1"
+  }
+}

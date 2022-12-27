@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-auto'
 import { vitePreprocess } from '@sveltejs/kit/vite'
-import sveltepressPreprocessor from './src/plugins/sveltepress-preprocessor/index.js'
+import sveltepressPreprocessor from '@svelte-press/svelte-preprocessor'
 
 /**
  * @type {import('@sveltejs/kit').Config}

@@ -23,7 +23,7 @@ exports[`live code > +page.svelte 1`] = `
   class=\\"admonition-content\\"
 ><p>Some tip content</p></div></div>
 <div bg-white dark:bg-111111 mb-8 shadow-sm rounded-md>
-{#await import('$live-code/LiveCode400e0f655e1.svelte')}
+{#await import('$live-code/LiveCode6c063cb3503.svelte')}
 {:then Comp}
   <svelte:component this=\\"{Comp.default}\\"></svelte:component>
 {:catch err}
@@ -31,7 +31,7 @@ exports[`live code > +page.svelte 1`] = `
 {/await}
 {#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
 {:then CExpansion}
-  <svelte:component this={CExpansion} title=\\"Click fold/expand code\\" reverse={true}>
+  <svelte:component this={CExpansion.default} title=\\"Click fold/expand code\\" reverse={true}>
 <pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span> <span class=\\"token attr-name\\">lang</span><span class=\\"token attr-value\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">\\"</span>ts<span class=\\"token punctuation\\">\\"</span></span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
   <span class=\\"token keyword\\">let</span> count <span class=\\"token operator\\">=</span> <span class=\\"token number\\">0</span>
   <span class=\\"token keyword\\">const</span> <span class=\\"token function-variable function\\">add</span> <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> <span class=\\"token punctuation\\">&#123;</span>
@@ -318,7 +318,7 @@ exports[`live code > tree.json 1`] = `
         {
           "type": "html",
           "value": "
-{#await import('$live-code/LiveCode400e0f655e1.svelte')}
+{#await import('$live-code/LiveCode6c063cb3503.svelte')}
 {:then Comp}
   <svelte:component this=\\"{Comp.default}\\"></svelte:component>
 {:catch err}
@@ -330,7 +330,7 @@ exports[`live code > tree.json 1`] = `
           "value": "
 {#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
 {:then CExpansion}
-  <svelte:component this={CExpansion} title=\\"Click fold/expand code\\" reverse={true}>
+  <svelte:component this={CExpansion.default} title=\\"Click fold/expand code\\" reverse={true}>
 ",
         },
         {

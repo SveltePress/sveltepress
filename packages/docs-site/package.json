@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "@casual-ui/eslint-config-svelte": "^0.0.2",
+    "@casual-ui/svelte": "^0.0.9",
+    "@svelte-press/svelte-preprocessor": "workspace:*",
+    "@svelte-press/vite": "workspace:*",
+    "@sveltejs/adapter-auto": "^1.0.0",
+    "@sveltejs/kit": "^1.0.0",
+    "@types/node": "^18.11.17",
+    "svelte": "^3.54.0",
+    "svelte-check": "^2.9.2",
+    "typescript": "^4.9.3",
+    "unocss": "^0.48.0",
+    "vite": "^4.0.3"
+  },
+  "type": "module",
+  "license": "MIT"
+}

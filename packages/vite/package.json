@@ -1,0 +1,33 @@
+{
+  "name": "@svelte-press/vite",
+  "version": "0.0.1",
+  "description": "Sveltepress plugin for vite",
+  "types": "./dist/es/index.d.ts",
+  "files": ["dist"],
+  "type": "module",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/cjs/index.js"
+  },
+  "scripts": {
+    "build:es": "tsc -p tsconfig.json -m es6 --outDir dist/es",
+    "build:cjs": "tsc -p tsconfig.json -m commonjs --outDir dist/cjs",
+    "build": "pnpm build:es && pnpm build:cjs"
+  },
+  "keywords": ["vite", "vite plugin", "sveltepress", "sveltepress vite", "sveltekit"],
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/vite"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.3"
+  }
+}

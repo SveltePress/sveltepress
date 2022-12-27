@@ -1,12 +1,11 @@
 import { compile } from 'mdsvex'
+// @ts-ignore
 import admonitions from 'remark-admonitions'
-import highlighter from '../remark-live-code/highlighter.js'
-import liveCode from '../remark-live-code/index.js'
+import liveCode from '@svelte-press/remark-live-code'
+import highlighter from './highlighter.js'
+import type { SveltepressPreprocessor } from './types'
 
-/**
- * @type {import('./type').SveltepressPreprocessor}
- */
-const sveltepressPreprocessor = ({ mdsvexOptions }) => {
+const sveltepressPreprocessor: SveltepressPreprocessor = ({ mdsvexOptions }) => {
   return {
     markup: async ({ content, filename }) => {
       const transformedSvlteCode = await compile(content, {

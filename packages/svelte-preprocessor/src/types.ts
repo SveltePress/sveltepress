@@ -6,3 +6,6 @@ export interface Options {
 }
 
 export type SveltepressPreprocessor = (options: Options) => PreprocessorGroup
+
+
+export type Highlighter = (code: string, lang?: string) => Promise<string>

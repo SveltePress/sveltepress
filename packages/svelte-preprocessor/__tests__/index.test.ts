@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { preprocess } from 'svelte/compiler'
 import { describe, expect, it } from 'vitest'
-import sveltepressPreprocessor from '../index'
+import sveltepressPreprocessor from '../src'
 
 describe('sveltepress-preprocessor', () => {
   it('preprocess', async () => {

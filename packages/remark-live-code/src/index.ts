@@ -1,14 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
+import type { RemarkLiveCode } from './types'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
-const liveCode = function () {
+const liveCode: RemarkLiveCode = function () {
   if (!existsSync(BASE_PATH)) {
     mkdirSync(BASE_PATH, {
       recursive: true,
@@ -55,6 +54,7 @@ const liveCode = function () {
 `,
           }
           const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
+          // @ts-ignore
           const blockId = `${vFile.filename}-${idx}`
           let name = idNameMap[blockId]
           if (!name) {
