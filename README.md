@@ -98,33 +98,36 @@ function name(params) {
 ### Svelte in Markdown
 
 * `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages and `+layout.(md|svelte)` as layouts
-* `.md` files can use the features provided by [mdsvex](https://mdsvex.com/)
-
+* `.md` files can use the features provided by [Mdsvex](https://mdsvex.com/)
 
 ### Live Code
 
-Code Blocks with svelte lang and live attribute would render in page and show the source code below the render dom
+Code Blocks with svelte lang and `live` attribute would render in page and show the __expandable source code__ below the render dom
+
+For example write something like this in your markdown
 
 ````md
 ```svelte live
 <script>
-  let count = 10
+  let count = 0
   const add = () => {
     count++
   }
 </script>
 
-<button type="button" on:click={add}>
+<button 
+  type="button" 
+  on:click={add} 
+  class="cursor-pointer px-1 py-2 text-orange-5"
+>
   Count is {count}
 </button>
-
-<style>
-  button {
-    color: orange;
-  }
-</style>
 ```
 ````
+
+Would render like this
+
+![live code demo](./assets/live-code.gif)
 
 ### Admonition Block
 

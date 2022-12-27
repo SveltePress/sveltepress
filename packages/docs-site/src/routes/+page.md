@@ -13,22 +13,18 @@ Some tip content
 :::
 
 ```svelte live
-<script lang="ts">
-  let count = 10
+<script>
+  let count = 0
   const add = () => {
     count++
   }
 </script>
 
-<button type="button" on:click={add} text-orange>
+<button 
+  type="button" 
+  on:click={add} 
+  class="cursor-pointer px-1 py-2 text-orange-5"
+>
   Count is {count}
 </button>
 ```
-
-```svelte live
-<script>
-  const message = 'Hello world!'
-</script>
-<div text-purple-8 text-20>
-  {message}
-</div>

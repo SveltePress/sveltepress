@@ -4,5 +4,5 @@
 </script>
 	
 <GlobalLayout>
-	<slot />
+  <slot />
 </GlobalLayout>
