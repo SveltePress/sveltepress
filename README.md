@@ -71,20 +71,6 @@ Your layout file may look like this:
 Notice that you will no longer need to `import 'uno.css'`, the `virtual:sveltepress` would handle that
 - Now you can start to write markdowns.
 
-## Online docs and demos
-
-> TODO: Add online docs and demos
-
-## Themes
-
-### Default Theme
-
-> TODO: Add default theme1
-
-### Blog Theme
-
-> TODO: Add blog theme
-
 ## Markdown Features
 
 ### Code Highlight
@@ -139,6 +125,20 @@ Would render like this
 Some admonition content
 :::
 ```
+
+## Themes
+
+### Default Theme
+
+> TODO: Add default theme1
+
+### Blog Theme
+
+> TODO: Add blog theme
+
+## Online docs and demos
+
+> TODO: Add online docs and demos
 
 ## LICENSE
 
