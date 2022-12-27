@@ -23,15 +23,16 @@ exports[`live code > +page.svelte 1`] = `
   class=\\"admonition-content\\"
 ><p>Some tip content</p></div></div>
 <div bg-white dark:bg-111111 mb-8 shadow-sm rounded-md>
-{#await import('$live-code/LiveCode2040f1dde87.svelte')}
+{#await import('$live-code/LiveCode400e0f655e1.svelte')}
 {:then Comp}
   <svelte:component this=\\"{Comp.default}\\"></svelte:component>
 {:catch err}
   <div text-red-5>Live Code Error: {JSON.stringify(err)}</div>
-{/await}<div
-  reverse=\\"{true}\\"
-  title=\\"Click to fold/expand code\\"
-><pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span> <span class=\\"token attr-name\\">lang</span><span class=\\"token attr-value\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">\\"</span>ts<span class=\\"token punctuation\\">\\"</span></span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
+{/await}
+{#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
+{:then CExpansion}
+  <svelte:component this={CExpansion} title=\\"Click fold/expand code\\" reverse={true}>
+<pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span> <span class=\\"token attr-name\\">lang</span><span class=\\"token attr-value\\"><span class=\\"token punctuation\\">=</span><span class=\\"token punctuation\\">\\"</span>ts<span class=\\"token punctuation\\">\\"</span></span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
   <span class=\\"token keyword\\">let</span> count <span class=\\"token operator\\">=</span> <span class=\\"token number\\">0</span>
   <span class=\\"token keyword\\">const</span> <span class=\\"token function-variable function\\">add</span> <span class=\\"token operator\\">=</span> <span class=\\"token punctuation\\">(</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> <span class=\\"token punctuation\\">&#123;</span>
     count<span class=\\"token operator\\">++</span>
@@ -47,7 +48,12 @@ exports[`live code > +page.svelte 1`] = `
   <span class=\\"token selector\\">button</span> <span class=\\"token punctuation\\">&#123;</span>
     <span class=\\"token property\\">color</span><span class=\\"token punctuation\\">:</span> purple<span class=\\"token punctuation\\">;</span>
   <span class=\\"token punctuation\\">&#125;</span>
-</span></span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>style</span><span class=\\"token punctuation\\">></span></span></code>\`}</pre></div></div>
+</span></span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>style</span><span class=\\"token punctuation\\">></span></span></code>\`}</pre>
+</svelte:component>
+{:catch err}
+  <div text-red-5>Expansion Error: {JSON.stringify(err)}</div>
+{/await}
+</div>
 "
 `;
 
@@ -312,7 +318,7 @@ exports[`live code > tree.json 1`] = `
         {
           "type": "html",
           "value": "
-{#await import('$live-code/LiveCode2040f1dde87.svelte')}
+{#await import('$live-code/LiveCode400e0f655e1.svelte')}
 {:then Comp}
   <svelte:component this=\\"{Comp.default}\\"></svelte:component>
 {:catch err}
@@ -320,47 +326,53 @@ exports[`live code > tree.json 1`] = `
 {/await}",
         },
         {
-          "children": [
-            {
-              "data": {
-                "liveCodeResolved": true,
-              },
-              "lang": "svelte",
-              "meta": "live",
-              "position": Position {
-                "end": {
-                  "column": 4,
-                  "line": 33,
-                  "offset": 324,
-                },
-                "indent": [
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                  1,
-                ],
-                "start": {
-                  "column": 1,
-                  "line": 15,
-                  "offset": 102,
-                },
-              },
-              "type": "code",
-              "value": "<script lang=\\"ts\\">
+          "type": "html",
+          "value": "
+{#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
+{:then CExpansion}
+  <svelte:component this={CExpansion} title=\\"Click fold/expand code\\" reverse={true}>
+",
+        },
+        {
+          "data": {
+            "liveCodeResolved": true,
+          },
+          "lang": "svelte",
+          "meta": "live",
+          "position": Position {
+            "end": {
+              "column": 4,
+              "line": 33,
+              "offset": 324,
+            },
+            "indent": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+            ],
+            "start": {
+              "column": 1,
+              "line": 15,
+              "offset": 102,
+            },
+          },
+          "type": "code",
+          "value": "<script lang=\\"ts\\">
   let count = 0
   const add = () => {
     count++
@@ -377,16 +389,15 @@ exports[`live code > tree.json 1`] = `
     color: purple;
   }
 </style>",
-            },
-          ],
-          "data": {
-            "hName": "div",
-            "hProperties": {
-              "reverse": "{true}",
-              "title": "Click to fold/expand code",
-            },
-          },
-          "type": "liveCode",
+        },
+        {
+          "type": "html",
+          "value": "
+</svelte:component>
+{:catch err}
+  <div text-red-5>Expansion Error: {JSON.stringify(err)}</div>
+{/await}
+",
         },
       ],
       "data": {

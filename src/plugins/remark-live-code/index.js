@@ -24,23 +24,35 @@ const liveCode = function () {
       (node, idx, parent) => {
         const { meta, lang, type, data } = node
 
-        if (type === 'code' && lang === 'svelte' && meta?.split(' ').includes('live') && idx !== null && !data?.liveCodeResolved) {
+        if (type === 'code'
+            && lang === 'svelte'
+            && meta?.split(' ').includes('live')
+            && idx !== null && !data?.liveCodeResolved) {
           const expansionNode = {
-            type: 'liveCode',
+            type: 'html',
+            value: `
+{#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
+{:then CExpansion}
+  <svelte:component this={CExpansion.default} title="Click fold/expand code" reverse={true}>
+`,
+          }
+
+          const codeHighlightNode = {
+            ...node,
             data: {
-              hName: 'div',
-              hProperties: {
-                reverse: '{true}',
-                title: 'Click to fold/expand code',
-              },
+              ...node.data,
+              liveCodeResolved: true, // mark this node as resolved
             },
-            children: [{
-              ...node,
-              data: {
-                ...node.data,
-                liveCodeResolved: true, // mark this node as resolved
-              },
-            }],
+          }
+
+          const expansionNodeEnd = {
+            type: 'html',
+            value: `
+</svelte:component>
+{:catch err}
+  <div text-red-5>Expansion Error: {JSON.stringify(err)}</div>
+{/await}
+`,
           }
           const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
           const blockId = `${vFile.filename}-${idx}`
@@ -77,6 +89,8 @@ const liveCode = function () {
             children: [
               svelteComponent,
               expansionNode,
+              codeHighlightNode,
+              expansionNodeEnd,
             ],
           }
 

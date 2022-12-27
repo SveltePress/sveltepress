@@ -12,11 +12,12 @@
   },
   "devDependencies": {
     "@casual-ui/eslint-config-svelte": "^0.0.2",
-    "@casual-ui/svelte": "^0.0.7",
+    "@casual-ui/svelte": "^0.0.9",
     "@sveltejs/adapter-auto": "^1.0.0",
     "@sveltejs/kit": "^1.0.0",
     "@types/node": "^18.11.17",
     "eslint": "^8.28.0",
+    "magic-string": "^0.27.0",
     "mdsvex": "^0.10.6",
     "remark-admonitions": "^1.2.1",
     "sass": "^1.57.1",
