@@ -1,6 +1,9 @@
 <script lang="ts">
-  import '@svelte-press/svelte-preprocessor/dist/main.css'
+	import GlobalLayout from '@svelte-press/theme-default/GlobalLayout.svelte'
   import '@casual-ui/svelte/dist/style/style.css'
+  import '@svelte-press/svelte-preprocessor/dist/main.css'
 </script>
-
-<slot />
+	
+<GlobalLayout>
+	<slot />
+</GlobalLayout>

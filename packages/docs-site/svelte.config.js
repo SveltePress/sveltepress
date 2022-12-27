@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/kit/vite'
 import sveltepressPreprocessor from '@svelte-press/svelte-preprocessor'
 
@@ -7,11 +7,7 @@ import sveltepressPreprocessor from '@svelte-press/svelte-preprocessor'
  */
 const config = {
   extensions: ['.svelte', '.md'],
-
-  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
-  // for more information about preprocessors
   preprocess: [vitePreprocess(), sveltepressPreprocessor({})],
-
   kit: {
     adapter: adapter(),
   },

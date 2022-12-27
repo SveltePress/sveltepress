@@ -9,30 +9,13 @@ declare namespace App {
 	// interface PageData {}
 	// interface Platform {}
 }
-
-declare module '*.svx' {
-
-	const metadata: Record<string, any>
-	const comp: any
-
-	export { metadata }
-
-	export default comp
-}
-
 declare module '*.md' {
+	import { SvelteComponentTyped } from "svelte"
 
 	const metadata: Record<string, any>
-	const comp: any
+	const comp: SvelteComponentTyped
 
 	export { metadata }
 
 	export default comp
-}
-
-declare module 'remark-admonitions' {
-	import type { Plugin } from 'unified'
-	const plugin: Plugin
-
-	export default plugin
 }

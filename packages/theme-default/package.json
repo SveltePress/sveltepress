@@ -1,0 +1,33 @@
+{
+  "name": "@svelte-press/theme-default",
+  "version": "0.0.1",
+  "description": "The default theme for sveltepress",
+  "main": "index.js",
+  "scripts": {
+    "build": "svelte-package"
+  },
+  "keywords": [
+    "Docs",
+    "svelte",
+    "svelte docs",
+    "sveltepress"
+  ],
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/theme-default"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@sveltejs/kit": "^1.0.1",
+    "@sveltejs/package": "^1.0.1",
+    "svelte": "^3.55.0",
+    "typescript": "^4.9.4",
+    "vite": "link:@sveltejs/kit/vite"
+  },
+  "type": "module"
+}

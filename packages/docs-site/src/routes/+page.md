@@ -47,4 +47,3 @@ Some tip content
     font-size: 24px;
   }
 </style>
-```
