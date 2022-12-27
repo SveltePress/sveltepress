@@ -1,7 +1,7 @@
 # Sveltepress 
 
 Inspired by [Vitepress](https://vitepress.vuejs.org/). 
-But build with [SvelteKit](https://kit.svelte.dev/), [mdsvex](https://mdsvex.com/), [UNOCSS](https://github.com/unocss/unocss)
+But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com/), [UNOCSS](https://github.com/unocss/unocss)
 
 ## Quick start
 
@@ -40,6 +40,7 @@ export default config
 ```
 - Add sveltepress preprocessor in your svelte.config.js. Your config may look like this
 ```js
+// svelte.config.js
 import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/kit/vite'
 import sveltepressPreprocessor from '@svelte-press/svelte-preprocessor'
@@ -56,10 +57,12 @@ const config = {
 }
 export default config
 ```
-- Import `'virtual:sveltepress'` module in your routes/+layout.(md|svelte). Your layout file may look like this:
+- Import `'virtual:sveltepress'` module in your src/routes/+layout.(md|svelte). Your layout file may look like this:
 ```html
+<!-- src/routes/+layout.(md|svelte) -->
 <script>
   import 'virtual:sveltepress'
+  // your other codes
 </script>
 <!-- Some layout content -->
 ```
