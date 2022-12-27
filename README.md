@@ -9,9 +9,10 @@ You can manually follow these steps to construct your own project
 
 - Create a sveltekit project by using `npm create svelte@latest my-app`. Or you can follow the [Creating a project - SvelteKit](https://kit.svelte.dev/docs/creating-a-project)
 - Install these packages
+  - unocss
+  - @casual-ui/svelte
   - @svelte-press/svelte-preprocessor
   - @svelte-press/vite
-  - unocss
 - Add unocss vite plugin and sveltepress plugin in your vite.config.(js|ts). Your config may look like this
 ```js
 // vite.config.(js|ts)
@@ -42,22 +43,23 @@ export default config
 ```js
 // svelte.config.js
 import adapter from '@sveltejs/adapter-static'
-import { vitePreprocess } from '@sveltejs/kit/vite'
+import { vitePreprocessor } from '@sveltejs/kit/vite'
 import sveltepressPreprocessor from '@svelte-press/svelte-preprocessor'
 
 /**
  * @type {import('@sveltejs/kit').Config}
  */
 const config = {
-  extensions: ['.svelte', '.md'],
-  preprocess: [vitePreprocess(), sveltepressPreprocessor({})],
+  extensions: ['.svelte', '.md'], // Add support for markdown files
+  preprocess: [vitePreprocessor(), sveltepressPreprocessor({})],
   kit: {
     adapter: adapter(),
   },
 }
 export default config
 ```
-- Import `'virtual:sveltepress'` module in your src/routes/+layout.(md|svelte). Your layout file may look like this:
+- Import `'virtual:sveltepress'` module in your src/routes/+layout.(md|svelte). 
+Your layout file may look like this:
 ```html
 <!-- src/routes/+layout.(md|svelte) -->
 <script>
@@ -66,6 +68,7 @@ export default config
 </script>
 <!-- Some layout content -->
 ```
+Notice that you will no longer need to `import 'uno.css'`, the `virtual:sveltepress` would handle that
 - Now you can start to write markdowns.
 
 ## Online docs and demos
@@ -76,11 +79,11 @@ export default config
 
 ### Default Theme
 
-All the pages in `src/routes/(default)` are using the default theme
+> TODO: Add default theme1
 
 ### Blog Theme
 
-All the pages in `src/routes/posts` are using the default theme
+> TODO: Add blog theme
 
 ## Markdown Features
 
