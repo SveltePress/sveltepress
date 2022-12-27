@@ -25,7 +25,7 @@ const VitePlugSveltepress: () => Plugin = () => {
       },
       resolve: {
         alias: {
-          '$live-code': resolve(process.cwd(), '.sveltepress/live-code'),
+          '$sveltepress': resolve(process.cwd(), '.sveltepress'),
         },
       },
     }),

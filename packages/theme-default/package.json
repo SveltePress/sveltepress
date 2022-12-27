@@ -4,8 +4,11 @@
   "description": "The default theme for sveltepress",
   "main": "index.js",
   "scripts": {
-    "build": "svelte-package"
+    "build": "svelte-package && rm dist/package.json"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "Docs",
     "svelte",
@@ -27,7 +30,13 @@
     "@sveltejs/package": "^1.0.1",
     "svelte": "^3.55.0",
     "typescript": "^4.9.4",
-    "vite": "link:@sveltejs/kit/vite"
+    "vite": "^4.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    "./GlobalLayout.svelte": "./dist/GlobalLayout.svelte",
+    "./Navbar.svelte": "./dist/Navbar.svelte",
+    "./DocLayout.svelte": "./dist/DocLayout.svelte"
+  }
 }

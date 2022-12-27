@@ -69,7 +69,7 @@ const liveCode: RemarkLiveCode = function () {
             type: 'html',
             // @unocss-include
             value: `
-{#await import('$live-code/${name}')}
+{#await import('$sveltepress/live-code/${name}')}
 {:then Comp}
   <svelte:component this="{Comp.default}"></svelte:component>
 {:catch err}

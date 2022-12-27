@@ -1,8 +1,18 @@
 {
+  "version": "0.0.1",
   "devDependencies": {
     "@casual-ui/eslint-config-svelte": "^0.0.2",
+    "@changesets/cli": "^2.26.0",
     "eslint": "^8.28.0",
     "svelte": "^3.54.0",
     "typescript": "^4.9.3"
+  },
+  "scripts": {
+    "build:lc": "cd packages/remark-live-code && pnpm build && cd ../..",
+    "build:sp": "cd packages/svelte-preprocessor && pnpm build && cd ../..",
+    "build:vite": "cd packages/vite && pnpm build && cd ../..",
+    "build:td": "cd packages/theme-default && pnpm build && cd ../..",
+    "build:all": "pnpm build:lc && pnpm build:sp && pnpm build:vite && pnpm build:td",
+    "release": "pnpm build:all && changeset publish"
   }
 }
