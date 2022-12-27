@@ -1,3 +1,5 @@
+  
+/* @unocss-include */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
@@ -27,7 +29,7 @@ const liveCode: RemarkLiveCode = function () {
             && lang === 'svelte'
             && meta?.split(' ').includes('live')
             && idx !== null && !data?.liveCodeResolved) {
-          const expansionNode = {
+          const expansionNodeStart = {
             type: 'html',
             value: `
 {#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
@@ -65,6 +67,7 @@ const liveCode: RemarkLiveCode = function () {
           writeFileSync(resolve(BASE_PATH, name), node.value || '')
           const svelteComponent = {
             type: 'html',
+            // @unocss-include
             value: `
 {#await import('$live-code/${name}')}
 {:then Comp}
@@ -79,16 +82,12 @@ const liveCode: RemarkLiveCode = function () {
             data: {
               hName: 'div',
               hProperties: {
-                'bg-white': '',
-                'dark:bg-111111': '',
-                'mb-8': '',
-                'shadow-sm': '',
-                'rounded-md': '',
+                className: 'bg-white mb-8 shadow-sm rounded-md',
               },
             },
             children: [
               svelteComponent,
-              expansionNode,
+              expansionNodeStart,
               codeHighlightNode,
               expansionNodeEnd,
             ],
@@ -99,5 +98,7 @@ const liveCode: RemarkLiveCode = function () {
       })
   }
 }
+
+export const safelist = ['bg-white', 'mb-8', 'shadow-sm', 'rounded-md']
 
 export default liveCode

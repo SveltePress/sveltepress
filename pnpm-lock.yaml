@@ -102,10 +102,12 @@ importers:
 
   packages/vite:
     specifiers:
+      '@svelte-press/remark-live-code': workspace:^0.0.1
       '@types/node': ^18.11.18
       typescript: ^4.9.4
       vite: ^4.0.3
     devDependencies:
+      '@svelte-press/remark-live-code': link:../remark-live-code
       '@types/node': 18.11.18
       typescript: 4.9.4
       vite: 4.0.3_@types+node@18.11.18

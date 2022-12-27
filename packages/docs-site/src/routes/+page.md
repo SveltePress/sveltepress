@@ -8,10 +8,6 @@ title: Title
 
 # Heading
 
-<div text-20 text-purple-8>
-Hello world!
-</div>
-
 :::tip Tip
 Some tip content
 :::
@@ -24,26 +20,15 @@ Some tip content
   }
 </script>
 
-<button type="button" on:click={add}>
+<button type="button" on:click={add} text-orange>
   Count is {count}
 </button>
-<style>
-  button {
-    color: orange;
-  }
-</style>
 ```
 
 ```svelte live
 <script>
   const message = 'Hello world!'
 </script>
-<div class="message">
+<div text-purple-8 text-20>
   {message}
 </div>
-<style>
-  .message {
-    color: purple;
-    font-size: 24px;
-  }
-</style>

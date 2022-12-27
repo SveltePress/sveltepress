@@ -23,4 +23,6 @@ const sveltepressPreprocessor: SveltepressPreprocessor = ({ mdsvexOptions }) => 
   }
 }
 
+export { safelist } from '@svelte-press/remark-live-code'
+
 export default sveltepressPreprocessor
