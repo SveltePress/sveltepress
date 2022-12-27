@@ -1,6 +1,6 @@
 {
   "name": "@svelte-press/svelte-preprocessor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,9 @@
     ".": "./dist/index.js",
     "./dist/main.css": "./dist/main.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json && cp src/night-owl.json dist && cp src/main.css dist"
