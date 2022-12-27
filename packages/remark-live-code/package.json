@@ -1,14 +1,19 @@
 {
   "name": "@svelte-press/remark-live-code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
-  "keywords": ["remark", "remark plugin"],
+  "keywords": [
+    "remark",
+    "remark plugin"
+  ],
   "author": {
     "name": "Dongsheng Zhao",
     "email": "1197160272@qq.com"
