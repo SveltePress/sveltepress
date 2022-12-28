@@ -13,11 +13,11 @@ You can manually follow these steps to construct your own project
 ```js
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
-import VitePlugSveltepress from '@svelte-press/vite'
+import Sveltepress from '@svelte-press/vite'
 
 const config = defineConfig({
   plugins: [
-    VitePlugSveltepress(),
+    Sveltepress(),
   ],
 })
 
