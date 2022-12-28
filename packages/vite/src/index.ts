@@ -1,8 +1,9 @@
-import type { Plugin } from 'vite'
+import type { PluginOption } from 'vite'
 import Unocss from 'unocss/vite'
 import { presetIcons, presetUno, presetAttributify } from 'unocss'
 import { safelist } from '@svelte-press/remark-live-code'
 import CorePlugin from './plugin.js'
+import { sveltekit } from '@sveltejs/kit/vite'
 
 const unoPlugins = Unocss({
   presets: [
@@ -13,11 +14,12 @@ const unoPlugins = Unocss({
   safelist
 })
 
-const VitePlugSveltepress: () => (Plugin | Plugin[])[] = () => {
+const VitePlugSveltepress: () => PluginOption = () => {
 
   return [
     unoPlugins, 
     CorePlugin(),
+    sveltekit()
   ]
 }
 

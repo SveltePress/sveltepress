@@ -30,7 +30,6 @@ importers:
       svelte: ^3.54.0
       svelte-check: ^2.9.2
       typescript: ^4.9.3
-      unocss: ^0.48.0
       vite: ^4.0.3
     devDependencies:
       '@casual-ui/eslint-config-svelte': 0.0.2_3wzfxybqclpucaafwwifv32j3a
@@ -45,7 +44,6 @@ importers:
       svelte: 3.55.0
       svelte-check: 2.10.3_svelte@3.55.0
       typescript: 4.9.4
-      unocss: 0.48.0_vite@4.0.3
       vite: 4.0.3_@types+node@18.11.18
 
   packages/remark-live-code:
@@ -109,6 +107,7 @@ importers:
       '@svelte-press/remark-live-code': workspace:*
       '@sveltejs/adapter-static': ^1.0.0
       '@sveltejs/kit': ^1.0.0
+      '@sveltejs/vite-plugin-svelte': ^2.0.2
       '@types/node': ^18.11.18
       svelte: ^3.55.0
       typescript: ^4.9.4
@@ -118,6 +117,7 @@ importers:
       '@svelte-press/remark-live-code': link:../remark-live-code
       '@sveltejs/adapter-static': 1.0.0_@sveltejs+kit@1.0.1
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
+      '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.0+vite@4.0.3
       '@types/node': 18.11.18
       svelte: 3.55.0
       typescript: 4.9.4
@@ -827,7 +827,7 @@ packages:
       svelte: 3.55.0
       tiny-glob: 0.2.9
       undici: 5.14.0
-      vite: 4.0.3
+      vite: 4.0.3_@types+node@18.11.18
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -861,7 +861,7 @@ packages:
       magic-string: 0.27.0
       svelte: 3.55.0
       svelte-hmr: 0.15.1_svelte@3.55.0
-      vite: 4.0.3
+      vite: 4.0.3_@types+node@18.11.18
       vitefu: 0.2.4_vite@4.0.3
     transitivePeerDependencies:
       - supports-color
@@ -4457,7 +4457,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.0.3
+      vite: 4.0.3_@types+node@18.11.18
     dev: true
 
   /vitest/0.26.2:
