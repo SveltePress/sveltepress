@@ -1,5 +1,11 @@
 # @svelte-press/remark-live-code
 
+## 0.0.4
+
+### Patch Changes
+
+- 05b393d: optimize style
+
 ## 0.0.3
 
 ### Patch Changes
