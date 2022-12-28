@@ -23,7 +23,7 @@ const config = defineConfig({
 
 export default config
 ```
-- Add sveltepress preprocessor in your svelte.config.js
+- Add sveltepress preprocessor in your svelte.config.js. And don't forget 
 ```js
 // svelte.config.js
 import adapter from '@sveltejs/adapter-static'
@@ -42,7 +42,7 @@ const config = {
 }
 export default config
 ```
-- Import `'virtual:sveltepress'` module in your src/routes/+layout.(md|svelte). 
+- Import `'virtual:sveltepress'` module in your in your client entry which would be src/routes/+layout.(md|svelte). 
 Your layout file may look like this:
 ```html
 <!-- src/routes/+layout.(md|svelte) -->
@@ -52,8 +52,6 @@ Your layout file may look like this:
 </script>
 <!-- Some layout content -->
 ```
-Notice that you will no longer need to `import 'uno.css'`, the `virtual:sveltepress` would handle that
-- Now you can start to write markdowns.
 
 ## Markdown Features
 
