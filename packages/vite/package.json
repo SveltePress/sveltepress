@@ -43,5 +43,8 @@
     "typescript": "^4.9.4",
     "unocss": "^0.48.0",
     "vite": "^4.0.3"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.0.0"
   }
 }

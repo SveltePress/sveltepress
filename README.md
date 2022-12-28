@@ -15,14 +15,12 @@ You can manually follow these steps to construct your own project
 - Add unocss vite plugin and sveltepress plugin in your vite.config.(js|ts). Your config may look like this
 ```js
 // vite.config.(js|ts)
-import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
 import VitePlugSveltepress from '@svelte-press/vite'
 
 const config = defineConfig({
   plugins: [
     VitePlugSveltepress(),
-    sveltekit(),
   ],
 })
 
