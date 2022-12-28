@@ -81,22 +81,30 @@
   {/if}
   <!-- The header click function, emit the expand status exchange -->
   <div
-    class="c-expansion--header rounded-b"
+    class="c-expansion--header rounded-b flex justify-between px-4 py-2 items-center"
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
     on:keypress={onHeaderClick}
   >
-    {#if $$slots.icon}
-      <div class="c-expansion--icon">
+    <div class="flex items-center">
+      <div class="c-expansion--icon mr-2">
         <!-- The content before title -->
-        <slot name="icon" />
+        {#if expanded}
+          <slot name="icon-expanded">
+            <div class="i-vscode-icons-file-type-svelte text-6"></div>
+          </slot>
+        {:else}
+          <slot name="icon-fold">
+            <div class="i-carbon-logo-svelte text-6"></div>
+          </slot>
+        {/if}
       </div>
-    {/if}
-    <div class="c-expansion--title">
-      <!-- Customize the title content -->
-      <slot name="title">
-        {title}
-      </slot>
+      <div class="c-expansion--title text-3.5">
+        <!-- Customize the title content -->
+        <slot name="title">
+          {title}
+        </slot>
+      </div>
     </div>
     <div
       class={`c-expansion--arrow ${expanded ? 'c-expansion--arrow-expanded' : ''}`}

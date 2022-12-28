@@ -1,4 +1,3 @@
-  
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
@@ -59,6 +58,7 @@ const liveCode: RemarkLiveCode = function () {
 `,
           }
           const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
+          // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
           // @ts-ignore
           const blockId = `${vFile.filename}-${idx}`
           let name = idNameMap[blockId]
@@ -104,9 +104,9 @@ const liveCode: RemarkLiveCode = function () {
 }
 
 export const safelist = [
-  ERROR_CLASSES, 
-  DEMO_CLASSES, 
-  CONTAINER_CLASSES
+  ERROR_CLASSES,
+  DEMO_CLASSES,
+  CONTAINER_CLASSES,
 ].reduce<string[]>((r, classStr) => [...r, ...classStr.split(' ')], [])
 
 export default liveCode

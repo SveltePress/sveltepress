@@ -1,6 +1,6 @@
 <script lang="ts">
-	import GlobalLayout from '@svelte-press/theme-default/GlobalLayout.svelte'
-  import 'virtual:sveltepress'
+import GlobalLayout from '@svelte-press/theme-default/GlobalLayout.svelte'
+import 'virtual:sveltepress'
 </script>
 	
 <GlobalLayout>

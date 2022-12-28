@@ -7,8 +7,8 @@ const config = {
   preprocess: [vitePreprocess()],
   package: {
     source: 'src',
-    dir: 'dist'
-  }
+    dir: 'dist',
+  },
 }
 
 export default config
