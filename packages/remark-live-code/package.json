@@ -1,6 +1,6 @@
 {
   "name": "@svelte-press/remark-live-code",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "files": [
     "dist"

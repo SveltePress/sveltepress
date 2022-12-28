@@ -1,5 +1,11 @@
 # @svelte-press/svelte-preprocessor
 
+## 0.0.3
+
+### Patch Changes
+
+- 4b7e85e: bump things
+
 ## 0.0.2
 
 ### Patch Changes
