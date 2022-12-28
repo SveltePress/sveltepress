@@ -35,8 +35,12 @@
   "license": "MIT",
   "devDependencies": {
     "@svelte-press/remark-live-code": "workspace:*",
+    "@sveltejs/adapter-static": "^1.0.0",
+    "@sveltejs/kit": "^1.0.0",
     "@types/node": "^18.11.18",
+    "svelte": "^3.55.0",
     "typescript": "^4.9.4",
+    "unocss": "^0.48.0",
     "vite": "^4.0.3"
   }
 }

@@ -9,7 +9,6 @@ You can manually follow these steps to construct your own project
 
 - Create a sveltekit project by using `npm create svelte@latest my-app`. Or you can follow the [Creating a project - SvelteKit](https://kit.svelte.dev/docs/creating-a-project)
 - Install these packages
-  - unocss
   - @casual-ui/svelte
   - @svelte-press/svelte-preprocessor
   - @svelte-press/vite
@@ -17,22 +16,12 @@ You can manually follow these steps to construct your own project
 ```js
 // vite.config.(js|ts)
 import { sveltekit } from '@sveltejs/kit/vite'
-import Unocss from 'unocss/vite'
-import { presetIcons, presetUno, presetAttributify } from 'unocss'
 import { defineConfig } from 'vite'
-import VitePlugSveltepress, { safelist } from '@svelte-press/vite'
+import VitePlugSveltepress from '@svelte-press/vite'
 
 const config = defineConfig({
   plugins: [
     VitePlugSveltepress(),
-    Unocss({
-      presets: [
-        presetAttributify(),
-        presetUno(),
-        presetIcons(),
-      ],
-      safelist
-    }),
     sveltekit(),
   ],
 })
