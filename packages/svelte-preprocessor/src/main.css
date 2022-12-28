@@ -116,4 +116,8 @@
 .shiki {
   padding: 12px;
   border-radius: 4px;
+  margin: 0;
+}
+.c-expansion--body .shiki {
+  border-radius: unset;
 }

@@ -8,13 +8,18 @@
   ],
   "type": "module",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/cjs/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./CExpansion.svelte": "./dist/CExpansion.svelte"
   },
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m es6 --outDir dist/es",
     "build:cjs": "tsc -p tsconfig.json -m commonjs --outDir dist/cjs",
-    "build": "pnpm build:es && pnpm build:cjs"
+    "build": "pnpm build:es && pnpm build:cjs && cp src/style.css dist && cp src/CExpansion.svelte dist"
   },
   "keywords": [
     "vite",
@@ -36,7 +41,6 @@
   "devDependencies": {
     "@svelte-press/remark-live-code": "workspace:*",
     "@sveltejs/adapter-static": "^1.0.0",
-    "@sveltejs/kit": "^1.0.0",
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "@types/node": "^18.11.18",
     "svelte": "^3.55.0",
@@ -44,7 +48,8 @@
     "unocss": "^0.48.0",
     "vite": "^4.0.3"
   },
-  "peerDependencies": {
-    "@sveltejs/kit": "^1.0.0"
+  "dependencies": {
+    "@sveltejs/kit": "^1.0.0",
+    "@iconify/json": "^2.1.157"
   }
 }

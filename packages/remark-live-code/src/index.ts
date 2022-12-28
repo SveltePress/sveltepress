@@ -1,5 +1,4 @@
   
-/* @unocss-include */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
@@ -8,6 +7,10 @@ import type { RemarkLiveCode } from './types'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
+
+const ERROR_CLASSES = 'text-red-5'
+const CONTAINER_CLASSES = 'mb-8 shadow-sm'
+const DEMO_CLASSES = 'bg-white rounded-t p-4 b-t-1 b-x-1 b-gray-2 b-t-solid b-x-solid'
 
 const liveCode: RemarkLiveCode = function () {
   if (!existsSync(BASE_PATH)) {
@@ -32,7 +35,7 @@ const liveCode: RemarkLiveCode = function () {
           const expansionNodeStart = {
             type: 'html',
             value: `
-{#await import('@casual-ui/svelte/dist/components/CExpansion.svelte')}
+{#await import('@svelte-press/vite/CExpansion.svelte')}
 {:then CExpansion}
   <svelte:component this={CExpansion.default} title="Click fold/expand code" reverse={true}>
 `,
@@ -51,7 +54,7 @@ const liveCode: RemarkLiveCode = function () {
             value: `
 </svelte:component>
 {:catch err}
-  <div text-red-5>Expansion Error: {JSON.stringify(err)}</div>
+  <div class="${ERROR_CLASSES}">Expansion Error: {JSON.stringify(err)}</div>
 {/await}
 `,
           }
@@ -67,13 +70,14 @@ const liveCode: RemarkLiveCode = function () {
           writeFileSync(resolve(BASE_PATH, name), node.value || '')
           const svelteComponent = {
             type: 'html',
-            // @unocss-include
             value: `
 {#await import('$sveltepress/live-code/${name}')}
 {:then Comp}
-  <svelte:component this="{Comp.default}"></svelte:component>
+  <div class="${DEMO_CLASSES}">
+    <svelte:component this="{Comp.default}"></svelte:component>
+  </div>
 {:catch err}
-  <div text-red-5>Live Code Error: {JSON.stringify(err)}</div>
+  <div class="${ERROR_CLASSES}">Live Code Error: {JSON.stringify(err)}</div>
 {/await}`,
           }
 
@@ -82,7 +86,7 @@ const liveCode: RemarkLiveCode = function () {
             data: {
               hName: 'div',
               hProperties: {
-                className: 'bg-white mb-8 shadow-sm rounded-md',
+                className: CONTAINER_CLASSES,
               },
             },
             children: [
@@ -99,6 +103,10 @@ const liveCode: RemarkLiveCode = function () {
   }
 }
 
-export const safelist = ['bg-white', 'mb-8', 'shadow-sm', 'rounded-md']
+export const safelist = [
+  ERROR_CLASSES, 
+  DEMO_CLASSES, 
+  CONTAINER_CLASSES
+].reduce<string[]>((r, classStr) => [...r, ...classStr.split(' ')], [])
 
 export default liveCode

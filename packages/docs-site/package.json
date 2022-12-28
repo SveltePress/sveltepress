@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "@casual-ui/eslint-config-svelte": "^0.0.2",
-    "@casual-ui/svelte": "^0.0.9",
     "@svelte-press/svelte-preprocessor": "workspace:*",
     "@svelte-press/theme-default": "workspace:*",
     "@svelte-press/vite": "workspace:*",

@@ -8,10 +8,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "sourceMap": true,
     "strict": true,
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "removeComments": false
   },
   "include": ["src"]
 }

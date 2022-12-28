@@ -8,11 +8,8 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 You can manually follow these steps to construct your own project
 
 - Create a sveltekit project by using `npm create svelte@latest my-app`. Or you can follow the [Creating a project - SvelteKit](https://kit.svelte.dev/docs/creating-a-project)
-- Install these packages
-  - @casual-ui/svelte
-  - @svelte-press/svelte-preprocessor
-  - @svelte-press/vite
-- Add unocss vite plugin and sveltepress plugin in your vite.config.(js|ts). Your config may look like this
+- `npm install @svelte-press/svelte-preprocessor @svelte-press/vite`
+- Add sveltepress vite plugin in your vite.config.(js|ts)
 ```js
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
@@ -26,7 +23,7 @@ const config = defineConfig({
 
 export default config
 ```
-- Add sveltepress preprocessor in your svelte.config.js. Your config may look like this
+- Add sveltepress preprocessor in your svelte.config.js
 ```js
 // svelte.config.js
 import adapter from '@sveltejs/adapter-static'

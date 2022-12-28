@@ -36,7 +36,7 @@ const VitePlugSveltepress: () => Plugin = () => {
       },
       load(id) {
         if (id === RESOLVED_GLOBAL_CSS_MODULE) {
-          return `import '@casual-ui/svelte/dist/style/style.css'
+          return `import '@svelte-press/vite/style.css'
 import '@svelte-press/svelte-preprocessor/dist/main.css'
 import 'uno.css'
   `

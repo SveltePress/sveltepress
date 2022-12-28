@@ -23,7 +23,7 @@ Some tip content
 <button 
   type="button" 
   on:click={add} 
-  class="cursor-pointer px-1 py-2 text-orange-5"
+  class="cursor-pointer px-1 py-2 text-purple-5"
 >
   Count is {count}
 </button>

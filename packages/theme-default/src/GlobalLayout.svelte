@@ -7,3 +7,9 @@ import Navbar from './Navbar.svelte'
   <Navbar />
   <slot />
 </main>
+
+<style>
+  :global(body) {
+    --at-apply: bg-gray-1;
+	}
+</style>
