@@ -8,7 +8,7 @@ import type { SveltepressPreprocessor } from './types'
 const sveltepressPreprocessor: SveltepressPreprocessor = ({ mdsvexOptions }) => {
   return {
     markup: async ({ content, filename }) => {
-      const transformedSvlteCode = await compile(content, {
+      const transformedSvelteCode = await compile(content, {
         extensions: ['.md'],
         filename,
         ...mdsvexOptions,
@@ -18,7 +18,7 @@ const sveltepressPreprocessor: SveltepressPreprocessor = ({ mdsvexOptions }) => 
         remarkPlugins: [liveCode, admonitions],
       })
 
-      return transformedSvlteCode
+      return transformedSvelteCode
     },
   }
 }
