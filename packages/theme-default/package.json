@@ -33,7 +33,9 @@
     "vite": "^4.0.3"
   },
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
+    ".": "./dist/index.js",
     "./package.json": "./package.json",
     "./GlobalLayout.svelte": "./dist/GlobalLayout.svelte",
     "./Navbar.svelte": "./dist/Navbar.svelte",
