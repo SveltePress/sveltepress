@@ -9,7 +9,9 @@ const config = {
   extensions: ['.svelte', '.md'],
   preprocess: [vitePreprocess(), sveltepressPreprocessor({})],
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      pages: 'dist',
+    }),
   },
 }
 

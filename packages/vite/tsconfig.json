@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "node",
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "declaration": true,
     "outDir": "dist",
-    "removeComments": false
+    "moduleResolution": "node",
+    "removeComments": false,
   },
   "include": ["src"]
 }

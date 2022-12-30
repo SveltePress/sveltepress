@@ -44,16 +44,8 @@ const config = {
 }
 export default config
 ```
-- Import `'virtual:sveltepress'` module in your in your client entry which would be src/routes/+layout.(md|svelte). 
-Your layout file may look like this:
-```html
-<!-- src/routes/+layout.(md|svelte) -->
-<script>
-  import 'virtual:sveltepress'
-  // your other codes
-</script>
-<!-- Some layout content -->
-```
+- Create src/routes/+layout.(md|svelte), it can be empty or with some your custom global layout codes
+- Done! You can now write your markdowns
 
 ## Markdown Features
 
