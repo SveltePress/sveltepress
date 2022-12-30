@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.5
+
+### Patch Changes
+
+- b650da0: fix wrong bin entry
+
 ## 0.0.4
 
 ### Patch Changes
