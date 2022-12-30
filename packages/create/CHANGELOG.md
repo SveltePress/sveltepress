@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.7
+
+### Patch Changes
+
+- efcd572: picocolors named export
+
 ## 0.0.6
 
 ### Patch Changes
