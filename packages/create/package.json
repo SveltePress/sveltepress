@@ -1,6 +1,6 @@
 {
   "name": "@svelte-press/create",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The helper for creating sveltepress projects",
   "exports": {
     ".": {
@@ -14,7 +14,7 @@
     "build": "unbuild"
   },
   "bin": {
-    "create":  "./dist/index.cjs"
+    "create": "./dist/index.cjs"
   },
   "type": "module",
   "files": [
