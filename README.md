@@ -10,9 +10,9 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 ### Creating a project
 
 - Run `npm init @svelte-press`
-Then follow the instructions pick your preference
+- Answer the questions to pick your flavor
 
-### Add to a existing sveltekit project
+### Add to an existing sveltekit project
 
 - `npm i --save @svelte-press/vite`
 - Add plugin in your vite config
