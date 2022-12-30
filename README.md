@@ -9,8 +9,9 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 ### Creating a project
 
-- `npm init @svelte-press`
-> TODO: Complete the @svelte-press/create package
+- Run `npm init @svelte-press`
+Then follow the instructions pick your preference
+
 ### Add to a existing sveltekit project
 
 - `npm i --save @svelte-press/vite`
