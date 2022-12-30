@@ -9,7 +9,7 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 You can manually follow these steps to construct your own project
 
-- Create a sveltekit project by using `npm create svelte@latest my-app`. Or you can follow the [Creating a project - SvelteKit](https://kit.svelte.dev/docs/creating-a-project)
+- Create a vite project 
 - `npm install @svelte-press/vite`
 - Add sveltepress vite plugin in your vite.config.(js|ts)
 ```js

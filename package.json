@@ -9,10 +9,9 @@
   },
   "scripts": {
     "build:lc": "cd packages/remark-live-code && pnpm build && cd ../..",
-    "build:sp": "cd packages/svelte-preprocessor && pnpm build && cd ../..",
     "build:vite": "cd packages/vite && pnpm build && cd ../..",
     "build:td": "cd packages/theme-default && pnpm build && cd ../..",
-    "build:all": "pnpm build:lc && pnpm build:sp && pnpm build:vite && pnpm build:td",
+    "build:all": "pnpm build:lc && pnpm build:vite && pnpm build:td",
     "release": "pnpm build:all && changeset publish"
   }
 }
