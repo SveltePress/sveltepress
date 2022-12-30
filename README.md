@@ -7,11 +7,11 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 ## Quick start
 
-### Creating a Project
+### Creating a project
 
 - `npm init @svelte-press`
 > TODO: Complete the @svelte-press/create package
-### Add To a Existing SvelteKit Project
+### Add To a existing sveltekit project
 
 - `npm i --save @svelte-press/vite`
 - Add plugin in your vite config.   
@@ -33,9 +33,9 @@ const config = defineConfig({
 export default config
 ```
 
-## Markdown Features
+## Markdown features
 
-### Code Highlight
+### Code highlight
 
 ````md
 ```js
@@ -51,7 +51,7 @@ function name(params) {
 * `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages and `+layout.(md|svelte)` as layouts
 * `.md` files can use the features provided by [Mdsvex](https://mdsvex.com/)
 
-### Live Code
+### Svelte live code
 
 Code Blocks with svelte lang and `live` attribute would render in page and show the __expandable source code__ below the render dom
 
@@ -80,7 +80,7 @@ Would render like this
 
 ![live code demo](./assets/live-code.gif)
 
-### Admonition Block
+### Admonition
 
 ```md
 :::[tip|info|caution|warning|important|note] Title
@@ -90,11 +90,11 @@ Some admonition content
 
 ## Themes
 
-### Default Theme
+### Default theme
 
 > TODO: Add default theme
 
-### Blog Theme
+### Blog theme
 
 > TODO: Add blog theme
 
