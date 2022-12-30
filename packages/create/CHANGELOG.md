@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.6
+
+### Patch Changes
+
+- 3e02df1: fix bin error
+
 ## 0.0.5
 
 ### Patch Changes
