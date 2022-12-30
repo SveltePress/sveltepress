@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.4
+
+### Patch Changes
+
+- b0778b8: fix bin script
+
 ## 0.0.3
 
 ### Patch Changes
