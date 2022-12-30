@@ -1,5 +1,5 @@
-export type Theme = 'default' | 'blog'
+export type Theme = `@svelte-press/${'default' | 'blog'}`
 
 export interface SveltepressVitePluginOptions {
-  theme?: 'default' | 'blog'
+  theme?: Theme
 }

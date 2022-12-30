@@ -10,7 +10,7 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 You can manually follow these steps to construct your own project
 
 - Create a sveltekit project by using `npm create svelte@latest my-app`. Or you can follow the [Creating a project - SvelteKit](https://kit.svelte.dev/docs/creating-a-project)
-- `npm install @svelte-press/svelte-preprocessor @svelte-press/vite`
+- `npm install @svelte-press/vite`
 - Add sveltepress vite plugin in your vite.config.(js|ts)
 ```js
 // vite.config.(js|ts)
@@ -25,27 +25,7 @@ const config = defineConfig({
 
 export default config
 ```
-- Add sveltepress preprocessor in your svelte.config.js. And don't forget 
-```js
-// svelte.config.js
-import adapter from '@sveltejs/adapter-static'
-import { vitePreprocessor } from '@sveltejs/kit/vite'
-import sveltepressPreprocessor from '@svelte-press/svelte-preprocessor'
-
-/**
- * @type {import('@sveltejs/kit').Config}
- */
-const config = {
-  extensions: ['.svelte', '.md'], // Add support for markdown files
-  preprocess: [vitePreprocessor(), sveltepressPreprocessor({})],
-  kit: {
-    adapter: adapter(),
-  },
-}
-export default config
-```
-- Create src/routes/+layout.(md|svelte), it can be empty or with some your custom global layout codes
-- Done! You can now write your markdowns
+- Done! You can now enjoy writing your contents!
 
 ## Markdown Features
 

@@ -9,17 +9,13 @@
   "types": "./dist/es/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/cjs/index.js"
-    },
+    ".": "./dist/es/index.js",
     "./style.css": "./dist/style.css",
     "./CExpansion.svelte": "./dist/CExpansion.svelte"
   },
   "scripts": {
-    "build:es": "tsc -p tsconfig.json -m es6 --outDir dist/es",
-    "build:cjs": "tsc -p tsconfig.json -m commonjs --outDir dist/cjs",
-    "build": "pnpm build:es && pnpm build:cjs && cp src/style.css dist && cp src/CExpansion.svelte dist"
+    "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
+    "build": "pnpm build:es && cp src/style.css dist && cp src/CExpansion.svelte dist && cp src/markdown/night-owl.json dist/es/markdown"
   },
   "keywords": [
     "vite",
@@ -42,7 +38,10 @@
     "@svelte-press/remark-live-code": "workspace:*",
     "@sveltejs/adapter-static": "^1.0.0",
     "@types/node": "^18.11.18",
+    "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",
+    "remark-admonitions": "^1.2.1",
+    "shiki": "^0.12.1",
     "svelte": "^3.55.0",
     "typescript": "^4.9.4",
     "unocss": "^0.48.0",
