@@ -24,7 +24,7 @@ const config = defineConfig({
   plugins: [
     Sveltepress(),
     // You won't need sveltekit() here any more
-    // Here are your other plugins expect for sveltekit()
+    // Here are your other plugins except for sveltekit()
   ],
 })
 
