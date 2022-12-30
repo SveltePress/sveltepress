@@ -117,7 +117,7 @@ async function init() {
           }, {
             title: 'Javascript',
             value: 'js',
-            description: 'Use Typescript as your new project language',
+            description: 'Use Javascript as your new project language',
           }],
         },
       ],
