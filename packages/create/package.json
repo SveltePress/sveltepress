@@ -13,7 +13,9 @@
   "scripts": {
     "build": "unbuild"
   },
-  "bin": "./dist/index.js",
+  "bin": {
+    "create": "./dist/index.js"
+  },
   "type": "module",
   "files": [
     "dist",
