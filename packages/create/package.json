@@ -14,7 +14,7 @@
     "build": "unbuild"
   },
   "bin": {
-    "create": "./dist/index.js"
+    "create":  "./dist/index.cjs"
   },
   "type": "module",
   "files": [
