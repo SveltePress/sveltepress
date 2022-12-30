@@ -13,9 +13,7 @@
   "scripts": {
     "build": "unbuild"
   },
-  "bin": {
-    "create":  "./dist/index.cjs"
-  },
+  "bin": "./dist/index.cjs",
   "type": "module",
   "files": [
     "dist",
