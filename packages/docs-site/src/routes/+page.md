@@ -14,7 +14,7 @@ Some tip content
 
 ```svelte live
 <script>
-  let count = 0
+  let count = 1
   const add = () => {
     count++
   }

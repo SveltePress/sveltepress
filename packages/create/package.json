@@ -1,0 +1,50 @@
+{
+  "name": "@svelte-press/create",
+  "version": "0.0.1",
+  "description": "The helper for creating sveltepress projects",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "unbuild"
+  },
+  "bin": "./dist/index.js",
+  "type": "module",
+  "files": [
+    "dist",
+    "template-*"
+  ],
+  "keywords": [
+    "svelte",
+    "sveltekit",
+    "sveltepress"
+  ],
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/create"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.11.18",
+    "@types/prompts": "^2.4.2",
+    "unbuild": "^1.0.2"
+  },
+  "dependencies": {
+    "cross-spawn": "^7.0.3",
+    "minimist": "^1.2.7",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2"
+  }
+}

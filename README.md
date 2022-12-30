@@ -7,11 +7,16 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 ## Quick start
 
-You can manually follow these steps to construct your own project
+### Creating a Project
 
-- Create a vite project 
-- `npm install @svelte-press/vite`
-- Add sveltepress vite plugin in your vite.config.(js|ts)
+- `npm init @svelte-press`
+> TODO: Complete the @svelte-press/create package
+### Add To a Existing SvelteKit Project
+
+- `npm i --save @svelte-press/vite`
+- Add plugin in your vite config.   
+Notice that you will no longer need sveltekit plugin any more.  
+Sveltepress plugin would handle that for you.
 ```js
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
@@ -20,12 +25,13 @@ import Sveltepress from '@svelte-press/vite'
 const config = defineConfig({
   plugins: [
     Sveltepress(),
+    // You won't need sveltekit() here any more
+    // Here are your other plugins expect for sveltekit()
   ],
 })
 
 export default config
 ```
-- Done! You can now enjoy writing your contents!
 
 ## Markdown Features
 
@@ -86,7 +92,7 @@ Some admonition content
 
 ### Default Theme
 
-> TODO: Add default theme1
+> TODO: Add default theme
 
 ### Blog Theme
 
