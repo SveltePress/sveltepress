@@ -5,13 +5,9 @@ import { fileURLToPath } from 'node:url'
 import spawn from 'cross-spawn'
 import minimist from 'minimist'
 import prompts from 'prompts'
-import {
-  blue,
-  red,
-  reset,
-  yellow,
-} from 'picocolors'
+import pc from 'picocolors'
 
+const { yellow, blue, reset, red } = pc
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string. See #4606
 const argv = minimist<{
