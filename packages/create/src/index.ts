@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'node:url'
@@ -48,7 +49,7 @@ const renameFiles: Record<string, string | undefined> = {
   _gitignore: '.gitignore',
 }
 
-const defaultTargetDir = 'vite-project'
+const defaultTargetDir = 'sveltepress-project'
 
 async function init() {
   const argTargetDir = formatTargetDir(argv._[0])
@@ -59,7 +60,7 @@ async function init() {
     targetDir === '.' ? path.basename(path.resolve()) : targetDir
 
   let result: prompts.Answers<
-    'projectName' | 'overwrite' | 'packageName' | 'framework'
+    'projectName' | 'overwrite' | 'packageName' | 'language'
   >
 
   try {
@@ -104,14 +105,24 @@ async function init() {
         {
           type:
             argTemplate && TEMPLATES.includes(argTemplate) ? null : 'select',
-          name: 'framework',
+          name: 'language',
           message:
             typeof argTemplate === 'string' && !TEMPLATES.includes(argTemplate)
               ? reset(
                   `"${argTemplate}" isn't a valid template. Please choose from below: `,
               )
-              : reset('Select a framework:'),
+              : reset('Use Javascript or Typescript for your new project?'),
           initial: 0,
+          choices: [{
+            title: 'Typescript',
+            value: 'ts',
+            selected: true,
+            description: 'Use Typescript as your new project language',
+          }, {
+            title: 'Javascript',
+            value: 'js',
+            description: 'Use Typescript as your new project language',
+          }],
         },
       ],
       {
@@ -127,7 +138,7 @@ async function init() {
   }
 
   // user choice associated with prompts
-  const { framework, overwrite, packageName, variant } = result
+  const { language, overwrite, packageName } = result
 
   const root = path.join(cwd, targetDir)
 
@@ -138,12 +149,7 @@ async function init() {
     fs.mkdirSync(root, { recursive: true })
 
   // determine template
-  let template: string = variant || framework?.name || argTemplate
-  let isReactSwc = false
-  if (template.includes('-swc')) {
-    isReactSwc = true
-    template = template.replace('-swc', '')
-  }
+  const template: string = language || argTemplate
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
@@ -206,9 +212,6 @@ async function init() {
   pkg.name = packageName || getProjectName()
 
   write('package.json', JSON.stringify(pkg, null, 2))
-
-  if (isReactSwc)
-    setupReactSwc(root, template.endsWith('-ts'))
 
   console.log('\nDone. Now run:\n')
   if (root !== cwd)
@@ -290,26 +293,6 @@ function pkgFromUserAgent(userAgent: string | undefined) {
     name: pkgSpecArr[0],
     version: pkgSpecArr[1],
   }
-}
-
-function setupReactSwc(root: string, isTs: boolean) {
-  editFile(path.resolve(root, 'package.json'), (content) => {
-    return content.replace(
-      /"@vitejs\/plugin-react": ".+?"/,
-      '"@vitejs/plugin-react-swc": "^3.0.0"',
-    )
-  })
-  editFile(
-    path.resolve(root, `vite.config.${isTs ? 'ts' : 'js'}`),
-    (content) => {
-      return content.replace('@vitejs/plugin-react', '@vitejs/plugin-react-swc')
-    },
-  )
-}
-
-function editFile(file: string, callback: (content: string) => string) {
-  const content = fs.readFileSync(file, 'utf-8')
-  fs.writeFileSync(file, callback(content), 'utf-8')
 }
 
 init().catch((e) => {

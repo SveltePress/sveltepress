@@ -39,6 +39,46 @@ importers:
       '@types/prompts': 2.4.2
       unbuild: 1.0.2
 
+  packages/create/template-js:
+    specifiers:
+      '@svelte-press/theme-default': latest
+      '@svelte-press/vite': latest
+      '@sveltejs/adapter-static': ^1.0.0
+      '@sveltejs/kit': ^1.0.0
+      '@types/node': ^18.11.17
+      svelte: ^3.54.0
+      vite: ^4.0.3
+    devDependencies:
+      '@svelte-press/theme-default': link:../../theme-default
+      '@svelte-press/vite': link:../../vite
+      '@sveltejs/adapter-static': 1.0.0_@sveltejs+kit@1.0.1
+      '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
+      '@types/node': 18.11.18
+      svelte: 3.55.0
+      vite: 4.0.3_@types+node@18.11.18
+
+  packages/create/template-ts:
+    specifiers:
+      '@svelte-press/theme-default': latest
+      '@svelte-press/vite': latest
+      '@sveltejs/adapter-static': ^1.0.0
+      '@sveltejs/kit': ^1.0.0
+      '@types/node': ^18.11.17
+      svelte: ^3.54.0
+      svelte-check: ^2.9.2
+      typescript: ^4.9.3
+      vite: ^4.0.3
+    devDependencies:
+      '@svelte-press/theme-default': link:../../theme-default
+      '@svelte-press/vite': link:../../vite
+      '@sveltejs/adapter-static': 1.0.0_@sveltejs+kit@1.0.1
+      '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
+      '@types/node': 18.11.18
+      svelte: 3.55.0
+      svelte-check: 2.10.3_svelte@3.55.0
+      typescript: 4.9.4
+      vite: 4.0.3_@types+node@18.11.18
+
   packages/docs-site:
     specifiers:
       '@casual-ui/eslint-config-svelte': ^0.0.2

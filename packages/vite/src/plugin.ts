@@ -27,7 +27,7 @@ const ROOT_SERVER_FILES = [
 ]
 
 const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = ({
-  theme = '@svelte-press/default',
+  theme = '@svelte-press/theme-default',
 } = {}) => {
   return {
     name: 'vite-plugin-sveltepress',
