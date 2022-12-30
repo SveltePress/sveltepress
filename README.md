@@ -11,12 +11,10 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 - `npm init @svelte-press`
 > TODO: Complete the @svelte-press/create package
-### Add To a existing sveltekit project
+### Add to a existing sveltekit project
 
 - `npm i --save @svelte-press/vite`
-- Add plugin in your vite config.   
-Notice that you will no longer need sveltekit plugin any more.  
-Sveltepress plugin would handle that for you.
+- Add plugin in your vite config
 ```js
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
@@ -32,6 +30,9 @@ const config = defineConfig({
 
 export default config
 ```
+
+Notice that you will no longer need sveltekit plugin any more.  
+Sveltepress plugin would handle that for you.
 
 ## Markdown features
 
