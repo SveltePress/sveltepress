@@ -1,6 +1,6 @@
 {
   "name": "@svelte-press/vite",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Sveltepress plugin for vite",
   "files": [
     "dist"

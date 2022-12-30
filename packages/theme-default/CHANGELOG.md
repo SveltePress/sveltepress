@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.0.5
+
+### Patch Changes
+
+- f60ff63: add create package tool for creating new projects
+
 ## 0.0.4
 
 ### Patch Changes
