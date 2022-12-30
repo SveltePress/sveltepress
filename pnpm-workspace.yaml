@@ -1,3 +1,4 @@
 packages:
   - 'packages/**'
-  - '!packages/theme-default/dist'
+  - '!packages/create/template-js'
+  - '!packages/create/template-ts'
