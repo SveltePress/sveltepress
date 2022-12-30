@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.8
+
+### Patch Changes
+
+- 93077a8: fix: unocss should be dependencies
+
 ## 0.0.7
 
 ### Patch Changes
