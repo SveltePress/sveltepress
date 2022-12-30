@@ -1,19 +1,19 @@
 ---
-title: Title
+hello: Hello
 ---
 
 <script>
-  let count = 7
+  let msg = 'Sveltepress!'
 </script>
 
-# Heading
+# {hello} {msg}
 
 :::tip Tip
 Some tip content
 :::
 
 ```svelte live
-<script>
+<script lang="ts">
   let count = 1
   const add = () => {
     count++
