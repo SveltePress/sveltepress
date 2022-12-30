@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.0.6
+
+### Patch Changes
+
+- 93077a8: fix: unocss should be dependencies
+
 ## 0.0.5
 
 ### Patch Changes
