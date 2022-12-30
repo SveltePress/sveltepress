@@ -35,21 +35,22 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@svelte-press/remark-live-code": "workspace:*",
-    "@sveltejs/adapter-static": "^1.0.0",
     "@types/node": "^18.11.18",
+    "svelte": "^3.55.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.3"
+  },
+  "dependencies": {
+    "uid": "^2.0.1",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.1",
+    "@iconify/json": "^2.1.157",
+    "@sveltejs/kit": "^1.0.0",
     "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",
     "remark-admonitions": "^1.2.1",
     "shiki": "^0.12.1",
-    "svelte": "^3.55.0",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.3",
-    "vite-plugin-inspect": "^0.7.11"
-  },
-  "dependencies": {
     "unocss": "^0.48.0",
-    "@iconify/json": "^2.1.157",
-    "@sveltejs/kit": "^1.0.0"
+    "vite-plugin-inspect": "^0.7.11"
   }
 }

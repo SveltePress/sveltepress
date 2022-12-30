@@ -1,22 +1,16 @@
 import { resolve } from 'path'
-import { existsSync, mkdirSync } from 'fs'
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
-import type { SveltepressVitePluginOptions, Theme } from './types'
+import type { SveltepressVitePluginOptions } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
-import * as log from './utils/log.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 export const LIVE_CODE_PATH = resolve(BASE_PATH, 'live-code')
+const CUSTOM_LAYOUT_PATH = resolve(BASE_PATH, 'CustomLayout.svelte')
 
 const ROOT_LAYOUT_RE = /routes\/\+layout\.(svelte|md)$/
-const SVELTE_SCRIPT_RE = /<script( ((context="module")|(lang="ts"))+){0,2}>/
 const MARKDOWN_FILE_RE = /\.md$/
 
-const resolveRootLayoutScripts: (theme: Theme) => string = theme => `
-  import { GlobalLayout } from '${theme}'
-  import '@svelte-press/vite/style.css'
-  import 'uno.css'
-`
 const AUTO_ADDED_ROOT_LAYOUT_FILE_ID = resolve(process.cwd(), 'src/+layout.server.ts')
 
 const ROOT_SERVER_FILES = [
@@ -29,6 +23,20 @@ const ROOT_SERVER_FILES = [
 const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = ({
   theme = '@svelte-press/theme-default',
 } = {}) => {
+  const wrappedRootLayout = `
+<script>
+  import CustomLayout from '${CUSTOM_LAYOUT_PATH}'
+  import { GlobalLayout } from '${theme}'
+  import '@svelte-press/vite/style.css'
+  import 'uno.css'
+</script>
+<GlobalLayout>
+  <CustomLayout>
+    <slot />
+  </CustomLayout>
+</GlobalLayout>
+`
+
   return {
     name: 'vite-plugin-sveltepress',
     /**
@@ -64,16 +72,9 @@ const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOpt
           mdContent: src,
         })
       }
-
       if (ROOT_LAYOUT_RE.test(id)) {
-        const resolvedRootLayoutScripts = resolveRootLayoutScripts(theme)
-        if (SVELTE_SCRIPT_RE.test(src)) {
-          src = src.replace(SVELTE_SCRIPT_RE, matched => `${matched}${resolvedRootLayoutScripts}`)
-        }
-        else {
-          src = `<script>${resolvedRootLayoutScripts}</script>
-${src}`
-        }
+        writeFileSync(CUSTOM_LAYOUT_PATH, src)
+        return wrappedRootLayout
       }
 
       return {
