@@ -10,7 +10,7 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "module": "ESNext",
-    "lib": ["ESNext"]
+    "lib": ["ESNext"],
   },
-  "include": ["src"]
+  "include": ["src", "build.config.ts"]
 }

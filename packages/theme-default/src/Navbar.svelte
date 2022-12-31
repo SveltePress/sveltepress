@@ -3,5 +3,5 @@
 </script>
 
 <header>
-  Navbar
+  Default theme navbar
 </header>

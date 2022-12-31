@@ -3,7 +3,7 @@ import Navbar from './Navbar.svelte'
 </script>
 
 <main>
-  GlobalLayout
+  Default theme global layout
   <Navbar />
   <slot />
 </main>

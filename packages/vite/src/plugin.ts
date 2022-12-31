@@ -26,15 +26,27 @@ const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOpt
   const wrappedRootLayout = `
 <script>
   import CustomLayout from '${CUSTOM_LAYOUT_PATH}'
-  import { GlobalLayout } from '${theme}'
   import '@svelte-press/vite/style.css'
   import 'uno.css'
 </script>
-<GlobalLayout>
-  <CustomLayout>
-    <slot />
-  </CustomLayout>
-</GlobalLayout>
+{#await import('${theme}')}
+  <div text-gray-3 text-lg>
+    <i i-eos-icons-loading></i>
+    Loading theme modules
+  </div>
+{:then ThemeModules}
+  <ThemeModules.GlobalLayout>
+    <CustomLayout>
+      <slot />
+    </CustomLayout>
+  </ThemeModules.GlobalLayout>
+{:catch error}
+  <div text-bold text-red-5>
+    There are something wrong with your theme modules please check ${theme}
+    ERR:
+    {error.message}
+  </div>
+{/await}
 `
 
   return {
@@ -61,7 +73,8 @@ const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOpt
       },
       resolve: {
         alias: {
-          $sveltepress: resolve(process.cwd(), '.sveltepress'),
+          '$sveltepress': resolve(process.cwd(), '.sveltepress'),
+          '$svp-theme': theme,
         },
       },
     }),
