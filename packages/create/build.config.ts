@@ -14,10 +14,12 @@ const getPkg = (cwdRelativePath: string) => {
   return JSON.parse(readFileSync(absolutePackagePath, 'utf-8'))
 }
 
-const writeDevDependencies = (dependencies: {
+interface Dependency {
   name: string
   version: string
-}[], pkgDirs: string[]) => {
+}
+
+const writeDevDependencies = (dependencies: Dependency[], pkgDirs: string[]) => {
   pkgDirs.forEach((pkgDir) => {
     const pkgObj = getPkg(pkgDir)
     if (!('devDependencies' in pkgObj))
@@ -31,16 +33,24 @@ const writeDevDependencies = (dependencies: {
   })
 }
 
+const padStartWithVersion = (dependencies: Dependency[]) => {
+  dependencies.forEach((dep) => {
+    dep.version = `^${dep.version}`
+  })
+}
+
 export default defineBuildConfig({
   failOnWarn: false,
   hooks: {
     // read the latest vite plugin and default theme package info and write it into templates
     'build:before': async () => {
+      const dependencies = [
+        getPkg('../vite'),
+        getPkg('../theme-default'),
+      ]
+      padStartWithVersion(dependencies)
       writeDevDependencies(
-        [
-          getPkg('../vite'),
-          getPkg('../theme-default'),
-        ],
+        dependencies,
         [
           'template-js',
           'template-ts',
