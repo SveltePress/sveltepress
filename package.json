@@ -8,11 +8,10 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "build:lc": "cd packages/remark-live-code && pnpm build && cd ../..",
     "build:vite": "cd packages/vite && pnpm build && cd ../..",
     "build:c": "cd packages/create && pnpm build && cd ../..",
     "build:td": "cd packages/theme-default && pnpm build && cd ../..",
-    "build:all": "pnpm build:c && pnpm build:lc && pnpm build:vite && pnpm build:td",
+    "build:all": "pnpm build:c && pnpm build:vite && pnpm build:td",
     "release": "pnpm build:all && changeset publish"
   }
 }
