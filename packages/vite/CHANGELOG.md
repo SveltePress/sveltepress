@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.0.11
+
+### Patch Changes
+
+- 803f0a0: fix md hmr error
+
 ## 0.0.10
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.13
+
+### Patch Changes
+
+- 803f0a0: fix md hmr error
+
 ## 0.0.12
 
 ### Patch Changes
