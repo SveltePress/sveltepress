@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.0.9
+
+### Patch Changes
+
+- 803f0a0: fix md hmr error
+
 ## 0.0.8
 
 ### Patch Changes
