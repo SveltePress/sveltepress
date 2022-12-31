@@ -1,5 +1,12 @@
 # @svelte-press/vite
 
+## 0.0.8
+
+### Patch Changes
+
+- 8cd6a64: bump things
+- c73d7ec: remove template svelte-check
+
 ## 0.0.7
 
 ### Patch Changes
