@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.12
+
+### Patch Changes
+
+- 998db60: fix: add ^ for vite plugin and default theme version
+
 ## 0.0.11
 
 ### Patch Changes
