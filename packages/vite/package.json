@@ -36,12 +36,12 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "lru-cache": "^7.14.1",
     "svelte": "^3.55.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.3"
   },
   "dependencies": {
+    "lru-cache": "^7.14.1",
     "@iconify/json": "^2.1.157",
     "@sveltejs/kit": "^1.0.0",
     "mdsvex": "^0.10.6",
