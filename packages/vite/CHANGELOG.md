@@ -1,5 +1,12 @@
 # @svelte-press/vite
 
+## 0.0.13
+
+### Patch Changes
+
+- 795ce30: lru-cache should be a dependency instead of devDependency
+- 77445ff: lru-cache should be a dependency instead of devDependency
+
 ## 0.0.12
 
 ### Patch Changes
