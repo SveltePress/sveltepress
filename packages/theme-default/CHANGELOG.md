@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.0.10
+
+### Patch Changes
+
+- cbc1140: release
+
 ## 0.0.9
 
 ### Patch Changes

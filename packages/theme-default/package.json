@@ -1,6 +1,6 @@
 {
   "name": "@svelte-press/theme-default",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "The default theme for sveltepress",
   "main": "index.js",
   "scripts": {
