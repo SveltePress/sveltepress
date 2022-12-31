@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.0.6
+
+### Patch Changes
+
+- 8cd6a64: bump things
+
 ## 0.0.5
 
 ### Patch Changes
