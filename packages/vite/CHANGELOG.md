@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.0.9
+
+### Patch Changes
+
+- b3f656d: fix publish
+
 ## 0.0.8
 
 ### Patch Changes

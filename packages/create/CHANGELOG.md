@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.10
+
+### Patch Changes
+
+- b3f656d: fix publish
+
 ## 0.0.9
 
 ### Patch Changes

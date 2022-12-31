@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.0.7
+
+### Patch Changes
+
+- b3f656d: fix publish
+
 ## 0.0.6
 
 ### Patch Changes
