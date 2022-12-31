@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.11
+
+### Patch Changes
+
+- 7ba93a6: read the latest version of vite and default theme for create package
+
 ## 0.0.10
 
 ### Patch Changes
