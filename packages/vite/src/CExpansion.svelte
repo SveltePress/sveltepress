@@ -1,3 +1,6 @@
+<script context="module">
+const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
+</script>
 <script>
   import { createEventDispatcher, onMount, tick } from 'svelte'
   import { slide } from 'svelte/transition'
@@ -81,7 +84,7 @@
   {/if}
   <!-- The header click function, emit the expand status exchange -->
   <div
-    class="c-expansion--header rounded-b flex justify-between px-4 py-2 items-center"
+    class={`c-expansion--header ${HEADER_CLASSES}`}
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
     on:keypress={onHeaderClick}

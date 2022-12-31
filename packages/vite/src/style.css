@@ -45,6 +45,10 @@ body {
 .c-expansion--arrow-expanded {
   transform: rotate(180deg);
 }
+.c-expansion--expanded .c-expansion--header {
+  position: sticky;
+  bottom: 0;
+}
 
 .admonition {
   margin-bottom: 1em;

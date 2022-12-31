@@ -64,7 +64,7 @@ const liveCode: RemarkLiveCode = function () {
           let name = idNameMap[blockId]
           if (!name) {
             name = idNameMap[blockId] = `LiveCode${uid()}.svelte`
-            writeFileSync(LIVE_CODE_MAP, JSON.stringify(idNameMap))
+            writeFileSync(LIVE_CODE_MAP, JSON.stringify(idNameMap, null, 2))
           }
 
           writeFileSync(resolve(BASE_PATH, name), node.value || '')

@@ -3,14 +3,20 @@ import { compile } from 'mdsvex'
 // @ts-ignore
 import admonitions from 'remark-admonitions'
 import type { MdsvexOptions } from 'mdsvex'
+import LRUCache from 'lru-cache'
 import liveCode from './live-code.js'
 import highlighter from './highlighter.js'
+const cache = new LRUCache<string, any>({ max: 1024 })
 
 export default async ({ mdContent, filename, mdsvexOptions }: {
   mdContent: string
   filename: string
   mdsvexOptions?: MdsvexOptions
 }) => {
+  const cacheKey = JSON.stringify({ filename, mdContent })
+  const cached = cache.get(cacheKey)
+  if (cached)
+    return cached
   const transformedSvelteCode = await compile(mdContent, {
     extensions: ['.md'],
     filename,
@@ -20,6 +26,7 @@ export default async ({ mdContent, filename, mdsvexOptions }: {
     },
     remarkPlugins: [liveCode, admonitions],
   })
+  cache.set(cacheKey, transformedSvelteCode)
 
   return transformedSvelteCode
 }

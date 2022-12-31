@@ -3,12 +3,13 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
 import type { SveltepressVitePluginOptions } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
+import { info } from './utils/log.js'
 
-export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
-export const LIVE_CODE_PATH = resolve(BASE_PATH, 'live-code')
-const CUSTOM_LAYOUT_PATH = resolve(BASE_PATH, 'CustomLayout.svelte')
+const BASE_PATH = resolve(process.cwd(), '.sveltepress')
+const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
+const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
+const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
-const ROOT_LAYOUT_RE = /routes\/\+layout\.(svelte|md)$/
 const MARKDOWN_FILE_RE = /\.md$/
 
 const AUTO_ADDED_ROOT_LAYOUT_FILE_ID = resolve(process.cwd(), 'src/+layout.server.ts')
@@ -20,33 +21,34 @@ const ROOT_SERVER_FILES = [
   resolve(process.cwd(), 'src/routes/+layout.ts'),
 ]
 
+const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
+
 const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = ({
   theme = '@svelte-press/theme-default',
 } = {}) => {
-  const wrappedRootLayout = `
+  const defaultLayout = `
 <script>
-  import CustomLayout from '${CUSTOM_LAYOUT_PATH}'
+  import { GlobalLayout } from '${theme}'
   import '@svelte-press/vite/style.css'
   import 'uno.css'
 </script>
-{#await import('${theme}')}
-  <div text-gray-3 text-lg>
-    <i i-eos-icons-loading></i>
-    Loading theme modules
-  </div>
-{:then ThemeModules}
-  <ThemeModules.GlobalLayout>
-    <CustomLayout>
-      <slot />
-    </CustomLayout>
-  </ThemeModules.GlobalLayout>
-{:catch error}
-  <div text-bold text-red-5>
-    There are something wrong with your theme modules please check ${theme}
-    ERR:
-    {error.message}
-  </div>
-{/await}
+<GlobalLayout>
+  <slot />
+</GlobalLayout>
+`
+
+  const generateDefaultLayout = (customRootLayoutPath: string) => `
+<script>
+  import { GlobalLayout } from '${theme}'
+  import CustomLayout from '${customRootLayoutPath}'
+  import '@svelte-press/vite/style.css'
+  import 'uno.css'
+</script>
+<GlobalLayout>
+  <CustomLayout>
+    <slot />
+  </CustomLayout>
+</GlobalLayout>
 `
 
   return {
@@ -58,12 +60,15 @@ const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOpt
     enforce: 'pre',
     buildStart() {
       if (!existsSync(BASE_PATH))
-        mkdirSync(LIVE_CODE_PATH, { recursive: true })
-      if (!existsSync(LIVE_CODE_PATH))
-        mkdirSync(LIVE_CODE_PATH)
+        mkdirSync(BASE_PATH, { recursive: true })
+
       if (ROOT_SERVER_FILES.every(path => !existsSync(path))) {
         // TODO: add auto generated +layout.ts and write `export prerender = true` in it
       }
+
+      // provide default layout file when uer doesn't have one
+      if (!existsSync(ROOT_LAYOUT_PATH))
+        writeFileSync(DEFAULT_ROOT_LAYOUT_PATH, defaultLayout)
     },
     config: () => ({
       server: {
@@ -80,20 +85,39 @@ const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOpt
     }),
     async transform(src, id) {
       if (MARKDOWN_FILE_RE.test(id)) {
-        return await mdToSvelte({
+        const { code } = await mdToSvelte({
           filename: id,
           mdContent: src,
-        })
+        }) || { code: src }
+
+        return code
       }
+
       if (ROOT_LAYOUT_RE.test(id)) {
-        writeFileSync(CUSTOM_LAYOUT_PATH, src)
-        return {
-          code: wrappedRootLayout,
-        }
+        info('custom root layout id: ', id)
+        writeFileSync(DEFAULT_ROOT_LAYOUT_PATH, generateDefaultLayout(id))
       }
+
+      // hack into the sveltekit generate root layout file
+      if (SVELTEKIT_NODE_0_RE.test(id))
+
+        return 'export { default as component } from \'$sveltepress/_Layout.svelte\''
 
       return {
         code: src,
+      }
+    },
+    async handleHotUpdate(ctx) {
+      const { file } = ctx
+      if (file.endsWith('.md')) {
+        const mdContent = await ctx.read()
+        const { code } = await mdToSvelte({
+          mdContent,
+          filename: file,
+        })
+
+        // overwrite read() so svelte plugin can handle the HMR
+        ctx.read = () => code
       }
     },
   }

@@ -3,7 +3,7 @@ hello: Hello
 ---
 
 <script>
-  let msg = 'Sveltepress!'
+  let msg = 'Nested Page!'
 </script>
 
 # {hello} {msg}
@@ -14,7 +14,7 @@ Some tip content
 
 ```svelte live
 <script lang="ts">
-  let count = 0
+  let count = 1
   const add = () => {
     count++
   }
@@ -31,10 +31,10 @@ Some tip content
 
 ```svelte live
 <script lang="ts">
-  let msg = 'world!'
+  let msg = 'world'
 
   const toggle = () => {
-    msg = msg === 'hello' ? 'world!' : 'hello'
+    msg = msg === 'hello' ? 'world' : 'hello'
   }
 </script>
 
