@@ -74,7 +74,9 @@ const VitePlugSveltepress: (options?: SveltepressVitePluginOptions) => PluginOpt
       }
       if (ROOT_LAYOUT_RE.test(id)) {
         writeFileSync(CUSTOM_LAYOUT_PATH, src)
-        return wrappedRootLayout
+        return {
+          code: wrappedRootLayout,
+        }
       }
 
       return {
