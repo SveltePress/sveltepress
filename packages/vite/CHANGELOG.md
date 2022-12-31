@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.0.12
+
+### Patch Changes
+
+- cbc1140: release
+
 ## 0.0.11
 
 ### Patch Changes
