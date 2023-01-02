@@ -3,7 +3,12 @@ import VitePlugSveltepress from '@svelte-press/vite'
 
 const config = defineConfig({
   plugins: [
-    VitePlugSveltepress(),
+    VitePlugSveltepress({
+      siteConfig: {
+        title: 'Sveltepress',
+        description: 'Built with Sveltepress',
+      },
+    }),
   ],
 })
 

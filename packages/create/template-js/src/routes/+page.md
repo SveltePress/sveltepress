@@ -1,20 +1,20 @@
 ---
-hello: Hello
+title: Hello
 ---
 
 <script>
   let msg = 'Sveltepress!'
 </script>
 
-# {hello} {msg}
+# {title} {msg}
 
 :::tip Tip
 Some tip content
 :::
 
 ```svelte live
-<script>
-  let count = 1
+<script lang="ts">
+  let count = 0
   const add = () => {
     count++
   }
@@ -25,6 +25,6 @@ Some tip content
   on:click={add} 
   class="cursor-pointer px-1 py-2 text-purple-5"
 >
-  Count is {count}
+  You've clicked button {count} time{count > 0 ? 's' : ''}
 </button>
 ```
