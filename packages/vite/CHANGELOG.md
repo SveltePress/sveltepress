@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.0.15
+
+### Patch Changes
+
+- 09f70f7: remove large @iconify/json package to save install time
+
 ## 0.0.14
 
 ### Patch Changes
