@@ -1,12 +1,12 @@
 ---
-hello: Hello
+title: Hello
 ---
 
 <script>
   let msg = 'Sveltepress!'
 </script>
 
-# {hello} {msg}
+# {title} {msg}
 
 :::tip Tip
 Some tip content

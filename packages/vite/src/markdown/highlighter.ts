@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
-import type { Highlighter } from './types'
+import type { Highlighter } from '../types'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 

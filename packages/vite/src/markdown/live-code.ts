@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
-import type { RemarkLiveCode } from './types'
+import type { RemarkLiveCode } from '../types'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
@@ -10,6 +10,7 @@ const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 const ERROR_CLASSES = 'text-red-5'
 const CONTAINER_CLASSES = 'mb-8 shadow-sm'
 const DEMO_CLASSES = 'bg-white rounded-t p-4 b-t-1 b-x-1 b-gray-2 b-t-solid b-x-solid'
+const ICON_LOADING_CLASSES = 'i-eos-icons-loading text-lg text-gray-4'
 
 const liveCode: RemarkLiveCode = function () {
   if (!existsSync(BASE_PATH)) {
@@ -35,6 +36,7 @@ const liveCode: RemarkLiveCode = function () {
             type: 'html',
             value: `
 {#await import('@svelte-press/vite/CExpansion.svelte')}
+  <div class="${ICON_LOADING_CLASSES}"></div>
 {:then CExpansion}
   <svelte:component this={CExpansion.default} title="Click fold/expand code" reverse={true}>
 `,
@@ -72,6 +74,7 @@ const liveCode: RemarkLiveCode = function () {
             type: 'html',
             value: `
 {#await import('$sveltepress/live-code/${name}')}
+<div class="${ICON_LOADING_CLASSES}"></div>
 {:then Comp}
   <div class="${DEMO_CLASSES}">
     <svelte:component this="{Comp.default}"></svelte:component>
@@ -107,6 +110,7 @@ export const safelist = [
   ERROR_CLASSES,
   DEMO_CLASSES,
   CONTAINER_CLASSES,
+  ICON_LOADING_CLASSES,
 ].reduce<string[]>((r, classStr) => [...r, ...classStr.split(' ')], [])
 
 export default liveCode
