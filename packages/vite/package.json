@@ -11,11 +11,11 @@
     "./package.json": "./package.json",
     ".": "./dist/es/index.js",
     "./style.css": "./dist/style.css",
-    "./CExpansion.svelte": "./dist/CExpansion.svelte"
+    "./CExpansion.svelte": "./dist/components/CExpansion.svelte"
   },
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
-    "build": "pnpm build:es && cp src/style.css dist && cp src/CExpansion.svelte dist && cp src/markdown/night-owl.json dist/es/markdown"
+    "build": "pnpm build:es && cp src/style.css dist && cp -r src/components dist && cp src/markdown/night-owl.json dist/es/markdown"
   },
   "keywords": [
     "vite",
@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "lru-cache": "^7.14.1",
-    "@iconify/json": "^2.1.157",
     "@sveltejs/kit": "^1.0.0",
     "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",

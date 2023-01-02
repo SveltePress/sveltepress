@@ -5,6 +5,9 @@ const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
   import { createEventDispatcher, onMount, tick } from 'svelte'
   import { slide } from 'svelte/transition'
   import { cubicInOut } from 'svelte/easing'
+  import Svelte from './Svelte.svelte'
+  import SvelteWithColor from './SvelteWithColor.svelte'
+  import ArrowDown from './ArrowDown.svelte'
 
   /**
    * The title of the expansion
@@ -90,15 +93,15 @@ const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
     on:keypress={onHeaderClick}
   >
     <div class="flex items-center">
-      <div class="c-expansion--icon mr-2">
+      <div class="c-expansion--icon mr-2 text-6">
         <!-- The content before title -->
         {#if expanded}
           <slot name="icon-expanded">
-            <div class="i-vscode-icons-file-type-svelte text-6"></div>
+            <Svelte />
           </slot>
         {:else}
           <slot name="icon-fold">
-            <div class="i-carbon-logo-svelte text-6"></div>
+            <SvelteWithColor />
           </slot>
         {/if}
       </div>
@@ -114,7 +117,7 @@ const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
     >
       <!-- Customize the arrow dom -->
       <slot name="arrow">
-        <div class="i-ph-caret-down-light" />
+        <ArrowDown />
       </slot>
     </div>
   </div>
