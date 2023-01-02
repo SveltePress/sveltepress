@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.17
+
+### Patch Changes
+
+- 7728ad4: add support for title and description frontmatter
+
 ## 0.0.14
 
 ### Patch Changes
