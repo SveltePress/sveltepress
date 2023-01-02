@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.0.14
+
+### Patch Changes
+
+- 7728ad4: add support for title and description frontmatter
+
 ## 0.0.13
 
 ### Patch Changes
