@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.19
+
+### Patch Changes
+
+- 09f70f7: remove large @iconify/json package to save install time
+
 ## 0.0.18
 
 ### Patch Changes
