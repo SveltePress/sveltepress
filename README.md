@@ -2,8 +2,8 @@
 
 A content centered site build tools
 
-Inspired by [Vitepress](https://vitepress.vuejs.org/). 
-But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com/), [UNOCSS](https://github.com/unocss/unocss)
+Inspired by [Vitepress](https://vitepress.vuejs.org/).   
+But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com/), [Unocss](https://github.com/unocss/unocss)
 
 ## Quick start
 
