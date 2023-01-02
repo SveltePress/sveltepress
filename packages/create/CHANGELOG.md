@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.0.18
+
+### Patch Changes
+
+- 8ba0895: update create templates
+
 ## 0.0.17
 
 ### Patch Changes
