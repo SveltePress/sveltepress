@@ -9,7 +9,7 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 ### Creating a project
 
-- Run one of follow command. Depends on what package manager you are using
+- Run one of the following command. Depends on what package manager you are using
   - `npm create @svelte-press`
   - `yarn create @svelte-press`
   - `pnpm create @svelte-press`
