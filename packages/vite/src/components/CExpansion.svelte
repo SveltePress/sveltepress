@@ -93,7 +93,7 @@ const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
     on:keypress={onHeaderClick}
   >
     <div class="flex items-center">
-      <div class="c-expansion--icon mr-2 text-6">
+      <div class="c-expansion--icon mr-2 text-6 flex items-center">
         <!-- The content before title -->
         {#if expanded}
           <slot name="icon-expanded">
@@ -113,7 +113,7 @@ const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
       </div>
     </div>
     <div
-      class={`c-expansion--arrow ${expanded ? 'c-expansion--arrow-expanded' : ''}`}
+      class={`c-expansion--arrow ${expanded ? 'c-expansion--arrow-expanded' : ''} text-6 flex items-center`}
     >
       <!-- Customize the arrow dom -->
       <slot name="arrow">
