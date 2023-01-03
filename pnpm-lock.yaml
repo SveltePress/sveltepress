@@ -69,12 +69,14 @@ importers:
 
   packages/theme-default:
     specifiers:
+      '@svelte-press/vite': workspace:*
       '@sveltejs/kit': ^1.0.1
       '@sveltejs/package': ^1.0.1
       svelte: ^3.55.0
       typescript: ^4.9.4
       vite: ^4.0.3
     devDependencies:
+      '@svelte-press/vite': link:../vite
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
       '@sveltejs/package': 1.0.1_niwyv7xychq2ag6arq5eqxbomm
       svelte: 3.55.0

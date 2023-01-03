@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "module": "ES6"
-  }
+    "module": "ESNext",
+    "moduleResolution": "node"
+  },
+  "exclude": ["dist"]
 }

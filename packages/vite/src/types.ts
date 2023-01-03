@@ -1,8 +1,6 @@
 import type { MdsvexOptions } from 'mdsvex'
 import type { Plugin } from 'unified'
 
-export type Theme = `@svelte-press/theme-${'default' | 'blog'}`
-
 export type RemarkLiveCode = Plugin<[], any>
 export interface Options {
   mdsvexOptions?: MdsvexOptions
@@ -19,9 +17,15 @@ export interface SiteConfig {
   title?: string
   description?: string
 }
-
+export type GlobalLayout = `import GlobalLayout from \'${string}\'` | `import { GlobalLayout } from \'${string}\'`
+export interface ResolvedTheme {
+  name: string
+  globalLayout: string
+}
 export interface SveltepressVitePluginOptions {
-  theme?: Theme
+  theme?: ResolvedTheme
   siteConfig?: SiteConfig
   addInspect?: boolean
 }
+
+export type LoadTheme = <ThemeOptions extends any[]>(...args: ThemeOptions) => ResolvedTheme

@@ -26,6 +26,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@svelte-press/vite": "workspace:*",
     "@sveltejs/kit": "^1.0.1",
     "@sveltejs/package": "^1.0.1",
     "svelte": "^3.55.0",
@@ -37,8 +38,6 @@
   "exports": {
     ".": "./dist/index.js",
     "./package.json": "./package.json",
-    "./GlobalLayout.svelte": "./dist/GlobalLayout.svelte",
-    "./Navbar.svelte": "./dist/Navbar.svelte",
-    "./DocLayout.svelte": "./dist/DocLayout.svelte"
+    "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte"
   }
 }

@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite'
-import VitePlugSveltepress from '@svelte-press/vite'
+import { sveltepress } from '@svelte-press/vite'
+import { defaultTheme } from '@svelte-press/theme-default'
 
 const config = defineConfig({
   plugins: [
-    VitePlugSveltepress({
+    sveltepress({
+      theme: defaultTheme(),
       siteConfig: {
-        title: 'Sveltepress',
-        description: 'Built with Sveltepress',
+        title: 'Sveltepress Javascript',
+        description: 'A content centered site build tool',
       },
     }),
   ],

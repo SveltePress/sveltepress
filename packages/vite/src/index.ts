@@ -5,14 +5,13 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import { safelist } from './markdown/live-code.js'
 import SveltepressVitePlugin from './plugin.js'
-import type { SiteConfig, SveltepressVitePluginOptions } from './types.js'
+import type { LoadTheme, SiteConfig, SveltepressVitePluginOptions } from './types.js'
 
-const VitePlugSveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
-  theme = '@svelte-press/theme-default',
+const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
+  theme,
   addInspect,
   siteConfig,
 } = {
-  theme: '@svelte-press/theme-default',
   addInspect: false,
 }) => {
   const requiredSiteConfig: Required<SiteConfig> = {
@@ -39,4 +38,5 @@ const VitePlugSveltepress: (options: SveltepressVitePluginOptions) => PluginOpti
   return plugins
 }
 
-export default VitePlugSveltepress
+export { sveltepress }
+export type { LoadTheme }

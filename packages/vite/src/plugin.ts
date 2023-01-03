@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
-import type { SiteConfig, SveltepressVitePluginOptions } from './types'
+import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -22,35 +22,46 @@ const ROOT_SERVER_FILES = [
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 
-const VitePlugSveltepress: (options: Required<Omit<SveltepressVitePluginOptions, 'addInspect'>> & {
+const IMPORT_STYLE = `import '@svelte-press/vite/style.css'
+  import 'uno.css'`
+
+const sveltepress: (options: {
+  theme?: ResolvedTheme
   siteConfig: Required<SiteConfig>
 }) => PluginOption = ({
   theme,
   siteConfig,
 }) => {
+  const importGlobalLayout = theme
+    ? `import GlobalLayout from \'${theme.globalLayout}\'`
+    : ''
+
+  const contentWithGlobalLayout = (content: string) => theme
+    ? `
+<GlobalLayout>
+  ${content}
+</GlobalLayout>
+  `
+    : content
+
   const defaultLayout = `
 <script>
-  import { GlobalLayout } from '${theme}'
-  import '@svelte-press/vite/style.css'
-  import 'uno.css'
+  ${importGlobalLayout}
+  ${IMPORT_STYLE}
 </script>
-<GlobalLayout>
-  <slot />
-</GlobalLayout>
+${contentWithGlobalLayout('<slot />')}
 `
 
   const defaultWrappedCustomLayout = (customRootLayoutPath: string) => `
 <script>
-  import { GlobalLayout } from '${theme}'
+  ${importGlobalLayout}
   import CustomLayout from '${customRootLayoutPath}'
-  import '@svelte-press/vite/style.css'
-  import 'uno.css'
+  ${IMPORT_STYLE}
 </script>
-<GlobalLayout>
+${contentWithGlobalLayout(`
   <CustomLayout>
     <slot />
-  </CustomLayout>
-</GlobalLayout>
+  </CustomLayout>`)}
 `
 
   return {
@@ -80,8 +91,7 @@ const VitePlugSveltepress: (options: Required<Omit<SveltepressVitePluginOptions,
       },
       resolve: {
         alias: {
-          '$sveltepress': resolve(process.cwd(), '.sveltepress'),
-          '$svp-theme': theme,
+          $sveltepress: resolve(process.cwd(), '.sveltepress'),
         },
       },
     }),
@@ -120,11 +130,11 @@ const VitePlugSveltepress: (options: Required<Omit<SveltepressVitePluginOptions,
           siteConfig,
         })
 
-        // overwrite read() so svelte plugin can handle the HMR
+        // overwrite read() so that svelte plugin can handle the HMR
         ctx.read = () => code
       }
     },
   }
 }
 
-export default VitePlugSveltepress
+export default sveltepress
