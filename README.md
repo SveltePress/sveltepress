@@ -114,6 +114,17 @@ Some admonition content
 
 > TODO: Add online docs and demos
 
+
+## Plugin options
+
+* siteConfig
+  * title  
+  The title of the site. If you set a +page.md title frontmatter, the final title would be `[Page Title] - [siteConfig.title]`.  
+  Default is `'Untitled site'`
+  * description  
+  The description of the site. If you set a +page.md description frontmatter. It would override this.  
+  Default is `'Build by Sveltepress'`
+* addInspect - Determine whether 
 ## LICENSE
 
 MIT
