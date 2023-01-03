@@ -124,7 +124,7 @@ Some admonition content
   * description  
   The description of the site. If you set a +page.md description frontmatter. It would override this.  
   Default is `'Build by Sveltepress'`
-* addInspect - Determine whether 
+* addInspect - Determine whether to add [vue-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) plugin. It is useful when develop sveltepress or you want to inspect the vite pipeline
 ## LICENSE
 
 MIT
