@@ -11,15 +11,6 @@ const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
 const MARKDOWN_FILE_RE = /\+page\.md$/
 
-const AUTO_ADDED_ROOT_LAYOUT_FILE_ID = resolve(process.cwd(), 'src/+layout.server.ts')
-
-const ROOT_SERVER_FILES = [
-  AUTO_ADDED_ROOT_LAYOUT_FILE_ID,
-  resolve(process.cwd(), 'src/routes/+layout.server.js'),
-  resolve(process.cwd(), 'src/routes/+layout.js'),
-  resolve(process.cwd(), 'src/routes/+layout.ts'),
-]
-
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 
 const IMPORT_STYLE = `import '@svelte-press/vite/style.css'
@@ -74,10 +65,6 @@ ${contentWithGlobalLayout(`
     buildStart() {
       if (!existsSync(BASE_PATH))
         mkdirSync(BASE_PATH, { recursive: true })
-
-      if (ROOT_SERVER_FILES.every(path => !existsSync(path))) {
-        // TODO: Add auto generated +layout.server.ts and write `export prerender = true` in it
-      }
 
       // Provide default layout file when uer doesn't have one
       if (!existsSync(ROOT_LAYOUT_PATH))
