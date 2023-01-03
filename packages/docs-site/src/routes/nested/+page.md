@@ -1,52 +1,12 @@
 ---
-hello: Hello
+title: Nested Page
+description: This is a nested page
 ---
 
 <script>
   let msg = 'Nested Page!'
 </script>
 
-# {hello} {msg}
-
-:::tip Tip
-Some tip content
-:::
-
-```svelte live
-<script lang="ts">
-  let count = 1
-  const add = () => {
-    count++
-  }
-</script>
-
-<button 
-  type="button" 
-  on:click={add} 
-  class="cursor-pointer px-1 py-2 text-purple-5"
->
-  Count is {count} 
-</button>
-```
-
-```svelte live
-<script lang="ts">
-  let msg = 'world'
-
-  const toggle = () => {
-    msg = msg === 'hello' ? 'world' : 'hello'
-  }
-</script>
-
-<button 
-  type="button" 
-  on:click={toggle} 
-  class="cursor-pointer px-1 py-2 text-purple-5"
->
-  Toggle
-</button>
-
-<div text-blue>
-  Message: {msg}
+<div class="text-10 font-600">
+  Nested Page
 </div>
-```
