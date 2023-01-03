@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.1.1
+
+### Patch Changes
+
+- 4f805b6: temporary remove default for templates
+
 ## 0.1.0
 
 ### Minor Changes
