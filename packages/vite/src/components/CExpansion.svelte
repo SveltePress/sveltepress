@@ -97,11 +97,11 @@ const HEADER_CLASSES = 'rounded-b flex justify-between px-4 py-2 items-center'
         <!-- The content before title -->
         {#if expanded}
           <slot name="icon-expanded">
-            <Svelte />
-          </slot>
-        {:else}
-          <slot name="icon-fold">
             <SvelteWithColor />
+          </slot>
+          {:else}
+          <slot name="icon-fold">
+            <Svelte />
           </slot>
         {/if}
       </div>
