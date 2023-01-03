@@ -102,9 +102,43 @@ Some admonition content
 
 ## Themes
 
-### Default theme
+### Default theme 
+__This theme is under heavily development. The guide below is just an primitive API)__
 
-> TODO: Add default theme
+* Install
+```sh
+# via npm
+npm install --save-dev @svelte-press/theme-default
+
+# via pnpm
+pnpm install -D @svelte-press/theme-default
+
+# via yarn
+yarn add -D @svelte-press/theme-default
+```
+* Pass it to vite plugin sveltepress in your vite config. Here's an minimal example.
+```ts
+// vite.config.(ts|js)
+import { defineConfig } from 'vite'
+import { sveltepress } from '@svelte-press/vite'
+import { defaultTheme } from '@svelte-press/theme-default'
+
+const config = defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme(),
+      siteConfig: {
+        title: 'Sveltepress',
+        description: 'A content centered site build tool',
+      },
+      addInspect: true,
+    }),
+  ],
+})
+
+export default config
+
+```
 
 ### Blog theme
 
@@ -117,15 +151,28 @@ Some admonition content
 
 ## Plugin options
 
-* siteConfig
-  * title  
-  The title of the site. If you set a +page.md title frontmatter, the final title would be `[Page Title] - [siteConfig.title]`.  
-  Default is `'Untitled site'`
-  * description  
-  The description of the site. If you set a +page.md description frontmatter. It would override this.  
-  Default is `'Build by Sveltepress'`
-* addInspect
-  Determine whether to add [vue-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) plugin. It is useful when developing sveltepress or inspecting the vite pipeline
+* `siteConfig: SiteConfig`
+  * `title: string`  
+  Default: `'Untitled site'`  
+  The title of the site.   
+  If you set a +page.md title frontmatter, the final title would be `[Page Title] - [siteConfig.title]`.  
+  * `description: string`  
+  Default: `'Build by Sveltepress'`  
+  The description of the site.   
+  If you set a +page.md description frontmatter. 
+  It would override `siteConfig.description`  
+* `addInspect: boolean`  
+  Default: `false`  
+  Determine whether to add [vue-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) plugin.   
+  It is useful when developing sveltepress or inspecting the vite pipeline.  
+* `theme?: ThemeResolved`  
+  Default: `undefined`  
+  The theme that you want to use. 
+  * `name: string` The name of the theme.
+  * `globalLayout: string`   
+    The absolute path of GlobalLayout.svelte that theme use.  
+    It will used for wrapping all pages. Even the src/routes/+layout.svelte will become its child.   
+
 ## LICENSE
 
 MIT
