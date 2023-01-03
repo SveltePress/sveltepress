@@ -88,7 +88,7 @@ Would render like this
 ### Admonition
 
 ```md
-:::[tip|info|caution|warning|important|note] Title
+:::[tip|info|note|warning|important|caution] Title
 Some admonition content
 :::
 ```
