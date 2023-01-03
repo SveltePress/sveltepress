@@ -95,6 +95,11 @@ Some admonition content
 
 ![image](https://user-images.githubusercontent.com/41723543/210292672-d4f779fa-0fd5-453a-a818-e26555a1e729.png)
 
+### Frontmatter
+
+* title - The title of the page
+* description - The description of the page
+
 ## Themes
 
 ### Default theme
