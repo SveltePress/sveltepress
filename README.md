@@ -131,7 +131,6 @@ const config = defineConfig({
         title: 'Sveltepress',
         description: 'A content centered site build tool',
       },
-      addInspect: true,
     }),
   ],
 })
