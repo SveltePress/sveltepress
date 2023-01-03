@@ -13,7 +13,7 @@ title: Live Codes
 <button 
   type="button" 
   on:click={add} 
-  class="cursor-pointer px-1 py-2 text-purple-5"
+  class="cursor-pointer"
 >
   Count is {count} 
 </button>
@@ -31,9 +31,9 @@ title: Live Codes
 <button 
   type="button" 
   on:click={toggle} 
-  class="cursor-pointer px-1 py-2 text-purple-5"
+  class="cursor-pointer px-4 py-2 text-purple border-0 rounded-sm hover:bg-gray-1 active:bg-gray-2"
 >
-  Toggle
+  Toggle message
 </button>
 
 <div text-blue>
