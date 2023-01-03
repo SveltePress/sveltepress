@@ -174,4 +174,4 @@ export default config
 
 ## LICENSE
 
-MIT
+[MIT](./LICENSE)
