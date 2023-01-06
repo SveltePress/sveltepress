@@ -3,11 +3,11 @@
 
   export let item
 
+  export let target = '_blank'
 </script>
 
  {#if item.items && item.items.length}
   <div class="nav-item">
-
     {item.title}
     
     <div class="arrow">
@@ -24,8 +24,10 @@
     <!-- {/if} -->
   </div>
   {:else}
-  <a href={item.to} class="nav-item">
-    {item.title}
+  <a href={item.to} class="nav-item" {target}>
+    <slot>
+      {item.title}
+    </slot>
   </a>
   {/if}
 
@@ -33,7 +35,7 @@
   .nav-item {
     --at-apply: flex items-center cursor-pointer 
       position-relative z-1 cursor-pointer px-3 
-      decoration-none text-[#232323] dark:text-[#cecece]
+      decoration-none
       hover:text-blue-5
       dark:hover:text-blue-7;
   }
@@ -49,7 +51,6 @@
   }
   .dropdown > a {
     --at-apply: block py-2 px-4 decoration-none rounded
-      text-[#232323] dark:text-[#cecece] 
       hover:bg-blue-1 hover:text-blue-5;
   }
   .arrow {
