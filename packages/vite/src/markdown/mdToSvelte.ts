@@ -27,7 +27,7 @@ export default async ({ mdContent, filename, mdsvexOptions, siteConfig }: {
       highlighter,
     },
     remarkPlugins: [liveCode, admonitions],
-  }) || { code: '', data: { } }
+  }) || { code: '', data: {} }
   cache.set(cacheKey, transformedSvelteCode)
 
   const { data } = transformedSvelteCode

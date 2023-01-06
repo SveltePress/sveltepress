@@ -126,7 +126,7 @@ import { defaultTheme } from '@svelte-press/theme-default'
 const config = defineConfig({
   plugins: [
     sveltepress({
-      theme: defaultTheme(),
+      theme: defaultTheme({ /** Default theme options */ }),
       siteConfig: {
         title: 'Sveltepress',
         description: 'A content centered site build tool',
@@ -137,6 +137,14 @@ const config = defineConfig({
 
 export default config
 
+```
+
+#### Default theme options
+
+```ts
+interface DefaultThemeOptions {
+
+}
 ```
 
 ### Blog theme

@@ -16,6 +16,9 @@ const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 
 const MD_PAGE_RE = /\+page\.md$/
+
+// only the src/routes/**/*.+page.svelte will need to be wrapped by PageLayout
+// It can exclude .sveltepress/pages/**/*.+page.svelte
 const SVELTE_PAGE_RE = /src\/routes\/([a-zA-Z0-1_\+@-]+\/)+\+page\.svelte$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
