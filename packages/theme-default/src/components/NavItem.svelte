@@ -15,15 +15,13 @@
     <div class="arrow">
       <NavArrowDown />
     </div>
-    <!-- {#if showDropdown} -->
-      <div class="dropdown">
-        {#each items as subItem}
-          <a href={subItem.to}>
-            {subItem.title}
-          </a>
-        {/each}
-      </div>
-    <!-- {/if} -->
+    <div class="dropdown">
+      {#each items as subItem}
+        <a href={subItem.to}>
+          {subItem.title}
+        </a>
+      {/each}
+    </div>
   </div>
   {:else}
   <a href={to} class="nav-item" {target}>
