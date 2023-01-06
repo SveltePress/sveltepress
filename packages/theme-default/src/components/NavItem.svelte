@@ -53,7 +53,8 @@
   }
   .dropdown > a {
     --at-apply: block py-2 px-4 decoration-none rounded
-      hover:bg-blue-1 hover:text-blue-5;
+      hover:bg-blue-1 hover:text-blue-5
+      text-[#323232] dark:text-[#cecece];
   }
   .arrow {
     --at-apply: flex items-center

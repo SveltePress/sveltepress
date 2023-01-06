@@ -23,7 +23,7 @@
     {#if themeOptions.github}
       <div class="divider"></div>
       <NavItem to={themeOptions.github} target="_blank">
-        <Github class="text-6" />
+        <Github class="text-8" />
       </NavItem>
     {/if}
   </nav>
