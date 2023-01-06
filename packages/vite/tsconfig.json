@@ -10,7 +10,7 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "removeComments": false,
-    "module": "ESNext"
+    "module": "ESNext",
   },
-  "include": ["src"]
+  "include": ["src", "types/sveltepress.d.ts"]
 }

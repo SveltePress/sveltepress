@@ -12,5 +12,8 @@
 		"strict": true,
 		"lib": ["ESNext"],
 		"module": "ESNext"
-	}
+	},
+	"include": [
+		"node_modules/@svelte-press/vite/types/sveltepress.d.ts"
+	]
 }

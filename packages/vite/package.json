@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Sveltepress plugin for vite",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "type": "module",
   "types": "./dist/es/index.d.ts",
@@ -11,7 +12,10 @@
     "./package.json": "./package.json",
     ".": "./dist/es/index.js",
     "./style.css": "./dist/style.css",
-    "./CExpansion.svelte": "./dist/components/CExpansion.svelte"
+    "./CExpansion.svelte": "./dist/components/CExpansion.svelte",
+    "./client": {
+      "import": "./dist/es/client/index.js"
+    }
   },
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",

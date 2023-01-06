@@ -4,5 +4,9 @@
     "module": "ESNext",
     "moduleResolution": "node"
   },
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "include": [
+    "src/**/*",
+    "node_modules/@svelte-press/vite/types/sveltepress.d.ts"
+  ]
 }

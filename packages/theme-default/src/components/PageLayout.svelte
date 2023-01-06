@@ -1,15 +1,24 @@
 <script>
-  import pages from 'sveltepress:pages'
+  import { getSidebars } from '@svelte-press/vite/client'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
-  const sidebars = pages.filter(page => page.startsWith(routeId))
 
-  console.log('sidebars: ', sidebars)
+  const sidebars = getSidebars(routeId)
+
 </script>
   
-<div text-md>
-  Default Theme Page Layout
+<div text-xl>
+  Page Layout
+</div>
+<div text-md flex>
+  <aside>
+    {#each sidebars as sidebarItem}
+      <div>
+        {sidebarItem}
+      </div>
+    {/each}
+  </aside>
+  <slot />
 </div>
 <hr>
-<slot />
