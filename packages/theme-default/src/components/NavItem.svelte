@@ -21,14 +21,18 @@
     <!-- {/if} -->
   </div>
   {:else}
-  <a href={item.to}>
+  <a href={item.to} class="nav-item">
     {item.title}
   </a>
   {/if}
 
 <style>
   .nav-item {
-    --at-apply: flex items-center cursor-pointer position-relative z-1 cursor-pointer px-3;
+    --at-apply: flex items-center cursor-pointer 
+      position-relative z-1 cursor-pointer px-3 
+      decoration-none text-[#232323] dark:text-[#cecece]
+      hover:text-blue-5
+      dark:hover:text-blue-7;
   }
   .dropdown {
     --at-apply: transition-300 absolute top-0 right-0 opacity-0 translate-y-[72px] 
@@ -39,8 +43,9 @@
     --at-apply: translate-y-[40px] opacity-100 pointer-events-initial;
   }
   .dropdown > a {
-    --at-apply: block py-2 px-4 decoration-none text-[#232323] dark:text-[#cecece] 
-      hover:bg-gray-1;
+    --at-apply: block py-2 px-4 decoration-none rounded
+      text-[#232323] dark:text-[#cecece] 
+      hover:bg-blue-1 hover:text-blue-5;
   }
 </style>
 

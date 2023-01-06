@@ -7,7 +7,10 @@ const config = defineConfig({
     sveltepress({
       theme: defaultTheme({
         navbar: [{
-          title: 'Guide',
+          title: 'Direct link',
+          to: '/svelte-page',
+        }, {
+          title: 'With dropdown',
           items: [
             {
               title: 'Live code',
