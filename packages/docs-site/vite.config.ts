@@ -23,6 +23,7 @@ const config = defineConfig({
           ],
         }],
         github: 'https://github.com/Blackman99/sveltepress',
+        logo: '/sveltepress.svg',
       }),
       siteConfig: {
         title: 'Sveltepress',

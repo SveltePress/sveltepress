@@ -6,8 +6,13 @@
 </script>
 
 <header class="header">
-  <NavItem item={{ to: '/' }}>
-    {themeOptions.logo ? themeOptions.logo : siteConfig.title}
+  <NavItem item={{ to: '/', title: siteConfig.title }}>
+    {#if themeOptions.logo}
+      <img class="logo" src={themeOptions.logo} alt={siteConfig.title} />
+      <span text-b ml-2>
+        {siteConfig.title}
+      </span>
+    {/if}
   </NavItem>
 
   <nav flex items-stretch>
@@ -34,5 +39,8 @@
   }
   .divider {
     --at-apply: bg-light w-[1px] my-3;
+  }
+  .logo {
+    --at-apply: h-[32px];
   }
 </style>
