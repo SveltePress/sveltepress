@@ -109,8 +109,7 @@ Some admonition content
 
 ## Themes
 
-### Default theme 
-__This theme is under heavily development. The guide below is just an primitive API)__
+### Default theme
 
 * Install
 ```sh
@@ -133,7 +132,7 @@ import { defaultTheme } from '@svelte-press/theme-default'
 const config = defineConfig({
   plugins: [
     sveltepress({
-      theme: defaultTheme({ /** Default theme options */ }),
+      theme: defaultTheme({ /** Theme options */ }),
       siteConfig: {
         title: 'Sveltepress',
         description: 'A content centered site build tool',
@@ -157,6 +156,7 @@ export default config
   * `title` - the label text of the link
   * `to` - the link address
   * `items` - nested array of link items
+
 ### Blog theme
 
 > TODO: Add blog theme
