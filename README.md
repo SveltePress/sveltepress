@@ -170,7 +170,10 @@ export default config
   * `name: string` The name of the theme.
   * `globalLayout: string`   
     The absolute path of GlobalLayout.svelte that theme use.  
-    It will used for wrapping all pages. Even the src/routes/+layout.svelte will become its child.   
+    It will be used for wrapping all pages. Even the src/routes/+layout.svelte will become its child. 
+  * `pageLayout: string`
+    The absolute path of PageLayout.svelte that theme use.
+    It will be used for wrapping a specific page.
 
 ## LICENSE
 

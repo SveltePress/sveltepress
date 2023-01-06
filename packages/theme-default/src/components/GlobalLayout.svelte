@@ -5,6 +5,7 @@ import Navbar from './Navbar.svelte'
 <main>
   Default theme global layout
   <Navbar />
+  <hr>
   <slot />
 </main>
 

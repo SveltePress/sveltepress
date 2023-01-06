@@ -5,6 +5,7 @@ import { ensureFileSync } from 'fs-extra'
 import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
 import { getPages } from './utils/sidebar.js'
+import { info } from './utils/log.js'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
@@ -16,6 +17,7 @@ const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 
 const MD_PAGE_RE = /\+page\.md$/
+const SVELTE_PAGE_RE = /src\/routes\/([a-zA-Z0-1_\+@-]+\/)+\+page\.svelte$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 
@@ -130,6 +132,18 @@ ${contentWithGlobalLayout(`
             .replace(/\.md$/, '.svelte'))
         ensureFileSync(pagePath)
         writeFileSync(pagePath, code)
+
+        return wrapPage(pagePath, theme?.pageLayout)
+      }
+
+      if (SVELTE_PAGE_RE.test(id)) {
+        const pagePath = resolve(
+          PAGES_PATH,
+          id.slice(id.indexOf('/routes'))
+            .replace(/^\/routes\//, ''))
+        ensureFileSync(pagePath)
+        info('svelte page: ', pagePath)
+        writeFileSync(pagePath, src)
 
         return wrapPage(pagePath, theme?.pageLayout)
       }
