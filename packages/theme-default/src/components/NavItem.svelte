@@ -1,21 +1,23 @@
 <script>
   import NavArrowDown from './icons/NavArrowDown.svelte'
 
-  export let item
+  export let title
+  export let to
+  export let items
 
-  export let target = '_blank'
+  export let target = ''
 </script>
 
- {#if item.items && item.items.length}
+ {#if items && items.length}
   <div class="nav-item">
-    {item.title}
+    {title}
     
     <div class="arrow">
       <NavArrowDown />
     </div>
     <!-- {#if showDropdown} -->
       <div class="dropdown">
-        {#each item.items as subItem}
+        {#each items as subItem}
           <a href={subItem.to}>
             {subItem.title}
           </a>
@@ -24,9 +26,9 @@
     <!-- {/if} -->
   </div>
   {:else}
-  <a href={item.to} class="nav-item" {target}>
+  <a href={to} class="nav-item" {target}>
     <slot>
-      {item.title}
+      {title}
     </slot>
   </a>
   {/if}

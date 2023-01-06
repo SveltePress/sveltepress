@@ -6,7 +6,7 @@
 </script>
 
 <header class="header">
-  <NavItem item={{ to: '/', title: siteConfig.title }}>
+  <NavItem to="/" title={siteConfig.title}>
     {#if themeOptions.logo}
       <img class="logo" src={themeOptions.logo} alt={siteConfig.title} />
       <span text-b ml-2>
@@ -17,12 +17,12 @@
 
   <nav flex items-stretch>
     {#each themeOptions.navbar as navItem}
-     <NavItem item={navItem}/>
+     <NavItem {...navItem}/>
     {/each}
 
     {#if themeOptions.github}
       <div class="divider"></div>
-      <NavItem item={{ to: themeOptions.github }}>
+      <NavItem to={themeOptions.github} target="_blank">
         <Github class="text-6" />
       </NavItem>
     {/if}
