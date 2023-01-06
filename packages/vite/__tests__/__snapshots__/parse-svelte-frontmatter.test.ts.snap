@@ -1,0 +1,51 @@
+// Vitest Snapshot v1
+
+exports[`parse svelte frontmatter > array 1`] = `
+{
+  "arr": [
+    1,
+    2,
+    3,
+  ],
+}
+`;
+
+exports[`parse svelte frontmatter > nested 1`] = `
+{
+  "arr": [
+    1,
+    2,
+    {
+      "nestedObj": {
+        "foo": "bar",
+      },
+    },
+  ],
+  "num": 1,
+  "obj": {
+    "nestedArr": [
+      1,
+      2,
+      3,
+    ],
+    "nestedObj2": {
+      "a": "a",
+    },
+  },
+  "title": "some title",
+}
+`;
+
+exports[`parse svelte frontmatter > object 1`] = `
+{
+  "obj": {
+    "foo": "bar",
+  },
+}
+`;
+
+exports[`parse svelte frontmatter > simple 1`] = `
+{
+  "title": "some title",
+}
+`;

@@ -1,9 +1,9 @@
 <script>
   import NavArrowDown from './icons/NavArrowDown.svelte'
 
-  export let title
-  export let to
-  export let items
+  export let title = ''
+  export let to = '/'
+  export let items = []
 
   export let target = ''
 </script>
