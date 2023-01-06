@@ -148,12 +148,15 @@ export default config
 
 #### Default theme options
 
-```ts
-interface DefaultThemeOptions {
-
-}
-```
-
+* `logo`
+  the logo image for site
+* `github`
+  the github link. If set, the github icon link would show on the navbar.
+* `navbar`
+  An array of navbar item, every item can hold these props
+  * `title` - the label text of the link
+  * `to` - the link address
+  * `items` - nested array of link items
 ### Blog theme
 
 > TODO: Add blog theme
@@ -182,13 +185,17 @@ interface DefaultThemeOptions {
 * `theme?: ThemeResolved`  
   Default: `undefined`  
   The theme that you want to use. 
-  * `name: string` The name of the theme.
+  * `name: string`  
+    The name of the theme.  
   * `globalLayout: string`   
     The absolute path of GlobalLayout.svelte that theme use.  
     It will be used for wrapping all pages. Even the src/routes/+layout.svelte will become its child. 
-  * `pageLayout: string`
+  * `pageLayout: string`  
     The absolute path of PageLayout.svelte that theme use.
     It will be used for wrapping a specific page.
+  * `vitePlugins?: PluginOption`  
+    A theme can use this prop to add some vite plugins to the Vite pipeline chain.  
+    For example, add some virtual modules or write some temp files.
 
 ## LICENSE
 
