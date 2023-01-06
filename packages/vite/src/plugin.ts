@@ -14,6 +14,7 @@ const PAGES_PATH = resolve(BASE_PATH, 'pages')
 const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
 const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
+const SVELTEPRESS_SITE_CONFIG_MODULE = 'sveltepress:site'
 
 const MD_PAGE_RE = /\+page\.md$/
 
@@ -113,12 +114,14 @@ ${contentWithGlobalLayout(`
       },
     }),
     resolveId(id) {
-      if (id === SVELTEPRESS_PAGES_MODULE)
-        return SVELTEPRESS_PAGES_MODULE
+      if (id === SVELTEPRESS_PAGES_MODULE || id === SVELTEPRESS_SITE_CONFIG_MODULE)
+        return id
     },
     load(id) {
       if (id === SVELTEPRESS_PAGES_MODULE)
         return `export default ${JSON.stringify(pages)}`
+      if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
+        return `export default ${JSON.stringify(siteConfig)}`
     },
     async transform(src, id) {
       if (MD_PAGE_RE.test(id)) {

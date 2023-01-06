@@ -14,4 +14,5 @@ export interface NavbarGroup {
 export interface DefaultThemeOptions {
   navbar: Array<NavbarItem | NavbarGroup>
   github?: string
+  logo?: string
 }

@@ -3,3 +3,12 @@ declare module "sveltepress:pages" {
 
   export default pages
 }
+
+declare module "sveltepress:site" {
+  const siteConfig: {
+    title: string
+    description: string
+  }
+
+  export default siteConfig
+}

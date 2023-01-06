@@ -1,13 +1,14 @@
 <script>
   import themeOptions from 'sveltepress:theme-default'
+  import siteConfig from 'sveltepress:site'
   import Github from './icons/Github.svelte'
   import NavItem from './NavItem.svelte'
 </script>
 
 <header class="header">
-  <a href="/">
-    Logo
-  </a>
+  <NavItem item={{ to: '/' }}>
+    {themeOptions.logo ? themeOptions.logo : siteConfig.title}
+  </NavItem>
 
   <nav flex items-stretch>
     {#each themeOptions.navbar as navItem}
