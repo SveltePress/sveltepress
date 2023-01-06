@@ -5,7 +5,21 @@ import { defaultTheme } from '@svelte-press/theme-default'
 const config = defineConfig({
   plugins: [
     sveltepress({
-      theme: defaultTheme(),
+      theme: defaultTheme({
+        navbar: [{
+          title: 'Guide',
+          items: [
+            {
+              title: 'Live code',
+              to: '/live-codes',
+            },
+            {
+              title: 'Admonitions',
+              to: '/admonitions',
+            },
+          ],
+        }],
+      }),
       siteConfig: {
         title: 'Sveltepress',
         description: 'A content centered site build tool',

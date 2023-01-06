@@ -20,7 +20,9 @@
     {/each}
   </aside>
   <div flex-grow>
-    <slot />
+    <div md:w-200 lg:w-230 xl:w-260>
+      <slot />
+    </div>
   </div>
 </div>
 <hr>

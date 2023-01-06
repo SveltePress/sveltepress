@@ -7,8 +7,7 @@
     "build": "svelte-package && rm dist/package.json"
   },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "keywords": [
     "Docs",

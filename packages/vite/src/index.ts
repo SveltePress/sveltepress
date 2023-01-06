@@ -30,6 +30,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       safelist,
     }),
     sveltekit(),
+    theme?.vitePlugins,
   ]
 
   if (addInspect)
