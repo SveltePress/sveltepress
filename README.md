@@ -1,9 +1,13 @@
 <h1 align="center">
-  <img src="./packages/docs-site/static/sveltepress-512.png" />
+  <br>
+ <img align="center" alt="Sveltepress" src="./packages/docs-site/static/sveltepress@2x.png" />
+  <br>
   Sveltepress
+  <br>
+  <br>
 </h1>
 
-A content centered site build tools
+> A content centered site build tools
 
 Inspired by [Vitepress](https://vitepress.vuejs.org/).   
 But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com/), [Unocss](https://github.com/unocss/unocss)
