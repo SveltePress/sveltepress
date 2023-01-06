@@ -1,20 +1,49 @@
 import { resolve } from 'path'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
+import { ensureFileSync } from 'fs-extra'
 import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
+import { getPages } from './utils/sidebar.js'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
 const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
+const PAGES_PATH = resolve(BASE_PATH, 'pages')
+
 const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
-const MARKDOWN_FILE_RE = /\+page\.md$/
+const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
+
+const MD_PAGE_RE = /\+page\.md$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 
 const IMPORT_STYLE = `import '@svelte-press/vite/style.css'
   import 'uno.css'`
+
+const wrapPage = (pagePath: string, pageLayout?: string) => pageLayout
+  ? `<script>
+  import Page from '${pagePath}'
+  import PageLayout from '${pageLayout}'
+</script>
+<PageLayout>
+  <Page />
+</PageLayout>
+`
+  : `<script>
+  import Page from '${pagePath}'
+</script>
+  <Page />
+`
+
+const contentWithGlobalLayout = (content: string, theme?: ResolvedTheme) => theme
+  ? `
+<GlobalLayout>
+  ${content}
+</GlobalLayout>
+  `
+  : content
 
 const sveltepress: (options: {
   theme?: ResolvedTheme
@@ -27,20 +56,12 @@ const sveltepress: (options: {
     ? `import GlobalLayout from \'${theme.globalLayout}\'`
     : ''
 
-  const contentWithGlobalLayout = (content: string) => theme
-    ? `
-<GlobalLayout>
-  ${content}
-</GlobalLayout>
-  `
-    : content
-
   const defaultLayout = `
 <script>
   ${importGlobalLayout}
   ${IMPORT_STYLE}
 </script>
-${contentWithGlobalLayout('<slot />')}
+${contentWithGlobalLayout('<slot />', theme)}
 `
 
   const defaultWrappedCustomLayout = (customRootLayoutPath: string) => `
@@ -52,9 +73,10 @@ ${contentWithGlobalLayout('<slot />')}
 ${contentWithGlobalLayout(`
   <CustomLayout>
     <slot />
-  </CustomLayout>`)}
+  </CustomLayout>`, theme)}
 `
 
+  let pages: string[] = []
   return {
     name: 'vite-plugin-sveltepress',
     /**
@@ -62,13 +84,17 @@ ${contentWithGlobalLayout(`
      * @see https://github.com/sveltejs/vite-plugin-svelte/blob/1cef575c8f9188456934e38dad7a869b43fe7d46/packages/vite-plugin-svelte/src/index.ts#L58
      */
     enforce: 'pre',
-    buildStart() {
+    async buildStart() {
       if (!existsSync(BASE_PATH))
         mkdirSync(BASE_PATH, { recursive: true })
+      if (!existsSync(PAGES_PATH))
+        mkdirSync(PAGES_PATH, { recursive: true })
 
       // Provide default layout file when uer doesn't have one
       if (!existsSync(ROOT_LAYOUT_PATH))
         writeFileSync(DEFAULT_ROOT_LAYOUT_PATH, defaultLayout)
+
+      pages = await getPages()
     },
     config: () => ({
       server: {
@@ -82,15 +108,30 @@ ${contentWithGlobalLayout(`
         },
       },
     }),
+    resolveId(id) {
+      if (id === SVELTEPRESS_PAGES_MODULE)
+        return SVELTEPRESS_PAGES_MODULE
+    },
+    load(id) {
+      if (id === SVELTEPRESS_PAGES_MODULE)
+        return `export default ${JSON.stringify(pages)}`
+    },
     async transform(src, id) {
-      if (MARKDOWN_FILE_RE.test(id)) {
+      if (MD_PAGE_RE.test(id)) {
         const { code } = await mdToSvelte({
           filename: id,
           mdContent: src,
           siteConfig,
         }) || { code: src }
+        const pagePath = resolve(
+          PAGES_PATH,
+          id.slice(id.indexOf('/routes'))
+            .replace(/^\/routes\//, '')
+            .replace(/\.md$/, '.svelte'))
+        ensureFileSync(pagePath)
+        writeFileSync(pagePath, code)
 
-        return code
+        return wrapPage(pagePath, theme?.pageLayout)
       }
 
       if (ROOT_LAYOUT_RE.test(id))
@@ -109,15 +150,15 @@ ${contentWithGlobalLayout(`
     },
     async handleHotUpdate(ctx) {
       const { file } = ctx
-      if (file.endsWith('+page.md')) {
+
+      // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
+      if (MD_PAGE_RE.test(file)) {
         const mdContent = await ctx.read()
         const { code } = await mdToSvelte({
           mdContent,
           filename: file,
           siteConfig,
         })
-
-        // overwrite read() so that svelte plugin can handle the HMR
         ctx.read = () => code
       }
     },

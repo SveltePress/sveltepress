@@ -6,7 +6,7 @@
 }
 
 html.dark,
-html[data-theme=dark] {
+html[data-theme="dark"] {
   --svp-text: #dfdedd;
   --svp-expansion-bg: #282c34;
   --svp-expansion-bg-darker: #262626;
@@ -21,30 +21,38 @@ body {
 .c-expansion {
   position: relative;
 }
+
 .c-expansion--header {
   cursor: pointer;
   background-color: var(--svp-expansion-bg);
   transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
 .c-expansion--header:hover {
   background-color: var(--svp-expansion-bg-darker);
 }
+
 .c-expansion--header:active {
   background-color: var(--svp-expansion-bg-darker2);
 }
+
 .c-expansion--body {
   box-sizing: content-box;
   overflow: hidden;
 }
+
 .c-expansion--arrow {
   transition: transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.2s;
 }
+
 .c-expansion--arrow .c-icon {
   font-size: 24px;
 }
+
 .c-expansion--arrow-expanded {
   transform: rotate(180deg);
 }
+
 .c-expansion--expanded .c-expansion--header {
   position: sticky;
   bottom: 0;
@@ -75,13 +83,13 @@ body {
   stroke-width: 0;
 }
 
-.admonition-content> :last-child {
+.admonition-content > :last-child {
   margin-bottom: 0;
 }
 
 /* default for custom types */
 .admonition {
-  background-color: rgba(118, 51, 219, 0.1);
+  background-color: rgb(118 51 219 / 10%);
   border-left: 8px solid #7633db;
 }
 
@@ -96,7 +104,7 @@ body {
 
 /** native types */
 .admonition-caution {
-  background-color: rgba(230, 126, 34, 0.1);
+  background-color: rgb(230 126 34 / 10%);
   border-left: 8px solid #e67e22;
 }
 
@@ -110,7 +118,7 @@ body {
 }
 
 .admonition-tip {
-  background-color: rgba(46, 204, 113, 0.1);
+  background-color: rgb(46 204 113 / 10%);
   border-left: 8px solid #2ecc71;
 }
 
@@ -124,7 +132,7 @@ body {
 }
 
 .admonition-warning {
-  background-color: rgba(231, 76, 60, 0.1);
+  background-color: rgb(231 76 60 / 10%);
   border-left: 8px solid #e74c3c;
 }
 
@@ -138,7 +146,7 @@ body {
 }
 
 .admonition-important {
-  background-color: rgba(52, 152, 219, 0.1);
+  background-color: rgb(52 152 219 / 10%);
   border-left: 8px solid #3498db;
 }
 
@@ -152,7 +160,7 @@ body {
 }
 
 .admonition-note {
-  background-color: rgba(241, 196, 15, 0.1);
+  background-color: rgb(241 196 15 / 10%);
   border-left: 8px solid #f1c40f;
 }
 
@@ -170,6 +178,7 @@ body {
   border-radius: 4px;
   margin: 0;
 }
+
 .c-expansion--body .shiki {
   border-radius: unset;
 }

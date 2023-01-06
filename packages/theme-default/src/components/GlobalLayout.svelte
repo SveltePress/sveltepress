@@ -1,5 +1,8 @@
 <script lang="ts">
+import pages from 'sveltepress:pages'
 import Navbar from './Navbar.svelte'
+
+console.log(pages)
 </script>
 
 <main>

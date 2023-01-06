@@ -17,10 +17,10 @@ export interface SiteConfig {
   title?: string
   description?: string
 }
-export type GlobalLayout = `import GlobalLayout from \'${string}\'` | `import { GlobalLayout } from \'${string}\'`
 export interface ResolvedTheme {
   name: string
   globalLayout: string
+  pageLayout: string
 }
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme

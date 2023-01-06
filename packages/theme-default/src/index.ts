@@ -8,6 +8,7 @@ const defaultTheme: LoadTheme = () => {
   return {
     name: '@svelte-press/theme-default',
     globalLayout: resolve(__dirname, './components/GlobalLayout.svelte'),
+    pageLayout: resolve(__dirname, './components/PageLayout.svelte'),
   }
 }
 
