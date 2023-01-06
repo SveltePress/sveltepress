@@ -1,4 +1,7 @@
-# Sveltepress 
+<h1 align="center">
+  <img src="./packages/docs-site/static/sveltepress-512.png" />
+  Sveltepress
+</h1>
 
 A content centered site build tools
 
