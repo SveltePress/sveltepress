@@ -9,7 +9,10 @@
   <div class="nav-item">
 
     {item.title}
-    <NavArrowDown />
+    
+    <div class="arrow">
+      <NavArrowDown />
+    </div>
     <!-- {#if showDropdown} -->
       <div class="dropdown">
         {#each item.items as subItem}
@@ -35,8 +38,10 @@
       dark:hover:text-blue-7;
   }
   .dropdown {
-    --at-apply: transition-300 absolute top-0 right-0 opacity-0 translate-y-[72px] 
-      transition-300 pointer-events-none bg-white dark:bg-[#232323]
+    --at-apply: transition-transform transition-opacity  transition-300
+      translate-y-[72px] opacity-0 pointer-events-none 
+      absolute top-0 right-0 
+      bg-white dark:bg-[#232323]
       whitespace-nowrap z-3 rounded shadow-sm p-2;
   }
   .nav-item:hover .dropdown {
@@ -46,6 +51,13 @@
     --at-apply: block py-2 px-4 decoration-none rounded
       text-[#232323] dark:text-[#cecece] 
       hover:bg-blue-1 hover:text-blue-5;
+  }
+  .arrow {
+    --at-apply: flex items-center
+      transition-transform transition-300  text-6 tra;
+  }
+  .nav-item:hover .arrow {
+    --at-apply: rotate-180;
   }
 </style>
 
