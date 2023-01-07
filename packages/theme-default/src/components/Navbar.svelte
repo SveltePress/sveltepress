@@ -23,7 +23,7 @@
   
       {#if themeOptions.github}
         <div class="divider"></div>
-        <NavItem to={themeOptions.github} target="_blank">
+        <NavItem to={themeOptions.github} external icon>
           <Github class="text-8" />
         </NavItem>
       {/if}

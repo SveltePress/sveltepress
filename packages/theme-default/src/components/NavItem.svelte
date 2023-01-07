@@ -4,14 +4,14 @@
   export let title = ''
   export let to = '/'
   export let items = []
+  export let icon = false
 
-  export let target = ''
+  export let external = false
 </script>
 
  {#if items && items.length}
   <div class="nav-item">
     {title}
-    
     <div class="arrow">
       <NavArrowDown />
     </div>
@@ -24,7 +24,7 @@
     </div>
   </div>
   {:else}
-  <a href={to} class="nav-item" {target}>
+  <a href={to} class={`nav-item ${icon ? 'nav-item--icon' : ''}`} target={external ? '_blank' : ''}>
     <slot>
       {title}
     </slot>
@@ -36,8 +36,15 @@
     --at-apply: flex items-center cursor-pointer 
       position-relative z-1 cursor-pointer px-3 
       decoration-none
-      hover:text-blue-5
-      dark:hover:text-blue-7;
+  }
+  .nav-item--icon:hover {
+    --at-apply: text-gray-6;
+  }
+  .nav-item:not(.nav-item--icon):hover {
+    color: transparent;
+    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
   }
   .dropdown {
     --at-apply: transition-transform transition-opacity  transition-300
@@ -51,12 +58,12 @@
   }
   .dropdown > a {
     --at-apply: block py-2 px-4 decoration-none rounded
-      hover:bg-blue-1 hover:text-blue-5
+      hover:bg-orange-1 hover:text-red-5
       text-[#213547] dark:text-[#efefef];
   }
   .arrow {
     --at-apply: flex items-center
-      transition-transform transition-300  text-6 tra;
+      transition-transform transition-300  text-6 text-[#213547];
   }
   .nav-item:hover .arrow {
     --at-apply: rotate-180;

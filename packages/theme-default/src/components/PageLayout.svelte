@@ -1,6 +1,7 @@
 <script >
   import { getSidebars } from '@svelte-press/vite/client'
   import { page } from '$app/stores'
+  import ActionButton from './ActionButton.svelte';
 
   const routeId = $page.route.id
 
@@ -14,6 +15,7 @@
   const { 
     sidebar = 'auto', 
     features = [],
+    actions = [],
     heroImage,
     tagline
   } = fm
@@ -61,6 +63,13 @@
         </div>
       {/if}
     </div>
+
+    <div class="actions">
+      {#each actions as action}
+        <ActionButton {...action} />
+      {/each}
+    </div>
+
     <div class="features">
       {#each features as fe}
         <div>
@@ -104,5 +113,8 @@
   }
   .tagline {
     --at-apply: text-slate-5 text-6 mt-4 font-500;
+  }
+  .actions {
+    --at-apply: flex gap-4;
   }
 </style>
