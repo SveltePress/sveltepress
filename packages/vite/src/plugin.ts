@@ -6,7 +6,7 @@ import { ensureFileSync } from 'fs-extra'
 import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
 import { getPages } from './utils/sidebar.js'
-import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter'
+import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter.js'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
@@ -29,20 +29,39 @@ const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 const IMPORT_STYLE = `import '@svelte-press/vite/style.css'
   import 'uno.css'`
 
-const wrapPage = (pagePath: string, pageLayout?: string) => pageLayout
-  ? `<script>
+const wrapPage = ({
+  pagePath,
+  pageLayout,
+  fm,
+  siteConfig,
+}: {
+  pagePath: string
+  pageLayout?: string
+  fm: Record<string, any>
+  siteConfig: SiteConfig
+}) => {
+  const { title, description } = fm
+  const head = `<svelte:head>
+    <title>${title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
+    <meta name="description" content="${description || siteConfig.description}">
+</svelte:head>`
+  return pageLayout
+    ? `<script>
   import Page from '${pagePath}'
   import PageLayout from '${pageLayout}'
 </script>
+${head}
 <PageLayout>
   <Page />
 </PageLayout>
 `
-  : `<script>
+    : `<script>
   import Page from '${pagePath}'
 </script>
-  <Page />
+${head}
+<Page />
 `
+}
 
 const contentWithGlobalLayout = (content: string, theme?: ResolvedTheme) => theme
   ? `
@@ -130,7 +149,6 @@ ${contentWithGlobalLayout(`
         const { code, data } = await mdToSvelte({
           filename: id,
           mdContent: src,
-          siteConfig,
         }) || { code: src, data: { } }
         const routeId = id.slice(id.indexOf('/routes'))
           .replace(/^\/routes\//, '')
@@ -141,6 +159,7 @@ ${contentWithGlobalLayout(`
           code,
           theme,
           fm: data.fm,
+          siteConfig,
         })
       }
 
@@ -151,6 +170,7 @@ ${contentWithGlobalLayout(`
           code: src,
           theme,
           fm: parseSvelteFrontmatter(src),
+          siteConfig,
         })
       }
 
@@ -177,7 +197,6 @@ ${contentWithGlobalLayout(`
         const { code } = await mdToSvelte({
           mdContent,
           filename: file,
-          siteConfig,
         })
         ctx.read = () => code
       }
@@ -185,12 +204,13 @@ ${contentWithGlobalLayout(`
   }
 }
 
-// TODO: write cache key is routeId, value is fm
-function writePage({ routeId, code, theme, fm = {} }: {
+// TODO: write cache for routeId: fm
+function writePage({ routeId, code, theme, fm = {}, siteConfig }: {
   routeId: string
   code: string
   theme?: ResolvedTheme
   fm?: Record<string, any>
+  siteConfig: SiteConfig
 }) {
   const pagePath = resolve(
     PAGES_PATH,
@@ -199,7 +219,12 @@ function writePage({ routeId, code, theme, fm = {} }: {
   ensureFileSync(pagePath)
   writeFileSync(pagePath, code)
 
-  return wrapPage(pagePath, theme?.pageLayout)
+  return wrapPage({
+    pagePath,
+    pageLayout: theme?.pageLayout,
+    fm,
+    siteConfig,
+  })
 }
 
 export default sveltepress
