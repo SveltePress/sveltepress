@@ -104,6 +104,34 @@ Some admonition content
 
 ### Frontmatter
 
+#### Frontmatter in markdown
+
+```md
+---
+title: Page title
+description: Some description
+foo: bar
+---
+
+Rest md content
+```
+
+### Frontmatter in svelte
+
+directly export a frontmatter obj in `context="module"` script would do
+
+```html
+<script context="module">
+  export const frontmatter = {
+    title: 'Page title',
+    description: 'Some description',
+    foo: bar
+  }
+</script>
+```
+
+### Site frontmatter properties
+
 * title - The title of the page
 * description - The description of the page
 

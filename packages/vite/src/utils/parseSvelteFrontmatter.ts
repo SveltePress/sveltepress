@@ -1,5 +1,5 @@
 import { parse } from 'svelte/compiler'
-import type { Expression, Pattern, SpreadElement } from 'estree'
+import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estree'
 
 /**
  * Parse the svelte source and get the frontmatter
@@ -47,17 +47,21 @@ export function parseSvelteFrontmatter(svelteCode: string) {
     variable.init.properties.forEach((prop) => {
       if (prop.type !== 'Property')
         return
-      if (prop.key.type !== 'Identifier')
-        return
-      const keyName = prop.key.name
-      recursivelySetValue(fm, keyName, prop.value)
+      recursivelySetValue(fm, prop.key, prop.value)
     })
   })
 
   return fm
 }
 
-function recursivelySetValue(fm: Record<string, any>, keyName: string | number, value: Expression | Pattern | SpreadElement | null) {
+function recursivelySetValue(
+  fm: Record<string, any>,
+  key: Expression | PrivateIdentifier,
+  value: Expression | Pattern | SpreadElement | null,
+) {
+  if (key.type !== 'Literal' && key.type !== 'Identifier')
+    return
+  const keyName = String(key.type === 'Identifier' ? key.name : key.value)
   switch (value?.type) {
     case 'Literal':
       fm[keyName] = value.value
@@ -65,16 +69,14 @@ function recursivelySetValue(fm: Record<string, any>, keyName: string | number, 
     case 'ArrayExpression':
       fm[keyName] = []
       value.elements.forEach((ele, i) => {
-        recursivelySetValue(fm[keyName], i, ele)
+        recursivelySetValue(fm[keyName], { type: 'Literal', value: i }, ele)
       })
       break
     case 'ObjectExpression':
       fm[keyName] = {}
       value.properties.forEach((prop) => {
-        if (prop.type === 'Property') {
-          if (prop.key.type === 'Identifier')
-            recursivelySetValue(fm[keyName], prop.key.name, prop.value)
-        }
+        if (prop.type === 'Property')
+          recursivelySetValue(fm[keyName], prop.key, prop.value)
       })
   }
 }

@@ -6,6 +6,7 @@ import { ensureFileSync } from 'fs-extra'
 import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
 import { getPages } from './utils/sidebar.js'
+import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
@@ -149,8 +150,7 @@ ${contentWithGlobalLayout(`
             .replace(/^\/routes\//, ''),
           code: src,
           theme,
-          // TODO: parse svelte frontmatter
-          fm: {},
+          fm: parseSvelteFrontmatter(src),
         })
       }
 
@@ -185,7 +185,8 @@ ${contentWithGlobalLayout(`
   }
 }
 
-function writePage({ routeId, code, theme }: {
+// TODO: write cache key is routeId, value is fm
+function writePage({ routeId, code, theme, fm = {} }: {
   routeId: string
   code: string
   theme?: ResolvedTheme
