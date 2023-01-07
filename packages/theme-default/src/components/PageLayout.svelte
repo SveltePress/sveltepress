@@ -15,6 +15,7 @@
     sidebar = 'auto', 
     features = [],
     heroImage,
+    tagline
   } = fm
 
 
@@ -41,17 +42,22 @@
 {:else}
   <div class="home-page">
     <div class="title">
-      <div>
-        <div>
+      <div class="intro">
+        <div class="gradient-title">
           {siteConfig.title}
         </div>
         <div>
           {siteConfig.description}
         </div>
+        {#if tagline}
+          <div class="tagline">
+            {tagline}
+          </div>
+        {/if}
       </div>
       {#if heroImage}
-        <div>
-          <img src={heroImage} alt={siteConfig.title} />
+        <div class="hero-image">
+          <img src={heroImage} alt={siteConfig.title} w-80 />
         </div>
       {/if}
     </div>
@@ -76,9 +82,27 @@
 
 <style>
   .home-page {
-    --at-apply: max-w-[1152px] mx-auto;
+    --at-apply: max-w-[1152px] mx-auto pt-20;
   }
   .title {
-    --at-apply: text-16 flex justify-between;
+    --at-apply: text-16 grid grid-cols-12 font-700;
+  }
+  .intro {
+    grid-column-start: 1;
+    grid-column-end: span 7;
+  }
+  .hero-image {
+    --at-apply: flex items-center justify-center col-start;
+    grid-column-start: 8;
+    grid-column-end: span 5;
+  }
+  .gradient-title {
+    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .tagline {
+    --at-apply: text-slate-5 text-6 mt-4 font-500;
   }
 </style>
