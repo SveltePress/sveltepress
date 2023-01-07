@@ -51,9 +51,10 @@ const wrapPage = ({
   import PageLayout from '${pageLayout}'
 
   const fm = ${JSON.stringify(fm)}
+  const siteConfig = ${JSON.stringify(siteConfig)}
 </script>
 ${head}
-<PageLayout {...fm}>
+<PageLayout {fm} {siteConfig}>
   <Page />
 </PageLayout>
 `

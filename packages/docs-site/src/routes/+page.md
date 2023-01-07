@@ -1,6 +1,6 @@
 ---
 title: Home Page
-layout: false
+heroImage: /sveltepress@3x.png
 ---
 
 # {title}
