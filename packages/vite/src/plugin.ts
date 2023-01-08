@@ -128,7 +128,7 @@ ${contentWithGlobalLayout(`
     config: () => ({
       server: {
         fs: {
-          allow: ['.sveltepress'],
+          allow: ['.sveltepress', 'node_modules/@svelte-press/vite/dist/fonts'],
         },
       },
       resolve: {

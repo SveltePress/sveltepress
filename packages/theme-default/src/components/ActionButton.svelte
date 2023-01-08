@@ -16,7 +16,8 @@
 
 <style>
   .svp-action {
-    --at-apply: inline-flex items-center h-12 leading-12 rounded-6 px-6 hover:shadow-lg bg-white;
+    --at-apply: inline-flex items-center h-12 leading-12 rounded-6 px-6 
+      hover:shadow-lg bg-white transition-300 transition-shadow;
   }
   .svp-action--primary {
     background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);

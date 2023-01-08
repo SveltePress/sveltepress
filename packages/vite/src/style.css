@@ -167,12 +167,25 @@ html[data-theme="dark"] {
   fill: #f1c40f;
 }
 
+.c-expansion--body .shiki {
+  border-radius: unset;
+}
+
+@font-face {
+  font-family: Dank Mono;
+  src: url("./fonts/Dank Mono Regular.otf");
+}
+
+@font-face {
+  font-family: Dank Mono;
+  src: url("./fonts/Dank Mono Italic.otf");
+  font-style: italic;
+}
+
 .shiki {
   padding: 12px;
   border-radius: 4px;
   margin: 0;
-}
-
-.c-expansion--body .shiki {
-  border-radius: unset;
+  line-height: 1.3em;
+  font-family: Dank Mono, Consolas, 'Courier New', Courier, monospace;
 }

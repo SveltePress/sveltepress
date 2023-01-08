@@ -86,15 +86,13 @@
     <div class="features">
       {#each features as fe, i}
         <div class="feature-item">
-          <div flex justify-between items-start>
-            <div font-600 mb-2 pt-4>
-              {fe.title}
-            </div>
-            <div text-10>
-              <svelte:component this={icons[ i % icons.length]} />
-            </div>
+          <div class="icon">
+            <svelte:component this={icons[ i % icons.length]} />
           </div>
-          <div text-slate-5>
+          <div font-600 mb-2 pt-2>
+            {fe.title}
+          </div>
+          <div text-slate-5 mt-4>
             {fe.description}
           </div>
         </div>
@@ -137,7 +135,10 @@
     --at-apply: grid grid-cols-3 gap-4 mt-6;
   }
   .feature-item {
-    --at-apply: bg-white dark:bg-slate-9 px-4 pb-4 rounded-lg hover:shadow-md
-      transition-shadow;
+    --at-apply: bg-white dark:bg-slate-9 p-4 rounded-lg hover:shadow-md
+      transition-shadow transition-300;
+  }
+  .icon {
+    --at-apply: text-10 inline-flex items-center p-1 bg-[#e5e5e5] dark:bg-[#252525] rounded-md;
   }
 </style>
