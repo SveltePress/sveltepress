@@ -25,8 +25,6 @@ const liveCode: RemarkLiveCode = function () {
     writeFileSync(LIVE_CODE_MAP, '{}')
 
   return (tree, vFile) => {
-    writeFileSync('tree.json', JSON.stringify(tree))
-
     visit(
       tree,
       (node, idx, parent) => {
