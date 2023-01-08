@@ -33,7 +33,7 @@
 </script>
   
 {#if !isHome}
-  <div text-md flex>
+  <div text-md flex pb-4 class="theme-default--page-layout">
     {#if sidebar === 'auto'}
       <aside>
         {#each sidebars as sidebarItem}
@@ -104,6 +104,9 @@
 {/if}
 
 <style>
+  :global(.theme-default--page-layout h2) {
+    --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
+  }
   .home-page {
     --at-apply: max-w-[1152px] mx-auto pt-20;
   }

@@ -8,37 +8,37 @@ Some admonition content
 :::
 ```
 
-### Tip
+## Tip
 
 :::tip Tip
 Some tip content
 :::
 
-### Info
+## Info
 
 :::info Info
 Some info content
 :::
 
-### Note
+## Note
 
 :::note Note
 Some note content
 :::
 
-### Warning
+## Warning
 
 :::warning Warning
 Some warning content
 :::
 
-### Important
+## Important
 
 :::important Important
 Some important content
 :::
 
-### Caution
+## Caution
 
 :::caution Caution
 Some caution content
