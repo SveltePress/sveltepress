@@ -187,7 +187,10 @@ html[data-theme="dark"] {
   border-radius: 4px;
   margin: 0;
   line-height: 1.3em;
-  font-family: Dank Mono, Consolas, 'Courier New', Courier, monospace;
+}
+
+.shiki code {
+  font-family: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
 }
 
 @media (prefers-color-scheme: light) {
