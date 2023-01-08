@@ -15,15 +15,15 @@ const config = defineConfig({
             },
           ],
         }, {
-          title: 'With dropdown',
+          title: 'Markdown features',
           items: [
             {
               title: 'Live code',
-              to: '/live-codes',
+              to: '/markdown-features/live-codes',
             },
             {
               title: 'Admonitions',
-              to: '/admonitions',
+              to: '/markdown-features/admonitions',
             },
           ],
         }],
