@@ -20,7 +20,7 @@
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
     "cp:components": "cp -r src/components dist",
-    "cp:md": "cp src/markdown/night-owl.json dist/es/markdown",
+    "cp:md": "cp src/markdown/night-owl.json src/markdown/vitesse-light.json dist/es/markdown",
     "cp:fonts": "cp -r src/fonts dist",
     "build": "pnpm build:es && cp src/style.css dist && pnpm cp:components && pnpm cp:md && pnpm cp:fonts"
   },

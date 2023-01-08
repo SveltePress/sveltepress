@@ -189,3 +189,27 @@ html[data-theme="dark"] {
   line-height: 1.3em;
   font-family: Dank Mono, Consolas, 'Courier New', Courier, monospace;
 }
+
+@media (prefers-color-scheme: light) {
+  .shiki.Night.Owl {
+    display: none;
+  }
+}
+html.dark .shiki.vitesse-light {
+  display: none;
+}
+html .shiki {
+  display: block;
+}
+html .shiki.Night.Owl {
+  display: none;
+}
+html.dark .shiki.Night.Owl {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki.vitesse-light {
+    display: none;
+  }
+}
