@@ -38,7 +38,7 @@
       decoration-none;
   }
   .nav-item--icon:hover {
-    --at-apply: text-gray-6;
+    --at-apply: opacity-80;
   }
   .nav-item:not(.nav-item--icon):hover {
     color: transparent;
