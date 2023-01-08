@@ -39,7 +39,7 @@
   .header {
     --at-apply: 
       fixed top-0 left-0 right-0 bg-white 
-      dark:bg-[#232323] px-20 h-[56px] 
+      dark:bg-zinc-9 px-20 h-[56px] 
       z-999;
   }
   .header-inner {
@@ -48,7 +48,7 @@
       mx-auto;
   }
   .divider {
-    --at-apply: bg-light w-[1px] my-3;
+    --at-apply: bg-stone-2 w-[1px] my-4 dark:bg-stone-7;
   }
   .logo {
     --at-apply: h-[32px];

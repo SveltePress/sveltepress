@@ -135,7 +135,7 @@
     --at-apply: grid grid-cols-3 gap-4 mt-6;
   }
   .feature-item {
-    --at-apply: bg-white dark:bg-slate-9 p-4 rounded-lg hover:shadow-md
+    --at-apply: bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md
       transition-shadow transition-300;
   }
   .icon {

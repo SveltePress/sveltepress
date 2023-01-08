@@ -59,11 +59,12 @@
   .dropdown > a {
     --at-apply: block py-2 px-4 decoration-none rounded
       hover:bg-orange-1 hover:text-red-5
+      dark:hover:bg-orange-9
       text-[#213547] dark:text-[#efefef];
   }
   .arrow {
     --at-apply: flex items-center
-      transition-transform transition-300  text-6 text-[#213547];
+      transition-transform transition-300  text-6 text-[#213547] dark:text-light-4;
   }
   .nav-item:hover .arrow {
     --at-apply: rotate-180;

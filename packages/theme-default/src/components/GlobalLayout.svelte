@@ -9,7 +9,7 @@ import Navbar from './Navbar.svelte'
 
 <style>
   :global(body) {
-    --at-apply: bg-gray-1 dark:bg-[#242424] text-[#213547] dark:text-[#efefef];
+    --at-apply: bg-gray-1 dark:bg-zinc-8 text-[#213547] dark:text-slate-1;
     font-family:  "Inter var experimental", "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
 	}
   :global(a) {
