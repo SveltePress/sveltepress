@@ -1,7 +1,13 @@
 <script >
   import { getSidebars } from '@svelte-press/vite/client'
   import { page } from '$app/stores'
-  import ActionButton from './ActionButton.svelte';
+  import ActionButton from './ActionButton.svelte'
+  import Apple from './icons/Apple.svelte'
+  import Banana from './icons/Banana.svelte'
+  import Grapes from './icons/Grapes.svelte'
+  import Peach from './icons/Peach.svelte'
+  import Tomato from './icons/Tomato.svelte'
+  import Watermelon from './icons/Watermelon.svelte'
 
   const routeId = $page.route.id
 
@@ -21,6 +27,7 @@
     title,
   } = fm
 
+  const icons = [Apple, Banana, Grapes, Peach, Tomato, Watermelon]
 
   $: isHome = $page.route.id === '/'
 </script>
@@ -77,22 +84,25 @@
     </div>
 
     <div class="features">
-      {#each features as fe}
-        <div>
-          <div>
-            Icon
-            <!-- TODO: add icons -->
+      {#each features as fe, i}
+        <div class="feature-item">
+          <div flex justify-between items-start>
+            <div font-600 mb-2 pt-4>
+              {fe.title}
+            </div>
+            <div text-10>
+              <svelte:component this={icons[ i % icons.length]} />
+            </div>
           </div>
-          <div>
-            {fe.title}
-          </div>
-          <div>
+          <div text-slate-5>
             {fe.description}
           </div>
         </div>
       {/each}
     </div>
   </div>
+
+  <slot />
 {/if}
 
 <style>
@@ -122,5 +132,12 @@
   }
   .actions {
     --at-apply: flex gap-4 mt-4;
+  }
+  .features {
+    --at-apply: grid grid-cols-3 gap-4 mt-6;
+  }
+  .feature-item {
+    --at-apply: bg-white dark:bg-slate-9 px-4 pb-4 rounded-lg hover:shadow-md
+      transition-shadow;
   }
 </style>

@@ -1,7 +1,7 @@
 ---
 title: Home Page
 heroImage: /sveltepress@3x.png
-tagline: A simple, easy to use content centered site build tool & preserve the full power of Sveltekit.
+tagline: A simple, easy to use content centered site build tool with the full power of Sveltekit.
 actions:
   - label: Quick start
     to: /guide/quick-start
@@ -10,6 +10,10 @@ actions:
     type: flat
     to: https://github.com/Blackman99/sveltepress
     external: true
+features:
+  - title: Markdown centered
+    description: To help you can start writing with minimal configuration
+  - title: Build with Sveltekit
+    description: Preserve the full power of Sveltekit. So you can do more than SSG
 ---
-
 

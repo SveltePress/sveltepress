@@ -23,5 +23,10 @@ import Navbar from './Navbar.svelte'
   :global(ul) {
     padding-left: 1.25rem;
     margin: 16px 0;
+    line-height: 2em;
+  }
+
+  :global(li+li) {
+    margin-top: 0.5rem;
   }
 </style>
