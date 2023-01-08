@@ -17,7 +17,8 @@
     features = [],
     actions = [],
     heroImage,
-    tagline
+    tagline,
+    title,
   } = fm
 
 
@@ -37,6 +38,11 @@
     {/if}
     <div flex-grow>
       <div md:w-200 mx-auto lg:w-230 xl:w-260>
+        {#if title}
+          <h1>
+            {title}
+          </h1>
+        {/if}
         <slot />
       </div>
     </div>
@@ -94,7 +100,7 @@
     --at-apply: max-w-[1152px] mx-auto pt-20;
   }
   .title {
-    --at-apply: text-16 grid grid-cols-12 font-700;
+    --at-apply: text-16 grid grid-cols-12 font-700 leading-18;
   }
   .intro {
     grid-column-start: 1;
@@ -112,9 +118,9 @@
     color: transparent;
   }
   .tagline {
-    --at-apply: text-slate-5 text-6 mt-4 font-500;
+    --at-apply: text-slate-5 text-6 mt-4 font-500 leading-9;
   }
   .actions {
-    --at-apply: flex gap-4;
+    --at-apply: flex gap-4 mt-4;
   }
 </style>

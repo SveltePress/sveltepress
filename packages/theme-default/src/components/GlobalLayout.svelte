@@ -15,4 +15,13 @@ import Navbar from './Navbar.svelte'
   :global(a) {
     --at-apply: text-[#213547] dark:text-[#efefef] decoration-none;
   }
+
+  :global(p) {
+    --at-apply: leading-6;
+  }
+
+  :global(ul) {
+    padding-left: 1.25rem;
+    margin: 16px 0;
+  }
 </style>

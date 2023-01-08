@@ -1,5 +1,4 @@
 :root {
-  --svp-text: #303133;
   --svp-expansion-bg: #f8f8fb;
   --svp-expansion-bg-darker: #f2f2f7;
   --svp-expansion-bg-darker2: #e8e8f2;
@@ -11,11 +10,6 @@ html[data-theme="dark"] {
   --svp-expansion-bg: #282c34;
   --svp-expansion-bg-darker: #262626;
   --svp-expansion-bg-darker2: #222;
-}
-
-html,
-body {
-  color: var(--svp-text);
 }
 
 .c-expansion {

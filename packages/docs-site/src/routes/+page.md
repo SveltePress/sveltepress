@@ -1,7 +1,7 @@
 ---
 title: Home Page
 heroImage: /sveltepress@3x.png
-tagline: A simple, easy to use SSG tool. Build with Sveltekit.
+tagline: A simple, easy to use content centered site build tool & preserve the full power of Sveltekit.
 actions:
   - label: Quick start
     to: /guide/quick-start

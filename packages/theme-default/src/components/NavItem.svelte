@@ -35,7 +35,7 @@
   .nav-item {
     --at-apply: flex items-center cursor-pointer 
       position-relative z-1 cursor-pointer px-3 
-      decoration-none
+      decoration-none;
   }
   .nav-item--icon:hover {
     --at-apply: text-gray-6;

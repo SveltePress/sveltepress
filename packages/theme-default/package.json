@@ -2,7 +2,6 @@
   "name": "@svelte-press/theme-default",
   "version": "0.1.0",
   "description": "The default theme for sveltepress",
-  "main": "index.js",
   "scripts": {
     "build": "svelte-package && rm dist/package.json"
   },
