@@ -100,7 +100,7 @@ foo: bar
 Rest md content
 ```
 
-### Frontmatter in svelte
+#### Frontmatter in svelte
 
 directly export a frontmatter obj in `context="module"` script would do
 
