@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.2.1
+
+### Patch Changes
+
+- 7a51416: move side parse to theme default page layout
+
 ## 0.2.0
 
 ### Minor Changes
