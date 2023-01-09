@@ -178,6 +178,7 @@ export default config
 #### Default theme features
 
 * Code highlight with dark mode support
+
 ````md
 ```js
 function name(params) {
@@ -186,6 +187,8 @@ function name(params) {
 }
 ```
 ````
+![image](https://user-images.githubusercontent.com/41723543/211250234-9b5f9f98-d061-42f8-b51e-aa93bdcbef33.png)
+![image](https://user-images.githubusercontent.com/41723543/211250259-8634465e-85d9-496f-8057-1505db497208.png)
 * Svelte live code
 Code Blocks with svelte lang and `live` attribute would render in page and show the __expandable source code__ below the render dom  
 For example write something like this in your markdown  
