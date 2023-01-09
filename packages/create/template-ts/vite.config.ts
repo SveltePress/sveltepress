@@ -7,13 +7,8 @@ const config = defineConfig({
     sveltepress({
       theme: defaultTheme({
         navbar: [{
-          title: 'Guide',
-          items: [
-            {
-              title: 'Quick start',
-              to: '/guide/quick-start',
-            },
-          ],
+          title: 'Svelte page',
+          to: '/svelte-page',
         }, {
           title: 'Markdown features',
           items: [
