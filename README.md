@@ -12,6 +12,10 @@
 Inspired by [Vitepress](https://vitepress.vuejs.org/).   
 But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com/), [Unocss](https://github.com/unocss/unocss)
 
+## Online docs and demos
+
+> TODO: Add online docs and demos
+
 ## Quick start
 
 ### Creating a project
@@ -43,62 +47,44 @@ const config = defineConfig({
 export default config
 ```
 
+## Plugin options
+
+* `siteConfig: SiteConfig`
+  * `title: string`  
+  Default: `'Untitled site'`  
+  The title of the site.   
+  If you set a +page.md title frontmatter, the final title would be `[Page Title] - [siteConfig.title]`.  
+  * `description: string`  
+  Default: `'Build by Sveltepress'`  
+  The description of the site.   
+  If you set a +page.md description frontmatter. 
+  It would override `siteConfig.description`  
+* `addInspect: boolean`  
+  Default: `false`  
+  Determine whether to add [vue-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) plugin.   
+  It is useful when developing sveltepress or inspecting the vite pipeline.  
+* `theme?: ThemeResolved`  
+  Default: `undefined`  
+  The theme that you want to use. 
+  * `name: string`  
+    The name of the theme.  
+  * `globalLayout: string`   
+    The absolute path of GlobalLayout.svelte that theme use.  
+    It will be used for wrapping all pages. Even the src/routes/+layout.svelte will become its child. 
+  * `pageLayout: string`  
+    The absolute path of PageLayout.svelte that theme use.
+    It will be used for wrapping a specific page.
+  * `vitePlugins?: PluginOption`  
+    A theme can use this prop to add some vite plugins to the Vite pipeline chain.  
+    For example, add some virtual modules or write some temp files.
+
+
 ## Markdown features
-
-### Code highlight
-
-````md
-```js
-function name(params) {
-
-  return 'foo'
-}
-```
-````
 
 ### Svelte in Markdown
 
 * `.svelte` and `.md` can be used as pages. For example, you can use `+page.(svelte|md)` as pages and `+layout.(md|svelte)` as layouts
 * `.md` files can use the features provided by [Mdsvex](https://mdsvex.com/)
-
-### Svelte live code
-
-Code Blocks with svelte lang and `live` attribute would render in page and show the __expandable source code__ below the render dom
-
-For example write something like this in your markdown
-
-````md
-```svelte live
-<script>
-  let count = 0
-  const add = () => {
-    count++
-  }
-</script>
-
-<button 
-  type="button" 
-  on:click={add} 
-  class="cursor-pointer px-1 py-2 text-orange-5"
->
-  Count is {count}
-</button>
-```
-````
-
-Would render like this
-
-![live code demo](./assets/live-code.gif)
-
-### Admonition
-
-```md
-:::[tip|info|note|warning|important|caution] Title
-Some admonition content
-:::
-```
-
-![image](https://user-images.githubusercontent.com/41723543/210292672-d4f779fa-0fd5-453a-a818-e26555a1e729.png)
 
 ### Frontmatter
 
@@ -136,6 +122,8 @@ directly export a frontmatter obj in `context="module"` script would do
 ## Themes
 
 ### Default theme
+
+#### Usage
 
 * Install
 ```sh
@@ -183,45 +171,51 @@ export default config
   * `to` - the link address
   * `items` - nested array of link items
 
+#### Default theme features
+
+* Code highlight with dark mode support
+````md
+```js
+function name(params) {
+
+  return 'foo'
+}
+```
+````
+* Svelte live code
+Code Blocks with svelte lang and `live` attribute would render in page and show the __expandable source code__ below the render dom  
+For example write something like this in your markdown  
+````md
+```svelte live
+<script>
+  let count = 0
+  const add = () => {
+    count++
+  }
+</script>
+
+<button 
+  type="button" 
+  on:click={add} 
+  class="cursor-pointer px-1 py-2 text-orange-5"
+>
+  Count is {count}
+</button>
+```
+````
+Would render like this  
+![live code demo](./assets/live-code.gif)
+* Admonition
+```md
+:::[tip|info|note|warning|important|caution] Title
+Some admonition content
+:::
+```
+![image](https://user-images.githubusercontent.com/41723543/210292672-d4f779fa-0fd5-453a-a818-e26555a1e729.png)
+
 ### Blog theme
 
 > TODO: Add blog theme
-
-## Online docs and demos
-
-> TODO: Add online docs and demos
-
-
-## Plugin options
-
-* `siteConfig: SiteConfig`
-  * `title: string`  
-  Default: `'Untitled site'`  
-  The title of the site.   
-  If you set a +page.md title frontmatter, the final title would be `[Page Title] - [siteConfig.title]`.  
-  * `description: string`  
-  Default: `'Build by Sveltepress'`  
-  The description of the site.   
-  If you set a +page.md description frontmatter. 
-  It would override `siteConfig.description`  
-* `addInspect: boolean`  
-  Default: `false`  
-  Determine whether to add [vue-plugin-inspect](https://github.com/antfu/vite-plugin-inspect) plugin.   
-  It is useful when developing sveltepress or inspecting the vite pipeline.  
-* `theme?: ThemeResolved`  
-  Default: `undefined`  
-  The theme that you want to use. 
-  * `name: string`  
-    The name of the theme.  
-  * `globalLayout: string`   
-    The absolute path of GlobalLayout.svelte that theme use.  
-    It will be used for wrapping all pages. Even the src/routes/+layout.svelte will become its child. 
-  * `pageLayout: string`  
-    The absolute path of PageLayout.svelte that theme use.
-    It will be used for wrapping a specific page.
-  * `vitePlugins?: PluginOption`  
-    A theme can use this prop to add some vite plugins to the Vite pipeline chain.  
-    For example, add some virtual modules or write some temp files.
 
 ## LICENSE
 
