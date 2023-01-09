@@ -26,16 +26,17 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 - `npm i --save @svelte-press/vite`
 - Add plugin in your vite config
-```js
+```diff
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
-import Sveltepress from '@svelte-press/vite'
+- import { sveltekit } from '@sveltejs/kit/vite'
++ import Sveltepress from '@svelte-press/vite'
+
 
 const config = defineConfig({
   plugins: [
-    Sveltepress(),
-    // You won't need sveltekit() here any more
-    // Here are your other plugins except for sveltekit()
+-   sveltekit(),
++   Sveltepress(),
   ],
 })
 
