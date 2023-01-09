@@ -74,6 +74,10 @@ export default config
   * `pageLayout: string`  
     The absolute path of PageLayout.svelte that theme use.
     It will be used for wrapping a specific page.
+  * `remarkPlugins`
+    Remark plugins. You can read the [Remark](https://github.com/remarkjs/remark) for more information
+  * `rehypePlugins`
+    Rehype plugins. You can read to [Rehype](https://github.com/rehypejs/rehype) for more information
   * `vitePlugins?: PluginOption`  
     A theme can use this prop to add some vite plugins to the Vite pipeline chain.  
     For example, add some virtual modules or write some temp files.
