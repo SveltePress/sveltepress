@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.2.3
+
+### Patch Changes
+
+- b0b69e6: - update create templates
+
 ## 0.2.2
 
 ### Patch Changes
