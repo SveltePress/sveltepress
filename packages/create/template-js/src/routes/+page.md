@@ -3,8 +3,8 @@ title: Home Page
 heroImage: /sveltepress@3x.png
 tagline: A simple, easy to use content centered site build tool with the full power of Sveltekit.
 actions:
-  - label: Quick start
-    to: /guide/quick-start
+  - label: Live codes
+    to: /live-codes
     type: primary
   - label: View on github
     type: flat
