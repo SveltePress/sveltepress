@@ -1,5 +1,20 @@
 # @svelte-press/create
 
+## 0.2.0
+
+### Minor Changes
+
+- a6c3a8c: - create tempalte updates
+
+  - theme api refactor
+  - default theme navbar
+  - default theme home page
+  - svelte front matter
+
+  - Theme API
+  - Site API
+  - Vite plugin API
+
 ## 0.1.1
 
 ### Patch Changes
