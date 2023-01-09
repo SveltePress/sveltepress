@@ -25,7 +25,7 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 ### Add to an existing sveltekit project
 
 - `npm i --save @svelte-press/vite`
-- Add plugin in your vite config
+- Replace `sveltekit` plugin in your vite config
 ```diff
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
@@ -42,9 +42,6 @@ const config = defineConfig({
 
 export default config
 ```
-
-Notice that you will no longer need sveltekit plugin any more.  
-Sveltepress plugin would handle that for you.
 
 ## Markdown features
 
