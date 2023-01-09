@@ -1,6 +1,5 @@
 <script >
-  import { getSidebars } from '@svelte-press/vite/client'
-  import { page } from '$app/stores'
+  import pages from 'sveltepress:pages'
   import ActionButton from './ActionButton.svelte'
   import Apple from './icons/Apple.svelte'
   import Banana from './icons/Banana.svelte'
@@ -8,18 +7,20 @@
   import Peach from './icons/Peach.svelte'
   import Tomato from './icons/Tomato.svelte'
   import Watermelon from './icons/Watermelon.svelte'
+  import { page } from '$app/stores'
+
 
   const routeId = $page.route.id
 
-  const sidebars = getSidebars(routeId)
+  const sidebars = pages.filter(page => page.startsWith(routeId))
 
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
 
   export let siteConfig
 
-  const { 
-    sidebar = 'auto', 
+  const {
+    sidebar = 'auto',
     features = [],
     actions = [],
     heroImage,
@@ -87,7 +88,7 @@
       {#each features as fe, i}
         <div class="feature-item">
           <div class="icon">
-            <svelte:component this={icons[ i % icons.length]} />
+            <svelte:component this={icons[i % icons.length]} />
           </div>
           <div font-600 mb-2 pt-2>
             {fe.title}

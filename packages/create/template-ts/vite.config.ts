@@ -19,11 +19,11 @@ const config = defineConfig({
           items: [
             {
               title: 'Live code',
-              to: '/markdown-features/live-codes',
+              to: '/live-codes',
             },
             {
               title: 'Admonitions',
-              to: '/markdown-features/admonitions',
+              to: '/admonitions',
             },
           ],
         }],
@@ -34,7 +34,6 @@ const config = defineConfig({
         title: 'Sveltepress',
         description: 'A content centered site build tool',
       },
-      addInspect: true,
     }),
   ],
 })
