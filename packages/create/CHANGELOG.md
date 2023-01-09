@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.2.2
+
+### Patch Changes
+
+- 9b0664b: fix vite config and favicon link
+
 ## 0.2.1
 
 ### Patch Changes
