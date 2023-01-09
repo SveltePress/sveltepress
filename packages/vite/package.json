@@ -11,8 +11,6 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./dist/es/index.js",
-    "./style.css": "./dist/style.css",
-    "./CExpansion.svelte": "./dist/components/CExpansion.svelte",
     "./client": {
       "import": "./dist/es/client/index.js"
     }
@@ -20,9 +18,7 @@
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
     "cp:components": "cp -r src/components dist",
-    "cp:md": "cp src/markdown/night-owl.json src/markdown/vitesse-light.json dist/es/markdown",
-    "cp:fonts": "cp -r src/fonts dist",
-    "build": "pnpm build:es && cp src/style.css dist && pnpm cp:components && pnpm cp:md && pnpm cp:fonts"
+    "build": "pnpm build:es && pnpm cp:components"
   },
   "keywords": [
     "vite",
@@ -45,8 +41,6 @@
     "@types/estree": "^1.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.18",
-    "fast-glob": "^3.2.12",
-    "fs-extra": "^11.1.0",
     "svelte": "^3.55.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.3",
@@ -54,14 +48,12 @@
   },
   "dependencies": {
     "@sveltejs/kit": "^1.0.0",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
     "lru-cache": "^7.14.1",
     "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",
-    "remark-admonitions": "^1.2.1",
-    "shiki": "^0.12.1",
-    "uid": "^2.0.1",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.1",
     "unocss": "^0.48.0",
     "vite-plugin-inspect": "^0.7.11"
   }

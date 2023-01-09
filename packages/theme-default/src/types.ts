@@ -1,3 +1,4 @@
+import type { Plugin } from 'unified'
 export interface WithTitle {
   title: string
 }
@@ -16,3 +17,5 @@ export interface DefaultThemeOptions {
   github?: string
   logo?: string
 }
+
+export type RemarkLiveCode = Plugin<[], any>

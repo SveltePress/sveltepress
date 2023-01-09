@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "The default theme for sveltepress",
   "scripts": {
-    "build": "svelte-package && rm dist/package.json"
+    "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
+    "build:comps": "svelte-package && rm dist/package.json",
+    "build": "pnpm build:comps && pnpm cp:assets"
   },
   "files": [
     "dist"
@@ -32,11 +34,20 @@
     "typescript": "^4.9.4",
     "vite": "^4.0.3"
   },
+  "dependencies": {
+    "remark-admonitions": "^1.2.1",
+    "shiki": "^0.12.1",
+    "uid": "^2.0.1",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.1",
+    "unocss": "^0.48.0"
+  },
   "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./package.json": "./package.json",
-    "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte"
+    "./style.css": "./dist/style.css",
+    "./CExpansion.svelte": "./dist/components/CExpansion.svelte",
+    "./package.json": "./package.json"
   }
 }

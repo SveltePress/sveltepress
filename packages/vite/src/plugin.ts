@@ -26,9 +26,6 @@ const SVELTE_PAGE_RE = /src\/routes\/([a-zA-Z0-1_\+@-]+\/)+\+page\.svelte$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 
-const IMPORT_STYLE = `import '@svelte-press/vite/style.css'
-  import 'uno.css'`
-
 const wrapPage = ({
   pagePath,
   pageLayout,
@@ -85,10 +82,12 @@ const sveltepress: (options: {
     ? `import GlobalLayout from \'${theme.globalLayout}\'`
     : ''
 
+  const clientImports = theme?.clientImports?.join('\n')
+
   const defaultLayout = `
 <script>
   ${importGlobalLayout}
-  ${IMPORT_STYLE}
+  ${clientImports}
 </script>
 ${contentWithGlobalLayout('<slot />', theme)}
 `
@@ -97,7 +96,7 @@ ${contentWithGlobalLayout('<slot />', theme)}
 <script>
   ${importGlobalLayout}
   import CustomLayout from '${customRootLayoutPath}'
-  ${IMPORT_STYLE}
+  ${clientImports}
 </script>
 ${contentWithGlobalLayout(`
   <CustomLayout>
@@ -128,7 +127,7 @@ ${contentWithGlobalLayout(`
     config: () => ({
       server: {
         fs: {
-          allow: ['.sveltepress', '../vite/dist/fonts'],
+          allow: ['.sveltepress'],
         },
       },
       resolve: {
@@ -152,6 +151,13 @@ ${contentWithGlobalLayout(`
         const { code, data } = await mdToSvelte({
           filename: id,
           mdContent: src,
+          mdsvexOptions: {
+            highlight: {
+              highlighter: theme?.highlighter,
+            },
+            remarkPlugins: theme?.remarkPlugins,
+            rehypePlugins: theme?.rehypePlugins,
+          },
         }) || { code: src, data: { } }
         const routeId = id.slice(id.indexOf('/routes'))
           .replace(/^\/routes\//, '')
