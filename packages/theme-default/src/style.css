@@ -205,20 +205,3 @@ html .shiki.Night.Owl {
 html.dark .shiki.Night.Owl {
   display: block;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  .shiki.vitesse-light {
-    display: none;
-  }
-  .shiki.Night.Owl {
-    display: block;
-  }
-}
-@media (prefers-color-scheme: light) {
-  .shiki.Night.Owl {
-    display: none;
-  }
-  .shiki.vitesse-light {
-    display: block;
-  }
-} */
