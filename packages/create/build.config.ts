@@ -39,23 +39,28 @@ const padStartWithVersion = (dependencies: Dependency[]) => {
   })
 }
 
+function writePackages() {
+  const dependencies = [
+    getPkg('../vite'),
+    getPkg('../theme-default'),
+  ]
+  padStartWithVersion(dependencies)
+  // write the newest version of @svelte-press/vite and @svelte-press/theme-default package to templates
+  writeDevDependencies(
+    dependencies,
+    [
+      'template-js',
+      'template-ts',
+    ],
+  )
+}
+
 export default defineBuildConfig({
   failOnWarn: false,
   hooks: {
-    // read the latest vite plugin and default theme package info and write it into templates
     'build:before': async () => {
-      const dependencies = [
-        getPkg('../vite'),
-        getPkg('../theme-default'),
-      ]
-      padStartWithVersion(dependencies)
-      writeDevDependencies(
-        dependencies,
-        [
-          'template-js',
-          'template-ts',
-        ],
-      )
+      // read the latest vite plugin and default theme package info and write it into templates
+      writePackages()
     },
   },
 })
