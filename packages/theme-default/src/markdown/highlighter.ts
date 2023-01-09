@@ -11,6 +11,7 @@ const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light
 
 const highlighterDark: Highlighter = (code, lang) => getHighlighter({
   theme: nightOwl,
+  langs: ['svelte', 'sh', 'js', 'html', 'ts'],
 }).then(
   shikiHighlighter => shikiHighlighter
     .codeToHtml(code, { lang })

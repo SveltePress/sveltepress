@@ -19,3 +19,14 @@ features:
     description: Feel free to use svelte in markdown. Explore infinite possibilities.
 ---
 
+
+<div w-100 mx-auto my-20 py-0.5 px-4>
+
+  ```js
+  function name(params) {
+
+    return 'foo'
+  }
+  ```
+
+</div>

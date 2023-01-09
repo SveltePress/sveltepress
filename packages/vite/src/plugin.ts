@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
 import { ensureFileSync } from 'fs-extra'
 
+import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
 import { getPages } from './utils/sidebar.js'
@@ -78,6 +79,13 @@ const sveltepress: (options: {
   theme,
   siteConfig,
 }) => {
+  const mdsvexOptions: MdsvexOptions = {
+    highlight: {
+      highlighter: theme?.highlighter,
+    },
+    remarkPlugins: theme?.remarkPlugins,
+    rehypePlugins: theme?.rehypePlugins,
+  }
   const importGlobalLayout = theme
     ? `import GlobalLayout from \'${theme.globalLayout}\'`
     : ''
@@ -151,13 +159,7 @@ ${contentWithGlobalLayout(`
         const { code, data } = await mdToSvelte({
           filename: id,
           mdContent: src,
-          mdsvexOptions: {
-            highlight: {
-              highlighter: theme?.highlighter,
-            },
-            remarkPlugins: theme?.remarkPlugins,
-            rehypePlugins: theme?.rehypePlugins,
-          },
+          mdsvexOptions,
         }) || { code: src, data: { } }
         const routeId = id.slice(id.indexOf('/routes'))
           .replace(/^\/routes\//, '')
@@ -206,6 +208,7 @@ ${contentWithGlobalLayout(`
         const { code } = await mdToSvelte({
           mdContent,
           filename: file,
+          mdsvexOptions,
         })
         ctx.read = () => code
       }
