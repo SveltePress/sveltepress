@@ -1,5 +1,4 @@
 <script>
-  import { createEventDispatcher, onMount, tick } from 'svelte'
   import { slide } from 'svelte/transition'
   import { cubicInOut } from 'svelte/easing'
   import Svelte from './icons/Svelte.svelte'
@@ -36,29 +35,10 @@
    */
   let bodyDom
 
-  const dispatch = createEventDispatcher()
-
   function onHeaderClick() {
     expanded = !expanded
   }
 
-  function onTransitionEnd() {
-    /**
-     * Dispatch when the toggle transition end
-     */
-    dispatch('toggled')
-  }
-
-  onMount(() => {
-    tick().then(() => {
-      /**
-       * Emit when the initial height compute is done
-       */
-      dispatch('ready')
-    })
-  })
-
-  const resetHeight = () => {}
 </script>
 
 <div
@@ -70,16 +50,13 @@
         duration: 300,
         easing: cubicInOut,
       }}
-      on:introend={onTransitionEnd}
-      on:outroend={onTransitionEnd}
       bind:this={bodyDom}
       class="c-expansion--body"
     >
       <!--  
         Expansion body content 
-        @param {() => void} recomputedHeight The method to recomputed the body height.
       -->
-      <slot recomputedHeight={resetHeight} />
+      <slot />
     </div>
   {/if}
   <!-- The header click function, emit the expand status exchange -->
@@ -121,16 +98,13 @@
   {#if !reverse && expanded}
     <div
       transition:slide
-      on:introend={onTransitionEnd}
-      on:outroend={onTransitionEnd}
       bind:this={bodyDom}
       class="c-expansion--body"
     >
       <!--  
         Expansion body content 
-        @param {() => void} recomputedHeight The method to recomputed the body height.
       -->
-      <slot recomputedHeight={resetHeight} />
+      <slot />
     </div>
   {/if}
 </div>

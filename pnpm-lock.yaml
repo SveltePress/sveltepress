@@ -72,6 +72,7 @@ importers:
       '@svelte-press/vite': workspace:*
       '@sveltejs/kit': ^1.0.1
       '@sveltejs/package': ^1.0.1
+      mdsvex: ^0.10.6
       remark-admonitions: ^1.2.1
       shiki: ^0.12.1
       svelte: ^3.55.0
@@ -81,6 +82,7 @@ importers:
       unist-util-visit: ^4.1.1
       unocss: ^0.48.0
       vite: ^4.0.3
+      vitest: ^0.26.3
     dependencies:
       remark-admonitions: 1.2.1
       shiki: 0.12.1
@@ -92,9 +94,11 @@ importers:
       '@svelte-press/vite': link:../vite
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
       '@sveltejs/package': 1.0.1_niwyv7xychq2ag6arq5eqxbomm
+      mdsvex: 0.10.6_svelte@3.55.0
       svelte: 3.55.0
       typescript: 4.9.4
       vite: 4.0.3
+      vitest: 0.26.3
 
   packages/vite:
     specifiers:
@@ -3643,7 +3647,6 @@ packages:
       prismjs: 1.29.0
       svelte: 3.55.0
       vfile-message: 2.0.4
-    dev: false
 
   /meow/6.1.1:
     resolution: {integrity: sha512-3YffViIt2QWgTy6Pale5QpopX/IvU3LPL03jOTqp6pGj3VjesdO/U8CuHMKpnQr4shCNCM5fd5XFFvIIl6JBHg==}
@@ -4095,12 +4098,10 @@ packages:
 
   /prism-svelte/0.4.7:
     resolution: {integrity: sha512-yABh19CYbM24V7aS7TuPYRNMqthxwbvx6FF/Rw920YbyBWO3tnyPIqRMgHuSVsLmuHkkBS1Akyof463FVdkeDQ==}
-    dev: false
 
   /prismjs/1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
-    dev: false
 
   /prompts/2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
@@ -5052,7 +5053,6 @@ packages:
     dependencies:
       '@types/unist': 2.0.6
       unist-util-stringify-position: 2.0.3
-    dev: false
 
   /vfile-message/3.1.3:
     resolution: {integrity: sha512-0yaU+rj2gKAyEk12ffdSbBfjnnj+b1zqTBv3OQCTn8yEB02bsPizwdBPrLJjHnK+cU9EMMcUnNv938XcZIkmdA==}

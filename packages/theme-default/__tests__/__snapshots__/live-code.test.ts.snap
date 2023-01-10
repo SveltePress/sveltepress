@@ -1,0 +1,32 @@
+// Vitest Snapshot v1
+
+exports[`live code > simple parse 1`] = `
+"<script context=\\"module\\">
+import CExpansion from '@svelte-press/theme-default/CExpansion.svelte'
+  const a = 'a'
+  export const b = 'b'
+</script>
+<script>
+  import Foo from '/path/to/Foo.svelte'
+</script>
+
+<h3>title level 3</h3>
+<Foo />
+<div class=\\"mb-8 shadow-sm\\">
+{#await import('$sveltepress/live-code/LiveCodea0d9514c47e.svelte')}
+  <svg class=\\"text-lg text-gray-4\\" width=\\"32\\" height=\\"32\\" viewBox=\\"0 0 24 24\\"><path fill=\\"currentColor\\" d=\\"M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z\\" opacity=\\".5\\"/><path fill=\\"currentColor\\" d=\\"M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z\\"><animateTransform attributeName=\\"transform\\" dur=\\"1s\\" from=\\"0 12 12\\" repeatCount=\\"indefinite\\" to=\\"360 12 12\\" type=\\"rotate\\"/></path></svg>
+{:then Comp}
+  <div class=\\"bg-white dark:bg-warmgray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid\\">
+    <svelte:component this=\\"{Comp.default}\\"></svelte:component>
+  </div>
+{:catch err}
+  <div class=\\"text-red-5\\">Live Code Error: {JSON.stringify(err)}</div>
+{/await}<CExpansion title=\\"Click fold/expand code\\" reverse={true}><pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
+  <span class=\\"token keyword\\">let</span> count <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
+</span></span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>script</span><span class=\\"token punctuation\\">></span></span>
+
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>button</span> <span class=\\"token attr-name\\"><span class=\\"token namespace\\">on:</span>click=</span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span><span class=\\"token punctuation\\">(</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> count<span class=\\"token operator\\">++</span><span class=\\"token punctuation\\">&#125;</span></span><span class=\\"token punctuation\\">></span></span>
+  You've clicked <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span>count<span class=\\"token punctuation\\">&#125;</span></span> times
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>button</span><span class=\\"token punctuation\\">></span></span></code>\`}</pre></CExpansion></div>
+"
+`;
