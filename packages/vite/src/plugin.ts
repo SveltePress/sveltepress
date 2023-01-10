@@ -1,21 +1,22 @@
 import { resolve } from 'path'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
-import { ensureFileSync } from 'fs-extra'
 
 import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from './types'
 import mdToSvelte from './markdown/mdToSvelte.js'
 import { getPages } from './utils/sidebar.js'
 import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter.js'
+import { wrapPage } from './wrapPage.js'
 
-const BASE_PATH = resolve(process.cwd(), '.sveltepress')
+export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
+
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
 const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
-const PAGES_PATH = resolve(BASE_PATH, 'pages')
 
 const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
+// virtual modules
 const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'sveltepress:site'
 
@@ -26,43 +27,6 @@ const MD_PAGE_RE = /\+page\.md$/
 const SVELTE_PAGE_RE = /src\/routes\/([a-zA-Z0-1_\+@-]+\/)+\+page\.svelte$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
-
-const wrapPage = ({
-  pagePath,
-  pageLayout,
-  fm,
-  siteConfig,
-}: {
-  pagePath: string
-  pageLayout?: string
-  fm: Record<string, any>
-  siteConfig: SiteConfig
-}) => {
-  const { title, description } = fm
-  const head = `<svelte:head>
-    <title>${title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
-    <meta name="description" content="${description || siteConfig.description}">
-</svelte:head>`
-  return pageLayout
-    ? `<script>
-  import Page from '${pagePath}'
-  import PageLayout from '${pageLayout}'
-
-  const fm = ${JSON.stringify(fm)}
-  const siteConfig = ${JSON.stringify(siteConfig)}
-</script>
-${head}
-<PageLayout {fm} {siteConfig}>
-  <Page />
-</PageLayout>
-`
-    : `<script>
-  import Page from '${pagePath}'
-</script>
-${head}
-<Page />
-`
-}
 
 const contentWithGlobalLayout = (content: string, theme?: ResolvedTheme) => theme
   ? `
@@ -123,8 +87,6 @@ ${contentWithGlobalLayout(`
     async buildStart() {
       if (!existsSync(BASE_PATH))
         mkdirSync(BASE_PATH, { recursive: true })
-      if (!existsSync(PAGES_PATH))
-        mkdirSync(PAGES_PATH, { recursive: true })
 
       // Provide default layout file when uer doesn't have one
       if (!existsSync(ROOT_LAYOUT_PATH))
@@ -161,26 +123,23 @@ ${contentWithGlobalLayout(`
           mdContent: src,
           mdsvexOptions,
         }) || { code: src, data: { } }
-        const routeId = id.slice(id.indexOf('/routes'))
-          .replace(/^\/routes\//, '')
-          .replace(/\.md$/, '.svelte')
 
-        return writePage({
-          routeId,
-          code,
-          theme,
+        return wrapPage({
+          svelteCode: code,
+          pageLayout: theme?.pageLayout,
           fm: data.fm,
           siteConfig,
+          id,
         })
       }
 
       if (SVELTE_PAGE_RE.test(id)) {
-        return writePage({
-          routeId: id.slice(id.indexOf('/routes'))
-            .replace(/^\/routes\//, ''),
-          code: src,
-          theme,
-          fm: parseSvelteFrontmatter(src),
+        const fm = parseSvelteFrontmatter(src)
+        return wrapPage({
+          fm,
+          id,
+          svelteCode: src,
+          pageLayout: theme?.pageLayout,
           siteConfig,
         })
       }
@@ -201,42 +160,34 @@ ${contentWithGlobalLayout(`
     },
     async handleHotUpdate(ctx) {
       const { file } = ctx
-
+      const src = await ctx.read()
       // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
       if (MD_PAGE_RE.test(file)) {
-        const mdContent = await ctx.read()
-        const { code } = await mdToSvelte({
-          mdContent,
+        const { code, data } = await mdToSvelte({
+          mdContent: src,
           filename: file,
           mdsvexOptions,
+        }) || { code: src, data: {} }
+        ctx.read = () => wrapPage({
+          id: file,
+          svelteCode: code,
+          pageLayout: theme?.pageLayout,
+          fm: data?.fm,
+          siteConfig,
         })
-        ctx.read = () => code
+      }
+      if (SVELTE_PAGE_RE.test(file)) {
+        const fm = parseSvelteFrontmatter(src)
+        ctx.read = () => wrapPage({
+          fm,
+          id: file,
+          svelteCode: src,
+          pageLayout: theme?.pageLayout,
+          siteConfig,
+        })
       }
     },
   }
-}
-
-// TODO: write cache for routeId: fm
-function writePage({ routeId, code, theme, fm = {}, siteConfig }: {
-  routeId: string
-  code: string
-  theme?: ResolvedTheme
-  fm?: Record<string, any>
-  siteConfig: SiteConfig
-}) {
-  const pagePath = resolve(
-    PAGES_PATH,
-    routeId,
-  )
-  ensureFileSync(pagePath)
-  writeFileSync(pagePath, code)
-
-  return wrapPage({
-    pagePath,
-    pageLayout: theme?.pageLayout,
-    fm,
-    siteConfig,
-  })
 }
 
 export default sveltepress

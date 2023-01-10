@@ -5,9 +5,9 @@
   }
 </script>
 <script lang="ts">
-  import { slide } from 'svelte/transition'
+  import { fade } from 'svelte/transition'
 </script>
 
-<div class="text-xl h-100" transition:slide>
+<div class="text-xl h-100" transition:fade>
   Svelte Page
 </div>

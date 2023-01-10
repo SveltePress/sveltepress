@@ -11,6 +11,7 @@
 
 
   const routeId = $page.route.id
+  const isHome = routeId === '/'
 
   const sidebars = pages.filter(page => page.startsWith(routeId))
 
@@ -26,12 +27,16 @@
     heroImage,
     tagline,
     title,
+    description
   } = fm
 
   const icons = [Apple, Banana, Grapes, Peach, Tomato, Watermelon]
 
-  $: isHome = $page.route.id === '/'
 </script>
+<svelte:head>
+    <title>{title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
+    <meta name="description" content="${description || siteConfig.description}">
+</svelte:head>
   
 {#if !isHome}
   <div text-md flex pb-4 class="theme-default--page-layout">

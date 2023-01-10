@@ -1,0 +1,29 @@
+// Vitest Snapshot v1
+
+exports[`add page layout > wrap md 1`] = `
+"<script>
+    import Page from '/Users/dongsheng/Documents/@dongsheng/sveltepress/packages/vite/.sveltepress/pages/foo/page.md'
+    import PageLayout from '/path/to/pageLayout'
+  
+    const fm = {\\"title\\":\\"some title\\",\\"description\\":\\"some desc\\"}
+    const siteConfig = {\\"title\\":\\"Site title\\",\\"description\\":\\"Site desc\\"}
+  </script>
+  <PageLayout {fm} {siteConfig}>
+    <Page />
+  </PageLayout>
+    "
+`;
+
+exports[`add page layout > wrap svelte 1`] = `
+"<script>
+    import Page from '/Users/dongsheng/Documents/@dongsheng/sveltepress/packages/vite/__tests__/page.svelte'
+    import PageLayout from '/path/to/pageLayout'
+  
+    const fm = {\\"title\\":\\"some title\\",\\"description\\":\\"some desc\\"}
+    const siteConfig = {\\"title\\":\\"Site title\\",\\"description\\":\\"Site desc\\"}
+  </script>
+  <PageLayout {fm} {siteConfig}>
+    <Page />
+  </PageLayout>
+    "
+`;
