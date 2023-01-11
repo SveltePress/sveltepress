@@ -3,7 +3,7 @@
   import siteConfig from 'sveltepress:site'
   import Github from './icons/Github.svelte'
   import NavItem from './NavItem.svelte'
-  import ToggleDark from './ToggleDark.svelte';
+  import ToggleDark from './ToggleDark.svelte'
 </script>
 
 <header class="header">

@@ -1,5 +1,5 @@
 <script>
-  import External from "./icons/External.svelte";
+  import External from './icons/External.svelte'
 
   export let label
   export let type = ''

@@ -105,7 +105,6 @@
       {/each}
     </div>
   </div>
-
   <slot />
 {/if}
 

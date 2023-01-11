@@ -4,10 +4,7 @@
     description: 'This is a svelte page frontmatter description'
   }
 </script>
-<script lang="ts">
-  import { fade } from 'svelte/transition'
-</script>
 
-<div class="text-xl h-100" transition:fade>
+<div class="text-xl h-100">
   Svelte Page
 </div>

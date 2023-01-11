@@ -1,17 +1,17 @@
 <script>
-  import Moon from "./icons/Moon.svelte";
-  import Sun from "./icons/Sun.svelte";
+  import Moon from './icons/Moon.svelte'
+  import Sun from './icons/Sun.svelte'
 
   const key = 'SVELTEPRESS_DARK_MODE'
 
   let isDark = localStorage.getItem(key) === 'on'
 
   const addOrRemoveClass = () => {
-    if(isDark) {
+    if (isDark)
       document.querySelector('html').classList.add('dark')
-    } else {
+  
+    else
       document.querySelector('html').classList.remove('dark')
-    }
   }
 
   addOrRemoveClass()
