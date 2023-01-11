@@ -1,5 +1,6 @@
 <script >
   import pages from 'sveltepress:pages'
+  import Toc from './Toc.svelte'
   import Home from './Home.svelte'
   import Sidebar from './Sidebar.svelte'
   import { page } from '$app/stores'
@@ -27,20 +28,19 @@
 </svelte:head>
   
 {#if !isHome}
-  <div text-md flex pb-4 class="theme-default--page-layout">
+  <div pb-4 class="theme-default--page-layout">
     {#if sidebar === 'auto'}
       <Sidebar {sidebars} />
     {/if}
-    <div flex-grow>
-      <div md:w-200 mx-auto lg:w-230 xl:w-260>
-        {#if title}
-          <h1>
-            {title}
-          </h1>
-        {/if}
-        <slot />
-      </div>
+    <div class="content">
+      {#if title}
+        <h1>
+          {title}
+        </h1>
+      {/if}
+      <slot />
     </div>
+    <Toc />
   </div>
 {:else}
   <Home {...fm} {siteConfig} />
@@ -49,6 +49,10 @@
 
 <style>
   :global(.theme-default--page-layout h2) {
-    --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
+    --at-apply: border-t-solid border-t 
+      border-light-5 dark:border-gray-7 pt-4 mt-8 mb-4;
+  }
+  .content {
+    --at-apply: xl:w-[860px] mx-auto;
   }
 </style>

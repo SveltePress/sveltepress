@@ -1,5 +1,3 @@
-import { fileURLToPath } from 'url'
-import { resolve } from 'path'
 import type { LoadTheme } from '@svelte-press/vite'
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
@@ -8,14 +6,12 @@ import type { DefaultThemeOptions } from './types'
 import liveCode, { safelist } from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
 const THEME_OPTIONS_MODULE = 'sveltepress:theme-default'
 
 const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
   return {
     name: '@svelte-press/theme-default',
-    globalLayout: resolve(__dirname, './components/GlobalLayout.svelte'),
+    globalLayout: '@svelte-press/theme-default/GlobalLayout.svelte',
     pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({

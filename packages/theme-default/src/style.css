@@ -186,6 +186,7 @@ html[data-theme="dark"] {
   padding: 12px;
   border-radius: 4px;
   margin: 0;
+  overflow-x: auto;
   line-height: 1.5em;
 }
 

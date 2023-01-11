@@ -1,5 +1,6 @@
 <script>
-import Navbar from './Navbar.svelte'
+  import Navbar from './Navbar.svelte'
+
 </script>
 
 <main class="pt-[56px]">
@@ -9,7 +10,7 @@ import Navbar from './Navbar.svelte'
 
 <style>
   :global(body) {
-    --at-apply: bg-gray-1 dark:bg-zinc-8 text-[#213547] dark:text-slate-1;
+    --at-apply: bg-light-2 dark:bg-zinc-8 text-[#213547] dark:text-slate-2;
     font-family:  "Inter var experimental", "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
 	}
   :global(a) {
@@ -28,5 +29,16 @@ import Navbar from './Navbar.svelte'
 
   :global(li+li) {
     margin-top: 0.5rem;
+  }
+
+  :global(html.dark ::-webkit-scrollbar) {
+    width: 10px;
+  }
+  :global(html.dark ::-webkit-scrollbar-track) {
+    --at-apply: bg-gray-8;
+  }
+  :global(html.dark ::-webkit-scrollbar-thumb) {
+    --at-apply: bg-black;
+    border-radius: 6px;
   }
 </style>

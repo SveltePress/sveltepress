@@ -68,7 +68,7 @@
     --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .home-page {
-    --at-apply: max-w-[1152px] mx-auto pt-20;
+    --at-apply: max-w-[1152px] mx-auto pt-14;
   }
   .title {
     --at-apply: text-16 grid grid-cols-12 font-700 leading-18;
@@ -89,7 +89,7 @@
     color: transparent;
   }
   .tagline {
-    --at-apply: text-slate-5 text-6 mt-4 font-500 leading-9;
+    --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9;
   }
   .actions {
     --at-apply: flex gap-4 mt-4;
