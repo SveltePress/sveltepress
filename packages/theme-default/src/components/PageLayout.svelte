@@ -1,8 +1,8 @@
 <script >
   import pages from 'sveltepress:pages'
   import Home from './Home.svelte'
+  import Sidebar from './Sidebar.svelte'
   import { page } from '$app/stores'
-
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
@@ -29,13 +29,7 @@
 {#if !isHome}
   <div text-md flex pb-4 class="theme-default--page-layout">
     {#if sidebar === 'auto'}
-      <aside>
-        {#each sidebars as sidebarItem}
-          <div>
-            {sidebarItem}
-          </div>
-        {/each}
-      </aside>
+      <Sidebar {sidebars} />
     {/if}
     <div flex-grow>
       <div md:w-200 mx-auto lg:w-230 xl:w-260>

@@ -48,7 +48,17 @@
   "exports": {
     ".": "./dist/index.js",
     "./style.css": "./dist/style.css",
-    "./CExpansion.svelte": "./dist/components/CExpansion.svelte",
+    "./CExpansion.svelte": "./src/components/CExpansion.svelte",
+    "./PageLayout.svelte": "./src/components/PageLayout.svelte",
     "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.js",
+      "./style.css": "./dist/style.css",
+      "./CExpansion.svelte": "./dist/components/CExpansion.svelte",
+      "./PageLayout.svelte": "./dist/components/PageLayout.svelte",
+      "./package.json": "./package.json"
+    }
   }
 }

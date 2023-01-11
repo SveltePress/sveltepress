@@ -15,6 +15,7 @@
 
   const icons = [Apple, Banana, Grapes, Peach, Tomato, Watermelon]
 
+  $$restProps
 </script>
 
 <div class="home-page">

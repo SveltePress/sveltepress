@@ -16,7 +16,7 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
   return {
     name: '@svelte-press/theme-default',
     globalLayout: resolve(__dirname, './components/GlobalLayout.svelte'),
-    pageLayout: resolve(__dirname, './components/PageLayout.svelte'),
+    pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
         presets: [
