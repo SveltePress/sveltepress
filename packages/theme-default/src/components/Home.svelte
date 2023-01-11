@@ -18,49 +18,49 @@
 </script>
 
 <div class="home-page">
-    <div class="title">
-      <div class="intro">
-        <div class="gradient-title">
-          {siteConfig.title}
-        </div>
-        <div>
-          {siteConfig.description}
-        </div>
-        {#if tagline}
-          <div class="tagline">
-            {tagline}
-          </div>
-        {/if}
+  <div class="title">
+    <div class="intro">
+      <div class="gradient-title">
+        {siteConfig.title}
       </div>
-      {#if heroImage}
-        <div class="hero-image">
-          <img src={heroImage} alt={siteConfig.title} w-80 />
+      <div>
+        {siteConfig.description}
+      </div>
+      {#if tagline}
+        <div class="tagline">
+          {tagline}
         </div>
       {/if}
     </div>
-
-    <div class="actions">
-      {#each actions as action}
-        <ActionButton {...action} />
-      {/each}
-    </div>
-
-    <div class="features">
-      {#each features as fe, i}
-        <div class="feature-item">
-          <div class="icon">
-            <svelte:component this={icons[i % icons.length]} />
-          </div>
-          <div font-600 mb-2 pt-2>
-            {fe.title}
-          </div>
-          <div text-slate-5 mt-4>
-            {fe.description}
-          </div>
-        </div>
-      {/each}
-    </div>
+    {#if heroImage}
+      <div class="hero-image">
+        <img src={heroImage} alt={siteConfig.title} w-80 />
+      </div>
+    {/if}
   </div>
+
+  <div class="actions">
+    {#each actions as action}
+      <ActionButton {...action} />
+    {/each}
+  </div>
+
+  <div class="features">
+    {#each features as fe, i}
+      <div class="feature-item">
+        <div class="icon">
+          <svelte:component this={icons[i % icons.length]} />
+        </div>
+        <div font-600 mb-2 pt-2>
+          {fe.title}
+        </div>
+        <div text-slate-5 mt-4>
+          {fe.description}
+        </div>
+      </div>
+    {/each}
+  </div>
+</div>
 
 <style>
   :global(.theme-default--page-layout h2) {
