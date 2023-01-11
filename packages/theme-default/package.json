@@ -47,7 +47,7 @@
   "type": "module",
   "exports": {
     ".": "./dist/index.js",
-    "./style.css": "./dist/style.css",
+    "./style.css": "./src/style.css",
     "./CExpansion.svelte": "./src/components/CExpansion.svelte",
     "./PageLayout.svelte": "./src/components/PageLayout.svelte",
     "./package.json": "./package.json"

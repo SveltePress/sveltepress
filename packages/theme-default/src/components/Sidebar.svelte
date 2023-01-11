@@ -12,6 +12,6 @@
 
 <style>
   .theme-default-sidebar {
-    --at-apply: ;
+    --at-apply: fixed;
   }
 </style>

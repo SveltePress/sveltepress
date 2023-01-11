@@ -41,7 +41,7 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
             server: {
               fs: {
                 // Need this for dev
-                allow: ['../theme-default/dist/fonts'],
+                allow: ['../theme-default/src/fonts'],
               },
             },
           }
