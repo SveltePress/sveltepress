@@ -33,6 +33,7 @@
 
   :global(html.dark ::-webkit-scrollbar) {
     width: 10px;
+    height: 10px;
   }
   :global(html.dark ::-webkit-scrollbar-track) {
     --at-apply: bg-gray-8;
