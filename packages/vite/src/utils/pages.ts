@@ -23,5 +23,5 @@ export async function getPages(siteConfig: SiteConfig, theme?: ResolvedTheme) {
       fm,
     })
   }
-  return pages
+  return pages.sort((s1, s2) => s1.fm.title.charCodeAt(0) - s2.fm.title.charCodeAt(0))
 }

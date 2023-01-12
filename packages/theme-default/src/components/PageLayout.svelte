@@ -7,7 +7,6 @@
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
-
   const sidebars = pages.filter(page => page.to !== '/')
 
   // The frontmatter info. This would be injected by sveltepress
