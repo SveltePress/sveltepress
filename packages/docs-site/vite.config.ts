@@ -35,6 +35,12 @@ const config = defineConfig({
             title: 'Admonitions',
             to: '/features/admonitions/',
           }],
+          '/guide/': [
+            {
+              title: 'Quick start',
+              to: '/guide/quick-start/',
+            },
+          ],
         },
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',

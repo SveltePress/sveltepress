@@ -50,3 +50,25 @@ const config = defineConfig({
 export default config
 ```
 
+### Add `'.md'` extension to your svelte.config.js
+
+```js
+import adapter from '@sveltejs/adapter-static'
+import { vitePreprocess } from '@sveltejs/kit/vite'
+
+/**
+ * @type {import('@sveltejs/kit').Config}
+ */
+const config = {
+  extensions: ['.svelte', '.md'], // add .md here // [svp! hl]
+  preprocess: [vitePreprocess()],
+  kit: {
+    adapter: adapter({
+      pages: 'dist',
+    }),
+  },
+}
+
+export default config
+```
+

@@ -10,10 +10,7 @@
   "types": "./dist/es/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/es/index.js",
-    "./client": {
-      "import": "./dist/es/client/index.js"
-    }
+    ".": "./dist/es/index.js"
   },
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
