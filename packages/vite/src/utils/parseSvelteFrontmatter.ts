@@ -12,7 +12,7 @@ import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estr
  *   }
  * </script>
  * ```
- * Code like this would parsed this result
+ * Code like this would resolved as the following result
  * ```js
  * {
  *   title: 'some title',

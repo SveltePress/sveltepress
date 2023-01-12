@@ -3,8 +3,8 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
 
 import type { ResolvedTheme, SiteConfig } from './types'
-import { getPages } from './utils/sidebar.js'
-import { wrapPage } from './wrapPage.js'
+import { getPages } from './utils/pages.js'
+import { wrapPage } from './utils/wrapPage.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 
@@ -18,7 +18,7 @@ const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'sveltepress:site'
 
 // only the src/routes/**/*.+page.(svelte|md) will need to be wrapped by PageLayout
-const PAGE_RE = /\+page\.(svelte|md)$/
+export const PAGE_RE = /\/src\/routes\/[ \(\)\w+\/-]*\+page(@\w+)?\.(svelte|md)$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 

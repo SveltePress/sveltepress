@@ -3,12 +3,14 @@ import { writeFileSync } from 'fs'
 import LRUCache from 'lru-cache'
 import fsExtra from 'fs-extra'
 import type { MdsvexOptions } from 'mdsvex'
-import type { ResolvedTheme, SiteConfig } from './types'
-import { BASE_PATH } from './plugin.js'
-import mdToSvelte from './markdown/mdToSvelte.js'
-import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter.js'
+import type { ResolvedTheme, SiteConfig } from '../types'
+import { BASE_PATH } from '../plugin.js'
+import mdToSvelte from '../markdown/mdToSvelte.js'
+import { parseSvelteFrontmatter } from './parseSvelteFrontmatter.js'
 
 const cache = new LRUCache<string, any>({ max: 1024 })
+
+export const pagesFrontMatters = {}
 
 export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   theme?: ResolvedTheme
