@@ -10,7 +10,7 @@
 
 <style>
   :global(body) {
-    --at-apply: bg-light-2 dark:bg-zinc-8 text-[#213547] dark:text-slate-2;
+    --at-apply: bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-slate-2;
     font-family:  "Inter var experimental", "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
 	}
   :global(a) {

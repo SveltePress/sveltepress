@@ -31,7 +31,7 @@
 <style>
   .theme-default-sidebar {
     --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-32 
-      bg-light-5 dark:bg-zinc-9 z-999 xl:w-[400px]
+      bg-light-6 dark:bg-dark-9 z-999 xl:w-[400px]
       pl-40 box-border;
   }
   .sidebar-logo {

@@ -50,7 +50,7 @@ const config = defineConfig({
 export default config
 ```
 
-### Add `'.md'` extension to your svelte.config.js
+### Add `'.md'` extension to the `extensions` options in your svelte.config.js
 
 ```js
 import adapter from '@sveltejs/adapter-static'

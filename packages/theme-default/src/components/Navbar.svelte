@@ -35,7 +35,7 @@
 <style>
   .header {
     --at-apply: 
-      fixed top-0 left-0 right-0 px-20 h-[56px] 
+      fixed top-0 left-0 right-0 px-20 h-[73px] 
       z-999 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
