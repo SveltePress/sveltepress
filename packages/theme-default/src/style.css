@@ -183,11 +183,14 @@ html[data-theme="dark"] {
 }
 
 .shiki {
-  padding: 12px;
   border-radius: 4px;
   margin: 0;
   overflow-x: auto;
+  overflow-y: hidden;
   line-height: 1.5em;
+  background-color: transparent !important;
+  position: relative;
+  z-index: 3;
 }
 
 .shiki code {

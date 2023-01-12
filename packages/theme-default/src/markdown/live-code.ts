@@ -114,11 +114,11 @@ const liveCode: RemarkLiveCode = function () {
   }
 }
 
-export const safelist = [
+export const classes = [
   ERROR_CLASSES,
   DEMO_CLASSES,
   CONTAINER_CLASSES,
   ICON_LOADING_CLASSES,
-].reduce<string[]>((r, classStr) => [...r, ...classStr.split(' ')], [])
+]
 
 export default liveCode

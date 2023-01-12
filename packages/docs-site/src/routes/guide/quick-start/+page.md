@@ -9,10 +9,10 @@ Depend on what package manager you are using
 
   ```sh
   # via npm
-  npm create @svelte-press
+  npm create @svelte-press // [svp! hl]
 
   # via yarn
-  yarn create @svelte-press
+  yarn create @svelte-press  // [svp! hl]
   
   # vai pnpm
   pnpm create @svelte-press

@@ -1,5 +1,7 @@
-import { safelist } from './live-code'
+import { classes } from './live-code.js'
+import { classes as hClasses } from './highlighter.js'
 
 export default [
-  ...safelist,
-]
+  ...classes,
+  ...hClasses,
+].reduce<string[]>((r, classStr) => [...r, ...classStr.split(' ')], [])

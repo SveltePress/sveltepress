@@ -47,6 +47,6 @@
     --at-apply: bg-[#f1f1f1] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded;
   }
   :global(pre.shiki code) {
-    --at-apply: bg-transparent dark:bg-transparent;
+    --at-apply: bg-transparent dark:bg-transparent p-unset h-full block;
   }
 </style>

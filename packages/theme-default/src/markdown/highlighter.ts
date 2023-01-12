@@ -4,7 +4,12 @@ import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@svelte-press/vite'
 
+const SHIKI_CONTAINER_CLASSES = 'relative bg-white dark:bg-[#011627] p-[12px] rounded text-[14px]'
+const HIGHLIGHT_CLASSES = 'absolute left-0 right-0 z-2 h-[1.5em] bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] svp-code-highlight-line'
+
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
+
+export const COMMAND_RE = /\/\/ \[svp\! (hl(:-?\d+(,-?\d+)?)?)\]/
 
 const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
 const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
@@ -29,7 +34,41 @@ const highlighterLight: Highlighter = (code, lang) => getHighlighter({
 )
 
 const highlighter: Highlighter = async (code, lang) => {
-  return (await highlighterLight(code, lang)) + (await highlighterDark(code, lang))
+  let lines = code.split('\n')
+  const commandDoms = []
+  lines = lines.map((line, i) => {
+    const [command, newLine] = getCommand(line)
+    if (!command)
+      return line
+
+    const [name, params] = command.split(':')
+    switch (name) {
+      case 'hl':
+        commandDoms.push(highlightLine(params, i))
+    }
+    return newLine
+  })
+  code = lines.join('\n')
+  return `<div class="${SHIKI_CONTAINER_CLASSES}">
+    ${commandDoms.join('\n')}
+    ${(await highlighterLight(code, lang)) + (await highlighterDark(code, lang))}
+</div>`
 }
 
+export function getCommand(line: string) {
+  const matches = COMMAND_RE.exec(line)
+  if (matches && matches.length) {
+    const [comment] = matches
+    return [comment.replace(/^\/\/ \[svp\! /, '').replace(/\]$/, ''), line.replace(COMMAND_RE, '')]
+  }
+
+  return ['', line]
+}
+
+export function highlightLine(startEnd: string, idx: number) {
+  if (!startEnd)
+    return `<div class="${HIGHLIGHT_CLASSES}" style="top: calc(${idx * 1.5}em + 12px);"></div>`
+}
+
+export const classes = [HIGHLIGHT_CLASSES, SHIKI_CONTAINER_CLASSES]
 export default highlighter
