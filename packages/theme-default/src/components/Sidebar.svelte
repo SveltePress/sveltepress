@@ -1,6 +1,11 @@
 <script>
   import Logo from './Logo.svelte'
+  import { page } from '$app/stores'
+
+  
   export let sidebars = []
+
+  const routeId = $page.route.id
 </script>
 
 <aside class="theme-default-sidebar">
@@ -8,7 +13,8 @@
     <Logo />
   </div>
   {#each sidebars as sidebarItem}
-    <a href={sidebarItem.to} class="sidebar-item">
+    {@const isActive = routeId.endsWith('/') ? sidebarItem.to === routeId : sidebarItem.to === `${routeId}/` }
+    <a href={sidebarItem.to} class={`sidebar-item${isActive ? ' active' : ''}`}>
       {sidebarItem.fm.title}
     </a>
   {/each}
@@ -26,5 +32,11 @@
   }
   .sidebar-item {
     --at-apply: block leading-8;
+  }
+  .active {
+    color: transparent;
+    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
   }
 </style>
