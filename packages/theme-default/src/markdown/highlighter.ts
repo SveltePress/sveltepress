@@ -4,9 +4,6 @@ import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@svelte-press/vite'
 
-const SHIKI_CONTAINER_CLASSES = 'relative bg-white dark:bg-[#011627] p-[12px] rounded text-[14px]'
-const HIGHLIGHT_CLASSES = 'absolute left-0 right-0 z-2 h-[1.5em] bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] svp-code-highlight-line'
-
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export const COMMAND_RE = /\/\/ \[svp\! (hl(:-?\d+(,-?\d+)?)?)\]/
@@ -49,9 +46,12 @@ const highlighter: Highlighter = async (code, lang) => {
     return newLine
   })
   code = lines.join('\n')
-  return `<div class="${SHIKI_CONTAINER_CLASSES}">
+  return `<div class="relative bg-white dark:bg-[#011627] p-[12px] rounded text-[14px]">
     ${commandDoms.join('\n')}
     ${(await highlighterLight(code, lang)) + (await highlighterDark(code, lang))}
+    <div class="absolute top-2 right-3 text-cool-gray-3 dark:text-cool-gray-7 text-[12px] z-2">
+      ${lang}
+    </div>
 </div>`
 }
 
@@ -67,8 +67,7 @@ export function getCommand(line: string) {
 
 export function highlightLine(startEnd: string, idx: number) {
   if (!startEnd)
-    return `<div class="${HIGHLIGHT_CLASSES}" style="top: calc(${idx * 1.5}em + 12px);"></div>`
+    return `<div class="absolute left-0 right-0 z-2 h-[1.5em] bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] svp-code-highlight-line" style="top: calc(${idx * 1.5}em + 12px);"></div>`
 }
 
-export const classes = [HIGHLIGHT_CLASSES, SHIKI_CONTAINER_CLASSES]
 export default highlighter
