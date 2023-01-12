@@ -106,7 +106,6 @@ importers:
       '@types/estree': ^1.0.0
       '@types/fs-extra': ^9.0.13
       '@types/node': ^18.11.18
-      fast-glob: ^3.2.12
       fs-extra: ^11.1.0
       lru-cache: ^7.14.1
       mdsvex: ^0.10.6
@@ -120,7 +119,6 @@ importers:
       vitest: ^0.26.3
     dependencies:
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
-      fast-glob: 3.2.12
       fs-extra: 11.1.0
       lru-cache: 7.14.1
       mdsvex: 0.10.6_svelte@3.55.0

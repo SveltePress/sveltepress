@@ -3,19 +3,20 @@ export interface WithTitle {
   title: string
 }
 
-export interface NavbarItem extends WithTitle {
+export interface LinkItem extends WithTitle {
   to: string
 }
 
-export interface NavbarGroup {
+export interface LinkGroup {
   title: string
-  items: (NavbarItem | NavbarGroup)[]
+  items: (LinkItem | LinkGroup)[]
 }
 
 export interface DefaultThemeOptions {
-  navbar: Array<NavbarItem | NavbarGroup>
+  navbar: Array<LinkItem | LinkGroup>
   github?: string
   logo?: string
+  sidebar?: Record<string, (LinkItem | LinkGroup)[]>
 }
 
 export type RemarkLiveCode = Plugin<[], any>

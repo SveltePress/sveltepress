@@ -45,7 +45,7 @@
     "unocss": "^0.48.0"
   },
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": "./dist/index.js",
     "./style.css": "./src/style.css",
@@ -55,6 +55,7 @@
     "./package.json": "./package.json"
   },
   "publishConfig": {
+    "types": "./dist/index.d.ts",
     "exports": {
       ".": "./dist/index.js",
       "./style.css": "./dist/style.css",

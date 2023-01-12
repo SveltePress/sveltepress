@@ -11,7 +11,7 @@ const config = defineConfig({
           items: [
             {
               title: 'Quick start',
-              to: '/guide/quick-start',
+              to: '/guide/quick-start/',
             },
           ],
         }, {
@@ -19,14 +19,23 @@ const config = defineConfig({
           items: [
             {
               title: 'Live code',
-              to: '/markdown-features/live-codes',
+              to: '/markdown-features/live-codes/',
             },
             {
               title: 'Admonitions',
-              to: '/markdown-features/admonitions',
+              to: '/markdown-features/admonitions/',
             },
           ],
         }],
+        sidebar: {
+          '/markdown-features/': [{
+            title: 'Admonitions',
+            to: '/markdown-features/admonitions/',
+          }, {
+            title: 'Live Codes',
+            to: '/markdown-features/live-codes/',
+          }],
+        },
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
       }),
