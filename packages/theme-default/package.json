@@ -45,6 +45,7 @@
     "unocss": "^0.48.0"
   },
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
     "./style.css": "./src/style.css",
