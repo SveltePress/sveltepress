@@ -59,6 +59,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   </PageLayout>
   `
   // src/routes/foo/+page.(md|svelte) => // .sveltepress/pages/foo/_page.svelte
+  // NOTICE: cannot use +page as filename cause it would case circular parse
   const routePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '').replace(/\+page.(md|svelte)$/, '_page.svelte')
 
   const fullPagePath = resolve(BASE_PATH, `pages${routePath}`)

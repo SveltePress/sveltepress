@@ -1,8 +1,6 @@
 import { parse } from 'svelte/compiler'
 import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estree'
 
-// TODO: use cache to avoid frequently parse
-
 /**
  * Parse the svelte source and get the frontmatter
  * For example
