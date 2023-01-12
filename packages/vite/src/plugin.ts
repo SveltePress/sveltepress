@@ -2,11 +2,8 @@ import { resolve } from 'path'
 import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
 
-import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from './types'
-import mdToSvelte from './markdown/mdToSvelte.js'
 import { getPages } from './utils/sidebar.js'
-import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter.js'
 import { wrapPage } from './wrapPage.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -20,11 +17,8 @@ const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'sveltepress:site'
 
-const MD_PAGE_RE = /\+page\.md$/
-
-// only the src/routes/**/*.+page.svelte will need to be wrapped by PageLayout
-// It can exclude .sveltepress/pages/**/*.+page.svelte
-const SVELTE_PAGE_RE = /src\/routes\/([a-zA-Z0-1_\+@-]+\/)+\+page\.svelte$/
+// only the src/routes/**/*.+page.(svelte|md) will need to be wrapped by PageLayout
+const PAGE_RE = /\+page\.(svelte|md)$/
 
 const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
 
@@ -43,13 +37,6 @@ const sveltepress: (options: {
   theme,
   siteConfig,
 }) => {
-  const mdsvexOptions: MdsvexOptions = {
-    highlight: {
-      highlighter: theme?.highlighter,
-    },
-    remarkPlugins: theme?.remarkPlugins,
-    rehypePlugins: theme?.rehypePlugins,
-  }
   const importGlobalLayout = theme
     ? `import GlobalLayout from \'${theme.globalLayout}\'`
     : ''
@@ -117,30 +104,12 @@ ${contentWithGlobalLayout(`
         return `export default ${JSON.stringify(siteConfig)}`
     },
     async transform(src, id) {
-      if (MD_PAGE_RE.test(id)) {
-        const { code, data } = await mdToSvelte({
-          filename: id,
-          mdContent: src,
-          mdsvexOptions,
-        }) || { code: src, data: { } }
-
+      if (PAGE_RE.test(id)) {
         return wrapPage({
-          svelteCode: code,
-          pageLayout: theme?.pageLayout,
-          fm: data.fm,
+          mdOrSvelteCode: src,
           siteConfig,
+          theme,
           id,
-        })
-      }
-
-      if (SVELTE_PAGE_RE.test(id)) {
-        const fm = parseSvelteFrontmatter(src)
-        return wrapPage({
-          fm,
-          id,
-          svelteCode: src,
-          pageLayout: theme?.pageLayout,
-          siteConfig,
         })
       }
 
@@ -162,30 +131,12 @@ ${contentWithGlobalLayout(`
       const { file } = ctx
       const src = await ctx.read()
       // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
-      if (MD_PAGE_RE.test(file)) {
-        const { code, data } = await mdToSvelte({
-          mdContent: src,
-          filename: file,
-          mdsvexOptions,
-        }) || { code: src, data: {} }
-        ctx.read = () => wrapPage({
-          id: file,
-          svelteCode: code,
-          pageLayout: theme?.pageLayout,
-          fm: data?.fm,
-          siteConfig,
-        })
-      }
-      if (SVELTE_PAGE_RE.test(file)) {
-        const fm = parseSvelteFrontmatter(src)
-        ctx.read = () => wrapPage({
-          fm,
-          id: file,
-          svelteCode: src,
-          pageLayout: theme?.pageLayout,
-          siteConfig,
-        })
-      }
+      ctx.read = () => wrapPage({
+        id: file,
+        mdOrSvelteCode: src,
+        siteConfig,
+        theme,
+      })
     },
   }
 }
