@@ -54,7 +54,7 @@
       whitespace-nowrap z-3 rounded shadow-sm p-2;
   }
   .nav-item:hover .dropdown {
-    --at-apply: translate-y-[40px] opacity-100 pointer-events-initial;
+    --at-apply: translate-y-[50px] opacity-100 pointer-events-initial;
   }
   .dropdown > a {
     --at-apply: block py-2 px-4 decoration-none rounded
