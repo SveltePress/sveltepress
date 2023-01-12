@@ -8,7 +8,7 @@
   const routeId = $page.route.id
   const isHome = routeId === '/'
 
-  const sidebars = pages.filter(page => page.startsWith(routeId))
+  const sidebars = pages.filter(page => page.startsWith(routeId)).map(path => path.replace(/\/\+page.(svelte|md)$/, ''))
 
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}

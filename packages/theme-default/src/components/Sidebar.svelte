@@ -1,7 +1,10 @@
 <script>
   import Logo from './Logo.svelte'
+  import { page } from '$app/stores'
+  const routeId = $page.route.id
 
   export let sidebars = []
+
 </script>
 
 <aside class="theme-default-sidebar">
@@ -10,7 +13,7 @@
   </div>
   {#each sidebars as sidebarItem}
     <a href={sidebarItem}>
-      {sidebarItem}1
+      {sidebarItem}
     </a>
   {/each}
 </aside>

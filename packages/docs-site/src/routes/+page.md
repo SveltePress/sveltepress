@@ -12,9 +12,13 @@ actions:
     external: true
 features:
   - title: Markdown centered
-    description: To help you can start writing with minimal configuration
+    description: To help you can start writing with minimal configuration.
   - title: Build with Sveltekit
-    description: Preserve the full power of Sveltekit. So that you can do more than SSG
+    description: Preserve the full power of Sveltekit. So that you can do more than SSG.
   - title: Svelte in Markdown
     description: Feel free to use svelte in markdown. Explore infinite possibilities.
+  - title: Type friendly
+    description: All APIs are fully typed with typescript.
+  - title: Theme Customizable
+    description: Feel free to use default theme, community themes or write your own.
 ---
