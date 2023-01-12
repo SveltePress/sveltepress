@@ -1,10 +1,6 @@
 <script>
   import Logo from './Logo.svelte'
-  import { page } from '$app/stores'
-  const routeId = $page.route.id
-
   export let sidebars = []
-
 </script>
 
 <aside class="theme-default-sidebar">
@@ -12,8 +8,8 @@
     <Logo />
   </div>
   {#each sidebars as sidebarItem}
-    <a href={sidebarItem}>
-      {sidebarItem}
+    <a href={sidebarItem.to} class="sidebar-item">
+      {sidebarItem.fm.title}
     </a>
   {/each}
 </aside>
@@ -27,5 +23,8 @@
   .sidebar-logo {
     --at-apply: h-[72px] flex items-center mb-8
       border-b-solid border-b border-light-8 dark:border-b-gray-7;
+  }
+  .sidebar-item {
+    --at-apply: block leading-8;
   }
 </style>

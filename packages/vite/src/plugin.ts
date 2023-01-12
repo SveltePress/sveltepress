@@ -1,12 +1,14 @@
 import { resolve } from 'path'
-import { existsSync, mkdirSync, writeFileSync } from 'fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
 
+import { ensureFileSync } from 'fs-extra'
 import type { ResolvedTheme, SiteConfig } from './types'
 import { getPages } from './utils/pages.js'
 import { wrapPage } from './utils/wrapPage.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
+export const FRONTMATTER_JSON = resolve(BASE_PATH, '_fm.json')
 
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
 const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
@@ -16,6 +18,7 @@ const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 // virtual modules
 const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'sveltepress:site'
+const SVELTEPRESS_FM_MODULE = 'sveltepress:fm'
 
 // only the src/routes/**/*.+page.(svelte|md) will need to be wrapped by PageLayout
 export const PAGE_RE = /\/src\/routes\/[ \(\)\w+\/-]*\+page(@\w+)?\.(svelte|md)$/
@@ -29,6 +32,14 @@ const contentWithGlobalLayout = (content: string, theme?: ResolvedTheme) => them
 </GlobalLayout>
   `
   : content
+
+if (!existsSync(BASE_PATH))
+  mkdirSync(BASE_PATH, { recursive: true })
+
+ensureFileSync(FRONTMATTER_JSON)
+writeFileSync(FRONTMATTER_JSON, '{}', 'utf-8')
+
+let pages: Record<string, any>
 
 const sveltepress: (options: {
   theme?: ResolvedTheme
@@ -63,7 +74,10 @@ ${contentWithGlobalLayout(`
   </CustomLayout>`, theme)}
 `
 
-  let pages: string[] = []
+  // Provide default layout file when uer doesn't have one
+  if (!existsSync(ROOT_LAYOUT_PATH))
+    writeFileSync(DEFAULT_ROOT_LAYOUT_PATH, defaultLayout)
+
   return {
     name: 'vite-plugin-sveltepress',
     /**
@@ -72,14 +86,7 @@ ${contentWithGlobalLayout(`
      */
     enforce: 'pre',
     async buildStart() {
-      if (!existsSync(BASE_PATH))
-        mkdirSync(BASE_PATH, { recursive: true })
-
-      // Provide default layout file when uer doesn't have one
-      if (!existsSync(ROOT_LAYOUT_PATH))
-        writeFileSync(DEFAULT_ROOT_LAYOUT_PATH, defaultLayout)
-
-      pages = await getPages()
+      pages = await getPages(siteConfig, theme)
     },
     config: () => ({
       server: {
@@ -94,7 +101,7 @@ ${contentWithGlobalLayout(`
       },
     }),
     resolveId(id) {
-      if ([SVELTEPRESS_PAGES_MODULE, SVELTEPRESS_SITE_CONFIG_MODULE].includes(id))
+      if ([SVELTEPRESS_PAGES_MODULE, SVELTEPRESS_SITE_CONFIG_MODULE, SVELTEPRESS_FM_MODULE].includes(id))
         return id
     },
     load(id) {
@@ -102,15 +109,17 @@ ${contentWithGlobalLayout(`
         return `export default ${JSON.stringify(pages)}`
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return `export default ${JSON.stringify(siteConfig)}`
+      if (id === SVELTEPRESS_FM_MODULE)
+        return `export default ${readFileSync(FRONTMATTER_JSON)}`
     },
     async transform(src, id) {
       if (PAGE_RE.test(id)) {
-        return wrapPage({
+        return (await wrapPage({
           mdOrSvelteCode: src,
           siteConfig,
           theme,
           id,
-        })
+        })).wrappedCode
       }
 
       if (ROOT_LAYOUT_RE.test(id))
@@ -129,14 +138,16 @@ ${contentWithGlobalLayout(`
     },
     async handleHotUpdate(ctx) {
       const { file } = ctx
-      const src = await ctx.read()
-      // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
-      ctx.read = () => wrapPage({
-        id: file,
-        mdOrSvelteCode: src,
-        siteConfig,
-        theme,
-      })
+      if (PAGE_RE.test(file)) {
+        const src = await ctx.read()
+        // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
+        ctx.read = async () => (await wrapPage({
+          id: file,
+          mdOrSvelteCode: src,
+          siteConfig,
+          theme,
+        })).wrappedCode
+      }
     },
   }
 }

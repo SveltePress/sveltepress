@@ -1,5 +1,8 @@
 declare module "sveltepress:pages" {
-  const pages: string[]
+  const pages: Array<{
+    fm: Record<string, any>
+    to: string
+  }>
 
   export default pages
 }
