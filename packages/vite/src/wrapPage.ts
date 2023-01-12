@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { writeFileSync } from 'fs'
-// import LRUCache from 'lru-cache'
+import LRUCache from 'lru-cache'
 import fsExtra from 'fs-extra'
 import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from './types'
@@ -8,8 +8,7 @@ import { BASE_PATH } from './plugin.js'
 import mdToSvelte from './markdown/mdToSvelte.js'
 import { parseSvelteFrontmatter } from './utils/parseSvelteFrontmatter.js'
 
-// TODO: use cache to avoid frequently IO
-// const cache = new LRUCache<string, any>({ max: 1024 })
+const cache = new LRUCache<string, any>({ max: 1024 })
 
 export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   theme?: ResolvedTheme
@@ -20,6 +19,11 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   if (!theme?.pageLayout)
     return mdOrSvelteCode
 
+  const cacheKey = JSON.stringify({ id, mdOrSvelteCode })
+  let cached = cache.get(cacheKey)
+  if (cached)
+    return cached
+
   const mdsvexOptions: MdsvexOptions = {
     highlight: {
       highlighter: theme?.highlighter,
@@ -28,18 +32,20 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     rehypePlugins: theme?.rehypePlugins,
   }
   let fm: Record<string, any>
-  let svelteCode
+  let svelteCode = ''
   if (id.endsWith('.md')) {
     const { code, data } = await mdToSvelte({
       mdContent: mdOrSvelteCode,
       filename: id,
       mdsvexOptions,
     }) || { code: '', data: {} }
-    fm = data.fm || {}
+    fm = data?.fm || {}
     svelteCode = code
   }
-  if (id.endsWith('.svelte'))
+  if (id.endsWith('.svelte')) {
     fm = parseSvelteFrontmatter(mdOrSvelteCode)
+    svelteCode = mdOrSvelteCode
+  }
 
   const wrap = (sveltePagePath: string) => `<script>
     import Page from '${sveltePagePath}'
@@ -53,11 +59,14 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   </PageLayout>
   `
   // src/routes/foo/+page.(md|svelte) => // .sveltepress/pages/foo/_page.svelte
-  const routePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '').replace(/\+page.md$/, '_page.svelte')
+  const routePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '').replace(/\+page.(md|svelte)$/, '_page.svelte')
 
   const fullPagePath = resolve(BASE_PATH, `pages${routePath}`)
   fsExtra.ensureFileSync(fullPagePath)
   writeFileSync(fullPagePath, svelteCode)
-  return wrap(fullPagePath)
+  const wrappedCode = wrap(fullPagePath)
+  cached = wrappedCode
+  cache.set(cacheKey, cached)
+  return wrappedCode
 }
 
