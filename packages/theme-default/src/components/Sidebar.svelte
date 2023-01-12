@@ -1,7 +1,6 @@
 <script>
   import Logo from './Logo.svelte'
   import { page } from '$app/stores'
-
   
   export let sidebars = []
 

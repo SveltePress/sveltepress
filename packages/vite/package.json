@@ -48,7 +48,6 @@
   },
   "dependencies": {
     "@sveltejs/kit": "^1.0.1",
-    "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.0",
     "lru-cache": "^7.14.1",
     "mdsvex": "^0.10.6",

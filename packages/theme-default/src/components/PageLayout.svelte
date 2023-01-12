@@ -1,5 +1,4 @@
 <script >
-  import pages from 'sveltepress:pages'
   import Toc from './Toc.svelte'
   import Home from './Home.svelte'
   import Sidebar from './Sidebar.svelte'
@@ -7,7 +6,6 @@
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
-  const sidebars = pages.filter(page => page.to !== '/')
 
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
@@ -29,7 +27,7 @@
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
     {#if sidebar === 'auto'}
-      <Sidebar {sidebars} />
+      <Sidebar />
     {/if}
     <div class="content">
       {#if title}

@@ -1,14 +1,11 @@
 import { resolve } from 'path'
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import type { PluginOption } from 'vite'
 
-import { ensureFileSync } from 'fs-extra'
 import type { ResolvedTheme, SiteConfig } from './types'
-import { getPages } from './utils/pages.js'
 import { wrapPage } from './utils/wrapPage.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
-export const FRONTMATTER_JSON = resolve(BASE_PATH, '_fm.json')
 
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
 const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
@@ -16,7 +13,6 @@ const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
 const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
 // virtual modules
-const SVELTEPRESS_PAGES_MODULE = 'sveltepress:pages'
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'sveltepress:site'
 const SVELTEPRESS_FM_MODULE = 'sveltepress:fm'
 
@@ -35,11 +31,6 @@ const contentWithGlobalLayout = (content: string, theme?: ResolvedTheme) => them
 
 if (!existsSync(BASE_PATH))
   mkdirSync(BASE_PATH, { recursive: true })
-
-ensureFileSync(FRONTMATTER_JSON)
-writeFileSync(FRONTMATTER_JSON, '{}', 'utf-8')
-
-let pages: Record<string, any>
 
 const sveltepress: (options: {
   theme?: ResolvedTheme
@@ -86,7 +77,6 @@ ${contentWithGlobalLayout(`
      */
     enforce: 'pre',
     async buildStart() {
-      pages = await getPages(siteConfig, theme)
     },
     config: () => ({
       server: {
@@ -101,16 +91,12 @@ ${contentWithGlobalLayout(`
       },
     }),
     resolveId(id) {
-      if ([SVELTEPRESS_PAGES_MODULE, SVELTEPRESS_SITE_CONFIG_MODULE, SVELTEPRESS_FM_MODULE].includes(id))
+      if ([SVELTEPRESS_SITE_CONFIG_MODULE, SVELTEPRESS_FM_MODULE].includes(id))
         return id
     },
     load(id) {
-      if (id === SVELTEPRESS_PAGES_MODULE)
-        return `export default ${JSON.stringify(pages)}`
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return `export default ${JSON.stringify(siteConfig)}`
-      if (id === SVELTEPRESS_FM_MODULE)
-        return `export default ${readFileSync(FRONTMATTER_JSON)}`
     },
     async transform(src, id) {
       if (PAGE_RE.test(id)) {

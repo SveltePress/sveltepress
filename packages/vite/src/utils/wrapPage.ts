@@ -4,12 +4,10 @@ import LRUCache from 'lru-cache'
 import fsExtra from 'fs-extra'
 import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from '../types'
-import { BASE_PATH, FRONTMATTER_JSON } from '../plugin.js'
+import { BASE_PATH } from '../plugin.js'
 import mdToSvelte from '../markdown/mdToSvelte.js'
 import { parseSvelteFrontmatter } from './parseSvelteFrontmatter.js'
 import { info } from './log.js'
-
-const { ensureFileSync, readJSONSync } = fsExtra
 
 const cache = new LRUCache<string, any>({ max: 1024 })
 
@@ -68,11 +66,6 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     <Page />
   </PageLayout>
   `
-
-  ensureFileSync(FRONTMATTER_JSON)
-  const pagesFrontMatters = readJSONSync(FRONTMATTER_JSON)
-  pagesFrontMatters[routeId] = fm
-  writeFileSync(FRONTMATTER_JSON, JSON.stringify(pagesFrontMatters, null, 2))
 
   // src/routes/foo/+page.(md|svelte) => .sveltepress/pages/foo/_page.svelte
   // NOTICE: cannot use +page as filename cause it would case circular parse
