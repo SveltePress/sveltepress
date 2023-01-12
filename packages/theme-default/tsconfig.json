@@ -7,6 +7,7 @@
   "exclude": ["dist"],
   "include": [
     "src/**/*",
-    "node_modules/@svelte-press/vite/types/sveltepress.d.ts"
+    "node_modules/@svelte-press/vite/types/sveltepress.d.ts",
+    "types/theme-default.d.ts"
   ]
 }

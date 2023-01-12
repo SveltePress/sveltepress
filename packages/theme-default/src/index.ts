@@ -2,7 +2,7 @@ import type { LoadTheme } from '@svelte-press/vite'
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
 import { presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
-import type { DefaultThemeOptions } from './types'
+import type { DefaultThemeOptions } from 'sveltepress:theme-default'
 import liveCode, { safelist } from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 
