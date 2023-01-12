@@ -7,16 +7,16 @@ title: Quick Start
 Run one of the following command  
 Depend on what package manager you are using
 
-  ```sh
-  # via npm
-  npm create @svelte-press // [svp! hl]
+```sh
+# via npm
+npm create @svelte-press
 
-  # via yarn
-  yarn create @svelte-press  // [svp! hl]
-  
-  # vai pnpm
-  pnpm create @svelte-press
-  ```
+# via yarn
+yarn create @svelte-press
+
+# vai pnpm
+pnpm create @svelte-press
+```
 
 ## Add to an existing sveltekit project
 

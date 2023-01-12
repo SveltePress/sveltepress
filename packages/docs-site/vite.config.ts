@@ -15,25 +15,25 @@ const config = defineConfig({
             },
           ],
         }, {
-          title: 'Markdown features',
+          title: 'Features',
           items: [
             {
-              title: 'Live code',
-              to: '/markdown-features/live-codes/',
+              title: 'Code block',
+              to: '/features/code-block/',
             },
             {
               title: 'Admonitions',
-              to: '/markdown-features/admonitions/',
+              to: '/features/admonitions/',
             },
           ],
         }],
         sidebar: {
-          '/markdown-features/': [{
-            title: 'Admonitions',
-            to: '/markdown-features/admonitions/',
+          '/features/': [{
+            title: 'Code Blocks',
+            to: '/features/code-block/',
           }, {
-            title: 'Live Codes',
-            to: '/markdown-features/live-codes/',
+            title: 'Admonitions',
+            to: '/features/admonitions/',
           }],
         },
         github: 'https://github.com/Blackman99/sveltepress',
