@@ -1,4 +1,4 @@
-declare module "sveltepress:site" {
+declare module "virtual:sveltepress/site" {
   const siteConfig: {
     title: string
     description: string
