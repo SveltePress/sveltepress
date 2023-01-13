@@ -1,12 +1,14 @@
 type Command = (params: string, lineIndex: number, lines: number) => string
 
 const BASE_LINE_CLASSES = 'absolute left-0 right-0 z-2 h-[1.5em]'
-export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df))(:\S+)?\]/
+export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))(:\S+)?\]/
 
 export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
+  if (!linesNumberToHighlight)
+    return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', idx)
   const num = Number(linesNumberToHighlight)
   if (isNaN(num) || num < 1)
-    return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', idx)
+    return ''
   const max = lines - idx
   return Array.from({ length: num > max ? max : num }).map((_, i) => {
     const highlightIndex = i + idx
@@ -25,8 +27,13 @@ export const diff: Command = (addOrCut, idx) => {
   )
 }
 
-export const focus: Command = (linesNumberToFocus, idx) => {
-
+export const focus: Command = (linesNumberToFocus, idx, lines) => {
+  const next = idx + 1
+  const wrapFocus = (top: string, height: string) => `<div class="bg-white bg-opacity-20 absolute left-0 right-0 z-4 backdrop-filter-blur backdrop-blur-[1.5px]" style="top: ${top};height: ${height};"></div>`
+  const res = []
+  res.push(wrapFocus('0', `calc(12px + ${idx * 1.5}em)`))
+  res.push(wrapFocus(`calc(12px + ${next * 1.5}em)`, `calc(12px + ${(lines - 1 - idx) * 1.5}em)`))
+  return res.join('\n')
 }
 
 export const getCommand = (line: string) => {
@@ -41,11 +48,18 @@ export const getCommand = (line: string) => {
 }
 
 export const COMMAND_CHEAT_LIST: Record<string, Command> = {
+  // highlight
   'hl': highlightLine,
   '~~': highlightLine,
+
+  // diff
   '++': diff,
   '--': (_p, i, lines) => diff('-', i, lines),
   'df': diff,
+
+  // focus
+  'fc': focus,
+  '!!': focus,
 }
 
 function warpLine(classes: string, idx: number, content = '') {

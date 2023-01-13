@@ -98,3 +98,35 @@ const newMsg = 'new world!' // [svp! df:-]
 const msg = 'world!' // [svp! df:-]
 const newMsg = 'new world!' // [svp! df:+]
 ```
+
+## Focus
+
+Use `// [svp! fc]` to focus line
+
+**Input**
+
+````md
+```js
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const focusCode = 'this would be focus' // [svp! fc]
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+```
+````
+
+**Output**
+
+```js
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const focusCode = 'this would be focus' // [svp! fc]
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+const blurCode = 'this would be blur'
+```
