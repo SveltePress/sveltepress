@@ -47,7 +47,7 @@
 <style>
   :global(.theme-default--page-layout h2) {
     --at-apply: border-t-solid border-t 
-      border-light-5 dark:border-gray-7 pt-4 mt-8 mb-4;
+      border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .content {
     --at-apply: xl:w-[860px] mx-auto;

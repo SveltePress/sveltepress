@@ -13,6 +13,10 @@ const config = defineConfig({
               title: 'Quick start',
               to: '/guide/quick-start/',
             },
+            {
+              title: 'Pick a theme',
+              to: '/guide/themes/',
+            },
           ],
         }, {
           title: 'Features',
@@ -39,6 +43,10 @@ const config = defineConfig({
             {
               title: 'Quick start',
               to: '/guide/quick-start/',
+            },
+            {
+              title: 'Themes',
+              to: '/guide/themes/',
             },
           ],
         },
