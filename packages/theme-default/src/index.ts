@@ -8,6 +8,7 @@ import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
+const THEME_OPTIONS_MODULE_RESOLVED = `\0${THEME_OPTIONS_MODULE}`
 
 const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
   return {
@@ -27,10 +28,10 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
         name: '@svelte-press/default-theme',
         resolveId(id) {
           if (id === THEME_OPTIONS_MODULE)
-            return THEME_OPTIONS_MODULE
+            return THEME_OPTIONS_MODULE_RESOLVED
         },
         load(id) {
-          if (id === THEME_OPTIONS_MODULE)
+          if (id === THEME_OPTIONS_MODULE_RESOLVED)
             return `export default ${JSON.stringify(options || {})}`
         },
         config() {

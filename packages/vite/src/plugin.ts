@@ -14,6 +14,7 @@ const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
 
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
+const SVELTEPRESS_SITE_CONFIG_MODULE_RESOLVED = `\0${SVELTEPRESS_SITE_CONFIG_MODULE}`
 
 // only the src/routes/**/*.+page.(svelte|md) will need to be wrapped by PageLayout
 export const PAGE_RE = /\/src\/routes\/[ \(\)\w+\/-]*\+page(@\w+)?\.(svelte|md)$/
@@ -90,11 +91,11 @@ ${contentWithGlobalLayout(`
       },
     }),
     resolveId(id) {
-      if ([SVELTEPRESS_SITE_CONFIG_MODULE].includes(id))
-        return id
+      if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
+        return SVELTEPRESS_SITE_CONFIG_MODULE_RESOLVED
     },
     load(id) {
-      if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
+      if (id === SVELTEPRESS_SITE_CONFIG_MODULE_RESOLVED)
         return `export default ${JSON.stringify(siteConfig)}`
     },
     async transform(src, id) {
