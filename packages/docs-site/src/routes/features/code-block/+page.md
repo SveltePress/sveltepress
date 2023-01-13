@@ -8,6 +8,8 @@ All the code block features are fully compatible with dark mode.
 
 ## Code Highlight
 
+**Input**
+
 ````md
 ```svelte
 <script>
@@ -20,7 +22,7 @@ All the code block features are fully compatible with dark mode.
 ```
 ````
 
-rendered
+**Output**
 
 ```svelte
 <script>
@@ -34,6 +36,8 @@ rendered
 
 ## Line Highlight
 
+**Input**
+
 ````md
 ```svelte
 <script>
@@ -46,7 +50,7 @@ rendered
 ```
 ````
 
-rendered
+**Output**
 
 ```svelte
 <script>

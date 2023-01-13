@@ -45,9 +45,11 @@ const liveCode: RemarkLiveCode = function () {
           }
 
           const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
+
           // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
           // @ts-ignore
           const blockId = `${vFile.filename}-${idx}`
+
           let name = idNameMap[blockId]
           if (!name) {
             const svelteFileName = `LiveCode${uid()}`
