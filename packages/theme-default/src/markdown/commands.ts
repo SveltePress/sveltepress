@@ -10,23 +10,13 @@ export const highlightLine: Command = (startEnd, idx) => {
 }
 
 export const diff: Command = (addOrCut, idx) => {
-  if (!addOrCut || addOrCut === '+') {
-    return warpLine(
-      'bg-green-4 bg-opacity-20',
-      idx,
-      '<div class="absolute left-[4px] top-0 bottom-0 h-full text-green-4">+</div>',
-    )
-  }
-
-  if (addOrCut === '-') {
-    return warpLine(
-      'bg-rose-4 bg-opacity-20',
-      idx,
-      '<div class="absolute left-[4px] top-0 bottom-0 h-full text-rose-4">-</div>',
-    )
-  }
-
-  return ''
+  const color = addOrCut === '-' ? 'rose' : 'green'
+  const mark = addOrCut === '-' ? '-' : '+'
+  return warpLine(
+    `bg-${color}-4 bg-opacity-20`,
+    idx,
+    `<div class="absolute left-[4px] top-0 bottom-0 h-full text-${color}-4">${mark}</div>`,
+  )
 }
 
 export const getCommand = (line: string) => {
@@ -44,7 +34,7 @@ export const COMMAND_CHEAT_LIST: Record<string, Command> = {
   'hl': highlightLine,
   '~~': highlightLine,
   '++': diff,
-  '--': (p, i) => diff('-', i),
+  '--': (_p, i) => diff('-', i),
   'df': diff,
 }
 
