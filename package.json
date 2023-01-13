@@ -13,5 +13,8 @@
     "build:td": "cd packages/theme-default && pnpm build && cd ../..",
     "build:all": "pnpm build:c && pnpm build:vite && pnpm build:td",
     "release": "pnpm build:all && changeset publish"
+  },
+  "dependencies": {
+    "@changesets/changelog-github": "^0.4.8"
   }
 }
