@@ -81,8 +81,9 @@ export default config
   * `vitePlugins?: PluginOption`  
     A theme can use this prop to add some vite plugins to the Vite pipeline chain.  
     For example, add some virtual modules or write some temp files.
-
-
+* `clientImports?: string[]`  
+  Some imports that would be used in the global layout js entry. It is useful when you want to import some global styles.  
+  For example: `['import \'uno.css\'']`
 ## Markdown features
 
 ### Svelte in Markdown
