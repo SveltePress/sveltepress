@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.3.2
+
+### Patch Changes
+
+- [`d3dd05e`](https://github.com/Blackman99/sveltepress/commit/d3dd05e7c172c8b477b08de4f84eb2d3085e59ae) Thanks [@Blackman99](https://github.com/Blackman99)! - fix virtual module
+
 ## 0.3.1
 
 ### Patch Changes
