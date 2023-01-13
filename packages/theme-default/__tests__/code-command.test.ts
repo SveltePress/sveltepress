@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { COMMAND_RE, getCommand } from '../src/markdown/highlighter'
+import { COMMAND_RE, getCommand } from '../src/markdown/commands'
 
 describe('code commands', () => {
   it('highlight', () => {
