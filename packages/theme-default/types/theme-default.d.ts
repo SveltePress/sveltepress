@@ -1,4 +1,4 @@
-declare module "sveltepress:theme-default" {
+declare module "virtual:sveltepress/theme-default" {
   export interface WithTitle {
     title: string
   }

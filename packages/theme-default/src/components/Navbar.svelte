@@ -1,5 +1,5 @@
 <script>
-  import themeOptions from 'sveltepress:theme-default'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
   import Github from './icons/Github.svelte'
   import NavItem from './NavItem.svelte'
