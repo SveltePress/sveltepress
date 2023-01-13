@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.3.4
+
+### Patch Changes
+
+- [`3ea41dd`](https://github.com/Blackman99/sveltepress/commit/3ea41ddca615a9799825e54af02ce86ce9c5d00b) Thanks [@Blackman99](https://github.com/Blackman99)! - remove create template navbar config
+
 ## 0.3.3
 
 ### Patch Changes
