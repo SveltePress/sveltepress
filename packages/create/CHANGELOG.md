@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.3.1
+
+### Patch Changes
+
+- [`bebed52`](https://github.com/Blackman99/sveltepress/commit/bebed526293a3463812001d34ebbd8d0d1db4bb1) Thanks [@Blackman99](https://github.com/Blackman99)! - fix virtual module resolve
+
 ## 0.3.0
 
 ### Minor Changes
