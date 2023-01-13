@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@svelte-press/vite'
-import { getCommand, highlightLine } from './commands.js'
+import { COMMAND_CHEAT_LIST, getCommand } from './commands.js'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -33,14 +33,14 @@ const highlighter: Highlighter = async (code, lang) => {
         return line
 
       const [name, params] = command.split(':')
-      switch (name) {
-        case 'hl':
-          commandDoms.push(highlightLine(params, i))
-      }
+      const commandExecutor = COMMAND_CHEAT_LIST[name]
+      if (commandExecutor)
+        commandDoms.push(commandExecutor(params, i))
+
       return newLine
     }).join('\n')
   }
-  return `<div class="relative bg-white dark:bg-[#011627] p-[12px] rounded text-[14px]">
+  return `<div class="relative bg-white dark:bg-[#011627] py-[12px] px-18px rounded text-[14px]">
       ${commandDoms.join('\n')}
       ${await highlighterLight(code, lang)}
       ${await highlighterDark(code, lang)}

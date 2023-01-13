@@ -63,3 +63,23 @@ Use `// [svp! hl]`  to highlight the line you want
   Hello, {msg} // [svp! hl]
 </h1>
 ```
+
+## Diff
+
+Use `// [svp! df:+]` and `// [svp! df:-]` for diffs
+
+**Input**
+
+````md
+```js
+const msg = 'world!' // [svp! df:-]
+const newMsg = 'new world!' // [svp! df:-]
+```
+````
+
+**Output**
+
+```js
+const msg = 'world!' // [svp! df:-]
+const newMsg = 'new world!' // [svp! df:+]
+```
