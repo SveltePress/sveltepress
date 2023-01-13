@@ -1,12 +1,18 @@
-type Command = (params: string, lineIndex: number) => string
+type Command = (params: string, lineIndex: number, lines: number) => string
 
 const BASE_LINE_CLASSES = 'absolute left-0 right-0 z-2 h-[1.5em]'
 export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df))(:\S+)?\]/
 
-export const highlightLine: Command = (startEnd, idx) => {
-  // TODO: support for hl:1,10 like patterns
-  if (!startEnd)
+export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
+  const num = Number(linesNumberToHighlight)
+  if (isNaN(num) || num < 1)
     return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', idx)
+  const max = lines - idx
+  return Array.from({ length: num > max ? max : num }).map((_, i) => {
+    const highlightIndex = i + idx
+    return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', highlightIndex)
+  },
+  ).join('\n')
 }
 
 export const diff: Command = (addOrCut, idx) => {
@@ -17,6 +23,10 @@ export const diff: Command = (addOrCut, idx) => {
     idx,
     `<div class="absolute left-[4px] top-0 bottom-0 h-full text-${color}-4">${mark}</div>`,
   )
+}
+
+export const focus: Command = (linesNumberToFocus, idx) => {
+
 }
 
 export const getCommand = (line: string) => {
@@ -34,7 +44,7 @@ export const COMMAND_CHEAT_LIST: Record<string, Command> = {
   'hl': highlightLine,
   '~~': highlightLine,
   '++': diff,
-  '--': (_p, i) => diff('-', i),
+  '--': (_p, i, lines) => diff('-', i, lines),
   'df': diff,
 }
 

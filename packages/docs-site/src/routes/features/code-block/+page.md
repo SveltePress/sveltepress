@@ -36,7 +36,8 @@ All the code block features are fully compatible with dark mode.
 
 ## Line Highlight
 
-Use `// [svp! hl]`  to highlight the line you want
+Use `// [svp! hl]`  to highlight the line you want  
+Use `// [svp! hl:num]` to highlight the num lines from the current line you want
 
 **Input**
 
@@ -44,6 +45,13 @@ Use `// [svp! hl]`  to highlight the line you want
 ```svelte
 <script>
   const msg = 'world!' // [svp! hl]
+
+  function hello() {
+    const foo = 'bar' // [svp! hl:2]
+    const bar = foo
+
+    return foo
+  }
 </script>
   
 <h1>
@@ -57,6 +65,13 @@ Use `// [svp! hl]`  to highlight the line you want
 ```svelte
 <script>
   const msg = 'world!' // [svp! hl]
+
+  function hello() {
+    const foo = 'bar' // [svp! hl:2]
+    const bar = foo
+
+    return foo
+  }
 </script>
   
 <h1>

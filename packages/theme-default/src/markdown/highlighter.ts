@@ -27,7 +27,8 @@ const highlighterLight = createHighlightWith(vitesseLight)
 const highlighter: Highlighter = async (code, lang) => {
   const commandDoms = []
   if (lang !== 'md') {
-    code = code.split('\n').map((line, i) => {
+    const lines = code.split('\n')
+    code = lines.map((line, i) => {
       const [command, newLine] = getCommand(line)
       if (!command)
         return line
@@ -35,7 +36,7 @@ const highlighter: Highlighter = async (code, lang) => {
       const [name, params] = command.split(':')
       const commandExecutor = COMMAND_CHEAT_LIST[name]
       if (commandExecutor)
-        commandDoms.push(commandExecutor(params, i))
+        commandDoms.push(commandExecutor(params, i, lines.length))
 
       return newLine
     }).join('\n')
