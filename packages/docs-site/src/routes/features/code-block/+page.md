@@ -36,6 +36,8 @@ All the code block features are fully compatible with dark mode.
 
 ## Line Highlight
 
+Use `// [svp! hl]`  to highlight the line you want
+
 **Input**
 
 ````md
@@ -45,7 +47,7 @@ All the code block features are fully compatible with dark mode.
 </script>
   
 <h1>
-  Hello, {msg}
+  Hello, {msg}  // [svp! hl]
 </h1>
 ```
 ````
@@ -58,6 +60,6 @@ All the code block features are fully compatible with dark mode.
 </script>
   
 <h1>
-  Hello, {msg}
+  Hello, {msg} // [svp! hl]
 </h1>
 ```
