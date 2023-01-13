@@ -209,7 +209,7 @@ function name(params) {
 ````md
 ```js
 const msg = 'world!' // [svp! df:-]
-const newMsg = 'new world!' // [svp! df:-]
+const newMsg = 'new world!' // [svp! df:+]
 ```
 ````
 ![image](https://user-images.githubusercontent.com/41723543/212241436-296afbf8-c195-42f3-8cdc-4345174a8c32.png)
