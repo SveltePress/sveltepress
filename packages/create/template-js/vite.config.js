@@ -6,22 +6,9 @@ const config = defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme({
-        navbar: [{
-          title: 'Svelte page',
-          to: '/svelte-page',
-        }, {
-          title: 'Markdown features',
-          items: [
-            {
-              title: 'Live code',
-              to: '/live-codes',
-            },
-            {
-              title: 'Admonitions',
-              to: '/admonitions',
-            },
-          ],
-        }],
+        navbar: [
+          // Add your navbar configs here
+        ],
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
       }),
