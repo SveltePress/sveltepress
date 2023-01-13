@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.3.3
+
+### Patch Changes
+
+- [`dba907d`](https://github.com/Blackman99/sveltepress/commit/dba907dd4d30a71d889fc8b1decbc6789a854efb) Thanks [@Blackman99](https://github.com/Blackman99)! - add theme defualt to optimizeDeps.exclude for client files correctly import virtual modules
+
 ## 0.3.2
 
 ### Patch Changes
