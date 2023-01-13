@@ -1,5 +1,13 @@
 # @svelte-press/vite
 
+## 0.3.0
+
+### Minor Changes
+
+- [`898b6d1`](https://github.com/Blackman99/sveltepress/commit/898b6d1d809f80e0b60a946f4ef0ec6dfa654446) Thanks [@Blackman99](https://github.com/Blackman99)! - - Support for code line highlight
+  - Support for code diffs
+  - Add side bar config for default theme
+
 ## 0.2.2
 
 ### Patch Changes
