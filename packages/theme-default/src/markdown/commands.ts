@@ -6,7 +6,7 @@ export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df))(:\S+)?\]/
 export const highlightLine: Command = (startEnd, idx) => {
   // TODO: support for hl:1,10 like patterns
   if (!startEnd)
-    return warpLine('bg-black dark:bg-white bg-opacity-10', idx)
+    return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', idx)
 }
 
 export const diff: Command = (addOrCut, idx) => {
