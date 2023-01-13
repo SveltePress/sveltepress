@@ -37,13 +37,13 @@ pnpm install @svelte-press/vite
 ```js
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
-import Sveltepress from '@svelte-press/vite'
+import { sveltekit } from '@sveltejs/kit' // [svp! --]
+import Sveltepress from '@svelte-press/vite' // [svp! ++]
 
 const config = defineConfig({
   plugins: [
-    Sveltepress(),
-    // You won't need sveltekit() here any more
-    // Here are your other plugins except for sveltekit()
+    sveltekit(), // [svp! --]
+    Sveltepress(), // [svp! ++]
   ],
 })
 
@@ -60,7 +60,8 @@ import { vitePreprocess } from '@sveltejs/kit/vite'
  * @type {import('@sveltejs/kit').Config}
  */
 const config = {
-  extensions: ['.svelte', '.md'], // add .md here // [svp! hl]
+  extensions: ['.svelte'], // [svp! --]
+  extensions: ['.svelte', '.md'], // add .md here // [svp! ++]
   preprocess: [vitePreprocess()],
   kit: {
     adapter: adapter({
