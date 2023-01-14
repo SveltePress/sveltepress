@@ -27,12 +27,12 @@ pnpm install @svelte-press/theme-default
 // vite.config.(js|ts)
 import { defineConfig } from 'vite'
 import { sveltepress } from '@svelte-press/vite'
-import { defaultTheme } from '@svelte-press/theme-default'
+import { defaultTheme } from '@svelte-press/theme-default' // [svp! ++]
 
 const config = defineConfig({
   plugins: [
     sveltepress({
-      theme: defaultTheme(/** theme options */)
+      theme: defaultTheme(/** theme options */) // [svp! ++]
     })
   ],
 })
