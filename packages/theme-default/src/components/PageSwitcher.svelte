@@ -1,6 +1,8 @@
 <script>
   import { page } from '$app/stores'
   const routeId = $page.route.id
+  import Prev from './icons/Prev.svelte';
+  import Next from './icons/Next.svelte';
 
   export let pages = []
 
@@ -18,8 +20,11 @@
         <div class="hint">
           Prev
         </div>
-        <div class="text-rose-4">
-          {pages[activeIdx - 1].title}
+        <div class="title">
+          <Prev text-5="" />
+          <div class="ml-2">
+            {prevPage.title}
+          </div>
         </div>
       </a>
     {/if}
@@ -31,8 +36,11 @@
         <div class="hint">
           Next
         </div>
-        <div class="text-rose-4">
-          {nextPage.title}
+        <div class="title justify-end">
+          <div class="mr-2">
+            {nextPage.title}
+          </div>
+          <Next text-5="" />
         </div>
       </a>
     {/if}
@@ -52,5 +60,8 @@
 }
 .hint {
   --at-apply: text-gray-4;
+}
+.title {
+  --at-apply: flex items-center text-rose-4;
 }
 </style>
