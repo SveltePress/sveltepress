@@ -28,10 +28,7 @@ export const diff: Command = (addOrCut, idx) => {
 export const focus: Command = (linesNumberToFocus, idx, lines) => {
   const num = Number(linesNumberToFocus)
   const wrapFocus = (top: string, height: string) =>
-    '<div class="bg-white dark:bg-black pointer-events-none '
-    + 'bg-opacity-20 dark:bg-opacity-20 absolute left-0 right-0 z-4 '
-    + 'backdrop-filter-blur backdrop-blur-[1.5px]" '
-    + `style="top: ${top};height: ${height};"></div>`
+    `<div class="svp-code-block--focus" style="top: ${top};height: ${height};"></div>`
   if (isNaN(num) || num < 1) {
     return [
       wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),

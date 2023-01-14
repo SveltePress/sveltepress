@@ -41,11 +41,11 @@ const highlighter: Highlighter = async (code, lang) => {
       return newLine
     }).join('\n')
   }
-  return `<div class="relative bg-white dark:bg-[#011627] py-[12px] px-18px rounded text-[14px]">
+  return `<div class="svp-code-block">
       ${commandDoms.join('\n')}
       ${await highlighterLight(code, lang)}
       ${await highlighterDark(code, lang)}
-      <div class="absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px]">
+      <div class="svp-code-block--lang">
         ${lang}
       </div>
   </div>`
