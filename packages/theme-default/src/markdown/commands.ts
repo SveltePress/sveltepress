@@ -1,7 +1,7 @@
 type Command = (params: string, lineIndex: number, lines: number) => string
 
 const BASE_LINE_CLASSES = 'absolute left-0 right-0 z-2 h-[1.5em]'
-export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df))(:\S+)?\]/
+export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))(:\S+)?\]/
 
 export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
   const num = Number(linesNumberToHighlight)
@@ -25,8 +25,17 @@ export const diff: Command = (addOrCut, idx) => {
   )
 }
 
-export const focus: Command = (linesNumberToFocus, idx) => {
+export const focus: Command = (linesNumberToFocus, idx, lines) => {
+  const num = Number(linesNumberToFocus)
+  const wrapFocus = (top: string, height: string) =>
+    `<div class="svp-code-block--focus" style="top: ${top};height: ${height};"></div>`
+  const start = (isNaN(num) || num < 1) ? idx : idx + num - 1
+  const res = [
+    wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
+  ]
+  res.push(wrapFocus(`calc(12px + ${(start + 1) * 1.5}em)`, `calc(12px + ${(lines - start) * 1.5}em)`))
 
+  return res.join('\n')
 }
 
 export const getCommand = (line: string) => {
@@ -41,11 +50,18 @@ export const getCommand = (line: string) => {
 }
 
 export const COMMAND_CHEAT_LIST: Record<string, Command> = {
+  // highlight
   'hl': highlightLine,
   '~~': highlightLine,
+
+  // diff
   '++': diff,
   '--': (_p, i, lines) => diff('-', i, lines),
   'df': diff,
+
+  // focus
+  'fc': focus,
+  '!!': focus,
 }
 
 function warpLine(classes: string, idx: number, content = '') {

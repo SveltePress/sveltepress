@@ -5,12 +5,9 @@
   import NavItem from './NavItem.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
-  let scrollY
 </script>
 
-<svelte:window bind:scrollY></svelte:window>
-
-<header class={`header${scrollY > 10 ? ' shadow' : ''}`}>
+<header class="header">
   <div class="header-inner">
     <Logo />
   
