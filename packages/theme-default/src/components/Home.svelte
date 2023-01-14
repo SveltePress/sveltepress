@@ -15,6 +15,7 @@
 
   const icons = [Apple, Banana, Grapes, Peach, Tomato, Watermelon]
 
+  // Need this for avoid props not provided by let xxx warning
   $$restProps
 </script>
 

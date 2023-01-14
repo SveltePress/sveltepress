@@ -1,25 +1,18 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
   import { page } from '$app/stores'
   
-  const sidebar = themeOptions.sidebar
   const routeId = $page.route.id
   
-  let resolvedSidebars = []
-
-  Object.entries(sidebar).forEach(([key, val]) => {
-    if (routeId.startsWith(key))
-      resolvedSidebars = val
-  })
+  export let sidebar = []
 </script>
 
-{#if resolvedSidebars.length}
+{#if sidebar.length}
   <aside class="theme-default-sidebar">
     <div class="sidebar-logo">
       <Logo />
     </div>
-    {#each resolvedSidebars as sidebarItem}
+    {#each sidebar as sidebarItem}
       {@const isActive = routeId.endsWith('/') ? sidebarItem.to === routeId : sidebarItem.to === `${routeId}/` }
       <a href={sidebarItem.to} class={`sidebar-item${isActive ? ' active' : ''}`}>
         {sidebarItem.title}

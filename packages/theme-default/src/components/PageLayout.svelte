@@ -3,6 +3,8 @@
   import Home from './Home.svelte'
   import Sidebar from './Sidebar.svelte'
   import { page } from '$app/stores'
+  import PageSwitcher from './PageSwitcher.svelte'
+  import themeOptions from 'virtual:sveltepress/theme-default'
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
@@ -11,7 +13,12 @@
   export let fm = {}
 
   export let siteConfig
+  let resolvedSidebars = []
 
+  const key = Object.keys(themeOptions.sidebar || {}).find((key) => routeId.startsWith(key))
+  if(key) {
+    resolvedSidebars = themeOptions.sidebar[key]
+  }
   const {
     sidebar = 'auto',
     title,
@@ -27,7 +34,7 @@
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
     {#if sidebar === 'auto'}
-      <Sidebar />
+      <Sidebar sidebar={resolvedSidebars} />
     {/if}
     <div class="content">
       {#if title}
@@ -36,6 +43,7 @@
         </h1>
       {/if}
       <slot />
+      <PageSwitcher pages={resolvedSidebars} />
     </div>
     <Toc />
   </div>
