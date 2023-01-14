@@ -2,7 +2,7 @@
 title:  Code Block
 ---
 
-:::tip Woo
+:::tip Tips
 All the code block features are fully compatible with dark mode.
 :::
 
@@ -105,6 +105,10 @@ Use `// [svp! fc]` to focus line
 
 **Input**
 
+:::caution Notice
+Multi `// [svp! fc]` in one single code block is not supported
+:::
+
 ````md
 ```html
 <div>
@@ -113,7 +117,9 @@ Use `// [svp! fc]` to focus line
 <div>
   this would be blur
 </div>
-<h1>this would be focus</h1> // [svp! fc]
+<h1> // [svp! fc:3]
+  this would be focus
+</h1>
 <div>
   this would be blur
 </div>
@@ -132,7 +138,9 @@ Use `// [svp! fc]` to focus line
 <div>
   this would be blur
 </div>
-<h1>this would be focus</h1> // [svp! fc]
+<h1> // [svp! fc:3]
+  this would be focus
+</h1>
 <div>
   this would be blur
 </div>
@@ -140,3 +148,4 @@ Use `// [svp! fc]` to focus line
   this would be blur
 </div>
 ```
+

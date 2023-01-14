@@ -51,7 +51,8 @@
   }
 
   :global(.svp-code-block) {
-    --at-apply: relative bg-white dark:bg-[#011627] py-[12px] px-18px rounded text-[14px];
+    --at-apply: relative bg-white dark:bg-[#011627] 
+      overflow-y-hidden py-[12px] px-18px rounded text-[14px] mb-8;
   }
   :global(.svp-code-block--lang) {
     --at-apply: absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px];
@@ -59,7 +60,7 @@
   :global(.svp-code-block--focus) {
     --at-apply: bg-white dark:bg-black pointer-events-none 
       bg-opacity-20 dark:bg-opacity-20 absolute left-0 right-0 z-4
-      backdrop-filter-blur backdrop-blur-[1.5px];
+      backdrop-filter-blur backdrop-blur-[1.5px] transition-300 transition-opacity;
   }
   :global(.svp-code-block:hover .svp-code-block--focus) {
     --at-apply: opacity-0;

@@ -29,14 +29,13 @@ export const focus: Command = (linesNumberToFocus, idx, lines) => {
   const num = Number(linesNumberToFocus)
   const wrapFocus = (top: string, height: string) =>
     `<div class="svp-code-block--focus" style="top: ${top};height: ${height};"></div>`
-  if (isNaN(num) || num < 1) {
-    return [
-      wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
-      wrapFocus(`calc(12px + ${(idx + 1) * 1.5}em)`, `calc(12px + ${(lines - 1 - idx) * 1.5}em)`),
-    ].join('\n')
-  }
-  // TODO: multiline focus
-  return ''
+  const start = (isNaN(num) || num < 1) ? idx : idx + num - 1
+  const res = [
+    wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
+  ]
+  res.push(wrapFocus(`calc(12px + ${(start + 1) * 1.5}em)`, `calc(12px + ${(lines - start) * 1.5}em)`))
+
+  return res.join('\n')
 }
 
 export const getCommand = (line: string) => {
