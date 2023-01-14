@@ -45,7 +45,7 @@ const highlighter: Highlighter = async (code, lang) => {
       ${commandDoms.join('\n')}
       ${await highlighterLight(code, lang)}
       ${await highlighterDark(code, lang)}
-      <div class="absolute top-2 right-3 text-cool-gray-3 dark:text-cool-gray-7 text-[12px] z-2">
+      <div class="absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px]">
         ${lang}
       </div>
   </div>`

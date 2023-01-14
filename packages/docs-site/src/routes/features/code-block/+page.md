@@ -106,27 +106,37 @@ Use `// [svp! fc]` to focus line
 **Input**
 
 ````md
-```js
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const focusCode = 'this would be focus' // [svp! fc]
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
+```html
+<div>
+  this would be blur
+</div>
+<div>
+  this would be blur
+</div>
+<h1>this would be focus</h1> // [svp! fc]
+<div>
+  this would be blur
+</div>
+<div>
+  this would be blur
+</div>
 ```
 ````
 
 **Output**
 
-```js
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const focusCode = 'this would be focus' // [svp! fc]
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
-const blurCode = 'this would be blur'
+```html
+<div>
+  this would be blur
+</div>
+<div>
+  this would be blur
+</div>
+<h1>this would be focus</h1> // [svp! fc]
+<div>
+  this would be blur
+</div>
+<div>
+  this would be blur
+</div>
 ```
