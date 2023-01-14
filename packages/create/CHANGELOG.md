@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.4.0
+
+### Minor Changes
+
+- [`9b3b91c`](https://github.com/Blackman99/sveltepress/commit/9b3b91ca65d4c4bbebf3e8ffabc10e70b65f9632) Thanks [@Blackman99](https://github.com/Blackman99)! - - code block line highlight enhancement
+
 ## 0.3.4
 
 ### Patch Changes
