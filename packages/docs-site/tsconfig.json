@@ -18,6 +18,7 @@
 		"node_modules/@svelte-press/theme-default/theme-default.d.ts", 
 	],
 	"exclude": [
-		"!node_modules/@svelte-press"
+		"!node_modules/@svelte-press",
+		"deploy/index.cjs"
 	]
 }
