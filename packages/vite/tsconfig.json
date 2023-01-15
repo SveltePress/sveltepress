@@ -12,5 +12,5 @@
     "removeComments": false,
     "module": "ESNext",
   },
-  "include": ["src", "types/sveltepress.d.ts"]
+  "include": ["src", "sveltepress.d.ts"]
 }

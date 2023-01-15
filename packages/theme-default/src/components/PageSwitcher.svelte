@@ -51,12 +51,12 @@
 .page-switcher {
   --at-apply: grid grid-cols-2 gap-8
     border-t-solid border-t border-light-7 dark:border-gray-7 
-    pt-8 mt-8;
+    pt-8 mt-4;
 }
 .switcher {
   --at-apply: border-solid border-1 border-light-7 dark:border-gray-7
     rounded-lg flex-grow px-4 py-2 cursor-pointer
-    hover:border-rose-4 transition-300 transition-colors;
+    hover:border-rose-5 transition-300 transition-colors;
 }
 .hint {
   --at-apply: text-gray-4;

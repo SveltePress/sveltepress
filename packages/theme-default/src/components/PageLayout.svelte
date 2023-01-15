@@ -5,6 +5,7 @@
   import { page } from '$app/stores'
   import PageSwitcher from './PageSwitcher.svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import EditPage from './EditPage.svelte'
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
@@ -22,7 +23,8 @@
   const {
     sidebar = 'auto',
     title,
-    description
+    description,
+    pageType
   } = fm
 
 </script>
@@ -43,6 +45,7 @@
         </h1>
       {/if}
       <slot />
+      <EditPage {pageType} />
       <PageSwitcher pages={resolvedSidebars} />
     </div>
     <Toc />

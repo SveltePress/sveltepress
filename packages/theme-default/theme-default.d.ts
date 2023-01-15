@@ -17,14 +17,10 @@ declare module "virtual:sveltepress/theme-default" {
     github?: string
     logo?: string
     sidebar?: Record<string, (LinkItem | LinkGroup)[]>
-  }
-  export interface DefaultThemeOptions {
-    navbar: Array<LinkItem | LinkGroup>
-    github?: string
-    logo?: string
-    sidebar?: Record<string, (LinkItem | LinkGroup)[]>
+    editLink?: string
   }
 
+  
   const options: DefaultThemeOptions
   export default options
 }

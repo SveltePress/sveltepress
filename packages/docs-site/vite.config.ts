@@ -50,6 +50,7 @@ const config = defineConfig({
             },
           ],
         },
+        editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
       }),

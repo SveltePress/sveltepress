@@ -11,9 +11,13 @@
 		"sourceMap": true,
 		"strict": true,
 		"lib": ["ESNext"],
-		"module": "ESNext"
+		"module": "ESNext",
 	},
 	"include": [
-		"node_modules/@svelte-press/vite/types/sveltepress.d.ts"
+		"node_modules/@svelte-press/vite/sveltepress.d.ts", 
+		"node_modules/@svelte-press/theme-default/theme-default.d.ts", 
+	],
+	"exclude": [
+		"!node_modules/@svelte-press"
 	]
 }

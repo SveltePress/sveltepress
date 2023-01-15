@@ -47,11 +47,17 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
       filename: id,
       mdsvexOptions,
     }) || { code: '', data: {} }
-    fm = data?.fm || {}
+    fm = {
+      pageType: 'md',
+      ...data?.fm || {},
+    }
     svelteCode = code
   }
   if (id.endsWith('.svelte')) {
-    fm = parseSvelteFrontmatter(mdOrSvelteCode)
+    fm = {
+      ...parseSvelteFrontmatter(mdOrSvelteCode),
+      pageType: 'svelte',
+    }
     svelteCode = mdOrSvelteCode
   }
 
