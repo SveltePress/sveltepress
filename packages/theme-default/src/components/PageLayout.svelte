@@ -67,6 +67,6 @@
       border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .content {
-    --at-apply: xl:w-[860px] mx-auto pb-28;
+    --at-apply: w-[50vw] mx-auto pb-28;
   }
 </style>

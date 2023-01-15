@@ -4,12 +4,21 @@
   import Github from './icons/Github.svelte'
   import NavItem from './NavItem.svelte'
   import ToggleDark from './ToggleDark.svelte'
+  import { page } from '$app/stores'
+
+  const routeId = $page.route.id
+  const isHome = routeId === '/'
 
 </script>
 
 <header class="header">
   <div class="header-inner">
-    <Logo />
+    {#if isHome}
+      <Logo />
+    {:else}
+      <div>
+      </div>
+    {/if}
   
     <nav flex items-stretch>
       {#each themeOptions.navbar as navItem}

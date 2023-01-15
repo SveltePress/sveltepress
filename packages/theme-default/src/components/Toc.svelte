@@ -56,8 +56,8 @@
 
 <style>
   .toc {
-    --at-apply: xl:w-60 text-3.5
-      fixed top-[80px] bottom-0 right-60 z-3 leading-[2em] py: -4px
+    --at-apply: text-3.5 w-[22vw] pl-[8vw]
+      fixed top-[80px] bottom-0 right-0 z-3 leading-[2em] py-4
       text-gray-5 dark:text-gray-2;
   }
   .item {
@@ -65,7 +65,7 @@
   }
   
   .anchors {
-    --at-apply: relative z-3 pl-4;
+    --at-apply: relative z-3 pl-4 w-40;
   }
   .anchors::after {
     --at-apply: absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8;
