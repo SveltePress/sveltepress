@@ -13,6 +13,7 @@ const DEMO_CLASSES = 'bg-white dark:bg-warm-gray-8 rounded-t p-4 b-t-1 b-x-1 b-g
 const ICON_LOADING_CLASSES = 'text-lg text-gray-4'
 
 const expansionImporter = 'import CExpansion from \'@svelte-press/theme-default/CExpansion.svelte\''
+const linkImporter = 'import Link from \'@svelte-press/theme-default/Link.svelte\''
 
 const liveCode: RemarkLiveCode = function () {
   if (!existsSync(BASE_PATH)) {
@@ -102,7 +103,7 @@ const liveCode: RemarkLiveCode = function () {
         hasScript = true
         parent.children.splice(idx, 1, {
           type: 'html',
-          value: node.value.replace(/^<script[ \w+="\w+"]+>/, m => [m, expansionImporter, ...liveCodeImports].join('\n')),
+          value: node.value.replace(/^<script[ \w+="\w+"]+>/, m => [m, expansionImporter, linkImporter, ...liveCodeImports].join('\n')),
         })
       }
     })
@@ -110,7 +111,7 @@ const liveCode: RemarkLiveCode = function () {
     if (!hasScript) {
       tree.children.unshift({
         type: 'html',
-        value: ['<script>', expansionImporter, ...liveCodeImports, '</script>'].join('\n'),
+        value: ['<script>', linkImporter, expansionImporter, ...liveCodeImports, '</script>'].join('\n'),
       })
     }
   }

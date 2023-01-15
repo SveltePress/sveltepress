@@ -1,17 +1,18 @@
 // Vitest Snapshot v1
 
 exports[`live code > simple parse 1`] = `
-"<script context=\\"module\\">
-import CExpansion from '@svelte-press/theme-default/CExpansion.svelte'
-import LiveCode92734c5e3be from '/home/zhaodongsheng/workspace/sveltepress/packages/theme-default/.sveltepress/live-code/LiveCode92734c5e3be.svelte'
-  const a = 'a'
-  export const b = 'b'
-</script>
-<script>
+"<script>
   import Foo from '/path/to/Foo.svelte'
 </script>
 
 <h3>title level 3</h3>
+<script context=\\"module\\">
+import CExpansion from '@svelte-press/theme-default/CExpansion.svelte'
+import Link from @svelte-press/theme-default/Link.svelte'
+import LiveCode92734c5e3be from '/home/zhaodongsheng/workspace/sveltepress/packages/theme-default/.sveltepress/live-code/LiveCode92734c5e3be.svelte'
+  const a = 'a'
+  export const b = 'b'
+</script>
 <Foo />
 <div class=\\"mb-8 shadow-sm\\"><div class=\\"bg-white dark:bg-warm-gray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid\\"><LiveCode92734c5e3be /></div><CExpansion title=\\"Click fold/expand code\\" reverse={true}><pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
   <span class=\\"token keyword\\">let</span> count <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>

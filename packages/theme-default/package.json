@@ -53,6 +53,7 @@
     "./CExpansion.svelte": "./src/components/CExpansion.svelte",
     "./PageLayout.svelte": "./src/components/PageLayout.svelte",
     "./GlobalLayout.svelte": "./src/components/GlobalLayout.svelte",
+    "./Link.svelte": "./src/components/Link.svelte",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -62,6 +63,7 @@
       "./style.css": "./dist/style.css",
       "./CExpansion.svelte": "./dist/components/CExpansion.svelte",
       "./PageLayout.svelte": "./dist/components/PageLayout.svelte",
+      "./Link.svelte": "./dist/components/Link.svelte",
       "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte",
       "./package.json": "./package.json"
     }

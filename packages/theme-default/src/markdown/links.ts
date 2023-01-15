@@ -1,0 +1,19 @@
+import type { Plugin } from 'unified'
+import { visit } from 'unist-util-visit'
+
+const anchors: Plugin<any[], any> = () => {
+  return (tree, vFile) => {
+    const anchors = []
+    visit(tree, (node, idx, parent) => {
+      if (node.type === 'link') {
+        parent.children.splice(idx, 1, {
+          type: 'html',
+          value: `<Link to="${node.url}" label="${node.children[0].value}" />`,
+        })
+      }
+    })
+    vFile.data.anchors = anchors
+  }
+}
+
+export default anchors

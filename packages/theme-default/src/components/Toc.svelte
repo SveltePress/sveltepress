@@ -37,22 +37,23 @@
 </script>
 
 <svelte:window bind:scrollY></svelte:window>
-
-<div class="toc">
-  <div font-bold pl-4>
-    On this page
+{#if anchors.length}
+  <div class="toc">
+    <div font-bold pl-4>
+      On this page
+    </div>
+    <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
+      {#each anchors as an}
+        <div>
+          <a href={`#${an.slugId}`} class="item">
+            {an.title}
+          </a>
+        </div>
+      {/each}
+      <div class="active-bar"></div>
+    </div>
   </div>
-  <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
-    {#each anchors as an}
-      <div>
-        <a href={`#${an.slugId}`} class="item">
-          {an.title}
-        </a>
-      </div>
-    {/each}
-    <div class="active-bar"></div>
-  </div>
-</div>
+{/if}
 
 <style>
   .toc {

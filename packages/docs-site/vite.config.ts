@@ -8,16 +8,7 @@ const config = defineConfig({
       theme: defaultTheme({
         navbar: [{
           title: 'Guide',
-          items: [
-            {
-              title: 'Quick start',
-              to: '/guide/quick-start/',
-            },
-            {
-              title: 'Pick a theme',
-              to: '/guide/themes/',
-            },
-          ],
+          to: '/guide/quick-start/',
         }, {
           title: 'Features',
           items: [
@@ -40,6 +31,10 @@ const config = defineConfig({
             to: '/features/admonitions/',
           }],
           '/guide/': [
+            {
+              title: 'Introduction',
+              to: '/guide/introduction/',
+            },
             {
               title: 'Quick start',
               to: '/guide/quick-start/',
