@@ -1,5 +1,19 @@
 # @svelte-press/theme-default
 
+## 0.5.0
+
+### Minor Changes
+
+- [`f7c1635`](https://github.com/Blackman99/sveltepress/commit/f7c163579c20622e459ef5aeac66e9d95d96c617) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc should not show when there's no anchors
+
+- [`00a0547`](https://github.com/Blackman99/sveltepress/commit/00a0547ac0385ca650db545358a57e7d7851a71e) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: anchors remark plugin should go after links plugin
+
+- [`12255d7`](https://github.com/Blackman99/sveltepress/commit/12255d752d417757d1a94a37f1534e4412857a58) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add page toc
+
+- [`f7c1635`](https://github.com/Blackman99/sveltepress/commit/f7c163579c20622e459ef5aeac66e9d95d96c617) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add theme link component
+
+- [`0d16a04`](https://github.com/Blackman99/sveltepress/commit/0d16a0481537048413a79bccb48660fb3365cd43) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: auto fit layout for all screens
+
 ## 0.4.1
 
 ### Patch Changes
