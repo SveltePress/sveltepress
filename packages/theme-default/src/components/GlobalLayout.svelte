@@ -1,9 +1,21 @@
 <script>
   import Navbar from './Navbar.svelte'
+  import AjaxBar from './AjaxBar.svelte'
+  import { beforeNavigate, afterNavigate } from '$app/navigation'
+  
+  let ajaxBar
 
+  beforeNavigate(() => {
+    ajaxBar.start()
+  })
+
+  afterNavigate(() => {
+    ajaxBar.end()
+  })
 </script>
 
 <main class="pt-[56px]">
+  <AjaxBar bind:this={ajaxBar} />
   <Navbar />
   <slot />
 </main>

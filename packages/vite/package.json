@@ -14,8 +14,7 @@
   },
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
-    "cp:components": "cp -r src/components dist",
-    "build": "pnpm build:es && pnpm cp:components"
+    "build": "pnpm build:es"
   },
   "keywords": [
     "vite",
