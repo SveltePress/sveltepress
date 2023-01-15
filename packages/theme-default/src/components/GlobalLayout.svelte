@@ -80,4 +80,7 @@
   :global(.svp-code-block:hover .svp-code-block--focus) {
     --at-apply: opacity-0;
   }
+  :global(.c-expansion--body .svp-code-block) {
+    margin-bottom: 0;
+  }
 </style>

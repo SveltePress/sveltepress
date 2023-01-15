@@ -50,6 +50,7 @@ html[data-theme="dark"] {
 .c-expansion--expanded .c-expansion--header {
   position: sticky;
   bottom: 0;
+  z-index: 9;
 }
 
 .admonition {
