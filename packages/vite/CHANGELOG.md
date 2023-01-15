@@ -1,5 +1,15 @@
 # @svelte-press/vite
 
+## 0.5.0
+
+### Minor Changes
+
+- [`a564978`](https://github.com/Blackman99/sveltepress/commit/a564978b205aa55b1f1ab89e5990c81b9d2fa52f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: support for custom root +layout.md
+
+- [`12255d7`](https://github.com/Blackman99/sveltepress/commit/12255d752d417757d1a94a37f1534e4412857a58) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add page toc
+
+- [`0d16a04`](https://github.com/Blackman99/sveltepress/commit/0d16a0481537048413a79bccb48660fb3365cd43) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: auto fit layout for all screens
+
 ## 0.4.1
 
 ### Patch Changes
