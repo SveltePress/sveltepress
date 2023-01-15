@@ -1,0 +1,2 @@
+Custom layout
+<slot />

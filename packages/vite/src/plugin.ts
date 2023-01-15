@@ -10,7 +10,7 @@ export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const DEFAULT_ROOT_LAYOUT_PATH = resolve(BASE_PATH, '_Layout.svelte')
 const ROOT_LAYOUT_PATH = resolve(process.cwd(), 'src/routes/+layout.svelte')
 
-const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.svelte$/
+const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.(svelte)|(md)$/
 
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
