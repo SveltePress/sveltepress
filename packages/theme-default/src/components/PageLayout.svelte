@@ -26,7 +26,8 @@
     title,
     description,
     pageType,
-    lastUpdate
+    lastUpdate,
+    anchors = []
   } = fm
 
 </script>
@@ -53,7 +54,7 @@
       </div>
       <PageSwitcher pages={resolvedSidebars} />
     </div>
-    <Toc />
+    <Toc {anchors} />
   </div>
 {:else}
   <Home {...fm} {siteConfig} />

@@ -9,7 +9,7 @@ const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
 const ERROR_CLASSES = 'text-red-5'
 const CONTAINER_CLASSES = 'mb-8 shadow-sm'
-const DEMO_CLASSES = 'bg-white dark:bg-warmgray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid'
+const DEMO_CLASSES = 'bg-white dark:bg-warm-gray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid'
 const ICON_LOADING_CLASSES = 'text-lg text-gray-4'
 
 const expansionImporter = 'import CExpansion from \'@svelte-press/theme-default/CExpansion.svelte\''

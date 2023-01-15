@@ -53,6 +53,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
       pageType: 'md',
       lastUpdate,
       ...data?.fm || {},
+      anchors: data?.anchors || [],
     }
     svelteCode = code
   }

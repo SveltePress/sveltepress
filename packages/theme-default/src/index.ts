@@ -6,6 +6,7 @@ import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import safelist from './markdown/uno-safelist.js'
 import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
+import anchors from './markdown/anchors.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -48,7 +49,7 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
           }
         },
       }],
-    remarkPlugins: [liveCode, admonitions],
+    remarkPlugins: [liveCode, admonitions, anchors],
     highlighter,
     clientImports: [
       'import \'uno.css\'',

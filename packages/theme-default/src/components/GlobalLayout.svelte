@@ -22,8 +22,11 @@
 
 <style>
   :global(body) {
-    --at-apply: bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2;
-    font-family:  "Inter var experimental", "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+    --at-apply: bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2 scroll-smooth;
+    font-family:  "Inter var experimental", "Inter var", "Inter", 
+      ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 
+      "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+  ;
 	}
   :global(a) {
     --at-apply: text-[#213547] dark:text-[#efefef] decoration-none;
