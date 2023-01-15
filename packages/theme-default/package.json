@@ -31,12 +31,12 @@
     "@svelte-press/vite": "workspace:*",
     "@sveltejs/kit": "^1.0.1",
     "@sveltejs/package": "^1.0.1",
+    "mdsvex": "^0.10.6",
     "svelte": "^3.55.0",
     "typescript": "^4.9.4",
+    "unified": "^10.1.2",
     "vite": "^4.0.3",
-    "vitest": "^0.26.3",
-    "mdsvex": "^0.10.6",
-    "unified": "^10.1.2"
+    "vitest": "^0.26.3"
   },
   "dependencies": {
     "remark-admonitions": "^1.2.1",

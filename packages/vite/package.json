@@ -34,6 +34,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
     "@types/estree": "^1.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.18",
@@ -44,6 +45,8 @@
   },
   "dependencies": {
     "@sveltejs/kit": "^1.0.1",
+    "cross-spawn": "^7.0.3",
+    "dayjs": "^1.11.7",
     "fs-extra": "^11.1.0",
     "lru-cache": "^7.14.1",
     "mdsvex": "^0.10.6",

@@ -8,6 +8,7 @@ import { BASE_PATH } from '../plugin.js'
 import mdToSvelte from '../markdown/mdToSvelte.js'
 import { parseSvelteFrontmatter } from './parseSvelteFrontmatter.js'
 import { info } from './log.js'
+import { getFileLastUpdateTime } from './getFileLastUpdate.js'
 
 const cache = new LRUCache<string, any>({ max: 1024 })
 
@@ -40,6 +41,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
 
   const routeId = relativeRouteFilePath.replace(/\+page.(md|svelte)$/, '')
   info('parsing: ', routeId)
+  const lastUpdate = await getFileLastUpdateTime(id)
 
   if (id.endsWith('.md')) {
     const { code, data } = await mdToSvelte({
@@ -49,6 +51,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     }) || { code: '', data: {} }
     fm = {
       pageType: 'md',
+      lastUpdate,
       ...data?.fm || {},
     }
     svelteCode = code
@@ -57,6 +60,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     fm = {
       ...parseSvelteFrontmatter(mdOrSvelteCode),
       pageType: 'svelte',
+      lastUpdate,
     }
     svelteCode = mdOrSvelteCode
   }

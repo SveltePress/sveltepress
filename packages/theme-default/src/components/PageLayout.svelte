@@ -6,6 +6,7 @@
   import PageSwitcher from './PageSwitcher.svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import EditPage from './EditPage.svelte'
+  import LastUpdate from './LastUpdate.svelte'
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
@@ -24,7 +25,8 @@
     sidebar = 'auto',
     title,
     description,
-    pageType
+    pageType,
+    lastUpdate
   } = fm
 
 </script>
@@ -45,7 +47,10 @@
         </h1>
       {/if}
       <slot />
-      <EditPage {pageType} />
+      <div class="flex justify-between">
+        <EditPage {pageType} />
+        <LastUpdate {lastUpdate} />
+      </div>
       <PageSwitcher pages={resolvedSidebars} />
     </div>
     <Toc />
