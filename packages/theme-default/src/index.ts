@@ -50,7 +50,7 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
           }
         },
       }],
-    remarkPlugins: [liveCode, admonitions, anchors, links],
+    remarkPlugins: [liveCode, admonitions, links, anchors],
     highlighter,
     clientImports: [
       'import \'uno.css\'',

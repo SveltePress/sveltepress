@@ -8,7 +8,7 @@ const config = defineConfig({
       theme: defaultTheme({
         navbar: [{
           title: 'Guide',
-          to: '/guide/quick-start/',
+          to: '/guide/introduction/',
         }, {
           title: 'Features',
           items: [
