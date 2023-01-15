@@ -18,7 +18,6 @@
   let computeActiveIdx = () => {
     if(!mounted) return
     const positions = anchors.map(({ slugId }) => document.getElementById(slugId).offsetTop)
-    console.log(positions);
     for(let i = 0; i < positions.length; i++) {
       const pos =  positions[i]
       if(scrollY >= pos - 10 && (scrollY < positions[i + 1] || i === positions.length - 1)) 
