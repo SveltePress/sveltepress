@@ -1,5 +1,19 @@
 # @svelte-press/vite
 
+## 0.4.1
+
+### Patch Changes
+
+- [`a28b50f`](https://github.com/Blackman99/sveltepress/commit/a28b50fffda4d0b0a4ccf0096a36ee2b303d6e59) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add last update time to page layout in theme default
+
+- [`45ad59a`](https://github.com/Blackman99/sveltepress/commit/45ad59abe1556d155579761b71a48b9b8047ef76) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page content should have a space to the bottom
+
+- [`353ad20`](https://github.com/Blackman99/sveltepress/commit/353ad20ed08533f6abb7210b4b1a7d35b5666852) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add ajax bar for page loading
+
+- [`7365e4f`](https://github.com/Blackman99/sveltepress/commit/7365e4f553d99c81ddc26cdc1ee5b916137a3cd7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add page switcher
+
+- [`3243feb`](https://github.com/Blackman99/sveltepress/commit/3243feb037f72070a887d866feed7de0cc73c6a2) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add edit link for theme default
+
 ## 0.4.0
 
 ### Minor Changes
