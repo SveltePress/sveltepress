@@ -4,17 +4,25 @@
   import Github from './icons/Github.svelte'
   import NavItem from './NavItem.svelte'
   import ToggleDark from './ToggleDark.svelte'
+  import Search from './Search.svelte'
   import { page } from '$app/stores'
+  
+  $: routeId = $page.route.id
+  $: isHome = routeId === '/'
 
-  const routeId = $page.route.id
 </script>
 
 <header class="header">
   <div class="header-inner">
-    {#if routeId === '/'}
+    {#if isHome}
       <Logo />
     {:else}
       <div>
+      </div>
+    {/if}
+    {#if themeOptions.docsearch}
+      <div flex-grow class={isHome ? 'pl-[2vw]' : 'pl-18vw'} flex items-center>
+        <Search {...themeOptions.docsearch} />
       </div>
     {/if}
   
@@ -40,11 +48,11 @@
   .header {
     --at-apply: 
       fixed top-0 left-0 right-0 px-20 h-[73px] 
-      z-999 dark:bg-opacity-40;
+      z-99 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
   .header-inner {
-    --at-apply: max-w-[1440px] h-full 
+    --at-apply: w-[84vw] h-full 
       flex items-stretch justify-between
       mx-auto;
   }

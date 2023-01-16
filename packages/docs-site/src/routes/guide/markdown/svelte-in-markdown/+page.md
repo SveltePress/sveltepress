@@ -52,7 +52,6 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
 
 ````md
 ```svelte
-<!-- Counter.svelte -->
 <script>
   import Counter from './Counter.svelte'
 </script>

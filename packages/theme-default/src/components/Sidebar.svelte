@@ -20,7 +20,7 @@
 <style>
   .theme-default-sidebar {
     --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-32 
-      bg-light-6 dark:bg-dark-9 z-999 w-[22vw] pl-8vw box-border;
+      bg-light-6 dark:bg-dark-9 z-99 w-[25vw] pl-[10vw] box-border;
   }
   .sidebar-logo {
     --at-apply: h-[72px] flex items-center mb-4

@@ -39,6 +39,7 @@
     "vitest": "^0.26.3"
   },
   "dependencies": {
+    "@docsearch/js": "3",
     "remark-admonitions": "^1.2.1",
     "shiki": "^0.12.1",
     "uid": "^2.0.1",
