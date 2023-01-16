@@ -8,7 +8,9 @@
 </script>
 
 <a role="button" href={to} class={`svp-action ${type ? `svp-action--${type}` : ''}`} target={external ? '_blank' : ''}>
-  {label}
+  <span flex-grow text-center>
+    {label}
+  </span>
   {#if external}
     <External class="text-6 ml-2" />
   {/if}

@@ -65,7 +65,7 @@
       mx-auto;
   }
   .divider {
-    --at-apply: bg-stone-2 w-[1px] my-4 dark:bg-stone-7;
+    --at-apply: bg-stone-2 w-[1px] my-6 dark:bg-stone-7;
   }
   .menu {
     --at-apply: sm:display-none ml-4 flex items-center text-7;

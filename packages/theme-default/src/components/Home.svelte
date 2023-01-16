@@ -25,7 +25,7 @@
       <div class="gradient-title">
         {siteConfig.title}
       </div>
-      <div class="text-10 leading-12 sm:text-inherit sm:leading-inherit">
+      <div class="text-8 leading-10 sm:text-inherit sm:leading-inherit">
         {siteConfig.description}
       </div>
       {#if tagline}
@@ -36,7 +36,7 @@
     </div>
     {#if heroImage}
       <div class="hero-image">
-        <img src={heroImage} alt={siteConfig.title} w-60 />
+        <img src={heroImage} alt={siteConfig.title} class="sm:w-60 w-full" />
       </div>
     {/if}
   </div>
@@ -72,7 +72,7 @@
     --at-apply: max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
   }
   .title {
-    --at-apply: text-16 grid grid-cols-12 font-700 leading-18;
+    --at-apply: sm:text-16 text-10 grid grid-cols-12 font-700 leading-18;
   }
   .intro {
     --at-apply: col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1
@@ -92,7 +92,7 @@
     --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9;
   }
   .actions {
-    --at-apply: flex gap-4 mt-4 justify-center sm:justify-start;
+    --at-apply: grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-4 justify-center sm:justify-start;
   }
   .features {
     --at-apply: grid sm:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4;
