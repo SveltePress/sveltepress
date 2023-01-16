@@ -7,16 +7,13 @@
 
   export let sidebar = []
 
-  const handleCloseClick = () => {
-    $sidebarCollapsed = true
-  }
 </script>
 
 {#if sidebar.length}
   <aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed}>
     <div class="sidebar-logo">
       <Logo />
-      <div class="close" on:click={handleCloseClick} on:keyup={handleCloseClick}>
+      <div class="close">
         <Close />
       </div>
     </div>
@@ -38,9 +35,9 @@
       border-b-solid border-b border-light-8 dark:border-b-gray-7;
   }
   .collapsed {
-    --at-apply: -translate-x-100;
+    --at-apply: -translate-x-100 sm:translate-x-0;
   }
   .close {
-    --at-apply: text-7 flex items-center sm:display:none;
+    --at-apply: text-7 flex items-center sm:display-none;
   }
 </style>

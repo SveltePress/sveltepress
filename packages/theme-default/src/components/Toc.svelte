@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte'
   import { afterNavigate } from '$app/navigation'
+  import { tocCollapsed } from './layout'
+  import TocMenu from './icons/TocMenu.svelte'
+  import TocClose from './icons/TocClose.svelte'
 
   export let anchors = []
 
@@ -35,11 +38,21 @@
     mounted = true
   })
 
+  const handleTocToggleClick = () => {
+    $tocCollapsed = !$tocCollapsed
+  }
 </script>
 
 <svelte:window bind:scrollY></svelte:window>
 {#if anchors.length}
-  <div class="toc">
+  <div class="mobile-toc-trigger" on:click={handleTocToggleClick} on:keyup={handleTocToggleClick}>
+    {#if $tocCollapsed}
+      <TocMenu />
+    {:else}
+      <TocClose />
+    {/if}
+  </div>
+  <div class="toc" class:collapsed={$tocCollapsed}>
     <div font-bold pl-4>
       On this page
     </div>
@@ -58,19 +71,24 @@
 
 <style>
   .toc {
-    --at-apply: text-3.5 w-[22vw]
-      fixed top-[80px] bottom-0 right-0 z-3 leading-[2em] py-4
-      text-gray-5 dark:text-gray-2 display-none sm:display-block;
+    --at-apply: text-3.5 sm:w-[22vw]
+      w-[60vw]
+      bg-white dark:bg-zinc-8 sm:bg-transparent top-0
+      z-100 shadow-md sm:shadow-none sm:dark:bg-transparent
+      fixed sm:top-[80px] bottom-0 right-0 sm:z-3 leading-[2em] py-4
+      text-gray-5 dark:text-gray-2
+      transition transition-500 transition-transform;
   }
   .item {
     --at-apply: relative z-3 block  truncate;
   }
   
   .anchors {
-    --at-apply: relative z-3 pl-4 w-[15vw];
+    --at-apply: relative z-3 pl-4 sm:w-[15vw];
   }
   .anchors::after {
-    --at-apply: absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8;
+    --at-apply: absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8 
+      display-none sm:display-block;
     content: ' ';
   }
   .active-bar {
@@ -79,6 +97,15 @@
       w-full transition-transform transition-300 top-0
       dark:border-rose-5 dark:bg-rose-8 dark:bg-opacity-50;
     transform: translateY(var(--bar-top));
+  }
+  .mobile-toc-trigger {
+    --at-apply: sm:display-none fixed bottom-[12px] right-[12px]
+      w-[48px] h-[48px] bg-white dark:bg-gray-9 rounded-[24px] shadow-lg z-101
+      flex items-center justify-center
+      text-8;
+  }
+  .collapsed {
+    --at-apply: translate-x-100 sm:translate-x-0;
   }
 </style>
 

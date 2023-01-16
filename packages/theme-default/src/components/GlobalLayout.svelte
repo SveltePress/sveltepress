@@ -2,6 +2,7 @@
   import Navbar from './Navbar.svelte'
   import AjaxBar from './AjaxBar.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { sidebarCollapsed } from './layout'
   
   let ajaxBar
 
@@ -11,6 +12,7 @@
 
   afterNavigate(() => {
     ajaxBar.end()
+    $sidebarCollapsed = true
   })
 </script>
 

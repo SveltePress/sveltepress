@@ -20,15 +20,14 @@
 <header class="header">
   <div class="header-inner">
     <div flex items-center>
-      <div class="menu" on:click={handleMenuClick} on:keyup={handleMenuClick}>
-        <Menu  />
-      </div>
+      {#if isHome}
+        <Logo />
+      {:else}
+        <div class="menu" on:click={handleMenuClick} on:keyup={handleMenuClick}>
+          <Menu  />
+        </div>
+      {/if}
     </div>
-    {#if isHome}
-      <Logo />
-    {:else}
-      <div></div>
-    {/if}
     {#if themeOptions.docsearch}
       <div flex-grow class={isHome ? 'pl-[2vw]' : 'pl-18vw'} flex items-center>
         <Search {...themeOptions.docsearch} />
@@ -69,6 +68,6 @@
     --at-apply: bg-stone-2 w-[1px] my-4 dark:bg-stone-7;
   }
   .menu {
-    --at-apply: sm:display-none ml-4 flex items-center text-10;
+    --at-apply: sm:display-none ml-4 flex items-center text-7;
   }
 </style>
