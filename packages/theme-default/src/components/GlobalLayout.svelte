@@ -84,4 +84,11 @@
   :global(.c-expansion--body .svp-code-block) {
     margin-bottom: 0;
   }
+  :global(blockquote) {
+    --at-apply: border-l-[4px] border-l-solid border-gray-4 m-none bg-gray-2
+      indent-[1em] text-gray-4 py-[4px] my-4;
+  }
+  :global(blockquote p) {
+    --at-apply: m-none;
+  }
 </style>
