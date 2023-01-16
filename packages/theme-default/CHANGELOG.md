@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.5.2
+
+### Patch Changes
+
+- [`7c4d5a2`](https://github.com/Blackman99/sveltepress/commit/7c4d5a27b7a07b73a1673ab1b8553b99bf7f7642) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add docsearch
+
+- [`a034ef4`](https://github.com/Blackman99/sveltepress/commit/a034ef44c8ef172c1ce1eed04d1b09f6619ec05e) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: blockquote dark mode style
+
+- [`a854fc7`](https://github.com/Blackman99/sveltepress/commit/a854fc7848ec2a233a0836dc55ca923514529b3d) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: script in md regex error
+
+- [`3bd7684`](https://github.com/Blackman99/sveltepress/commit/3bd7684cc0e4f52de7d302fed36c9f261f0fecb3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc need no padding
+
 ## 0.5.1
 
 ### Patch Changes
