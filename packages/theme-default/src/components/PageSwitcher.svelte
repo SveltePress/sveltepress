@@ -49,7 +49,7 @@
 
 <style>
 .page-switcher {
-  --at-apply: grid grid-cols-2 gap-8
+  --at-apply: grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8
     border-t-solid border-t border-light-7 dark:border-gray-7 
     pt-4 sm:pt-8 mt-4;
 }
