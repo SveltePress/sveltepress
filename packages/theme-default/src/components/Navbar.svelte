@@ -44,7 +44,7 @@
       </div>
   
       {#if themeOptions.github}
-        <div class="divider"></div>
+        <div class="divider first"></div>
         <NavItem to={themeOptions.github} external icon>
           <Github class="text-8" />
         </NavItem>
@@ -73,6 +73,9 @@
   }
   .divider {
     --at-apply: bg-stone-2 w-[1px] my-6 dark:bg-stone-7;
+  }
+  .first {
+    --at-apply: display-none sm:display-block;
   }
   .menu {
     --at-apply: sm:display-none ml-4 flex items-center text-7;

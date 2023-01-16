@@ -8,8 +8,8 @@
   import LastUpdate from './LastUpdate.svelte'
   import { page } from '$app/stores'
 
-  const routeId = $page.route.id
-  const isHome = routeId === '/'
+  $: routeId = $page.route.id
+  $: isHome = routeId === '/'
 
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
