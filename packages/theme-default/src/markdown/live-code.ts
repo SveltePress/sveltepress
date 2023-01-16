@@ -2,7 +2,6 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
-import { log } from '@svelte-press/vite'
 import type { RemarkLiveCode } from '../types'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
@@ -114,7 +113,6 @@ const liveCode: RemarkLiveCode = function () {
           type: 'html',
           value,
         })
-        log.info('script after add imports: ', value)
       }
     })
 
