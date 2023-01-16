@@ -86,7 +86,8 @@
   }
   :global(blockquote) {
     --at-apply: border-l-[4px] border-l-solid border-gray-4 m-none bg-gray-2
-      indent-[1em] text-gray-4 py-[4px] my-4;
+      indent-[1em] text-gray-4 py-[4px] my-4
+      dark:border-l-gray-5 dark:bg-gray-8;
   }
   :global(blockquote p) {
     --at-apply: m-none;
