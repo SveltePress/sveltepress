@@ -7,13 +7,11 @@
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
-  const isHome = routeId === '/'
-
 </script>
 
 <header class="header">
   <div class="header-inner">
-    {#if isHome}
+    {#if routeId === '/'}
       <Logo />
     {:else}
       <div>

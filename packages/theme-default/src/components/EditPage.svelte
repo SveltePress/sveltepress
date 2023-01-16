@@ -1,15 +1,14 @@
 <script>
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import Edit from './icons/Edit.svelte'
   import { page } from '$app/stores'
-  import Edit from './icons/Edit.svelte';
   const routeId = $page.route.id
 
   export let pageType = 'md'
 
   const handleEditLinkClick = () => {
-    if(themeOptions.editLink) {
+    if (themeOptions.editLink)
       window.open(themeOptions.editLink.replace(':route', `${routeId}/+page.${pageType}`), '_blank')
-    }
   }
 </script>
 

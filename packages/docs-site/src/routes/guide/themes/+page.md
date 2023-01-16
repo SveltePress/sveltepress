@@ -6,6 +6,8 @@ title: Themes
 
 Pass `theme` to sveltepress to use a theme
 
+Read [Default theme options](/reference/default-theme-options/) for more details
+
 ## Default theme
 
 ### Install

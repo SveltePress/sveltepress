@@ -1,0 +1,3 @@
+---
+title: Vite plugin options
+---

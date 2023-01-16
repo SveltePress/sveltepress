@@ -10,25 +10,19 @@ const config = defineConfig({
           title: 'Guide',
           to: '/guide/introduction/',
         }, {
-          title: 'Features',
-          items: [
-            {
-              title: 'Code block',
-              to: '/features/code-block/',
-            },
-            {
-              title: 'Admonitions',
-              to: '/features/admonitions/',
-            },
-          ],
+          title: 'Reference',
+          to: '/reference/vite-plugin-options/',
         }],
         sidebar: {
-          '/features/': [{
-            title: 'Code Blocks',
-            to: '/features/code-block/',
+          '/reference/': [{
+            title: 'Vite plugin options',
+            to: '/reference/vite-plugin-options/',
           }, {
-            title: 'Admonitions',
-            to: '/features/admonitions/',
+            title: 'Default theme options',
+            to: '/reference/default-theme-options/',
+          }, {
+            title: 'Code block cheat list',
+            to: '/reference/code-block-cheat-list/',
           }],
           '/guide/': [
             {

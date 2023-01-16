@@ -20,3 +20,11 @@ For example:
 ## Configuration
 
 Sveltepress's config is passed to `@svelte-press/vite` vite plugin, all options are fully typed. 
+
+
+## Deployment
+
+It is recommended to read [Adapters - SvelteKit](https://kit.svelte.dev/docs/adapters) first.  
+If you use `npm/yarn/pnpm create @svelte-press` to create a new project. The [Adapter Static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) would be used as default.
+
+But feel free to change to any adapters you want.

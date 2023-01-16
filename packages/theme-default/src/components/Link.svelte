@@ -1,6 +1,6 @@
 <script>
-  import { goto } from  '$app/navigation'
-  import External from './icons/External.svelte';
+  import External from './icons/External.svelte'
+  import { goto } from '$app/navigation'
   export let label = ''
   export let to = ''
 
@@ -8,11 +8,12 @@
 
 
   const handleClick = () => {
-    if(!to) return
-    if(isExternal) {
+    if (!to)
+      return
+    if (isExternal) {
       window.open(to, '_blank')
       return
-    } 
+    }
     goto(to)
   }
 </script>

@@ -1,9 +1,9 @@
 <script>
+  import Prev from './icons/Prev.svelte'
+  import Next from './icons/Next.svelte'
   import { page } from '$app/stores'
+  
   const routeId = $page.route.id
-  import Prev from './icons/Prev.svelte';
-  import Next from './icons/Next.svelte';
-
   export let pages = []
 
   const activeIdx = pages.findIndex(p => routeId.endsWith('/') ? p.to === routeId : p.to.startsWith(routeId))
@@ -59,9 +59,9 @@
     hover:border-rose-5 transition-300 transition-colors;
 }
 .hint {
-  --at-apply: text-gray-4;
+  --at-apply: text-gray-4 text-3;
 }
 .title {
-  --at-apply: flex items-center text-rose-4;
+  --at-apply: flex items-center text-rose-4 mt-3;
 }
 </style>

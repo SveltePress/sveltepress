@@ -15,12 +15,13 @@
 
   let mounted = false
 
-  let computeActiveIdx = () => {
-    if(!mounted) return
+  const computeActiveIdx = () => {
+    if (!mounted)
+      return
     const positions = anchors.map(({ slugId }) => document.getElementById(slugId).offsetTop)
-    for(let i = 0; i < positions.length; i++) {
-      const pos =  positions[i]
-      if(scrollY >= pos - 10 && (scrollY < positions[i + 1] || i === positions.length - 1)) 
+    for (let i = 0; i < positions.length; i++) {
+      const pos = positions[i]
+      if (scrollY >= pos - 10 && (scrollY < positions[i + 1] || i === positions.length - 1))
         activeIdx = i
     }
   }
@@ -66,7 +67,7 @@
   }
   
   .anchors {
-    --at-apply: relative z-3 pl-4 w-40;
+    --at-apply: relative z-3 pl-4 w-[15vw];
   }
   .anchors::after {
     --at-apply: absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8;

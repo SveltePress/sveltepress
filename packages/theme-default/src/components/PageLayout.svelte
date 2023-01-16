@@ -1,12 +1,12 @@
 <script >
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Toc from './Toc.svelte'
   import Home from './Home.svelte'
   import Sidebar from './Sidebar.svelte'
-  import { page } from '$app/stores'
   import PageSwitcher from './PageSwitcher.svelte'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
+  import { page } from '$app/stores'
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
@@ -17,10 +17,10 @@
   export let siteConfig
   let resolvedSidebars = []
 
-  const key = Object.keys(themeOptions.sidebar || {}).find((key) => routeId.startsWith(key))
-  if(key) {
+  const key = Object.keys(themeOptions.sidebar || {}).find(key => routeId.startsWith(key))
+  if (key)
     resolvedSidebars = themeOptions.sidebar[key]
-  }
+  
   const {
     sidebar = 'auto',
     title,

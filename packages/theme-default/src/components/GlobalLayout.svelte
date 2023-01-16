@@ -1,7 +1,7 @@
 <script>
   import Navbar from './Navbar.svelte'
   import AjaxBar from './AjaxBar.svelte'
-  import { beforeNavigate, afterNavigate } from '$app/navigation'
+  import { afterNavigate, beforeNavigate } from '$app/navigation'
   
   let ajaxBar
 
