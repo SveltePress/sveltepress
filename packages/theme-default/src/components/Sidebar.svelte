@@ -7,8 +7,8 @@
   import Close from './icons/Close.svelte'
   import { page } from '$app/stores'
 
-  $: routeId = $page.route.id
-  $: isHome = routeId === '/'
+  const routeId = $page.route.id
+  const isHome = routeId === '/'
 
   export let sidebar = []
 
