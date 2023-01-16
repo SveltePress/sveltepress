@@ -59,7 +59,7 @@ const config = defineConfig({
                 },
                 {
                   title: 'Svelte in markdown',
-                  to: '/guide/markdown/svelte-in-markdown',
+                  to: '/guide/markdown/svelte-in-markdown/',
                 },
               ],
             },
