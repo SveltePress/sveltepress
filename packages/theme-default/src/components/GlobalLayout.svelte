@@ -94,4 +94,17 @@
   :global(blockquote p) {
     --at-apply: m-none;
   }
+ 
+  :global(table) {
+    --at-apply: border-collapse w-full;
+  }
+  :global(table th) {
+    --at-apply: text-left p-2;
+  }
+  :global(table tbody tr) {
+    --at-apply: border-t-1 border-t-solid border-gray-2;
+  }
+  :global(table tbody tr td) {
+    --at-apply: p-2;
+  }
 </style>

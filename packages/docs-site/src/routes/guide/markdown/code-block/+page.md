@@ -37,8 +37,8 @@ Toggle dark mode to see the styles.
 
 ## Line Highlight
 
-Use `// [svp! hl]`  to highlight the line you want  
-Use `// [svp! hl:num]` to highlight the num lines from the current line you want
+Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want  
+Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the current line you want
 
 **Input**
 
@@ -56,7 +56,7 @@ Use `// [svp! hl:num]` to highlight the num lines from the current line you want
 </script>
   
 <h1>
-  Hello, {msg}  // [svp! hl]
+  Hello, {msg}  // [svp! ~~]
 </h1>
 ```
 ````
@@ -76,20 +76,26 @@ Use `// [svp! hl:num]` to highlight the num lines from the current line you want
 </script>
   
 <h1>
-  Hello, {msg} // [svp! hl]
+  Hello, {msg} // [svp! ~~]
 </h1>
 ```
 
 ## Diff
 
-Use `// [svp! df:+]` and `// [svp! df:-]` for diffs
+Use `// [svp! df:+]` or `// [svp! ++]` for diff add  
+Use `// [svp! df:-]` or `// [svp! --]` for diffs subtract
 
 **Input**
 
 ````md
 ```js
 const msg = 'world!' // [svp! df:-]
-const newMsg = 'new world!' // [svp! df:-]
+const newMsg = 'new world!' // [svp! df:+]
+
+function hello() {
+  console.log('Hello', msg) // [svp! ++]
+  console.log('Hello', newMsg) // [svp! ++]
+}
 ```
 ````
 
@@ -98,12 +104,17 @@ const newMsg = 'new world!' // [svp! df:-]
 ```js
 const msg = 'world!' // [svp! df:-]
 const newMsg = 'new world!' // [svp! df:+]
+
+function hello() {
+  console.log('Hello', msg) // [svp! --]
+  console.log('Hello', newMsg) // [svp! ++]
+}
 ```
 
 ## Focus
 
-Use `// [svp! fc]` to focus line  
-Use `// [svp! fc:num]` to focus num lines from current line
+Use `// [svp! fc]` or `// [svp! !!]` to focus line  
+Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current line
 
 **Input**
 
@@ -119,7 +130,7 @@ Multi `// [svp! fc]` in one single code block is not supported
 <div>
   this would be blur
 </div>
-<h1> // [svp! fc:3]
+<h1> // [svp! !!:3]
   this would be focus
 </h1>
 <div>
@@ -140,7 +151,7 @@ Multi `// [svp! fc]` in one single code block is not supported
 <div>
   this would be blur
 </div>
-<h1> // [svp! fc:3]
+<h1> // [svp! !!:3]
   this would be focus
 </h1>
 <div>
@@ -193,3 +204,14 @@ use svelte lang and live prop would have effect like this
   }
 </style>
 ```
+
+## Cheat list
+
+| Alias    | Equals   | Function                             |
+| -------- | -------- | ------------------------------------ |
+| `~~`     | `hl`     | highlight single line                |
+| `~~:num` | `hl:num` | highlight num line from current line |
+| `++`     | `df:+`   | diff add line                        |
+| `--`     | `df:-`   | diff subtract line                   |
+| `!!`     | `fc`     | focus single line                    |
+| `!!:num` | `fc:num` | focus num line from current line     |

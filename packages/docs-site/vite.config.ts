@@ -20,9 +20,6 @@ const config = defineConfig({
           }, {
             title: 'Default theme options',
             to: '/reference/default-theme-options/',
-          }, {
-            title: 'Code block cheat list',
-            to: '/reference/code-block-cheat-list/',
           }],
           '/guide/': [
             {
