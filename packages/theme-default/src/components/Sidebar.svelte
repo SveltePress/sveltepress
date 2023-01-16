@@ -7,13 +7,16 @@
 
   export let sidebar = []
 
+  const handleClose = () => {
+    $sidebarCollapsed = true
+  }
 </script>
 
 {#if sidebar.length}
   <aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed}>
     <div class="sidebar-logo">
       <Logo />
-      <div class="close">
+      <div class="close" on:click={handleClose} on:keyup={handleClose}>
         <Close />
       </div>
     </div>

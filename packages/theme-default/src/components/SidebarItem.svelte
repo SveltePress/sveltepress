@@ -8,12 +8,9 @@
 
   const isActive = routeId.endsWith('/') ? to === routeId : to === `${routeId}/`
 
-  const handleLinkClick = () => {
-    $sidebarCollapsed = true
-  }
 </script>
  
- <a on:click={handleLinkClick} href={to} class={`sidebar-item${isActive ? ' active' : ''}`}>
+ <a href={to} class={`sidebar-item${isActive ? ' active' : ''}`}>
   {title}
 </a>
 
