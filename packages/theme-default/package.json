@@ -1,6 +1,6 @@
 {
   "name": "@svelte-press/theme-default",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "The default theme for sveltepress",
   "scripts": {
     "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
