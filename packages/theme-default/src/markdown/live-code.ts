@@ -33,7 +33,6 @@ const liveCode: RemarkLiveCode = function () {
   let hasScript = false
   const liveCodePaths = []
   return (tree, vFile) => {
-    writeFileSync('tree.json', JSON.stringify(tree, null, 2))
     visit(
       tree,
       (node, idx, parent) => {
