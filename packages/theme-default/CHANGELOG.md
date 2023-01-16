@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.5.1
+
+### Patch Changes
+
+- [`2482f88`](https://github.com/Blackman99/sveltepress/commit/2482f889bf64d12d58c655e344edaeb92a8b0524) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: expansion header should have a larger z-index than clode block inside
+
 ## 0.5.0
 
 ### Minor Changes
