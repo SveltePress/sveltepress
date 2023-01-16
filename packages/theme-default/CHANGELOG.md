@@ -1,5 +1,13 @@
 # @svelte-press/theme-default
 
+## 0.6.1
+
+### Patch Changes
+
+- [`a82bdc2`](https://github.com/Blackman99/sveltepress/commit/a82bdc2f55501fce7d130fdc6b4718119e0b569d) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar close event
+
+- [`d8bdcf9`](https://github.com/Blackman99/sveltepress/commit/d8bdcf9297741f662ed2cebf6381ccb29e01a5a3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: mobile style adjust
+
 ## 0.6.0
 
 ### Minor Changes
