@@ -50,14 +50,12 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
 
 **Input**
 
-````md
-```svelte
+```md
 <script>
   import Counter from './Counter.svelte'
 </script>
 <Counter />
 ```
-````
 
 **Output**
 
