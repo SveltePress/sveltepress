@@ -20,6 +20,6 @@
       hover:shadow-lg bg-white dark:bg-zinc-9 transition-300 transition-shadow;
   }
   .svp-action--primary {
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    background-image: linear-gradient(45deg, #fa709a 0%, #fee140 100%);
   }
 </style>

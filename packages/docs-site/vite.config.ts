@@ -46,6 +46,10 @@ const config = defineConfig({
               title: 'Markdown features',
               items: [
                 {
+                  title: 'Frontmatter',
+                  to: '/guide/markdown/frontmatter/',
+                },
+                {
                   title: 'Admonitions',
                   to: '/guide/markdown/admonitions/',
                 },

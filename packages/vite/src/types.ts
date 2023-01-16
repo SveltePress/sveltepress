@@ -41,7 +41,6 @@ export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
   siteConfig?: SiteConfig
   addInspect?: boolean
-  vitePlugins?: PluginOption
 }
 
 export type LoadTheme<ThemeOptions = any> = (themeOptions?: ThemeOptions) => ResolvedTheme

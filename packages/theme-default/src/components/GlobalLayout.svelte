@@ -59,15 +59,16 @@
   }
 
   :global(code) {
-    --at-apply: bg-[#e9e9e9] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded;
+    --at-apply: bg-[#e9e9e9] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] 
+      px-[6px] py-[3px] rounded;
   }
   :global(pre.shiki code) {
     --at-apply: bg-transparent dark:bg-transparent p-unset block;
   }
 
   :global(.svp-code-block) {
-    --at-apply: relative bg-white dark:bg-[#011627] 
-      overflow-y-hidden py-[12px] px-18px rounded text-[14px] mb-8;
+    --at-apply: relative bg-white dark:bg-[#011627] transition-shadow transition-300 hover:shadow
+      overflow-y-hidden py-[12px] px-18px rounded-lg text-[14px] mb-8;
   }
   :global(.svp-code-block--lang) {
     --at-apply: absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px];

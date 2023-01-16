@@ -194,7 +194,8 @@ html[data-theme="dark"] {
   z-index: 3;
 }
 
-.shiki code {
+.shiki code,
+code {
   font-family: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
 }
 

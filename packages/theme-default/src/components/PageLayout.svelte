@@ -55,7 +55,7 @@
         </h1>
       {/if}
       <slot />
-      <div class="flex justify-between">
+      <div class="flex justify-between mt-20">
         <EditPage {pageType} />
         <LastUpdate {lastUpdate} />
       </div>
