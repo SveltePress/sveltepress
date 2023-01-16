@@ -1,9 +1,8 @@
 <script>
   import Logo from './Logo.svelte'
-  import { page } from '$app/stores'
-  
-  const routeId = $page.route.id
-  
+  import SidebarItem from './SidebarItem.svelte'
+  import SidebarGroup from './SidebarGroup.svelte'
+
   export let sidebar = []
 </script>
 
@@ -13,10 +12,7 @@
       <Logo />
     </div>
     {#each sidebar as sidebarItem}
-      {@const isActive = routeId.endsWith('/') ? sidebarItem.to === routeId : sidebarItem.to === `${routeId}/` }
-      <a href={sidebarItem.to} class={`sidebar-item${isActive ? ' active' : ''}`}>
-        {sidebarItem.title}
-      </a>
+      <svelte:component this={Array.isArray(sidebarItem.items) ? SidebarGroup : SidebarItem} {...sidebarItem} />
     {/each}
   </aside>
 {/if}
@@ -30,19 +26,5 @@
     --at-apply: h-[72px] flex items-center mb-4
       border-b-solid border-b border-light-8 dark:border-b-gray-7;
   }
-  .sidebar-item {
-    --at-apply: block leading-8 transition-text transition-color;
-  }
-  .sidebar-item:not(.active) {
-    --at-apply: hover:text-rose-4;
-  }
-  .sidebar-item.active {
-    cursor: default;
-  }
-  .active {
-    color: transparent;
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-  }
+  
 </style>

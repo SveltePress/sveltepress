@@ -27,15 +27,37 @@ const config = defineConfig({
           '/guide/': [
             {
               title: 'Introduction',
-              to: '/guide/introduction/',
+              items: [
+                {
+                  title: 'What is sveltepress',
+                  to: '/guide/introduction/',
+                },
+                {
+                  title: 'Quick start',
+                  to: '/guide/quick-start/',
+                },
+                {
+                  title: 'Themes',
+                  to: '/guide/themes/',
+                },
+              ],
             },
             {
-              title: 'Quick start',
-              to: '/guide/quick-start/',
-            },
-            {
-              title: 'Themes',
-              to: '/guide/themes/',
+              title: 'Markdown features',
+              items: [
+                {
+                  title: 'Admonitions',
+                  to: '/guide/markdown/admonitions/',
+                },
+                {
+                  title: 'Code blocks',
+                  to: '/guide/markdown/code-block/',
+                },
+                {
+                  title: 'Svelte in markdown',
+                  to: '/guide/markdown/svelte-in-markdown',
+                },
+              ],
             },
           ],
         },

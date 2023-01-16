@@ -21,6 +21,13 @@
   if (key)
     resolvedSidebars = themeOptions.sidebar[key]
   
+  $: pages = resolvedSidebars.reduce((allPages, item) => Array.isArray(item.items)
+    ? [
+        ...allPages,
+        ...item.items
+      ]
+    : [...allPages, item], [])
+
   const {
     sidebar = 'auto',
     title,
@@ -52,7 +59,7 @@
         <EditPage {pageType} />
         <LastUpdate {lastUpdate} />
       </div>
-      <PageSwitcher pages={resolvedSidebars} />
+      <PageSwitcher {pages} />
     </div>
     <Toc {anchors} />
   </div>

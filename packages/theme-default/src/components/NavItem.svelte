@@ -7,6 +7,11 @@
   export let icon = false
 
   export let external = false
+
+  const handleClick = () => {
+    if (external)
+      window.open(to, '_blank')
+  }
 </script>
 
  {#if items && items.length}
@@ -17,18 +22,25 @@
     </div>
     <div class="dropdown">
       {#each items as subItem}
-        <a href={subItem.to}>
+        <a href={subItem.to} rel={external ? '' : 'noreferrer'}>
           {subItem.title}
         </a>
       {/each}
     </div>
   </div>
   {:else}
-  <a href={to} class={`nav-item ${icon ? 'nav-item--icon' : ''}`} target={external ? '_blank' : ''}>
+  <svelte:element 
+    this={external ? 'div' : 'a'} 
+    href={to} 
+    class={`nav-item ${icon ? 'nav-item--icon' : ''}`} 
+    target={external ? '_blank' : ''}
+    on:click={handleClick}
+    on:keypress={handleClick}
+  >
     <slot>
       {title}
     </slot>
-  </a>
+  </svelte:element>
   {/if}
 
 <style>
