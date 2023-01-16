@@ -47,12 +47,12 @@
 <style>
   .header {
     --at-apply: 
-      fixed top-0 left-0 right-0 px-20 h-[73px] 
-      z-99 dark:bg-opacity-40;
+      fixed top-0 left-0 right-0 h-[73px] 
+      z-99 dark:bg-opacity-40 sm:px-20;
     backdrop-filter: blur(5px);
   }
   .header-inner {
-    --at-apply: w-[84vw] h-full 
+    --at-apply: sm:w-[84vw] h-full 
       flex items-stretch justify-between
       mx-auto;
   }

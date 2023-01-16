@@ -69,19 +69,18 @@
     --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .home-page {
-    --at-apply: max-w-[1152px] mx-auto pt-14;
+    --at-apply: max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
   }
   .title {
     --at-apply: text-16 grid grid-cols-12 font-700 leading-18;
   }
   .intro {
-    grid-column-start: 1;
-    grid-column-end: span 7;
+    --at-apply: col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1
+      text-center sm:text-left;
   }
   .hero-image {
-    --at-apply: flex items-center justify-center col-start;
-    grid-column-start: 8;
-    grid-column-end: span 5;
+    --at-apply: flex items-center justify-center col-start
+      sm:col-span-5 col-span-6 col-start-4 sm:col-start-8;
   }
   .gradient-title {
     background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
@@ -93,17 +92,18 @@
     --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9;
   }
   .actions {
-    --at-apply: flex gap-4 mt-4;
+    --at-apply: flex gap-4 mt-4 justify-center sm:justify-start;
   }
   .features {
-    --at-apply: grid grid-cols-3 gap-4 mt-6;
+    --at-apply: grid sm:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4;
   }
   .feature-item {
     --at-apply: bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md
       transition-shadow transition-300;
   }
   .icon {
-    --at-apply: text-10 inline-flex items-center p-1 bg-[#e5e5e5] dark:bg-[#252525] rounded-md;
+    --at-apply: text-10 inline-flex items-center p-1 bg-[#e5e5e5] 
+      dark:bg-[#252525] rounded-md;
   }
 </style>
 
