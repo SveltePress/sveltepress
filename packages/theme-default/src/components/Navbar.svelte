@@ -8,7 +8,6 @@
   import Menu from './icons/Menu.svelte'
   import { page } from '$app/stores'
   import { sidebarCollapsed } from './layout'
-  import { e } from 'unocss';
   
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
