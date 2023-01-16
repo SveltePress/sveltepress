@@ -7,8 +7,7 @@ declare module "virtual:sveltepress/theme-default" {
     to: string
   }
 
-  export interface LinkGroup {
-    title: string
+  export interface LinkGroup extends WithTitle {
     items: (LinkItem | LinkGroup)[]
   }
 
