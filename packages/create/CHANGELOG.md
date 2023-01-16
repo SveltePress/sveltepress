@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.6.0
+
+### Minor Changes
+
+- [`1c8bf46`](https://github.com/Blackman99/sveltepress/commit/1c8bf46989a9af9f92520b7de2b1905a34276b88) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for mobile view
+
 ## 0.5.0
 
 ### Minor Changes
