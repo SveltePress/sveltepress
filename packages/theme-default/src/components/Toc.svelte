@@ -60,7 +60,7 @@
   .toc {
     --at-apply: text-3.5 w-[22vw]
       fixed top-[80px] bottom-0 right-0 z-3 leading-[2em] py-4
-      text-gray-5 dark:text-gray-2;
+      text-gray-5 dark:text-gray-2 display-none sm:display-block;
   }
   .item {
     --at-apply: relative z-3 block  truncate;

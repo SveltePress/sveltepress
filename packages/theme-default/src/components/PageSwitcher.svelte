@@ -51,7 +51,7 @@
 .page-switcher {
   --at-apply: grid grid-cols-2 gap-8
     border-t-solid border-t border-light-7 dark:border-gray-7 
-    pt-8 mt-4;
+    pt-4 sm:pt-8 mt-4;
 }
 .switcher {
   --at-apply: border-solid border-1 border-light-7 dark:border-gray-7

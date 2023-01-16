@@ -25,7 +25,7 @@
       <div class="gradient-title">
         {siteConfig.title}
       </div>
-      <div>
+      <div class="text-10 leading-12 sm:text-inherit sm:leading-inherit">
         {siteConfig.description}
       </div>
       {#if tagline}

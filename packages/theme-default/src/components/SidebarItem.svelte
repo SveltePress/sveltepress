@@ -1,14 +1,19 @@
  <script>
   import { page } from '$app/stores'
+  import { sidebarCollapsed } from './layout'
   const routeId = $page.route.id
 
   export let title = ''
   export let to = ''
 
   const isActive = routeId.endsWith('/') ? to === routeId : to === `${routeId}/`
+
+  const handleLinkClick = () => {
+    $sidebarCollapsed = true
+  }
 </script>
  
- <a href={to} class={`sidebar-item${isActive ? ' active' : ''}`}>
+ <a on:click={handleLinkClick} href={to} class={`sidebar-item${isActive ? ' active' : ''}`}>
   {title}
 </a>
 
