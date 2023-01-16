@@ -44,9 +44,12 @@
   {/if}
 
 <style>
+  :global(nav .nav-item) {
+    --at-apply: px-3;
+  }
   .nav-item {
     --at-apply: flex items-center cursor-pointer 
-      position-relative z-1 cursor-pointer px-3 
+      position-relative z-1 cursor-pointer
       decoration-none;
   }
   .nav-item--icon:hover {

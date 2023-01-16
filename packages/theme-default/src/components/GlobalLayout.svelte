@@ -3,6 +3,7 @@
   import AjaxBar from './AjaxBar.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { sidebarCollapsed } from './layout'
+  import Sidebar from './Sidebar.svelte';
   
   let ajaxBar
 
@@ -19,10 +20,16 @@
 <main class="pt-[56px]">
   <AjaxBar bind:this={ajaxBar} />
   <Navbar />
+  <div class="sidebar-mobile-home">
+    <Sidebar />
+  </div>
   <slot />
 </main>
 
 <style>
+  .sidebar-mobile-home {
+    --at-apply: sm:display-none;
+  }
   :global(body) {
     --at-apply: bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2 scroll-smooth;
     font-family:  "Inter var experimental", "Inter var", "Inter", 
@@ -62,7 +69,7 @@
 
   :global(code) {
     --at-apply: bg-[#e9e9e9] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] 
-      px-[6px] py-[3px] rounded;
+      px-[6px] py-[3px] rounded break-all;
   }
   :global(pre.shiki code) {
     --at-apply: bg-transparent dark:bg-transparent p-unset block;

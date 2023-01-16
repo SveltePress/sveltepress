@@ -8,6 +8,7 @@
   import Menu from './icons/Menu.svelte'
   import { page } from '$app/stores'
   import { sidebarCollapsed } from './layout'
+  import { e } from 'unocss';
   
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
@@ -21,12 +22,13 @@
   <div class="header-inner">
     <div flex items-center>
       {#if isHome}
-        <Logo />
-      {:else}
-        <div class="menu" on:click={handleMenuClick} on:keyup={handleMenuClick}>
-          <Menu  />
+        <div class="logo-container">
+          <Logo />
         </div>
       {/if}
+      <div class="menu" on:click={handleMenuClick} on:keyup={handleMenuClick}>
+        <Menu  />
+      </div>
     </div>
     {#if themeOptions.docsearch}
       <div flex-grow class={isHome ? 'pl-[2vw]' : 'pl-18vw'} flex items-center>
@@ -35,9 +37,11 @@
     {/if}
   
     <nav flex items-stretch>
-      {#each themeOptions.navbar as navItem}
-       <NavItem {...navItem}/>
-      {/each}
+      <div class="navbar-pc">
+        {#each themeOptions.navbar as navItem}
+         <NavItem {...navItem}/>
+        {/each}
+      </div>
   
       {#if themeOptions.github}
         <div class="divider"></div>
@@ -59,6 +63,9 @@
       z-99 dark:bg-opacity-40 sm:px-20;
     backdrop-filter: blur(5px);
   }
+  .logo-container {
+    --at-apply: display-none sm:display-block;
+  }
   .header-inner {
     --at-apply: sm:w-[84vw] h-full 
       flex items-stretch justify-between
@@ -69,5 +76,8 @@
   }
   .menu {
     --at-apply: sm:display-none ml-4 flex items-center text-7;
+  }
+  .navbar-pc {
+    --at-apply: items-stretch display-none sm:display-flex;
   }
 </style>
