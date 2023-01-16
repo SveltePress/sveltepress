@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.5.1
+
+### Patch Changes
+
+- [`2482f88`](https://github.com/Blackman99/sveltepress/commit/2482f889bf64d12d58c655e344edaeb92a8b0524) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: expansion header should have a larger z-index than clode block inside
+
+- [`7da9c0c`](https://github.com/Blackman99/sveltepress/commit/7da9c0c6899c9da76b55ea356ef40d0be6f90cbb) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize default theme styles
+
+- [`256c1ab`](https://github.com/Blackman99/sveltepress/commit/256c1abe6be51d37fa1ff5f9148368207c47a7ae) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add sidebar group support
+
+- [`1311972`](https://github.com/Blackman99/sveltepress/commit/131197221c6cbf237b4b38205c5473a122d93bb5) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: lint files
+
 ## 0.5.0
 
 ### Minor Changes

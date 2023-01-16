@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.5.1
+
+### Patch Changes
+
+- [`7da9c0c`](https://github.com/Blackman99/sveltepress/commit/7da9c0c6899c9da76b55ea356ef40d0be6f90cbb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove vitePlugins for vite plugin config
+
 ## 0.5.0
 
 ### Minor Changes
