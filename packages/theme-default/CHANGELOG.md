@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.6.2
+
+### Patch Changes
+
+- [`526d7de`](https://github.com/Blackman99/sveltepress/commit/526d7de7bbf8339f628bb79f9e54dc2f22a3b914) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar and sidebar mobile style
+
+- [`036dddf`](https://github.com/Blackman99/sveltepress/commit/036dddfc24b50f54e71a3662fc50203d1ba8d89f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar divider mobile style
+
+- [`0f9b4c8`](https://github.com/Blackman99/sveltepress/commit/0f9b4c8b772447ce48596cc3200b0a1ac89730b7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: home page mobile style adjust
+
+- [`c94994a`](https://github.com/Blackman99/sveltepress/commit/c94994a4b6e0415eacb67de4ed3404488427233e) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: $page reference error
+
 ## 0.6.1
 
 ### Patch Changes
