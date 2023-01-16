@@ -53,6 +53,11 @@ interface DefaultThemeOptions {
   logo?: string
   sidebar?: Record<string, (LinkItem | LinkGroup)[]>
   editLink?: string
+  docsearch?: {
+    appId: string
+    apiKey: string
+    indexName: string
+  }
 }
 ```
 
@@ -89,3 +94,12 @@ The link used for bottom edit this page on github button
 For example this site use `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
 
 `:route` represent the route path, for example: /foo/bar/+page.md
+
+## docsearch
+
+* appId
+* apiKey
+* indexName
+
+All these values are provided by the docsearch.  
+Visit [Docsearch](https://docsearch.algolia.com/) for more details.

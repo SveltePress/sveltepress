@@ -3,7 +3,8 @@ title:  Code Block
 ---
 
 :::tip Tips
-All the code block features are fully compatible with dark mode.
+All the code block features are fully compatible with dark mode.  
+Toggle dark mode to see the styles.
 :::
 
 ## Code Highlight
@@ -101,7 +102,8 @@ const newMsg = 'new world!' // [svp! df:+]
 
 ## Focus
 
-Use `// [svp! fc]` to focus line
+Use `// [svp! fc]` to focus line  
+Use `// [svp! fc:num]` to focus num lines from current line
 
 **Input**
 
