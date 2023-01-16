@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
+import { log } from '@svelte-press/vite'
 import type { RemarkLiveCode } from '../types'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
@@ -33,6 +34,7 @@ const liveCode: RemarkLiveCode = function () {
   let hasScript = false
   const liveCodePaths = []
   return (tree, vFile) => {
+    writeFileSync('tree.json', JSON.stringify(tree, null, 2))
     visit(
       tree,
       (node, idx, parent) => {
@@ -106,11 +108,13 @@ const liveCode: RemarkLiveCode = function () {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
         hasScript = true
+        const value = node.value.replace(/^<script[ \w+="\w+"]*>/, m =>
+          [m, ...globalComponentsImporters, ...liveCodeImports].join('\n'))
         parent.children.splice(idx, 1, {
           type: 'html',
-          value: node.value.replace(/^<script[ \w+="\w+"]+>/, m =>
-            [m, ...globalComponentsImporters, ...liveCodeImports].join('\n')),
+          value,
         })
+        log.info('script after add imports: ', value)
       }
     })
 
