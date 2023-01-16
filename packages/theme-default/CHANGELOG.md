@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.6.0
+
+### Minor Changes
+
+- [`d1c6afa`](https://github.com/Blackman99/sveltepress/commit/d1c6afa170673e3c3e74ff90923f8b4b68e0144c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: sidebar mobile view
+
+- [`1c8bf46`](https://github.com/Blackman99/sveltepress/commit/1c8bf46989a9af9f92520b7de2b1905a34276b88) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for mobile view
+
+- [`7915e6e`](https://github.com/Blackman99/sveltepress/commit/7915e6e299e57e13ee3bb1ed4866b5e998c9607e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: toc mobile view
+
+- [`7915e6e`](https://github.com/Blackman99/sveltepress/commit/7915e6e299e57e13ee3bb1ed4866b5e998c9607e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: style capatible with pc and mobile
+
 ## 0.5.2
 
 ### Patch Changes
