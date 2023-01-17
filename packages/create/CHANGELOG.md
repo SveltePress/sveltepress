@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.7.2
+
+### Patch Changes
+
+- [`4061781`](https://github.com/Blackman99/sveltepress/commit/40617819035b0838687c6f6ee8f4a7196c1e59df) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: update package version
+
 ## 0.7.1
 
 ### Patch Changes
