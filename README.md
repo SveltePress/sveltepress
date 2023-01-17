@@ -14,7 +14,7 @@ But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com
 
 ## Online docs and demos
 
-[Sveltepress](https://sveltepress.donsen.site/)
+[Sveltepress](https://sveltepress.site/)
 
 ## LICENSE
 
