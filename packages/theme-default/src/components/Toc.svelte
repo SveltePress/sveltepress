@@ -100,9 +100,9 @@
   }
   .mobile-toc-trigger {
     --at-apply: sm:display-none fixed bottom-[12px] right-[12px]
-      w-[48px] h-[48px] bg-white dark:bg-gray-9 rounded-[24px] shadow-lg z-101
+      w-[38px] h-[38px] bg-white dark:bg-gray-9 rounded-[19px] shadow-lg z-101
       flex items-center justify-center
-      text-8;
+      text-6;
   }
   .collapsed {
     --at-apply: translate-x-[100%] sm:translate-x-0;
