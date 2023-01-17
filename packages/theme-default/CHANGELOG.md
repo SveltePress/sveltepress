@@ -1,5 +1,13 @@
 # @svelte-press/theme-default
 
+## 0.7.2
+
+### Patch Changes
+
+- [`580a5d5`](https://github.com/Blackman99/sveltepress/commit/580a5d55c09502b9dd3f23b5e78a6de862c402ce) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize toc trigger button in mobile view
+
+- [`e966e53`](https://github.com/Blackman99/sveltepress/commit/e966e5353e2fa133769802e2641f2382dce9962f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page toggle view residual
+
 ## 0.7.1
 
 ### Patch Changes
