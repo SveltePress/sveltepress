@@ -69,7 +69,7 @@
     --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .home-page {
-    --at-apply: w-[70vw] max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
+    --at-apply: sm:w-[70vw] max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
   }
   .title {
     --at-apply: sm:text-16 text-10 grid grid-cols-12 font-700 leading-18;
