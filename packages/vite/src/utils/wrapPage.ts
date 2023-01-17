@@ -1,16 +1,14 @@
-import { resolve } from 'path'
-import { writeFileSync } from 'fs'
 import LRUCache from 'lru-cache'
-import fsExtra from 'fs-extra'
 import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from '../types'
-import { BASE_PATH } from '../plugin.js'
 import mdToSvelte from '../markdown/mdToSvelte.js'
 import { parseSvelteFrontmatter } from './parseSvelteFrontmatter.js'
 import { info } from './log.js'
 import { getFileLastUpdateTime } from './getFileLastUpdate.js'
 
 const cache = new LRUCache<string, any>({ max: 1024 })
+const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
+const styleRe = /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/g
 
 export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   theme?: ResolvedTheme
@@ -18,9 +16,6 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   mdOrSvelteCode: string
   id: string
 }) {
-  if (!theme?.pageLayout)
-    return mdOrSvelteCode
-
   const cacheKey = JSON.stringify({ id, mdOrSvelteCode })
   let cached = cache.get(cacheKey)
   if (cached)
@@ -66,26 +61,15 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     svelteCode = mdOrSvelteCode
   }
 
-  const wrap = (sveltePagePath: string) => `<script>
-    import Page from '${sveltePagePath}'
-    import PageLayout from \'${theme.pageLayout}\'
-  
-    const fm = ${JSON.stringify(fm)}
-    const siteConfig = ${JSON.stringify(siteConfig)}
-  </script>
-  <PageLayout {fm} {siteConfig}>
-    <Page />
-  </PageLayout>
-  `
-
-  // src/routes/foo/+page.(md|svelte) => .sveltepress/pages/foo/_page.svelte
-  // NOTICE: cannot use +page as filename cause it would case circular parse
-  const routePath = relativeRouteFilePath.replace(/\+page.(md|svelte)$/, '_page.svelte')
-
-  const fullPagePath = resolve(BASE_PATH, `pages${routePath}`)
-  fsExtra.ensureFileSync(fullPagePath)
-  writeFileSync(fullPagePath, svelteCode)
-  const wrappedCode = wrap(fullPagePath)
+  let wrappedCode = svelteCode
+  if (theme?.pageLayout) {
+    wrappedCode = wrapSvelteCode({
+      svelteCode,
+      fm,
+      siteConfig,
+      pageLayout: theme?.pageLayout,
+    })
+  }
   cached = {
     wrappedCode,
     fm,
@@ -95,3 +79,50 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   return cached
 }
 
+export function wrapSvelteCode({
+  pageLayout,
+  svelteCode,
+  siteConfig,
+  fm,
+}: {
+  svelteCode: string
+  pageLayout: string
+  siteConfig: SiteConfig
+  fm: Record<string, any>
+}) {
+  const imports = [
+    `import PageLayout from '${pageLayout}'`,
+    `const fm = ${JSON.stringify(fm)}`,
+    `const siteConfig = ${JSON.stringify(siteConfig)}`,
+  ].join('\n')
+  const scripts = []
+  let matches: RegExpMatchArray | null = null
+  do {
+    matches = scriptRe.exec(svelteCode)
+    if (matches)
+      scripts.push(matches[0])
+  } while (matches)
+
+  if (scripts.length) {
+    scripts.forEach((s) => {
+      svelteCode = svelteCode.replace(new RegExp(s), '')
+    })
+    scripts[0] = scripts[0].replace(/<script\b[^>]*>/, m => [
+      m,
+      imports,
+    ].join('\n'))
+  }
+  const styleMatches = styleRe.exec(svelteCode)
+  let styleCode = ''
+  if (styleMatches) {
+    styleCode = styleMatches[0]
+    svelteCode = svelteCode.replace(new RegExp(styleCode), '')
+  }
+  return `
+  ${scripts.join('\n')}
+<PageLayout {fm} {siteConfig}>
+  ${svelteCode}
+</PageLayout>
+${styleCode}
+`
+}

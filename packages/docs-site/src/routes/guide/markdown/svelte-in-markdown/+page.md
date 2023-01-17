@@ -26,7 +26,7 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
 > A counter
 
 <script>
-  import Counter from '/src/routes/guide/markdown/svelte-in-markdown/Counter.svelte'
+  import Counter from './Counter.svelte'
   let count = 0
 </script>
 
