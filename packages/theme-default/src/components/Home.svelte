@@ -69,7 +69,7 @@
     --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .home-page {
-    --at-apply: max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
+    --at-apply: w-[70vw] max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
   }
   .title {
     --at-apply: sm:text-16 text-10 grid grid-cols-12 font-700 leading-18;
@@ -95,7 +95,7 @@
     --at-apply: grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-4 justify-center sm:justify-start;
   }
   .features {
-    --at-apply: grid sm:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4;
+    --at-apply: grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4;
   }
   .feature-item {
     --at-apply: bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md

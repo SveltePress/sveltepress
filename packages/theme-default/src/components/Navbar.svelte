@@ -6,8 +6,8 @@
   import ToggleDark from './ToggleDark.svelte'
   import Search from './Search.svelte'
   import Menu from './icons/Menu.svelte'
-  import { page } from '$app/stores'
   import { sidebarCollapsed } from './layout'
+  import { page } from '$app/stores'
   
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
@@ -59,14 +59,14 @@
   .header {
     --at-apply: 
       fixed top-0 left-0 right-0 h-[73px] 
-      z-99 dark:bg-opacity-40 sm:px-20;
+      z-99 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
   .logo-container {
     --at-apply: display-none sm:display-block;
   }
   .header-inner {
-    --at-apply: sm:w-[84vw] h-full 
+    --at-apply: sm:w-[70vw] h-full 
       flex items-stretch justify-between
       mx-auto;
   }

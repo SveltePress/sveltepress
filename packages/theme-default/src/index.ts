@@ -29,6 +29,7 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
         theme: {
           breakpoints: {
             sm: '900px',
+            md: '1140px',
           },
         },
       }), {
