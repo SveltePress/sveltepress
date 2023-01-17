@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-> A content centered site build tools
+> A content centered site build tool
 
 Inspired by [Vitepress](https://vitepress.vuejs.org/).   
 But build with [SvelteKit](https://kit.svelte.dev/), [Mdsvex](https://mdsvex.com/), [Unocss](https://github.com/unocss/unocss)
