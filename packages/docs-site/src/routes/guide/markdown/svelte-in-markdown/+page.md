@@ -38,15 +38,7 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
 
 **Counter.svelte**
 
-```svelte
-<script>
-  let count = 0
-</script>
-
-<button on:click={() => count++}>
-  You've clicked {count} times
-</button>
-```
+@code(./Counter.svelte)
 
 **Input**
 

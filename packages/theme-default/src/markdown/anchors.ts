@@ -24,7 +24,7 @@ const anchors: Plugin<any[], any> = () => {
             hName: 'div',
             hProperties: {
               id: slugId,
-              className: 'relative bottom-[74px]',
+              className: 'svp-anchor-item',
             },
           },
         }, node)

@@ -94,10 +94,10 @@
       backdrop-filter-blur backdrop-blur-[1.5px] transition-300 transition-opacity;
   }
   :global(.svp-code-block--diff-bg-add) {
-    --at-apply: bg-green-4 bg-opacity-30; 
+    --at-apply: bg-green-4 bg-opacity-20 dark:bg-green-8 dark:bg-opacity-30; 
   }
   :global(.svp-code-block--diff-bg-sub) {
-    --at-apply: bg-rose-4 bg-opacity-30;
+    --at-apply: bg-rose-4 bg-opacity-20 dark:bg-red-8 dark:bg-opacity-30;
   }
   :global(.svp-code-block--diff-add) {
     --at-apply: text-green-4;
@@ -138,5 +138,8 @@
   }
   :global(table tbody tr td) {
     --at-apply: p-2;
+  }
+  :global(.svp-anchor-item) {
+    --at-apply: relative bottom-[74px];
   }
 </style>

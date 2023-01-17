@@ -220,6 +220,32 @@ use svelte lang and live prop would have effect like this
 </style>
 ```
 
+## Import code
+
+This feature can allow you to import some code directly from a file.  
+And use the file extension name as `lang` to highlight the code.
+
+```md
+@code(/path/to/file)
+```
+Path can starts with `.` or `/`
+* `.` is the relative path to the current md file
+* `/` is the relative path to `process.cwd()` 
+
+For example you have file tree like this
+
+```txt
+├─ src
+│  ├─ routes
+│  │  ├─ foo
+│  │  │  ├─ +page.md
+│  │  │  ├─ Foo.svelte
+```
+
+The follow md content in foo/+page.md would do the same thing.
+* `@code(./Foo.svelte)`
+* `@code(/src/routes/foo/Foo.svelte)`
+
 ## Cheat list
 
 | Alias    | Equals   | Function                             |

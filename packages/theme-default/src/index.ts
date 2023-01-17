@@ -8,6 +8,7 @@ import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
+import codeImport from './markdown/code-import.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -50,7 +51,7 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
           }
         },
       }],
-    remarkPlugins: [liveCode, admonitions, links, anchors],
+    remarkPlugins: [liveCode, admonitions, links, anchors, codeImport],
     highlighter,
     clientImports: [
       'import \'uno.css\'',

@@ -10,7 +10,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
 const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
 
-const createHighlightWith: (theme: string) => Highlighter = theme => (code, lang) => getHighlighter({
+const createHighlightWithTheme: (theme: string) => Highlighter = theme => (code, lang) => getHighlighter({
   theme,
   langs: ['svelte', 'sh', 'js', 'html', 'ts', 'md'],
 }).then(
@@ -20,9 +20,9 @@ const createHighlightWith: (theme: string) => Highlighter = theme => (code, lang
     .replace(/\}/g, '&#125;'),
 )
 
-const highlighterDark = createHighlightWith(nightOwl)
+const highlighterDark = createHighlightWithTheme(nightOwl)
 
-const highlighterLight = createHighlightWith(vitesseLight)
+const highlighterLight = createHighlightWithTheme(vitesseLight)
 
 const highlighter: Highlighter = async (code, lang) => {
   const commandDoms = []

@@ -2,7 +2,7 @@
 
 exports[`line highlight > single line 1`] = `
 "<div class=\\"svp-code-block\\">
-      <div class=\\"absolute left-0 right-0 z-2 h-[1.5em] bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10\\"  style=\\"top: calc(3em + 12px);\\"></div>
+      <div class=\\"svp-code-block--command-line svp-code-block--hl\\"  style=\\"top: calc(3em + 12px);\\"></div>
       <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\"><code><span class=\\"line\\"></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">&lt;</span><span style=\\"color: #1E754F\\">script</span><span style=\\"color: #999999\\">&gt;</span></span>
 <span class=\\"line\\"><span style=\\"color: #393A34\\">  </span><span style=\\"color: #AB5959\\">const</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B07D48\\">count</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #AB5959\\">=</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #2F798A\\">0</span><span style=\\"color: #393A34\\"> </span></span>
