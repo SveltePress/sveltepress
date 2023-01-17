@@ -1,5 +1,13 @@
 # @svelte-press/vite
 
+## 0.7.1
+
+### Patch Changes
+
+- [`3013a8a`](https://github.com/Blackman99/sveltepress/commit/3013a8a209c0f28cf89b4486e9f21cb4063aeafa) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page layout wrapper should hoist all script tag to top
+
+- [`7d97374`](https://github.com/Blackman99/sveltepress/commit/7d973748c8da64c21ae2d07c49a719f88451e121) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add copy code block button
+
 ## 0.7.0
 
 ### Minor Changes
