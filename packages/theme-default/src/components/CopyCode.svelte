@@ -1,5 +1,4 @@
 <script>
-import { scale } from 'svelte/transition'
 import Copy from './icons/Copy.svelte'
 import CopyDone from './icons/CopyDone.svelte'
 let container
@@ -18,7 +17,7 @@ const handleClick = () => {
 
 
 {#if copied}
-  <div class="svp-code-bock--copy-code" transition:scale>
+  <div class="svp-code-bock--copy-code">
     <CopyDone />
   </div>
 {:else}
@@ -27,7 +26,6 @@ const handleClick = () => {
     class="svp-code-bock--copy-code" 
     on:click={handleClick} 
     on:keyup={handleClick}
-    transition:scale
   >
     <Copy />
   </div>
