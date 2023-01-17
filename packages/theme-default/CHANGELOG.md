@@ -1,5 +1,19 @@
 # @svelte-press/theme-default
 
+## 0.7.1
+
+### Patch Changes
+
+- [`3013a8a`](https://github.com/Blackman99/sveltepress/commit/3013a8a209c0f28cf89b4486e9f21cb4063aeafa) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page layout wrapper should hoist all script tag to top
+
+- [`7d97374`](https://github.com/Blackman99/sveltepress/commit/7d973748c8da64c21ae2d07c49a719f88451e121) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add copy code block button
+
+- [`58857f8`](https://github.com/Blackman99/sveltepress/commit/58857f8883900a08c55fe192c1c27bcaa0dcb703) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: customize sm breakpoint to improve user experience
+
+- [`eee6002`](https://github.com/Blackman99/sveltepress/commit/eee6002a783c3b67a89e7f8c788c6b1105b7acbe) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: home page multi screen style adjust
+
+- [`91464f7`](https://github.com/Blackman99/sveltepress/commit/91464f76c1a17f4f8f97a679e3e7a56dddf25124) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize mobile sidebar groups
+
 ## 0.7.0
 
 ### Minor Changes
