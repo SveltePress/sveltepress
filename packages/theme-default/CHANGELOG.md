@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.7.0
+
+### Minor Changes
+
+- [`2f90aa6`](https://github.com/Blackman99/sveltepress/commit/2f90aa6c039a03416502bef3209eac22704206d7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add code import
+
+### Patch Changes
+
+- [`7258e12`](https://github.com/Blackman99/sveltepress/commit/7258e12d3907af176bbe3739b2787f87f828ee92) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: diff marker style
+
+- [`dfcabae`](https://github.com/Blackman99/sveltepress/commit/dfcabae14b2800234b00c2e85bc0818d49bdbee7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove temp \_page.svelte for better HMR and better asset handle
+
 ## 0.6.2
 
 ### Patch Changes
