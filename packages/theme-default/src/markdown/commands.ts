@@ -21,7 +21,7 @@ export const diff: Command = (addOrCut, idx) => {
   return warpLine(
     `bg-${color}-4 bg-opacity-20`,
     idx,
-    `<div class="absolute left-[4px] top-0 bottom-0 leading-[1.25em] text-${color}-4">${mark}</div>`,
+    `<div class="absolute left-[4px] top-0 bottom-0 leading-[1.5em] text-${color}-4">${mark}</div>`,
   )
 }
 

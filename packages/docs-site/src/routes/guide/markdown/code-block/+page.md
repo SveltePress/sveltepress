@@ -166,6 +166,8 @@ Multi `// [svp! fc]` in one single code block is not supported
 
 use svelte lang and live prop would have effect like this
 
+**Input**
+
 ````md
 ```svelte live
 <script>
@@ -178,8 +180,21 @@ use svelte lang and live prop would have effect like this
 <button on:click={handleClick}>
   You've clicked {count} times
 </button>
+<style>
+  button {
+    background-color: purple;
+    color: white;
+    outline: 0;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
 ```
 ````
+
+**Output**
 
 ```svelte live
 <script>

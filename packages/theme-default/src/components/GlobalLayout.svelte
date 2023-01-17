@@ -1,9 +1,9 @@
 <script>
   import Navbar from './Navbar.svelte'
   import AjaxBar from './AjaxBar.svelte'
-  import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { sidebarCollapsed } from './layout'
-  import Sidebar from './Sidebar.svelte';
+  import Sidebar from './Sidebar.svelte'
+  import { afterNavigate, beforeNavigate } from '$app/navigation'
   
   let ajaxBar
 
@@ -79,6 +79,9 @@
     --at-apply: relative bg-white dark:bg-[#011627] transition-shadow transition-300 hover:shadow
       overflow-y-hidden py-[12px] px-18px rounded-lg text-[14px] mb-8;
   }
+  :global(.c-expansion--body .svp-code-block) {
+    --at-apply: rounded-none;
+  }
   :global(.svp-code-block--lang) {
     --at-apply: absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px];
   }
@@ -109,7 +112,7 @@
     --at-apply: text-left p-2;
   }
   :global(table tbody tr) {
-    --at-apply: border-t-1 border-t-solid border-gray-2;
+    --at-apply: border-t-1 border-t-solid border-gray-2 dark:border-gray-7;
   }
   :global(table tbody tr td) {
     --at-apply: p-2;
