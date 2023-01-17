@@ -1,20 +1,18 @@
 <script>
+  import themeConfig from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
   import SidebarItem from './SidebarItem.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
   import { sidebarCollapsed } from './layout'
-  import themeConfig from 'virtual:sveltepress/theme-default'
   import Close from './icons/Close.svelte'
-  import { page } from '$app/stores'
-
-  const routeId = $page.route.id
-  const isHome = routeId === '/'
 
   export let sidebar = []
 
   const handleClose = () => {
     $sidebarCollapsed = true
   }
+
+  const allSidebars = Object.values(themeConfig.sidebar).reduce((all, arr) => [...all, ...arr], [])
 </script>
 
 <aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed}>
@@ -23,31 +21,32 @@
   </div>
   <div class="sidebar-logo">
     <Logo />
-    {#if !isHome}
-      <div class="sidebar-mobile">
-        {#each themeConfig.navbar as navbarItem}
-          <svelte:component this={Array.isArray(navbarItem.items) ? SidebarGroup : SidebarItem} {...navbarItem} />
-        {/each}
-      </div>
-    {/if}
-  </div>
-
-  {#if isHome}
     <div class="sidebar-mobile">
       {#each themeConfig.navbar as navbarItem}
         <svelte:component this={Array.isArray(navbarItem.items) ? SidebarGroup : SidebarItem} {...navbarItem} />
       {/each}
     </div>
-  {/if}
+  </div>
+
+  <div class="sidebar-mobile">
+    {#each allSidebars as item}
+      <svelte:component this={Array.isArray(item.items) ? SidebarGroup : SidebarItem} {...item} />
+    {/each}
+  </div>
     
-  {#each sidebar as sidebarItem}
-    <svelte:component this={Array.isArray(sidebarItem.items) ? SidebarGroup : SidebarItem} {...sidebarItem} />
-  {/each}
+  <div class="sidebar-pc">
+    {#each sidebar as sidebarItem}
+      <svelte:component this={Array.isArray(sidebarItem.items) ? SidebarGroup : SidebarItem} {...sidebarItem} />
+    {/each}
+  </div>
 </aside>
 
 <style>
   .sidebar-mobile {
     --at-apply: sm:display-none mt-4;
+  }
+  .sidebar-pc {
+    --at-apply: display-none sm:display-block;
   }
   .theme-default-sidebar {
     --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-32 

@@ -14,13 +14,6 @@ const config = defineConfig({
           to: '/reference/vite-plugin-options/',
         }],
         sidebar: {
-          '/reference/': [{
-            title: 'Vite plugin options',
-            to: '/reference/vite-plugin-options/',
-          }, {
-            title: 'Default theme options',
-            to: '/reference/default-theme-options/',
-          }],
           '/guide/': [
             {
               title: 'Introduction',
@@ -61,6 +54,19 @@ const config = defineConfig({
               ],
             },
           ],
+          '/reference/': [{
+            title: 'Reference',
+            items: [
+              {
+                title: 'Vite plugin options',
+                to: '/reference/vite-plugin-options/',
+              }, {
+                title: 'Default theme options',
+                to: '/reference/default-theme-options/',
+              },
+            ],
+          }],
+
         },
         editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
         github: 'https://github.com/Blackman99/sveltepress',
