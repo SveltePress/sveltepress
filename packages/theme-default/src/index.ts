@@ -26,6 +26,11 @@ const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
         ],
         transformers: [transformerDirectives()],
         safelist,
+        theme: {
+          breakpoints: {
+            sm: '900px',
+          },
+        },
       }), {
         name: '@svelte-press/default-theme',
         resolveId(id) {

@@ -1,9 +1,9 @@
 <script>
   import { onMount } from 'svelte'
-  import { afterNavigate } from '$app/navigation'
   import { tocCollapsed } from './layout'
   import TocMenu from './icons/TocMenu.svelte'
   import TocClose from './icons/TocClose.svelte'
+  import { afterNavigate } from '$app/navigation'
 
   export let anchors = []
 
@@ -105,7 +105,7 @@
       text-8;
   }
   .collapsed {
-    --at-apply: translate-x-100 sm:translate-x-0;
+    --at-apply: translate-x-[100%] sm:translate-x-0;
   }
 </style>
 
