@@ -14,7 +14,8 @@
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
 
-  export let siteConfig
+  export let siteConfig = {}
+
   let resolvedSidebars = []
 
   const key = Object.keys(themeOptions.sidebar || {}).find(key => routeId.startsWith(key))
@@ -40,7 +41,7 @@
 </script>
 <svelte:head>
     <title>{title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
-    <meta name="description" content="${description || siteConfig.description}">
+    <meta name="description" content={description || siteConfig.description}>
 </svelte:head>
   
 {#if !isHome}

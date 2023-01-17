@@ -7,7 +7,7 @@ import { info } from './log.js'
 import { getFileLastUpdateTime } from './getFileLastUpdate.js'
 
 const cache = new LRUCache<string, any>({ max: 1024 })
-const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
+export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
 const styleRe = /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/g
 
 export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
@@ -44,11 +44,12 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
       filename: id,
       mdsvexOptions,
     }) || { code: '', data: {} }
+    const { fm: dataFm = {}, ...others } = data || { fm: {} }
     fm = {
       pageType: 'md',
       lastUpdate,
-      ...data?.fm || {},
-      anchors: data?.anchors || [],
+      ...(dataFm as any),
+      ...others,
     }
     svelteCode = code
   }
@@ -104,9 +105,6 @@ export function wrapSvelteCode({
   } while (matches)
 
   if (scripts.length) {
-    scripts.forEach((s) => {
-      svelteCode = svelteCode.replace(new RegExp(s), '')
-    })
     scripts[0] = scripts[0].replace(/<script\b[^>]*>/, m => [
       m,
       imports,
@@ -116,8 +114,9 @@ export function wrapSvelteCode({
   let styleCode = ''
   if (styleMatches) {
     styleCode = styleMatches[0]
-    svelteCode = svelteCode.replace(new RegExp(styleCode), '')
+    svelteCode = svelteCode.replace(styleRe, '')
   }
+  svelteCode = svelteCode.replace(scriptRe, '')
   return `
   ${scripts.join('\n')}
 <PageLayout {fm} {siteConfig}>
