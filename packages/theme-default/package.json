@@ -55,6 +55,7 @@
     "./PageLayout.svelte": "./src/components/PageLayout.svelte",
     "./GlobalLayout.svelte": "./src/components/GlobalLayout.svelte",
     "./Link.svelte": "./src/components/Link.svelte",
+    "./CopyCode.svelte": "./src/components/CopyCode.svelte",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -66,6 +67,7 @@
       "./PageLayout.svelte": "./dist/components/PageLayout.svelte",
       "./Link.svelte": "./dist/components/Link.svelte",
       "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte",
+      "./CopyCode.svelte": "./dist/components/CopyCode.svelte",
       "./package.json": "./package.json"
     }
   }

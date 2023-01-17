@@ -48,6 +48,7 @@ const highlighter: Highlighter = async (code, lang) => {
       <div class="svp-code-block--lang">
         ${lang}
       </div>
+      <CopyCode />
   </div>`
 }
 

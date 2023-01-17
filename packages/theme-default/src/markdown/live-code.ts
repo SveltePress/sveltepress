@@ -14,10 +14,12 @@ const ICON_LOADING_CLASSES = 'text-lg text-gray-4'
 
 const expansionImporter = 'import CExpansion from \'@svelte-press/theme-default/CExpansion.svelte\''
 const linkImporter = 'import Link from \'@svelte-press/theme-default/Link.svelte\''
+const copyCodeImporter = 'import CopyCode from \'@svelte-press/theme-default/CopyCode.svelte\''
 
 const globalComponentsImporters = [
   expansionImporter,
   linkImporter,
+  copyCodeImporter,
 ]
 
 const liveCode: RemarkLiveCode = function () {

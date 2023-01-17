@@ -76,14 +76,30 @@
   }
 
   :global(.svp-code-block) {
-    --at-apply: relative bg-white dark:bg-[#011627] transition-shadow transition-300 hover:shadow
+    --at-apply: relative bg-white dark:bg-[#011627] 
+      transition-shadow transition-300 hover:shadow
       overflow-y-hidden py-[12px] px-18px rounded-lg text-[14px] mb-8;
+  }
+  :global(.svp-code-block:hover .svp-code-block--lang) {
+    --at-apply: opacity-0;
+  }
+  :global(.svp-code-bock--copy-code) {
+    --at-apply: opacity-0 events-none
+      absolute top-[12px] right-[12px] cursor-pointer z-19 
+      w-[28px] h-[28px] text-4 rounded-lg
+      border-solid border-2 border-gray-3
+      hover:border-rose-4 hover:text-rose-4
+      flex items-center justify-center transition-all transition-300;
+  }
+  :global(.svp-code-block:hover .svp-code-bock--copy-code) {
+    --at-apply: opacity-100 events-all;
   }
   :global(.c-expansion--body .svp-code-block) {
     --at-apply: rounded-none;
   }
   :global(.svp-code-block--lang) {
-    --at-apply: absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px];
+    --at-apply: absolute top-2 right-3 z-100 text-cool-gray-3 
+      dark:text-cool-gray-7 text-[12px] transition-300 transition-opacity;
   }
   :global(.svp-code-block--command-line) {
     --at-apply: absolute left-0 right-0 z-2 h-[1.5em];
