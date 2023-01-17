@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
- <img align="center" alt="Sveltepress" src="./packages/docs-site/static/sveltepress@2x.png" />
+ <img align="center" alt="Sveltepress" src="./packages/docs-site/static/android-chrome-192x192.png" />
   <br>
   Sveltepress
   <br>
