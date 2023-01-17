@@ -1,6 +1,6 @@
 ---
 title: Home Page
-heroImage: /sveltepress@3x.png
+heroImage: /android-chrome-192x192.png
 tagline: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
 actions:
   - label: Read the docs
