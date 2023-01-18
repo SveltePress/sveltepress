@@ -9,7 +9,7 @@
   },
   "files": [
     "dist",
-    "types"
+    "shims-modules.d.ts"
   ],
   "keywords": [
     "Docs",
@@ -56,7 +56,10 @@
     "./GlobalLayout.svelte": "./src/components/GlobalLayout.svelte",
     "./Link.svelte": "./src/components/Link.svelte",
     "./CopyCode.svelte": "./src/components/CopyCode.svelte",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./modules": {
+      "types": "./types.d.ts"
+    }
   },
   "publishConfig": {
     "types": "./dist/index.d.ts",
@@ -68,7 +71,10 @@
       "./Link.svelte": "./dist/components/Link.svelte",
       "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte",
       "./CopyCode.svelte": "./dist/components/CopyCode.svelte",
-      "./package.json": "./package.json"
+      "./package.json": "./package.json",
+      "./modules": {
+        "types": "./types.d.ts"
+      }
     }
   }
 }

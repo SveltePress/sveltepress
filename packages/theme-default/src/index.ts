@@ -1,7 +1,8 @@
-import type { LoadTheme } from '@svelte-press/vite'
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
 import { presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import type { LoadTheme } from '@svelte-press/vite'
+
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import safelist from './markdown/uno-safelist.js'
 import liveCode from './markdown/live-code.js'
@@ -10,9 +11,11 @@ import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
 
+export type ThemeDefault = LoadTheme<DefaultThemeOptions>
+
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
-const defaultTheme: LoadTheme<DefaultThemeOptions> = (options) => {
+const defaultTheme: ThemeDefault = (options) => {
   return {
     name: '@svelte-press/theme-default',
     globalLayout: '@svelte-press/theme-default/GlobalLayout.svelte',

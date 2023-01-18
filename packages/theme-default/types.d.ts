@@ -17,13 +17,15 @@ declare module "virtual:sveltepress/theme-default" {
     logo?: string
     sidebar?: Record<string, (LinkItem | LinkGroup)[]>
     editLink?: string
+    discord?: string
     docsearch?: {
-      appId: string,
-      apiKey: string,
+      appId: string
+      apiKey: string
       indexName: string
     }
   }
-  
+
   const options: DefaultThemeOptions
+
   export default options
 }

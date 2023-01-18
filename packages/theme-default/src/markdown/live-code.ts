@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
-import type { RemarkLiveCode } from '../types'
+import type { Plugin } from 'unified'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
@@ -22,7 +22,7 @@ const globalComponentsImporters = [
   copyCodeImporter,
 ]
 
-const liveCode: RemarkLiveCode = function () {
+const liveCode: Plugin<[], any> = function () {
   if (!existsSync(BASE_PATH)) {
     mkdirSync(BASE_PATH, {
       recursive: true,

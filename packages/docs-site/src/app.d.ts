@@ -1,6 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
-
 // and what to do when importing types
 declare namespace App {
 	// interface Error {}
@@ -8,6 +7,8 @@ declare namespace App {
 	// interface PageData {}
 	// interface Platform {}
 }
+
+/// <reference path="../node_modules/@svelte-press/theme-default/types.d.ts" />
 declare module '*.md' {
 	import { SvelteComponentTyped } from "svelte"
 

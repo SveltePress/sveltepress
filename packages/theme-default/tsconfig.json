@@ -4,10 +4,5 @@
     "module": "ESNext",
     "moduleResolution": "node"
   },
-  "exclude": ["dist"],
-  "include": [
-    "src/**/*",
-    "node_modules/@svelte-press/vite/types/sveltepress.d.ts",
-    "theme-default.d.ts"
-  ]
+  "exclude": ["dist"]
 }
