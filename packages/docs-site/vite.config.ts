@@ -49,6 +49,10 @@ const config = defineConfig({
               title: 'Default theme features',
               items: [
                 {
+                  title: 'Frontmatter',
+                  to: '/guide/default-theme/frontmatter/',
+                },
+                {
                   title: 'Links',
                   to: '/guide/default-theme/links/',
                 },
@@ -61,8 +65,8 @@ const config = defineConfig({
                   to: '/guide/default-theme/admonitions/',
                 },
                 {
-                  title: 'Code blocks',
-                  to: '/guide/default-theme/code-block/',
+                  title: 'Code relative',
+                  to: '/guide/default-theme/code-relative/',
                 },
               ],
             },

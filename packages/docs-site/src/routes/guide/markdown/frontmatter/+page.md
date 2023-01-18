@@ -35,6 +35,3 @@ interface SiteConfig {
   description?: string
 }
 ```
-
-The final page title would be `page frontmatter title | siteConfig.title`  
-The final page description would be `page frontmatter description | siteConfig.description`

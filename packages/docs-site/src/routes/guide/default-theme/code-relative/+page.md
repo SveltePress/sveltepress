@@ -1,5 +1,5 @@
 ---
-title:  Code Block
+title:  Code Blocks
 ---
 
 :::tip Tips
