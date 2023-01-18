@@ -74,7 +74,7 @@
     --at-apply: text-3.5 sm:w-[22vw]
       w-[60vw]
       bg-white dark:bg-zinc-8 sm:bg-transparent top-0
-      z-100 shadow-md sm:shadow-none sm:dark:bg-transparent
+      z-999 shadow-md sm:shadow-none sm:dark:bg-transparent
       fixed sm:top-[80px] bottom-0 right-0 sm:z-3 leading-[2em] py-4
       text-gray-5 dark:text-gray-2
       transition transition-500 transition-transform;
@@ -101,7 +101,7 @@
   }
   .mobile-toc-trigger {
     --at-apply: sm:display-none fixed bottom-[12px] right-[12px]
-      w-[38px] h-[38px] bg-white dark:bg-gray-9 rounded-[19px] shadow-lg z-101
+      w-[38px] h-[38px] bg-white dark:bg-gray-9 rounded-[19px] shadow-lg z-9999
       flex items-center justify-center
       text-6;
   }
