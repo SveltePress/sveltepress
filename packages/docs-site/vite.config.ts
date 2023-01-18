@@ -11,7 +11,7 @@ const config = defineConfig({
           to: '/guide/introduction/',
         }, {
           title: 'Reference',
-          to: '/reference/vite-plugin-options/',
+          to: '/reference/vite-plugin/',
         }],
         sidebar: {
           '/guide/': [
@@ -58,11 +58,11 @@ const config = defineConfig({
             title: 'Reference',
             items: [
               {
-                title: 'Vite plugin options',
-                to: '/reference/vite-plugin-options/',
+                title: 'Vite plugin',
+                to: '/reference/vite-plugin/',
               }, {
-                title: 'Default theme options',
-                to: '/reference/default-theme-options/',
+                title: 'Default theme',
+                to: '/reference/default-theme/',
               },
             ],
           }],

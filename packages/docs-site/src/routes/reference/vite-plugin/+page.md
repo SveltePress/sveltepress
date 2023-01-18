@@ -1,6 +1,8 @@
 ---
-title: Vite plugin options
+title: Vite plugin
 ---
+
+## Plugin options
 
 Here's the options type interface
 
@@ -12,7 +14,7 @@ interface SveltepressVitePluginOptions {
 }
 ```
 
-## siteConfig
+### siteConfig
 
 ```ts
 interface SiteConfig {
@@ -24,12 +26,12 @@ interface SiteConfig {
 * `title`: The site title. Would be `'Untitled site'` if not provided.
 * `description`: The site description. Would be `'Build by sveltepress'` if not provided.
 
-## addInspect
+### addInspect
 
 If set to `true`, will add [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect).   
 It is useful to inspect or observe the vite pipeline.
 
-## theme
+### theme
 
 ```ts
 export interface ResolvedTheme {
