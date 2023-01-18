@@ -1,5 +1,21 @@
 # @svelte-press/theme-default
 
+## 0.8.0
+
+### Minor Changes
+
+- [`1354aa5`](https://github.com/Blackman99/sveltepress/commit/1354aa518dcc658b58aa81dd507dc344e22608cc) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for depth anchors
+
+### Patch Changes
+
+- [`b9f33db`](https://github.com/Blackman99/sveltepress/commit/b9f33db6cea76bb6c19c0ec03cd09761952527e9) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar should have a larger z index than code block lang marker
+
+- [`78c9219`](https://github.com/Blackman99/sveltepress/commit/78c9219df34bba5f9545494dda34fc3f39220ff1) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc z index
+
+- [`93c17d2`](https://github.com/Blackman99/sveltepress/commit/93c17d2b948725977851fd64b873941feb599a40) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: copy code should have a larger z index than lang marker
+
+- [`441921d`](https://github.com/Blackman99/sveltepress/commit/441921d3293e72ae6b7cd5e2c998605914cb1a65) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar z index
+
 ## 0.7.2
 
 ### Patch Changes

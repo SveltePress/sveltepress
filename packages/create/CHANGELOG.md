@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.8.0
+
+### Minor Changes
+
+- [`1354aa5`](https://github.com/Blackman99/sveltepress/commit/1354aa518dcc658b58aa81dd507dc344e22608cc) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for depth anchors
+
 ## 0.7.2
 
 ### Patch Changes
