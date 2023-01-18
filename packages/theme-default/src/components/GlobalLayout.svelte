@@ -83,17 +83,6 @@
   :global(.svp-code-block:hover .svp-code-block--lang) {
     --at-apply: opacity-0;
   }
-  :global(.svp-code-bock--copy-code) {
-    --at-apply: opacity-0 events-none
-      absolute top-[12px] right-[12px] cursor-pointer z-19 
-      w-[28px] h-[28px] text-4 rounded-lg
-      border-solid border-2 border-gray-3
-      hover:border-rose-4 hover:text-rose-4
-      flex items-center justify-center transition-all transition-300;
-  }
-  :global(.svp-code-block:hover .svp-code-bock--copy-code) {
-    --at-apply: opacity-100 events-all;
-  }
   :global(.c-expansion--body .svp-code-block) {
     --at-apply: rounded-none;
   }

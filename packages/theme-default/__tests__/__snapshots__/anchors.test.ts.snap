@@ -9,8 +9,8 @@ exports[`anchors > simple 1`] = `
       \\"data\\": {
         \\"hName\\": \\"div\\",
         \\"hProperties\\": {
-          \\"id\\": \\"slug-1\\",
-          \\"className\\": \\"relative bottom-[74px]\\"
+          \\"id\\": \\"Foo foo\\",
+          \\"className\\": \\"svp-anchor-item\\"
         }
       }
     },
@@ -20,7 +20,7 @@ exports[`anchors > simple 1`] = `
       \\"children\\": [
         {
           \\"type\\": \\"text\\",
-          \\"value\\": \\"Foo\\",
+          \\"value\\": \\"Foo \\",
           \\"position\\": {
             \\"start\\": {
               \\"line\\": 2,
@@ -29,8 +29,25 @@ exports[`anchors > simple 1`] = `
             },
             \\"end\\": {
               \\"line\\": 2,
-              \\"column\\": 7,
-              \\"offset\\": 7
+              \\"column\\": 8,
+              \\"offset\\": 8
+            },
+            \\"indent\\": []
+          }
+        },
+        {
+          \\"type\\": \\"inlineCode\\",
+          \\"value\\": \\"foo\\",
+          \\"position\\": {
+            \\"start\\": {
+              \\"line\\": 2,
+              \\"column\\": 8,
+              \\"offset\\": 8
+            },
+            \\"end\\": {
+              \\"line\\": 2,
+              \\"column\\": 13,
+              \\"offset\\": 13
             },
             \\"indent\\": []
           }
@@ -44,8 +61,8 @@ exports[`anchors > simple 1`] = `
         },
         \\"end\\": {
           \\"line\\": 2,
-          \\"column\\": 7,
-          \\"offset\\": 7
+          \\"column\\": 13,
+          \\"offset\\": 13
         },
         \\"indent\\": []
       },
@@ -68,12 +85,12 @@ exports[`anchors > simple 1`] = `
                 \\"start\\": {
                   \\"line\\": 4,
                   \\"column\\": 2,
-                  \\"offset\\": 10
+                  \\"offset\\": 16
                 },
                 \\"end\\": {
                   \\"line\\": 4,
                   \\"column\\": 5,
-                  \\"offset\\": 13
+                  \\"offset\\": 19
                 },
                 \\"indent\\": []
               }
@@ -83,12 +100,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 4,
               \\"column\\": 1,
-              \\"offset\\": 9
+              \\"offset\\": 15
             },
             \\"end\\": {
               \\"line\\": 4,
               \\"column\\": 31,
-              \\"offset\\": 39
+              \\"offset\\": 45
             },
             \\"indent\\": []
           },
@@ -107,12 +124,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 4,
               \\"column\\": 31,
-              \\"offset\\": 39
+              \\"offset\\": 45
             },
             \\"end\\": {
               \\"line\\": 5,
               \\"column\\": 13,
-              \\"offset\\": 52
+              \\"offset\\": 58
             },
             \\"indent\\": [
               1
@@ -124,12 +141,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 4,
           \\"column\\": 1,
-          \\"offset\\": 9
+          \\"offset\\": 15
         },
         \\"end\\": {
           \\"line\\": 5,
           \\"column\\": 13,
-          \\"offset\\": 52
+          \\"offset\\": 58
         },
         \\"indent\\": [
           1
@@ -141,14 +158,14 @@ exports[`anchors > simple 1`] = `
       \\"data\\": {
         \\"hName\\": \\"div\\",
         \\"hProperties\\": {
-          \\"id\\": \\"slug-2\\",
-          \\"className\\": \\"relative bottom-[74px]\\"
+          \\"id\\": \\"Bar\\",
+          \\"className\\": \\"svp-anchor-item\\"
         }
       }
     },
     {
       \\"type\\": \\"heading\\",
-      \\"depth\\": 2,
+      \\"depth\\": 3,
       \\"children\\": [
         {
           \\"type\\": \\"text\\",
@@ -156,13 +173,13 @@ exports[`anchors > simple 1`] = `
           \\"position\\": {
             \\"start\\": {
               \\"line\\": 7,
-              \\"column\\": 4,
-              \\"offset\\": 57
+              \\"column\\": 5,
+              \\"offset\\": 64
             },
             \\"end\\": {
               \\"line\\": 7,
-              \\"column\\": 7,
-              \\"offset\\": 60
+              \\"column\\": 8,
+              \\"offset\\": 67
             },
             \\"indent\\": []
           }
@@ -172,12 +189,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 7,
           \\"column\\": 1,
-          \\"offset\\": 54
+          \\"offset\\": 60
         },
         \\"end\\": {
           \\"line\\": 7,
-          \\"column\\": 7,
-          \\"offset\\": 60
+          \\"column\\": 8,
+          \\"offset\\": 67
         },
         \\"indent\\": []
       },
@@ -195,12 +212,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 9,
               \\"column\\": 1,
-              \\"offset\\": 62
+              \\"offset\\": 69
             },
             \\"end\\": {
               \\"line\\": 9,
               \\"column\\": 19,
-              \\"offset\\": 80
+              \\"offset\\": 87
             },
             \\"indent\\": []
           }
@@ -210,12 +227,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 9,
           \\"column\\": 1,
-          \\"offset\\": 62
+          \\"offset\\": 69
         },
         \\"end\\": {
           \\"line\\": 9,
           \\"column\\": 19,
-          \\"offset\\": 80
+          \\"offset\\": 87
         },
         \\"indent\\": []
       }
@@ -230,7 +247,7 @@ exports[`anchors > simple 1`] = `
     \\"end\\": {
       \\"line\\": 11,
       \\"column\\": 1,
-      \\"offset\\": 82
+      \\"offset\\": 89
     }
   }
 }"

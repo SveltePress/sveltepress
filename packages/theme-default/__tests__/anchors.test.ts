@@ -3,12 +3,12 @@ import { compile } from 'mdsvex'
 import anchors from '../src/markdown/anchors'
 
 const md = `
-## Foo
+## Foo \`foo\`
 
 [foo](https://www.google.com/)
 some content
 
-## Bar
+### Bar
 
 some other content
 
@@ -24,22 +24,24 @@ describe('anchors', () => {
     expect(r).toMatchInlineSnapshot(`
       {
         "code": "
-      <div id=\\"slug-1\\" class=\\"relative bottom-[74px]\\"></div>
-      <h2>Foo</h2>
+      <div id=\\"Foo foo\\" class=\\"svp-anchor-item\\"></div>
+      <h2>Foo <code>foo</code></h2>
       <p><a href=\\"https://www.google.com/\\" rel=\\"nofollow\\">foo</a>
       some content</p>
-      <div id=\\"slug-2\\" class=\\"relative bottom-[74px]\\"></div>
-      <h2>Bar</h2>
+      <div id=\\"Bar\\" class=\\"svp-anchor-item\\"></div>
+      <h3>Bar</h3>
       <p>some other content</p>
       ",
         "data": {
           "anchors": [
             {
-              "slugId": "slug-1",
-              "title": "Foo",
+              "depth": 2,
+              "slugId": "Foo foo",
+              "title": "Foo foo",
             },
             {
-              "slugId": "slug-2",
+              "depth": 3,
+              "slugId": "Bar",
               "title": "Bar",
             },
           ],

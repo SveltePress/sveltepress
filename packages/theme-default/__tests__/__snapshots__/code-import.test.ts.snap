@@ -36,6 +36,7 @@ exports[`code import > import example 2`] = `
       <div class=\\"svp-code-block--lang\\">
         ts
       </div>
+      <CopyCode />
   </div>
 <div class=\\"svp-code-block\\">
       
@@ -67,6 +68,12 @@ exports[`code import > import example 2`] = `
 <span class=\\"line\\"><span style=\\"color: #999999\\">        ],</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">        </span><span style=\\"color: #998418\\">transformers</span><span style=\\"color: #999999\\">: [</span><span style=\\"color: #59873A\\">transformerDirectives</span><span style=\\"color: #999999\\">()],</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">        </span><span style=\\"color: #B07D48\\">safelist</span><span style=\\"color: #999999\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">        </span><span style=\\"color: #998418\\">theme</span><span style=\\"color: #999999\\">: &#123;</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">          </span><span style=\\"color: #998418\\">breakpoints</span><span style=\\"color: #999999\\">: &#123;</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">            </span><span style=\\"color: #998418\\">sm</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">900px</span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #999999\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">            </span><span style=\\"color: #998418\\">md</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">1140px</span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #999999\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">          &#125;,</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">        &#125;,</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">      &#125;), &#123;</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">        </span><span style=\\"color: #998418\\">name</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">@svelte-press/default-theme</span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #999999\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">        </span><span style=\\"color: #59873A\\">resolveId</span><span style=\\"color: #999999\\">(</span><span style=\\"color: #B07D48\\">id</span><span style=\\"color: #999999\\">) &#123;</span></span>
@@ -133,6 +140,12 @@ exports[`code import > import example 2`] = `
 <span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        </span><span style=\\"color: #D6DEEB\\">],</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        transformers</span><span style=\\"color: #D6DEEB\\">:</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D6DEEB\\">[</span><span style=\\"color: #82AAFF; font-style: italic\\">transformerDirectives</span><span style=\\"color: #D6DEEB\\">()],</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        safelist</span><span style=\\"color: #D6DEEB\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        theme</span><span style=\\"color: #D6DEEB\\">:</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D6DEEB\\">&#123;</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">          breakpoints</span><span style=\\"color: #D6DEEB\\">:</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D6DEEB\\">&#123;</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">            sm</span><span style=\\"color: #D6DEEB\\">:</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">900px</span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #D6DEEB\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">            md</span><span style=\\"color: #D6DEEB\\">:</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">1140px</span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #D6DEEB\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">          </span><span style=\\"color: #D6DEEB\\">&#125;,</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        </span><span style=\\"color: #D6DEEB\\">&#125;,</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">      </span><span style=\\"color: #D6DEEB\\">&#125;),</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D6DEEB\\">&#123;</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        name</span><span style=\\"color: #D6DEEB\\">:</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">@svelte-press/default-theme</span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #D6DEEB\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB; font-style: italic\\">        </span><span style=\\"color: #82AAFF; font-style: italic\\">resolveId</span><span style=\\"color: #D9F5DD\\">(</span><span style=\\"color: #D7DBE0; font-style: italic\\">id</span><span style=\\"color: #D9F5DD\\">)</span><span style=\\"color: #D6DEEB; font-style: italic\\"> </span><span style=\\"color: #D6DEEB\\">&#123;</span></span>
@@ -174,6 +187,7 @@ exports[`code import > import example 2`] = `
       <div class=\\"svp-code-block--lang\\">
         ts
       </div>
+      <CopyCode />
   </div>
 "
 `;

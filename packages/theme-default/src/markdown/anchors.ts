@@ -4,7 +4,6 @@ import { visit } from 'unist-util-visit'
 const anchors: Plugin<any[], any> = () => {
   return (tree, vFile) => {
     const anchors = []
-    let id = 1
     visit(tree, (node, idx, parent) => {
       if (node.type === 'heading' && !node.data?.anchorAdded) {
         if (!node.data) {
@@ -15,22 +14,22 @@ const anchors: Plugin<any[], any> = () => {
         else {
           node.data.anchorAdded = true
         }
-        const title = node.children.filter(c => c.type === 'text').map(c => c.value).join('')
+        const title = node.children.filter(c => ['text', 'inlineCode'].includes(c.type)).map(c => c.value).join('')
 
-        const slugId = `slug-${id++}`
         parent.children.splice(idx, 1, {
           type: 'slugId',
           data: {
             hName: 'div',
             hProperties: {
-              id: slugId,
+              id: title,
               className: 'svp-anchor-item',
             },
           },
         }, node)
         anchors.push({
-          slugId,
+          slugId: title,
           title,
+          depth: node.depth,
         })
       }
     })

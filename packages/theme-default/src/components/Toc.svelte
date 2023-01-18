@@ -59,7 +59,7 @@
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
       {#each anchors as an}
         <div>
-          <a href={`#${an.slugId}`} class="item">
+          <a href={`#${an.slugId}`} class="item" style={`--heading-depth: ${an.depth};`}>
             {an.title}
           </a>
         </div>
@@ -81,6 +81,7 @@
   }
   .item {
     --at-apply: relative z-3 block  truncate;
+    text-indent: calc((var(--heading-depth ) - 2) * 1.2em);
   }
   
   .anchors {
