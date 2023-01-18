@@ -40,16 +40,29 @@ const config = defineConfig({
                   to: '/guide/markdown/frontmatter/',
                 },
                 {
+                  title: 'Svelte in markdown',
+                  to: '/guide/markdown/svelte-in-markdown/',
+                },
+              ],
+            },
+            {
+              title: 'Default theme features',
+              items: [
+                {
+                  title: 'Links',
+                  to: '/guide/default-theme/links/',
+                },
+                {
+                  title: 'Headings & Anchors',
+                  to: '/guide/default-theme/headings-and-anchors/',
+                },
+                {
                   title: 'Admonitions',
-                  to: '/guide/markdown/admonitions/',
+                  to: '/guide/default-theme/admonitions/',
                 },
                 {
                   title: 'Code blocks',
-                  to: '/guide/markdown/code-block/',
-                },
-                {
-                  title: 'Svelte in markdown',
-                  to: '/guide/markdown/svelte-in-markdown/',
+                  to: '/guide/default-theme/code-block/',
                 },
               ],
             },

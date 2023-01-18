@@ -162,7 +162,7 @@ Multi `// [svp! fc]` in one single code block is not supported
 </div>
 ```
 
-### Svelte live code
+## Svelte live code
 
 use svelte lang and live prop would have effect like this
 
