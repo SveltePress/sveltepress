@@ -4,8 +4,7 @@
   export let label = ''
   export let to = ''
 
-  const isExternal = /^https?/.test(to)
-
+  $: isExternal = /^https?/.test(to)
 
   const handleClick = () => {
     if (!to)

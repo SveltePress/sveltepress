@@ -108,6 +108,32 @@ Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 
 ### Links
 
+**Input**
+
 ```md
-[link title](https://link.address)
+[External Link](https://link.address)
+[Internal Link](/foo/bar)
+```
+
+**Output**
+
+[External Link](https://link.address)  
+[Internal Link](/foo/bar)
+
+
+### Headings & Anchors
+
+All headings in your page md files would render the toc on the right of the page  
+
+As you currently can see on every page
+
+And multi levels are supported
+```md
+## Heading1
+### Heading1 nested1
+### Heading1 nested2
+
+## Heading2
+### Heading2 nested1
+### Heading2 nested2
 ```

@@ -6,6 +6,7 @@ const md = `
 ## Foo
 
 [foo](https://www.google.com/)
+[bar](/foo/bar)
 
 `
 
@@ -20,7 +21,8 @@ describe('links', () => {
       {
         "code": "
       <h2>Foo</h2>
-      <p><Link to=\\"https://www.google.com/\\" label=\\"foo\\" /></p>
+      <p><Link to=\\"https://www.google.com/\\" label=\\"foo\\" />
+      <Link to=\\"/foo/bar\\" label=\\"bar\\" /></p>
       ",
         "data": {
           "anchors": [],

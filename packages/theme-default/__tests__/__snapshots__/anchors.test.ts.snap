@@ -76,7 +76,7 @@ exports[`anchors > simple 1`] = `
         {
           \\"type\\": \\"link\\",
           \\"title\\": null,
-          \\"url\\": \\"https://www.google.com/\\",
+          \\"url\\": \\"/foo/bar\\",
           \\"children\\": [
             {
               \\"type\\": \\"text\\",
@@ -104,17 +104,10 @@ exports[`anchors > simple 1`] = `
             },
             \\"end\\": {
               \\"line\\": 4,
-              \\"column\\": 31,
-              \\"offset\\": 45
+              \\"column\\": 16,
+              \\"offset\\": 30
             },
             \\"indent\\": []
-          },
-          \\"data\\": {
-            \\"hProperties\\": {
-              \\"rel\\": [
-                \\"nofollow\\"
-              ]
-            }
           }
         },
         {
@@ -123,13 +116,13 @@ exports[`anchors > simple 1`] = `
           \\"position\\": {
             \\"start\\": {
               \\"line\\": 4,
-              \\"column\\": 31,
-              \\"offset\\": 45
+              \\"column\\": 16,
+              \\"offset\\": 30
             },
             \\"end\\": {
               \\"line\\": 5,
               \\"column\\": 13,
-              \\"offset\\": 58
+              \\"offset\\": 43
             },
             \\"indent\\": [
               1
@@ -146,7 +139,7 @@ exports[`anchors > simple 1`] = `
         \\"end\\": {
           \\"line\\": 5,
           \\"column\\": 13,
-          \\"offset\\": 58
+          \\"offset\\": 43
         },
         \\"indent\\": [
           1
@@ -174,12 +167,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 7,
               \\"column\\": 5,
-              \\"offset\\": 64
+              \\"offset\\": 49
             },
             \\"end\\": {
               \\"line\\": 7,
               \\"column\\": 8,
-              \\"offset\\": 67
+              \\"offset\\": 52
             },
             \\"indent\\": []
           }
@@ -189,12 +182,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 7,
           \\"column\\": 1,
-          \\"offset\\": 60
+          \\"offset\\": 45
         },
         \\"end\\": {
           \\"line\\": 7,
           \\"column\\": 8,
-          \\"offset\\": 67
+          \\"offset\\": 52
         },
         \\"indent\\": []
       },
@@ -212,12 +205,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 9,
               \\"column\\": 1,
-              \\"offset\\": 69
+              \\"offset\\": 54
             },
             \\"end\\": {
               \\"line\\": 9,
               \\"column\\": 19,
-              \\"offset\\": 87
+              \\"offset\\": 72
             },
             \\"indent\\": []
           }
@@ -227,12 +220,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 9,
           \\"column\\": 1,
-          \\"offset\\": 69
+          \\"offset\\": 54
         },
         \\"end\\": {
           \\"line\\": 9,
           \\"column\\": 19,
-          \\"offset\\": 87
+          \\"offset\\": 72
         },
         \\"indent\\": []
       }
@@ -247,7 +240,7 @@ exports[`anchors > simple 1`] = `
     \\"end\\": {
       \\"line\\": 11,
       \\"column\\": 1,
-      \\"offset\\": 89
+      \\"offset\\": 74
     }
   }
 }"

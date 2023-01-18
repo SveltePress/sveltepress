@@ -5,7 +5,7 @@ import anchors from '../src/markdown/anchors'
 const md = `
 ## Foo \`foo\`
 
-[foo](https://www.google.com/)
+[foo](/foo/bar)
 some content
 
 ### Bar
@@ -26,7 +26,7 @@ describe('anchors', () => {
         "code": "
       <div id=\\"Foo foo\\" class=\\"svp-anchor-item\\"></div>
       <h2>Foo <code>foo</code></h2>
-      <p><a href=\\"https://www.google.com/\\" rel=\\"nofollow\\">foo</a>
+      <p><a href=\\"/foo/bar\\">foo</a>
       some content</p>
       <div id=\\"Bar\\" class=\\"svp-anchor-item\\"></div>
       <h3>Bar</h3>

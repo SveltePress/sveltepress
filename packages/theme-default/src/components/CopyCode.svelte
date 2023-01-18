@@ -34,7 +34,7 @@ const handleClick = () => {
 <style>
   :global(.svp-code-bock--copy-code) {
     --at-apply: opacity-0 events-none
-      absolute top-[6px] right-[12px] cursor-pointer z-19 
+      absolute top-[6px] right-[12px] cursor-pointer z-200
       w-[28px] h-[28px] text-4 rounded-lg
       border-solid border-2 border-gray-3
       hover:border-rose-4 hover:text-rose-4
