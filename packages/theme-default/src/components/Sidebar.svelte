@@ -50,7 +50,7 @@
   }
   .theme-default-sidebar {
     --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-32 
-      bg-light-6 dark:bg-dark-9 z-99 
+      bg-light-6 dark:bg-dark-9 z-999 
       sm:w-[25vw] w-[60vw] pl-4 sm:pl-[10vw] box-border
       transition-transform transition-300 shadow-md sm:shadow-none;
   }
