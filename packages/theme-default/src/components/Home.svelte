@@ -25,7 +25,7 @@
       <div class="gradient-title">
         {siteConfig.title}
       </div>
-      <div class="text-8 leading-10 sm:text-inherit sm:leading-inherit">
+      <div class="text-8 leading-10 sm:text-inherit">
         {siteConfig.description}
       </div>
       {#if tagline}
@@ -89,7 +89,7 @@
     color: transparent;
   }
   .tagline {
-    --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9;
+    --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9 font-normal;
   }
   .actions {
     --at-apply: grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-4 justify-center sm:justify-start;

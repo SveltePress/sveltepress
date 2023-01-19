@@ -32,6 +32,7 @@
 
 <style>
 .toggle {
-  --at-apply: h-[28px] text-[28px] cursor-pointer px-3 flex items-center h-100% hover:opacity-80;
+  --at-apply: h-[28px] text-[24px] 
+    cursor-pointer px-3 flex items-center h-100% hover:opacity-80;
 }
 </style>
