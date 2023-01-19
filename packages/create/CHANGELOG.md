@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.10.1
+
+### Patch Changes
+
+- [`b599805`](https://github.com/Blackman99/sveltepress/commit/b599805124df96c278e4b802de1835082b19ac28) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar dropdown style
+
 ## 0.10.0
 
 ### Minor Changes

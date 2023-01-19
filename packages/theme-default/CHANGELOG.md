@@ -1,5 +1,13 @@
 # @svelte-press/theme-default
 
+## 0.10.1
+
+### Patch Changes
+
+- [`b599805`](https://github.com/Blackman99/sveltepress/commit/b599805124df96c278e4b802de1835082b19ac28) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar dropdown style
+
+- [`423246d`](https://github.com/Blackman99/sveltepress/commit/423246d50de44355e03dd31614ab21795e9991f4) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove unnecessary uno icon presets
+
 ## 0.10.0
 
 ### Minor Changes
