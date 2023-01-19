@@ -31,8 +31,9 @@
   {:else}
   <svelte:element 
     this={external ? 'div' : 'a'} 
-    href={to} 
-    class={`nav-item ${icon ? 'nav-item--icon' : ''}`} 
+    href={to}
+    class:nav-item--icon={icon} 
+    class="nav-item" 
     target={external ? '_blank' : ''}
     on:click={handleClick}
     on:keypress={handleClick}

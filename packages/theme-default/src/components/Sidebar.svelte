@@ -60,7 +60,9 @@
       border-b-solid border-b border-light-8 dark:border-b-gray-7;
   }
   .collapsed {
-    --at-apply: -translate-x-[100%] sm:translate-x-0;
+    --at-apply: sm:translate-x-0;
+    /* FIXME: This is likely a unocss and svelte-scoped bug */
+    transform: translateX(-100%);
   }
   .close {
     --at-apply: text-7 flex items-center sm:display-none

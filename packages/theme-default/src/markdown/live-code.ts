@@ -7,11 +7,6 @@ import type { Plugin } from 'unified'
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
-const ERROR_CLASSES = 'text-red-5'
-const CONTAINER_CLASSES = 'mb-8 shadow-sm'
-const DEMO_CLASSES = 'bg-white dark:bg-warm-gray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid'
-const ICON_LOADING_CLASSES = 'text-lg text-gray-4'
-
 const expansionImporter = 'import CExpansion from \'@svelte-press/theme-default/CExpansion.svelte\''
 const linkImporter = 'import Link from \'@svelte-press/theme-default/Link.svelte\''
 const copyCodeImporter = 'import CopyCode from \'@svelte-press/theme-default/CopyCode.svelte\''
@@ -74,7 +69,7 @@ const liveCode: Plugin<[], any> = function () {
 
           const svelteComponent = {
             type: 'html',
-            value: `<div class="${DEMO_CLASSES}"><${name.replace(/\.svelte$/, '')} /></div>`,
+            value: `<div class="svp-live-code--demo"><${name.replace(/\.svelte$/, '')} /></div>`,
           }
 
           const liveCodeNode = {
@@ -82,7 +77,7 @@ const liveCode: Plugin<[], any> = function () {
             data: {
               hName: 'div',
               hProperties: {
-                className: CONTAINER_CLASSES,
+                className: 'svp-live-code--container',
               },
             },
             children: [
@@ -125,12 +120,5 @@ const liveCode: Plugin<[], any> = function () {
     }
   }
 }
-
-export const classes = [
-  ERROR_CLASSES,
-  DEMO_CLASSES,
-  CONTAINER_CLASSES,
-  ICON_LOADING_CLASSES,
-]
 
 export default liveCode

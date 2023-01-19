@@ -53,10 +53,10 @@
         <div class="icon">
           <svelte:component this={icons[i % icons.length]} />
         </div>
-        <div font-600 mb-2 pt-2>
+        <div class="font-600 mb-2 pt-2">
           {fe.title}
         </div>
-        <div text-slate-5 mt-4>
+        <div class="text-slate-5 mt-4">
           {fe.description}
         </div>
       </div>

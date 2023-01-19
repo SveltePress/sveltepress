@@ -7,8 +7,11 @@
   export let external = false
 </script>
 
-<a role="button" href={to} class={`svp-action ${type ? `svp-action--${type}` : ''}`} target={external ? '_blank' : ''}>
-  <span flex-grow text-center>
+<a 
+  role="button" 
+  href={to} 
+  class={`svp-action ${type ? `svp-action--${type}` : ''}`} target={external ? '_blank' : ''}>
+  <span class="flex-grow text-center">
     {label}
   </span>
   {#if external}

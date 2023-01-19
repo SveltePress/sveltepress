@@ -1,6 +1,5 @@
  <script>
   import { page } from '$app/stores'
-  import { sidebarCollapsed } from './layout'
   const routeId = $page.route.id
 
   export let title = ''
@@ -10,7 +9,7 @@
 
 </script>
  
- <a href={to} class={`sidebar-item${isActive ? ' active' : ''}`}>
+ <a href={to} class="sidebar-item" class:active={isActive}>
   {title}
 </a>
 

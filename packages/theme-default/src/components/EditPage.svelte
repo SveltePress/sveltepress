@@ -18,7 +18,7 @@
   on:keyup={handleEditLinkClick}
 >
   <Edit class="text-5" />
-  <div ml-1>
+  <div class="ml-1">
     Edit this page on github 
   </div>
 </div>

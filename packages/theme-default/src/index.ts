@@ -1,8 +1,7 @@
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
-import { presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
-import safelist from './markdown/uno-safelist.js'
 import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
@@ -18,13 +17,12 @@ const defaultTheme: ThemeDefault = (options) => {
     pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
+        mode: 'svelte-scoped',
         presets: [
-          presetAttributify(),
           presetUno(),
           presetIcons(),
         ],
         transformers: [transformerDirectives()],
-        safelist,
         theme: {
           breakpoints: {
             sm: '950px',
@@ -59,7 +57,6 @@ const defaultTheme: ThemeDefault = (options) => {
     remarkPlugins: [liveCode, admonitions, links, anchors, codeImport],
     highlighter,
     clientImports: [
-      'import \'uno.css\'',
       'import \'@svelte-press/theme-default/style.css\'',
     ],
   }

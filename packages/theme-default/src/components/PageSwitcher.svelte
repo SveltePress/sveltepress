@@ -40,7 +40,7 @@
           <div class="mr-2">
             {nextPage.title}
           </div>
-          <Next text-5="" />
+          <Next class="text-5" />
         </div>
       </a>
     {/if}

@@ -108,3 +108,14 @@
     </div>
   {/if}
 </div>
+
+<style>
+  :global(.svp-live-code--container) {
+    --at-apply: mb-8 shadow-sm;
+  }
+  :global(.svp-live-code--demo) {
+    --at-apply: bg-white dark:bg-warm-gray-8 rounded-t 
+      p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 
+      b-t-solid b-x-solid;
+  }
+</style>

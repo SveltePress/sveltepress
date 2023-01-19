@@ -53,7 +53,7 @@
     {/if}
   </div>
   <div class="toc" class:collapsed={$tocCollapsed}>
-    <div font-bold pl-4>
+    <div class="font-bold pl-4">
       On this page
     </div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
@@ -106,7 +106,8 @@
       text-6;
   }
   .collapsed {
-    --at-apply: translate-x-[100%] sm:translate-x-0;
+    --at-apply: sm:translate-x-0;
+    transform: translateX(100%);
   }
 </style>
 

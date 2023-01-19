@@ -34,7 +34,7 @@ For example if your file tree look like this
 
 Here's a graph to help you understand
 
-<img src="/layout-hierarchy.png" w-full alt="" />
+<img src="/layout-hierarchy.png" style="width:100%;" alt="" />
 
 ## Configuration
 

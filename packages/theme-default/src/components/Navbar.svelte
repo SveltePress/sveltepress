@@ -20,7 +20,7 @@
 
 <header class="header">
   <div class="header-inner">
-    <div flex items-center>
+    <div class="flex items-center">
       {#if isHome}
         <div class="logo-container">
           <Logo />
