@@ -1,5 +1,5 @@
 ---
-title: Headings & Anchors in default theme
+title: Headings & Anchors
 ---
 
 All headings in your page md files would render the toc on the right of the page  

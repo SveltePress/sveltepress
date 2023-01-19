@@ -7,7 +7,7 @@ All the code block features are fully compatible with dark mode.
 Toggle dark mode to see the styles.
 :::
 
-## Code Highlight
+## Code highlight
 
 **Input**
 
@@ -35,7 +35,7 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 
-## Line Highlight
+## Line highlight
 
 Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want  
 Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the current line you want
@@ -83,7 +83,7 @@ Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the
 ## Diff
 
 Use `// [svp! df:+]` or `// [svp! ++]` for diff add  
-Use `// [svp! df:-]` or `// [svp! --]` for diffs subtract
+Use `// [svp! df:-]` or `// [svp! --]` for diff subtract
 
 **Input**
 

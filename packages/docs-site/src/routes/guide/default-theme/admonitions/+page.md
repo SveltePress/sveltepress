@@ -4,6 +4,8 @@ title: Admonitions
 
 ## Grammar
 
+This feature is provided by [Remark Admonitions](https://github.com/elviswolcott/remark-admonitions)
+
 ```md
 :::[tip|info|note|warning|important|caution] Title
 Some admonition content
