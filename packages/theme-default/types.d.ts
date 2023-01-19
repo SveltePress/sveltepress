@@ -7,6 +7,7 @@ declare module 'virtual:sveltepress/theme-default' {
 
   export interface LinkItem extends WithTitle {
     to: string
+    external?: boolean
   }
 
   export interface LinkGroup extends WithTitle {

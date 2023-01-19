@@ -12,6 +12,15 @@ const config = defineConfig({
         }, {
           title: 'Reference',
           to: '/reference/vite-plugin/',
+        }, {
+          title: 'Translations',
+          items: [
+            {
+              title: 'ZhCN',
+              to: 'https://google.com/',
+              external: true,
+            },
+          ],
         }],
         sidebar: {
           '/guide/': [

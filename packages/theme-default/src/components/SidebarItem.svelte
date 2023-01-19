@@ -5,6 +5,7 @@
   export let title = ''
   export let to = ''
 
+  $$restProps
   const isActive = routeId.endsWith('/') ? to === routeId : to === `${routeId}/`
 
 </script>
