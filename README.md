@@ -9,7 +9,7 @@
 
 > A content centered site build tool
 
-Inspired by [Vitepress](https://vitepress.vuejs.org/).   
+Inspired by [Vitepress](https://vitepress.vuejs.org/)  
 But build with [SvelteKit](https://kit.svelte.dev/) 
 
 ## Online docs and demos
