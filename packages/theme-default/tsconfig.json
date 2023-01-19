@@ -2,7 +2,10 @@
   "compilerOptions": {
     "declaration": true,
     "module": "ESNext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "typeRoots": ["types"],
+    "outDir": "dist"
   },
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "include": ["src/**/*", "types.d.ts"]
 }

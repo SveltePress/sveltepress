@@ -57,7 +57,7 @@
     "./Link.svelte": "./src/components/Link.svelte",
     "./CopyCode.svelte": "./src/components/CopyCode.svelte",
     "./package.json": "./package.json",
-    "./modules": {
+    "./types": {
       "types": "./types.d.ts"
     }
   },
@@ -72,7 +72,7 @@
       "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte",
       "./CopyCode.svelte": "./dist/components/CopyCode.svelte",
       "./package.json": "./package.json",
-      "./modules": {
+      "./types": {
         "types": "./types.d.ts"
       }
     }

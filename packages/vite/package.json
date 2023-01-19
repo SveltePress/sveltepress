@@ -4,13 +4,16 @@
   "description": "Sveltepress plugin for vite",
   "files": [
     "dist",
-    "types"
+    "types.d.ts"
   ],
   "type": "module",
   "types": "./dist/es/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/es/index.js"
+    ".": "./dist/es/index.js",
+    "./types": {
+      "types": "./types.d.ts"
+    }
   },
   "scripts": {
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",

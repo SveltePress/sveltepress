@@ -1,4 +1,6 @@
-declare module "virtual:sveltepress/theme-default" {
+declare module 'virtual:sveltepress/theme-default' {
+  import type { LoadTheme } from '@svelte-press/vite'
+
   export interface WithTitle {
     title: string
   }
@@ -10,7 +12,6 @@ declare module "virtual:sveltepress/theme-default" {
   export interface LinkGroup extends WithTitle {
     items: (LinkItem | LinkGroup)[]
   }
-
   export interface DefaultThemeOptions {
     navbar: Array<LinkItem | LinkGroup>
     github?: string
@@ -24,8 +25,8 @@ declare module "virtual:sveltepress/theme-default" {
       indexName: string
     }
   }
+  export type ThemeDefault = LoadTheme<DefaultThemeOptions>
 
   const options: DefaultThemeOptions
-
   export default options
 }
