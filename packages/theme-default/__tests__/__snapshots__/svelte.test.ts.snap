@@ -6,6 +6,7 @@ import {
 	SvelteComponent as SvelteComponent$,
 	add_render_callback as add_render_callback$,
 	append as append$,
+	append_styles as append_styles$,
 	attr as attr$,
 	binding_callbacks as binding_callbacks$,
 	check_outros as check_outros$,
@@ -38,6 +39,11 @@ import { cubicInOut } from 'svelte/easing';
 import Svelte from './icons/Svelte.svelte';
 import SvelteWithColor from './icons/SvelteWithColor.svelte';
 import ArrowDown from './icons/ArrowDown.svelte';
+
+function add_css$(target) {
+	append_styles$(target, \\"svelte-qrifvm\\", \\".svp-live-code--container{--at-apply:mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded}.svp-live-code--demo{--at-apply:p-4}.c-expansion--body .svp-code-block{--at-apply:mb-none}\\");
+}
+
 const get_arrow_slot_changes$ = dirty => ({});
 const get_arrow_slot_context$ = ctx => ({});
 const get_title_slot_changes$ = dirty => ({});
@@ -689,12 +695,20 @@ class Component$ extends SvelteComponent$ {
 	constructor(options) {
 		super();
 
-		init$(this, options, instance$, create_fragment, safe_not_equal$, {
-			title: 1,
-			expanded: 0,
-			reverse: 2,
-			headerStyle: 3
-		});
+		init$(
+			this,
+			options,
+			instance$,
+			create_fragment,
+			safe_not_equal$,
+			{
+				title: 1,
+				expanded: 0,
+				reverse: 2,
+				headerStyle: 3
+			},
+			add_css$
+		);
 	}
 }
 

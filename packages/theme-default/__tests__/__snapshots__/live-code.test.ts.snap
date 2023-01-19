@@ -15,7 +15,7 @@ import LiveCodea0d9514c47e from '/Users/dongsheng/Documents/@dongsheng/sveltepre
 
 <h3>title level 3</h3>
 <Foo />
-<div class=\\"mb-8 shadow-sm\\"><div class=\\"bg-white dark:bg-warm-gray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid\\"><LiveCodea0d9514c47e /></div><CExpansion title=\\"Click fold/expand code\\" reverse={true}><pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
+<div class=\\"svp-live-code--container\\"><div class=\\"svp-live-code--demo\\"><LiveCodea0d9514c47e /></div><CExpansion title=\\"Click fold/expand code\\" reverse={true}><pre class=\\"language-svelte\\">{@html \`<code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;</span>script</span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
   <span class=\\"token keyword\\">let</span> count <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
 </span></span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&lt;/</span>script</span><span class=\\"token punctuation\\">></span></span>
 
@@ -32,6 +32,7 @@ import {
 	SvelteComponent as SvelteComponent$,
 	add_render_callback as add_render_callback$,
 	append as append$,
+	append_styles as append_styles$,
 	attr as attr$,
 	binding_callbacks as binding_callbacks$,
 	check_outros as check_outros$,
@@ -64,6 +65,11 @@ import { cubicInOut } from 'svelte/easing';
 import Svelte from './icons/Svelte.svelte';
 import SvelteWithColor from './icons/SvelteWithColor.svelte';
 import ArrowDown from './icons/ArrowDown.svelte';
+
+function add_css$(target) {
+	append_styles$(target, \\"svelte-qrifvm\\", \\".svp-live-code--container{--at-apply:mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded}.svp-live-code--demo{--at-apply:p-4}.c-expansion--body .svp-code-block{--at-apply:mb-none}\\");
+}
+
 const get_arrow_slot_changes$ = dirty => ({});
 const get_arrow_slot_context$ = ctx => ({});
 const get_title_slot_changes$ = dirty => ({});
@@ -715,18 +721,26 @@ class Component$ extends SvelteComponent$ {
 	constructor(options) {
 		super();
 
-		init$(this, options, instance$, create_fragment, safe_not_equal$, {
-			title: 1,
-			expanded: 0,
-			reverse: 2,
-			headerStyle: 3
-		});
+		init$(
+			this,
+			options,
+			instance$,
+			create_fragment,
+			safe_not_equal$,
+			{
+				title: 1,
+				expanded: 0,
+				reverse: 2,
+				headerStyle: 3
+			},
+			add_css$
+		);
 	}
 }
 
 export default Component$;",
   "map": {
-    "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;SACW,KAAK,QAAQ,mBAAmB;SAChC,UAAU,QAAQ,eAAe;OACnC,MAAM,MAAM,uBAAuB;OACnC,eAAe,MAAM,gCAAgC;OACrD,SAAS,MAAM,0BAA0B;;;;;;;;;;;;;;;;;;;;;;;;;GA0C9C,OAYM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8FAVF,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;6FADlB,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;wBAkCf,GAAK;;;;;;oDAAL,GAAK;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GAcZ,OASM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8BA7DH,GAAO,oBAAI,GAAQ;;;;;mBAyBb,GAAQ;;;;;;;;;;;;+BA0Bb,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;iFARQ,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;yCAzBrE,GAAW;0EApBE,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;GAD/D,OAkEM;;;GA/CJ,OAkCM;GA5BJ,OAmBM;GAlBJ,OAWM;;;GACN,OAKM;;;;;;;GAER,OAOM;;;;;;;;;;;;iEA9BoB,GAAa;kDAC1B,GAAa;;;;;;;mBApBvB,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6HA2CS,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;;;;0CAzBrE,GAAW;;;oBAiCd,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;sHArDH,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;OAjClD,KAAK,GAAG,EAAE;OAMV,QAAQ,GAAG,KAAK;OAMhB,OAAO,GAAG,KAAK;OAMf,WAAW,GAAG,EAAE;;;;;;KAMvB,OAAO;;UAEF,aAAa;kBACpB,QAAQ,IAAI,QAAQ;;;;;GAcP,OAAO;;;;;;;GAgDP,OAAO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+    "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;SACW,KAAK,QAAQ,mBAAmB;SAChC,UAAU,QAAQ,eAAe;OACnC,MAAM,MAAM,uBAAuB;OACnC,eAAe,MAAM,gCAAgC;OACrD,SAAS,MAAM,0BAA0B;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GA0C9C,OAYM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8FAVF,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;6FADlB,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;wBAkCf,GAAK;;;;;;oDAAL,GAAK;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GAcZ,OASM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8BA7DH,GAAO,oBAAI,GAAQ;;;;;mBAyBb,GAAQ;;;;;;;;;;;;+BA0Bb,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;iFARQ,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;yCAzBrE,GAAW;0EApBE,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;GAD/D,OAkEM;;;GA/CJ,OAkCM;GA5BJ,OAmBM;GAlBJ,OAWM;;;GACN,OAKM;;;;;;;GAER,OAOM;;;;;;;;;;;;iEA9BoB,GAAa;kDAC1B,GAAa;;;;;;;mBApBvB,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6HA2CS,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;;;;0CAzBrE,GAAW;;;oBAiCd,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;sHArDH,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;OAjClD,KAAK,GAAG,EAAE;OAMV,QAAQ,GAAG,KAAK;OAMhB,OAAO,GAAG,KAAK;OAMf,WAAW,GAAG,EAAE;;;;;;KAMvB,OAAO;;UAEF,aAAa;kBACpB,QAAQ,IAAI,QAAQ;;;;;GAcP,OAAO;;;;;;;GAgDP,OAAO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
     "names": [],
     "sources": [
       null,
@@ -842,7 +856,18 @@ export default Component$;",
     </div>
   {/if}
 </div>
-",
+
+<style>
+  :global(.svp-live-code--container) {
+    --at-apply: mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded;
+  }
+  :global(.svp-live-code--demo) {
+    --at-apply: p-4;
+  }
+   :global(.c-expansion--body .svp-code-block) {
+    --at-apply: mb-none;
+  }
+</style>",
     ],
     "version": 3,
   },

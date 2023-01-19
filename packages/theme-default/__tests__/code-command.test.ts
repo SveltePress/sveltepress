@@ -48,9 +48,9 @@ describe('code commands', () => {
     expect(COMMAND_RE.test('const foo = 1 // [svp! fc]')).toBeTruthy()
     expect(COMMAND_RE.test('const foo = 1 // [svp! !!]')).toBeTruthy()
 
-    expect(getCommand('const foo = 1 // [svp! fc]')).toMatchInlineSnapshot(`
+    expect(getCommand('const foo = 1 // [svp! !!:3]')).toMatchInlineSnapshot(`
       [
-        "fc",
+        "!!:3",
         "const foo = 1 ",
       ]
     `)

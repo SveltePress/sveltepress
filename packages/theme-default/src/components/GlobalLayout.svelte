@@ -97,7 +97,8 @@
   :global(.svp-code-block--focus) {
     --at-apply: bg-white dark:bg-black pointer-events-none 
       bg-opacity-20 dark:bg-opacity-20 absolute left-0 right-0 z-4
-      backdrop-filter-blur backdrop-blur-[1.5px] transition-300 transition-opacity;
+      transition-300 transition-opacity;
+    backdrop-filter: blur(1.5px);
   }
   :global(.svp-code-block--diff-bg-add) {
     --at-apply: bg-green-4 bg-opacity-20 dark:bg-green-8 dark:bg-opacity-30; 
