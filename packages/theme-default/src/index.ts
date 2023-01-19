@@ -1,6 +1,6 @@
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
-import { presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { presetUno, transformerDirectives } from 'unocss'
 import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
 import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
@@ -20,7 +20,6 @@ const defaultTheme: ThemeDefault = (options) => {
         mode: 'svelte-scoped',
         presets: [
           presetUno(),
-          presetIcons(),
         ],
         transformers: [transformerDirectives()],
         theme: {
