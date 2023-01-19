@@ -75,3 +75,18 @@ export interface ResolvedTheme {
 * `clientImports`  
   The import statements added to the global layout script scope.  
   It is useful when the theme need to import some global styles or global run once setup scripts.
+
+## Virtual modules
+
+### `virtual:sveltepress/site`
+
+This module hold the siteConfig. Here's an example
+
+```svelte live
+<script>
+  import siteConfig from 'virtual:sveltepress/site'
+</script>
+
+<p>The site title is: {siteConfig.title}</p>
+<p>The site description is: {siteConfig.description}</p>
+```
