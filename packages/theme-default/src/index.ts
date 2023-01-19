@@ -17,7 +17,6 @@ const defaultTheme: ThemeDefault = (options) => {
     pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
-        mode: 'svelte-scoped',
         presets: [
           presetUno(),
         ],
@@ -61,6 +60,7 @@ const defaultTheme: ThemeDefault = (options) => {
     highlighter,
     clientImports: [
       'import \'@svelte-press/theme-default/style.css\'',
+      'import \'uno.css\'',
     ],
   }
 }
