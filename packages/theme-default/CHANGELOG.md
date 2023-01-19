@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.9.0
+
+### Minor Changes
+
+- [`13b4dd3`](https://github.com/Blackman99/sveltepress/commit/13b4dd3a6e26ea6830bc3c3c765c1498fa724d5c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add discord link support for default theme
+
+- [`d956836`](https://github.com/Blackman99/sveltepress/commit/d9568365fc6b7fb8f3ed06617ee0f8e51d1e844c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for specify import range in code import
+
+### Patch Changes
+
+- [`3783e0c`](https://github.com/Blackman99/sveltepress/commit/3783e0ce544b201b92b54ca6e49ae70c73078048) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize breakpoints
+
 ## 0.8.0
 
 ### Minor Changes
