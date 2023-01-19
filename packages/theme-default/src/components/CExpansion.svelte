@@ -118,4 +118,10 @@
       p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 
       b-t-solid b-x-solid;
   }
+   :global(.c-expansion--body .svp-code-block) {
+    --at-apply: mb-none;
+  }
+  :global(.svp-live-code--container .c-expansion) {
+    --at-apply: border-x-1 border-b-1 border-x-solid border-b-solid b-gray-2 rounded-b;
+  }
 </style>

@@ -69,10 +69,10 @@
     --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
   .home-page {
-    --at-apply: sm:w-[70vw] max-w-[1152px] mx-auto sm:pt-14 sm:px-0 px-4 pt-4;
+    --at-apply: sm:w-[70vw] max-w-[1152px] mx-auto sm:px-0 px-4 pt-4;
   }
   .title {
-    --at-apply: sm:text-16 text-10 grid grid-cols-12 font-700 leading-18;
+    --at-apply: sm:text-16 text-10 grid grid-cols-12 font-700 leading-24;
   }
   .intro {
     --at-apply: col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1
@@ -83,10 +83,7 @@
       sm:col-span-5 col-span-6 col-start-4 sm:col-start-8;
   }
   .gradient-title {
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    --at-apply: svp-gradient-text;
   }
   .tagline {
     --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9 font-normal;

@@ -29,6 +29,9 @@ const defaultTheme: ThemeDefault = (options) => {
             md: '1140px',
           },
         },
+        shortcuts: {
+          'svp-gradient-text': 'bg-gradient-linear bg-clip-text bg-gradient-[45deg,#fa709a,#fee140] text-transparent',
+        },
       }), {
         name: '@svelte-press/default-theme',
         resolveId(id) {
