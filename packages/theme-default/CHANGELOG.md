@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.10.0
+
+### Minor Changes
+
+- [`b26f784`](https://github.com/Blackman99/sveltepress/commit/b26f784a1de8131482ae42ec1ba2101a8e9c1191) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove unocss attributify preset to avoid FOUC
+
+### Patch Changes
+
+- [`e9f0ed5`](https://github.com/Blackman99/sveltepress/commit/e9f0ed539f30c827f0941f385435ec5d2840dcb4) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize mobile and pc style
+
+- [`9c992e9`](https://github.com/Blackman99/sveltepress/commit/9c992e9739ca5725723fd2d46becf8b3e6b3577a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: extract gradient text to a shortcut
+
 ## 0.9.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.10.0
+
+### Minor Changes
+
+- [`b26f784`](https://github.com/Blackman99/sveltepress/commit/b26f784a1de8131482ae42ec1ba2101a8e9c1191) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove unocss attributify preset to avoid FOUC
+
 ## 0.9.2
 
 ### Patch Changes
