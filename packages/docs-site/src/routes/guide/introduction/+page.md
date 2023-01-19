@@ -40,7 +40,7 @@ Here's a graph to help you understand
 
 Sveltepress's config is passed to `@svelte-press/vite` vite plugin, all options are fully typed. 
 
-Read [Vite plugins options](/reference/vite-plugin-options) for more details.
+Read [Vite plugins options](/reference/vite-plugin/) for more details.
 
 ## Deployment
 
