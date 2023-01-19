@@ -7,6 +7,7 @@
   import Search from './Search.svelte'
   import Menu from './icons/Menu.svelte'
   import { sidebarCollapsed } from './layout'
+  import Discord from './icons/Discord.svelte'
   import { page } from '$app/stores'
   
   $: routeId = $page.route.id
@@ -45,7 +46,14 @@
       {#if themeOptions.github}
         <div class="divider first"></div>
         <NavItem to={themeOptions.github} external icon>
-          <Github class="text-8" />
+          <Github class="text-6" />
+        </NavItem>
+      {/if}
+
+      {#if themeOptions.discord}
+        <div class="divider first"></div>
+        <NavItem to={themeOptions.discord} external icon>
+          <Discord class="text-6" />
         </NavItem>
       {/if}
 
