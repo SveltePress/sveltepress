@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.9.1
+
+### Patch Changes
+
+- [`ec313ab`](https://github.com/Blackman99/sveltepress/commit/ec313ab95b90ee6bf434b461902262e4a93f3c29) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: publish should container dts
+
+- [`7248011`](https://github.com/Blackman99/sveltepress/commit/7248011df9fdf3e3bc3d3b421e2aa8eceb69841f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar default value
+
+- [`f4c8bd5`](https://github.com/Blackman99/sveltepress/commit/f4c8bd50bb1e08346b681131de4aa41c2e2e7863) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize style
+
+- [`01b5d23`](https://github.com/Blackman99/sveltepress/commit/01b5d23db46dc3f367d7687ba2101d6a045557e3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: better types support
+
 ## 0.9.0
 
 ### Minor Changes
