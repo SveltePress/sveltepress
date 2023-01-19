@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.8.0
+
+### Minor Changes
+
+- [`d956836`](https://github.com/Blackman99/sveltepress/commit/d9568365fc6b7fb8f3ed06617ee0f8e51d1e844c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for specify import range in code import
+
 ## 0.7.1
 
 ### Patch Changes
