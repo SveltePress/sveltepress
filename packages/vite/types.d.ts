@@ -6,3 +6,9 @@ declare module "virtual:sveltepress/site" {
 
   export default siteConfig
 }
+
+declare module '*.md' {
+	import { SvelteComponentTyped } from "svelte"
+	const comp: SvelteComponentTyped
+	export default comp
+}

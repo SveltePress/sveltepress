@@ -30,6 +30,10 @@ const config = defineConfig({
                   title: 'Themes',
                   to: '/guide/themes/',
                 },
+                {
+                  title: 'Working with Typescript',
+                  to: '/guide/typescript/',
+                },
               ],
             },
             {

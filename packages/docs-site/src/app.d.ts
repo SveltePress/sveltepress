@@ -10,15 +10,3 @@ declare namespace App {
 	// interface PageData {}
 	// interface Platform {}
 }
-
-/// <reference path="../node_modules/@svelte-press/theme-default/types.d.ts" />
-declare module '*.md' {
-	import { SvelteComponentTyped } from "svelte"
-
-	const metadata: Record<string, any>
-	const comp: SvelteComponentTyped
-
-	export { metadata }
-
-	export default comp
-}

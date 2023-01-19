@@ -65,3 +65,14 @@ This module hold the siteConfig. Here's an example
 <p>The site title is: {siteConfig.title}</p>
 <p>The site description is: {siteConfig.description}</p>
 ```
+
+## Working with typescript
+
+You need to include `@svelte-press/vite/types` in your src/app.d.ts to get plugin options and virtual modules type tips
+
+```ts
+// src/app.d.ts
+/// <reference types="@svelte-press/vite/types" />
+
+// Your other types
+```

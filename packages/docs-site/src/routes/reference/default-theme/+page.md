@@ -34,9 +34,9 @@ const config = defineConfig({
 export default config
 ```
 
-## Plugin Options
+## Theme Options
 
-@code(/../theme-default/types.d.ts,2,26)
+@code(/../theme-default/types.d.ts,4,27)
 
 ### `navbar`
 
@@ -108,4 +108,15 @@ Here's an example for showing the theme options of this site:
     word-break: break-all;
   }
 </style>
+```
+
+## Working with typescript
+
+You need to include `@svelte-press/theme-default/types` in your src/app.d.ts to get theme options and virtual modules type tips
+
+```ts
+// src/app.d.ts
+/// <reference types="@svelte-press/theme-default/types" />
+
+// Your other types
 ```
