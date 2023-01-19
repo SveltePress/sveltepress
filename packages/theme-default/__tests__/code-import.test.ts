@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { describe, expect, it } from 'vitest'
 import { compile } from 'mdsvex'
-import codeImport from '../src/markdown/code-import'
+import codeImport, { importRe } from '../src/markdown/code-import'
 import highlighter from '../src/markdown/highlighter'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -17,7 +17,7 @@ describe('code import', async () => {
 
       @code(./svelte.test.ts)
 
-      @code(/src/index.ts)"
+      @code(/src/index.ts,1,4)"
     `)
 
     const { code } = await compile(mdContent, {
@@ -29,5 +29,17 @@ describe('code import', async () => {
       remarkPlugins: [codeImport],
     }) || { code: '' }
     expect(code).toMatchSnapshot()
+  })
+
+  it('re tests', () => {
+    const matches = importRe.exec('@code(./foo/bar/Comp.svelte,10,20)')
+    expect(matches).toMatchInlineSnapshot(`
+      [
+        "@code(./foo/bar/Comp.svelte,10,20)",
+        "./foo/bar/Comp.svelte,10,20",
+        undefined,
+        undefined,
+      ]
+    `)
   })
 })

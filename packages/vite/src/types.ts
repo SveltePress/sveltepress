@@ -7,11 +7,6 @@ export interface Options {
   mdsvexOptions?: MdsvexOptions
 }
 
-export interface Frontmatter {
-  title?: string
-  description?: string
-}
-
 export type Highlighter = (code: string, lang?: string) => Promise<string>
 
 export interface SiteConfig {

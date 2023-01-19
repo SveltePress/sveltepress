@@ -4,24 +4,11 @@ title: Vite plugin
 
 ## Plugin options
 
-Here's the options type interface
-
-```ts
-interface SveltepressVitePluginOptions {
-  siteConfig?: SiteConfig
-  addInspect?: boolean
-  theme?: ResolvedTheme
-}
-```
+@code(/../vite/src/types.ts,35,39)
 
 ### siteConfig
 
-```ts
-interface SiteConfig {
-  title?: string
-  description?: string
-}
-```
+@code(/../vite/src/types.ts,12,15)
 
 * `title`: The site title. Would be `'Untitled site'` if not provided.
 * `description`: The site description. Would be `'Build by sveltepress'` if not provided.
@@ -33,19 +20,7 @@ It is useful to inspect or observe the vite pipeline.
 
 ### theme
 
-```ts
-export interface ResolvedTheme {
-  name: string
-  globalLayout: string
-  pageLayout: string
-  vitePlugins?: PluginOption
-  highlighter: Highlighter
-  remarkPlugins?: Plugin[]
-  rehypePlugins?: Plugin[]
-  safelist?: string[]
-  clientImports?: Array<`import '${string}'`>
-}
-```
+@code(/../vite/src/types.ts,16,34)
 
 * `name`   
   The name of theme

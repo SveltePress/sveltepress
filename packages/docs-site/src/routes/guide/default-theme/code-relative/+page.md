@@ -118,7 +118,7 @@ Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current lin
 
 **Input**
 
-:::caution Notice
+:::caution Not Supported
 Multi `// [svp! fc]` in one single code block is not supported
 :::
 
@@ -224,9 +224,10 @@ use svelte lang and live prop would have effect like this
 
 This feature can allow you to import some code directly from a file.  
 And use the file extension name as `lang` to highlight the code.
+And you can specify the startLine and endLine to intercept the code you want.
 
 ```md
-@code(/path/to/file)
+@code(/path/to/file[,startLine[,endLine]])
 ```
 Path can starts with `.` or `/`
 * `.` is the relative path to the current md file
@@ -242,9 +243,14 @@ For example you have file tree like this
 │  │  │  ├─ Foo.svelte
 ```
 
-The follow md content in foo/+page.md would do the same thing.
-* `@code(./Foo.svelte)`
-* `@code(/src/routes/foo/Foo.svelte)`
+* `@code(./Foo.svelte)` - import all code from Foo.svelte
+* `@code(/src/routes/foo/Foo.svelte)` - import all code from Foo.svelte
+* `@code(./Foo.svelte,5,10)` - import the line 10 to line 20 in Foo.svelte
+* `@code(/src/routes/foo/Foo.svelte,10,20)` - import the line 10 to line 20 in Foo.svelte
+
+:::tip Tip
+Notice that start line and end line both would be included in the final content.
+:::
 
 ## Cheat list
 

@@ -36,32 +36,7 @@ export default config
 
 ## Plugin Options
 
-```ts
-interface WithTitle {
-  title: string
-}
-
-interface LinkItem extends WithTitle {
-  to: string
-}
-
-interface LinkGroup extends WithTitle {
-  items: (LinkItem | LinkGroup)[]
-}
-interface DefaultThemeOptions {
-  navbar: Array<LinkItem | LinkGroup>
-  github?: string
-  discord?: string
-  logo?: string
-  sidebar?: Record<string, (LinkItem | LinkGroup)[]>
-  editLink?: string
-  docsearch?: {
-    appId: string
-    apiKey: string
-    indexName: string
-  }
-}
-```
+@code(/../theme-default/types.d.ts,2,26)
 
 ### `navbar`
 
