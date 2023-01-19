@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.8.1
+
+### Patch Changes
+
+- [`01b5d23`](https://github.com/Blackman99/sveltepress/commit/01b5d23db46dc3f367d7687ba2101d6a045557e3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: better types support
+
 ## 0.8.0
 
 ### Minor Changes
