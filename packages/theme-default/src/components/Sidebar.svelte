@@ -12,7 +12,7 @@
     $sidebarCollapsed = true
   }
 
-  const allSidebars = Object.values(themeConfig.sidebar).reduce((all, arr) => [...all, ...arr], [])
+  const allSidebars = Object.values(themeConfig.sidebar || []).reduce((all, arr) => [...all, ...arr], [])
 </script>
 
 <aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed}>

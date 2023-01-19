@@ -20,7 +20,7 @@
 
   const key = Object.keys(themeOptions.sidebar || {}).find(key => routeId.startsWith(key))
   if (key)
-    resolvedSidebars = themeOptions.sidebar[key]
+    resolvedSidebars = themeOptions.sidebar[key] || []
   
   $: pages = resolvedSidebars.reduce((allPages, item) => Array.isArray(item.items)
     ? [
