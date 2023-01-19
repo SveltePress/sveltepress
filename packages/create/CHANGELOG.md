@@ -1,5 +1,13 @@
 # @svelte-press/create
 
+## 0.9.2
+
+### Patch Changes
+
+- [`74aa8d9`](https://github.com/Blackman99/sveltepress/commit/74aa8d9d4b34985c7a057b0901e5e5723eccd7e7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: update app.d.ts and vite config
+
+- [`3b7008b`](https://github.com/Blackman99/sveltepress/commit/3b7008b2080aa6afb4b909a758d801ffe0c4eea7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add home page address to every package
+
 ## 0.9.1
 
 ### Patch Changes
