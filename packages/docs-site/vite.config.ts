@@ -99,7 +99,7 @@ const config = defineConfig({
       }),
       siteConfig: {
         title: 'Sveltepress',
-        description: 'A content centered site build tool & build on top of SvelteKit',
+        description: 'A content centered site build tool',
       },
       addInspect: true,
     }),
