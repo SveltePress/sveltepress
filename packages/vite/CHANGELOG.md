@@ -1,5 +1,11 @@
 # @svelte-press/vite
 
+## 0.8.2
+
+### Patch Changes
+
+- [`3b7008b`](https://github.com/Blackman99/sveltepress/commit/3b7008b2080aa6afb4b909a758d801ffe0c4eea7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add home page address to every package
+
 ## 0.8.1
 
 ### Patch Changes
