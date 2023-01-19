@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.10.4
+
+### Patch Changes
+
+- [`5aabe2e`](https://github.com/Blackman99/sveltepress/commit/5aabe2e6b7e940cd4167a254e23caa83a535db98) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove svelte-scoped unstable
+
 ## 0.10.3
 
 ### Patch Changes
