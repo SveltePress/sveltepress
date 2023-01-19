@@ -9,15 +9,17 @@
 
 > A content centered site build tool
 
+## :pizza: Introduction
+
 Inspired by [Vitepress](https://vitepress.vuejs.org/)  
 But build with [SvelteKit](https://kit.svelte.dev/) 
 
-## Online docs and demos
+## :bookmark_tabs: Online docs and demos
 
 [Sveltepress](https://sveltepress.site/)
 
 
-## Thanks 
+## :heart: Thanks 
 
 This project can not be done without these projects:
 
