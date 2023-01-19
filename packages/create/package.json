@@ -10,6 +10,7 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
+  "homepage": "https://sveltepress.site/",
   "scripts": {
     "build": "unbuild"
   },
