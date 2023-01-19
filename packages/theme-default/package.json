@@ -9,7 +9,7 @@
   },
   "files": [
     "dist",
-    "shims-modules.d.ts"
+    "types.d.ts"
   ],
   "keywords": [
     "Docs",
