@@ -31,7 +31,7 @@ const defaultTheme: ThemeDefault = (options) => {
         safelist,
         theme: {
           breakpoints: {
-            sm: '900px',
+            sm: '950px',
             md: '1140px',
           },
         },

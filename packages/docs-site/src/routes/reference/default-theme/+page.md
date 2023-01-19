@@ -51,6 +51,7 @@ interface LinkGroup extends WithTitle {
 interface DefaultThemeOptions {
   navbar: Array<LinkItem | LinkGroup>
   github?: string
+  discord?: string
   logo?: string
   sidebar?: Record<string, (LinkItem | LinkGroup)[]>
   editLink?: string
@@ -70,6 +71,10 @@ interface DefaultThemeOptions {
   The link address
 * `items`  
   Children links. If this prop is provided would render a dropdown instead of a single nav link
+
+### `discord`
+The discord chat channel link  
+Would show a discord icon on the navbar when provided
 
 ### `github`
 The github repo link  

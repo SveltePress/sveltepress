@@ -36,7 +36,7 @@
       </div>
     {/if}
   
-    <nav flex items-stretch>
+    <div class="nav-links flex items-stretch">
       <div class="navbar-pc">
         {#each themeOptions.navbar as navItem}
          <NavItem {...navItem}/>
@@ -44,22 +44,22 @@
       </div>
   
       {#if themeOptions.github}
-        <div class="divider first"></div>
+        <span class="divider"></span>
         <NavItem to={themeOptions.github} external icon>
           <Github class="text-6" />
         </NavItem>
       {/if}
 
       {#if themeOptions.discord}
-        <div class="divider first"></div>
+        <span class="divider"></span>
         <NavItem to={themeOptions.discord} external icon>
           <Discord class="text-6" />
         </NavItem>
       {/if}
 
-      <div class="divider"></div>
+      <span class="divider"></span>
       <ToggleDark />
-    </nav>
+    </div>
   </div>
 </header>
 
@@ -81,13 +81,14 @@
   .divider {
     --at-apply: bg-stone-2 w-[1px] my-6 dark:bg-stone-7;
   }
-  .first {
-    --at-apply: display-none sm:display-block;
-  }
+  
   .menu {
     --at-apply: sm:display-none ml-4 flex items-center text-7;
   }
   .navbar-pc {
     --at-apply: items-stretch display-none sm:display-flex;
+  }
+  .nav-links span:first-of-type {
+    --at-apply: display-none sm:display-block;
   }
 </style>

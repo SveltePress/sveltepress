@@ -44,13 +44,10 @@
   {/if}
 
 <style>
-  :global(nav .nav-item) {
-    --at-apply: px-3;
-  }
   .nav-item {
     --at-apply: flex items-center cursor-pointer 
       position-relative z-1 cursor-pointer
-      decoration-none;
+      decoration-none px-3;
   }
   .nav-item--icon:hover {
     --at-apply: opacity-80;
