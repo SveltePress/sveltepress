@@ -51,7 +51,7 @@
     {/if}
     <div class="content">
       {#if title}
-        <h1>
+        <h1 class="page-title">
           {title}
         </h1>
       {/if}
@@ -76,5 +76,8 @@
   }
   .content {
     --at-apply: sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw];
+  }
+  .page-title {
+    --at-apply: mt-none;
   }
 </style>

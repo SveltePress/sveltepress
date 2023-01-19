@@ -65,7 +65,7 @@
     transform: translateX(-100%);
   }
   .close {
-    --at-apply: text-7 flex items-center sm:display-none
+    --at-apply: text-6 flex items-center sm:display-none
       absolute top-4 right-4 z-3;
   }
 </style>

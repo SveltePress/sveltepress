@@ -66,7 +66,7 @@
 <style>
   .header {
     --at-apply: 
-      fixed top-0 left-0 right-0 h-[73px] 
+      fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] 
       z-999 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
@@ -83,7 +83,7 @@
   }
   
   .menu {
-    --at-apply: sm:display-none ml-4 flex items-center text-7;
+    --at-apply: sm:display-none ml-4 flex items-center text-6;
   }
   .navbar-pc {
     --at-apply: items-stretch display-none sm:display-flex;

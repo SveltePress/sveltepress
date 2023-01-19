@@ -17,7 +17,7 @@
   })
 </script>
 
-<main class="pt-[56px]">
+<main class="pt-[56px] sm:pt-[73px]">
   <AjaxBar bind:this={ajaxBar} />
   <Navbar />
   <div class="sidebar-mobile-home">
@@ -34,8 +34,9 @@
     --at-apply: bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2 scroll-smooth;
     font-family:  "Inter var experimental", "Inter var", "Inter", 
       ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 
-      "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
-  ;
+      "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, 
+      "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", 
+      "Segoe UI Symbol", "Noto Color Emoji";
 	}
   :global(a) {
     --at-apply: text-[#213547] dark:text-[#efefef] decoration-none;
