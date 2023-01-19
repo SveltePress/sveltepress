@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.10.3
+
+### Patch Changes
+
+- [`c60e1b8`](https://github.com/Blackman99/sveltepress/commit/c60e1b8185274ef2880ecb6c591d1a96be965e49) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: code blur bug
+
 ## 0.10.2
 
 ### Patch Changes
