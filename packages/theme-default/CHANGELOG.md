@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.10.2
+
+### Patch Changes
+
+- [`a09edbd`](https://github.com/Blackman99/sveltepress/commit/a09edbdc43dd6dd9c356fddf0d3e1cbe1f5205b0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: adjust toc title color
+
 ## 0.10.1
 
 ### Patch Changes
