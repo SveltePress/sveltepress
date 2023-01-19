@@ -34,7 +34,7 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
   You've clicked {count} times
 </button>
 
-## Import other svelte components
+## Import svelte in md
 
 **Counter.svelte**
 
@@ -52,3 +52,4 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
 **Output**
 
 <Counter />
+

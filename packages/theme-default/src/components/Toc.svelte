@@ -53,7 +53,7 @@
     {/if}
   </div>
   <div class="toc" class:collapsed={$tocCollapsed}>
-    <div class="font-bold pl-4">
+    <div class="font-bold pl-4 text-gray-8 dark:text-gray-2">
       On this page
     </div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
