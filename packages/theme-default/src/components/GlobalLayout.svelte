@@ -23,6 +23,8 @@
   <div class="sidebar-mobile-home">
     <Sidebar />
   </div>
+  <button on:click={() => ajaxBar.start()}>start</button>
+  <button on:click={() => ajaxBar.end()}>end</button>
   <slot />
 </main>
 

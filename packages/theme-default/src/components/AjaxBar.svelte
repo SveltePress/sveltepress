@@ -5,22 +5,27 @@
 
   let startedFlag
 
+  let interval = 200
+
   onDestroy(() => {
     if (startedFlag)
-      clearInterval(startedFlag)
+      clearTimeout(startedFlag)
   })
 
   /**
    * Start the ajax bar
    */
   export const start = () => {
-    barWidth = 0
     if (startedFlag)
-      clearInterval(startedFlag)
-  
-    startedFlag = setInterval(() => {
+      clearTimeout(startedFlag)
+    barWidth = 0
+    interval = 200
+    const next = () => {
       barWidth += 1
-    }, 200)
+      interval += Math.floor(Math.random() * 200)
+      startedFlag = setTimeout(next, interval)
+    }
+    next()
   }
 
   /**

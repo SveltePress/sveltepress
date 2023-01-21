@@ -22,4 +22,3 @@ features:
   - title: Theme Customizable
     description: Feel free to use default theme, community themes or write your own.
 ---
-
