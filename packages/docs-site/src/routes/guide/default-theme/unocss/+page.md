@@ -16,7 +16,7 @@ Toggle the dark mode to ses what's happening
 
 ```svelte live
 <div class="text-5 text-rose-5 dark:text-blue-5 dark:text-10">
-  This is a large paragraph with different color in light/dark mode.
+  This is a paragraph with different color and font size in light/dark mode.
 </div>
 ```
 
