@@ -5,7 +5,7 @@ title: Default theme links
 ## Markdown format links
 
 Links starts with `http(s)` is recognized as external links  
-It would rendered a external icon to its right
+It would render an external icon to the right of link text label
 
 **Input**
 
