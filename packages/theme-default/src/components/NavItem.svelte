@@ -33,7 +33,7 @@
     href={to}
     class:nav-item--icon={icon}
     class="nav-item" 
-    target={external ? '_blank' : ''}
+    {...(external ? { target: '_blank' } : {})}
     on:click={handleClick}
     on:keypress={handleClick}
   >
