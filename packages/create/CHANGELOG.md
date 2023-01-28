@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.11.4
+
+### Patch Changes
+
+- [`e75e4c5`](https://github.com/Blackman99/sveltepress/commit/e75e4c50f10fb382c542a444355c05d30947d526) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: root layout regex
+
 ## 0.11.3
 
 ### Patch Changes
