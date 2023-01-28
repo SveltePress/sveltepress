@@ -12,7 +12,7 @@
 ## :pizza: Introduction
 
 Inspired by [Vitepress](https://vitepress.vuejs.org/)  
-But build with [SvelteKit](https://kit.svelte.dev/) 
+Build with [SvelteKit](https://kit.svelte.dev/) 
 
 ## :bookmark_tabs: Online docs and demos
 
