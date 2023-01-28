@@ -1,5 +1,13 @@
 # @svelte-press/create
 
+## 0.11.3
+
+### Patch Changes
+
+- [`8e746c8`](https://github.com/Blackman99/sveltepress/commit/8e746c8b74e3755c6a711e72222e8723dc1d2bff) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: set img width or height for better lighthouse
+
+- [`42577aa`](https://github.com/Blackman99/sveltepress/commit/42577aa54bbd475b7824b89e198bf1caf8298459) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: home page action button hover shadow style
+
 ## 0.11.2
 
 ### Patch Changes
