@@ -1,10 +1,11 @@
 <script>
+  import { onMount } from 'svelte'
   import Moon from './icons/Moon.svelte'
   import Sun from './icons/Sun.svelte'
 
   const key = 'SVELTEPRESS_DARK_MODE'
 
-  let isDark = localStorage.getItem(key) === 'on'
+  let isDark = false
 
   const addOrRemoveClass = () => {
     if (isDark)
@@ -14,7 +15,10 @@
       document.querySelector('html').classList.remove('dark')
   }
 
-  addOrRemoveClass()
+  onMount(() => {
+    isDark = localStorage.getItem(key) === 'on'
+    addOrRemoveClass()
+  })
 
   const toggle = () => {
     localStorage.setItem(key, isDark ? 'off' : 'on')

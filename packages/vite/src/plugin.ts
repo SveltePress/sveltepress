@@ -113,8 +113,10 @@ ${contentWithGlobalLayout(`
       // Hack into the sveltekit generate root layout file
       // TODO: This is a little bit hacky. Maybe there's a better way
       if (SVELTEKIT_NODE_0_RE.test(id)) {
-        return `export { default as component } from '$sveltepress/_Layout.svelte'
-`
+        const lines = src.split('\n')
+        lines.splice(lines.length - 1, 1, `export { default as component } from '/.sveltepress/_Layout.svelte'
+`)
+        return lines.join('\n')
       }
 
       return {

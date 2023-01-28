@@ -12,5 +12,6 @@
 		"strict": true,
 		"lib": ["ESNext"],
 		"module": "ESNext"
-	}
+	},
+	"exclude": ["deploy/index.cjs"]
 }

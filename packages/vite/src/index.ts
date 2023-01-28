@@ -30,4 +30,3 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
 
 export { sveltepress }
 export type { LoadTheme, Highlighter }
-
