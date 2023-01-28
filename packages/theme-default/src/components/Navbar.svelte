@@ -20,7 +20,7 @@
 
 <header class="header">
   <div class="header-inner">
-    <div class="flex items-center">
+    <div class="left">
       {#if isHome}
         <div class="logo-container">
           <Logo />
@@ -31,12 +31,12 @@
       </div>
     </div>
     {#if themeOptions.docsearch}
-      <div flex-grow class={isHome ? 'pl-[2vw]' : 'pl-18vw'} flex items-center>
+      <div class:is-home={isHome} class:is-not-home={!isHome} class="doc-search">
         <Search {...themeOptions.docsearch} />
       </div>
     {/if}
   
-    <div class="nav-links flex items-stretch">
+    <nav class="nav-links">
       <div class="navbar-pc">
         {#each themeOptions.navbar as navItem}
          <NavItem {...navItem}/>
@@ -46,20 +46,20 @@
       {#if themeOptions.github}
         <span class="divider"></span>
         <NavItem to={themeOptions.github} external icon>
-          <Github class="text-6" />
+          <Github />
         </NavItem>
       {/if}
 
       {#if themeOptions.discord}
         <span class="divider"></span>
         <NavItem to={themeOptions.discord} external icon>
-          <Discord class="text-6" />
+          <Discord />
         </NavItem>
       {/if}
 
       <span class="divider"></span>
       <ToggleDark />
-    </div>
+    </nav>
   </div>
 </header>
 
@@ -70,6 +70,12 @@
       z-999 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
+  .is-home {
+    --at-apply: pl-[2vw];
+  }
+  .is-not-home {
+    --at-apply: pl-[18vw];
+  }
   .logo-container {
     --at-apply: display-none sm:display-block;
   }
@@ -77,6 +83,12 @@
     --at-apply: sm:w-[70vw] h-full 
       flex items-stretch justify-between
       mx-auto;
+  }
+  .left {
+    --at-apply: flex items-center;
+  }
+  .doc-search {
+    --at-apply: flex-grow flex items-center
   }
   .divider {
     --at-apply: bg-stone-2 w-[1px] my-6 dark:bg-stone-7;
@@ -88,7 +100,11 @@
   .navbar-pc {
     --at-apply: items-stretch display-none sm:display-flex;
   }
+  .nav-links {
+    --at-apply: flex items-stretch;
+  }
   .nav-links span:first-of-type {
     --at-apply: display-none sm:display-block;
   }
+  
 </style>

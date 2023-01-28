@@ -31,7 +31,7 @@
   <svelte:element 
     this={external ? 'div' : 'a'} 
     href={to}
-    class:nav-item--icon={icon} 
+    class:nav-item--icon={icon}
     class="nav-item" 
     target={external ? '_blank' : ''}
     on:click={handleClick}
@@ -51,6 +51,9 @@
     --at-apply: flex items-center cursor-pointer 
       position-relative z-1 cursor-pointer
       decoration-none px-3;
+  }
+  .nav-item--icon {
+    --at-apply: text-6;
   }
   .nav-item--icon:hover {
     --at-apply: opacity-80;

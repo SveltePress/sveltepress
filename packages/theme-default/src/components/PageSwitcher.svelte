@@ -18,29 +18,33 @@
       {@const prevPage = pages[activeIdx - 1]}
       <a href={prevPage.to}>
         <div class="hint">
-          Prev
+          Previous
         </div>
         <div class="title">
-          <Prev text-5="" />
-          <div class="ml-2">
+          <div class="switch-icon">
+            <Prev />
+          </div>
+          <div class="title-label">
             {prevPage.title}
           </div>
         </div>
       </a>
     {/if}
   </div>
-  <div class="text-right" class:switcher={hasNextPage}>
+  <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = pages[activeIdx + 1]}
       <a href={nextPage.to}>
         <div class="hint">
           Next
         </div>
-        <div class="title justify-end">
-          <div class="mr-2">
+        <div class="title">
+          <div class="title-label">
             {nextPage.title}
           </div>
-          <Next class="text-5" />
+          <div class="switch-icon">
+            <Next />
+          </div>
         </div>
       </a>
     {/if}
@@ -63,5 +67,20 @@
 }
 .title {
   --at-apply: flex items-center text-rose-4 mt-3;
+}
+.right .title {
+  --at-apply: justify-end;
+}
+.title-label {
+  --at-apply: ml-2;
+}
+.right .title-label {
+  --at-apply: mr-2 ml-none;
+}
+.right {
+  --at-apply: text-right;
+}
+.switch-icon {
+  --at-apply: text-5;
 }
 </style>

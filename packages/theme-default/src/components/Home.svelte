@@ -25,7 +25,7 @@
       <div class="gradient-title">
         {siteConfig.title}
       </div>
-      <div class="text-8 leading-10 sm:text-inherit">
+      <div class="description">
         {siteConfig.description}
       </div>
       {#if tagline}
@@ -36,7 +36,7 @@
     </div>
     {#if heroImage}
       <div class="hero-image">
-        <img src={heroImage} alt={siteConfig.title} class="sm:w-60 w-full" />
+        <img src={heroImage} alt={siteConfig.title} />
       </div>
     {/if}
   </div>
@@ -53,10 +53,10 @@
         <div class="icon">
           <svelte:component this={icons[i % icons.length]} />
         </div>
-        <div class="font-600 mb-2 pt-2">
+        <div class="feature-title">
           {fe.title}
         </div>
-        <div class="text-slate-5 mt-4">
+        <div class="feature-desc">
           {fe.description}
         </div>
       </div>
@@ -74,6 +74,9 @@
   .title {
     --at-apply: sm:text-16 text-10 grid grid-cols-12 font-700 leading-24;
   }
+  .description {
+    --at-apply: text-8 leading-10 sm:text-inherit;
+  }
   .intro {
     --at-apply: col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1
       text-center sm:text-left;
@@ -81,6 +84,9 @@
   .hero-image {
     --at-apply: flex items-center justify-center col-start
       sm:col-span-5 col-span-6 col-start-4 sm:col-start-8;
+  }
+  .hero-image img {
+    --at-apply: sm:w-60 w-full;
   }
   .gradient-title {
     --at-apply: svp-gradient-text;
@@ -93,6 +99,12 @@
   }
   .features {
     --at-apply: grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4;
+  }
+  .feature-title {
+    --at-apply: font-600 mt-3;
+  }
+  .feature-desc {
+    --at-apply: text-slate-5 mt-3 text-[14px];
   }
   .feature-item {
     --at-apply: bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md

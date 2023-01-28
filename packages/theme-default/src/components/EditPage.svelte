@@ -17,8 +17,10 @@
   on:click={handleEditLinkClick}
   on:keyup={handleEditLinkClick}
 >
-  <Edit class="text-5" />
-  <div class="ml-1">
+  <div class="edit-icon">
+    <Edit />
+  </div>
+  <div class="edit-text">
     Edit this page on github 
   </div>
 </div>
@@ -26,5 +28,11 @@
 <style>
   .edit-link {
     --at-apply: flex items-center text-rose-4 hover:text-rose-6 cursor-pointer;
+  }
+  .edit-icon {
+    --at-apply: text-5 flex items-center;
+  }
+  .edit-text {
+    --at-apply: ml-1;
   }
 </style>

@@ -16,4 +16,4 @@
   })
 </script>
 
-<div class="search" id="docsearch"></div>
+<div id="docsearch"></div>

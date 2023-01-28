@@ -17,6 +17,7 @@ const defaultTheme: ThemeDefault = (options) => {
     pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
+        mode: 'svelte-scoped',
         presets: [
           presetUno(),
         ],
@@ -28,7 +29,8 @@ const defaultTheme: ThemeDefault = (options) => {
           },
         },
         shortcuts: {
-          'svp-gradient-text': 'bg-gradient-linear bg-clip-text bg-gradient-[45deg,#fa709a,#fee140] text-transparent',
+          'svp-gradient-bg': 'bg-gradient-linear bg-gradient-[45deg,#fa709a,#fee140]',
+          'svp-gradient-text': 'svp-gradient-bg bg-clip-text text-transparent',
         },
       }),
       {
@@ -60,7 +62,6 @@ const defaultTheme: ThemeDefault = (options) => {
     highlighter,
     clientImports: [
       'import \'@svelte-press/theme-default/style.css\'',
-      'import \'uno.css\'',
     ],
   }
 }

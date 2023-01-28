@@ -61,13 +61,13 @@
   {/if}
   <!-- The header click function, emit the expand status exchange -->
   <div
-    class="c-expansion--header rounded-b flex justify-between px-4 py-2 items-center"
+    class="c-expansion--header"
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
     on:keypress={onHeaderClick}
   >
-    <div class="flex items-center">
-      <div class="c-expansion--icon mr-2 text-6 flex items-center">
+    <div class="c-expansion--header-left">
+      <div class="c-expansion--icon">
         <!-- The content before title -->
         {#if expanded}
           <slot name="icon-expanded">
@@ -79,7 +79,7 @@
           </slot>
         {/if}
       </div>
-      <div class="c-expansion--title text-3.5">
+      <div class="c-expansion--title">
         <!-- Customize the title content -->
         <slot name="title">
           {title}
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div
-      class={`c-expansion--arrow ${expanded ? 'c-expansion--arrow-expanded' : ''} text-6 flex items-center`}
+      class={`c-expansion--arrow ${expanded ? 'c-expansion--arrow-expanded' : ''}`}
     >
       <!-- Customize the arrow dom -->
       <slot name="arrow">
@@ -118,5 +118,20 @@
   }
    :global(.c-expansion--body .svp-code-block) {
     --at-apply: mb-none;
+  }
+  .c-expansion--header {
+    --at-apply: rounded-b flex justify-between px-4 py-2 items-center;
+  }
+  .c-expansion--icon {
+    --at-apply: mr-2 text-6 flex items-center;
+  }
+  .c-expansion--arrow {
+    --at-apply: text-6 flex items-center;
+  }
+  .c-expansion--header-left {
+    --at-apply: flex items-center;
+  }
+  .c-expansion--title {
+    --at-apply: text-3.5;
   }
 </style>

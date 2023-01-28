@@ -17,7 +17,7 @@
   })
 </script>
 
-<main class="pt-[56px] sm:pt-[73px]">
+<main>
   <AjaxBar bind:this={ajaxBar} />
   <Navbar />
   <div class="sidebar-mobile-home">
@@ -27,6 +27,9 @@
 </main>
 
 <style>
+  main {
+    --at-apply: pt-[56px] sm:pt-[73px];
+  }
   .sidebar-mobile-home {
     --at-apply: sm:display-none;
   }

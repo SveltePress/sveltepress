@@ -56,7 +56,7 @@
         </h1>
       {/if}
       <slot />
-      <div class="sm:flex justify-between mt-20 column">
+      <div class="meta">
         <EditPage {pageType} />
         <LastUpdate {lastUpdate} />
       </div>
@@ -79,5 +79,8 @@
   }
   .page-title {
     --at-apply: mt-none;
+  }
+  .meta {
+    --at-apply: sm:flex justify-between mt-20 column;
   }
 </style>

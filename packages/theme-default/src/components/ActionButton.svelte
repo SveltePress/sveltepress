@@ -11,11 +11,13 @@
   role="button" 
   href={to} 
   class={`svp-action ${type ? `svp-action--${type}` : ''}`} target={external ? '_blank' : ''}>
-  <span class="flex-grow text-center">
+  <span class="label">
     {label}
   </span>
   {#if external}
-    <External class="text-6 ml-2" />
+    <div class="external-icon">
+      <External />
+    </div>
   {/if}
 </a>
 
@@ -26,5 +28,11 @@
   }
   .svp-action--primary {
     --at-apply: bg-gradient-linear bg-gradient-[45deg,#fa709a,#fee140];
+  }
+  .external-icon {
+    --at-apply: text-6 ml-2 flex items-center;
+  }
+  .label {
+    --at-apply: flex-grow text-center;
   }
 </style>

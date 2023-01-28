@@ -8,7 +8,7 @@
 <NavItem to="/" title={siteConfig.title}>
   {#if themeOptions.logo}
     <img class="logo" src={themeOptions.logo} alt={siteConfig.title} />
-    <span class="font-600 ml-2">
+    <span class="title">
       {siteConfig.title}
     </span>
   {/if}
@@ -17,6 +17,9 @@
 <style>
   .logo {
     --at-apply: h-[32px];
+  }
+  .title {
+    --at-apply: font-600 ml-2;
   }
 </style>
 

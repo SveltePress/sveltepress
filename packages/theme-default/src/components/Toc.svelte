@@ -53,7 +53,7 @@
     {/if}
   </div>
   <div class="toc" class:collapsed={$tocCollapsed}>
-    <div class="font-bold pl-4 text-gray-8 dark:text-gray-2">
+    <div class="title">
       On this page
     </div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
@@ -78,6 +78,9 @@
       fixed sm:top-[80px] bottom-0 right-0 sm:z-3 leading-[2em] py-4
       text-gray-5 dark:text-gray-2
       transition transition-500 transition-transform;
+  }
+  .title {
+    --at-apply: font-bold pl-4 text-gray-8 dark:text-gray-2;
   }
   .item {
     --at-apply: relative z-3 block  truncate;

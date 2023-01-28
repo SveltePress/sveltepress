@@ -23,20 +23,26 @@
     <Logo />
     <div class="sidebar-mobile">
       {#each themeConfig.navbar as navbarItem}
-        <svelte:component this={Array.isArray(navbarItem.items) ? SidebarGroup : SidebarItem} {...navbarItem} />
+        <svelte:component 
+          this={Array.isArray(navbarItem.items) ? SidebarGroup : SidebarItem} {...navbarItem} 
+        />
       {/each}
     </div>
   </div>
 
   <div class="sidebar-mobile">
     {#each allSidebars as item}
-      <svelte:component this={Array.isArray(item.items) ? SidebarGroup : SidebarItem} {...item} />
+      <svelte:component 
+        this={Array.isArray(item.items) ? SidebarGroup : SidebarItem} {...item} 
+      />
     {/each}
   </div>
     
   <div class="sidebar-pc">
     {#each sidebar as sidebarItem}
-      <svelte:component this={Array.isArray(sidebarItem.items) ? SidebarGroup : SidebarItem} {...sidebarItem} />
+      <svelte:component 
+        this={Array.isArray(sidebarItem.items) ? SidebarGroup : SidebarItem} {...sidebarItem} 
+      />
     {/each}
   </div>
 </aside>
