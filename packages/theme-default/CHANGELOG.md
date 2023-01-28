@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.11.2
+
+### Patch Changes
+
+- [`6ba79f6`](https://github.com/Blackman99/sveltepress/commit/6ba79f6c7a49ebc7bf6776267e2058f3d6775f0b) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move navbar to page layout to have a beter SEO and first screen rendering
+
 ## 0.11.1
 
 ### Patch Changes
