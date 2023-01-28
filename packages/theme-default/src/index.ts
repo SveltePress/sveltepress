@@ -45,7 +45,6 @@ const defaultTheme: ThemeDefault = (options) => {
         },
         config() {
           return {
-            // Need this for avoiding load virtual modules errors
             optimizeDeps: {
               exclude: ['@svelte-press/theme-default'],
             },

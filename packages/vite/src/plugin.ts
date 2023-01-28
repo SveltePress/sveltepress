@@ -42,12 +42,9 @@ const sveltepress: (options: {
     ? `import GlobalLayout from \'${theme.globalLayout}\'`
     : ''
 
-  const clientImports = theme?.clientImports?.join('\n')
-
   const defaultLayout = `
 <script>
   ${importGlobalLayout}
-  ${clientImports}
 </script>
 ${contentWithGlobalLayout('<slot />', theme)}
 `
@@ -56,7 +53,6 @@ ${contentWithGlobalLayout('<slot />', theme)}
 <script>
   ${importGlobalLayout}
   import CustomLayout from '${customRootLayoutPath}'
-  ${clientImports}
 </script>
 ${contentWithGlobalLayout(`
   <CustomLayout>

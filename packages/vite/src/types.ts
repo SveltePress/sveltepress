@@ -21,10 +21,6 @@ export interface ResolvedTheme {
   highlighter: Highlighter
   remarkPlugins?: Plugin[]
   rehypePlugins?: Plugin[]
-  /**
-   * Client imports would be added to the global layout script scope
-   */
-  clientImports?: Array<`import '${string}'`>
 }
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
