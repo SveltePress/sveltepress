@@ -10,12 +10,20 @@ const cache = new LRUCache<string, any>({ max: 1024 })
 export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
 const styleRe = /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/g
 
-export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
-  theme?: ResolvedTheme
+export async function wrapPage({
+  layout,
+  id,
+  mdOrSvelteCode,
+  siteConfig,
+  highlighter,
+  rehypePlugins,
+  remarkPlugins,
+}: {
   siteConfig: SiteConfig
   mdOrSvelteCode: string
   id: string
-}) {
+  layout?: string
+} & Partial<Omit<ResolvedTheme, 'name' | 'vitePlugins' | 'pageLayout' | 'globalLayout'>>) {
   const cacheKey = JSON.stringify({ id, mdOrSvelteCode })
   let cached = cache.get(cacheKey)
   if (cached)
@@ -25,14 +33,14 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   const relativeRouteFilePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '')
 
   const routeId = relativeRouteFilePath.replace(/\+page.(md|svelte)$/, '')
-  info('rendering: ', routeId)
+  info('rendering: ', id)
 
   const mdsvexOptions: MdsvexOptions = {
     highlight: {
-      highlighter: theme?.highlighter,
+      highlighter,
     },
-    remarkPlugins: theme?.remarkPlugins,
-    rehypePlugins: theme?.rehypePlugins,
+    remarkPlugins,
+    rehypePlugins,
   }
   let fm: Record<string, any> = {}
   let svelteCode = ''
@@ -54,7 +62,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     }
     svelteCode = code
   }
-  if (id.endsWith('.svelte')) {
+  else if (id.endsWith('page.svelte')) {
     fm = {
       ...parseSvelteFrontmatter(mdOrSvelteCode),
       pageType: 'svelte',
@@ -62,14 +70,17 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     }
     svelteCode = mdOrSvelteCode
   }
+  else if (id.endsWith('layout.svelte')) {
+    svelteCode = mdOrSvelteCode
+  }
 
   let wrappedCode = svelteCode
-  if (theme?.pageLayout) {
+  if (layout) {
     wrappedCode = wrapSvelteCode({
       svelteCode,
       fm,
       siteConfig,
-      pageLayout: theme?.pageLayout,
+      pageLayout: layout,
     })
   }
   cached = {
@@ -78,7 +89,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     routeId,
   }
   cache.set(cacheKey, cached)
-  info('rendered: ', routeId)
+  info('rendered: ', id)
   return cached
 }
 
@@ -111,6 +122,9 @@ export function wrapSvelteCode({
       m,
       imports,
     ].join('\n'))
+  }
+  else {
+    scripts.push('<script>', imports, '</script>')
   }
   const styleMatches = styleRe.exec(svelteCode)
   let styleCode = ''

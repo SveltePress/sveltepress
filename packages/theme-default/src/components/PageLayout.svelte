@@ -6,7 +6,6 @@
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
-  import Navbar from './Navbar.svelte'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
@@ -45,37 +44,30 @@
   <meta name="description" content={description || siteConfig.description}>
 </svelte:head>
   
-<main>
-  <Navbar />
-  <div class="sidebar-mobile-home">
-    <Sidebar />
-  </div>
-  
-  {#if !isHome}
-    <div pb-4 class="theme-default--page-layout">
-      {#if sidebar === 'auto'}
-        <Sidebar sidebar={resolvedSidebars} />
+{#if !isHome}
+  <div pb-4 class="theme-default--page-layout">
+    {#if sidebar === 'auto'}
+      <Sidebar sidebar={resolvedSidebars} />
+    {/if}
+    <div class="content">
+      {#if title}
+        <h1 class="page-title">
+          {title}
+        </h1>
       {/if}
-      <div class="content">
-        {#if title}
-          <h1 class="page-title">
-            {title}
-          </h1>
-        {/if}
-        <slot />
-        <div class="meta">
-          <EditPage {pageType} />
-          <LastUpdate {lastUpdate} />
-        </div>
-        <PageSwitcher {pages} />
+      <slot />
+      <div class="meta">
+        <EditPage {pageType} />
+        <LastUpdate {lastUpdate} />
       </div>
-      <Toc {anchors} />
+      <PageSwitcher {pages} />
     </div>
-  {:else}
-    <Home {...fm} {siteConfig} />
-    <slot />
-  {/if}
-</main>
+    <Toc {anchors} />
+  </div>
+{:else}
+  <Home {...fm} {siteConfig} />
+  <slot />
+{/if}
 
 <style>
   :global(.theme-default--page-layout h2) {
@@ -198,12 +190,7 @@
   :global(.svp-anchor-item) {
     --at-apply: relative bottom-[74px];
   }
-  main {
-    --at-apply: pt-[56px] sm:pt-[73px];
-  }
-  .sidebar-mobile-home {
-    --at-apply: sm:display-none;
-  }
+
   .content {
     --at-apply: sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw];
   }
