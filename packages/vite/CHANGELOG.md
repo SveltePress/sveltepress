@@ -1,5 +1,13 @@
 # @svelte-press/vite
 
+## 0.9.2
+
+### Patch Changes
+
+- [`e75e4c5`](https://github.com/Blackman99/sveltepress/commit/e75e4c50f10fb382c542a444355c05d30947d526) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: root layout regex
+
+- [`3ead782`](https://github.com/Blackman99/sveltepress/commit/3ead78271e1af6e95bb287a56015b919d7690d0a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove clientImports option. Since theme writer can directly import anthing in the GlobalLayout.svelte
+
 ## 0.9.1
 
 ### Patch Changes
