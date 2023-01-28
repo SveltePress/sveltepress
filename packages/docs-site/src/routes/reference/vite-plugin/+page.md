@@ -4,7 +4,7 @@ title: Vite plugin
 
 ## Plugin options
 
-@code(/../vite/src/types.ts,35,39)
+@code(/../vite/src/types.ts,25,29)
 
 ### siteConfig
 
@@ -20,7 +20,7 @@ It is useful to inspect or observe the vite pipeline.
 
 ### theme
 
-@code(/../vite/src/types.ts,16,34)
+@code(/../vite/src/types.ts,16,24)
 
 * `name`   
   The name of theme
@@ -47,9 +47,6 @@ It is useful to inspect or observe the vite pipeline.
 * `safelist`  
   The `safelist` for Unocss.  
   Read [Unocss safelist](https://github.com/unocss/unocss#safelist) for more details.
-* `clientImports`  
-  The import statements added to the global layout script scope.  
-  It is useful when the theme need to import some global styles or global run once setup scripts.
 
 ## Virtual modules
 
