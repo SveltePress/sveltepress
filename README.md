@@ -21,7 +21,7 @@ Build with [SvelteKit](https://kit.svelte.dev/)
 
 ## :heart: Thanks 
 
-This project can not be done without these projects:
+This project can not be done without these projects
 
 * [Vitepress](https://vitepress.vuejs.org/)
 * [SvelteKit](https://kit.svelte.dev/) 
