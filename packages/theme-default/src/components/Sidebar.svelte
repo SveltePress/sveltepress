@@ -16,11 +16,11 @@
 </script>
 
 <aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed}>
-  <div class="close" on:click={handleClose} on:keyup={handleClose}>
-    <Close />
-  </div>
   <div class="sidebar-logo">
     <Logo />
+    <div class="close" on:click={handleClose} on:keyup={handleClose}>
+      <Close />
+    </div>
   </div>
 
   <div class="sidebar-mobile">
@@ -54,7 +54,7 @@
       transition-transform transition-300 shadow-md sm:shadow-none;
   }
   .sidebar-logo {
-    --at-apply: sm:h-[72px] sm:flex sm:items-center mb-4 
+    --at-apply: sm:h-[72px] flex items-center mb-4 
       py-4 sm:py-0 sticky top-0 bg-inherit
       border-b-solid border-b border-light-8 dark:border-b-gray-7;
   }
@@ -64,7 +64,6 @@
     transform: translateX(-100%);
   }
   .close {
-    --at-apply: text-6 flex items-center sm:display-none
-      absolute top-4 right-4 z-3;
+    --at-apply: text-5 flex items-center sm:display-none ml-4;
   }
 </style>
