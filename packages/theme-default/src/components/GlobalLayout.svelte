@@ -1,4 +1,5 @@
 <script>
+  import '../style.css'
   import AjaxBar from './AjaxBar.svelte'
   import { sidebarCollapsed } from './layout'
   import { afterNavigate, beforeNavigate } from '$app/navigation'

@@ -18,7 +18,7 @@ const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 // only the src/routes/**/*.+page.(svelte|md) will need to be wrapped by PageLayout
 export const PAGE_RE = /\/src\/routes\/[ \(\)\w+\/-]*\+page(@\w+)?\.(svelte|md)$/
 
-const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated\/nodes\/0\.js$/
+const SVELTEKIT_NODE_0_RE = /\.svelte-kit\/generated(\/client)?\/nodes\/0\.js$/
 
 const contentWithGlobalLayout = (content: string, theme?: ResolvedTheme) => theme
   ? `
@@ -69,7 +69,7 @@ ${contentWithGlobalLayout(`
     writeFileSync(DEFAULT_ROOT_LAYOUT_PATH, defaultLayout)
 
   return {
-    name: 'vite-plugin-sveltepress',
+    name: '@svelte-press/vite',
     /**
      * Must enable this because vite-plugin-svelte enabled this too
      * @see https://github.com/sveltejs/vite-plugin-svelte/blob/1cef575c8f9188456934e38dad7a869b43fe7d46/packages/vite-plugin-svelte/src/index.ts#L58
@@ -114,8 +114,11 @@ ${contentWithGlobalLayout(`
       // TODO: This is a little bit hacky. Maybe there's a better way
       if (SVELTEKIT_NODE_0_RE.test(id)) {
         const lines = src.split('\n')
-        lines.splice(lines.length - 1, 1, `export { default as component } from '/.sveltepress/_Layout.svelte'
-`)
+        lines.splice(
+          lines.length - 1,
+          1,
+          'export { default as component } from \'/.sveltepress/_Layout.svelte\'',
+        )
         return lines.join('\n')
       }
 

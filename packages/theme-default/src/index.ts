@@ -60,9 +60,6 @@ const defaultTheme: ThemeDefault = (options) => {
       }],
     remarkPlugins: [liveCode, admonitions, links, anchors, codeImport],
     highlighter,
-    clientImports: [
-      'import \'@svelte-press/theme-default/style.css\'',
-    ],
   }
 }
 

@@ -21,6 +21,12 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   if (cached)
     return cached
 
+  // /src/routes/foo/+page.(md|svelte) => /foo/+page.(md|svelte)
+  const relativeRouteFilePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '')
+
+  const routeId = relativeRouteFilePath.replace(/\+page.(md|svelte)$/, '')
+  info('rendering: ', routeId)
+
   const mdsvexOptions: MdsvexOptions = {
     highlight: {
       highlighter: theme?.highlighter,
@@ -31,11 +37,6 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
   let fm: Record<string, any> = {}
   let svelteCode = ''
 
-  // /src/routes/foo/+page.(md|svelte) => /foo/+page.(md|svelte)
-  const relativeRouteFilePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '')
-
-  const routeId = relativeRouteFilePath.replace(/\+page.(md|svelte)$/, '')
-  info('parsing: ', routeId)
   const lastUpdate = await getFileLastUpdateTime(id)
 
   if (id.endsWith('.md')) {
@@ -77,6 +78,7 @@ export async function wrapPage({ id, mdOrSvelteCode, theme, siteConfig }: {
     routeId,
   }
   cache.set(cacheKey, cached)
+  info('rendered: ', routeId)
   return cached
 }
 
