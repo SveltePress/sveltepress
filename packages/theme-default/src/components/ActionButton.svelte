@@ -23,8 +23,11 @@
 
 <style>
   .svp-action {
-    --at-apply: inline-flex items-center h-12 leading-12 rounded-6 px-6 
-      hover:shadow-lg bg-white dark:bg-zinc-9 transition-300 transition-shadow;
+    --at-apply: inline-flex items-center h-12 leading-12 
+      rounded-6 px-6 bg-white dark:bg-zinc-9 transition-300 transition-shadow
+  }
+  .svp-action:hover {
+    box-shadow: 6px 4px 12px -2px rgba(235,53,88,0.75);
   }
   .svp-action--primary {
     --at-apply: bg-gradient-linear bg-gradient-[45deg,#fa709a,#fee140];
