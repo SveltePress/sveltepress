@@ -21,13 +21,6 @@
   </div>
   <div class="sidebar-logo">
     <Logo />
-    <div class="sidebar-mobile">
-      {#each themeConfig.navbar as navbarItem}
-        <svelte:component 
-          this={Array.isArray(navbarItem.items) ? SidebarGroup : SidebarItem} {...navbarItem} 
-        />
-      {/each}
-    </div>
   </div>
 
   <div class="sidebar-mobile">
@@ -55,14 +48,14 @@
     --at-apply: display-none sm:display-block;
   }
   .theme-default-sidebar {
-    --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-32 
+    --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-4 sm:pb-32 overflow-y-auto
       bg-light-6 dark:bg-dark-9 z-999 
       sm:w-[25vw] w-[60vw] pl-4 sm:pl-[10vw] box-border
       transition-transform transition-300 shadow-md sm:shadow-none;
   }
   .sidebar-logo {
     --at-apply: sm:h-[72px] sm:flex sm:items-center mb-4 
-      py-4 sm:py-0
+      py-4 sm:py-0 sticky top-0 bg-inherit
       border-b-solid border-b border-light-8 dark:border-b-gray-7;
   }
   .collapsed {
