@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.11.0
+
+### Minor Changes
+
+- [`63e35ef`](https://github.com/Blackman99/sveltepress/commit/63e35ef9b44559af7c0ad76dd86e243713d8c948) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove all atomic class. Use class with --at-apply instead
+
 ## 0.10.3
 
 ### Patch Changes

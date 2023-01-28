@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.11.0
+
+### Minor Changes
+
+- [`63e35ef`](https://github.com/Blackman99/sveltepress/commit/63e35ef9b44559af7c0ad76dd86e243713d8c948) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove all atomic class. Use class with --at-apply instead
+
+### Patch Changes
+
+- [`3ea1e0e`](https://github.com/Blackman99/sveltepress/commit/3ea1e0e384365f92698c8737248b368bfe6b525f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize ajax bar
+
+- [`09fc6c4`](https://github.com/Blackman99/sveltepress/commit/09fc6c4f14ae7949c39dadf4c8a5bf05db795659) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove mobile sidebar navbar links
+
 ## 0.10.4
 
 ### Patch Changes
