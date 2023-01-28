@@ -93,7 +93,7 @@ const msg = 'world!' // [svp! df:-]
 const newMsg = 'new world!' // [svp! df:+]
 
 function hello() {
-  console.log('Hello', msg) // [svp! ++]
+  console.log('Hello', msg) // [svp! --]
   console.log('Hello', newMsg) // [svp! ++]
 }
 ```
@@ -231,7 +231,7 @@ And you can specify the startLine and endLine to intercept the code you want.
 ```
 Path can starts with `.` or `/`
 * `.` is the relative path to the current md file
-* `/` is the relative path to `process.cwd()` 
+* `/` is the relative path to project root, where you start the `vite` command
 
 For example you have file tree like this
 

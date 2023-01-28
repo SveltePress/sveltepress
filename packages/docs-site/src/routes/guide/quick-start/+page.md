@@ -32,6 +32,16 @@ yarn add @svelte-press/vite
 pnpm install @svelte-press/vite
 ```
 
+Notice that you no longer need the sveltekit package installed
+
+```json
+// package.json
+{
+  "sveltekit": "^1.0.0", // [svp! --]
+  "@svelte-press/vite": "latest" // [svp! ++]
+}
+```
+
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
 
 ```js
