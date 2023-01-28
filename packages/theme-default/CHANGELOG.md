@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.11.1
+
+### Patch Changes
+
+- [`074516f`](https://github.com/Blackman99/sveltepress/commit/074516f30816709d5ee0aff51effffc41931c2a7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: mobile sidebar close icon sticky position
+
 ## 0.11.0
 
 ### Minor Changes
