@@ -36,7 +36,7 @@
     </div>
     {#if heroImage}
       <div class="hero-image">
-        <img src={heroImage} alt={siteConfig.title} width="10rem" />
+        <img src={heroImage} alt={siteConfig.title} width="192" />
       </div>
     {/if}
   </div>
