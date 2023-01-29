@@ -1,10 +1,12 @@
 <script>
   import '@docsearch/css'
   import '../style.css'
+  import 'uno.css'
   import AjaxBar from './AjaxBar.svelte'
-  import { sidebarCollapsed } from './layout'
+  import { anchors, sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'
   import Sidebar from './Sidebar.svelte'
+  import Toc from './Toc.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   
   let ajaxBar
@@ -28,6 +30,8 @@
     <Sidebar />
   </div>
   <slot />
+
+  <Toc anchors={$anchors} />
 </main>
 
 <style>

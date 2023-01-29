@@ -17,7 +17,6 @@ const defaultTheme: ThemeDefault = (options) => {
     pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
-        mode: 'svelte-scoped',
         presets: [
           presetUno(),
         ],

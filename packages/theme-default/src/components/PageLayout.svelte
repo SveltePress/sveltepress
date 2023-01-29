@@ -1,11 +1,11 @@
 <script >
   import themeOptions from 'virtual:sveltepress/theme-default'
-  import Toc from './Toc.svelte'
   import Home from './Home.svelte'
   import Sidebar from './Sidebar.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
+  import { anchors } from './layout'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
@@ -35,8 +35,10 @@
     description,
     pageType,
     lastUpdate,
-    anchors = []
+    anchors: fmAnchors = []
   } = fm
+
+  anchors.set(fmAnchors)
 
 </script>
 <svelte:head>
@@ -62,7 +64,6 @@
       </div>
       <PageSwitcher {pages} />
     </div>
-    <Toc {anchors} />
   </div>
 {:else}
   <Home {...fm} {siteConfig} />
