@@ -118,7 +118,7 @@ Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current lin
 
 **Input**
 
-:::caution Not Supported
+:::warning Not Supported
 Multi `// [svp! fc]` in one single code block is not supported
 :::
 

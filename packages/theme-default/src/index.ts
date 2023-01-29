@@ -7,6 +7,7 @@ import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
+import { customTypes } from './markdown/admonitions.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -56,7 +57,12 @@ const defaultTheme: ThemeDefault = (options) => {
           }
         },
       }],
-    remarkPlugins: [liveCode, admonitions, links, anchors, codeImport],
+    remarkPlugins: [
+      liveCode,
+      [admonitions, { customTypes }] as any,
+      links,
+      anchors,
+      codeImport],
     highlighter,
   }
 }
