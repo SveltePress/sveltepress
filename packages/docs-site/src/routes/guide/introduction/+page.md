@@ -19,9 +19,9 @@ For example:
 ## Layout hierarchy
 
 :::caution Important
-There must have a root layout file
+There must have a root layout file.  
 Which is `src/routes/+layout.svelte` or `src/routes/+layout.md`.  
-Otherwise the global layout that theme provide would not working!
+**Otherwise the global layout that theme provide would not working!**
 :::
 
 For example if your file tree look like this
