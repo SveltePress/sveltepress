@@ -1,5 +1,21 @@
 # @svelte-press/theme-default
 
+## 0.12.2
+
+### Patch Changes
+
+- [`d443bfa`](https://github.com/Blackman99/sveltepress/commit/d443bfa1540ae69bb64548002634301c23ee828b) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: action button style optimize
+
+- [`6283d34`](https://github.com/Blackman99/sveltepress/commit/6283d34ff54ed4e2318fb1375d4a1703492b0b85) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove svelte-scoped usage
+
+- [`5024afe`](https://github.com/Blackman99/sveltepress/commit/5024afe280207676fda1103b22026d1b9cfd1918) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove unnecessary style
+
+- [`ff6efba`](https://github.com/Blackman99/sveltepress/commit/ff6efba4951245b93b4358b530babf4ae6e39b3d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: customize icons for admonitions
+
+- [`6eb70f8`](https://github.com/Blackman99/sveltepress/commit/6eb70f8a432b3069ee9e1d14714636c54612e60d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: sidebar and toc can only show one in mobile view
+
+- [`0cadc39`](https://github.com/Blackman99/sveltepress/commit/0cadc39223c262a67c6a8a04d977f82a33a8edc0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: action button style
+
 ## 0.12.1
 
 ### Patch Changes
