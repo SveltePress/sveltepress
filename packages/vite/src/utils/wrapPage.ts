@@ -3,7 +3,6 @@ import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from '../types'
 import mdToSvelte from '../markdown/mdToSvelte.js'
 import { parseSvelteFrontmatter } from './parseSvelteFrontmatter.js'
-import { info } from './log.js'
 import { getFileLastUpdateTime } from './getFileLastUpdate.js'
 
 const cache = new LRUCache<string, any>({ max: 1024 })
@@ -28,7 +27,6 @@ export async function wrapPage({
   let cached = cache.get(cacheKey)
   if (cached)
     return cached
-  info('rendering: ', id)
 
   const mdsvexOptions: MdsvexOptions = {
     highlight: {
@@ -83,7 +81,6 @@ export async function wrapPage({
     fm,
   }
   cache.set(cacheKey, cached)
-  info('rendered: ', id)
   return cached
 }
 

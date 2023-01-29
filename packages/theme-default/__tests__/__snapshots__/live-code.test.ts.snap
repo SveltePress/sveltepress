@@ -49,6 +49,7 @@ import {
 	insert as insert$,
 	listen as listen$,
 	mount_component as mount_component$,
+	null_to_empty as null_to_empty$,
 	run_all as run_all$,
 	safe_not_equal as safe_not_equal$,
 	set_data as set_data$,
@@ -67,7 +68,7 @@ import SvelteWithColor from './icons/SvelteWithColor.svelte';
 import ArrowDown from './icons/ArrowDown.svelte';
 
 function add_css$(target) {
-	append_styles$(target, \\"svelte-qrifvm\\", \\".svp-live-code--container{--at-apply:mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded}.svp-live-code--demo{--at-apply:p-4}.c-expansion--body .svp-code-block{--at-apply:mb-none}\\");
+	append_styles$(target, \\"svelte-qzagc\\", \\".svp-live-code--container{--at-apply:mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded}.svp-live-code--demo{--at-apply:p-4}.c-expansion--body .svp-code-block{--at-apply:mb-none}.c-expansion--header.svelte-qzagc{--at-apply:rounded-b flex justify-between px-4 py-2 items-center}.c-expansion--icon.svelte-qzagc{--at-apply:mr-2 text-6 flex items-center}.c-expansion--arrow.svelte-qzagc{--at-apply:text-6 flex items-center}.c-expansion--header-left.svelte-qzagc{--at-apply:flex items-center}.c-expansion--title.svelte-qzagc{--at-apply:text-3.5}\\");
 }
 
 const get_arrow_slot_changes$ = dirty => ({});
@@ -472,13 +473,13 @@ function create_fragment(ctx) {
 			if (arrow_slot_or_fallback$) arrow_slot_or_fallback$.c();
 			t3$ = space$();
 			if (if_block2$) if_block2$.c();
-			attr$(div0$, \\"class\\", \\"c-expansion--icon mr-2 text-6 flex items-center\\");
-			attr$(div1$, \\"class\\", \\"c-expansion--title text-3.5\\");
-			attr$(div2$, \\"class\\", \\"flex items-center\\");
-			attr$(div3$, \\"class\\", div3$_class_value$ = \`c-expansion--arrow \${/*expanded*/ ctx[0] ? 'c-expansion--arrow-expanded' : ''} text-6 flex items-center\`);
-			attr$(div4$, \\"class\\", \\"c-expansion--header rounded-b flex justify-between px-4 py-2 items-center\\");
+			attr$(div0$, \\"class\\", \\"c-expansion--icon svelte-qzagc\\");
+			attr$(div1$, \\"class\\", \\"c-expansion--title svelte-qzagc\\");
+			attr$(div2$, \\"class\\", \\"c-expansion--header-left svelte-qzagc\\");
+			attr$(div3$, \\"class\\", div3$_class_value$ = \\"\\" + (null_to_empty$(\`c-expansion--arrow \${/*expanded*/ ctx[0] ? 'c-expansion--arrow-expanded' : ''}\`) + \\" svelte-qzagc\\"));
+			attr$(div4$, \\"class\\", \\"c-expansion--header svelte-qzagc\\");
 			attr$(div4$, \\"style\\", /*headerStyle*/ ctx[3]);
-			attr$(div5$, \\"class\\", div5$_class_value$ = \`c-expansion \${/*expanded*/ ctx[0] ? 'c-expansion--expanded' : ''}\`);
+			attr$(div5$, \\"class\\", div5$_class_value$ = \\"\\" + (null_to_empty$(\`c-expansion \${/*expanded*/ ctx[0] ? 'c-expansion--expanded' : ''}\`) + \\" svelte-qzagc\\"));
 		},
 		m(target, anchor) {
 			insert$(target, div5$, anchor);
@@ -599,7 +600,7 @@ function create_fragment(ctx) {
 				}
 			}
 
-			if (!current || dirty & /*expanded*/ 1 && div3$_class_value$ !== (div3$_class_value$ = \`c-expansion--arrow \${/*expanded*/ ctx[0] ? 'c-expansion--arrow-expanded' : ''} text-6 flex items-center\`)) {
+			if (!current || dirty & /*expanded*/ 1 && div3$_class_value$ !== (div3$_class_value$ = \\"\\" + (null_to_empty$(\`c-expansion--arrow \${/*expanded*/ ctx[0] ? 'c-expansion--arrow-expanded' : ''}\`) + \\" svelte-qzagc\\"))) {
 				attr$(div3$, \\"class\\", div3$_class_value$);
 			}
 
@@ -630,7 +631,7 @@ function create_fragment(ctx) {
 				check_outros$();
 			}
 
-			if (!current || dirty & /*expanded*/ 1 && div5$_class_value$ !== (div5$_class_value$ = \`c-expansion \${/*expanded*/ ctx[0] ? 'c-expansion--expanded' : ''}\`)) {
+			if (!current || dirty & /*expanded*/ 1 && div5$_class_value$ !== (div5$_class_value$ = \\"\\" + (null_to_empty$(\`c-expansion \${/*expanded*/ ctx[0] ? 'c-expansion--expanded' : ''}\`) + \\" svelte-qzagc\\"))) {
 				attr$(div5$, \\"class\\", div5$_class_value$);
 			}
 		},
@@ -740,7 +741,7 @@ class Component$ extends SvelteComponent$ {
 
 export default Component$;",
   "map": {
-    "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;SACW,KAAK,QAAQ,mBAAmB;SAChC,UAAU,QAAQ,eAAe;OACnC,MAAM,MAAM,uBAAuB;OACnC,eAAe,MAAM,gCAAgC;OACrD,SAAS,MAAM,0BAA0B;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GA0C9C,OAYM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8FAVF,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;6FADlB,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;wBAkCf,GAAK;;;;;;oDAAL,GAAK;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GAcZ,OASM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8BA7DH,GAAO,oBAAI,GAAQ;;;;;mBAyBb,GAAQ;;;;;;;;;;;;+BA0Bb,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;iFARQ,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;yCAzBrE,GAAW;0EApBE,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;GAD/D,OAkEM;;;GA/CJ,OAkCM;GA5BJ,OAmBM;GAlBJ,OAWM;;;GACN,OAKM;;;;;;;GAER,OAOM;;;;;;;;;;;;iEA9BoB,GAAa;kDAC1B,GAAa;;;;;;;mBApBvB,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6HA2CS,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;;;;0CAzBrE,GAAW;;;oBAiCd,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;sHArDH,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;OAjClD,KAAK,GAAG,EAAE;OAMV,QAAQ,GAAG,KAAK;OAMhB,OAAO,GAAG,KAAK;OAMf,WAAW,GAAG,EAAE;;;;;;KAMvB,OAAO;;UAEF,aAAa;kBACpB,QAAQ,IAAI,QAAQ;;;;;GAcP,OAAO;;;;;;;GAgDP,OAAO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+    "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;SACW,KAAK,QAAQ,mBAAmB;SAChC,UAAU,QAAQ,eAAe;OACnC,MAAM,MAAM,uBAAuB;OACnC,eAAe,MAAM,gCAAgC;OACrD,SAAS,MAAM,0BAA0B;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GA0C9C,OAYM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8FAVF,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;6FADlB,QAAQ,EAAE,GAAG,EACb,MAAM,EAAE,UAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;wBAkCf,GAAK;;;;;;oDAAL,GAAK;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GAcZ,OASM;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8BA7DH,GAAO,oBAAI,GAAQ;;;;;mBAyBb,GAAQ;;;;;;;;;;;;+BA0Bb,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;sGARQ,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;yCAzBrE,GAAW;+FApBE,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;GAD/D,OAkEM;;;GA/CJ,OAkCM;GA5BJ,OAmBM;GAlBJ,OAWM;;;GACN,OAKM;;;;;;;GAER,OAOM;;;;;;;;;;;;iEA9BoB,GAAa;kDAC1B,GAAa;;;;;;;mBApBvB,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;kJA2CS,GAAQ,MAAG,6BAA6B,GAAG,EAAE;;;;;0CAzBrE,GAAW;;;oBAiCd,GAAO,oBAAI,GAAQ;;;;;;;;;;;;;;;;;;;;;;;2IArDH,GAAQ,MAAG,uBAAuB,GAAG,EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;OAjClD,KAAK,GAAG,EAAE;OAMV,QAAQ,GAAG,KAAK;OAMhB,OAAO,GAAG,KAAK;OAMf,WAAW,GAAG,EAAE;;;;;;KAMvB,OAAO;;UAEF,aAAa;kBACpB,QAAQ,IAAI,QAAQ;;;;;GAcP,OAAO;;;;;;;GAgDP,OAAO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
     "names": [],
     "sources": [
       null,
@@ -809,13 +810,13 @@ export default Component$;",
   {/if}
   <!-- The header click function, emit the expand status exchange -->
   <div
-    class=\\"c-expansion--header rounded-b flex justify-between px-4 py-2 items-center\\"
+    class=\\"c-expansion--header\\"
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
     on:keypress={onHeaderClick}
   >
-    <div class=\\"flex items-center\\">
-      <div class=\\"c-expansion--icon mr-2 text-6 flex items-center\\">
+    <div class=\\"c-expansion--header-left\\">
+      <div class=\\"c-expansion--icon\\">
         <!-- The content before title -->
         {#if expanded}
           <slot name=\\"icon-expanded\\">
@@ -827,7 +828,7 @@ export default Component$;",
           </slot>
         {/if}
       </div>
-      <div class=\\"c-expansion--title text-3.5\\">
+      <div class=\\"c-expansion--title\\">
         <!-- Customize the title content -->
         <slot name=\\"title\\">
           {title}
@@ -835,7 +836,7 @@ export default Component$;",
       </div>
     </div>
     <div
-      class={\`c-expansion--arrow \${expanded ? 'c-expansion--arrow-expanded' : ''} text-6 flex items-center\`}
+      class={\`c-expansion--arrow \${expanded ? 'c-expansion--arrow-expanded' : ''}\`}
     >
       <!-- Customize the arrow dom -->
       <slot name=\\"arrow\\">
@@ -866,6 +867,21 @@ export default Component$;",
   }
    :global(.c-expansion--body .svp-code-block) {
     --at-apply: mb-none;
+  }
+  .c-expansion--header {
+    --at-apply: rounded-b flex justify-between px-4 py-2 items-center;
+  }
+  .c-expansion--icon {
+    --at-apply: mr-2 text-6 flex items-center;
+  }
+  .c-expansion--arrow {
+    --at-apply: text-6 flex items-center;
+  }
+  .c-expansion--header-left {
+    --at-apply: flex items-center;
+  }
+  .c-expansion--title {
+    --at-apply: text-3.5;
   }
 </style>",
     ],
