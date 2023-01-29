@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
 import { presetUno, transformerDirectives } from 'unocss'
@@ -14,10 +13,7 @@ const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 const defaultTheme: ThemeDefault = (options) => {
   return {
     name: '@svelte-press/theme-default',
-    // For global layout can only use the absolute path since the import may happen in
-    // @sveltejs/kit/src/runtime/components/layout.svelte.
-    // Which can't access @svelte-press/theme-default package
-    globalLayout: resolve(process.cwd(), './node_modules/@svelte-press/theme-default/dist/components/GlobalLayout.svelte'),
+    globalLayout: '@svelte-press/theme-default/GlobalLayout.svelte',
     pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
@@ -55,7 +51,7 @@ const defaultTheme: ThemeDefault = (options) => {
             server: {
               fs: {
                 // Need this for dev
-                allow: ['../theme-default/dist/fonts'],
+                allow: ['../theme-default/src/fonts'],
               },
             },
           }

@@ -28,11 +28,6 @@ export async function wrapPage({
   let cached = cache.get(cacheKey)
   if (cached)
     return cached
-
-  // /src/routes/foo/+page.(md|svelte) => /foo/+page.(md|svelte)
-  const relativeRouteFilePath = id.slice(id.indexOf('/src/routes/')).replace(/^\/src\/routes/, '')
-
-  const routeId = relativeRouteFilePath.replace(/\+page.(md|svelte)$/, '')
   info('rendering: ', id)
 
   const mdsvexOptions: MdsvexOptions = {
@@ -86,7 +81,6 @@ export async function wrapPage({
   cached = {
     wrappedCode,
     fm,
-    routeId,
   }
   cache.set(cacheKey, cached)
   info('rendered: ', id)

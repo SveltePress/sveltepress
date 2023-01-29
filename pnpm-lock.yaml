@@ -74,6 +74,7 @@ importers:
 
   packages/theme-default:
     specifiers:
+      '@docsearch/css': '3'
       '@docsearch/js': '3'
       '@svelte-press/vite': workspace:*
       '@sveltejs/kit': ^1.0.1
@@ -90,6 +91,7 @@ importers:
       vite: ^4.0.3
       vitest: ^0.26.3
     dependencies:
+      '@docsearch/css': 3.3.2
       '@docsearch/js': 3.3.2
       remark-admonitions: 1.2.1
       shiki: 0.12.1

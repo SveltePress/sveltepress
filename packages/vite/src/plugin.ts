@@ -7,16 +7,11 @@ import { wrapPage } from './utils/wrapPage.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 
-const SVELTEKIT_DEFAULT_LAYOUT_RE = /@sveltejs\/kit\/src\/runtime\/components\/layout\.svelte$/
-
-// Custom root layout
-const ROOT_LAYOUT_RE = /src\/routes\/\+layout\.(svelte)|(md)$/
-
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 
-// only the src/routes/**/*.+page.(svelte|md) will need to be wrapped by PageLayout
-export const PAGE_RE = /\/src\/routes\/[ \(\)\w+\/-]*\+page(@\w+)?\.(svelte|md)$/
+// only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by PageLayout
+export const PAGE_OR_LAYOUT_RE = /\/src\/routes\/[ \(\)\w+\/-]*\+(page)|(layout)(@\w+)?\.(svelte|md)$/
 
 if (!existsSync(BASE_PATH))
   mkdirSync(BASE_PATH, { recursive: true })
@@ -28,6 +23,15 @@ const sveltepress: (options: {
   theme,
   siteConfig,
 }) => {
+  function getLayout(path: string) {
+    let layout: string | undefined
+    if (isRootLayout(path))
+      layout = theme?.globalLayout
+    else if (isPage(path))
+      layout = theme?.pageLayout
+    return layout
+  }
+
   return {
     name: '@svelte-press/vite',
     /**
@@ -58,23 +62,13 @@ const sveltepress: (options: {
         return `export default ${JSON.stringify(siteConfig)}`
     },
     async transform(src, id) {
-      if (PAGE_RE.test(id)) {
+      if (PAGE_OR_LAYOUT_RE.test(id)) {
         return (await wrapPage({
           mdOrSvelteCode: src,
           siteConfig,
           ...theme,
           id,
-          layout: theme?.pageLayout,
-        })).wrappedCode
-      }
-
-      if (SVELTEKIT_DEFAULT_LAYOUT_RE.test(id) || ROOT_LAYOUT_RE.test(id)) {
-        return (await wrapPage({
-          id,
-          ...theme,
-          siteConfig,
-          mdOrSvelteCode: src,
-          layout: theme?.globalLayout,
+          layout: getLayout(id),
         })).wrappedCode
       }
 
@@ -84,7 +78,7 @@ const sveltepress: (options: {
     },
     async handleHotUpdate(ctx) {
       const { file } = ctx
-      if (PAGE_RE.test(file)) {
+      if (PAGE_OR_LAYOUT_RE.test(file)) {
         const src = await ctx.read()
         // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
         ctx.read = async () => (await wrapPage({
@@ -92,22 +86,19 @@ const sveltepress: (options: {
           mdOrSvelteCode: src,
           siteConfig,
           ...theme,
-          layout: theme?.pageLayout,
-        })).wrappedCode
-      }
-
-      if (SVELTEKIT_DEFAULT_LAYOUT_RE.test(file) || ROOT_LAYOUT_RE.test(file)) {
-        const src = await ctx.read()
-        return (await wrapPage({
-          id: file,
-          ...theme,
-          siteConfig,
-          mdOrSvelteCode: src,
-          layout: theme?.globalLayout,
+          layout: getLayout(file),
         })).wrappedCode
       }
     },
   }
+}
+
+function isPage(path: string) {
+  return path.endsWith('+page.svelte') || path.endsWith('+page.md')
+}
+
+function isRootLayout(path: string) {
+  return path.endsWith('src/routes/+layout.svelte') || path.endsWith('src/routes/+layout.svelte')
 }
 
 export default sveltepress
