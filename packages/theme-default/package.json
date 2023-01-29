@@ -1,7 +1,7 @@
 {
   "name": "@svelte-press/theme-default",
   "homepage": "https://sveltepress.site/",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "The default theme for sveltepress",
   "scripts": {
     "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
