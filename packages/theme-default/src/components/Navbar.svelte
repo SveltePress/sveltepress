@@ -74,7 +74,7 @@
     --at-apply: pl-[2vw];
   }
   .is-not-home {
-    --at-apply: pl-[18vw];
+    --at-apply: sm:pl-[11vw];
   }
   .logo-container {
     --at-apply: display-none sm:display-block;

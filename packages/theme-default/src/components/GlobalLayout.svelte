@@ -1,6 +1,6 @@
 <script>
-  import '../style.css'
   import '@docsearch/css'
+  import '../style.css'
   import AjaxBar from './AjaxBar.svelte'
   import { sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'

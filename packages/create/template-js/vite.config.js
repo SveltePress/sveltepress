@@ -9,9 +9,9 @@ const config = defineConfig({
         navbar: [
           // Add your navbar configs here
         ],
-        sidebar: [
+        sidebar: {
           // Add your sidebar configs here
-        ],
+        },
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
       }),

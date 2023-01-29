@@ -214,3 +214,7 @@ html .shiki.Night.Owl {
 html.dark .shiki.Night.Owl {
   display: block;
 }
+
+.DocSearch-Container {
+  z-index: 9999;
+}
