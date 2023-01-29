@@ -98,7 +98,7 @@ function isPage(path: string) {
 }
 
 function isRootLayout(path: string) {
-  return path.endsWith('src/routes/+layout.svelte') || path.endsWith('src/routes/+layout.svelte')
+  return path.endsWith('src/routes/+layout.svelte') || path.endsWith('src/routes/+layout.md')
 }
 
 export default sveltepress
