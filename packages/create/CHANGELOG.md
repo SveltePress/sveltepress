@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.12.2
+
+### Patch Changes
+
+- [`6283d34`](https://github.com/Blackman99/sveltepress/commit/6283d34ff54ed4e2318fb1375d4a1703492b0b85) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove svelte-scoped usage
+
 ## 0.12.1
 
 ### Patch Changes
