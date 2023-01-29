@@ -1,5 +1,11 @@
 # @svelte-press/theme-default
 
+## 0.12.1
+
+### Patch Changes
+
+- [`70b345c`](https://github.com/Blackman99/sveltepress/commit/70b345ce10401c06bf7d06b5259b8572241586ae) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: docsearch modal should have a larger z-index than all other things
+
 ## 0.12.0
 
 ### Minor Changes
