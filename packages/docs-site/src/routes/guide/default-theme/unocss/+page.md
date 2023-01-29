@@ -10,12 +10,23 @@ Let's have some examples to see the benefits:
 
 ## Easily dark mode
 
-Toggle the dark mode to ses what's happening
+The following content would show 3 red cards per line in light mode.  
+And 2 blue cards per line in dark mode.   
+Isn't this great with few codes?
 
 ```svelte live
-<div class="text-5 text-rose-5 dark:text-blue-5 dark:text-10">
-  This is a paragraph with different color and font size in light/dark mode.
+<div class="grid grid-cols-3 gap-4 dark:grid-cols-2">
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
 </div>
+<style>
+  .card {
+    --at-apply: h-[100px] flex items-center justify-center
+      rounded bg-rose-5 dark:bg-blue-5;
+  }
+</style>
 ```
 
 ## Easily multi screen compatible
