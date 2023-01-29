@@ -6,8 +6,6 @@ title: Unocss
 
 The default theme use the [Unocss](https://github.com/unocss/unocss) to implement all styles
 
-And with [SvelteKit Scoped Mode](https://github.com/unocss/unocss/tree/main/packages/vite#sveltesveltekit-scoped-mode)
-
 Let's have some examples to see the benefits:
 
 ## Easily dark mode
