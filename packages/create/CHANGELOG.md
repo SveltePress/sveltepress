@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.12.0
+
+### Minor Changes
+
+- [`437d2ce`](https://github.com/Blackman99/sveltepress/commit/437d2ce6e3bb14c0e6220e37ab1e2f7e95156a4e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: layout
+
 ## 0.11.4
 
 ### Patch Changes
