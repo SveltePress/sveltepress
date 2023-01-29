@@ -24,13 +24,12 @@
 <style>
   .svp-action {
     --at-apply: inline-flex items-center h-12 leading-12 
-      rounded-6 px-6 bg-white dark:bg-zinc-9 transition-300 transition-shadow
-  }
-  .svp-action:hover {
-    box-shadow: 6px 4px 12px -2px rgba(235,53,88,0.75);
+      rounded-6 px-6 bg-white dark:bg-zinc-9 
+      transition-300 transition-shadow
+      hover:shadow dark:hover:shadow-gray-6;
   }
   .svp-action--primary {
-    --at-apply: bg-gradient-linear bg-gradient-[45deg,#fa709a,#fee140];
+    --at-apply: svp-gradient-bg;
   }
   .external-icon {
     --at-apply: text-6 ml-2 flex items-center;
