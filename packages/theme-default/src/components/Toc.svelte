@@ -96,10 +96,10 @@
     content: ' ';
   }
   .active-bar {
-    --at-apply: absolute z-2 bg-rose-1 left-0 h-[2em] 
-      border-l-[3px] border-l-solid border-rose-4
+    --at-apply: absolute z-2 bg-rose-1 bg-opacity-80 left-0 h-[2em] 
+      border-l-[3px] border-l-solid border-rose-4 border-opacity-80
       w-full transition-transform transition-300 top-0
-      dark:border-rose-5 dark:bg-rose-8 dark:bg-opacity-50;
+      dark:border-rose-8 dark:bg-rose-8 dark:bg-opacity-20;
     transform: translateY(var(--bar-top));
   }
   .mobile-toc-trigger {
