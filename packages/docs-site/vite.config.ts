@@ -96,6 +96,11 @@ const config = defineConfig({
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
         discord: 'https://discord.com/channels/994160573333913691/1065131029616136273',
+        docsearch: {
+          apiKey: '',
+          appId: '',
+          indexName: '',
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',

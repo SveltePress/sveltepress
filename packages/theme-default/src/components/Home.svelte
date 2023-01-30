@@ -83,7 +83,7 @@
       sm:col-span-5 col-span-6 col-start-4 sm:col-start-8;
   }
   .hero-image img {
-    --at-apply: sm:w-60 w-full;
+    --at-apply: sm:w-60 w-full max-w-[220px];
   }
   .gradient-title {
     --at-apply: svp-gradient-text;
@@ -92,7 +92,9 @@
     --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9 font-normal;
   }
   .actions {
-    --at-apply: grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-4 justify-center sm:justify-start;
+    --at-apply: grid-cols-1 px-10 sm:px-0 grid sm:flex 
+      gap-4 mt-4 justify-center sm:justify-start
+      max-w-[320px] mx-auto sm:max-w-none;
   }
   .features {
     --at-apply: grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4;

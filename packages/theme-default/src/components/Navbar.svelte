@@ -70,17 +70,11 @@
       z-999 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
-  .is-home {
-    --at-apply: pl-[2vw];
-  }
-  .is-not-home {
-    --at-apply: sm:pl-[11vw];
-  }
   .logo-container {
     --at-apply: display-none sm:display-block;
   }
   .header-inner {
-    --at-apply: sm:w-[70vw] h-full 
+    --at-apply: sm:w-[80vw] h-full 
       flex items-stretch justify-between
       mx-auto;
   }
@@ -88,7 +82,13 @@
     --at-apply: flex items-center;
   }
   .doc-search {
-    --at-apply: flex-grow flex items-center
+    --at-apply: flex-grow flex items-center relative transition-500 transition-left;
+  }
+  .doc-search.is-home {
+    --at-apply: left-2;
+  }
+  .doc-search.is-not-home {
+    --at-apply: sm:left-[15.5vw];
   }
   .divider {
     --at-apply: bg-stone-2 w-[1px] my-6 dark:bg-stone-7;
