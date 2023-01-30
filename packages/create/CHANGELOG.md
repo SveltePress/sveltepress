@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.12.4
+
+### Patch Changes
+
+- [`23cf52a`](https://github.com/Blackman99/sveltepress/commit/23cf52acae6e990033833b260062498162cdd864) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar hover color
+
 ## 0.12.3
 
 ### Patch Changes
