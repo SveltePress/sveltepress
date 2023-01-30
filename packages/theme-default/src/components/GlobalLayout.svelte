@@ -1,7 +1,7 @@
 <script>
   import '@docsearch/css'
-  import '../style.css'
   import 'uno.css'
+  import '../style.css'
   import AjaxBar from './AjaxBar.svelte'
   import { anchors, sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'

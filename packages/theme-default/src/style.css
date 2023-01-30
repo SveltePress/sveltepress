@@ -2,6 +2,7 @@
   --svp-expansion-bg: #f8f8fb;
   --svp-expansion-bg-darker: #f2f2f7;
   --svp-expansion-bg-darker2: #e8e8f2;
+  --docsearch-primary-color: rgba(251,113,133, 1);
 }
 
 html.dark,
