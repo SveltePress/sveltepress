@@ -35,6 +35,35 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 
+## Line numbers
+
+Add `ln` in code block meta field would add line numbers in the rendered result.
+
+````md
+```svelte ln
+<script>
+  const msg = 'world!'
+</script>
+  
+<h1>
+  Hello, {msg}
+</h1>
+```
+````
+
+**Output**
+
+```svelte ln
+<script>
+  const msg = 'world!'
+</script>
+  
+<h1>
+  Hello, {msg}
+</h1>
+```
+
+
 ## Line highlight
 
 Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want  
@@ -164,16 +193,18 @@ Multi `// [svp! fc]` in one single code block is not supported
 
 ## Svelte live code
 
-use svelte lang and live prop would have effect like this
+Use svelte lang and live prop would have effect like this.  
+You can combine with any of the feature mentioned above.  
+Here's a example with full features:  
 
 **Input**
 
 ````md
-```svelte live
+```svelte live ln
 <script>
-  let count = 0
+  let count = 0 // [svp! hl]
 
-  const handleClick = () => {
+  const handleClick = () => { // [svp! !!:3]
     count++
   }
 </script>
@@ -182,8 +213,8 @@ use svelte lang and live prop would have effect like this
 </button>
 <style>
   button {
-    background-color: purple;
-    color: white;
+    background-color: purple; /* // [svp! --] */
+    color: white; /* // [svp! ++] */
     outline: 0;
     border: 0;
     padding: 8px 16px;
@@ -196,11 +227,11 @@ use svelte lang and live prop would have effect like this
 
 **Output**
 
-```svelte live
+```svelte live ln
 <script>
-  let count = 0
+  let count = 0 // [svp! hl]
 
-  const handleClick = () => {
+  const handleClick = () => { // [svp! !!:3]
     count++
   }
 </script>
@@ -209,8 +240,8 @@ use svelte lang and live prop would have effect like this
 </button>
 <style>
   button {
-    background-color: purple;
-    color: white;
+    background-color: purple; /* // [svp! --] */
+    color: white; /* // [svp! ++] */
     outline: 0;
     border: 0;
     padding: 8px 16px;
