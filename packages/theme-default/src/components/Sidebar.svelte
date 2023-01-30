@@ -1,20 +1,50 @@
 <script>
-  import themeConfig from 'virtual:sveltepress/theme-default'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
-  import { sidebarCollapsed } from './layout'
+  import { pages, sidebarCollapsed } from './layout'
   import Close from './icons/Close.svelte'
   import { page } from '$app/stores'
-  const routeId = $page.route.id
-  const isHome = routeId === '/'
 
-  export let sidebar = []
+  $: routeId = $page.route.id
+  $: isHome = routeId === '/'
 
+
+  let resolvedSidebars = []
+
+  
   const handleClose = () => {
     $sidebarCollapsed = true
   }
 
-  const allSidebars = Object.values(themeConfig.sidebar || []).reduce((all, arr) => [...all, ...arr], [])
+  const resolveSidebar = () => {
+    const key = Object.keys(themeOptions.sidebar || {}).find(key => routeId.startsWith(key))
+    if (key)
+      resolvedSidebars = themeOptions.sidebar[key] || []
+  }
+
+  $: {
+    routeId
+    resolveSidebar()
+  }
+
+  const recomputedPages = () => {
+    pages.set(
+      resolvedSidebars.reduce((allPages, item) => Array.isArray(item.items)
+        ? [
+            ...allPages,
+            ...item.items
+          ]
+        : [...allPages, item], [])
+    )
+  }
+
+  $: {
+    resolvedSidebars
+    recomputedPages()
+  }
+
+  const allSidebars = Object.values(themeOptions.sidebar || []).reduce((all, arr) => [...all, ...arr], [])
 </script>
 
 <aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed} class:is-home={isHome}>
@@ -35,7 +65,7 @@
   </div>
     
   <div class="sidebar-pc">
-    {#each sidebar as sidebarItem}
+    {#each resolvedSidebars as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}
       <SidebarGroup
         {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}

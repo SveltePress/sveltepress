@@ -6,6 +6,8 @@ export const tocCollapsed = writable(true)
 
 export const anchors = writable([])
 
+export const pages = writable([])
+
 sidebarCollapsed.subscribe((v) => {
   if (!v)
     tocCollapsed.set(true)

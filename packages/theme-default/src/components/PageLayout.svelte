@@ -1,11 +1,9 @@
 <script >
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import Home from './Home.svelte'
-  import Sidebar from './Sidebar.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
-  import { anchors } from './layout'
+  import { anchors, pages } from './layout'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
@@ -16,21 +14,7 @@
 
   export let siteConfig = {}
 
-  let resolvedSidebars = []
-
-  const key = Object.keys(themeOptions.sidebar || {}).find(key => routeId.startsWith(key))
-  if (key)
-    resolvedSidebars = themeOptions.sidebar[key] || []
-  
-  $: pages = resolvedSidebars.reduce((allPages, item) => Array.isArray(item.items)
-    ? [
-        ...allPages,
-        ...item.items
-      ]
-    : [...allPages, item], [])
-
   const {
-    sidebar = 'auto',
     title,
     description,
     pageType,
@@ -46,10 +30,6 @@
   <meta name="description" content={description || siteConfig.description}>
 </svelte:head>
   
-{#if sidebar === 'auto'}
-  <Sidebar sidebar={resolvedSidebars} />
-{/if}
-
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
     <div class="content">
@@ -63,7 +43,7 @@
         <EditPage {pageType} />
         <LastUpdate {lastUpdate} />
       </div>
-      <PageSwitcher {pages} />
+      <PageSwitcher pages={$pages} />
     </div>
   </div>
 {:else}

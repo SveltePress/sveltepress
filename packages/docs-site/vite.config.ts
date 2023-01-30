@@ -17,6 +17,7 @@ const config = defineConfig({
           '/guide/': [
             {
               title: 'Introduction',
+              collapsible: true,
               items: [
                 {
                   title: 'What is sveltepress',

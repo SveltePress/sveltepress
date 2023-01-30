@@ -6,6 +6,7 @@
   import { anchors, sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'
   import Toc from './Toc.svelte'
+  import Sidebar from './Sidebar.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   
   let ajaxBar
@@ -24,6 +25,7 @@
 
 <main>
   <AjaxBar bind:this={ajaxBar} />
+  <Sidebar />
   <Navbar />
   <slot />
 

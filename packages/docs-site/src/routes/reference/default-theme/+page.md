@@ -36,7 +36,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,4,27)
+@code(/../theme-default/types.d.ts,4,32)
 
 ### `navbar`
 
@@ -44,6 +44,9 @@ export default config
   The label text of the navbar item
 * `to`  
   The link address
+* `external`  
+  Determine whether the link is external or not.  
+  Would render an external icon if set to `true`.
 * `items`  
   Children links. If this prop is provided would render a dropdown instead of a single nav link
 
@@ -62,12 +65,38 @@ Would show on the navbar
 
 ### `sidebar`
 
+An object, key is the group route prefix, value is an array of object with following fields:
+
 * `title`  
   The label text of the sidebar item
+* `collapsible`  
+  Determine whether the sidebar group is collapsible or not.
 * `to`  
   The link address
 * `items`  
   Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
+
+Example:
+
+```js
+const sidebar = {
+  '/foo/': [
+    {
+      title: 'Bar',
+      to: '/foo/bar/',
+    },
+    {
+      title: 'Zoo',
+      to: '/foo/zoo/'
+    }
+  ]
+}
+```
+
+:::info Auto external
+Unlike the navbar item, sidebar item use the `Link` component.  
+Which means link starts with `http(s)` would be auto recognized as external links.
+:::
 
 ### `editLink`
 

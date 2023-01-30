@@ -13,11 +13,15 @@ declare module 'virtual:sveltepress/theme-default' {
   export interface LinkGroup extends WithTitle {
     items: (LinkItem | LinkGroup)[]
   }
+
+  type SidebarItem = LinkItem | LinkGroup & {
+    collapsible?: boolean
+  }
   export interface DefaultThemeOptions {
     navbar: Array<LinkItem | LinkGroup>
     github?: string
     logo?: string
-    sidebar?: Record<string, (LinkItem | LinkGroup)[]>
+    sidebar?: Record<string, SidebarItem[]>
     editLink?: string
     discord?: string
     docsearch?: {

@@ -67,7 +67,7 @@
   .header {
     --at-apply: 
       fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] 
-      z-999 dark:bg-opacity-40;
+      z-998 dark:bg-opacity-40;
     backdrop-filter: blur(5px);
   }
   .logo-container {
