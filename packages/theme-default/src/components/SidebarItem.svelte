@@ -19,7 +19,10 @@
     --at-apply: block leading-8 transition-text transition-color;
   }
   .sidebar-item:not(.active) {
-    --at-apply: hover:text-rose-4 dark:text-gray-3;
+    --at-apply: dark:text-gray-3;
+  }
+  .sidebar-item:not(.active):hover {
+    --at-apply: text-rose-4;
   }
   .sidebar-item.active {
     cursor: default;
