@@ -92,6 +92,14 @@
       transition-shadow transition-300 hover:shadow
       overflow-y-hidden py-[12px] px-18px rounded-lg text-[14px] mb-8;
   }
+  :global(.svp-code-block--with-line-numbers) {
+    --at-apply: pl-12;
+  }
+   :global(.svp-code-block--line-numbers) {
+    --at-apply: absolute left-0 top-0 bottom-0 py-inherit 
+      text-3 px-3 text-gray-4
+      leading-[21px] b-r-solid b-r b-r-light-4 dark:b-r-gray-8;
+  }
   :global(.svp-code-block:hover .svp-code-block--lang) {
     --at-apply: opacity-0;
   }
@@ -112,10 +120,15 @@
     backdrop-filter: blur(1.5px);
   }
   :global(.svp-code-block--diff-bg-add) {
-    --at-apply: bg-green-4 bg-opacity-20 dark:bg-green-8 dark:bg-opacity-30; 
+    --at-apply: bg-green-4 bg-opacity-20 dark:bg-green-8 
+      dark:bg-opacity-30; 
   }
   :global(.svp-code-block--diff-bg-sub) {
     --at-apply: bg-rose-4 bg-opacity-20 dark:bg-red-8 dark:bg-opacity-30;
+  }
+  :global(.svp-code-block--with-line-numbers .svp-code-block--diff-add),
+  :global(.svp-code-block--with-line-numbers .svp-code-block--diff-sub) {
+    --at-apply: pl-8;
   }
   :global(.svp-code-block--diff-add) {
     --at-apply: text-green-4;

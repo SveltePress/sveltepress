@@ -24,10 +24,11 @@ const highlighterDark = createHighlightWithTheme(nightOwl)
 
 const highlighterLight = createHighlightWithTheme(vitesseLight)
 
-const highlighter: Highlighter = async (code, lang) => {
+const highlighter: Highlighter = async (code, lang, meta) => {
+  const containLineNumbers = (meta || '').split(' ').some(item => item.trim() === 'ln')
   const commandDoms = []
+  const lines = code.split('\n')
   if (lang !== 'md') {
-    const lines = code.split('\n')
     code = lines.map((line, i) => {
       const [command, newLine] = getCommand(line)
       if (!command)
@@ -41,7 +42,7 @@ const highlighter: Highlighter = async (code, lang) => {
       return newLine
     }).join('\n')
   }
-  return `<div class="svp-code-block">
+  return `<div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
       ${commandDoms.join('\n')}
       ${await highlighterLight(code, lang)}
       ${await highlighterDark(code, lang)}
@@ -49,6 +50,7 @@ const highlighter: Highlighter = async (code, lang) => {
         ${lang}
       </div>
       <CopyCode />
+      ${containLineNumbers ? `<div class="svp-code-block--line-numbers">${lines.map((_, i) => `<div class="svp-code-block--line-number-item">${i + 1}</div>`).join('\n')}</div>` : ''}
   </div>`
 }
 
