@@ -46,11 +46,12 @@
   <meta name="description" content={description || siteConfig.description}>
 </svelte:head>
   
+{#if sidebar === 'auto'}
+  <Sidebar sidebar={resolvedSidebars} />
+{/if}
+
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
-    {#if sidebar === 'auto'}
-      <Sidebar sidebar={resolvedSidebars} />
-    {/if}
     <div class="content">
       {#if title}
         <h1 class="page-title">

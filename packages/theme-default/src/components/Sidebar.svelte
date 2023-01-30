@@ -4,6 +4,9 @@
   import SidebarGroup from './SidebarGroup.svelte'
   import { sidebarCollapsed } from './layout'
   import Close from './icons/Close.svelte'
+  import { page } from '$app/stores'
+  const routeId = $page.route.id
+  const isHome = routeId === '/'
 
   export let sidebar = []
 
@@ -14,7 +17,7 @@
   const allSidebars = Object.values(themeConfig.sidebar || []).reduce((all, arr) => [...all, ...arr], [])
 </script>
 
-<aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed}>
+<aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed} class:is-home={isHome}>
   <div class="sidebar-logo">
     <Logo />
     <div class="close" on:click={handleClose} on:keyup={handleClose}>
@@ -47,6 +50,9 @@
   }
   .sidebar-pc {
     --at-apply: display-none sm:display-block;
+  }
+  .is-home {
+    --at-apply: sm:display-none;
   }
   .theme-default-sidebar {
     --at-apply: fixed top-0 left-0 bottom-0 pr-6 pb-4 sm:pb-32 overflow-y-auto

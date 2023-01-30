@@ -5,7 +5,6 @@
   import AjaxBar from './AjaxBar.svelte'
   import { anchors, sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'
-  import Sidebar from './Sidebar.svelte'
   import Toc from './Toc.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   
@@ -26,9 +25,6 @@
 <main>
   <AjaxBar bind:this={ajaxBar} />
   <Navbar />
-  <div class="sidebar-mobile-home">
-    <Sidebar />
-  </div>
   <slot />
 
   <Toc anchors={$anchors} />
@@ -37,9 +33,6 @@
 <style>
   main {
     --at-apply: pt-[56px] sm:pt-[73px];
-  }
-  .sidebar-mobile-home {
-    --at-apply: sm:display-none;
   }
   :global(body) {
     --at-apply: bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2 scroll-smooth;
