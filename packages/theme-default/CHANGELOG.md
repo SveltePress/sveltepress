@@ -1,5 +1,15 @@
 # @svelte-press/theme-default
 
+## 0.12.3
+
+### Patch Changes
+
+- [`e6ad871`](https://github.com/Blackman99/sveltepress/commit/e6ad871be0060df9222562b41a93db55356e9126) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add line number features for code block
+
+- [`f61e76d`](https://github.com/Blackman99/sveltepress/commit/f61e76db3bc9aaf0757ec9a0520586d3cf3f9f3f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: layout optimize
+
+- [`799997a`](https://github.com/Blackman99/sveltepress/commit/799997a715a6f8ceee06233fb32aa54924444939) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change docsearch primary theme color
+
 ## 0.12.2
 
 ### Patch Changes

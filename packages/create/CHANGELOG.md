@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.12.3
+
+### Patch Changes
+
+- [`f61e76d`](https://github.com/Blackman99/sveltepress/commit/f61e76db3bc9aaf0757ec9a0520586d3cf3f9f3f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: layout optimize
+
 ## 0.12.2
 
 ### Patch Changes
