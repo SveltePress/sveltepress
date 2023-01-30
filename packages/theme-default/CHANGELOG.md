@@ -1,5 +1,17 @@
 # @svelte-press/theme-default
 
+## 0.12.4
+
+### Patch Changes
+
+- [`e3da47c`](https://github.com/Blackman99/sveltepress/commit/e3da47c46362ee82974b92adcbc5f9bad18bf814) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: toc active bar color adjust
+
+- [`7528830`](https://github.com/Blackman99/sveltepress/commit/75288307c0b43079d1c26ee8bca7d189d65d5cf6) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove SidebarItem use Link instead
+
+- [`23cf52a`](https://github.com/Blackman99/sveltepress/commit/23cf52acae6e990033833b260062498162cdd864) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar hover color
+
+- [`8fbcf84`](https://github.com/Blackman99/sveltepress/commit/8fbcf840723273933f1c7e541c5e7c17cfece88d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add cache for code blocks for a better dev experience
+
 ## 0.12.3
 
 ### Patch Changes
