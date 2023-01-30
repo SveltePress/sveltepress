@@ -4,7 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "typeRoots": ["types"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "esModuleInterop": true
   },
   "exclude": ["dist"],
   "include": ["src/**/*", "types.d.ts"]

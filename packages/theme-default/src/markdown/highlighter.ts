@@ -3,7 +3,9 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@svelte-press/vite'
+import LRUCache from 'lru-cache'
 import { COMMAND_CHEAT_LIST, getCommand } from './commands.js'
+const cache = new LRUCache<string, any>({ max: 1024 })
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -25,6 +27,10 @@ const highlighterDark = createHighlightWithTheme(nightOwl)
 const highlighterLight = createHighlightWithTheme(vitesseLight)
 
 const highlighter: Highlighter = async (code, lang, meta) => {
+  const cacheKey = JSON.stringify({ code, lang, meta })
+  let cached = cache.get(cacheKey)
+  if (cached)
+    return cached
   const containLineNumbers = (meta || '').split(' ').some(item => item.trim() === 'ln')
   const commandDoms = []
   const lines = code.split('\n')
@@ -42,7 +48,7 @@ const highlighter: Highlighter = async (code, lang, meta) => {
       return newLine
     }).join('\n')
   }
-  return `<div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
+  cached = `<div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
       ${commandDoms.join('\n')}
       ${await highlighterLight(code, lang)}
       ${await highlighterDark(code, lang)}
@@ -52,6 +58,9 @@ const highlighter: Highlighter = async (code, lang, meta) => {
       <CopyCode />
       ${containLineNumbers ? `<div class="svp-code-block--line-numbers">${lines.map((_, i) => `<div class="svp-code-block--line-number-item">${i + 1}</div>`).join('\n')}</div>` : ''}
   </div>`
+
+  cache.set(cacheKey, cached)
+  return cached
 }
 
 export default highlighter

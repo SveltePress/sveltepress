@@ -79,6 +79,7 @@ importers:
       '@svelte-press/vite': workspace:*
       '@sveltejs/kit': ^1.0.1
       '@sveltejs/package': ^1.0.1
+      lru-cache: ^7.14.1
       mdsvex: ^0.10.6
       remark-admonitions: ^1.2.1
       shiki: ^0.12.1
@@ -93,6 +94,7 @@ importers:
     dependencies:
       '@docsearch/css': 3.3.2
       '@docsearch/js': 3.3.2
+      lru-cache: 7.14.1
       remark-admonitions: 1.2.1
       shiki: 0.12.1
       uid: 2.0.1
