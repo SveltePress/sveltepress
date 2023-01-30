@@ -1,7 +1,6 @@
 <script>
   import themeConfig from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
-  import SidebarItem from './SidebarItem.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
   import { sidebarCollapsed } from './layout'
   import Close from './icons/Close.svelte'
@@ -24,17 +23,19 @@
   </div>
 
   <div class="sidebar-mobile">
-    {#each allSidebars as item}
-      <svelte:component 
-        this={Array.isArray(item.items) ? SidebarGroup : SidebarItem} {...item} 
+    {#each allSidebars as sidebarItem}
+      {@const hasItems = Array.isArray(sidebarItem.items)}
+      <SidebarGroup
+        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
       />
     {/each}
   </div>
     
   <div class="sidebar-pc">
     {#each sidebar as sidebarItem}
-      <svelte:component 
-        this={Array.isArray(sidebarItem.items) ? SidebarGroup : SidebarItem} {...sidebarItem} 
+      {@const hasItems = Array.isArray(sidebarItem.items)}
+      <SidebarGroup
+        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
       />
     {/each}
   </div>
