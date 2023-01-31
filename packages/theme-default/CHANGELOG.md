@@ -1,5 +1,13 @@
 # @svelte-press/theme-default
 
+## 0.13.0
+
+### Minor Changes
+
+- [`fcdd161`](https://github.com/Blackman99/sveltepress/commit/fcdd161eda51fcb1d50335b224a0ca4c4f0dfbb3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: sidebar collapsiable
+
+- [`bbbcf63`](https://github.com/Blackman99/sveltepress/commit/bbbcf63464a7c67b6166da09bd0b30c4001e5cc1) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: only render sidebar in page layout
+
 ## 0.12.4
 
 ### Patch Changes
