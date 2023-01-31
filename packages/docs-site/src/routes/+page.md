@@ -1,5 +1,5 @@
 ---
-title: Home Page
+title: Sveltepress - A content centered site build tool
 heroImage: /android-chrome-192x192.png
 tagline: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
 actions:
