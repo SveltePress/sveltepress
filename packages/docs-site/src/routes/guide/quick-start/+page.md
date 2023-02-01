@@ -9,13 +9,13 @@ Depend on what package manager you are using
 
 ```sh
 # via npm
-npm create @svelte-press
+npm create @sveltepress
 
 # via yarn
-yarn create @svelte-press
+yarn create @sveltepress
 
 # vai pnpm
-pnpm create @svelte-press
+pnpm create @sveltepress
 ```
 
 ## Add to an existing sveltekit project
@@ -23,13 +23,13 @@ pnpm create @svelte-press
 ### Install vite plugin package
 ```sh
 # via npm
-npm install --save @svelte-press/vite
+npm install --save @sveltepress/vite
 
 # via yarn
-yarn add @svelte-press/vite
+yarn add @sveltepress/vite
 
 # vai pnpm
-pnpm install @svelte-press/vite
+pnpm install @sveltepress/vite
 ```
 
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
@@ -37,7 +37,7 @@ pnpm install @svelte-press/vite
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit' // [svp! --]
-import Sveltepress from '@svelte-press/vite' // [svp! ++]
+import Sveltepress from '@sveltepress/vite' // [svp! ++]
 
 const config = defineConfig({
   plugins: [

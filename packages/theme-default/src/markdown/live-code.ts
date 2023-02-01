@@ -7,9 +7,9 @@ import type { Plugin } from 'unified'
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
-const expansionImporter = 'import CExpansion from \'@svelte-press/theme-default/CExpansion.svelte\''
-const linkImporter = 'import Link from \'@svelte-press/theme-default/Link.svelte\''
-const copyCodeImporter = 'import CopyCode from \'@svelte-press/theme-default/CopyCode.svelte\''
+const expansionImporter = 'import CExpansion from \'@sveltepress/theme-default/CExpansion.svelte\''
+const linkImporter = 'import Link from \'@sveltepress/theme-default/Link.svelte\''
+const copyCodeImporter = 'import CopyCode from \'@sveltepress/theme-default/CopyCode.svelte\''
 
 const globalComponentsImporters = [
   expansionImporter,

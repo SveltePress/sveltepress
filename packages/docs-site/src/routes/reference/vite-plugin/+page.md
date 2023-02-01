@@ -65,10 +65,10 @@ This module hold the siteConfig. Here's an example
 
 ## Working with typescript
 
-You need to include `@svelte-press/vite/types` in your src/app.d.ts to get plugin options and virtual modules type tips
+You need to include `@sveltepress/vite/types` in your src/app.d.ts to get plugin options and virtual modules type tips
 
 ```ts title="/src/app.d.ts"
-/// <reference types="@svelte-press/vite/types" />
+/// <reference types="@sveltepress/vite/types" />
 
 // Your other types
 ```

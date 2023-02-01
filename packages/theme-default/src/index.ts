@@ -13,9 +13,9 @@ const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
 const defaultTheme: ThemeDefault = (options) => {
   return {
-    name: '@svelte-press/theme-default',
-    globalLayout: '@svelte-press/theme-default/GlobalLayout.svelte',
-    pageLayout: '@svelte-press/theme-default/PageLayout.svelte',
+    name: '@sveltepress/theme-default',
+    globalLayout: '@sveltepress/theme-default/GlobalLayout.svelte',
+    pageLayout: '@sveltepress/theme-default/PageLayout.svelte',
     vitePlugins: [
       Unocss({
         presets: [
@@ -46,7 +46,7 @@ const defaultTheme: ThemeDefault = (options) => {
         config() {
           return {
             optimizeDeps: {
-              exclude: ['@svelte-press/theme-default'],
+              exclude: ['@sveltepress/theme-default'],
             },
             server: {
               fs: {

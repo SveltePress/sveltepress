@@ -6,21 +6,21 @@ title: Default theme
 
 ```sh
 # via npm
-npm install --save @svelte-press/theme-default
+npm install --save @sveltepress/theme-default
 
 # via yarn
-yarn add @svelte-press/theme-default
+yarn add @sveltepress/theme-default
 
 # via pnpm
-pnpm install @svelte-press/theme-default
+pnpm install @sveltepress/theme-default
 ```
 
 ## Add in your vite config
 
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
-import { sveltepress } from '@svelte-press/vite'
-import { defaultTheme } from '@svelte-press/theme-default' // [svp! ++]
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 
 const config = defineConfig({
   plugins: [
@@ -140,10 +140,10 @@ Here's an example for showing the theme options of this site:
 
 ## Working with typescript
 
-You need to include `@svelte-press/theme-default/types` in your src/app.d.ts to get theme options and virtual modules type tips
+You need to include `@sveltepress/theme-default/types` in your src/app.d.ts to get theme options and virtual modules type tips
 
 ```ts title="/src/app.d.ts"
-/// <reference types="@svelte-press/theme-default/types" />
+/// <reference types="@sveltepress/theme-default/types" />
 
 // Your other types
 ```

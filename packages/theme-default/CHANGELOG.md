@@ -1,4 +1,4 @@
-# @svelte-press/theme-default
+# @sveltepress/theme-default
 
 ## 0.13.1
 
