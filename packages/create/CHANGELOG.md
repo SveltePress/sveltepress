@@ -1,5 +1,11 @@
 # @svelte-press/create
 
+## 0.13.1
+
+### Patch Changes
+
+- [`f8f538e`](https://github.com/Blackman99/sveltepress/commit/f8f538e7968401fd001b66161d940cbf7a70d4b0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: code block style optimize
+
 ## 0.13.0
 
 ### Minor Changes
