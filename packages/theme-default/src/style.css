@@ -3,6 +3,7 @@
   --svp-expansion-bg-darker: #f2f2f7;
   --svp-expansion-bg-darker2: #e8e8f2;
   --docsearch-primary-color: rgba(251,113,133, 1);
+  --svp-code-font: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
 }
 
 html.dark,
@@ -197,7 +198,7 @@ html[data-theme="dark"] {
 
 .shiki code,
 code {
-  font-family: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
+  font-family: var(--svp-code-font);
 }
 
 html .shiki {

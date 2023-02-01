@@ -92,8 +92,9 @@
   }
    :global(.svp-code-block--line-numbers) {
     --at-apply: absolute left-0 top-0 bottom-0 py-inherit 
-      text-3 px-3 text-gray-4
+      text-3 text-right text-gray-4 px-2
       leading-[21px] b-r-solid b-r b-r-light-4 dark:b-r-gray-8;
+    font-family: var(--svp-code-font);
   }
   :global(.svp-code-block:hover .svp-code-block--lang) {
     --at-apply: opacity-0;
@@ -134,6 +135,7 @@
   :global(.svp-code-block--diff-add),
   :global(.svp-code-block--diff-sub) {
     --at-apply: absolute left-[4px] top-0 bottom-0 leading-[1.5em];
+    font-family: var(--svp-code-font);
   }
   :global(.svp-code-block--hl) {
     --at-apply: bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10;
