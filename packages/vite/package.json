@@ -1,5 +1,5 @@
 {
-  "name": "@svelte-press/vite",
+  "name": "@sveltepress/vite",
   "homepage": "https://sveltepress.site/",
   "version": "0.10.0",
   "description": "Sveltepress plugin for vite",

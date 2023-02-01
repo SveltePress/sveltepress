@@ -1,5 +1,5 @@
 {
-  "name": "sveltepress-docs-site",
+  "name": "@sveltepress/docs-site",
   "private": true,
   "scripts": {
     "dev": "vite dev",

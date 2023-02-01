@@ -1,5 +1,5 @@
 {
-  "name": "@svelte-press/create",
+  "name": "@sveltepress/create",
   "version": "0.13.1",
   "description": "The helper for creating sveltepress projects",
   "exports": {

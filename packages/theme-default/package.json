@@ -1,5 +1,5 @@
 {
-  "name": "@svelte-press/theme-default",
+  "name": "@sveltepress/theme-default",
   "homepage": "https://sveltepress.site/",
   "version": "0.13.1",
   "description": "The default theme for sveltepress",
