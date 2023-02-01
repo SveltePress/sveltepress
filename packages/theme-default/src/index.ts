@@ -34,7 +34,7 @@ const defaultTheme: ThemeDefault = (options) => {
         },
       }),
       {
-        name: '@svelte-press/default-theme',
+        name: '@sveltepress/default-theme',
         resolveId(id) {
           if (id === THEME_OPTIONS_MODULE)
             return THEME_OPTIONS_MODULE

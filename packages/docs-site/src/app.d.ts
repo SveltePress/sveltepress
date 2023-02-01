@@ -1,5 +1,5 @@
-/// <reference types="@svelte-press/theme-default/types" />
-/// <reference types="@svelte-press/vite/types" />
+/// <reference types="@sveltepress/theme-default/types" />
+/// <reference types="@sveltepress/vite/types" />
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces

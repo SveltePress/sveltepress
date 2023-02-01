@@ -7,7 +7,6 @@ const config = {
   preprocess: [vitePreprocess()],
   kit: {
     adapter: adapter({
-      fallback: '@svelte-press',
       pages: 'dist',
     }),
   },

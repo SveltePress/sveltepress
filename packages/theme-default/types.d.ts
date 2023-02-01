@@ -1,5 +1,5 @@
 declare module 'virtual:sveltepress/theme-default' {
-  import type { LoadTheme } from '@svelte-press/vite'
+  import type { LoadTheme } from '@sveltepress/vite'
 
   export interface WithTitle {
     title: string

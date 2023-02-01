@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
-import type { Highlighter } from '@svelte-press/vite'
+import type { Highlighter } from '@sveltepress/vite'
 import LRUCache from 'lru-cache'
 import { COMMAND_CHEAT_LIST, getCommand } from './commands.js'
 const cache = new LRUCache<string, any>({ max: 1024 })

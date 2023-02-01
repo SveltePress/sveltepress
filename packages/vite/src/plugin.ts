@@ -33,7 +33,7 @@ const sveltepress: (options: {
   }
 
   return {
-    name: '@svelte-press/vite',
+    name: '@sveltepress/vite',
     /**
      * Must enable this because vite-plugin-svelte enabled this too
      * @see https://github.com/sveltejs/vite-plugin-svelte/blob/1cef575c8f9188456934e38dad7a869b43fe7d46/packages/vite-plugin-svelte/src/index.ts#L58
