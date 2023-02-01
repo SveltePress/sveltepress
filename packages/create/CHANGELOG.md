@@ -1,4 +1,4 @@
-# @svelte-press/create
+# @sveltepress/create
 
 ## 0.13.1
 

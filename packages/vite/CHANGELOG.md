@@ -1,4 +1,4 @@
-# @svelte-press/vite
+# @sveltepress/vite
 
 ## 0.10.0
 
