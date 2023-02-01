@@ -47,10 +47,10 @@ importers:
   packages/docs-site:
     specifiers:
       '@casual-ui/eslint-config-svelte': ^0.0.2
-      '@svelte-press/theme-default': workspace:*
-      '@svelte-press/vite': workspace:*
       '@sveltejs/adapter-static': ^1.0.1
       '@sveltejs/kit': ^1.0.1
+      '@sveltepress/theme-default': workspace:*
+      '@sveltepress/vite': workspace:*
       '@types/node': ^18.11.17
       ali-oss-static-web-deploy: ^0.3.4
       eslint: ^8.30.0
@@ -60,10 +60,10 @@ importers:
       vite: ^4.0.3
     devDependencies:
       '@casual-ui/eslint-config-svelte': 0.0.2_3wzfxybqclpucaafwwifv32j3a
-      '@svelte-press/theme-default': link:../theme-default
-      '@svelte-press/vite': link:../vite
       '@sveltejs/adapter-static': 1.0.1_@sveltejs+kit@1.0.1
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
+      '@sveltepress/theme-default': link:../theme-default
+      '@sveltepress/vite': link:../vite
       '@types/node': 18.11.18
       ali-oss-static-web-deploy: 0.3.4
       eslint: 8.30.0
@@ -76,9 +76,9 @@ importers:
     specifiers:
       '@docsearch/css': '3'
       '@docsearch/js': '3'
-      '@svelte-press/vite': workspace:*
       '@sveltejs/kit': ^1.0.1
       '@sveltejs/package': ^1.0.1
+      '@sveltepress/vite': workspace:*
       lru-cache: ^7.14.1
       mdsvex: ^0.10.6
       remark-admonitions: ^1.2.1
@@ -101,9 +101,9 @@ importers:
       unist-util-visit: 4.1.1
       unocss: 0.48.0_vite@4.0.3
     devDependencies:
-      '@svelte-press/vite': link:../vite
       '@sveltejs/kit': 1.0.1_svelte@3.55.0+vite@4.0.3
       '@sveltejs/package': 1.0.1_niwyv7xychq2ag6arq5eqxbomm
+      '@sveltepress/vite': link:../vite
       mdsvex: 0.10.6_svelte@3.55.0
       svelte: 3.55.0
       typescript: 4.9.4
