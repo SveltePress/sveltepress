@@ -52,19 +52,37 @@
 {/if}
 
 <style>
-  :global(.theme-default--page-layout h2 .svp-title-anchor) {
+  :global(.theme-default--page-layout h2 .svp-title-anchor),
+  :global(.theme-default--page-layout h3 .svp-title-anchor),
+  :global(.theme-default--page-layout h4 .svp-title-anchor),
+  :global(.theme-default--page-layout h5 .svp-title-anchor),
+  :global(.theme-default--page-layout h6 .svp-title-anchor) {
     --at-apply: absolute left-0 top-[50%] flex items-center
       opacity-0 pointer-events-none
       hover:text-rose-5 
       transition-all transition-200;
+    transform: translate(-100%, -50%);
+  }
+
+  :global(.theme-default--page-layout h2 .svp-title-anchor) {
     transform: translate(-100%, calc((-100% + 1rem) / 2));
+  }
+  :global(.theme-default--page-layout h2),
+  :global(.theme-default--page-layout h3),
+  :global(.theme-default--page-layout h4),
+  :global(.theme-default--page-layout h5),
+  :global(.theme-default--page-layout h6) {
+    --at-apply: relative;
   }
   :global(.theme-default--page-layout h2) {
     --at-apply: border-t-solid border-t 
-      border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4
-      relative;
+      border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4;
   }
-  :global(.theme-default--page-layout h2:hover .svp-title-anchor) {
+  :global(.theme-default--page-layout h2:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h3:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h4:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h5:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h6:hover .svp-title-anchor) {
     --at-apply: pointer-events-auto opacity-100;
   }
   .content {
