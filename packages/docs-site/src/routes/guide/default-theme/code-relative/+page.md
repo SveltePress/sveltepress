@@ -35,6 +35,34 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 
+## Code title
+
+**Input**
+
+````md
+```svelte title="HelloWorld.svelte"
+<script>
+  const msg = 'world!'
+</script>
+  
+<h1>
+  Hello, {msg}
+</h1>
+```
+````
+
+**Output**
+
+```svelte title="HelloWorld.svelte"
+<script>
+  const msg = 'world!'
+</script>
+  
+<h1>
+  Hello, {msg}
+</h1>
+```
+
 ## Line numbers
 
 Add `ln` in code block meta field would add line numbers in the rendered result.
@@ -200,7 +228,7 @@ Here's a example with full features:
 **Input**
 
 ````md
-```svelte live ln
+```svelte live ln title=Counter.svelte
 <script>
   let count = 0 // [svp! hl]
 
@@ -227,7 +255,7 @@ Here's a example with full features:
 
 **Output**
 
-```svelte live ln
+```svelte live ln title=Counter.svelte
 <script>
   let count = 0 // [svp! hl]
 

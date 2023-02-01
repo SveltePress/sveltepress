@@ -17,8 +17,7 @@ pnpm install @svelte-press/theme-default
 
 ## Add in your vite config
 
-```js
-// vite.config.(js|ts)
+```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@svelte-press/vite'
 import { defaultTheme } from '@svelte-press/theme-default' // [svp! ++]
@@ -143,8 +142,7 @@ Here's an example for showing the theme options of this site:
 
 You need to include `@svelte-press/theme-default/types` in your src/app.d.ts to get theme options and virtual modules type tips
 
-```ts
-// src/app.d.ts
+```ts title="/src/app.d.ts"
 /// <reference types="@svelte-press/theme-default/types" />
 
 // Your other types

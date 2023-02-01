@@ -17,8 +17,7 @@ description: some description
 
 Export a const variable name as `frontmatter` in [Svelte context module](https://svelte.dev/docs#component-format-script-context-module) would do
 
-```svelte
-<!-- src/routes/foo/+page.svelte -->
+```svelte title="/src/routes/foo/+page.svelte"
 <script context="module">
   export const frontmatter = {
     title: 'Some title',

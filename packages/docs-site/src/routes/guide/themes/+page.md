@@ -25,8 +25,7 @@ pnpm install @svelte-press/theme-default
 
 ### Add in your vite config
 
-```js
-// vite.config.(js|ts)
+```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@svelte-press/vite'
 import { defaultTheme } from '@svelte-press/theme-default' // [svp! ++]

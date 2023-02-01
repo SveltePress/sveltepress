@@ -31,7 +31,9 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   let cached = cache.get(cacheKey)
   if (cached)
     return cached
-  const containLineNumbers = (meta || '').split(' ').some(item => item.trim() === 'ln')
+  const metaArray = (meta || '').split(' ')
+  const containLineNumbers = metaArray.some(item => item.trim() === 'ln')
+  const titleMeta = metaArray.find(item => item.startsWith('title='))
   const commandDoms = []
   const lines = code.split('\n')
   if (lang !== 'md') {
@@ -48,16 +50,26 @@ const highlighter: Highlighter = async (code, lang, meta) => {
       return newLine
     }).join('\n')
   }
-  cached = `<div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
-      ${commandDoms.join('\n')}
-      ${await highlighterLight(code, lang)}
-      ${await highlighterDark(code, lang)}
-      <div class="svp-code-block--lang">
-        ${lang}
-      </div>
-      <CopyCode />
-      ${containLineNumbers ? `<div class="svp-code-block--line-numbers">${lines.map((_, i) => `<div class="svp-code-block--line-number-item">${i + 1}</div>`).join('\n')}</div>` : ''}
-  </div>`
+  let title: string
+  if (titleMeta)
+    title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')
+
+  cached = `
+<div class="svp-code-block-wrapper">${title
+? `<div class="svp-code-block--title">${title}</div>
+`
+: ''}
+  <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
+    ${commandDoms.join('\n')}
+    ${await highlighterLight(code, lang)}
+    ${await highlighterDark(code, lang)}
+    <div class="svp-code-block--lang">
+      ${lang}
+    </div>
+    <CopyCode />
+    ${containLineNumbers ? `<div class="svp-code-block--line-numbers">${lines.map((_, i) => `<div class="svp-code-block--line-number-item">${i + 1}</div>`).join('\n')}</div>` : ''}
+  </div>
+</div>`
 
   cache.set(cacheKey, cached)
   return cached

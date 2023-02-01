@@ -34,8 +34,7 @@ pnpm install @svelte-press/vite
 
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
 
-```js
-// vite.config.(js|ts)
+```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit' // [svp! --]
 import Sveltepress from '@svelte-press/vite' // [svp! ++]
@@ -52,7 +51,7 @@ export default config
 
 ### Add `'.md'` extension to the `extensions` options in your svelte.config.js
 
-```js
+```js title="svelte.config.js"
 import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/kit/vite'
 

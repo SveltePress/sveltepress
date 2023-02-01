@@ -82,13 +82,19 @@
     --at-apply: bg-transparent dark:bg-transparent p-unset block;
   }
 
+  :global(.svp-code-block-wrapper) {
+    --at-apply: bg-white dark:bg-[#011627] 
+      rounded-lg text-[14px] mb-8;
+  }
   :global(.svp-code-block) {
-    --at-apply: relative bg-white dark:bg-[#011627] 
-      transition-shadow transition-300 hover:shadow
-      overflow-y-hidden py-[12px] px-18px rounded-lg text-[14px] mb-8;
+    --at-apply: relative px-[18px] py-[12px];
+  }
+  :global(.svp-code-block--title) {
+    --at-apply: px-[18px] leading-10 font-700
+      b-b b-b-solid b-b-gray-2 dark:b-b-gray-8;
   }
   :global(.svp-code-block--with-line-numbers) {
-    --at-apply: pl-12;
+    --at-apply: pl-10;
   }
    :global(.svp-code-block--line-numbers) {
     --at-apply: absolute left-0 top-0 bottom-0 py-inherit 
@@ -101,6 +107,9 @@
   }
   :global(.c-expansion--body .svp-code-block) {
     --at-apply: rounded-none;
+  }
+  :global(.c-expansion--body .svp-code-block-wrapper) {
+    --at-apply: mb-none;
   }
   :global(.svp-code-block--lang) {
     --at-apply: absolute top-2 right-3 z-100 text-cool-gray-3 
