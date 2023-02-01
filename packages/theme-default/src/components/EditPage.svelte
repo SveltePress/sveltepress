@@ -21,7 +21,7 @@
     <Edit />
   </div>
   <div class="edit-text">
-    Edit this page on github 
+    Suggest changes to this page
   </div>
 </div>
 
