@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.11.0
+
+### Minor Changes
+
+- [`5946085`](https://github.com/SveltePress/sveltepress/commit/59460857fe7f3bcd5e5820569704f5603896930a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move to sveltepress npm scope
+
 ## 0.10.0
 
 ### Minor Changes
