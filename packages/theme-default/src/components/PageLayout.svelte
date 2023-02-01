@@ -52,9 +52,20 @@
 {/if}
 
 <style>
+  :global(.theme-default--page-layout h2 .svp-title-anchor) {
+    --at-apply: absolute left-0 top-[50%] flex items-center
+      opacity-0 pointer-events-none
+      hover:text-rose-5 
+      transition-all transition-200;
+    transform: translate(-100%, calc((-100% + 1rem) / 2));
+  }
   :global(.theme-default--page-layout h2) {
     --at-apply: border-t-solid border-t 
-      border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4;
+      border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4
+      relative;
+  }
+  :global(.theme-default--page-layout h2:hover .svp-title-anchor) {
+    --at-apply: pointer-events-auto opacity-100;
   }
   .content {
     --at-apply: sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw];
@@ -65,5 +76,4 @@
   .meta {
     --at-apply: sm:flex justify-between mt-20 column;
   }
- 
 </style>
