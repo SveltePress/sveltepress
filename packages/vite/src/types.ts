@@ -7,7 +7,7 @@ export interface Options {
   mdsvexOptions?: MdsvexOptions
 }
 
-export type Highlighter = (code: string, lang?: string) => Promise<string>
+export type Highlighter = (code: string, lang?: string, meta?: string) => Promise<string>
 
 export interface SiteConfig {
   title?: string
