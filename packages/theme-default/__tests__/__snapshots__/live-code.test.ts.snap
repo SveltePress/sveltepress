@@ -5,7 +5,7 @@ exports[`live code > simple parse 1`] = `
 import CExpansion from '@sveltepress/theme-default/CExpansion.svelte'
 import Link from '@sveltepress/theme-default/Link.svelte'
 import CopyCode from '@sveltepress/theme-default/CopyCode.svelte'
-import LiveCodea0d9514c47e from '/Users/dongsheng/Documents/@dongsheng/sveltepress/packages/theme-default/.sveltepress/live-code/LiveCodea0d9514c47e.svelte'
+import LiveCodea0d9514c47e from '$sveltepress/live-code/LiveCodea0d9514c47e.svelte'
   const a = 'a'
   export const b = 'b'
 </script>
