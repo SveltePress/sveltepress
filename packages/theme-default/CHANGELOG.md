@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 0.15.0
+
+### Minor Changes
+
+- [`1f198c6`](https://github.com/SveltePress/sveltepress/commit/1f198c623c0b9ba92433a23cdd5067c8a8c9875c) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use alia path $sveltepress to import live code for avoiding test snapshot mismatch
+
+- [`c1c9101`](https://github.com/SveltePress/sveltepress/commit/c1c91012ae8bec01b6a5e1e9342f4be54002a1fb) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add google analytics support
+
+### Patch Changes
+
+- [`55c75cd`](https://github.com/SveltePress/sveltepress/commit/55c75cdd57f7e186ab3e16642c6674ae57aa3868) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change ts,js filename convention to kebab-case
+
 ## 0.14.1
 
 ### Patch Changes
