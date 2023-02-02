@@ -10,8 +10,8 @@ on:
     - cron: '16 3 * * 2'
 
 jobs:
-  eslint:
-    name: Run lint scanning
+  vitest:
+    name: Testing
     runs-on: ubuntu-latest
     permissions:
       contents: read
