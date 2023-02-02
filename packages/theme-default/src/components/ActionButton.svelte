@@ -7,19 +7,32 @@
   export let external = false
 </script>
 
-<a role="button" href={to} class={`svp-action ${type ? `svp-action--${type}` : ''}`} target={external ? '_blank' : ''}>
-  {label}
+<a
+  role="button"
+  href={to}
+  class={`svp-action ${type ? `svp-action--${type}` : ''}`}
+  target={external ? '_blank' : ''}>
+  <span class="label">
+    {label}
+  </span>
   {#if external}
-    <External class="text-6 ml-2" />
+    <div class="external-icon">
+      <External />
+    </div>
   {/if}
 </a>
 
 <style>
   .svp-action {
-    --at-apply: inline-flex items-center h-12 leading-12 rounded-6 px-6 
-      hover:shadow-lg bg-white dark:bg-zinc-9 transition-300 transition-shadow;
+    --at-apply: 'inline-flex items-center h-12 leading-12 rounded-6 px-6 bg-white dark:bg-zinc-8 transition-300 transition-shadow hover:shadow dark:hover:shadow-gray-6';
   }
   .svp-action--primary {
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    --at-apply: 'svp-gradient-bg text-white dark:text-warm-gray-8';
+  }
+  .external-icon {
+    --at-apply: text-6 ml-2 flex items-center;
+  }
+  .label {
+    --at-apply: flex-grow text-center;
   }
 </style>

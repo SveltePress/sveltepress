@@ -4,7 +4,9 @@ title: Themes
 
 ## Introduction
 
-Pass `theme` to sveltepress to use a theme
+Pass `theme` option to sveltepress to use a theme
+
+Read [Vite plugin options](/reference/vite-plugin-options/) and [Default theme options](/reference/default-theme-options/) for more details
 
 ## Default theme
 
@@ -12,22 +14,21 @@ Pass `theme` to sveltepress to use a theme
 
 ```sh
 # via npm
-npm install --save @svelte-press/theme-default
+npm install --save @sveltepress/theme-default
 
 # via yarn
-yarn add @svelte-press/theme-default
+yarn add @sveltepress/theme-default
 
 # via pnpm
-pnpm install @svelte-press/theme-default
+pnpm install @sveltepress/theme-default
 ```
 
 ### Add in your vite config
 
-```js
-// vite.config.(js|ts)
+```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
-import { sveltepress } from '@svelte-press/vite'
-import { defaultTheme } from '@svelte-press/theme-default' // [svp! ++]
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 
 const config = defineConfig({
   plugins: [
@@ -40,3 +41,4 @@ const config = defineConfig({
 export default config
 ```
 
+Get more info about default theme in [Default theme reference](/reference/default-theme/#Theme%20features)

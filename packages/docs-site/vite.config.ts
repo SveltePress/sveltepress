@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
-import { sveltepress } from '@svelte-press/vite'
-import { defaultTheme } from '@svelte-press/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
 
 const config = defineConfig({
   plugins: [
@@ -10,44 +10,99 @@ const config = defineConfig({
           title: 'Guide',
           to: '/guide/introduction/',
         }, {
-          title: 'Features',
-          items: [
-            {
-              title: 'Code block',
-              to: '/features/code-block/',
-            },
-            {
-              title: 'Admonitions',
-              to: '/features/admonitions/',
-            },
-          ],
+          title: 'Reference',
+          to: '/reference/vite-plugin/',
         }],
         sidebar: {
-          '/features/': [{
-            title: 'Code Blocks',
-            to: '/features/code-block/',
-          }, {
-            title: 'Admonitions',
-            to: '/features/admonitions/',
-          }],
           '/guide/': [
             {
               title: 'Introduction',
-              to: '/guide/introduction/',
+              collapsible: true,
+              items: [
+                {
+                  title: 'What is sveltepress',
+                  to: '/guide/introduction/',
+                },
+                {
+                  title: 'Quick start',
+                  to: '/guide/quick-start/',
+                },
+                {
+                  title: 'Themes',
+                  to: '/guide/themes/',
+                },
+                {
+                  title: 'Working with Typescript',
+                  to: '/guide/typescript/',
+                },
+              ],
             },
             {
-              title: 'Quick start',
-              to: '/guide/quick-start/',
+              title: 'Markdown features',
+              items: [
+                {
+                  title: 'Frontmatter',
+                  to: '/guide/markdown/frontmatter/',
+                },
+                {
+                  title: 'Svelte in markdown',
+                  to: '/guide/markdown/svelte-in-markdown/',
+                },
+              ],
             },
             {
-              title: 'Themes',
-              to: '/guide/themes/',
+              title: 'Default theme features',
+              items: [
+                {
+                  title: 'Frontmatter',
+                  to: '/guide/default-theme/frontmatter/',
+                },
+                {
+                  title: 'Links',
+                  to: '/guide/default-theme/links/',
+                },
+                {
+                  title: 'Headings & Anchors',
+                  to: '/guide/default-theme/headings-and-anchors/',
+                },
+                {
+                  title: 'Admonitions',
+                  to: '/guide/default-theme/admonitions/',
+                },
+                {
+                  title: 'Code relative',
+                  to: '/guide/default-theme/code-relative/',
+                },
+                {
+                  title: 'Unocss',
+                  to: '/guide/default-theme/unocss/',
+                },
+              ],
             },
           ],
+          '/reference/': [{
+            title: 'Reference',
+            items: [
+              {
+                title: 'Vite plugin',
+                to: '/reference/vite-plugin/',
+              }, {
+                title: 'Default theme',
+                to: '/reference/default-theme/',
+              },
+            ],
+          }],
         },
         editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
+        discord: 'https://discord.com/channels/994160573333913691/1065131029616136273',
+        ga: 'G-J2W78BKCHB',
+        // docsearch: {
+        //   apiKey: '',
+        //   appId: '',
+        //   indexName: '',
+        // },
       }),
       siteConfig: {
         title: 'Sveltepress',

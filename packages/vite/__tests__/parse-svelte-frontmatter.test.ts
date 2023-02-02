@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseSvelteFrontmatter } from '../src/utils/parseSvelteFrontmatter'
+import { parseSvelteFrontmatter } from '../src/utils/parse-svelte-frontmatter'
 
 const wrapFrontmatter = (obj: Record<string, any>) => `
 <script context="module">

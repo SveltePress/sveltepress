@@ -1,18 +1,23 @@
 {
-  "name": "@svelte-press/vite",
-  "version": "0.5.0",
+  "name": "@sveltepress/vite",
+  "homepage": "https://sveltepress.site/",
+  "version": "0.11.1",
   "description": "Sveltepress plugin for vite",
   "files": [
     "dist",
-    "types"
+    "types.d.ts"
   ],
   "type": "module",
   "types": "./dist/es/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/es/index.js"
+    ".": "./dist/es/index.js",
+    "./types": {
+      "types": "./types.d.ts"
+    }
   },
   "scripts": {
+    "test": "vitest",
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
     "build": "pnpm build:es"
   },

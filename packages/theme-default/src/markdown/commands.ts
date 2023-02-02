@@ -1,27 +1,26 @@
 type Command = (params: string, lineIndex: number, lines: number) => string
 
-const BASE_LINE_CLASSES = 'absolute left-0 right-0 z-2 h-[1.5em]'
 export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))(:\S+)?\]/
 
 export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
   const num = Number(linesNumberToHighlight)
   if (isNaN(num) || num < 1)
-    return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', idx)
+    return warpLine('svp-code-block--hl', idx)
   const max = lines - idx
   return Array.from({ length: num > max ? max : num }).map((_, i) => {
     const highlightIndex = i + idx
-    return warpLine('bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10', highlightIndex)
+    return warpLine('svp-code-block--hl', highlightIndex)
   },
   ).join('\n')
 }
 
 export const diff: Command = (addOrCut, idx) => {
-  const color = addOrCut === '-' ? 'rose' : 'green'
+  const name = addOrCut === '-' ? 'sub' : 'add'
   const mark = addOrCut === '-' ? '-' : '+'
   return warpLine(
-    `bg-${color}-4 bg-opacity-20`,
+    `svp-code-block--diff-bg-${name}`,
     idx,
-    `<div class="absolute left-[4px] top-0 bottom-0 h-full text-${color}-4">${mark}</div>`,
+    `<div class="svp-code-block--diff-${name}">${mark}</div>`,
   )
 }
 
@@ -65,5 +64,5 @@ export const COMMAND_CHEAT_LIST: Record<string, Command> = {
 }
 
 function warpLine(classes: string, idx: number, content = '') {
-  return `<div class="${BASE_LINE_CLASSES} ${classes}"  style="top: calc(${idx * 1.5}em + 12px);">${content}</div>`
+  return `<div class="svp-code-block--command-line ${classes}"  style="top: calc(${idx * 1.5}em + 12px);">${content}</div>`
 }

@@ -1,15 +1,22 @@
 {
+<<<<<<< HEAD
   "name": "@svelte-press/theme-default",
   "version": "0.5.1",
+=======
+  "name": "@sveltepress/theme-default",
+  "homepage": "https://sveltepress.site/",
+  "version": "0.15.0",
+>>>>>>> ed4947d50350d1757425335dac5d1c0626716e8c
   "description": "The default theme for sveltepress",
   "scripts": {
+    "test": "vitest",
     "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
     "build:comps": "svelte-package && rm dist/package.json",
     "build": "pnpm build:comps && pnpm cp:assets"
   },
   "files": [
     "dist",
-    "types"
+    "types.d.ts"
   ],
   "keywords": [
     "Docs",
@@ -28,7 +35,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@svelte-press/vite": "workspace:*",
+    "@sveltepress/vite": "workspace:*",
     "@sveltejs/kit": "^1.0.1",
     "@sveltejs/package": "^1.0.1",
     "mdsvex": "^0.10.6",
@@ -39,6 +46,9 @@
     "vitest": "^0.26.3"
   },
   "dependencies": {
+    "@docsearch/css": "3",
+    "@docsearch/js": "3",
+    "lru-cache": "^7.14.1",
     "remark-admonitions": "^1.2.1",
     "shiki": "^0.12.1",
     "uid": "^2.0.1",
@@ -54,7 +64,11 @@
     "./PageLayout.svelte": "./src/components/PageLayout.svelte",
     "./GlobalLayout.svelte": "./src/components/GlobalLayout.svelte",
     "./Link.svelte": "./src/components/Link.svelte",
-    "./package.json": "./package.json"
+    "./CopyCode.svelte": "./src/components/CopyCode.svelte",
+    "./package.json": "./package.json",
+    "./types": {
+      "types": "./types.d.ts"
+    }
   },
   "publishConfig": {
     "types": "./dist/index.d.ts",
@@ -65,7 +79,11 @@
       "./PageLayout.svelte": "./dist/components/PageLayout.svelte",
       "./Link.svelte": "./dist/components/Link.svelte",
       "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte",
-      "./package.json": "./package.json"
+      "./CopyCode.svelte": "./dist/components/CopyCode.svelte",
+      "./package.json": "./package.json",
+      "./types": {
+        "types": "./types.d.ts"
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import type { Plugin } from 'unified'
 import { visit } from 'unist-util-visit'
 
+// parse [foo](bar) to <Link label="foo" to="bar" />
 const anchors: Plugin<any[], any> = () => {
   return (tree, vFile) => {
     const anchors = []

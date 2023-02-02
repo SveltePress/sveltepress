@@ -1,4 +1,4 @@
-<script >
+<script>
   import ActionButton from './ActionButton.svelte'
   import Apple from './icons/Apple.svelte'
   import Banana from './icons/Banana.svelte'
@@ -25,7 +25,7 @@
       <div class="gradient-title">
         {siteConfig.title}
       </div>
-      <div>
+      <div class="description">
         {siteConfig.description}
       </div>
       {#if tagline}
@@ -36,7 +36,7 @@
     </div>
     {#if heroImage}
       <div class="hero-image">
-        <img src={heroImage} alt={siteConfig.title} w-80 />
+        <img src={heroImage} alt={siteConfig.title} width="192" />
       </div>
     {/if}
   </div>
@@ -53,10 +53,10 @@
         <div class="icon">
           <svelte:component this={icons[i % icons.length]} />
         </div>
-        <div font-600 mb-2 pt-2>
+        <div class="feature-title">
           {fe.title}
         </div>
-        <div text-slate-5 mt-4>
+        <div class="feature-desc">
           {fe.description}
         </div>
       </div>
@@ -65,45 +65,46 @@
 </div>
 
 <style>
-  :global(.theme-default--page-layout h2) {
-    --at-apply: border-t-solid border-t border-light-8 dark:border-gray-7 pt-4 mt-8 mb-4;
-  }
   .home-page {
-    --at-apply: max-w-[1152px] mx-auto pt-14;
+    --at-apply: 'sm:w-[70vw] max-w-[1152px] mx-auto sm:px-0 px-4 pt-4';
   }
   .title {
-    --at-apply: text-16 grid grid-cols-12 font-700 leading-18;
+    --at-apply: 'sm:text-16 text-10 grid grid-cols-12 font-700 leading-24';
+  }
+  .description {
+    --at-apply: 'text-8 leading-10 sm:text-inherit';
   }
   .intro {
-    grid-column-start: 1;
-    grid-column-end: span 7;
+    --at-apply: 'col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1 text-center sm:text-left';
   }
   .hero-image {
-    --at-apply: flex items-center justify-center col-start;
-    grid-column-start: 8;
-    grid-column-end: span 5;
+    --at-apply: 'flex items-center justify-center col-start sm:col-span-5 col-span-6 col-start-4 sm:col-start-8';
+  }
+  .hero-image img {
+    --at-apply: 'sm:w-60 w-full max-w-[220px]';
   }
   .gradient-title {
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    --at-apply: svp-gradient-text;
   }
   .tagline {
-    --at-apply: text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9;
+    --at-apply: 'text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9 font-normal';
   }
   .actions {
-    --at-apply: flex gap-4 mt-4;
+    --at-apply: 'grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-4 justify-center sm:justify-start max-w-[320px] mx-auto sm:max-w-none';
   }
   .features {
-    --at-apply: grid grid-cols-3 gap-4 mt-6;
+    --at-apply: 'grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4';
+  }
+  .feature-title {
+    --at-apply: font-600 mt-3;
+  }
+  .feature-desc {
+    --at-apply: text-slate-5 mt-3 text-[14px];
   }
   .feature-item {
-    --at-apply: bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md
-      transition-shadow transition-300;
+    --at-apply: 'bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md transition-shadow transition-300';
   }
   .icon {
-    --at-apply: text-10 inline-flex items-center p-1 bg-[#e5e5e5] dark:bg-[#252525] rounded-md;
+    --at-apply: 'text-10 inline-flex items-center p-1 bg-[#e5e5e5] dark:bg-[#252525] rounded-md';
   }
 </style>
-

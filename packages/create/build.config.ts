@@ -45,7 +45,7 @@ function writePackages() {
     getPkg('../theme-default'),
   ]
   padStartWithVersion(dependencies)
-  // write the newest version of @svelte-press/vite and @svelte-press/theme-default package to templates
+  // write the newest version of @sveltepress/vite and @sveltepress/theme-default package to templates
   writeDevDependencies(
     dependencies,
     [

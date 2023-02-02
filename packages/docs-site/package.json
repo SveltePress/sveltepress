@@ -1,5 +1,5 @@
 {
-  "name": "sveltepress-docs-site",
+  "name": "@sveltepress/docs-site",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -9,8 +9,8 @@
   },
   "devDependencies": {
     "@casual-ui/eslint-config-svelte": "^0.0.2",
-    "@svelte-press/theme-default": "workspace:*",
-    "@svelte-press/vite": "workspace:*",
+    "@sveltepress/theme-default": "workspace:*",
+    "@sveltepress/vite": "workspace:*",
     "@sveltejs/adapter-static": "^1.0.1",
     "@sveltejs/kit": "^1.0.1",
     "@types/node": "^18.11.17",

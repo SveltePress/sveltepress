@@ -1,4 +1,90 @@
-# @svelte-press/vite
+# @sveltepress/vite
+
+## 0.11.1
+
+### Patch Changes
+
+- [`55c75cd`](https://github.com/SveltePress/sveltepress/commit/55c75cdd57f7e186ab3e16642c6674ae57aa3868) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change ts,js filename convention to kebab-case
+
+## 0.11.0
+
+### Minor Changes
+
+- [`5946085`](https://github.com/SveltePress/sveltepress/commit/59460857fe7f3bcd5e5820569704f5603896930a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move to sveltepress npm scope
+
+## 0.10.0
+
+### Minor Changes
+
+- [`437d2ce`](https://github.com/Blackman99/sveltepress/commit/437d2ce6e3bb14c0e6220e37ab1e2f7e95156a4e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: layout
+
+## 0.9.2
+
+### Patch Changes
+
+- [`e75e4c5`](https://github.com/Blackman99/sveltepress/commit/e75e4c50f10fb382c542a444355c05d30947d526) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: root layout regex
+
+- [`3ead782`](https://github.com/Blackman99/sveltepress/commit/3ead78271e1af6e95bb287a56015b919d7690d0a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove clientImports option. Since theme writer can directly import anthing in the GlobalLayout.svelte
+
+## 0.9.1
+
+### Patch Changes
+
+- [`6ba79f6`](https://github.com/Blackman99/sveltepress/commit/6ba79f6c7a49ebc7bf6776267e2058f3d6775f0b) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move navbar to page layout to have a beter SEO and first screen rendering
+
+## 0.9.0
+
+### Minor Changes
+
+- [`b26f784`](https://github.com/Blackman99/sveltepress/commit/b26f784a1de8131482ae42ec1ba2101a8e9c1191) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove unocss attributify preset to avoid FOUC
+
+## 0.8.2
+
+### Patch Changes
+
+- [`3b7008b`](https://github.com/Blackman99/sveltepress/commit/3b7008b2080aa6afb4b909a758d801ffe0c4eea7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add home page address to every package
+
+## 0.8.1
+
+### Patch Changes
+
+- [`01b5d23`](https://github.com/Blackman99/sveltepress/commit/01b5d23db46dc3f367d7687ba2101d6a045557e3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: better types support
+
+## 0.8.0
+
+### Minor Changes
+
+- [`d956836`](https://github.com/Blackman99/sveltepress/commit/d9568365fc6b7fb8f3ed06617ee0f8e51d1e844c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for specify import range in code import
+
+## 0.7.1
+
+### Patch Changes
+
+- [`3013a8a`](https://github.com/Blackman99/sveltepress/commit/3013a8a209c0f28cf89b4486e9f21cb4063aeafa) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page layout wrapper should hoist all script tag to top
+
+- [`7d97374`](https://github.com/Blackman99/sveltepress/commit/7d973748c8da64c21ae2d07c49a719f88451e121) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add copy code block button
+
+## 0.7.0
+
+### Minor Changes
+
+- [`2f90aa6`](https://github.com/Blackman99/sveltepress/commit/2f90aa6c039a03416502bef3209eac22704206d7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add code import
+
+### Patch Changes
+
+- [`dfcabae`](https://github.com/Blackman99/sveltepress/commit/dfcabae14b2800234b00c2e85bc0818d49bdbee7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove temp \_page.svelte for better HMR and better asset handle
+
+## 0.6.0
+
+### Minor Changes
+
+- [`1c8bf46`](https://github.com/Blackman99/sveltepress/commit/1c8bf46989a9af9f92520b7de2b1905a34276b88) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for mobile view
+
+## 0.5.1
+
+### Patch Changes
+
+- [`7da9c0c`](https://github.com/Blackman99/sveltepress/commit/7da9c0c6899c9da76b55ea356ef40d0be6f90cbb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove vitePlugins for vite plugin config
 
 ## 0.5.0
 

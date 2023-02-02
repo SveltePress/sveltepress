@@ -2,12 +2,11 @@
   "compilerOptions": {
     "declaration": true,
     "module": "ESNext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "typeRoots": ["types"],
+    "outDir": "dist",
+    "esModuleInterop": true
   },
   "exclude": ["dist"],
-  "include": [
-    "src/**/*",
-    "node_modules/@svelte-press/vite/types/sveltepress.d.ts",
-    "theme-default.d.ts"
-  ]
+  "include": ["src/**/*", "types.d.ts"]
 }

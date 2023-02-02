@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
-import { sveltepress } from '@svelte-press/vite'
-import { defaultTheme } from '@svelte-press/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
 
 const config = defineConfig({
   plugins: [
@@ -9,6 +9,9 @@ const config = defineConfig({
         navbar: [
           // Add your navbar configs here
         ],
+        sidebar: {
+          // Add your sidebar configs here
+        },
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
       }),

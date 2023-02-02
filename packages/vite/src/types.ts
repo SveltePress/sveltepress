@@ -7,12 +7,7 @@ export interface Options {
   mdsvexOptions?: MdsvexOptions
 }
 
-export interface Frontmatter {
-  title?: string
-  description?: string
-}
-
-export type Highlighter = (code: string, lang?: string) => Promise<string>
+export type Highlighter = (code: string, lang?: string, meta?: string) => Promise<string>
 
 export interface SiteConfig {
   title?: string
@@ -26,22 +21,11 @@ export interface ResolvedTheme {
   highlighter: Highlighter
   remarkPlugins?: Plugin[]
   rehypePlugins?: Plugin[]
-  /**
-   * Used for unocss safelist
-   * Need this when some of the markdown styles would not parsed by unocss.
-   */
-  safelist?: string[]
-
-  /**
-   * Client imports would be added to the global layout script scope
-   */
-  clientImports?: Array<`import '${string}'`>
 }
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
   siteConfig?: SiteConfig
   addInspect?: boolean
-  vitePlugins?: PluginOption
 }
 
 export type LoadTheme<ThemeOptions = any> = (themeOptions?: ThemeOptions) => ResolvedTheme

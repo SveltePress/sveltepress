@@ -1,8 +1,5 @@
-import { resolve } from 'path'
-import { readFileSync } from 'fs'
 import { describe, expect, it } from 'vitest'
 import { compile } from 'mdsvex'
-import { compile as svCompile } from 'svelte/compiler'
 import liveCode from '../src/markdown/live-code'
 
 const md = `
@@ -38,8 +35,3 @@ describe('live code', () => {
   })
 })
 
-describe('svelte compile', () => {
-  it('expansion', async () => {
-    expect(svCompile(readFileSync(resolve(process.cwd(), 'src/components/CExpansion.svelte'), 'utf-8')).js).toMatchSnapshot()
-  })
-})

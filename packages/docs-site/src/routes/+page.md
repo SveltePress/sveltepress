@@ -1,10 +1,11 @@
 ---
-title: Home Page
-heroImage: /sveltepress@3x.png
+title: A content centered site build tool
+description: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
+heroImage: /android-chrome-192x192.png
 tagline: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
 actions:
-  - label: Quick start
-    to: /guide/quick-start
+  - label: Read the docs
+    to: /guide/introduction/
     type: primary
   - label: View on github
     type: flat

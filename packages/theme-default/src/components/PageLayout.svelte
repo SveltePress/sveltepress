@@ -1,12 +1,10 @@
-<script >
-  import Toc from './Toc.svelte'
+<script>
   import Home from './Home.svelte'
-  import Sidebar from './Sidebar.svelte'
-  import { page } from '$app/stores'
   import PageSwitcher from './PageSwitcher.svelte'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
+  import { anchors, pages } from './layout'
+  import { page } from '$app/stores'
 
   const routeId = $page.route.id
   const isHome = routeId === '/'
@@ -14,59 +12,82 @@
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
 
-  export let siteConfig
-  let resolvedSidebars = []
+  export let siteConfig = {}
 
-  const key = Object.keys(themeOptions.sidebar || {}).find((key) => routeId.startsWith(key))
-  if(key) {
-    resolvedSidebars = themeOptions.sidebar[key]
-  }
   const {
-    sidebar = 'auto',
     title,
     description,
     pageType,
     lastUpdate,
-    anchors = []
+    anchors: fmAnchors = [],
   } = fm
 
+  anchors.set(fmAnchors)
 </script>
+
 <svelte:head>
-    <title>{title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
-    <meta name="description" content="${description || siteConfig.description}">
+  <title>{title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
+  <meta name="description" content={description || siteConfig.description} />
 </svelte:head>
-  
+
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
-    {#if sidebar === 'auto'}
-      <Sidebar sidebar={resolvedSidebars} />
-    {/if}
     <div class="content">
       {#if title}
-        <h1>
+        <h1 class="page-title">
           {title}
         </h1>
       {/if}
       <slot />
-      <div class="flex justify-between">
-        <EditPage {pageType} />
-        <LastUpdate {lastUpdate} />
+      <div class="meta">
+        <EditPage pageType={pageType} />
+        <LastUpdate lastUpdate={lastUpdate} />
       </div>
-      <PageSwitcher pages={resolvedSidebars} />
+      <PageSwitcher pages={$pages} />
     </div>
-    <Toc {anchors} />
   </div>
 {:else}
-  <Home {...fm} {siteConfig} />
+  <Home {...fm} siteConfig={siteConfig} />
   <slot />
 {/if}
 
 <style>
+  :global(.theme-default--page-layout h2 .svp-title-anchor),
+  :global(.theme-default--page-layout h3 .svp-title-anchor),
+  :global(.theme-default--page-layout h4 .svp-title-anchor),
+  :global(.theme-default--page-layout h5 .svp-title-anchor),
+  :global(.theme-default--page-layout h6 .svp-title-anchor) {
+    --at-apply: 'absolute left-0 top-[50%] flex items-center opacity-0 pointer-events-none hover:text-rose-5 transition-all transition-200';
+    transform: translate(-100%, -50%);
+  }
+
+  :global(.theme-default--page-layout h2 .svp-title-anchor) {
+    transform: translate(-100%, calc((-100% + 1rem) / 2));
+  }
+  :global(.theme-default--page-layout h2),
+  :global(.theme-default--page-layout h3),
+  :global(.theme-default--page-layout h4),
+  :global(.theme-default--page-layout h5),
+  :global(.theme-default--page-layout h6) {
+    --at-apply: relative;
+  }
   :global(.theme-default--page-layout h2) {
-    --at-apply: border-t-solid border-t 
-      border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4;
+    --at-apply: 'border-t-solid border-t border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4';
+  }
+  :global(.theme-default--page-layout h2:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h3:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h4:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h5:hover .svp-title-anchor),
+  :global(.theme-default--page-layout h6:hover .svp-title-anchor) {
+    --at-apply: pointer-events-auto opacity-100;
   }
   .content {
-    --at-apply: w-[50vw] mx-auto pb-28;
+    --at-apply: 'sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw]';
+  }
+  .page-title {
+    --at-apply: mt-none;
+  }
+  .meta {
+    --at-apply: 'sm:flex justify-between mt-20 column';
   }
 </style>

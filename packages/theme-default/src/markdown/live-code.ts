@@ -2,20 +2,22 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
-import type { RemarkLiveCode } from '../types'
+import type { Plugin } from 'unified'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
-const ERROR_CLASSES = 'text-red-5'
-const CONTAINER_CLASSES = 'mb-8 shadow-sm'
-const DEMO_CLASSES = 'bg-white dark:bg-warm-gray-8 rounded-t p-4 b-t-1 b-x-1 b-gray-2 dark:b-warmgray-9 b-t-solid b-x-solid'
-const ICON_LOADING_CLASSES = 'text-lg text-gray-4'
+const expansionImporter = 'import CExpansion from \'@sveltepress/theme-default/CExpansion.svelte\''
+const linkImporter = 'import Link from \'@sveltepress/theme-default/Link.svelte\''
+const copyCodeImporter = 'import CopyCode from \'@sveltepress/theme-default/CopyCode.svelte\''
 
-const expansionImporter = 'import CExpansion from \'@svelte-press/theme-default/CExpansion.svelte\''
-const linkImporter = 'import Link from \'@svelte-press/theme-default/Link.svelte\''
+const globalComponentsImporters = [
+  expansionImporter,
+  linkImporter,
+  copyCodeImporter,
+]
 
-const liveCode: RemarkLiveCode = function () {
+const liveCode: Plugin<[], any> = function () {
   if (!existsSync(BASE_PATH)) {
     mkdirSync(BASE_PATH, {
       recursive: true,
@@ -32,10 +34,10 @@ const liveCode: RemarkLiveCode = function () {
       tree,
       (node, idx, parent) => {
         const { meta, lang, type, data } = node
-        if (type === 'code'
-            && lang === 'svelte'
-            && meta?.split(' ').includes('live')
-            && idx !== null && !data?.liveCodeResolved
+        if (type === 'code' &&
+            lang === 'svelte' &&
+            meta?.split(' ').includes('live') &&
+            idx !== null && !data?.liveCodeResolved
         ) {
           const codeHighlightNode = {
             ...node,
@@ -62,12 +64,12 @@ const liveCode: RemarkLiveCode = function () {
           writeFileSync(path, node.value || '')
           liveCodePaths.push({
             componentName: name.replace(/\.svelte$/, ''),
-            path,
+            path: `$sveltepress/live-code/${name}`,
           })
 
           const svelteComponent = {
             type: 'html',
-            value: `<div class="${DEMO_CLASSES}"><${name.replace(/\.svelte$/, '')} /></div>`,
+            value: `<div class="svp-live-code--demo"><${name.replace(/\.svelte$/, '')} /></div>`,
           }
 
           const liveCodeNode = {
@@ -75,7 +77,7 @@ const liveCode: RemarkLiveCode = function () {
             data: {
               hName: 'div',
               hProperties: {
-                className: CONTAINER_CLASSES,
+                className: 'svp-live-code--container',
               },
             },
             children: [
@@ -101,9 +103,11 @@ const liveCode: RemarkLiveCode = function () {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
         hasScript = true
+        const value = node.value.replace(/^<script[ \w+="\w+"]*>/, m =>
+          [m, ...globalComponentsImporters, ...liveCodeImports].join('\n'))
         parent.children.splice(idx, 1, {
           type: 'html',
-          value: node.value.replace(/^<script[ \w+="\w+"]+>/, m => [m, expansionImporter, linkImporter, ...liveCodeImports].join('\n')),
+          value,
         })
       }
     })
@@ -111,17 +115,10 @@ const liveCode: RemarkLiveCode = function () {
     if (!hasScript) {
       tree.children.unshift({
         type: 'html',
-        value: ['<script>', linkImporter, expansionImporter, ...liveCodeImports, '</script>'].join('\n'),
+        value: ['<script>', ...globalComponentsImporters, ...liveCodeImports, '</script>'].join('\n'),
       })
     }
   }
 }
-
-export const classes = [
-  ERROR_CLASSES,
-  DEMO_CLASSES,
-  CONTAINER_CLASSES,
-  ICON_LOADING_CLASSES,
-]
 
 export default liveCode
