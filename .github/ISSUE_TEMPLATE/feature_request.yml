@@ -1,7 +1,7 @@
 name: "💡 Feature request"
-about: Create a feature request to help us improve
+description: Create a feature request to help us improve
 title: 'feature brief description'
-labels: [enhancement] 
+labels: enhancement
 body:
   - type: markdown
     attributes:
