@@ -30,12 +30,12 @@ body:
       description: "Please include browser console and server logs around the time this bug occurred. Optional if provided reproduction. Please try not to insert an image but copy paste the log text."
       render: shell
   - type: textarea
-    id: system-info
+    id: screenshots
     attributes:
-      label: System Info
-      description: Output of `npx envinfo --system --npmPackages svelte,rollup,webpack --binaries --browsers`
+      label: Screenshots
+      description: Some screenshots about the bug PC/Mobile
       render: shell
-      placeholder: System, Binaries, Browsers
+      placeholder: screenshots
     validations:
       required: true
   - type: dropdown
@@ -46,6 +46,6 @@ body:
       options:
         - annoyance
         - blocking an upgrade
-        - blocking all usage of svelte
+        - blocking all usage of sveltepress
     validations:
       required: true
