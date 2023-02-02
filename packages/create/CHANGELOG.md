@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.14.1
+
+### Patch Changes
+
+- [`4f53a49`](https://github.com/SveltePress/sveltepress/commit/4f53a49d80a997264d798ad73bec69a1dabeb94d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: update admonitions icon
+
 ## 0.14.0
 
 ### Minor Changes
