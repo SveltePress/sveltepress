@@ -10,7 +10,7 @@ on:
     - cron: '16 3 * * 2'
 
 jobs:
-  eslint:
+  linter:
     name: Run lint scanning
     runs-on: ubuntu-latest
     permissions:
