@@ -1,5 +1,19 @@
 # @sveltepress/theme-default
 
+## 0.15.0
+
+### Minor Changes
+
+- [`1f198c6`](https://github.com/SveltePress/sveltepress/commit/1f198c623c0b9ba92433a23cdd5067c8a8c9875c) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use alia path $sveltepress to import live code for avoiding test snapshot mismatch
+
+- [`adfb196`](https://github.com/SveltePress/sveltepress/commit/adfb1961783851bef3f626e3b629f39f0c0e50dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for multi command in one line
+
+- [`c1c9101`](https://github.com/SveltePress/sveltepress/commit/c1c91012ae8bec01b6a5e1e9342f4be54002a1fb) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add google analytics support
+
+### Patch Changes
+
+- [`55c75cd`](https://github.com/SveltePress/sveltepress/commit/55c75cdd57f7e186ab3e16642c6674ae57aa3868) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change ts,js filename convention to kebab-case
+
 ## 0.14.1
 
 ### Patch Changes
@@ -297,6 +311,12 @@
 - [`256c1ab`](https://github.com/Blackman99/sveltepress/commit/256c1abe6be51d37fa1ff5f9148368207c47a7ae) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add sidebar group support
 
 - [`1311972`](https://github.com/Blackman99/sveltepress/commit/131197221c6cbf237b4b38205c5473a122d93bb5) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: lint files
+
+## 0.5.1
+
+### Patch Changes
+
+- [`2482f88`](https://github.com/Blackman99/sveltepress/commit/2482f889bf64d12d58c655e344edaeb92a8b0524) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: expansion header should have a larger z-index than clode block inside
 
 ## 0.5.0
 

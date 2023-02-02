@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.11.1
+
+### Patch Changes
+
+- [`55c75cd`](https://github.com/SveltePress/sveltepress/commit/55c75cdd57f7e186ab3e16642c6674ae57aa3868) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change ts,js filename convention to kebab-case
+
 ## 0.11.0
 
 ### Minor Changes
