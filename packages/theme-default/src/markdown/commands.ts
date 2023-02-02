@@ -23,7 +23,6 @@ export const diff: Command = (addOrCut, idx) => {
     `<div class="svp-code-block--diff-${name}">${mark}</div>`,
   )
 }
-// absolute left-[4px] top-0 bottom-0 leading-[1.5em] bg-opacity-20
 
 export const focus: Command = (linesNumberToFocus, idx, lines) => {
   const num = Number(linesNumberToFocus)
