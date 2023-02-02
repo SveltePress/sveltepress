@@ -9,7 +9,7 @@
   import { sidebarCollapsed } from './layout'
   import Discord from './icons/Discord.svelte'
   import { page } from '$app/stores'
-  
+
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
 
@@ -27,37 +27,41 @@
         </div>
       {/if}
       <div class="menu" on:click={handleMenuClick} on:keyup={handleMenuClick}>
-        <Menu  />
+        <Menu />
       </div>
     </div>
     {#if themeOptions.docsearch}
-      <div class:is-home={isHome} class:is-not-home={!isHome} class="doc-search">
+      <div
+        class:is-home={isHome}
+        class:is-not-home={!isHome}
+        class="doc-search"
+      >
         <Search {...themeOptions.docsearch} />
       </div>
     {/if}
-  
+
     <nav class="nav-links">
       <div class="navbar-pc">
         {#each themeOptions.navbar as navItem}
-         <NavItem {...navItem}/>
+          <NavItem {...navItem} />
         {/each}
       </div>
-  
+
       {#if themeOptions.github}
-        <span class="divider"></span>
+        <span class="divider" />
         <NavItem to={themeOptions.github} external icon>
           <Github />
         </NavItem>
       {/if}
 
       {#if themeOptions.discord}
-        <span class="divider"></span>
+        <span class="divider" />
         <NavItem to={themeOptions.discord} external icon>
           <Discord />
         </NavItem>
       {/if}
 
-      <span class="divider"></span>
+      <span class="divider" />
       <ToggleDark />
     </nav>
   </div>
@@ -106,5 +110,5 @@
   .nav-links span:first-of-type {
     --at-apply: display-none sm:display-block;
   }
-  
+
 </style>

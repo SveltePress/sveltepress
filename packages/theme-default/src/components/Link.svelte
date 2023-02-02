@@ -10,8 +10,7 @@
   $: isExternal = /^https?/.test(to)
 
   const handleClick = () => {
-    if (!to)
-      return
+    if (!to) return
     if (isExternal) {
       window.open(to, '_blank')
       return
@@ -20,13 +19,13 @@
   }
 </script>
 
-<div 
-  on:click={handleClick} 
-  on:keyup={handleClick} 
-  class="link" 
-  class:inline 
-  class:active
-  class:highlight
+<div
+  on:click={handleClick}
+  on:keyup={handleClick}
+  class="link"
+  class:inline={inline}
+  class:active={active}
+  class:highlight={highlight}
 >
   <div>
     {label}

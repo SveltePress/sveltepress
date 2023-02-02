@@ -1,4 +1,4 @@
-<script >
+<script>
   import ActionButton from './ActionButton.svelte'
   import Apple from './icons/Apple.svelte'
   import Banana from './icons/Banana.svelte'
@@ -114,4 +114,3 @@
       dark:bg-[#252525] rounded-md;
   }
 </style>
-

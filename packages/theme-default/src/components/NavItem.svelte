@@ -10,12 +10,11 @@
   export let external = false
 
   const handleClick = () => {
-    if (external)
-      window.open(to, '_blank')
+    if (external) window.open(to, '_blank')
   }
 </script>
 
- {#if items && items.length}
+{#if items && items.length}
   <div class="nav-item">
     {title}
     <div class="arrow">
@@ -27,13 +26,13 @@
       {/each}
     </div>
   </div>
-  {:else}
-  <svelte:element 
-    this={external ? 'div' : 'a'} 
+{:else}
+  <svelte:element
+    this={external ? 'div' : 'a'}
     href={to}
     class:nav-item--icon={icon}
-    class="nav-item" 
-    {...(external ? { target: '_blank' } : {})}
+    class="nav-item"
+    {...external ? { target: '_blank' } : {}}
     on:click={handleClick}
     on:keypress={handleClick}
   >
@@ -44,7 +43,7 @@
       {/if}
     </slot>
   </svelte:element>
-  {/if}
+{/if}
 
 <style>
   .nav-item {
@@ -90,4 +89,3 @@
     transform: rotate(180deg);
   }
 </style>
-

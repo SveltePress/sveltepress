@@ -11,9 +11,9 @@
       container: '#docsearch',
       appId,
       apiKey,
-      indexName
+      indexName,
     })
   })
 </script>
 
-<div id="docsearch"></div>
+<div id="docsearch" />

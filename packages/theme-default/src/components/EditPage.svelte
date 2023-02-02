@@ -7,12 +7,16 @@
   export let pageType = 'md'
 
   const handleEditLinkClick = () => {
-    if (themeOptions.editLink)
-      window.open(themeOptions.editLink.replace(':route', `${routeId}/+page.${pageType}`), '_blank')
+    if (themeOptions.editLink) {
+      window.open(
+        themeOptions.editLink.replace(':route', `${routeId}/+page.${pageType}`),
+        '_blank'
+      )
+    }
   }
 </script>
 
-<div 
+<div
   class="edit-link"
   on:click={handleEditLinkClick}
   on:keyup={handleEditLinkClick}
@@ -20,9 +24,7 @@
   <div class="edit-icon">
     <Edit />
   </div>
-  <div class="edit-text">
-    Suggest changes to this page
-  </div>
+  <div class="edit-text">Suggest changes to this page</div>
 </div>
 
 <style>

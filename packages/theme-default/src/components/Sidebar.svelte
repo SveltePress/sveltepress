@@ -9,18 +9,17 @@
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
 
-
   let resolvedSidebars = []
 
-  
   const handleClose = () => {
     $sidebarCollapsed = true
   }
 
   const resolveSidebar = () => {
-    const key = Object.keys(themeOptions.sidebar || {}).find(key => routeId.startsWith(key))
-    if (key)
-      resolvedSidebars = themeOptions.sidebar[key] || []
+    const key = Object.keys(themeOptions.sidebar || {}).find(key =>
+      routeId.startsWith(key)
+    )
+    if (key) resolvedSidebars = themeOptions.sidebar[key] || []
   }
 
   $: {
@@ -30,12 +29,13 @@
 
   const recomputedPages = () => {
     pages.set(
-      resolvedSidebars.reduce((allPages, item) => Array.isArray(item.items)
-        ? [
-            ...allPages,
-            ...item.items
-          ]
-        : [...allPages, item], [])
+      resolvedSidebars.reduce(
+        (allPages, item) =>
+          Array.isArray(item.items)
+            ? [...allPages, ...item.items]
+            : [...allPages, item],
+        []
+      )
     )
   }
 
@@ -44,10 +44,17 @@
     recomputedPages()
   }
 
-  const allSidebars = Object.values(themeOptions.sidebar || []).reduce((all, arr) => [...all, ...arr], [])
+  const allSidebars = Object.values(themeOptions.sidebar || []).reduce(
+    (all, arr) => [...all, ...arr],
+    []
+  )
 </script>
 
-<aside class="theme-default-sidebar" class:collapsed={$sidebarCollapsed} class:is-home={isHome}>
+<aside
+  class="theme-default-sidebar"
+  class:collapsed={$sidebarCollapsed}
+  class:is-home={isHome}
+>
   <div class="sidebar-logo">
     <Logo />
     <div class="close" on:click={handleClose} on:keyup={handleClose}>
@@ -63,7 +70,7 @@
       />
     {/each}
   </div>
-    
+
   <div class="sidebar-pc">
     {#each resolvedSidebars as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}

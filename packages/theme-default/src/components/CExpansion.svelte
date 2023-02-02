@@ -38,12 +38,9 @@
   function onHeaderClick() {
     expanded = !expanded
   }
-
 </script>
 
-<div
-  class={`c-expansion ${expanded ? 'c-expansion--expanded' : ''}`}
->
+<div class={`c-expansion ${expanded ? 'c-expansion--expanded' : ''}`}>
   {#if reverse && expanded}
     <div
       transition:slide={{
@@ -73,7 +70,7 @@
           <slot name="icon-expanded">
             <SvelteWithColor />
           </slot>
-          {:else}
+        {:else}
           <slot name="icon-fold">
             <Svelte />
           </slot>
@@ -87,7 +84,9 @@
       </div>
     </div>
     <div
-      class={`c-expansion--arrow ${expanded ? 'c-expansion--arrow-expanded' : ''}`}
+      class={`c-expansion--arrow ${
+        expanded ? 'c-expansion--arrow-expanded' : ''
+      }`}
     >
       <!-- Customize the arrow dom -->
       <slot name="arrow">
@@ -96,11 +95,7 @@
     </div>
   </div>
   {#if !reverse && expanded}
-    <div
-      transition:slide
-      bind:this={bodyDom}
-      class="c-expansion--body"
-    >
+    <div transition:slide bind:this={bodyDom} class="c-expansion--body">
       <!--  
         Expansion body content 
       -->

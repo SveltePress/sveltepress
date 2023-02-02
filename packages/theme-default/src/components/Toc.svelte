@@ -15,16 +15,19 @@
     activeIdx = 0
   })
 
-
   let mounted = false
 
   const computeActiveIdx = () => {
-    if (!mounted)
-      return
-    const positions = anchors.map(({ slugId }) => document.getElementById(slugId).offsetTop)
+    if (!mounted) return
+    const positions = anchors.map(
+      ({ slugId }) => document.getElementById(slugId).offsetTop
+    )
     for (let i = 0; i < positions.length; i++) {
       const pos = positions[i]
-      if (scrollY >= pos - 10 && (scrollY < positions[i + 1] || i === positions.length - 1))
+      if (
+        scrollY >= pos - 10 &&
+        (scrollY < positions[i + 1] || i === positions.length - 1)
+      )
         activeIdx = i
     }
   }
@@ -43,9 +46,13 @@
   }
 </script>
 
-<svelte:window bind:scrollY></svelte:window>
+<svelte:window bind:scrollY={scrollY} />
 {#if anchors.length}
-  <div class="mobile-toc-trigger" on:click={handleTocToggleClick} on:keyup={handleTocToggleClick}>
+  <div
+    class="mobile-toc-trigger"
+    on:click={handleTocToggleClick}
+    on:keyup={handleTocToggleClick}
+  >
     {#if $tocCollapsed}
       <TocMenu />
     {:else}
@@ -53,18 +60,20 @@
     {/if}
   </div>
   <div class="toc" class:collapsed={$tocCollapsed}>
-    <div class="title">
-      On this page
-    </div>
+    <div class="title">On this page</div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
       {#each anchors as an}
         <div>
-          <a href={`#${an.slugId}`} class="item" style={`--heading-depth: ${an.depth};`}>
+          <a
+            href={`#${an.slugId}`}
+            class="item"
+            style={`--heading-depth: ${an.depth};`}
+          >
             {an.title}
           </a>
         </div>
       {/each}
-      <div class="active-bar"></div>
+      <div class="active-bar" />
     </div>
   </div>
 {/if}
@@ -114,4 +123,3 @@
     transform: translateX(100%);
   }
 </style>
-

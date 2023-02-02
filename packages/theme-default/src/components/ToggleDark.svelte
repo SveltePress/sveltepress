@@ -8,11 +8,8 @@
   let isDark = false
 
   const addOrRemoveClass = () => {
-    if (isDark)
-      document.querySelector('html').classList.add('dark')
-  
-    else
-      document.querySelector('html').classList.remove('dark')
+    if (isDark) document.querySelector('html').classList.add('dark')
+    else document.querySelector('html').classList.remove('dark')
   }
 
   onMount(() => {
@@ -26,6 +23,7 @@
     addOrRemoveClass()
   }
 </script>
+
 <div class="toggle" on:click={toggle} on:keyup={toggle}>
   {#if isDark}
     <Moon />

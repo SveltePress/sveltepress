@@ -1,4 +1,4 @@
-<script >
+<script>
   import Home from './Home.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
@@ -19,17 +19,17 @@
     description,
     pageType,
     lastUpdate,
-    anchors: fmAnchors = []
+    anchors: fmAnchors = [],
   } = fm
 
   anchors.set(fmAnchors)
-
 </script>
+
 <svelte:head>
   <title>{title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
-  <meta name="description" content={description || siteConfig.description}>
+  <meta name="description" content={description || siteConfig.description} />
 </svelte:head>
-  
+
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
     <div class="content">
@@ -40,14 +40,14 @@
       {/if}
       <slot />
       <div class="meta">
-        <EditPage {pageType} />
-        <LastUpdate {lastUpdate} />
+        <EditPage pageType={pageType} />
+        <LastUpdate lastUpdate={lastUpdate} />
       </div>
       <PageSwitcher pages={$pages} />
     </div>
   </div>
 {:else}
-  <Home {...fm} {siteConfig} />
+  <Home {...fm} siteConfig={siteConfig} />
   <slot />
 {/if}
 

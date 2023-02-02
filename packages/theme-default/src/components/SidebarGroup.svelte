@@ -22,12 +22,12 @@
       {title}
     </div>
     {#if collapsible}
-      <div 
-        class="collapse-control" 
-        on:click={handleToggle} 
+      <div
+        class="collapse-control"
+        on:click={handleToggle}
         on:keypress={handleToggle}
       >
-        <div class="arrow" class:collapsed>
+        <div class="arrow" class:collapsed={collapsed}>
           <ArrowDown />
         </div>
       </div>
@@ -35,9 +35,17 @@
   </div>
   {#if !collapsed}
     <div class="links" transition:slide>
-      {#each items as {to, title}}
-        {@const active = routeId.endsWith('/') ? to === routeId : to === `${routeId}/`}
-        <Link {to} {active} label={title} inline={false} highlight={false} />
+      {#each items as { to, title }}
+        {@const active = routeId.endsWith('/')
+          ? to === routeId
+          : to === `${routeId}/`}
+        <Link
+          to={to}
+          active={active}
+          label={title}
+          inline={false}
+          highlight={false}
+        />
       {/each}
     </div>
   {/if}
