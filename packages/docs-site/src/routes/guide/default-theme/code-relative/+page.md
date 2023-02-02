@@ -230,9 +230,9 @@ Here's a example with full features:
 ````md
 ```svelte live ln title=Counter.svelte
 <script>
-  let count = 0 // [svp! hl]
+  let count = 0
 
-  const handleClick = () => { // [svp! !!:3]
+  const handleClick = () => {
     count++
   }
 </script>
@@ -241,8 +241,8 @@ Here's a example with full features:
 </button>
 <style>
   button {
-    background-color: purple; /* // [svp! --] */
-    color: white; /* // [svp! ++] */
+    background-color: purple;
+    color: white;
     outline: 0;
     border: 0;
     padding: 8px 16px;
@@ -257,9 +257,9 @@ Here's a example with full features:
 
 ```svelte live ln title=Counter.svelte
 <script>
-  let count = 0 // [svp! hl]
+  let count = 0
 
-  const handleClick = () => { // [svp! !!:3]
+  const handleClick = () => {
     count++
   }
 </script>
@@ -268,8 +268,8 @@ Here's a example with full features:
 </button>
 <style>
   button {
-    background-color: purple; /* // [svp! --] */
-    color: white; /* // [svp! ++] */
+    background-color: purple;
+    color: white;
     outline: 0;
     border: 0;
     padding: 8px 16px;
@@ -277,6 +277,32 @@ Here's a example with full features:
     cursor: pointer;
   }
 </style>
+```
+
+## Combine features
+
+You can use more than one features mentioned above: 
+
+**Input**
+
+````md
+```js ln title="complex-example.js"
+function hello() {
+  const oldMsg = 'Some msg with focus, diff --' // [svp! --] // [svp! !!:3]
+  const newMsg1 = 'Some msg with both focus, diff ++, highlight line' // [svp! ++] // [svp! ~~]
+  const newMsg2 = 'Some msg with both focus, diff ++' // [svp! ++]
+}
+```
+````
+
+**Output**
+
+```js ln title="complex-example.js"
+function hello() {
+  const oldMsg = 'Some msg with focus, diff --' // [svp! --] // [svp! !!:3]
+  const newMsg1 = 'Some msg with both focus, diff ++, highlight line' // [svp! ++] // [svp! ~~]
+  const newMsg2 = 'Some msg with both focus, diff ++' // [svp! ++]
+}
 ```
 
 ## Import code

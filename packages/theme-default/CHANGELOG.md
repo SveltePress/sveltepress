@@ -6,6 +6,8 @@
 
 - [`1f198c6`](https://github.com/SveltePress/sveltepress/commit/1f198c623c0b9ba92433a23cdd5067c8a8c9875c) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use alia path $sveltepress to import live code for avoiding test snapshot mismatch
 
+- [`adfb196`](https://github.com/SveltePress/sveltepress/commit/adfb1961783851bef3f626e3b629f39f0c0e50dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for multi command in one line
+
 - [`c1c9101`](https://github.com/SveltePress/sveltepress/commit/c1c91012ae8bec01b6a5e1e9342f4be54002a1fb) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add google analytics support
 
 ### Patch Changes

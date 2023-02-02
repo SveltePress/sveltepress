@@ -1,6 +1,10 @@
 # @sveltepress/create
 
-## 0.14.2
+## 0.15.0
+
+### Minor Changes
+
+- [`adfb196`](https://github.com/SveltePress/sveltepress/commit/adfb1961783851bef3f626e3b629f39f0c0e50dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for multi command in one line
 
 ### Patch Changes
 
