@@ -7,6 +7,7 @@
   import Navbar from './Navbar.svelte'
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
+  import GoogleAnalytics from './GoogleAnalytics.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
 
   let ajaxBar
@@ -30,6 +31,8 @@
   <slot />
 
   <Toc anchors={$anchors} />
+
+  <GoogleAnalytics />
 </main>
 
 <style>

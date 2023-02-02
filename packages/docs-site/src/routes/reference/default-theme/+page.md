@@ -35,7 +35,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,4,32)
+@code(/../theme-default/types.d.ts,4,33)
 
 ### `navbar`
 
@@ -103,6 +103,13 @@ The link used for bottom edit this page on github button
 For example this site use `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
 
 `:route` represent the route path, for example: /foo/bar/+page.md
+
+### `ga`
+
+The id provided by [Google Analytics](https://analytics.google.com/).  
+Something like `G-XXXXXXX`.
+
+Would add gtag script in site head if provided.
 
 ### `docsearch`
 

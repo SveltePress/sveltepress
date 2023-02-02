@@ -24,6 +24,7 @@ declare module 'virtual:sveltepress/theme-default' {
     sidebar?: Record<string, SidebarItem[]>
     editLink?: string
     discord?: string
+    ga?: string
     docsearch?: {
       appId: string
       apiKey: string
