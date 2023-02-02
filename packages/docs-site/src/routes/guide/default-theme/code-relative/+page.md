@@ -300,8 +300,8 @@ function hello() {
 ```js ln title="complex-example.js"
 function hello() {
   const oldMsg = 'Some msg with focus, diff --' // [svp! --] // [svp! !!:3]
-  const newMsg1 = 'Some msg with both focus, diff ++, highlight line' // [svp! ++] // [svp! ~~]
-  const newMsg2 = 'Some msg with both focus, diff ++' // [svp! ++]
+  const newMsg1 = 'Some msg with focus, diff ++, highlight line' // [svp! ++] // [svp! ~~]
+  const newMsg2 = 'Some msg with focus, diff ++' // [svp! ++]
 }
 ```
 
