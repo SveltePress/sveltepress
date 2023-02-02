@@ -3,7 +3,7 @@ import { existsSync, mkdirSync } from 'fs'
 import type { PluginOption } from 'vite'
 
 import type { ResolvedTheme, SiteConfig } from './types'
-import { wrapPage } from './utils/wrapPage.js'
+import { wrapPage } from './utils/wrap-page.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 

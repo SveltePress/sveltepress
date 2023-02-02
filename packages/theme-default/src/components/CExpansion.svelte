@@ -48,8 +48,7 @@
         easing: cubicInOut,
       }}
       bind:this={bodyDom}
-      class="c-expansion--body"
-    >
+      class="c-expansion--body">
       <!--  
         Expansion body content 
       -->
@@ -61,8 +60,7 @@
     class="c-expansion--header"
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
-    on:keypress={onHeaderClick}
-  >
+    on:keypress={onHeaderClick}>
     <div class="c-expansion--header-left">
       <div class="c-expansion--icon">
         <!-- The content before title -->
@@ -86,8 +84,7 @@
     <div
       class={`c-expansion--arrow ${
         expanded ? 'c-expansion--arrow-expanded' : ''
-      }`}
-    >
+      }`}>
       <!-- Customize the arrow dom -->
       <slot name="arrow">
         <ArrowDown />

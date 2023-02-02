@@ -25,8 +25,7 @@
       <div
         class="collapse-control"
         on:click={handleToggle}
-        on:keypress={handleToggle}
-      >
+        on:keypress={handleToggle}>
         <div class="arrow" class:collapsed={collapsed}>
           <ArrowDown />
         </div>
@@ -44,8 +43,7 @@
           active={active}
           label={title}
           inline={false}
-          highlight={false}
-        />
+          highlight={false} />
       {/each}
     </div>
   {/if}

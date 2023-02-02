@@ -2,8 +2,8 @@ import LRUCache from 'lru-cache'
 import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from '../types'
 import mdToSvelte from '../markdown/mdToSvelte.js'
-import { parseSvelteFrontmatter } from './parseSvelteFrontmatter.js'
-import { getFileLastUpdateTime } from './getFileLastUpdate.js'
+import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
+import { getFileLastUpdateTime } from './get-file-last-update.js'
 
 const cache = new LRUCache<string, any>({ max: 1024 })
 export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g

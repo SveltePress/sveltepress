@@ -25,8 +25,7 @@
   class="link"
   class:inline={inline}
   class:active={active}
-  class:highlight={highlight}
->
+  class:highlight={highlight}>
   <div>
     {label}
   </div>

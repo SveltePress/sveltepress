@@ -10,8 +10,7 @@
       class="logo"
       height="32"
       src={themeOptions.logo}
-      alt={siteConfig.title}
-    />
+      alt={siteConfig.title} />
     <span class="title">
       {siteConfig.title}
     </span>

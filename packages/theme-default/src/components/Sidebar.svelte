@@ -53,8 +53,7 @@
 <aside
   class="theme-default-sidebar"
   class:collapsed={$sidebarCollapsed}
-  class:is-home={isHome}
->
+  class:is-home={isHome}>
   <div class="sidebar-logo">
     <Logo />
     <div class="close" on:click={handleClose} on:keyup={handleClose}>
@@ -66,8 +65,7 @@
     {#each allSidebars as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}
       <SidebarGroup
-        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
-      />
+        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }} />
     {/each}
   </div>
 
@@ -75,8 +73,7 @@
     {#each resolvedSidebars as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}
       <SidebarGroup
-        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
-      />
+        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }} />
     {/each}
   </div>
 </aside>

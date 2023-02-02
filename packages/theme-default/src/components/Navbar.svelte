@@ -34,8 +34,7 @@
       <div
         class:is-home={isHome}
         class:is-not-home={!isHome}
-        class="doc-search"
-      >
+        class="doc-search">
         <Search {...themeOptions.docsearch} />
       </div>
     {/if}

@@ -51,8 +51,7 @@
   <div
     class="mobile-toc-trigger"
     on:click={handleTocToggleClick}
-    on:keyup={handleTocToggleClick}
-  >
+    on:keyup={handleTocToggleClick}>
     {#if $tocCollapsed}
       <TocMenu />
     {:else}
@@ -67,8 +66,7 @@
           <a
             href={`#${an.slugId}`}
             class="item"
-            style={`--heading-depth: ${an.depth};`}
-          >
+            style={`--heading-depth: ${an.depth};`}>
             {an.title}
           </a>
         </div>

@@ -25,8 +25,7 @@
     bind:this={container}
     class="svp-code-bock--copy-code"
     on:click={handleClick}
-    on:keyup={handleClick}
-  >
+    on:keyup={handleClick}>
     <Copy />
   </div>
 {/if}

@@ -4,6 +4,7 @@
   "version": "0.14.1",
   "description": "The default theme for sveltepress",
   "scripts": {
+    "test": "vitest",
     "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
     "build:comps": "svelte-package && rm dist/package.json",
     "build": "pnpm build:comps && pnpm cp:assets"

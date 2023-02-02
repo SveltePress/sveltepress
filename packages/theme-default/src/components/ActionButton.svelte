@@ -11,8 +11,7 @@
   role="button"
   href={to}
   class={`svp-action ${type ? `svp-action--${type}` : ''}`}
-  target={external ? '_blank' : ''}
->
+  target={external ? '_blank' : ''}>
   <span class="label">
     {label}
   </span>

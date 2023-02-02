@@ -20,3 +20,70 @@ We use [GitHub issues](https://github.com/SveltePress/sveltepress/issues) for ou
 
 ## Pull requests
 
+### Proposing a change
+
+If you would like to request a new feature or enhancement but are not yet thinking about opening a pull request, you can also file an issue with [feature template](https://github.com/SveltePress/sveltepress/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=feature+brief+description).
+
+If you're only fixing a bug, it's fine to submit a pull request right away, but we still recommend that you file an issue detailing what you're fixing. This is helpful in case we don't accept that specific fix but want to keep track of the issue.
+
+Small pull requests are much easier to review and more likely to get merged.
+
+### Creating a branch
+
+[Fork the repository](https://github.com/SveltePress/sveltepress/fork) and create your branch from master. If you've never sent a GitHub pull request before, you can learn how from [this free video series](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+
+### Installation
+
+* Make sure you have [PNPM](https://pnpm.io/) and Node > 16 installed
+* Run `pnpm install` in the project root
+
+### Testing
+
+Use [Vitest](https://vitest.dev/) for testing.  
+
+All tests are located in `packages/[package name]/__test__` folder.  
+
+To run test, run `npx vitest`.
+
+### Develop docs site
+
+* run `cd packages/docs-site`
+* run `pnpm dev`
+* Open the address in the terminal to see local started docs site
+
+### Develop vite plugin package
+
+**Please provide test cases if possible**
+
+If you've changed APIs, update the documentation.
+
+### Develop default theme package
+
+**Please provide test cases if possible**
+
+If you've changed APIs, update the documentation.
+
+If you've changed UI components. Provide screenshots about before and after changes made.
+
+## Style guide
+
+### Lint
+
+Use [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) to restrict the format of codes.
+
+* If a js or a ts file changed, use eslint to check it. 
+* If a svelte file changed, use eslint and prettier to check it.
+
+### Naming convention
+
+* Svelte component filename in `CamelCase`
+* js and ts filename in `kebab-case`
+* function and variable name in `camelCase`
+
+### Submitting pull requests
+
+* Make sure `pnpm lint` ran and no error were found.
+* Make sure `pnpm test` ran in the package changes made and no error were found.
+* If a version update is considered required. Welcome using [Changesets](https://github.com/changesets/changesets) by running `npx changesets` to add one in pull request.
+
+Looking forward to contributions in any forms .

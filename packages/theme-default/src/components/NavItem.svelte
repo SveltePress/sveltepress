@@ -34,8 +34,7 @@
     class="nav-item"
     {...external ? { target: '_blank' } : {}}
     on:click={handleClick}
-    on:keypress={handleClick}
-  >
+    on:keypress={handleClick}>
     <slot>
       {title}
       {#if external}

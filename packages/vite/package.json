@@ -17,6 +17,7 @@
     }
   },
   "scripts": {
+    "test": "vitest",
     "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
     "build": "pnpm build:es"
   },

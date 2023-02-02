@@ -19,8 +19,7 @@
 <div
   class="edit-link"
   on:click={handleEditLinkClick}
-  on:keyup={handleEditLinkClick}
->
+  on:keyup={handleEditLinkClick}>
   <div class="edit-icon">
     <Edit />
   </div>
