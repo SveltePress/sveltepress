@@ -19,6 +19,10 @@ Build with [SvelteKit](https://kit.svelte.dev/)
 [Sveltepress](https://sveltepress.site/)
 
 
+## :pray: Contributing
+
+See [Contributing](./CONTRIBUTING.md)
+
 ## :heart: Thanks 
 
 This project can not be done without these projects
