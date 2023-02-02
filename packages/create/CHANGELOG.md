@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.14.0
+
+### Minor Changes
+
+- [`008aa69`](https://github.com/SveltePress/sveltepress/commit/008aa698342db5382121365902a3085f54e333a3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add code block title support
+
+- [`5946085`](https://github.com/SveltePress/sveltepress/commit/59460857fe7f3bcd5e5820569704f5603896930a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move to sveltepress npm scope
+
 ## 0.13.1
 
 ### Patch Changes
