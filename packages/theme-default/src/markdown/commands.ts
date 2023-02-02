@@ -37,15 +37,22 @@ export const focus: Command = (linesNumberToFocus, idx, lines) => {
   return res.join('\n')
 }
 
-export const getCommand = (line: string) => {
-  const matches = COMMAND_RE.exec(line)
-  if (matches && matches.length) {
-    const [comment] = matches
-    // [svp! command:param1,params2] => command:param1,params2
-    return [comment.replace(/^\/\/ \[svp\! /, '').replace(/\]$/, ''), line.replace(COMMAND_RE, '')]
-  }
+export const getCommands: (line: string) => [string[], string] = (line: string) => {
+  const commands: string[] = []
+  let newLine = line
+  const re = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))(:\S+)?\]/g
+  let matches = re.exec(line)
 
-  return ['', line]
+  while (matches && matches.length) {
+    const [commandRaw] = matches
+    // [svp! command:param1,params2] => command:param1,params2
+    commands.push(commandRaw.replace(/^\/\/ \[svp\! /, '').replace(/\]$/, ''))
+    const idx = newLine.indexOf(commandRaw)
+    newLine = `${newLine.slice(0, idx)}${newLine.slice(idx + commandRaw.length)}`
+
+    matches = re.exec(line)
+  }
+  return [commands, newLine]
 }
 
 export const COMMAND_CHEAT_LIST: Record<string, Command> = {
