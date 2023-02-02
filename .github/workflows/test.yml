@@ -11,7 +11,7 @@ on:
 
 jobs:
   vitest:
-    name: Testing
+    name: Running tests
     runs-on: ubuntu-latest
     permissions:
       contents: read
