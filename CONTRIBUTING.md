@@ -43,7 +43,7 @@ Use [Vitest](https://vitest.dev/) for testing.
 
 All tests are located in `packages/[package name]/__test__` folder.  
 
-To run test, run `npx vitest`.
+To run test, run `pnpm test` in the package root.
 
 ### Develop docs site
 
