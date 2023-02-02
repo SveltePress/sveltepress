@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@casual-ui/eslint-config-svelte': ^0.0.4
+      '@casual-ui/eslint-config-svelte': ^0.0.5
       '@changesets/changelog-github': ^0.4.8
       '@changesets/cli': ^2.26.0
       eslint: ^8.28.0
@@ -15,7 +15,7 @@ importers:
     dependencies:
       '@changesets/changelog-github': 0.4.8
     devDependencies:
-      '@casual-ui/eslint-config-svelte': 0.0.4_3wzfxybqclpucaafwwifv32j3a
+      '@casual-ui/eslint-config-svelte': 0.0.5_3wzfxybqclpucaafwwifv32j3a
       '@changesets/cli': 2.26.0
       eslint: 8.30.0
       prettier: 2.8.3
@@ -553,8 +553,8 @@ packages:
       - svelte
     dev: true
 
-  /@casual-ui/eslint-config-svelte/0.0.4_3wzfxybqclpucaafwwifv32j3a:
-    resolution: {integrity: sha512-aITQENxCrKBECgc5+7e+y1cWbt2CK5ljnqyhKvJEVGSoMHpNtLFi4LbXod+dRZTUZExw1jIhKmmvct3KwqaKZg==}
+  /@casual-ui/eslint-config-svelte/0.0.5_3wzfxybqclpucaafwwifv32j3a:
+    resolution: {integrity: sha512-KgDseOJuZ+E25Ng3GOMXDGX8gX94oXbjCA+SmBHcO3dDV1wQJH9dRUgwEeP1TgXWbtdnlQvRH1hfHmxbCS0R7A==}
     peerDependencies:
       eslint: ^8.30.0
       typescript: ^4.9.4
