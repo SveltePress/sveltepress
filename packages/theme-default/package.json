@@ -1,12 +1,7 @@
 {
-<<<<<<< HEAD
-  "name": "@svelte-press/theme-default",
-  "version": "0.5.1",
-=======
   "name": "@sveltepress/theme-default",
   "homepage": "https://sveltepress.site/",
   "version": "0.15.0",
->>>>>>> ed4947d50350d1757425335dac5d1c0626716e8c
   "description": "The default theme for sveltepress",
   "scripts": {
     "test": "vitest",
