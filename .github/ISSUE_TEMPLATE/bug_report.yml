@@ -36,8 +36,6 @@ body:
       description: Some screenshots about the bug PC/Mobile
       render: shell
       placeholder: screenshots
-    validations:
-      required: true
   - type: dropdown
     id: severity
     attributes:
