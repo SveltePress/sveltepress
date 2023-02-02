@@ -47,9 +47,8 @@
 
 <style>
   .nav-item {
-    --at-apply: flex items-center cursor-pointer 
-      position-relative z-1 cursor-pointer
-      decoration-none px-3;
+    --at-apply: flex items-center cursor-pointer position-relative z-1
+      cursor-pointer decoration-none px-3;
   }
   .nav-item--icon {
     --at-apply: text-6;
@@ -61,18 +60,11 @@
     --at-apply: svp-gradient-text;
   }
   .dropdown {
-    --at-apply: transition-transform transition-opacity 
-      transition-300 opacity-0 pointer-events-none 
-      absolute top-0 right-0 
-      bg-white dark:bg-[#232323]
-      whitespace-nowrap z-3 rounded shadow-sm p-2;
-      transform: translateY(72px);
+    --at-apply: 'transition-transform transition-opacity transition-300 opacity-0 pointer-events-none  absolute top-0 right-0 bg-white dark:bg-[#232323] whitespace-nowrap z-3 rounded shadow-sm p-2';
+    transform: translateY(72px);
   }
   :global(.dropdown > .nav-item) {
-    --at-apply: block py-2 px-4 decoration-none rounded
-      hover:bg-orange-1 hover:text-red-5
-      dark:hover:bg-orange-9
-      text-[#213547] dark:text-[#efefef] hover:;
+    --at-apply: 'block py-2 px-4 decoration-none rounded hover:bg-orange-1 hover:text-red-5 dark:hover:bg-orange-9 text-[#213547] dark:text-[#efefef]';
   }
   :global(.dropdown > .nav-item:hover) {
     background-image: none;
@@ -82,8 +74,7 @@
     transform: translateY(54px);
   }
   .arrow {
-    --at-apply: flex items-center
-      transition-transform transition-300 text-6 text-[#213547] dark:text-light-4;
+    --at-apply: 'flex items-center transition-transform transition-300 text-6 text-[#213547] dark:text-light-4';
   }
   .nav-item:hover .arrow {
     transform: rotate(180deg);

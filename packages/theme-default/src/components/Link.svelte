@@ -40,13 +40,12 @@
     --at-apply: text-rose-4;
   }
   .link {
-    --at-apply: flex hover:text-rose-5 cursor-pointer
-      items-center transition-200 transition-color;
+    --at-apply: 'flex hover:text-rose-5 cursor-pointer items-center transition-200 transition-color';
   }
   .inline {
     --at-apply: inline-flex;
   }
   .active {
-    --at-apply: svp-gradient-text hover:svp-gradient-text cursor-default;
+    --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';
   }
 </style>

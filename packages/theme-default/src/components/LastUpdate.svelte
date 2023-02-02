@@ -10,6 +10,6 @@
 
 <style>
   .last-update {
-    --at-apply: mt-4 sm:mt-0 text-gray-5 dark:text-gray-4 text-[14px];
+    --at-apply: 'mt-4 sm:mt-0 text-gray-5 dark:text-gray-4 text-[14px]';
   }
 </style>

@@ -4,10 +4,10 @@
   ],
   "svelteSortOrder": "options-scripts-markup-styles",
   "svelteStrictMode": false,
-  "svelteBracketNewLine": true,
   "svelteAllowShorthand": false,
   "svelteIndentScriptAndStyle": true,
   "semi": false,
   "singleQuote": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "bracketSameLine": true
 }

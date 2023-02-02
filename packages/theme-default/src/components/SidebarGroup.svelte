@@ -53,20 +53,16 @@
 
 <style>
   .sidebar-group:not(:last-of-type) {
-    --at-apply: border-b-solid border-b 
-      border-light-8 dark:border-b-gray-7 mb-4 pb-4;
+    --at-apply: 'border-b-solid border-b border-light-8 dark:border-b-gray-7 mb-4 pb-4';
   }
   .group-title {
-    --at-apply: font-bold text-slate-8 dark:text-slate-2 mb-2 sm:mb-4
-    flex items-center justify-between;
+    --at-apply: 'font-bold text-slate-8 dark:text-slate-2 mb-2 sm:mb-4 flex items-center justify-between';
   }
   .links {
     --at-apply: leading-8;
   }
   .collapse-control {
-    --at-apply: transition transition-200 transition-bg transition-transform
-      cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3
-      w-[28px] h-[28px] flex items-center justify-center rounded;
+    --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 w-[28px] h-[28px] flex items-center justify-center rounded';
   }
   .arrow {
     --at-apply: flex items-center transition-300 transition-transform;

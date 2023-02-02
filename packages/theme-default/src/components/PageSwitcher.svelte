@@ -50,35 +50,31 @@
 </div>
 
 <style>
-.page-switcher {
-  --at-apply: grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8
-    border-t-solid border-t border-light-7 dark:border-gray-7 
-    pt-4 sm:pt-8 mt-4;
-}
-.switcher {
-  --at-apply: border-solid border-1 border-light-7 dark:border-gray-7
-    rounded-lg flex-grow px-4 py-2 cursor-pointer
-    hover:border-rose-5 transition-300 transition-colors;
-}
-.hint {
-  --at-apply: text-gray-4 text-3;
-}
-.title {
-  --at-apply: flex items-center text-rose-4 mt-3;
-}
-.right .title {
-  --at-apply: justify-end;
-}
-.title-label {
-  --at-apply: ml-2;
-}
-.right .title-label {
-  --at-apply: mr-2 ml-none;
-}
-.right {
-  --at-apply: text-right;
-}
-.switch-icon {
-  --at-apply: text-5;
-}
+  .page-switcher {
+    --at-apply: 'grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 border-t-solid border-t border-light-7 dark:border-gray-7 pt-4 sm:pt-8 mt-4';
+  }
+  .switcher {
+    --at-apply: 'border-solid border-1 border-light-7 dark:border-gray-7 rounded-lg flex-grow px-4 py-2 cursor-pointer hover:border-rose-5 transition-300 transition-colors';
+  }
+  .hint {
+    --at-apply: text-gray-4 text-3;
+  }
+  .title {
+    --at-apply: flex items-center text-rose-4 mt-3;
+  }
+  .right .title {
+    --at-apply: justify-end;
+  }
+  .title-label {
+    --at-apply: ml-2;
+  }
+  .right .title-label {
+    --at-apply: mr-2 ml-none;
+  }
+  .right {
+    --at-apply: text-right;
+  }
+  .switch-icon {
+    --at-apply: text-5;
+  }
 </style>

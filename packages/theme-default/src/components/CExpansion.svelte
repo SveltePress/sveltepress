@@ -106,12 +106,12 @@
 
 <style>
   :global(.svp-live-code--container) {
-    --at-apply: mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded;
+    --at-apply: 'mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded';
   }
   :global(.svp-live-code--demo) {
     --at-apply: p-4;
   }
-   :global(.c-expansion--body .svp-code-block) {
+  :global(.c-expansion--body .svp-code-block) {
     --at-apply: mb-none;
   }
   .c-expansion--header {

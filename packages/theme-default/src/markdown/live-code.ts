@@ -34,10 +34,10 @@ const liveCode: Plugin<[], any> = function () {
       tree,
       (node, idx, parent) => {
         const { meta, lang, type, data } = node
-        if (type === 'code'
-            && lang === 'svelte'
-            && meta?.split(' ').includes('live')
-            && idx !== null && !data?.liveCodeResolved
+        if (type === 'code' &&
+            lang === 'svelte' &&
+            meta?.split(' ').includes('live') &&
+            idx !== null && !data?.liveCodeResolved
         ) {
           const codeHighlightNode = {
             ...node,

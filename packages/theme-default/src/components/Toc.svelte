@@ -80,46 +80,32 @@
 
 <style>
   .toc {
-    --at-apply: text-3.5 sm:w-[22vw]
-      w-[60vw]
-      bg-white dark:bg-zinc-8 sm:bg-transparent top-0
-      z-999 sm:dark:bg-transparent
-      fixed sm:top-[80px] bottom-0 right-0 sm:z-3 leading-[2em] py-4
-      text-gray-5 dark:text-gray-2
-      transition transition-500 transition-transform;
+    --at-apply: 'transition-transform transition transition-500 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[60vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-999 sm:dark:bg-transparent';
   }
   .title {
-    --at-apply: font-bold pl-4 text-gray-8 dark:text-gray-2;
+    --at-apply: 'font-bold pl-4 text-gray-8 dark:text-gray-2';
   }
   .item {
-    --at-apply: relative z-3 block  truncate;
-    text-indent: calc((var(--heading-depth ) - 2) * 1.2em);
+    --at-apply: relative z-3 block truncate;
+    text-indent: calc((var(--heading-depth) - 2) * 1.2em);
   }
-  
+
   .anchors {
-    --at-apply: relative z-3 pl-4 sm:w-[15vw];
+    --at-apply: 'relative z-3 pl-4 sm:w-[15vw]';
   }
   .anchors::after {
-    --at-apply: absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8 
-      display-none sm:display-block;
+    --at-apply: 'absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8 display-none sm:display-block';
     content: ' ';
   }
   .active-bar {
-    --at-apply: absolute z-2 bg-rose-1 bg-opacity-80 left-0 h-[2em] 
-      border-l-[3px] border-l-solid border-rose-4 border-opacity-80
-      w-full transition-transform transition-300 top-0
-      dark:border-rose-8 dark:bg-rose-8 dark:bg-opacity-20;
+    --at-apply: 'absolute z-2 bg-rose-1 bg-opacity-80 left-0 h-[2em] border-l-[3px] border-l-solid border-rose-4 border-opacity-80 w-full transition-transform transition-300 top-0 dark:border-rose-8 dark:bg-rose-8 dark:bg-opacity-20';
     transform: translateY(var(--bar-top));
   }
   .mobile-toc-trigger {
-    --at-apply: sm:display-none fixed bottom-[12px] right-[12px]
-      w-[38px] h-[38px] bg-white dark:shadow-white dark:bg-gray-9 rounded-[19px] 
-      shadow-md z-1000
-      flex items-center justify-center
-      text-6;
+    --at-apply: 'sm:display-none fixed bottom-[12px] right-[12px] w-[38px] h-[38px] bg-white dark:shadow-white dark:bg-gray-9 rounded-[19px] shadow-md z-1000 flex items-center justify-center text-6';
   }
   .collapsed {
-    --at-apply: sm:translate-x-0;
+    --at-apply: 'sm:translate-x-0';
     transform: translateX(100%);
   }
 </style>
