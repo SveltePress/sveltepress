@@ -1,6 +1,5 @@
 export const customTypes = {
   secondary: 'note',
-  info: 'important',
   success: 'tip',
   danger: 'warning',
   note: {
@@ -22,16 +21,22 @@ export const customTypes = {
     emoji: '🔥', // '&#x1F525;'
     svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 11 11"><path d="M6.62 8.5l3.11 1.55l-.45.89L5.5 9.06l-3.78 1.89l-.45-.89L4.38 8.5l-3.1-1.55l.45-.89L5.5 7.94l3.78-1.89l.44.9l-3.1 1.55zM8.5 3.21v.29l-1 1v1l-2 1l-2-1v-1l-1-1V3a2.9 2.9 0 0 1 3-3a3.09 3.09 0 0 1 3 3.21zm-3.79-.5a.79.79 0 1 0-.79.79a.79.79 0 0 0 .79-.79zM5 4.5h-.5v1H5v-1zm1.5 0H6v1h.5v-1zm1.36-1.79a.79.79 0 1 0-.79.79a.79.79 0 0 0 .79-.79z" fill="currentColor"/></svg>',
   },
-  important: {
+  info: {
     ifmClass: 'info',
-    keyword: 'important',
+    keyword: 'info',
     emoji: '❗️', // '&#x2757;'
     svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 8 8"><path fill="currentColor" d="M5 0c-.55 0-1 .45-1 1s.45 1 1 1s1-.45 1-1s-.45-1-1-1zM3.5 2.5C2.67 2.5 2 3.17 2 4h1c0-.28.22-.5.5-.5s.5.22.5.5s-1 1.64-1 2.5C3 7.36 3.67 8 4.5 8S6 7.33 6 6.5H5c0 .28-.22.5-.5.5S4 6.78 4 6.5C4 6.14 5 4.66 5 4c0-.81-.67-1.5-1.5-1.5z"/></svg>',
+  },
+  important: {
+    ifmClass: 'info',
+    keyword: 'info',
+    emoji: '❗️', // '&#x2757;'
+    svg: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 12 12"><path fill="currentColor" d="M4.283 2.98a1.735 1.735 0 1 1 3.434 0l-.576 4.03a1.153 1.153 0 0 1-2.282 0l-.576-4.03Zm2.444-.142a.735.735 0 1 0-1.454 0l.576 4.03a.153.153 0 0 0 .303 0l.575-4.03ZM6 11a1 1 0 1 0 0-2a1 1 0 0 0 0 2Z"></path></svg>',
   },
   caution: {
     ifmClass: 'warning',
     keyword: 'caution',
     emoji: '⚠️', // '&#x26A0;&#xFE0F;'
-    svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M7 14a3 3 0 1 0 1 5.83"/><path d="M4.264 15.605a4 4 0 0 1-.874-6.636m.03-.081A2.5 2.5 0 0 1 7 5.5m5-1a2.5 2.5 0 1 0-4.762 1.065M8 20a2 2 0 1 0 4 0m5-6a3 3 0 1 1-1 5.83"/><path d="M19.736 15.605a4 4 0 0 0 .874-6.636m-.03-.081A2.5 2.5 0 0 0 17 5.5m-5-1a2.5 2.5 0 1 1 4.762 1.065M16 20a2 2 0 1 1-4 0m0-12v4m0 4.01l.01-.011"/></g></svg>',
+    svg: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 28 28"><path fill="currentColor" d="M15 20a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm-1.75-3.25a.75.75 0 0 0 1.5 0v-6.5a.75.75 0 0 0-1.5 0v6.5ZM11.592 4.17c1.046-1.894 3.77-1.895 4.816 0l9.25 16.75c1.012 1.833-.314 4.08-2.407 4.08H4.757c-2.093 0-3.42-2.246-2.408-4.079l9.243-16.75Zm3.502.725a1.25 1.25 0 0 0-2.188 0L3.662 21.646A1.25 1.25 0 0 0 4.757 23.5H23.25a1.25 1.25 0 0 0 1.094-1.854l-9.25-16.751Z"></path></svg>',
   },
 }
