@@ -2,16 +2,13 @@ name: Linter
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "**/*", "!changeset-release/main" ]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ "main" ]
-  schedule:
-    - cron: '16 3 * * 2'
 
 jobs:
   linter:
-    name: Run lint scanning
+    name: Running lint
     runs-on: ubuntu-latest
     permissions:
       contents: read
