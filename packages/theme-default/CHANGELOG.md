@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 0.16.0
+
+### Minor Changes
+
+- [`86a201c`](https://github.com/SveltePress/sveltepress/commit/86a201c19b1c7fb5ed7c382c6c08ba71b29247ca) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add backdrop to mobile view sidebar and toc
+
+### Patch Changes
+
+- [`3329171`](https://github.com/SveltePress/sveltepress/commit/33291715e73185f3b323cc3e64db1c28b398e3e7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher get the wrong pages status
+
 ## 0.15.0
 
 ### Minor Changes
