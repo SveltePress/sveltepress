@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.11.2
+
+### Patch Changes
+
+- [`5722401`](https://github.com/SveltePress/sveltepress/commit/57224012ed973b1d71257c24b4c7a64446c9dc60) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: camelCase filename to kebab-case
+
 ## 0.11.1
 
 ### Patch Changes
