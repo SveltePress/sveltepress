@@ -21,7 +21,9 @@ Build with [SvelteKit](https://kit.svelte.dev/)
 
 ## :pray: Contributing
 
-See [Contributing](./CONTRIBUTING.md)
+First of all, contributions by any kinds of format are welcomed!
+
+For contributing details, see [Contributing](./CONTRIBUTING.md)
 
 ## :heart: Thanks 
 
