@@ -11,13 +11,13 @@ It would render an external icon to the right of link text label
 
 ```md
 [External Link](https://link.address)
-[Internal Link](/foo/bar)
+[Internal Link](/guide/introduction/)
 ```
 
 **Output**
 
 [External Link](https://link.address)  
-[Internal Link](/foo/bar)
+[Internal Link](/guide/introduction/)
 
 ## Directly use Link component
 

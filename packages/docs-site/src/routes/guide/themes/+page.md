@@ -6,7 +6,7 @@ title: Themes
 
 Pass `theme` option to sveltepress to use a theme
 
-Read [Vite plugin options](/reference/vite-plugin-options/) and [Default theme options](/reference/default-theme-options/) for more details
+Read [Vite plugin options](/reference/vite-plugin/) and [Default theme options](/reference/default-theme/) for more details
 
 ## Default theme
 
@@ -41,4 +41,4 @@ const config = defineConfig({
 export default config
 ```
 
-Get more info about default theme in [Default theme reference](/reference/default-theme/#Theme%20features)
+Get more info about default theme in [Default theme reference](/reference/default-theme/#Theme%20Options)
