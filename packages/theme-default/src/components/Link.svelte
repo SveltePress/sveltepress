@@ -1,6 +1,5 @@
 <script>
   import External from './icons/External.svelte'
-  import { goto } from '$app/navigation'
   export let label = ''
   export let to = ''
   export let inline = true
