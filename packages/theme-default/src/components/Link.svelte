@@ -8,31 +8,23 @@
   export let highlight = true
 
   $: isExternal = /^https?/.test(to)
-
-  const handleClick = () => {
-    if (!to) return
-    if (isExternal) {
-      window.open(to, '_blank')
-      return
-    }
-    goto(to)
-  }
 </script>
 
-<div
-  on:click={handleClick}
-  on:keyup={handleClick}
+<a
+  href={to}
   class="link"
   class:inline={inline}
   class:active={active}
-  class:highlight={highlight}>
+  class:highlight={highlight}
+  {...isExternal ? { target: '_blank' } : {}}
+>
   <div>
     {label}
   </div>
   {#if isExternal}
     <External />
   {/if}
-</div>
+</a>
 
 <style>
   .highlight {
