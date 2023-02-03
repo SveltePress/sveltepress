@@ -34,7 +34,8 @@
       <div
         class:is-home={isHome}
         class:is-not-home={!isHome}
-        class="doc-search">
+        class="doc-search"
+      >
         <Search {...themeOptions.docsearch} />
       </div>
     {/if}
@@ -68,7 +69,7 @@
 
 <style>
   .header {
-    --at-apply: 'fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] z-998 dark:bg-opacity-40';
+    --at-apply: 'fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] z-888 dark:bg-opacity-40';
     backdrop-filter: blur(5px);
   }
   .logo-container {

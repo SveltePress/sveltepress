@@ -9,5 +9,5 @@
   "semi": false,
   "singleQuote": true,
   "arrowParens": "avoid",
-  "bracketSameLine": true
+  "bracketSameLine": false
 }

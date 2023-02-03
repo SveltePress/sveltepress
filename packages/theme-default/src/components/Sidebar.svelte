@@ -4,6 +4,7 @@
   import SidebarGroup from './SidebarGroup.svelte'
   import { resolvedSidebar, sidebarCollapsed } from './layout'
   import Close from './icons/Close.svelte'
+  import Backdrop from './Backdrop.svelte'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
@@ -22,7 +23,8 @@
 <aside
   class="theme-default-sidebar"
   class:collapsed={$sidebarCollapsed}
-  class:is-home={isHome}>
+  class:is-home={isHome}
+>
   <div class="sidebar-logo">
     <Logo />
     <div class="close" on:click={handleClose} on:keyup={handleClose}>
@@ -34,7 +36,8 @@
     {#each allSidebars as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}
       <SidebarGroup
-        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }} />
+        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
+      />
     {/each}
   </div>
 
@@ -42,10 +45,13 @@
     {#each $resolvedSidebar as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}
       <SidebarGroup
-        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }} />
+        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
+      />
     {/each}
   </div>
 </aside>
+
+<Backdrop show={!$sidebarCollapsed} on:close={handleClose} />
 
 <style>
   .sidebar-mobile {

@@ -3,6 +3,7 @@
   import { tocCollapsed } from './layout'
   import TocMenu from './icons/TocMenu.svelte'
   import TocClose from './icons/TocClose.svelte'
+  import Backdrop from './Backdrop.svelte'
   import { afterNavigate } from '$app/navigation'
 
   export let anchors = []
@@ -51,7 +52,8 @@
   <div
     class="mobile-toc-trigger"
     on:click={handleTocToggleClick}
-    on:keyup={handleTocToggleClick}>
+    on:keyup={handleTocToggleClick}
+  >
     {#if $tocCollapsed}
       <TocMenu />
     {:else}
@@ -66,7 +68,8 @@
           <a
             href={`#${an.slugId}`}
             class="item"
-            style={`--heading-depth: ${an.depth};`}>
+            style={`--heading-depth: ${an.depth};`}
+          >
             {an.title}
           </a>
         </div>
@@ -76,9 +79,11 @@
   </div>
 {/if}
 
+<Backdrop show={!$tocCollapsed} on:close={handleTocToggleClick} />
+
 <style>
   .toc {
-    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[60vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-999 sm:dark:bg-transparent';
+    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[60vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-988 sm:dark:bg-transparent';
   }
   .title {
     --at-apply: 'font-bold pl-4 text-gray-8 dark:text-gray-2';
@@ -100,7 +105,7 @@
     transform: translateY(var(--bar-top));
   }
   .mobile-toc-trigger {
-    --at-apply: 'sm:display-none fixed bottom-[12px] right-[12px] w-[38px] h-[38px] bg-white dark:shadow-white dark:bg-gray-9 rounded-[19px] shadow-md z-1000 flex items-center justify-center text-6';
+    --at-apply: 'sm:display-none fixed bottom-[12px] right-[12px] w-[38px] h-[38px] bg-white dark:shadow-white dark:bg-gray-9 rounded-[19px] shadow-md z-990 flex items-center justify-center text-6';
   }
   .collapsed {
     --at-apply: 'sm:translate-x-0';
