@@ -37,12 +37,12 @@ pnpm install @sveltepress/vite
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit' // [svp! --]
-import Sveltepress from '@sveltepress/vite' // [svp! ++]
+import { sveltepress } from '@sveltepress/vite' // [svp! ++]
 
 const config = defineConfig({
   plugins: [
     sveltekit(), // [svp! --]
-    Sveltepress(), // [svp! ++]
+    sveltepress(), // [svp! ++]
   ],
 })
 

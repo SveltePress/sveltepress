@@ -37,7 +37,18 @@ The small description text under site title and description
 ### `actions`
 
 The action buttons
-* `label`
+* `label`  
   The label text of action button
-* `to`
+* `to`  
   The link address of action button
+* `external`  
+  Determine whether to render a external icon on the right of action button
+
+### `features`
+
+The feature cards
+
+* `title`  
+  The title
+* `description`  
+  The text description under the title

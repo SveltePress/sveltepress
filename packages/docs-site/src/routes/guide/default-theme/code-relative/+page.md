@@ -221,9 +221,7 @@ Multi `// [svp! fc]` in one single code block is not supported
 
 ## Svelte live code
 
-Use svelte lang and live prop would have effect like this.  
-You can combine with any of the feature mentioned above.  
-Here's a example with full features:  
+Use svelte lang and live prop would render the result and the source codes under the result.
 
 **Input**
 

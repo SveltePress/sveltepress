@@ -33,7 +33,7 @@ It is useful to inspect or observe the vite pipeline.
 * `vitePlugins`  
   Vite plugins  
   It maybe a little strange that theme has vite plugins.  
-  But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp file. 
+  But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp files. 
 * `highlighter`  
   Used for code highlighting.  
   For example, the default theme use [shiki](https://github.com/shikijs/shiki).  
