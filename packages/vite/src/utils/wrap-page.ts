@@ -1,7 +1,7 @@
 import LRUCache from 'lru-cache'
 import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme, SiteConfig } from '../types'
-import mdToSvelte from '../markdown/mdToSvelte.js'
+import mdToSvelte from '../markdown/md-to-svelte.js'
 import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
 import { getFileLastUpdateTime } from './get-file-last-update.js'
 
