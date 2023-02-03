@@ -4,6 +4,8 @@
 
 ### Minor Changes
 
+- [`2980f36`](https://github.com/SveltePress/sveltepress/commit/2980f36663d0e28f72f856b077d7c774fe7cec7d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: write custom use action instead of svelte slide transition
+
 - [`86a201c`](https://github.com/SveltePress/sveltepress/commit/86a201c19b1c7fb5ed7c382c6c08ba71b29247ca) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add backdrop to mobile view sidebar and toc
 
 ### Patch Changes
