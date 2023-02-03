@@ -25,7 +25,8 @@
       <div
         class="collapse-control"
         on:click={handleToggle}
-        on:keypress={handleToggle}>
+        on:keypress={handleToggle}
+      >
         <div class="arrow" class:collapsed={collapsed}>
           <ArrowDown />
         </div>
@@ -43,7 +44,8 @@
           active={active}
           label={title}
           inline={false}
-          highlight={false} />
+          highlight={false}
+        />
       {/each}
     </div>
   {/if}
@@ -60,7 +62,7 @@
     --at-apply: leading-8;
   }
   .collapse-control {
-    --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 w-[28px] h-[28px] flex items-center justify-center rounded';
+    --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 dark:hover:bg-gray-8 dark:active:bg-gray-7 w-[28px] h-[28px] flex items-center justify-center rounded';
   }
   .arrow {
     --at-apply: flex items-center transition-300 transition-transform;
