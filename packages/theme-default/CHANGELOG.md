@@ -1,5 +1,19 @@
 # @sveltepress/theme-default
 
+## 0.16.0
+
+### Minor Changes
+
+- [`86a201c`](https://github.com/SveltePress/sveltepress/commit/86a201c19b1c7fb5ed7c382c6c08ba71b29247ca) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add backdrop to mobile view sidebar and toc
+
+### Patch Changes
+
+- [`aff22f9`](https://github.com/SveltePress/sveltepress/commit/aff22f9f07dcacd2562b1a8ff20d678cfa2b551a) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: Link component should use a tag
+
+- [`3329171`](https://github.com/SveltePress/sveltepress/commit/33291715e73185f3b323cc3e64db1c28b398e3e7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher get the wrong pages status
+
+- [`a9562f7`](https://github.com/SveltePress/sveltepress/commit/a9562f7481e87db8cff682201006725e458f3609) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: sidebar collapse control dark mode color
+
 ## 0.15.0
 
 ### Minor Changes
