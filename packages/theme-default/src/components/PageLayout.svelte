@@ -1,9 +1,10 @@
 <script>
+  import { onMount, tick } from 'svelte'
   import Home from './Home.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
-  import { anchors, pages } from './layout'
+  import { anchors } from './layout'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
@@ -23,6 +24,15 @@
   } = fm
 
   anchors.set(fmAnchors)
+
+  // It seems like can only use ready flag to avoid page switcher get the correct pages info
+  // TODO: Do not use svelte built-in slide transition, reimplement fold effect
+  let ready = false
+  onMount(() => {
+    tick().then(() => {
+      ready = true
+    })
+  })
 </script>
 
 <svelte:head>
@@ -43,7 +53,9 @@
         <EditPage pageType={pageType} />
         <LastUpdate lastUpdate={lastUpdate} />
       </div>
-      <PageSwitcher pages={$pages} />
+      {#if ready}
+        <PageSwitcher />
+      {/if}
     </div>
   </div>
 {:else}

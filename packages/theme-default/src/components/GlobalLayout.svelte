@@ -3,12 +3,13 @@
   import 'uno.css'
   import '../style.css'
   import AjaxBar from './AjaxBar.svelte'
-  import { anchors, sidebarCollapsed } from './layout'
+  import { anchors, resolveSidebar, sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { page } from '$app/stores'
 
   let ajaxBar
 
@@ -19,6 +20,7 @@
   afterNavigate(() => {
     ajaxBar.end()
     $sidebarCollapsed = true
+    resolveSidebar($page.route.id)
   })
 
   $$restProps

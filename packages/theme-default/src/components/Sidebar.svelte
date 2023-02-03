@@ -2,46 +2,15 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
-  import { pages, sidebarCollapsed } from './layout'
+  import { resolvedSidebar, sidebarCollapsed } from './layout'
   import Close from './icons/Close.svelte'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
 
-  let resolvedSidebars = []
-
   const handleClose = () => {
     $sidebarCollapsed = true
-  }
-
-  const resolveSidebar = () => {
-    const key = Object.keys(themeOptions.sidebar || {}).find(key =>
-      routeId.startsWith(key)
-    )
-    if (key) resolvedSidebars = themeOptions.sidebar[key] || []
-  }
-
-  $: {
-    routeId
-    resolveSidebar()
-  }
-
-  const recomputedPages = () => {
-    pages.set(
-      resolvedSidebars.reduce(
-        (allPages, item) =>
-          Array.isArray(item.items)
-            ? [...allPages, ...item.items]
-            : [...allPages, item],
-        []
-      )
-    )
-  }
-
-  $: {
-    resolvedSidebars
-    recomputedPages()
   }
 
   const allSidebars = Object.values(themeOptions.sidebar || []).reduce(
@@ -70,7 +39,7 @@
   </div>
 
   <div class="sidebar-pc">
-    {#each resolvedSidebars as sidebarItem}
+    {#each $resolvedSidebar as sidebarItem}
       {@const hasItems = Array.isArray(sidebarItem.items)}
       <SidebarGroup
         {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }} />
@@ -95,9 +64,7 @@
     --at-apply: 'sm:h-[72px] flex items-center mb-4 py-4 sm:py-0 sticky top-0 bg-inherit border-b-solid border-b border-light-8 dark:border-b-gray-7';
   }
   .collapsed {
-    --at-apply: 'sm:translate-x-0';
-    /* FIXME: This is likely a unocss and svelte-scoped bug */
-    transform: translateX(-100%);
+    --at-apply: 'sm:translate-x-0 translate-x--100';
   }
   .close {
     --at-apply: 'text-5 flex items-center sm:display-none ml-4';

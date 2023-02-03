@@ -1,23 +1,23 @@
 <script>
   import Prev from './icons/Prev.svelte'
   import Next from './icons/Next.svelte'
+  import { pages } from './layout'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
-  export let pages = []
 
-  const activeIdx = pages.findIndex(p =>
+  const activeIdx = $pages.findIndex(p =>
     routeId.endsWith('/') ? p.to === routeId : p.to.startsWith(routeId)
   )
   const hasActivePage = activeIdx !== -1
   const hasPrevPage = hasActivePage && activeIdx > 0
-  const hasNextPage = hasActivePage && activeIdx < pages.length - 1
+  const hasNextPage = hasActivePage && activeIdx < $pages.length - 1
 </script>
 
 <div class="page-switcher">
   <div class:switcher={hasPrevPage}>
     {#if hasPrevPage}
-      {@const prevPage = pages[activeIdx - 1]}
+      {@const prevPage = $pages[activeIdx - 1]}
       <a href={prevPage.to}>
         <div class="hint">Previous</div>
         <div class="title">
@@ -33,7 +33,7 @@
   </div>
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
-      {@const nextPage = pages[activeIdx + 1]}
+      {@const nextPage = $pages[activeIdx + 1]}
       <a href={nextPage.to}>
         <div class="hint">Next</div>
         <div class="title">
