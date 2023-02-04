@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.15.2
+
+### Patch Changes
+
+- [`d003d02`](https://github.com/SveltePress/sveltepress/commit/d003d020a18c22c3b8437f78c3a4dc2c538159f0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move code command excutor to processCommand to save a extra loop
+
 ## 0.15.1
 
 ### Patch Changes
