@@ -18,7 +18,7 @@
   <div class:switcher={hasPrevPage}>
     {#if hasPrevPage}
       {@const prevPage = $pages[activeIdx - 1]}
-      <a href={prevPage.to}>
+      <a href={prevPage.to} class="trigger">
         <div class="hint">Previous</div>
         <div class="title">
           <div class="switch-icon">
@@ -34,7 +34,7 @@
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
-      <a href={nextPage.to}>
+      <a href={nextPage.to} class="trigger">
         <div class="hint">Next</div>
         <div class="title">
           <div class="title-label">
@@ -54,7 +54,7 @@
     --at-apply: 'grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 border-t-solid border-t border-light-7 dark:border-gray-7 pt-4 sm:pt-8 mt-4';
   }
   .switcher {
-    --at-apply: 'border-solid border-1 border-light-7 dark:border-gray-7 rounded-lg flex-grow px-4 py-2 cursor-pointer hover:border-rose-5 transition-300 transition-colors';
+    --at-apply: 'border-solid border-1 border-light-7 dark:border-gray-7 rounded-lg flex-grow cursor-pointer hover:border-rose-5 transition-300 transition-colors';
   }
   .hint {
     --at-apply: text-gray-4 text-3;
@@ -76,5 +76,8 @@
   }
   .switch-icon {
     --at-apply: text-5;
+  }
+  .trigger {
+    --at-apply: px-4 py-2 block;
   }
 </style>
