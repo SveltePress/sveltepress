@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
 import LRUCache from 'lru-cache'
-import { COMMAND_CHEAT_LIST, getCommands } from './commands.js'
+import { processCommands } from './commands.js'
 const cache = new LRUCache<string, any>({ max: 1024 })
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -38,14 +38,8 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   const lines = code.split('\n')
   if (lang !== 'md') {
     code = lines.map((line, i) => {
-      const [commands, newLine] = getCommands(line)
-      commands.forEach((command) => {
-        const [name, params] = command.split(':')
-        const commandExecutor = COMMAND_CHEAT_LIST[name]
-        if (commandExecutor)
-          commandDoms.push(commandExecutor(params, i, lines.length))
-      })
-
+      const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length)
+      commandDoms.push(...commandDomsInOneLine)
       return newLine
     }).join('\n')
   }
