@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 0.16.1
+
+### Patch Changes
+
+- [`4dc0236`](https://github.com/SveltePress/sveltepress/commit/4dc02361f2fd0a201c6d5a18e6737b0948ac89a0) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: slide action should set default max height
+
+- [`909990c`](https://github.com/SveltePress/sveltepress/commit/909990c724d387f949d46f1f01aaed294cd74fa8) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher padding applied to wrong dom
+
+- [`d003d02`](https://github.com/SveltePress/sveltepress/commit/d003d020a18c22c3b8437f78c3a4dc2c538159f0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move code command excutor to processCommand to save a extra loop
+
 ## 0.16.0
 
 ### Minor Changes
