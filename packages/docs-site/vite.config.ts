@@ -103,8 +103,8 @@ const config = defineConfig({
         discord: 'https://discord.com/channels/994160573333913691/1065131029616136273',
         ga: 'G-J2W78BKCHB',
         docsearch: {
-          apiKey: '4D30VFIAMG',
-          appId: 'fbed412316ec83ff28e9a916161bf715',
+          apiKey: 'fbed412316ec83ff28e9a916161bf715',
+          appId: '4D30VFIAMG',
           indexName: 'sveltepress',
         },
       }),
