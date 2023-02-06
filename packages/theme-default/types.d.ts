@@ -30,6 +30,7 @@ declare module 'virtual:sveltepress/theme-default' {
       apiKey: string
       indexName: string
     }
+    pwa?: boolean
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>
 

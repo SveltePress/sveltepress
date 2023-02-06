@@ -16,12 +16,17 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     title: siteConfig?.title || 'Untitled site',
     description: siteConfig?.description || 'Build by Sveltepress',
   }
-  const plugins = [
-    theme?.vitePlugins,
+  const corePlugin = [
     SveltepressVitePlugin({ theme, siteConfig: requiredSiteConfig }),
     sveltekit(),
   ]
 
+  const plugins = typeof theme?.vitePlugins === 'function'
+    ? theme.vitePlugins(corePlugin)
+    : [
+        theme?.vitePlugins,
+        ...corePlugin,
+      ]
   if (addInspect)
     plugins.unshift(vitePluginInspect())
 

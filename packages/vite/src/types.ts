@@ -17,7 +17,7 @@ export interface ResolvedTheme {
   name: string
   globalLayout: string
   pageLayout: string
-  vitePlugins?: PluginOption
+  vitePlugins: PluginOption | ((corePlugin: PluginOption) => PluginOption[])
   highlighter: Highlighter
   remarkPlugins?: Plugin[]
   rehypePlugins?: Plugin[]
