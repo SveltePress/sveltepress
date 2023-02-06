@@ -22,7 +22,7 @@ const anchors: Plugin<any[], any> = () => {
           data: {
             hName: 'a',
             hProperties: {
-              href: `#${title}`,
+              href: `#${slugId}`,
               className: 'svp-title-anchor',
             },
           },
