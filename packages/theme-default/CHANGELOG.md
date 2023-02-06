@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 0.17.0
+
+### Minor Changes
+
+- [`6f89aa7`](https://github.com/SveltePress/sveltepress/commit/6f89aa7d25bb52ea9f0b9342cf1bad2aaccab599) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: minor version
+
 ## 0.16.2
 
 ### Patch Changes
