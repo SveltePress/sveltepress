@@ -2,7 +2,6 @@ import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
 import { presetUno, transformerDirectives } from 'unocss'
 import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
-import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
@@ -62,17 +61,6 @@ const defaultTheme: ThemeDefault = (options) => {
     globalLayout: '@sveltepress/theme-default/GlobalLayout.svelte',
     pageLayout: '@sveltepress/theme-default/PageLayout.svelte',
     vitePlugins: (corePlugin) => {
-      if (options.pwa) {
-        return [
-          ...vitePluginsPre,
-          corePlugin,
-          SvelteKitPWA({
-            kit: {
-              trailingSlash: 'always',
-            },
-          }),
-        ]
-      }
       return [
         ...vitePluginsPre,
         corePlugin,

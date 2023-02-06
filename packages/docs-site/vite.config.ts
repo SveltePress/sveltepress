@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 
 const config = defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme({
-        pwa: true,
+        // pwa: true,
         navbar: [{
           title: 'Guide',
           to: '/guide/introduction/',
@@ -123,6 +124,37 @@ const config = defineConfig({
         description: 'A content centered site build tool',
       },
       addInspect: true,
+    }),
+    SvelteKitPWA({
+      kit: {
+        trailingSlash: 'always',
+      },
+      scope: '/',
+      base: '/',
+      manifest: {
+        start_url: '/',
+        scope: '/',
+        name: 'Sveltepress',
+        short_name: 'Sveltepress',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+        theme_color: '#fb7185',
+        background_color: '#ffffff',
+        display: 'standalone',
+      },
+      injectManifest: {
+        globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
+      },
     }),
   ],
 })

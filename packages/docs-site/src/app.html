@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="Sveltepress">
 		<meta property="og:url" content="https://sveltepress.site">
@@ -11,7 +11,11 @@
 		<meta property="og:image:width" content="512">
 		<meta name="theme-color" content="#fb7185">
 		<meta property="og:image:height" content="512">
-		<link rel="icon" type="image/x-icon" href="/favicon.ico">
+		<link rel="icon" href="%sveltekit.assets%/sveltepress.svg" type="image/svg+xml" />
+		<link rel="alternate icon" href="%sveltekit.assets%/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link rel="mask-icon" href="/sveltepress.svg" color="#ffffff">
+		<meta name="msapplication-TileColor" content="#ffffff">
 		<link rel="shortcut icon" type="image/png" href="/android-chrome-192x192.png">
 		%sveltekit.head%
 	</head>
