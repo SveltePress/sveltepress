@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
   import { tocCollapsed } from './layout'
   import TocMenu from './icons/TocMenu.svelte'
   import TocClose from './icons/TocClose.svelte'
@@ -47,6 +47,7 @@
     if (!anchorTarget) return
     const ele = document.querySelector(anchorTarget)
     if (ele) scrollY = ele.offsetTop
+    tick().then(computeActiveIdx)
   })
 
   const handleTocToggleClick = () => {
