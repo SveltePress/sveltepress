@@ -102,7 +102,7 @@
     --at-apply: 'items-stretch display-none sm:display-flex';
   }
   .nav-links {
-    --at-apply: flex items-stretch;
+    --at-apply: flex items-stretch flex-grow justify-end;
   }
   .nav-links span:first-of-type {
     --at-apply: 'display-none sm:display-block';
