@@ -52,10 +52,19 @@ const config = defineConfig({
             },
             {
               title: 'Default theme features',
+              collapsible: true,
               items: [
                 {
                   title: 'Frontmatter',
                   to: '/guide/default-theme/frontmatter/',
+                },
+                {
+                  title: 'Navbar',
+                  to: '/guide/default-theme/navbar/',
+                },
+                {
+                  title: 'Sidebar',
+                  to: '/guide/default-theme/sidebar/',
                 },
                 {
                   title: 'Links',

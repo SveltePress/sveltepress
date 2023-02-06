@@ -4,6 +4,10 @@ title: Docsearch
 
 Pass `docsearch` to theme default to add a [Docsearch](https://docsearch.algolia.com/) on navbar
 
+`docsearch` contain these props: `appId`, `apiKey`,`indexName`
+
+All provided by Docsearch.
+
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
@@ -14,8 +18,8 @@ export default defineConfig({
     sveltepress({
       theme: defaultTheme({
         docsearch: {
-          apiKey: 'XXX',
           appId: 'XXX',
+          apiKey: 'XXX',
           indexName: 'XXX',
         }
       })
