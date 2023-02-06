@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 0.16.2
+
+### Patch Changes
+
+- [`b8b3f12`](https://github.com/SveltePress/sveltepress/commit/b8b3f12cb098fb4ea5fbfd3c529ed284ca3bec33) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc compute logic
+
+- [`20651c7`](https://github.com/SveltePress/sveltepress/commit/20651c7e024c6428caa54064fdffd83b3f7ea9ab) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: dark mode docsearch style
+
+- [`386f6df`](https://github.com/SveltePress/sveltepress/commit/386f6df563477f6c6185a04f95bb2fad471f7624) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar search and nav links both need flex grow
+
 ## 0.16.1
 
 ### Patch Changes
