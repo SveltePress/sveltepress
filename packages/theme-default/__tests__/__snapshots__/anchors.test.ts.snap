@@ -23,7 +23,7 @@ exports[`anchors > simple 1`] = `
           \\"data\\": {
             \\"hName\\": \\"a\\",
             \\"hProperties\\": {
-              \\"href\\": \\"#Foo foo\\",
+              \\"href\\": \\"#Foo-foo\\",
               \\"className\\": \\"svp-title-anchor\\"
             }
           },

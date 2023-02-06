@@ -41,4 +41,4 @@ const config = defineConfig({
 export default config
 ```
 
-Get more info about default theme in [Default theme reference](/reference/default-theme/#Theme%20Options)
+Get more info about default theme in [Default theme reference](/reference/default-theme/#Theme-Options)
