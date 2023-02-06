@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import Moon from './icons/Moon.svelte'
   import Sun from './icons/Sun.svelte'
 
@@ -16,6 +17,9 @@
     isDark = !isDark
     addOrRemoveClass()
   }
+  onMount(() => {
+    isDark = localStorage.getItem(key) === 'on'
+  })
 </script>
 
 <svelte:head>
