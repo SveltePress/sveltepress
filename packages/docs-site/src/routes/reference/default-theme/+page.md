@@ -35,7 +35,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,4,33)
+@code(/../theme-default/types.d.ts,4,34)
 
 ### `navbar`
 
@@ -97,6 +97,10 @@ Would add gtag script in site head if provided.
 
 All these values are provided by the docsearch.  
 Visit [Docsearch](https://docsearch.algolia.com/) for more details.
+
+### `pwa`
+
+Determine whether to use PWA feature out of box.
 
 ## Virtual modules
 

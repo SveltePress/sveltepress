@@ -6,6 +6,7 @@ const config = defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme({
+        pwa: true,
         navbar: [{
           title: 'Guide',
           to: '/guide/introduction/',

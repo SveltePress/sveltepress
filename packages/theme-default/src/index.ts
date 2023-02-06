@@ -66,7 +66,11 @@ const defaultTheme: ThemeDefault = (options) => {
         return [
           ...vitePluginsPre,
           corePlugin,
-          SvelteKitPWA(),
+          SvelteKitPWA({
+            kit: {
+              trailingSlash: 'always',
+            },
+          }),
         ]
       }
       return [
