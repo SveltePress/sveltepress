@@ -167,7 +167,7 @@ exports[`anchors > simple 1`] = `
       \\"data\\": {
         \\"hName\\": \\"div\\",
         \\"hProperties\\": {
-          \\"id\\": \\"Bar\\",
+          \\"id\\": \\"Bar-a-b-c\\",
           \\"className\\": \\"svp-anchor-item\\"
         }
       }
@@ -181,7 +181,7 @@ exports[`anchors > simple 1`] = `
           \\"data\\": {
             \\"hName\\": \\"a\\",
             \\"hProperties\\": {
-              \\"href\\": \\"#Bar\\",
+              \\"href\\": \\"#Bar-a-b-c\\",
               \\"className\\": \\"svp-title-anchor\\"
             }
           },
@@ -194,7 +194,7 @@ exports[`anchors > simple 1`] = `
         },
         {
           \\"type\\": \\"text\\",
-          \\"value\\": \\"Bar\\",
+          \\"value\\": \\"Bar/a:b-c\\",
           \\"position\\": {
             \\"start\\": {
               \\"line\\": 7,
@@ -203,8 +203,8 @@ exports[`anchors > simple 1`] = `
             },
             \\"end\\": {
               \\"line\\": 7,
-              \\"column\\": 8,
-              \\"offset\\": 52
+              \\"column\\": 14,
+              \\"offset\\": 58
             },
             \\"indent\\": []
           }
@@ -218,8 +218,8 @@ exports[`anchors > simple 1`] = `
         },
         \\"end\\": {
           \\"line\\": 7,
-          \\"column\\": 8,
-          \\"offset\\": 52
+          \\"column\\": 14,
+          \\"offset\\": 58
         },
         \\"indent\\": []
       },
@@ -237,12 +237,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 9,
               \\"column\\": 1,
-              \\"offset\\": 54
+              \\"offset\\": 60
             },
             \\"end\\": {
               \\"line\\": 9,
               \\"column\\": 19,
-              \\"offset\\": 72
+              \\"offset\\": 78
             },
             \\"indent\\": []
           }
@@ -252,12 +252,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 9,
           \\"column\\": 1,
-          \\"offset\\": 54
+          \\"offset\\": 60
         },
         \\"end\\": {
           \\"line\\": 9,
           \\"column\\": 19,
-          \\"offset\\": 72
+          \\"offset\\": 78
         },
         \\"indent\\": []
       }
@@ -272,7 +272,7 @@ exports[`anchors > simple 1`] = `
     \\"end\\": {
       \\"line\\": 11,
       \\"column\\": 1,
-      \\"offset\\": 74
+      \\"offset\\": 80
     }
   }
 }"
