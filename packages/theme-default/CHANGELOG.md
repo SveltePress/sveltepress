@@ -4,7 +4,11 @@
 
 ### Patch Changes
 
+- [`eecb945`](https://github.com/SveltePress/sveltepress/commit/eecb945d9fe0c43e2c02d8d39e960e3fed22dd5c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve anchor jump
+
 - [`b8b3f12`](https://github.com/SveltePress/sveltepress/commit/b8b3f12cb098fb4ea5fbfd3c529ed284ca3bec33) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc compute logic
+
+- [`aa4e9a1`](https://github.com/SveltePress/sveltepress/commit/aa4e9a13b00de7307a3ce3fe886f73372f0d1e11) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve dark mode initialize
 
 - [`20651c7`](https://github.com/SveltePress/sveltepress/commit/20651c7e024c6428caa54064fdffd83b3f7ea9ab) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: dark mode docsearch style
 

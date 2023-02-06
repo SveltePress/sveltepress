@@ -24,7 +24,7 @@ describe('anchors', () => {
     expect(r).toMatchInlineSnapshot(`
       {
         "code": "
-      <div id=\\"Foo foo\\" class=\\"svp-anchor-item\\"></div>
+      <div id=\\"Foo-foo\\" class=\\"svp-anchor-item\\"></div>
       <h2><a
         href=\\"#Foo foo\\"
         class=\\"svp-title-anchor\\"
@@ -42,7 +42,7 @@ describe('anchors', () => {
           "anchors": [
             {
               "depth": 2,
-              "slugId": "Foo foo",
+              "slugId": "Foo-foo",
               "title": "Foo foo",
             },
             {

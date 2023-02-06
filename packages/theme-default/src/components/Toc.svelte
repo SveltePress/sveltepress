@@ -5,6 +5,7 @@
   import TocClose from './icons/TocClose.svelte'
   import Backdrop from './Backdrop.svelte'
   import { afterNavigate } from '$app/navigation'
+  import { page } from '$app/stores'
 
   export let anchors = []
 
@@ -42,6 +43,8 @@
 
   onMount(() => {
     mounted = true
+    const ele = document.querySelector(decodeURI($page.url.hash))
+    if (ele) scrollY = ele.offsetTop
   })
 
   const handleTocToggleClick = () => {
@@ -65,16 +68,16 @@
   <div class="toc" class:collapsed={$tocCollapsed}>
     <div class="title">On this page</div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
-      {#each anchors as an}
-        <div>
-          <a
-            href={`#${an.slugId}`}
-            class="item"
-            style={`--heading-depth: ${an.depth};`}
-          >
-            {an.title}
-          </a>
-        </div>
+      {#each anchors as an, i}
+        {@const active = activeIdx === i}
+        <a
+          href={`#${an.slugId}`}
+          class="item"
+          class:active={active}
+          style={`--heading-depth: ${an.depth};`}
+        >
+          {an.title}
+        </a>
       {/each}
       <div class="active-bar" />
     </div>
@@ -91,12 +94,15 @@
     --at-apply: 'font-bold pl-4 text-gray-8 dark:text-gray-2';
   }
   .item {
-    --at-apply: relative z-3 block truncate;
+    --at-apply: 'pl-4 relative z-3 block truncate cursor-default';
     text-indent: calc((var(--heading-depth) - 2) * 1.2em);
+  }
+  .item:not(.active) {
+    --at-apply: 'hover:text-rose-4 cursor-pointer';
   }
 
   .anchors {
-    --at-apply: 'relative z-3 pl-4 sm:w-[15vw]';
+    --at-apply: 'relative z-3 sm:w-[15vw]';
   }
   .anchors::after {
     --at-apply: 'absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8 display-none sm:display-block';

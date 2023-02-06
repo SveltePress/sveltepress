@@ -9,7 +9,7 @@ exports[`anchors > simple 1`] = `
       \\"data\\": {
         \\"hName\\": \\"div\\",
         \\"hProperties\\": {
-          \\"id\\": \\"Foo foo\\",
+          \\"id\\": \\"Foo-foo\\",
           \\"className\\": \\"svp-anchor-item\\"
         }
       }

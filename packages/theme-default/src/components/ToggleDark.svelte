@@ -12,17 +12,25 @@
     else document.querySelector('html').classList.remove('dark')
   }
 
-  onMount(() => {
-    isDark = localStorage.getItem(key) === 'on'
-    addOrRemoveClass()
-  })
-
   const toggle = () => {
     localStorage.setItem(key, isDark ? 'off' : 'on')
     isDark = !isDark
     addOrRemoveClass()
   }
+  onMount(() => {
+    isDark = localStorage.getItem(key) === 'on'
+  })
 </script>
+
+<svelte:head>
+  {@html `<script>
+  if(window.localStorage.getItem('${key}') === 'on') {
+    document.querySelector('html').classList.add('dark')
+  } else {
+    document.querySelector('html').classList.remove('dark')
+  }
+</script>`}
+</svelte:head>
 
 <div class="toggle" on:click={toggle} on:keyup={toggle}>
   {#if isDark}
