@@ -6,7 +6,7 @@
 
 <svelte:head>
   {#if ga}
-    {@html `<script async src="${`https://www.googletagmanager.com/gtag/js?id=${ga}`}"</script>
+    {@html `<script async src="${`https://www.googletagmanager.com/gtag/js?id=${ga}`}"></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
