@@ -4,6 +4,8 @@
   --svp-expansion-bg-darker2: #e8e8f2;
   --docsearch-primary-color: rgba(251,113,133, 1);
   --svp-code-font: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
+  --docsearch-searchbox-background: transparent;
+  --docsearch-logo-color: var(--docsearch-primary-color);
 }
 
 html.dark,
@@ -12,6 +14,13 @@ html[data-theme="dark"] {
   --svp-expansion-bg: #282c34;
   --svp-expansion-bg-darker: #262626;
   --svp-expansion-bg-darker2: #222;
+  --docsearch-text-color: var(--svp-text);
+  --docsearch-key-gradient: var(--svp-expansion-bg);
+  --docsearch-searchbox-focus-background: var(--svp-expansion-bg-darker2);
+  --docsearch-modal-background: #252529;
+  --docsearch-footer-background: #1e1e20;
+  --docsearch-hit-background: #313136;
+  --docsearch-hit-color: var(--svp-text);
 }
 
 .c-expansion {

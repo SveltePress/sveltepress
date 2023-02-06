@@ -75,28 +75,6 @@ An object, key is the group route prefix, value is an array of object with follo
 * `items`  
   Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
 
-Example:
-
-```js
-const sidebar = {
-  '/foo/': [
-    {
-      title: 'Bar',
-      to: '/foo/bar/',
-    },
-    {
-      title: 'Zoo',
-      to: '/foo/zoo/'
-    }
-  ]
-}
-```
-
-:::info Auto external
-Unlike the navbar item, sidebar item use the `Link` component.  
-Which means link starts with `http(s)` would be auto recognized as external links.
-:::
-
 ### `editLink`
 
 The link used for bottom edit this page on github button  

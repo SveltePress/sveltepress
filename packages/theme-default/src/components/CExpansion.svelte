@@ -1,9 +1,8 @@
 <script>
-  import { slide } from 'svelte/transition'
-  import { cubicInOut } from 'svelte/easing'
   import Svelte from './icons/Svelte.svelte'
   import SvelteWithColor from './icons/SvelteWithColor.svelte'
   import ArrowDown from './icons/ArrowDown.svelte'
+  import slide from './actions/slide'
 
   /**
    * The title of the expansion
@@ -41,14 +40,8 @@
 </script>
 
 <div class={`c-expansion ${expanded ? 'c-expansion--expanded' : ''}`}>
-  {#if reverse && expanded}
-    <div
-      transition:slide={{
-        duration: 300,
-        easing: cubicInOut,
-      }}
-      bind:this={bodyDom}
-      class="c-expansion--body">
+  {#if reverse}
+    <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
       <!--  
         Expansion body content 
       -->
@@ -60,7 +53,8 @@
     class="c-expansion--header"
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
-    on:keypress={onHeaderClick}>
+    on:keypress={onHeaderClick}
+  >
     <div class="c-expansion--header-left">
       <div class="c-expansion--icon">
         <!-- The content before title -->
@@ -84,15 +78,16 @@
     <div
       class={`c-expansion--arrow ${
         expanded ? 'c-expansion--arrow-expanded' : ''
-      }`}>
+      }`}
+    >
       <!-- Customize the arrow dom -->
       <slot name="arrow">
         <ArrowDown />
       </slot>
     </div>
   </div>
-  {#if !reverse && expanded}
-    <div transition:slide bind:this={bodyDom} class="c-expansion--body">
+  {#if !reverse}
+    <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
       <!--  
         Expansion body content 
       -->

@@ -26,16 +26,18 @@
     for (let i = 0; i < positions.length; i++) {
       const pos = positions[i]
       if (
-        scrollY >= pos - 10 &&
+        scrollY >= pos &&
         (scrollY < positions[i + 1] || i === positions.length - 1)
-      )
+      ) {
         activeIdx = i
+        return
+      }
     }
   }
 
   $: {
     scrollY
-    computeActiveIdx?.()
+    computeActiveIdx()
   }
 
   onMount(() => {

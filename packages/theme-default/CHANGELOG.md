@@ -1,14 +1,40 @@
 # @sveltepress/theme-default
 
+## 0.16.2
+
+### Patch Changes
+
+- [`b8b3f12`](https://github.com/SveltePress/sveltepress/commit/b8b3f12cb098fb4ea5fbfd3c529ed284ca3bec33) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc compute logic
+
+- [`20651c7`](https://github.com/SveltePress/sveltepress/commit/20651c7e024c6428caa54064fdffd83b3f7ea9ab) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: dark mode docsearch style
+
+- [`386f6df`](https://github.com/SveltePress/sveltepress/commit/386f6df563477f6c6185a04f95bb2fad471f7624) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: navbar search and nav links both need flex grow
+
+## 0.16.1
+
+### Patch Changes
+
+- [`4dc0236`](https://github.com/SveltePress/sveltepress/commit/4dc02361f2fd0a201c6d5a18e6737b0948ac89a0) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: slide action should set default max height
+
+- [`909990c`](https://github.com/SveltePress/sveltepress/commit/909990c724d387f949d46f1f01aaed294cd74fa8) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher padding applied to wrong dom
+
+- [`d003d02`](https://github.com/SveltePress/sveltepress/commit/d003d020a18c22c3b8437f78c3a4dc2c538159f0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move code command excutor to processCommand to save a extra loop
+
 ## 0.16.0
 
 ### Minor Changes
+
+- [`2980f36`](https://github.com/SveltePress/sveltepress/commit/2980f36663d0e28f72f856b077d7c774fe7cec7d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: write custom use action instead of svelte slide transition
 
 - [`86a201c`](https://github.com/SveltePress/sveltepress/commit/86a201c19b1c7fb5ed7c382c6c08ba71b29247ca) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add backdrop to mobile view sidebar and toc
 
 ### Patch Changes
 
+- [`aff22f9`](https://github.com/SveltePress/sveltepress/commit/aff22f9f07dcacd2562b1a8ff20d678cfa2b551a) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: Link component should use a tag
+
 - [`3329171`](https://github.com/SveltePress/sveltepress/commit/33291715e73185f3b323cc3e64db1c28b398e3e7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher get the wrong pages status
+
+- [`a9562f7`](https://github.com/SveltePress/sveltepress/commit/a9562f7481e87db8cff682201006725e458f3609) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: sidebar collapse control dark mode color
 
 ## 0.15.0
 

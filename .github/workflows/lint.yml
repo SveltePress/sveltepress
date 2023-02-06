@@ -2,7 +2,8 @@ name: Linter
 
 on:
   push:
-    branches-ignore: [ "changeset-release/main" ]
+    branches-ignore: 
+      - 'changeset-release/main'
   pull_request:
 
 jobs:

@@ -1,7 +1,7 @@
 <script>
-  import { slide } from 'svelte/transition'
   import Link from './Link.svelte'
   import ArrowDown from './icons/ArrowDown.svelte'
+  import slide from './actions/slide'
   import { page } from '$app/stores'
   $: routeId = $page.route.id
 
@@ -25,28 +25,28 @@
       <div
         class="collapse-control"
         on:click={handleToggle}
-        on:keypress={handleToggle}>
+        on:keypress={handleToggle}
+      >
         <div class="arrow" class:collapsed={collapsed}>
           <ArrowDown />
         </div>
       </div>
     {/if}
   </div>
-  {#if !collapsed}
-    <div class="links" transition:slide>
-      {#each items as { to, title }}
-        {@const active = routeId.endsWith('/')
-          ? to === routeId
-          : to === `${routeId}/`}
-        <Link
-          to={to}
-          active={active}
-          label={title}
-          inline={false}
-          highlight={false} />
-      {/each}
-    </div>
-  {/if}
+  <div class="links" use:slide={!collapsed}>
+    {#each items as { to, title }}
+      {@const active = routeId.endsWith('/')
+        ? to === routeId
+        : to === `${routeId}/`}
+      <Link
+        to={to}
+        active={active}
+        label={title}
+        inline={false}
+        highlight={false}
+      />
+    {/each}
+  </div>
 </div>
 
 <style>
@@ -57,10 +57,10 @@
     --at-apply: 'font-bold text-slate-8 dark:text-slate-2 mb-2 sm:mb-4 flex items-center justify-between';
   }
   .links {
-    --at-apply: leading-8;
+    --at-apply: leading-8 overflow-hidden;
   }
   .collapse-control {
-    --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 w-[28px] h-[28px] flex items-center justify-center rounded';
+    --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 dark:hover:bg-gray-8 dark:active:bg-gray-7 w-[28px] h-[28px] flex items-center justify-center rounded';
   }
   .arrow {
     --at-apply: flex items-center transition-300 transition-transform;

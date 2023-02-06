@@ -1,5 +1,5 @@
 ---
-title:  Code relative
+title:  Code related
 ---
 
 :::tip Tips

@@ -1,5 +1,17 @@
 # @sveltepress/create
 
+## 0.15.3
+
+### Patch Changes
+
+- [`b8b3f12`](https://github.com/SveltePress/sveltepress/commit/b8b3f12cb098fb4ea5fbfd3c529ed284ca3bec33) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toc compute logic
+
+## 0.15.2
+
+### Patch Changes
+
+- [`d003d02`](https://github.com/SveltePress/sveltepress/commit/d003d020a18c22c3b8437f78c3a4dc2c538159f0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: move code command excutor to processCommand to save a extra loop
+
 ## 0.15.1
 
 ### Patch Changes

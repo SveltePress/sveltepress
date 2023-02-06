@@ -52,10 +52,19 @@ const config = defineConfig({
             },
             {
               title: 'Default theme features',
+              collapsible: true,
               items: [
                 {
                   title: 'Frontmatter',
                   to: '/guide/default-theme/frontmatter/',
+                },
+                {
+                  title: 'Navbar',
+                  to: '/guide/default-theme/navbar/',
+                },
+                {
+                  title: 'Sidebar',
+                  to: '/guide/default-theme/sidebar/',
                 },
                 {
                   title: 'Links',
@@ -70,12 +79,16 @@ const config = defineConfig({
                   to: '/guide/default-theme/admonitions/',
                 },
                 {
-                  title: 'Code relative',
-                  to: '/guide/default-theme/code-relative/',
+                  title: 'Code related',
+                  to: '/guide/default-theme/code-related/',
                 },
                 {
                   title: 'Unocss',
                   to: '/guide/default-theme/unocss/',
+                },
+                {
+                  title: 'Docsearch',
+                  to: '/guide/default-theme/docsearch/',
                 },
               ],
             },
@@ -98,11 +111,11 @@ const config = defineConfig({
         logo: '/sveltepress.svg',
         discord: 'https://discord.com/channels/994160573333913691/1065131029616136273',
         ga: 'G-J2W78BKCHB',
-        // docsearch: {
-        //   apiKey: '',
-        //   appId: '',
-        //   indexName: '',
-        // },
+        docsearch: {
+          apiKey: 'fbed412316ec83ff28e9a916161bf715',
+          appId: '4D30VFIAMG',
+          indexName: 'sveltepress',
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',

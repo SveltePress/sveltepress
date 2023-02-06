@@ -25,8 +25,6 @@
 
   anchors.set(fmAnchors)
 
-  // It seems like can only use ready flag to avoid page switcher get the correct pages info
-  // TODO: Do not use svelte built-in slide transition, reimplement fold effect
   let ready = false
   onMount(() => {
     tick().then(() => {

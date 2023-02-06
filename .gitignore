@@ -10,3 +10,4 @@ vite.config.ts.timestamp-*
 .sveltepress
 !packages/theme-default/.sveltepress
 dist
+.vscode

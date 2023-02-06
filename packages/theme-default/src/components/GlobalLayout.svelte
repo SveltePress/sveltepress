@@ -168,6 +168,6 @@
     --at-apply: p-2;
   }
   :global(.svp-anchor-item) {
-    --at-apply: relative bottom-[74px];
+    --at-apply: relative bottom-[100px];
   }
 </style>
