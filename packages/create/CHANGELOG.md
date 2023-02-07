@@ -1,5 +1,15 @@
 # @sveltepress/create
 
+## 0.17.0
+
+### Minor Changes
+
+- [`e76caf5`](https://github.com/SveltePress/sveltepress/commit/e76caf513806bbe18add6c2694bba6fc39869239) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for theme customize plugins order
+
+### Patch Changes
+
+- [`0a7839c`](https://github.com/SveltePress/sveltepress/commit/0a7839cc9fdbb4735d3a04887e069b168a21b911) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: add more unnormal anchor id replace
+
 ## 0.16.0
 
 ### Minor Changes

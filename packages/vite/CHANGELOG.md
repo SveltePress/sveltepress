@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.12.0
+
+### Minor Changes
+
+- [`e76caf5`](https://github.com/SveltePress/sveltepress/commit/e76caf513806bbe18add6c2694bba6fc39869239) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for theme customize plugins order
+
 ## 0.11.2
 
 ### Patch Changes

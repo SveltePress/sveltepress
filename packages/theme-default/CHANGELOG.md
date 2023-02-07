@@ -1,5 +1,27 @@
 # @sveltepress/theme-default
 
+## 0.18.0
+
+### Minor Changes
+
+- [`4177a0e`](https://github.com/SveltePress/sveltepress/commit/4177a0e4cde0103f1a6834d351f205ddf0cea877) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add pwa support
+
+- [`fd91e76`](https://github.com/SveltePress/sveltepress/commit/fd91e7694b8f333ce73085d784c7451592672ef1) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add PWA support
+
+- [`e76caf5`](https://github.com/SveltePress/sveltepress/commit/e76caf513806bbe18add6c2694bba6fc39869239) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for theme customize plugins order
+
+### Patch Changes
+
+- [`730ca82`](https://github.com/SveltePress/sveltepress/commit/730ca82b3eb4447c807fca5616aae17f6153081a) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: ga tag
+
+- [`11e96c6`](https://github.com/SveltePress/sveltepress/commit/11e96c6412a322e55b254580bfbb666c860e40c3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve toc active bar initialize
+
+- [`1b4bcef`](https://github.com/SveltePress/sveltepress/commit/1b4bcefaa1915d8bfa9e29e41105de4d81cf3356) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for remove extra import code blanks
+
+- [`0a7839c`](https://github.com/SveltePress/sveltepress/commit/0a7839cc9fdbb4735d3a04887e069b168a21b911) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: add more unnormal anchor id replace
+
+- [`a74809d`](https://github.com/SveltePress/sveltepress/commit/a74809d7b35a55ec982f677540eed3b306517c61) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize docsearch style
+
 ## 0.17.0
 
 ### Minor Changes
