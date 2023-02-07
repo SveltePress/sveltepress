@@ -17,7 +17,7 @@ describe('code import', async () => {
 
       @code(./svelte.test.ts)
 
-      @code(/src/index.ts,1,4)"
+      @code(/src/index.ts,20,37)"
     `)
 
     const { code } = await compile(mdContent, {

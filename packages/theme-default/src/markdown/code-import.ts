@@ -32,7 +32,12 @@ const codeImport: Plugin<any[], any> = () => {
                   if (!isNaN(endLine) && endLine > startLine)
                     valueArr = valueArr.slice(0, endLine - startLine + 1)
                 }
-
+                if (valueArr.length) {
+                  const firstLine = valueArr[0]
+                  const initialBlankNumbers = firstLine.length - firstLine.trimStart().length
+                  if (initialBlankNumbers > 0)
+                    valueArr = valueArr.map(line => line.replace(new RegExp(`^ {${initialBlankNumbers}}`), ''))
+                }
                 const node = {
                   type: 'code',
                   lang,
