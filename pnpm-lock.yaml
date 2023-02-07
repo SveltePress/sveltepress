@@ -64,6 +64,8 @@ importers:
       typescript: ^4.9.3
       vite: ^4.0.3
       vite-plugin-pwa: ^0.14.1
+      workbox-precaching: ^6.5.4
+      workbox-routing: ^6.5.4
       workbox-window: ^6.5.4
     devDependencies:
       '@casual-ui/eslint-config-svelte': 0.0.2_3wzfxybqclpucaafwwifv32j3a
@@ -80,6 +82,8 @@ importers:
       typescript: 4.9.4
       vite: 4.0.3_@types+node@18.11.18
       vite-plugin-pwa: 0.14.1_kd2yym7bvosszn2volak4ngp5q
+      workbox-precaching: 6.5.4
+      workbox-routing: 6.5.4
       workbox-window: 6.5.4
 
   packages/theme-default:
@@ -2327,7 +2331,7 @@ packages:
       svelte: 3.55.0
       tiny-glob: 0.2.9
       undici: 5.14.0
-      vite: 4.0.3
+      vite: 4.0.3_@types+node@18.11.18
     transitivePeerDependencies:
       - supports-color
 
@@ -2360,7 +2364,7 @@ packages:
       magic-string: 0.27.0
       svelte: 3.55.0
       svelte-hmr: 0.15.1_svelte@3.55.0
-      vite: 4.0.3
+      vite: 4.0.3_@types+node@18.11.18
       vitefu: 0.2.4_vite@4.0.3
     transitivePeerDependencies:
       - supports-color
@@ -7623,7 +7627,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.0.3
+      vite: 4.0.3_@types+node@18.11.18
 
   /vitest/0.26.3:
     resolution: {integrity: sha512-FmHxU9aUCxTi23keF3vxb/Qp0lYXaaJ+jRLGOUmMS3qVTOJvgGE+f1VArupA6pEhaG2Ans4X+zV9dqM5WISMbg==}

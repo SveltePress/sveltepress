@@ -29,26 +29,12 @@
 
 <style>
   .pwa-toast {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    margin: 16px;
-    padding: 12px;
-    border: 1px solid #8885;
-    border-radius: 4px;
-    z-index: 1002;
-    text-align: left;
-    box-shadow: 3px 4px 5px 0 #8885;
-    background-color: white;
+    --at-apply: 'fixed right-0 bottom-0 m-4 p-3 b-1 b-gray-8 rounded z-1002 bg-white dark:bg-gray-9';
   }
   .pwa-toast .message {
-    margin-bottom: 8px;
+    --at-apply: 'mb-2';
   }
   .pwa-toast button {
-    border: 1px solid #8885;
-    outline: none;
-    margin-right: 5px;
-    border-radius: 2px;
-    padding: 3px 10px;
+    --at-apply: 'outline-none b-1 b-gray-8 mr-2 rounded-sm py-[3px] px-[10px]';
   }
 </style>

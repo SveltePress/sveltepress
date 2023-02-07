@@ -12,6 +12,10 @@
   $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 </script>
 
+<svelte:head>
+  {@html webManifest}
+</svelte:head>
+
 {#if ReloadPrompt}
   <svelte:component this={ReloadPrompt} />
 {/if}

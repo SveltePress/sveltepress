@@ -7,7 +7,6 @@ const config = defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme({
-        // pwa: true,
         navbar: [{
           title: 'Guide',
           to: '/guide/introduction/',
@@ -126,11 +125,11 @@ const config = defineConfig({
       addInspect: true,
     }),
     SvelteKitPWA({
-      kit: {
-        trailingSlash: 'always',
-      },
       scope: '/',
       base: '/',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       manifest: {
         start_url: '/',
         scope: '/',
@@ -141,6 +140,7 @@ const config = defineConfig({
             src: '/android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png',
+            purpose: 'any maskable',
           },
           {
             src: '/android-chrome-512x512.png',
