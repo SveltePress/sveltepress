@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
-import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 
 const config = defineConfig({
   plugins: [
@@ -91,6 +90,10 @@ const config = defineConfig({
                   title: 'Docsearch',
                   to: '/guide/default-theme/docsearch/',
                 },
+                {
+                  title: 'Pwa',
+                  to: '/guide/default-theme/pwa/',
+                },
               ],
             },
           ],
@@ -117,44 +120,42 @@ const config = defineConfig({
           appId: '4D30VFIAMG',
           indexName: 'sveltepress',
         },
+        pwa: {
+          scope: '/',
+          base: '/',
+          strategies: 'injectManifest',
+          manifest: {
+            start_url: '/',
+            scope: '/',
+            name: 'Sveltepress',
+            short_name: 'Sveltepress',
+            icons: [
+              {
+                src: '/android-chrome-192x192.png',
+                sizes: '192x192',
+                type: 'image/png',
+                purpose: 'any maskable',
+              },
+              {
+                src: '/android-chrome-512x512.png',
+                sizes: '512x512',
+                type: 'image/png',
+              },
+            ],
+            theme_color: '#fb7185',
+            background_color: '#ffffff',
+            display: 'standalone',
+          },
+          injectManifest: {
+            globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
+          },
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',
         description: 'A content centered site build tool',
       },
       addInspect: true,
-    }),
-    SvelteKitPWA({
-      scope: '/',
-      base: '/',
-      strategies: 'injectManifest',
-      srcDir: 'src',
-      filename: 'sw.ts',
-      manifest: {
-        start_url: '/',
-        scope: '/',
-        name: 'Sveltepress',
-        short_name: 'Sveltepress',
-        icons: [
-          {
-            src: '/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-          {
-            src: '/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-        theme_color: '#fb7185',
-        background_color: '#ffffff',
-        display: 'standalone',
-      },
-      injectManifest: {
-        globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
-      },
     }),
   ],
 })

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { useRegisterSW } from 'virtual:pwa-register/svelte'
   const { needRefresh, updateServiceWorker, offlineReady } = useRegisterSW({
     onRegistered() {},

@@ -1,5 +1,7 @@
+/// <reference types="vite/client" />
 declare module 'virtual:sveltepress/theme-default' {
   import type { LoadTheme } from '@sveltepress/vite'
+  import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 
   export interface WithTitle {
     title: string
@@ -25,12 +27,12 @@ declare module 'virtual:sveltepress/theme-default' {
     editLink?: string
     discord?: string
     ga?: string
+    pwa?: SvelteKitPWAOptions
     docsearch?: {
       appId: string
       apiKey: string
       indexName: string
     }
-    pwa?: boolean
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>
 

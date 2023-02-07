@@ -1,13 +1,14 @@
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
-declare let self: ServiceWorkerGlobalScope
+declare let self
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
     self.skipWaiting()
 })
 
+// Remove the unnecessary index suffix of route entries
 precacheAndRoute(self.__WB_MANIFEST.map((entry) => {
   if (typeof entry === 'object')
     entry.url = entry.url.replace(/index$/, '')

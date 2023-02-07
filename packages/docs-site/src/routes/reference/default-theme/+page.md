@@ -35,7 +35,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,4,34)
+@code(/../theme-default/types.d.ts,4,36)
 
 ### `navbar`
 
@@ -100,8 +100,7 @@ Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 
 ### `pwa`
 
-Determine whether to use PWA feature out of box.
-
+See [sveltekit-pwa-plugin](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin) for details.
 ## Virtual modules
 
 ### `virtual:sveltepress/theme-default`

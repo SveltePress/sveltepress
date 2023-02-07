@@ -1,13 +1,17 @@
+import { resolve } from 'path'
+import { fileURLToPath } from 'url'
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
 import { presetUno, transformerDirectives } from 'unocss'
 import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
+import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
 import { customTypes } from './markdown/admonitions.js'
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -61,10 +65,17 @@ const defaultTheme: ThemeDefault = (options) => {
     globalLayout: '@sveltepress/theme-default/GlobalLayout.svelte',
     pageLayout: '@sveltepress/theme-default/PageLayout.svelte',
     vitePlugins: (corePlugin) => {
-      return [
+      const plugins = [
         ...vitePluginsPre,
         corePlugin,
       ]
+      if (options.pwa) {
+        plugins.push(SvelteKitPWA({
+          ...options.pwa,
+          srcDir: resolve(__dirname, './components/pwa'),
+        }))
+      }
+      return plugins
     },
     remarkPlugins: [
       liveCode,

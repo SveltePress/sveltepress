@@ -43,12 +43,16 @@
   "dependencies": {
     "@docsearch/css": "3",
     "@docsearch/js": "3",
+    "@vite-pwa/sveltekit": "^0.1.2",
     "lru-cache": "^7.14.1",
     "remark-admonitions": "^1.2.1",
     "shiki": "^0.12.1",
     "uid": "^2.0.1",
     "unist-util-visit": "^4.1.1",
-    "unocss": "^0.48.0"
+    "unocss": "^0.48.0",
+    "vite-plugin-pwa": "^0.14.1",
+    "workbox-precaching": "^6.5.4",
+    "workbox-routing": "^6.5.4"
   },
   "type": "module",
   "types": "./src/index.ts",

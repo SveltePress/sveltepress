@@ -8,6 +8,7 @@
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
+  import Pwa from './pwa/Pwa.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { page } from '$app/stores'
 
@@ -34,6 +35,8 @@
   <Toc anchors={$anchors} />
 
   <GoogleAnalytics />
+
+  <Pwa />
 </main>
 
 <style>
