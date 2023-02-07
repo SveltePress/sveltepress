@@ -20,7 +20,7 @@ The final page description would be use the page frontmatter if provided instead
 The `src/routes/+page.(md|svelte)` would be identified as home page
 
 Home frontmatter can be like this.  
-Use the frontmatter this site use for example:
+Take the frontmatter this site use for example:
 
 @code(../../../+page.md,1,25)
 

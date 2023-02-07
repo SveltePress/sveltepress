@@ -18,4 +18,4 @@ You will need to add `workbox-window` as a dev dependency to your Vite project.
 
 Take the config this site use for example:
 
-@code(/vite.config.ts,123,152)
+@code(/vite.config.ts,127,156)
