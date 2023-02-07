@@ -6,6 +6,7 @@
   --svp-code-font: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
   --docsearch-searchbox-background: transparent;
   --docsearch-logo-color: var(--docsearch-primary-color);
+  --docsearch-searchbox-shadow: inset 0px 0px 0px 1px var(--docsearch-primary-color);
 }
 
 html.dark,
@@ -228,4 +229,8 @@ html.dark .shiki.Night.Owl {
 
 .DocSearch-Container {
   z-index: 9999;
+}
+
+.DocSearch-Button {
+  border-radius: 8px;
 }
