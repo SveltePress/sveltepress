@@ -100,7 +100,7 @@ Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 
 ### `pwa`
 
-See [sveltekit-pwa-plugin](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin) for details.
+See [PWA](/guide/default-theme/pwa/) for details.
 ## Virtual modules
 
 ### `virtual:sveltepress/theme-default`
