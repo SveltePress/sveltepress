@@ -110,7 +110,7 @@ const config = defineConfig({
         editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
         github: 'https://github.com/Blackman99/sveltepress',
         logo: '/sveltepress.svg',
-        discord: 'https://discord.com/channels/994160573333913691/1065131029616136273',
+        discord: 'https://discord.gg/MeYRrGGxbE',
         ga: 'G-J2W78BKCHB',
         docsearch: {
           apiKey: 'fbed412316ec83ff28e9a916161bf715',
