@@ -94,6 +94,10 @@ const config = defineConfig({
                   title: 'Pwa',
                   to: '/guide/default-theme/pwa/',
                 },
+                {
+                  title: 'Google Analytics',
+                  to: '/guide/default-theme/google-analytics/',
+                },
               ],
             },
           ],
