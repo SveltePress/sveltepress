@@ -18,7 +18,7 @@
 </script>
 
 {#if toast}
-  <Prompt message={message} on:close={close}>
+  <Prompt {message} on:close={close}>
     {#if $needRefresh}
       <Btn on:click={() => updateServiceWorker(true)}>
         Reload

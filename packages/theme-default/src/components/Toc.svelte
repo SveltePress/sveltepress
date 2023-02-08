@@ -55,7 +55,7 @@
   }
 </script>
 
-<svelte:window bind:scrollY={scrollY} />
+<svelte:window bind:scrollY />
 {#if anchors.length}
   <div
     class="mobile-toc-trigger"
@@ -76,7 +76,7 @@
         <a
           href={`#${an.slugId}`}
           class="item"
-          class:active={active}
+          class:active
           style={`--heading-depth: ${an.depth};`}
         >
           {an.title}

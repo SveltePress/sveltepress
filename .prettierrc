@@ -4,7 +4,7 @@
   ],
   "svelteSortOrder": "options-scripts-markup-styles",
   "svelteStrictMode": false,
-  "svelteAllowShorthand": false,
+  "svelteAllowShorthand": true,
   "svelteIndentScriptAndStyle": true,
   "semi": false,
   "singleQuote": true,

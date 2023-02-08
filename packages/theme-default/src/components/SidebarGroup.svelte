@@ -27,7 +27,7 @@
         on:click={handleToggle}
         on:keypress={handleToggle}
       >
-        <div class="arrow" class:collapsed={collapsed}>
+        <div class="arrow" class:collapsed>
           <ArrowDown />
         </div>
       </div>
@@ -38,13 +38,7 @@
       {@const active = routeId.endsWith('/')
         ? to === routeId
         : to === `${routeId}/`}
-      <Link
-        to={to}
-        active={active}
-        label={title}
-        inline={false}
-        highlight={false}
-      />
+      <Link {to} {active} label={title} inline={false} highlight={false} />
     {/each}
   </div>
 </div>

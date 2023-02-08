@@ -14,7 +14,7 @@
   role="button"
   class="btn"
   class:primary={!flat}
-  class:flat={flat}
+  class:flat
   on:click={handleClick}
   on:keyup={handleClick}
 >

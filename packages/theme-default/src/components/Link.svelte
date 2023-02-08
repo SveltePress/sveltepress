@@ -12,9 +12,9 @@
 <a
   href={to}
   class="link"
-  class:inline={inline}
-  class:active={active}
-  class:highlight={highlight}
+  class:inline
+  class:active
+  class:highlight
   {...isExternal ? { target: '_blank' } : {}}
 >
   <div>

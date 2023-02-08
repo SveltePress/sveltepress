@@ -48,8 +48,8 @@
       {/if}
       <slot />
       <div class="meta">
-        <EditPage pageType={pageType} />
-        <LastUpdate lastUpdate={lastUpdate} />
+        <EditPage {pageType} />
+        <LastUpdate {lastUpdate} />
       </div>
       {#if ready}
         <PageSwitcher />
@@ -57,7 +57,7 @@
     </div>
   </div>
 {:else}
-  <Home {...fm} siteConfig={siteConfig} />
+  <Home {...fm} {siteConfig} />
   <slot />
 {/if}
 

@@ -10,7 +10,7 @@
 
 <div
   class="backdrop"
-  class:show={show}
+  class:show
   on:click={handleClose}
   on:keyup={handleClose}
 />
