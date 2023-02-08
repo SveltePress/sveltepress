@@ -124,35 +124,35 @@ const config = defineConfig({
           appId: '4D30VFIAMG',
           indexName: 'sveltepress',
         },
-        // pwa: {
-        //   scope: '/',
-        //   base: '/',
-        //   strategies: 'injectManifest',
-        //   manifest: {
-        //     start_url: '/',
-        //     scope: '/',
-        //     name: 'Sveltepress',
-        //     short_name: 'Sveltepress',
-        //     icons: [
-        //       {
-        //         src: '/android-chrome-192x192.png',
-        //         sizes: '192x192',
-        //         type: 'image/png',
-        //       },
-        //       {
-        //         src: '/android-chrome-512x512.png',
-        //         sizes: '512x512',
-        //         type: 'image/png',
-        //       },
-        //     ],
-        //     theme_color: '#fb7185',
-        //     background_color: '#ffffff',
-        //     display: 'standalone',
-        //   },
-        //   injectManifest: {
-        //     globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
-        //   },
-        // },
+        pwa: {
+          scope: '/',
+          base: '/',
+          strategies: 'injectManifest',
+          manifest: {
+            start_url: '/',
+            scope: '/',
+            name: 'Sveltepress',
+            short_name: 'Sveltepress',
+            icons: [
+              {
+                src: '/android-chrome-192x192.png',
+                sizes: '192x192',
+                type: 'image/png',
+              },
+              {
+                src: '/android-chrome-512x512.png',
+                sizes: '512x512',
+                type: 'image/png',
+              },
+            ],
+            theme_color: '#fb7185',
+            background_color: '#ffffff',
+            display: 'standalone',
+          },
+          injectManifest: {
+            globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
+          },
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',
