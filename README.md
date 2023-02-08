@@ -40,6 +40,7 @@ This project can not be done without these projects
 * [Remark](https://github.com/remarkjs/remark)
 * [Rehype](https://github.com/rehypejs/rehype)
 * [Remark Admonitions](https://github.com/elviswolcott/remark-admonitions)
+* [Vite PWA](https://github.com/vite-pwa/docs)
 
 ## LICENSE
 
