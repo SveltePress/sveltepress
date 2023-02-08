@@ -2,13 +2,13 @@
   import '@docsearch/css'
   import 'uno.css'
   import '../style.css'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import AjaxBar from './AjaxBar.svelte'
   import { anchors, resolveSidebar, sidebarCollapsed } from './layout'
   import Navbar from './Navbar.svelte'
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
-  import Pwa from './pwa/Pwa.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { page } from '$app/stores'
 
@@ -36,7 +36,11 @@
 
   <GoogleAnalytics />
 
-  <Pwa />
+  {#if themeOptions.pwa}
+    {#await import('./pwa/Pwa.svelte').default then pwaComponent}
+      <svelte:component this={pwaComponent} />
+    {/await}
+  {/if}
 </main>
 
 <style>
