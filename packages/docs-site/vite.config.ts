@@ -91,7 +91,7 @@ const config = defineConfig({
                   to: '/guide/default-theme/docsearch/',
                 },
                 {
-                  title: 'Pwa',
+                  title: 'PWA',
                   to: '/guide/default-theme/pwa/',
                 },
                 {
