@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 0.18.1
+
+### Patch Changes
+
+- [`b46b0d5`](https://github.com/SveltePress/sveltepress/commit/b46b0d5c1c06d76bdc43b6ca2d5860add5d22395) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize pwa prompt style
+
 ## 0.18.0
 
 ### Minor Changes
