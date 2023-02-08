@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 0.18.2
+
+### Patch Changes
+
+- [`520ac2d`](https://github.com/SveltePress/sveltepress/commit/520ac2df80976733943beee0d9bbc71bf810d7e3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: pwa component should dynamic import
+
 ## 0.18.1
 
 ### Patch Changes
