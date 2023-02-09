@@ -23,12 +23,12 @@
 
 <style>
   .btn {
-    --at-apply: 'ml-2 px-4 leading-8 inline-flex items-center cursor-pointer transition-bg bg-transparent transition-300 rounded';
+    --at-apply: 'ml-2 px-4 leading-9 inline-flex items-center cursor-pointer active:translate-y-[2px] rounded select-none';
   }
   .primary {
-    --at-apply: 'bg-rose-5 text-gray-2 hover:bg-rose-6 dark:hover-bg-rose-4';
+    --at-apply: 'svp-gradient-bg text-gray-8 hover:shadow-lg';
   }
   .flat {
-    --at-apply: 'text-gray-8 hover:bg-gray-2  dark:text-gray-2 dark:hover:bg-gray-9';
+    --at-apply: 'text-gray-8 hover:bg-gray-3 dark:text-gray-2 dark:hover:bg-gray-8 bg-gray-1 dark:bg-gray-9';
   }
 </style>

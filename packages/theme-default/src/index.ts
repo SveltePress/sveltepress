@@ -68,13 +68,11 @@ const defaultTheme: ThemeDefault = (options) => {
       const plugins = [
         ...vitePluginsPre,
         corePlugin,
-      ]
-      if (options.pwa) {
-        plugins.push(SvelteKitPWA({
+        SvelteKitPWA({
           ...options.pwa,
           srcDir: resolve(__dirname, './components/pwa'),
-        }))
-      }
+        }),
+      ]
       return plugins
     },
     remarkPlugins: [
