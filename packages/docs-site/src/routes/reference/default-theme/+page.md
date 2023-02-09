@@ -113,15 +113,18 @@ Here's an example for showing the theme options of this site:
 <script>
   import themeOptions from 'virtual:sveltepress/theme-default'
 </script>
-<p>
-  The theme options of this site is: <br />
-  {#each Object.entries(themeOptions) as [key, val]}
-    <b>{key}</b>: {JSON.stringify(val)} <br />
-  {/each}
-</p>
+<div class="viewer">
+  <pre>
+    <code>
+      {JSON.stringify(themeOptions, null, 2)}
+    </code>
+  </pre>
+</div>
 <style>
-  p {
-    word-break: break-all;
+  .viewer {
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>
 ```
