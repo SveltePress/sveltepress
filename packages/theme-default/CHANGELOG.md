@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 0.19.0
+
+### Minor Changes
+
+- [`6af5256`](https://github.com/SveltePress/sveltepress/commit/6af52569107184d362784c8e6b36ca19e17268a2) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: upgrade packages
+
 ## 0.18.2
 
 ### Patch Changes
