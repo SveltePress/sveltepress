@@ -1,10 +1,9 @@
 <script>
-  import { onMount, tick } from 'svelte'
   import Home from './Home.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
-  import { anchors } from './layout'
+  import { anchors, pages } from './layout'
   import { page } from '$app/stores'
 
   const routeId = $page.route.id
@@ -24,13 +23,6 @@
   } = fm
 
   anchors.set(fmAnchors)
-
-  let ready = false
-  onMount(() => {
-    tick().then(() => {
-      ready = true
-    })
-  })
 </script>
 
 <svelte:head>
@@ -51,7 +43,7 @@
         <EditPage {pageType} />
         <LastUpdate {lastUpdate} />
       </div>
-      {#if ready}
+      {#if $pages.length}
         <PageSwitcher />
       {/if}
     </div>
