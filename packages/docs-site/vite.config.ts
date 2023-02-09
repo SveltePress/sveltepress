@@ -128,6 +128,9 @@ const config = defineConfig({
           scope: '/',
           base: '/',
           strategies: 'injectManifest',
+          kit: {
+            trailingSlash: 'always',
+          },
           manifest: {
             start_url: '/',
             scope: '/',
@@ -150,7 +153,11 @@ const config = defineConfig({
             display: 'standalone',
           },
           injectManifest: {
-            globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'],
+            globDirectory: '.svelte-kit/output',
+            globPatterns: [
+              'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+              '../../.sveltepress/prerendered/**/*.html',
+            ],
           },
         },
       }),

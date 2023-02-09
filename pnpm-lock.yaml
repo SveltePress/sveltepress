@@ -51,7 +51,7 @@ importers:
   packages/docs-site:
     specifiers:
       '@casual-ui/eslint-config-svelte': ^0.0.2
-      '@sveltejs/adapter-static': ^1.0.6
+      '@sveltejs/adapter-static': ^2.0.0
       '@sveltejs/kit': ^1.5.2
       '@sveltepress/theme-default': workspace:*
       '@sveltepress/vite': workspace:*
@@ -65,7 +65,7 @@ importers:
       workbox-window: ^6.5.4
     devDependencies:
       '@casual-ui/eslint-config-svelte': 0.0.2_tqbbosntgxibecwmizkjj3is3a
-      '@sveltejs/adapter-static': 1.0.6_@sveltejs+kit@1.5.2
+      '@sveltejs/adapter-static': 2.0.0_@sveltejs+kit@1.5.2
       '@sveltejs/kit': 1.5.2_svelte@3.55.1+vite@4.1.1
       '@sveltepress/theme-default': link:../theme-default
       '@sveltepress/vite': link:../vite
@@ -2463,10 +2463,10 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: false
 
-  /@sveltejs/adapter-static/1.0.6_@sveltejs+kit@1.5.2:
-    resolution: {integrity: sha512-gTus2jW6bEQAZoT1MdmPHWZZmcb6dfLWc0r6dFHnbzSDZ68kifqQ1E+dZDOMF7aXeRV91sgnPuAn2MtpinVdlA==}
+  /@sveltejs/adapter-static/2.0.0_@sveltejs+kit@1.5.2:
+    resolution: {integrity: sha512-M9F8EyCIdVcpZu0zvS7U7v+rc7elNNDUkMHLsOkJYlfQ9rDdif3fqteMqddcrq1lFPEGH1ErdTjpsXdb3k1e8w==}
     peerDependencies:
-      '@sveltejs/kit': ^1.0.0
+      '@sveltejs/kit': ^1.5.0
     dependencies:
       '@sveltejs/kit': 1.5.2_svelte@3.55.1+vite@4.1.1
     dev: true

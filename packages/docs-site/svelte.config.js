@@ -1,5 +1,5 @@
-import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/kit/vite'
+import adapter from './adapter-wrapper/index.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

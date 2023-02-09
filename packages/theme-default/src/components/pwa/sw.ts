@@ -8,12 +8,16 @@ self.addEventListener('message', (event) => {
     self.skipWaiting()
 })
 
-// Remove the unnecessary index suffix of route entries
-precacheAndRoute(self.__WB_MANIFEST.map((entry) => {
+const entries = self.__WB_MANIFEST
+
+const entriesAfterProcessed = entries.map((entry) => {
   if (typeof entry === 'object')
-    entry.url = entry.url.replace(/index$/, '')
+    entry.url = entry.url.replace(/(\.\/(\.\.\/)*\.sveltepress\/prerendered)|(index\/?$)/g, '')
   return entry
-}))
+})
+
+// Remove the unnecessary index suffix of route entries
+precacheAndRoute(entriesAfterProcessed)
 
 // clean old assets
 cleanupOutdatedCaches()
