@@ -1,8 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte'
   import { tocCollapsed } from './layout'
-  import TocMenu from './icons/TocMenu.svelte'
-  import TocClose from './icons/TocClose.svelte'
   import Backdrop from './Backdrop.svelte'
   import { afterNavigate } from '$app/navigation'
   import { page } from '$app/stores'
@@ -57,17 +55,6 @@
 
 <svelte:window bind:scrollY />
 {#if anchors.length}
-  <div
-    class="mobile-toc-trigger"
-    on:click={handleTocToggleClick}
-    on:keyup={handleTocToggleClick}
-  >
-    {#if $tocCollapsed}
-      <TocMenu />
-    {:else}
-      <TocClose />
-    {/if}
-  </div>
   <div class="toc" class:collapsed={$tocCollapsed}>
     <div class="title">On this page</div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
@@ -114,9 +101,6 @@
   .active-bar {
     --at-apply: 'absolute z-2 bg-rose-1 bg-opacity-80 left-0 h-[2em] border-l-[3px] border-l-solid border-rose-4 border-opacity-80 w-full transition-transform transition-300 top-0 dark:border-rose-8 dark:bg-rose-8 dark:bg-opacity-20';
     transform: translateY(var(--bar-top));
-  }
-  .mobile-toc-trigger {
-    --at-apply: 'sm:display-none fixed bottom-[12px] right-[12px] w-[38px] h-[38px] bg-white dark:shadow-white dark:bg-gray-9 rounded-[19px] shadow-md z-990 flex items-center justify-center text-6';
   }
   .collapsed {
     --at-apply: 'sm:translate-x-0';

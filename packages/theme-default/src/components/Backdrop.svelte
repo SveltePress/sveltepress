@@ -2,6 +2,8 @@
   import { createEventDispatcher } from 'svelte'
 
   export let show = false
+  export let top = 0
+  export let zIndex = 900
 
   const dispatcher = createEventDispatcher()
 
@@ -13,6 +15,8 @@
   class:show
   on:click={handleClose}
   on:keyup={handleClose}
+  style:top
+  style:z-index={zIndex}
 />
 
 <style>

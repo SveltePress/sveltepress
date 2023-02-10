@@ -5,30 +5,23 @@
   import NavItem from './NavItem.svelte'
   import ToggleDark from './ToggleDark.svelte'
   import Search from './Search.svelte'
-  import Menu from './icons/Menu.svelte'
-  import { sidebarCollapsed } from './layout'
   import Discord from './icons/Discord.svelte'
+  import NavbarMobile from './NavbarMobile.svelte'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
-
-  const handleMenuClick = () => {
-    $sidebarCollapsed = false
-  }
 </script>
 
 <header class="header">
   <div class="header-inner">
     <div class="left">
+      <NavbarMobile />
       {#if isHome}
         <div class="logo-container">
           <Logo />
         </div>
       {/if}
-      <div class="menu" on:click={handleMenuClick} on:keyup={handleMenuClick}>
-        <Menu />
-      </div>
     </div>
     {#if themeOptions.docsearch}
       <div
@@ -82,8 +75,7 @@
     --at-apply: flex items-center;
   }
   .doc-search {
-    --at-apply: flex-grow flex items-center relative transition-500
-      transition-left;
+    --at-apply: 'flex-grow flex items-center relative transition-500 transition-left';
   }
   .doc-search.is-home {
     --at-apply: left-2;
@@ -95,9 +87,6 @@
     --at-apply: 'bg-stone-2 w-[1px] my-6 dark:bg-stone-7';
   }
 
-  .menu {
-    --at-apply: 'sm:display-none ml-4 flex items-center text-6';
-  }
   .navbar-pc {
     --at-apply: 'items-stretch display-none sm:display-flex';
   }

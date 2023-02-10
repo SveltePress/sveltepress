@@ -1,8 +1,9 @@
 <script>
+  import { slide } from 'svelte/transition'
   import Link from './Link.svelte'
   import ArrowDown from './icons/ArrowDown.svelte'
-  import slide from './actions/slide'
   import { page } from '$app/stores'
+
   $: routeId = $page.route.id
 
   export let items = []
@@ -33,14 +34,16 @@
       </div>
     {/if}
   </div>
-  <div class="links" use:slide={!collapsed}>
-    {#each items as { to, title }}
-      {@const active = routeId.endsWith('/')
-        ? to === routeId
-        : to === `${routeId}/`}
-      <Link {to} {active} label={title} inline={false} highlight={false} />
-    {/each}
-  </div>
+  {#if !collapsed}
+    <div class="links" transition:slide>
+      {#each items as { to, title }}
+        {@const active = routeId.endsWith('/')
+          ? to === routeId
+          : to === `${routeId}/`}
+        <Link {to} {active} label={title} inline={false} highlight={false} />
+      {/each}
+    </div>
+  {/if}
 </div>
 
 <style>

@@ -1,5 +1,4 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
   import { resolvedSidebar, sidebarCollapsed } from './layout'
@@ -13,17 +12,6 @@
   const handleClose = () => {
     $sidebarCollapsed = true
   }
-
-  const allSidebars = Object.values(themeOptions.sidebar || []).reduce(
-    (all, arr) => [...all, ...arr],
-    [
-      ...themeOptions.navbar.map(item => {
-        if (item.items) item.collapsible = true
-
-        return item
-      }),
-    ]
-  )
 </script>
 
 <aside
@@ -38,34 +26,17 @@
     </div>
   </div>
 
-  <div class="sidebar-mobile">
-    {#each allSidebars as sidebarItem}
-      {@const hasItems = Array.isArray(sidebarItem.items)}
-      <SidebarGroup
-        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
-      />
-    {/each}
-  </div>
-
-  <div class="sidebar-pc">
-    {#each $resolvedSidebar as sidebarItem}
-      {@const hasItems = Array.isArray(sidebarItem.items)}
-      <SidebarGroup
-        {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
-      />
-    {/each}
-  </div>
+  {#each $resolvedSidebar as sidebarItem}
+    {@const hasItems = Array.isArray(sidebarItem.items)}
+    <SidebarGroup
+      {...hasItems ? sidebarItem : { title: '', items: [sidebarItem] }}
+    />
+  {/each}
 </aside>
 
 <Backdrop show={!$sidebarCollapsed} on:close={handleClose} />
 
 <style>
-  .sidebar-mobile {
-    --at-apply: 'sm:display-none mt-4';
-  }
-  .sidebar-pc {
-    --at-apply: 'display-none sm:display-block';
-  }
   .is-home {
     --at-apply: 'sm:display-none';
   }

@@ -28,6 +28,7 @@
    */
   export let headerStyle = ''
 
+  export let showIcon = true
   /**
    * The panel body dom
    * @type {HTMLDivElement}
@@ -56,18 +57,20 @@
     on:keypress={onHeaderClick}
   >
     <div class="c-expansion--header-left">
-      <div class="c-expansion--icon">
-        <!-- The content before title -->
-        {#if expanded}
-          <slot name="icon-expanded">
-            <SvelteWithColor />
-          </slot>
-        {:else}
-          <slot name="icon-fold">
-            <Svelte />
-          </slot>
-        {/if}
-      </div>
+      {#if showIcon}
+        <div class="c-expansion--icon">
+          <!-- The content before title -->
+          {#if expanded}
+            <slot name="icon-expanded">
+              <SvelteWithColor />
+            </slot>
+          {:else}
+            <slot name="icon-fold">
+              <Svelte />
+            </slot>
+          {/if}
+        </div>
+      {/if}
       <div class="c-expansion--title">
         <!-- Customize the title content -->
         <slot name="title">

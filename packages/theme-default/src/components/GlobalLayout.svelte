@@ -6,38 +6,48 @@
   import AjaxBar from './AjaxBar.svelte'
   import {
     anchors,
+    navCollapsed,
     resolveSidebar,
+    scrollY,
     sidebarCollapsed,
-    windowWidth,
   } from './layout'
   import Navbar from './Navbar.svelte'
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
   import Pwa from './pwa/Pwa.svelte'
+  import FloatActions from './FloatActions.svelte'
+  import Backdrop from './Backdrop.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
-  import { page } from '$app/stores'
-
   let ajaxBar
 
   beforeNavigate(() => {
     ajaxBar.start()
   })
 
-  afterNavigate(() => {
+  afterNavigate(({ to }) => {
     ajaxBar.end()
     $sidebarCollapsed = true
-    resolveSidebar($page.route.id)
+    $navCollapsed = true
+    resolveSidebar(to.route.id)
   })
+
   $$restProps
 </script>
 
-<svelte:window bind:innerWidth={$windowWidth} />
+<svelte:window bind:scrollY={$scrollY} />
 
 <main>
   <AjaxBar bind:this={ajaxBar} />
+  <FloatActions />
   <Sidebar />
   <Navbar />
+  <Backdrop
+    show={!$navCollapsed}
+    on:close={() => ($navCollapsed = true)}
+    top="56px"
+    zIndex={887}
+  />
   <slot />
 
   <Toc anchors={$anchors} />

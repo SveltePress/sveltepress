@@ -8,22 +8,17 @@ declare module 'virtual:sveltepress/theme-default' {
   }
 
   export interface LinkItem extends WithTitle {
-    to: string
+    to?: string
     external?: boolean
-  }
-
-  export interface LinkGroup extends WithTitle {
-    items: (LinkItem | LinkGroup)[]
-  }
-
-  type SidebarItem = LinkItem | LinkGroup & {
     collapsible?: boolean
+    items?: LinkItem[]
   }
+
   export interface DefaultThemeOptions {
-    navbar: Array<LinkItem | LinkGroup>
+    navbar: Array<LinkItem>
     github?: string
     logo?: string
-    sidebar?: Record<string, SidebarItem[]>
+    sidebar?: Record<string, LinkItem[]>
     editLink?: string
     discord?: string
     ga?: string
