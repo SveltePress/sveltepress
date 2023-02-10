@@ -8,6 +8,9 @@ import { getFileLastUpdateTime } from './get-file-last-update.js'
 const cache = new LRUCache<string, any>({ max: 1024 })
 export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
 const styleRe = /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/g
+const svelteHeadRe = /<svelte:head>[\s\S]*?<\/svelte:head>/g
+const svelteBodyRe = /(<svelte:body\b[^>]*>[\s\S]*?<\/svelte:body>)|(<svelte\b[^>]*\/>)/g
+const svelteWindowRe = /(<svelte:window\b[^>]*>[\s\S]*?<\/svelte:window>)|(<window\b[^>]*\/>)/g
 
 export async function wrapPage({
   layout,
@@ -100,14 +103,18 @@ export function wrapSvelteCode({
     `const fm = ${JSON.stringify(fm)}`,
     `const siteConfig = ${JSON.stringify(siteConfig)}`,
   ].join('\n')
-  const scripts = []
-  let matches: RegExpMatchArray | null = null
-  do {
-    matches = scriptRe.exec(svelteCode)
-    if (matches)
-      scripts.push(matches[0])
-  } while (matches)
 
+  const svelteTagReArr = [svelteHeadRe, svelteBodyRe, svelteWindowRe]
+  const svelteBuiltinTags = svelteTagReArr.reduce<string[]>((res, re) => {
+    const tags = hoistTag(re, svelteCode)
+    svelteCode = svelteCode.replace(re, '')
+    return [
+      ...res,
+      ...tags,
+    ]
+  }, [])
+
+  const scripts = hoistTag(scriptRe, svelteCode)
   if (scripts.length) {
     scripts[0] = scripts[0].replace(/<script\b[^>]*>/, m => [
       m,
@@ -117,18 +124,29 @@ export function wrapSvelteCode({
   else {
     scripts.push('<script>', imports, '</script>')
   }
+
   const styleMatches = styleRe.exec(svelteCode)
   let styleCode = ''
   if (styleMatches) {
     styleCode = styleMatches[0]
     svelteCode = svelteCode.replace(styleRe, '')
   }
+
   svelteCode = svelteCode.replace(scriptRe, '')
-  return `
-  ${scripts.join('\n')}
-<PageLayout {fm} {siteConfig}>
-  ${svelteCode}
-</PageLayout>
+  return `${scripts.join('\n')}
+${svelteBuiltinTags.join('\n')}
+<PageLayout {fm} {siteConfig}>${svelteCode}</PageLayout>
 ${styleCode}
 `
+}
+
+function hoistTag(tagRe: RegExp, svelteCode: string) {
+  const tags = []
+  let matches: RegExpMatchArray | null = null
+  do {
+    matches = tagRe.exec(svelteCode)
+    if (matches)
+      tags.push(matches[0])
+  } while (matches)
+  return tags
 }

@@ -1,0 +1,51 @@
+// Vitest Snapshot v1
+
+exports[`wrap svelte code > with script, style and context script 1`] = `
+"<script context=\\"module\\">
+import PageLayout from '/path/to/PageLayout.svelte'
+const fm = {\\"title\\":\\"title\\"}
+const siteConfig = {\\"title\\":\\"Site title\\",\\"description\\":\\"Site desc\\"}
+  export const someVar = 'some value'
+</script>
+<script>
+import SomeComponent from '/path/to/SomeComponent.svelte'
+
+let innerWidth
+</script>
+<svelte:head>
+  <style>
+    .foo {
+      color: red;
+    }
+  </style>
+  <script>
+    var map = null
+  </script>
+</svelte:head>
+<svelte:body on:scroll></svelte:body>
+<svelte:window bind:innerWidth={innerWidth}></svelte:window>
+<PageLayout {fm} {siteConfig}>
+
+
+
+
+
+
+
+# Title Level 1
+
+Paragraph
+
+<SomeComponent />
+
+
+
+
+</PageLayout>
+<style>
+  h1 {
+    color: blue;
+  }
+</style>
+"
+`;
