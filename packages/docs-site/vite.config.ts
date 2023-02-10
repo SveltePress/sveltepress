@@ -12,10 +12,6 @@ const config = defineConfig({
         }, {
           title: 'Reference',
           to: '/reference/vite-plugin/',
-        }, {
-          title: 'Google',
-          to: 'https://google.com',
-          external: true,
         }],
         sidebar: {
           '/guide/': [
