@@ -37,34 +37,35 @@
   >
     <More />
   </div>
+  <div
+    class="sidebar-trigger"
+    class:expanded
+    on:click={toggleToc}
+    on:keypress={toggleToc}
+  >
+    <ActionRight />
+  </div>
+
+  <div
+    class="toc-trigger"
+    class:expanded
+    on:click={toggleSidebar}
+    on:keypress={toggleSidebar}
+  >
+    <ActionLeft />
+  </div>
 {/if}
 
-<div
-  class="sidebar-trigger"
-  class:expanded
-  on:click={toggleToc}
-  on:keypress={toggleToc}
->
-  <ActionRight />
-</div>
-
-<div
-  class="toc-trigger"
-  class:expanded
-  on:click={toggleSidebar}
-  on:keypress={toggleSidebar}
->
-  <ActionLeft />
-</div>
-
-<div
-  class="back-to-top-trigger"
-  class:expanded
-  on:click={scrollToTop}
-  on:keypress={scrollToTop}
->
-  <Up />
-</div>
+{#if $scrollY > 20}
+  <div
+    class="back-to-top-trigger"
+    class:expanded={!isHome && expanded}
+    on:click={scrollToTop}
+    on:keypress={scrollToTop}
+  >
+    <Up />
+  </div>
+{/if}
 
 <style>
   .float-actions-trigger,

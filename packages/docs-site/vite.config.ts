@@ -16,19 +16,6 @@ const config = defineConfig({
           title: 'Google',
           to: 'https://google.com',
           external: true,
-        }, {
-          title: 'Group',
-          items: [
-            {
-              title: 'Sub Link1',
-              to: 'https://google.com',
-              external: true,
-            },
-            {
-              title: 'Sub Link2',
-              to: 'https://google.com',
-            },
-          ],
         }],
         sidebar: {
           '/guide/': [
