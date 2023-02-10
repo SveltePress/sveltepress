@@ -1,5 +1,7 @@
-import { writable } from 'svelte/store'
+import { get, writable } from 'svelte/store'
 import themeOptions from 'virtual:sveltepress/theme-default'
+
+export const MOBILE_EDGE_WIDTH = 950
 
 export const sidebarCollapsed = writable(true)
 
@@ -8,6 +10,8 @@ export const tocCollapsed = writable(true)
 export const anchors = writable([])
 
 export const pages = writable([])
+
+export const windowWidth = writable(0)
 
 export const resolvedSidebar = writable([])
 
@@ -32,6 +36,13 @@ tocCollapsed.subscribe((v) => {
 })
 
 export const resolveSidebar = (routeId) => {
+  if (get(windowWidth) < MOBILE_EDGE_WIDTH) {
+    resolvedSidebar.set(Object.values(themeOptions.sidebar || []).reduce(
+      (all, arr) => [...all, ...arr],
+      [],
+    ))
+    return
+  }
   const key = Object.keys(themeOptions.sidebar || {}).find(key =>
     routeId.startsWith(key),
   )

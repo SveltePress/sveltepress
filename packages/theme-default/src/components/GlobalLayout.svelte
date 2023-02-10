@@ -4,7 +4,12 @@
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import AjaxBar from './AjaxBar.svelte'
-  import { anchors, resolveSidebar, sidebarCollapsed } from './layout'
+  import {
+    anchors,
+    resolveSidebar,
+    sidebarCollapsed,
+    windowWidth,
+  } from './layout'
   import Navbar from './Navbar.svelte'
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
@@ -26,6 +31,8 @@
   })
   $$restProps
 </script>
+
+<svelte:window bind:innerWidth={$windowWidth} />
 
 <main>
   <AjaxBar bind:this={ajaxBar} />
