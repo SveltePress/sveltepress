@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 0.20.0
+
+### Minor Changes
+
+- [`d1262d7`](https://github.com/SveltePress/sveltepress/commit/d1262d719ec707a75a083b0c70f6b619656f2a32) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve mobile navbar sidebar toc
+
+### Patch Changes
+
+- [`d1cd2d2`](https://github.com/SveltePress/sveltepress/commit/d1cd2d2b1577f73efdc91c101cc07ef535700d04) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: back to top button show condition
+
 ## 0.19.1
 
 ### Patch Changes
