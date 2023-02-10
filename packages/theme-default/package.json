@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@sveltejs/kit": "^1.5.2",
+    "@sveltejs/kit": "^1.5.3",
     "@sveltejs/package": "^1.0.2",
     "@sveltepress/vite": "workspace:*",
     "mdsvex": "^0.10.6",
