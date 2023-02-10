@@ -25,7 +25,7 @@ const defaultTheme: ThemeDefault = options => {
       theme: {
         breakpoints: {
           sm: '950px',
-          md: '1140px',
+          md: '1240px',
         },
       },
       shortcuts: {
