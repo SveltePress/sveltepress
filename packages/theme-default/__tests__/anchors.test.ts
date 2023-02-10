@@ -17,7 +17,7 @@ some other content
 describe('anchors', () => {
   it('simple', async () => {
     const r = await compile(md, {
-      remarkPlugins: [anchors, () => (tree) => {
+      remarkPlugins: [anchors, () => tree => {
         expect(JSON.stringify(tree, null, 2)).toMatchSnapshot()
       }],
     })

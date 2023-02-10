@@ -26,7 +26,7 @@ export function parseSvelteFrontmatter(svelteCode: string) {
   const ast = parse(svelteCode)
   if (!ast.module)
     return fm
-  ast.module.content.body.forEach((line) => {
+  ast.module.content.body.forEach(line => {
     if (line.type !== 'ExportNamedDeclaration')
       return
     if (line.declaration?.type !== 'VariableDeclaration')
@@ -44,7 +44,7 @@ export function parseSvelteFrontmatter(svelteCode: string) {
       return
     if (variable.init.type !== 'ObjectExpression')
       return
-    variable.init.properties.forEach((prop) => {
+    variable.init.properties.forEach(prop => {
       if (prop.type !== 'Property')
         return
       recursivelySetValue(fm, prop.key, prop.value)
@@ -74,7 +74,7 @@ function recursivelySetValue(
       break
     case 'ObjectExpression':
       fm[keyName] = {}
-      value.properties.forEach((prop) => {
+      value.properties.forEach(prop => {
         if (prop.type === 'Property')
           recursivelySetValue(fm[keyName], prop.key, prop.value)
       })

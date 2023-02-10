@@ -13,7 +13,7 @@ const md = `
 describe('links', () => {
   it('simple', async () => {
     const r = await compile(md, {
-      remarkPlugins: [links, () => (tree) => {
+      remarkPlugins: [links, () => tree => {
         expect(JSON.stringify(tree, null, 2)).toMatchSnapshot()
       }],
     })

@@ -3,14 +3,14 @@ import { NavigationRoute, registerRoute } from 'workbox-routing'
 
 declare let self
 
-self.addEventListener('message', (event) => {
+self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING')
     self.skipWaiting()
 })
 
 const entries = self.__WB_MANIFEST
 
-const entriesAfterProcessed = entries.map((entry) => {
+const entriesAfterProcessed = entries.map(entry => {
   if (typeof entry === 'object')
     entry.url = entry.url.replace(/(\.\/(\.\.\/)*\.sveltepress\/prerendered)|(index\/?$)/g, '')
   return entry

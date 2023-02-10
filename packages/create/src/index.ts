@@ -67,7 +67,7 @@ async function init() {
           name: 'projectName',
           message: reset('Project name:'),
           initial: defaultTargetDir,
-          onState: (state) => {
+          onState: state => {
             targetDir = formatTargetDir(state.value) || defaultTargetDir
           },
         },
@@ -291,6 +291,6 @@ function pkgFromUserAgent(userAgent: string | undefined) {
   }
 }
 
-init().catch((e) => {
+init().catch(e => {
   console.error(e)
 })
