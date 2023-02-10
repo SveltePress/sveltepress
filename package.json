@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint:eslint": "eslint -c ./.eslintrc.cjs --ext .js,.ts,.svelte ./packages",
-    "lint:prettier": "prettier \"./**/*.svelte\" --write",
+    "lint:prettier": "prettier \"./**/*.svelte\" --check",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "build:vite": "cd packages/vite && pnpm build && cd ../..",
     "build:c": "cd packages/create && pnpm build && cd ../..",
