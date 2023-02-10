@@ -7,7 +7,15 @@
   <br>
 </h1>
 
-> A content centered site build tool
+<p align="center">
+A content centered site build tool
+</p>
+
+<p align="center">
+  <a href="https://sveltepress.site/" target="_blank" rel="noopener noreferrer" >
+    <img src="./assets/site.png" alt="Sveltepress screenshots" width="600" height="auto">
+  </a>
+</p>
 
 ## :pizza: Introduction
 
