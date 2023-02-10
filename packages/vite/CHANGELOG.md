@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.14.0
+
+### Minor Changes
+
+- [`ffedeca`](https://github.com/SveltePress/sveltepress/commit/ffedeca550dcc6fc61f2a41c7b45cdc237f1d64f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for using svelte:head svelte:body svelte:window tag in md
+
 ## 0.13.0
 
 ### Minor Changes
