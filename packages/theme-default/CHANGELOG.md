@@ -1,5 +1,25 @@
 # @sveltepress/theme-default
 
+## 0.19.1
+
+### Patch Changes
+
+- [`227eb1d`](https://github.com/SveltePress/sveltepress/commit/227eb1d617c90b9233937f4e44a7fee7ec2885e3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher should add subscription on pages
+
+- [`8e62382`](https://github.com/SveltePress/sveltepress/commit/8e62382244edd73d7361e3a2bdac61b606c558a9) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: code blocks hold full width in mobile view
+
+- [`bd14d63`](https://github.com/SveltePress/sveltepress/commit/bd14d6330e8ce196a2ed53c33cebe7bdc7f844c9) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: collect navbar into sidebar on mobile view
+
+- [`74ba005`](https://github.com/SveltePress/sveltepress/commit/74ba005be1ee95310b94fb7d625c538ee21b8aff) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize pwa prompt style
+
+- [`555de71`](https://github.com/SveltePress/sveltepress/commit/555de713fdc2c11cb221b7a2b8037acd6c55d4c0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add toc width in mobile view
+
+- [`fb771da`](https://github.com/SveltePress/sveltepress/commit/fb771dacba2c2538b8bfa26f882d5873915a5de9) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve sidebar size
+
+- [`5941bb2`](https://github.com/SveltePress/sveltepress/commit/5941bb24e02cd182f7ddefecf8159b9803abcbef) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: in mobile view pages should contain all sidebar pages
+
+- [`ce695dc`](https://github.com/SveltePress/sveltepress/commit/ce695dc1b38fcbab7a49f9cb436a620857b6b2f5) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sw url replace rule
+
 ## 0.19.0
 
 ### Minor Changes
