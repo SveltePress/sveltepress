@@ -16,7 +16,13 @@
 
   const allSidebars = Object.values(themeOptions.sidebar || []).reduce(
     (all, arr) => [...all, ...arr],
-    []
+    [
+      ...themeOptions.navbar.map(item => {
+        if (item.items) item.collapsible = true
+
+        return item
+      }),
+    ]
   )
 </script>
 

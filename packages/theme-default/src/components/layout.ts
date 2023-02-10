@@ -15,7 +15,7 @@ export const windowWidth = writable(0)
 
 export const resolvedSidebar = writable([])
 
-resolvedSidebar.subscribe((sidebar) => {
+resolvedSidebar.subscribe(sidebar => {
   pages.set(sidebar.reduce(
     (allPages, item) =>
       Array.isArray(item.items)
@@ -25,17 +25,17 @@ resolvedSidebar.subscribe((sidebar) => {
   ))
 })
 
-sidebarCollapsed.subscribe((v) => {
+sidebarCollapsed.subscribe(v => {
   if (!v)
     tocCollapsed.set(true)
 })
 
-tocCollapsed.subscribe((v) => {
+tocCollapsed.subscribe(v => {
   if (!v)
     sidebarCollapsed.set(true)
 })
 
-export const resolveSidebar = (routeId) => {
+export const resolveSidebar = routeId => {
   if (get(windowWidth) < MOBILE_EDGE_WIDTH) {
     resolvedSidebar.set(Object.values(themeOptions.sidebar || []).reduce(
       (all, arr) => [...all, ...arr],

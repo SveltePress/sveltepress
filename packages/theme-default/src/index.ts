@@ -15,7 +15,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
-const defaultTheme: ThemeDefault = (options) => {
+const defaultTheme: ThemeDefault = options => {
   const vitePluginsPre = [
     Unocss({
       presets: [
@@ -64,7 +64,7 @@ const defaultTheme: ThemeDefault = (options) => {
     name: '@sveltepress/theme-default',
     globalLayout: '@sveltepress/theme-default/GlobalLayout.svelte',
     pageLayout: '@sveltepress/theme-default/PageLayout.svelte',
-    vitePlugins: (corePlugin) => {
+    vitePlugins: corePlugin => {
       const plugins = [
         ...vitePluginsPre,
         corePlugin,

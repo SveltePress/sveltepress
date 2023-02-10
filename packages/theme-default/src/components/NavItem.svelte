@@ -12,6 +12,8 @@
   const handleClick = () => {
     if (external) window.open(to, '_blank')
   }
+
+  $$restProps
 </script>
 
 {#if items && items.length}
