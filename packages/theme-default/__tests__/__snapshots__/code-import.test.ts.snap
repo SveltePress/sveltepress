@@ -16,7 +16,7 @@ exports[`code import > import example 2`] = `
 <span class=\\"line\\"><span style=\\"color: #999999\\">  </span><span style=\\"color: #998418\\">theme</span><span style=\\"color: #999999\\">: &#123;</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">    </span><span style=\\"color: #998418\\">breakpoints</span><span style=\\"color: #999999\\">: &#123;</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">      </span><span style=\\"color: #998418\\">sm</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">950px</span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #999999\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color: #999999\\">      </span><span style=\\"color: #998418\\">md</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">1140px</span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #999999\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #999999\\">      </span><span style=\\"color: #998418\\">md</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">1240px</span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #999999\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">    &#125;,</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">  &#125;,</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">  </span><span style=\\"color: #998418\\">shortcuts</span><span style=\\"color: #999999\\">: &#123;</span></span>
@@ -34,7 +34,7 @@ exports[`code import > import example 2`] = `
 <span class=\\"line\\"><span style=\\"color: #D6DEEB\\">  theme: &#123;</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB\\">    breakpoints: &#123;</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB\\">      sm: </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">950px</span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #D6DEEB\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color: #D6DEEB\\">      md: </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">1140px</span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #D6DEEB\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color: #D6DEEB\\">      md: </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">1240px</span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #D6DEEB\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB\\">    &#125;,</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB\\">  &#125;,</span></span>
 <span class=\\"line\\"><span style=\\"color: #D6DEEB\\">  shortcuts: &#123;</span></span>
