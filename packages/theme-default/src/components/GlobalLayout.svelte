@@ -99,7 +99,13 @@
   }
 
   :global(.svp-code-block-wrapper) {
-    --at-apply: 'bg-white dark:bg-[#011627] rounded-lg text-[14px] mb-8';
+    --at-apply: 'bg-white dark:bg-[#011627] sm:rounded-lg text-[14px] mb-8 mx-[-5vw] sm:mx-none';
+  }
+  :global(.svp-live-code--container) {
+    --at-apply: 'mx-[-5vw] sm:mx-none';
+  }
+  :global(.svp-live-code--container .svp-code-block-wrapper) {
+    --at-apply: 'mx-none';
   }
   :global(.svp-code-block) {
     --at-apply: relative px-[18px] py-[12px];
