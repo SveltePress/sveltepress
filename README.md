@@ -29,7 +29,7 @@ Build with [SvelteKit](https://kit.svelte.dev/)
 
 ## :pray: Contributing
 
-First of all, any kind of contributions are welcomed!
+First of all, all kinds of contributions are welcomed!
 
 For contributing details, see [Contributing](./CONTRIBUTING.md)
 
