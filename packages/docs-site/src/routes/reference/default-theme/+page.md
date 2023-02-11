@@ -35,7 +35,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,4,36)
+@code(/../theme-default/types.d.ts,6,31)
 
 ### `navbar`
 
