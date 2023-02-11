@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 0.20.1
+
+### Patch Changes
+
+- [`93f3ecb`](https://github.com/SveltePress/sveltepress/commit/93f3ecbdd3fee857d26fe43c19d8c982148bece7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher should rerender during page change
+
+- [`600e13c`](https://github.com/SveltePress/sveltepress/commit/600e13c6db6bd6916191a7eaf23e6ce4805677ed) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update dependencies
+
 ## 0.20.0
 
 ### Minor Changes
