@@ -1,11 +1,12 @@
 <script>
+  import { tick } from 'svelte'
   import Home from './Home.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages } from './layout'
   import { page } from '$app/stores'
-
+  import { afterNavigate, beforeNavigate } from '$app/navigation'
   const routeId = $page.route.id
   const isHome = routeId === '/'
 
@@ -23,6 +24,18 @@
   } = fm
 
   anchors.set(fmAnchors)
+
+  let ready = false
+
+  beforeNavigate(() => {
+    ready = false
+  })
+
+  afterNavigate(() => {
+    tick().then(() => {
+      ready = true
+    })
+  })
 </script>
 
 <svelte:head>
@@ -43,7 +56,7 @@
         <EditPage {pageType} />
         <LastUpdate {lastUpdate} />
       </div>
-      {#if $pages.length}
+      {#if ready && $pages.length}
         <PageSwitcher />
       {/if}
     </div>
