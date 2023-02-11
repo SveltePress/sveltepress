@@ -115,9 +115,7 @@ Here's an example for showing the theme options of this site:
 </script>
 <div class="viewer">
   <pre>
-    <code>
-      {JSON.stringify(themeOptions, null, 2)}
-    </code>
+    {JSON.stringify(themeOptions, null, 2)}
   </pre>
 </div>
 <style>
