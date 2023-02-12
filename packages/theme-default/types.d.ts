@@ -22,11 +22,17 @@ declare module 'virtual:sveltepress/theme-default' {
     editLink?: string
     discord?: string
     ga?: string
-    pwa?: SvelteKitPWAOptions
+    pwa?: SvelteKitPWAOptions & {
+      darkManifest?: string
+    }
     docsearch?: {
       appId: string
       apiKey: string
       indexName: string
+    }
+    themeColor?: {
+      light: string
+      dark: string
     }
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>

@@ -131,6 +131,7 @@ const config = defineConfig({
           kit: {
             trailingSlash: 'always',
           },
+          darkManifest: '/manifest-dark.webmanifest',
           manifest: {
             start_url: '/',
             scope: '/',
@@ -148,8 +149,8 @@ const config = defineConfig({
                 type: 'image/png',
               },
             ],
-            theme_color: '#ffffff',
-            background_color: '#ffffff',
+            theme_color: '#f2f2f2',
+            background_color: '#f2f2f2',
             display: 'standalone',
           },
           injectManifest: {
@@ -159,6 +160,10 @@ const config = defineConfig({
               '../../.sveltepress/prerendered/**/*.html',
             ],
           },
+        },
+        themeColor: {
+          light: '#f2f2f2',
+          dark: '#18181b',
         },
       }),
       siteConfig: {

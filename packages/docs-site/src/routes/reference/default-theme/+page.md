@@ -35,7 +35,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,6,31)
+@code(/../theme-default/types.d.ts,6,37)
 
 ### `navbar`
 
@@ -69,7 +69,7 @@ An object, key is the group route prefix, value is an array of object with follo
 * `title`  
   The label text of the sidebar item
 * `collapsible`  
-  Determine whether the sidebar group is collapsible or not.
+  Determine whtheme-default/+paether the sidebar group is collapsible or not.
 * `to`  
   The link address
 * `items`  
@@ -101,6 +101,14 @@ Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 ### `pwa`
 
 See [PWA](/guide/default-theme/pwa/) for details.
+
+### `themeColor`
+
+The color of window bar when opened as a local pwa application.
+
+* `light` - the color that applied on light theme
+* `dark` - the color that applied on dark theme
+
 ## Virtual modules
 
 ### `virtual:sveltepress/theme-default`

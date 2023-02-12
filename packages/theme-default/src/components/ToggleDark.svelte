@@ -1,15 +1,29 @@
 <script>
   import { onMount } from 'svelte'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Moon from './icons/Moon.svelte'
   import Sun from './icons/Sun.svelte'
 
   const key = 'SVELTEPRESS_DARK_MODE'
 
   let isDark = false
-
+  const themeColor = themeOptions.themeColor
   const addOrRemoveClass = () => {
-    if (isDark) document.querySelector('html').classList.add('dark')
-    else document.querySelector('html').classList.remove('dark')
+    if (isDark) {
+      document.querySelector('html').classList.add('dark')
+      if (themeColor) {
+        document
+          .getElementById('theme-color')
+          .setAttribute('content', themeColor.dark)
+      }
+    } else {
+      document.querySelector('html').classList.remove('dark')
+      if (themeColor) {
+        document
+          .getElementById('theme-color')
+          .setAttribute('content', themeColor.light)
+      }
+    }
   }
 
   const toggle = () => {
@@ -23,11 +37,23 @@
 </script>
 
 <svelte:head>
+  <meta
+    id="theme-color"
+    name="theme-color"
+    content={themeOptions?.themeColor.light || '#fff'}
+  />
   {@html `<script>
+    const themeColor = JSON.parse('${JSON.stringify(themeOptions.themeColor)}')
   if(window.localStorage.getItem('${key}') === 'on') {
     document.querySelector('html').classList.add('dark')
+    if (themeColor) {
+      document.getElementById('theme-color').setAttribute('content', themeColor.dark)
+    }
   } else {
     document.querySelector('html').classList.remove('dark')
+    if (themeColor) {
+      document.getElementById('theme-color').setAttribute('content', themeColor.light)
+    }
   }
 </script>`}
 </svelte:head>

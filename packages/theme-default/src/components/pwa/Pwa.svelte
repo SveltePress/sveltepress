@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte'
   import { pwaInfo } from 'virtual:pwa-info'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { isDark } from '../layout'
 
   let ReloadPrompt
   onMount(async () => {
@@ -11,7 +13,11 @@
 </script>
 
 <svelte:head>
-  {@html webManifest}
+  {#if themeOptions?.pwa?.darkManifest && $isDark}
+    <meta rel="manifest" href={themeOptions.pwa.darkManifest} />
+  {:else}
+    {@html webManifest}
+  {/if}
 </svelte:head>
 
 {#if ReloadPrompt}

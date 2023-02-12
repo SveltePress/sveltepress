@@ -15,6 +15,8 @@ export const pages = writable([])
 
 export const scrollY = writable(0)
 
+export const isDark = writable(false)
+
 export const resolvedSidebar = writable([])
 
 resolvedSidebar.subscribe(sidebar => {
