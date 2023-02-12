@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.14.2
+
+### Patch Changes
+
+- [`c9fec13`](https://github.com/SveltePress/sveltepress/commit/c9fec136a18d3fae6b485485df8d1277e4ab70fd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove eslitn from single package
+
 ## 0.14.1
 
 ### Patch Changes
