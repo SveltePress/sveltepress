@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.19.1
+
+### Patch Changes
+
+- [`600e13c`](https://github.com/SveltePress/sveltepress/commit/600e13c6db6bd6916191a7eaf23e6ce4805677ed) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update dependencies
+
 ## 0.19.0
 
 ### Minor Changes
