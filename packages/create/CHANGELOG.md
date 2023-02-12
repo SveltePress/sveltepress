@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.19.2
+
+### Patch Changes
+
+- [`fd7bc52`](https://github.com/SveltePress/sveltepress/commit/fd7bc521166f602016e659d4186448eb740973eb) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for different theme color in light/dark mode
+
+- [`c9fec13`](https://github.com/SveltePress/sveltepress/commit/c9fec136a18d3fae6b485485df8d1277e4ab70fd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove eslitn from single package
+
 ## 0.19.1
 
 ### Patch Changes
