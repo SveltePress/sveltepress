@@ -148,7 +148,7 @@ const config = defineConfig({
                 type: 'image/png',
               },
             ],
-            theme_color: '#fb7185',
+            theme_color: '#ffffff',
             background_color: '#ffffff',
             display: 'standalone',
           },

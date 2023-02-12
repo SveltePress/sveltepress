@@ -11,3 +11,4 @@ vite.config.ts.timestamp-*
 !packages/theme-default/.sveltepress
 dist
 .vscode
+.history
