@@ -71,6 +71,9 @@
   main {
     --at-apply: 'pt-[56px] sm:pt-[73px]';
   }
+  :global(html) {
+    --at-apply: 'scroll-smooth';
+  }
   :global(body) {
     --at-apply: 'bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2 scroll-smooth';
     font-family: 'Inter var experimental', 'Inter var', 'Inter', ui-sans-serif,
