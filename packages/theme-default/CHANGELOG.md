@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 0.20.3
+
+### Patch Changes
+
+- [`01eb62a`](https://github.com/SveltePress/sveltepress/commit/01eb62a7137f12b43017f5944a20ba4584b883b7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add default error page
+
+- [`e88724c`](https://github.com/SveltePress/sveltepress/commit/e88724cf910de6163ee458182dd18ba1a1848223) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for param route markdown pages
+
+- [`c84b564`](https://github.com/SveltePress/sveltepress/commit/c84b564129efcce48eafcd41a7ff80626e802eb1) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: theme color toggle
+
+- [`b574183`](https://github.com/SveltePress/sveltepress/commit/b5741838ac6f80c5da4a6a852c730d423ab5dfe0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize nav sidebar toc backdrop style in dark mode
+
 ## 0.20.2
 
 ### Patch Changes

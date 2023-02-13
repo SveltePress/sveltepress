@@ -1,5 +1,13 @@
 # @sveltepress/vite
 
+## 0.14.3
+
+### Patch Changes
+
+- [`e88724c`](https://github.com/SveltePress/sveltepress/commit/e88724cf910de6163ee458182dd18ba1a1848223) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for param route markdown pages
+
+- [`01eb62a`](https://github.com/SveltePress/sveltepress/commit/01eb62a7137f12b43017f5944a20ba4584b883b7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page re
+
 ## 0.14.2
 
 ### Patch Changes
