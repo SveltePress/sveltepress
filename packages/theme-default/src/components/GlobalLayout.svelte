@@ -18,7 +18,10 @@
   import Pwa from './pwa/Pwa.svelte'
   import FloatActions from './FloatActions.svelte'
   import Backdrop from './Backdrop.svelte'
+  import Error from './Error.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { page } from '$app/stores'
+
   let ajaxBar
 
   beforeNavigate(() => {
@@ -26,7 +29,7 @@
   })
 
   afterNavigate(({ to }) => {
-    ajaxBar.end()
+    ajaxBar?.end()
     $sidebarCollapsed = true
     $navCollapsed = true
     resolveSidebar(to.route.id)
@@ -37,27 +40,32 @@
 
 <svelte:window bind:scrollY={$scrollY} />
 
-<main>
-  <AjaxBar bind:this={ajaxBar} />
-  <FloatActions />
-  <Sidebar />
+{#if $page.error}
   <Navbar />
-  <Backdrop
-    show={!$navCollapsed}
-    on:close={() => ($navCollapsed = true)}
-    top="56px"
-    zIndex={887}
-  />
-  <slot />
+  <Error error={$page.error} />
+{:else}
+  <main>
+    <AjaxBar bind:this={ajaxBar} />
+    <FloatActions />
+    <Sidebar />
+    <Navbar />
+    <Backdrop
+      show={!$navCollapsed}
+      on:close={() => ($navCollapsed = true)}
+      top="56px"
+      zIndex={887}
+    />
+    <slot />
 
-  <Toc anchors={$anchors} />
+    <Toc anchors={$anchors} />
 
-  <GoogleAnalytics />
+    <GoogleAnalytics />
 
-  {#if themeOptions.pwa}
-    <Pwa />
-  {/if}
-</main>
+    {#if themeOptions.pwa}
+      <Pwa />
+    {/if}
+  </main>
+{/if}
 
 <style>
   main {

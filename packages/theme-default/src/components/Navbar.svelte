@@ -11,13 +11,14 @@
 
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
+  $: hasError = $page.error
 </script>
 
 <header class="header">
   <div class="header-inner">
     <div class="left">
       <NavbarMobile />
-      {#if isHome}
+      {#if hasError || isHome}
         <div class="logo-container">
           <Logo />
         </div>
@@ -26,7 +27,7 @@
     {#if themeOptions.docsearch}
       <div
         class:is-home={isHome}
-        class:is-not-home={!isHome}
+        class:move={!isHome && !hasError}
         class="doc-search"
       >
         <Search {...themeOptions.docsearch} />
@@ -80,7 +81,7 @@
   .doc-search.is-home {
     --at-apply: left-2;
   }
-  .doc-search.is-not-home {
+  .doc-search.move {
     --at-apply: 'sm:left-[15.5vw]';
   }
   .divider {

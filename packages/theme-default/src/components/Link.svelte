@@ -17,12 +17,14 @@
   class:highlight
   {...isExternal ? { target: '_blank' } : {}}
 >
+  <slot name="pre" />
   <div>
     {label}
   </div>
   {#if isExternal}
     <External />
   {/if}
+  <slot />
 </a>
 
 <style>

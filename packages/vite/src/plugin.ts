@@ -11,7 +11,7 @@ export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 
 // only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by PageLayout
-export const PAGE_OR_LAYOUT_RE = /\/src\/routes\/[ \(\)\w+\/-\[\]\.]*\+(page)|(layout)(@\w+)?\.(svelte|md)$/
+export const PAGE_OR_LAYOUT_RE = /\/src\/routes\/[ \(\)\w+-\[\]\.\/]*\+(page)|(layout)(@\w+)?\.(svelte|md)$/
 
 if (!existsSync(BASE_PATH))
   mkdirSync(BASE_PATH, { recursive: true })
