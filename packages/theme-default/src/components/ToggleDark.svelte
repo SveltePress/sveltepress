@@ -33,6 +33,7 @@
   }
   onMount(() => {
     isDark = localStorage.getItem(key) === 'on'
+    addOrRemoveClass()
   })
 </script>
 
@@ -42,18 +43,15 @@
     name="theme-color"
     content={themeOptions?.themeColor.light || '#fff'}
   />
-  {@html `<script>
-    const themeColor = JSON.parse('${JSON.stringify(themeOptions.themeColor)}')
+  {@html `
+<script>
+  const themeColor = JSON.parse('${JSON.stringify(themeOptions.themeColor)}')
   if(window.localStorage.getItem('${key}') === 'on') {
     document.querySelector('html').classList.add('dark')
-    if (themeColor) {
-      document.getElementById('theme-color').setAttribute('content', themeColor.dark)
-    }
+    document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
   } else {
     document.querySelector('html').classList.remove('dark')
-    if (themeColor) {
-      document.getElementById('theme-color').setAttribute('content', themeColor.light)
-    }
+    document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.light : '#ffffff')
   }
 </script>`}
 </svelte:head>
