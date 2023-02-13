@@ -40,6 +40,7 @@ tocCollapsed.subscribe(v => {
 })
 
 export const resolveSidebar = routeId => {
+  if (!routeId) return
   const key = Object.keys(themeOptions.sidebar || {}).find(key =>
     routeId.startsWith(key),
   )
