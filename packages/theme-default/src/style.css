@@ -219,11 +219,11 @@ html.dark .shiki.vitesse-light {
   display: none;
 }
 
-html .shiki.Night.Owl {
+html .shiki.night-owl {
   display: none;
 }
 
-html.dark .shiki.Night.Owl {
+html.dark .shiki.night-owl {
   display: block;
 }
 
