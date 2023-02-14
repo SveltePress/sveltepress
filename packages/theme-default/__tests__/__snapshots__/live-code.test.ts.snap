@@ -5,6 +5,8 @@ exports[`live code > simple parse 1`] = `
 import CExpansion from '@sveltepress/theme-default/CExpansion.svelte'
 import Link from '@sveltepress/theme-default/Link.svelte'
 import CopyCode from '@sveltepress/theme-default/CopyCode.svelte'
+import Tabs from '@sveltepress/theme-default/Tabs.svelte'
+import TabPanel from '@sveltepress/theme-default/TabPanel.svelte'
 import LiveCodea0d9514c47e from '$sveltepress/live-code/LiveCodea0d9514c47e.svelte'
   const a = 'a'
   export const b = 'b'
