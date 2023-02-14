@@ -32,7 +32,7 @@ title: Tabs
 
 ```svelte live
 <script>
-  import Tabs from '@sveltepress/theme-default/Tabs.svelte'
+  import Tabs from '@sveltepress/theme-default/Tabs.svelte' // [svp! ~~:2]
   import TabPanel from '@sveltepress/theme-default/TabPanel.svelte'
 </script>
 <Tabs activeName="TabTabTab2">
