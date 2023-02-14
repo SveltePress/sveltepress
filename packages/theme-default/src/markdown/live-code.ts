@@ -15,6 +15,8 @@ const globalComponentsImporters = [
   expansionImporter,
   linkImporter,
   copyCodeImporter,
+  'import Tabs from \'@sveltepress/theme-default/Tabs.svelte\'',
+  'import TabPanel from \'@sveltepress/theme-default/TabPanel.svelte\'',
 ]
 
 const liveCode: Plugin<[], any> = function () {

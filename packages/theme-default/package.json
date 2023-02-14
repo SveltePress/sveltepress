@@ -64,6 +64,8 @@
     "./GlobalLayout.svelte": "./src/components/GlobalLayout.svelte",
     "./Link.svelte": "./src/components/Link.svelte",
     "./CopyCode.svelte": "./src/components/CopyCode.svelte",
+    "./Tabs.svelte": "./src/components/Tabs.svelte",
+    "./TabPanel.svelte": "./src/components/TabPanel.svelte",
     "./package.json": "./package.json",
     "./types": {
       "types": "./types.d.ts"
@@ -79,6 +81,8 @@
       "./Link.svelte": "./dist/components/Link.svelte",
       "./GlobalLayout.svelte": "./dist/components/GlobalLayout.svelte",
       "./CopyCode.svelte": "./dist/components/CopyCode.svelte",
+      "./Tabs.svelte": "./dist/components/Tabs.svelte",
+      "./TabPanel.svelte": "./dist/components/TabPanel.svelte",
       "./package.json": "./package.json",
       "./types": {
         "types": "./types.d.ts"

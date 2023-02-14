@@ -71,6 +71,10 @@ const config = defineConfig({
                   to: '/guide/default-theme/links/',
                 },
                 {
+                  title: 'Tabs',
+                  to: '/guide/default-theme/tabs/',
+                },
+                {
                   title: 'Headings & Anchors',
                   to: '/guide/default-theme/headings-and-anchors/',
                 },
