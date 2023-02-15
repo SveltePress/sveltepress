@@ -11,6 +11,7 @@ import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
 import { customTypes } from './markdown/admonitions.js'
+import installPkg from './markdown/install-pkg.js'
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
@@ -80,7 +81,9 @@ const defaultTheme: ThemeDefault = options => {
       [admonitions, { customTypes }] as any,
       links,
       anchors,
-      codeImport],
+      codeImport,
+      installPkg,
+    ],
     highlighter,
   }
 }

@@ -2,35 +2,18 @@
 title: Quick Start
 ---
 
-## Create a project
+## Creating a project
 
 Run one of the following command  
 Depend on what package manager you are using
 
-```sh
-# via npm
-npm create @sveltepress
+@install-pkg(@sveltepress,create)
 
-# via yarn
-yarn create @sveltepress
-
-# vai pnpm
-pnpm create @sveltepress
-```
-
-## Add to an existing sveltekit project
+## Adding to an existing sveltekit project
 
 ### Install vite plugin package
-```sh
-# via npm
-npm install --save @sveltepress/vite
 
-# via yarn
-yarn add @sveltepress/vite
-
-# vai pnpm
-pnpm install @sveltepress/vite
-```
+@install-pkg(@sveltepress/vite)
 
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
 

@@ -4,16 +4,7 @@ title: Default theme
 
 ## Install
 
-```sh
-# via npm
-npm install --save @sveltepress/theme-default
-
-# via yarn
-yarn add @sveltepress/theme-default
-
-# via pnpm
-pnpm install @sveltepress/theme-default
-```
+@install-pkg(@sveltepress/theme-default)
 
 ## Add in your vite config
 

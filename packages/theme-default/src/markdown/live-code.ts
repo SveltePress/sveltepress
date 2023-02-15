@@ -7,16 +7,13 @@ import type { Plugin } from 'unified'
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
-const expansionImporter = 'import CExpansion from \'@sveltepress/theme-default/CExpansion.svelte\''
-const linkImporter = 'import Link from \'@sveltepress/theme-default/Link.svelte\''
-const copyCodeImporter = 'import CopyCode from \'@sveltepress/theme-default/CopyCode.svelte\''
-
 const globalComponentsImporters = [
-  expansionImporter,
-  linkImporter,
-  copyCodeImporter,
+  'import CExpansion from \'@sveltepress/theme-default/CExpansion.svelte\'',
+  'import Link from \'@sveltepress/theme-default/Link.svelte\'',
+  'import CopyCode from \'@sveltepress/theme-default/CopyCode.svelte\'',
   'import Tabs from \'@sveltepress/theme-default/Tabs.svelte\'',
   'import TabPanel from \'@sveltepress/theme-default/TabPanel.svelte\'',
+  'import InstallPkg from \'@sveltepress/theme-default/InstallPkg.svelte\'',
 ]
 
 const liveCode: Plugin<[], any> = function () {

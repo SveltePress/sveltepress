@@ -66,6 +66,7 @@
     "./CopyCode.svelte": "./src/components/CopyCode.svelte",
     "./Tabs.svelte": "./src/components/Tabs.svelte",
     "./TabPanel.svelte": "./src/components/TabPanel.svelte",
+    "./InstallPkg.svelte": "./src/components/InstallPkg.svelte",
     "./package.json": "./package.json",
     "./types": {
       "types": "./types.d.ts"
@@ -83,6 +84,7 @@
       "./CopyCode.svelte": "./dist/components/CopyCode.svelte",
       "./Tabs.svelte": "./dist/components/Tabs.svelte",
       "./TabPanel.svelte": "./dist/components/TabPanel.svelte",
+      "./InstallPkg.svelte": "./dist/components/InstallPkg.svelte",
       "./package.json": "./package.json",
       "./types": {
         "types": "./types.d.ts"

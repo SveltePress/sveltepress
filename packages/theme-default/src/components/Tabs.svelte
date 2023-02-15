@@ -1,6 +1,6 @@
 <script context="module">
   export const activeNameContextKey = Symbol('activeTab')
-  export const namesKey = Symbol('names')
+  export const itemsKey = Symbol('items')
 </script>
 
 <script>
@@ -11,15 +11,16 @@
   import { cubicInOut } from 'svelte/easing'
   export let activeName
 
-  const names = writable([])
+  const items = writable([])
 
   let tabContainer
   let itemWidthArray = []
+  export let bodyPadding = true
 
   const current = writable(activeName)
 
   setContext(activeNameContextKey, current)
-  setContext(namesKey, names)
+  setContext(itemsKey, items)
 
   const toggleTab = name => {
     $current = name
@@ -53,14 +54,14 @@
   }
 
   $: {
-    $names
+    $items
     tick().then(computedItems)
   }
 </script>
 
 <div class="tab" bind:this={tabContainer}>
   <div class="tab-header" style="--bar-op:0;">
-    {#each $names as name (name)}
+    {#each $items as { name, activeIcon, inactiveIcon } (name)}
       {@const active = $current === name}
       <div
         class="tab-header-item"
@@ -69,7 +70,16 @@
         on:click={() => toggleTab(name)}
         on:keypress={() => toggleTab(name)}
       >
-        {name}
+        {#if active}
+          {#if activeIcon}
+            <svelte:component this={activeIcon} />
+          {/if}
+        {:else if inactiveIcon}
+          <svelte:component this={inactiveIcon} />
+        {/if}
+        <div class="name">
+          {name}
+        </div>
       </div>
     {/each}
     {#each itemWidthArray.filter(n => n.name === $current) as { width, left }, i (i)}
@@ -89,7 +99,7 @@
       />
     {/each}
   </div>
-  <div class="tab-body-wrapper">
+  <div class:padding={bodyPadding}>
     <div class="tab-body">
       <slot />
     </div>
@@ -100,17 +110,20 @@
   .tab {
     --at-apply: ' b-1 b-solid b-gray-2 rounded-lg dark:b-gray-8';
   }
-  .tab-body-wrapper {
+  .padding {
     --at-apply: 'p-4';
   }
   .tab-body {
     --at-apply: 'relative overflow-hidden';
   }
   .tab-header {
-    --at-apply: 'relative flex items-center bg-white dark:bg-black rounded-t-lg';
+    --at-apply: 'relative flex items-center justify-center sm:justify-start bg-white dark:bg-black rounded-t-lg text-4';
   }
   .tab-header-item {
-    --at-apply: 'px-8 py-4 cursor-pointer hover:text-rose-5 transition-color';
+    --at-apply: 'py-3 px-4 sm:px-8 sm:py-4 cursor-pointer hover:text-rose-5 transition-color flex items-center';
+  }
+  .name {
+    --at-apply: 'ml-2';
   }
   .active-bar {
     --at-apply: 'absolute bottom-0 h-[4px] bg-rose-5';
