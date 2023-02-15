@@ -1,5 +1,23 @@
 # @sveltepress/theme-default
 
+## 0.21.0
+
+### Minor Changes
+
+- [`557547a`](https://github.com/SveltePress/sveltepress/commit/557547aee8421b2ce0f24f1b9d2484306abd6a0a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add Tabs and TabPanel component
+
+- [`5bef5bb`](https://github.com/SveltePress/sveltepress/commit/5bef5bb8d5909be2b3b9a32d92d4b12494f62c0c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for @install-pkg in md
+
+- [`c5ae6b7`](https://github.com/SveltePress/sveltepress/commit/c5ae6b79b53f10d160547bc094ceafd4e228383c) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use unocss svelte-scoped mode
+
+### Patch Changes
+
+- [`6caee93`](https://github.com/SveltePress/sveltepress/commit/6caee93659c9ae434cd2950941a6ec8d064ddb35) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change dark code theme name to night-owl instead of Night Owl
+
+- [`760ff2c`](https://github.com/SveltePress/sveltepress/commit/760ff2c1d8ac1a4f2399c09af396119ea8553934) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: tab active bar position recompute on window resize
+
+- [`196416d`](https://github.com/SveltePress/sveltepress/commit/196416d287524548e1fff665a6421cd988ce93d5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve smooth scroll
+
 ## 0.20.3
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @sveltepress/create
 
+## 0.20.0
+
+### Minor Changes
+
+- [`557547a`](https://github.com/SveltePress/sveltepress/commit/557547aee8421b2ce0f24f1b9d2484306abd6a0a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add Tabs and TabPanel component
+
+### Patch Changes
+
+- [`196416d`](https://github.com/SveltePress/sveltepress/commit/196416d287524548e1fff665a6421cd988ce93d5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve smooth scroll
+
 ## 0.19.2
 
 ### Patch Changes
