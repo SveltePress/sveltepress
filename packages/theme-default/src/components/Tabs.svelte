@@ -59,6 +59,8 @@
   }
 </script>
 
+<svelte:window on:resize={computedItems} />
+
 <div class="tab" bind:this={tabContainer}>
   <div class="tab-header" style="--bar-op:0;">
     {#each $items as { name, activeIcon, inactiveIcon } (name)}
