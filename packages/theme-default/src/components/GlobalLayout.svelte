@@ -1,6 +1,5 @@
 <script>
   import '@docsearch/css'
-  import 'uno.css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import AjaxBar from './AjaxBar.svelte'
@@ -67,7 +66,7 @@
   </main>
 {/if}
 
-<style>
+<style uno:preflights uno:safelist global>
   main {
     --at-apply: 'pt-[56px] sm:pt-[73px]';
   }

@@ -12,7 +12,7 @@
 <a
   href={to}
   class="link"
-  class:inline
+  class:no-inline={!inline}
   class:active
   class:highlight
   {...isExternal ? { target: '_blank' } : {}}
@@ -32,10 +32,10 @@
     --at-apply: text-rose-4;
   }
   .link {
-    --at-apply: 'flex hover:text-rose-5 cursor-pointer items-center transition-200 transition-color';
+    --at-apply: 'inline-flex hover:text-rose-5 cursor-pointer items-center transition-200 transition-color';
   }
-  .inline {
-    --at-apply: inline-flex;
+  .link.no-inline {
+    --at-apply: 'flex';
   }
   .active {
     --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';

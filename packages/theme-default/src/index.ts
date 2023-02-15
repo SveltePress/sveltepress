@@ -19,6 +19,7 @@ const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 const defaultTheme: ThemeDefault = options => {
   const vitePluginsPre = [
     Unocss({
+      mode: 'svelte-scoped',
       presets: [
         presetUno(),
       ],

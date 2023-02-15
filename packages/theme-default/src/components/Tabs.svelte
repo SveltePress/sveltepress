@@ -61,7 +61,7 @@
 
 <svelte:window on:resize={computedItems} />
 
-<div class="tab" bind:this={tabContainer}>
+<div class="svp-tab" bind:this={tabContainer}>
   <div class="tab-header" style="--bar-op:0;">
     {#each $items as { name, activeIcon, inactiveIcon } (name)}
       {@const active = $current === name}
@@ -109,7 +109,7 @@
 </div>
 
 <style>
-  .tab {
+  .svp-tab {
     --at-apply: ' b-1 b-solid b-gray-2 rounded-lg dark:b-gray-8';
   }
   .padding {
