@@ -4,7 +4,8 @@ on:
   push:
   pull_request:
     types: [opened, synchronize, ready_for_review]
-
+    branches-ignore:
+      - changeset-release/main
 jobs:
   linter:
     name: Running lint
