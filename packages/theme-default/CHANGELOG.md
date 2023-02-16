@@ -1,5 +1,21 @@
 # @sveltepress/theme-default
 
+## 0.21.1
+
+### Patch Changes
+
+- [`f284ec2`](https://github.com/SveltePress/sveltepress/commit/f284ec23e08b27d47658fa7399e5c663df846c59) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update eslint config
+
+- [`4c3dbb1`](https://github.com/SveltePress/sveltepress/commit/4c3dbb1f3142635803a09cb6c7abf6401873c9d0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add point finger active icon in sidebar
+
+- [`6ceddf5`](https://github.com/SveltePress/sveltepress/commit/6ceddf5e4b99928bd0bc0e5edb8e9c47425d0bf6) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove pass siteConfig as prop to pageLayout since can directly get from virtual module
+
+- [`8b15eb5`](https://github.com/SveltePress/sveltepress/commit/8b15eb5f25781f574c898af4a48a5f1c3849300a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for customize hero-image slot in home page
+
+- [`c34c630`](https://github.com/SveltePress/sveltepress/commit/c34c63075ba2e3bc428345a1683f71b7348e1fb3) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update sveltekit and lru-cache dep
+
+- [`33368cf`](https://github.com/SveltePress/sveltepress/commit/33368cf48dae92625df1c26b5fe3535beb200ee5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: render all sidebar during first render
+
 ## 0.21.0
 
 ### Minor Changes

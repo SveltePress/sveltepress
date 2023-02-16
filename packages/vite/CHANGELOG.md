@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.14.4
+
+### Patch Changes
+
+- [`f284ec2`](https://github.com/SveltePress/sveltepress/commit/f284ec23e08b27d47658fa7399e5c663df846c59) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update eslint config
+
+- [`6ceddf5`](https://github.com/SveltePress/sveltepress/commit/6ceddf5e4b99928bd0bc0e5edb8e9c47425d0bf6) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove pass siteConfig as prop to pageLayout since can directly get from virtual module
+
+- [`c34c630`](https://github.com/SveltePress/sveltepress/commit/c34c63075ba2e3bc428345a1683f71b7348e1fb3) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update sveltekit and lru-cache dep
+
 ## 0.14.3
 
 ### Patch Changes
