@@ -8,7 +8,6 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@casual-ui/eslint-config-svelte": "^0.0.2",
     "@sveltejs/adapter-static": "^2.0.1",
     "@sveltejs/kit": "^1.5.5",
     "@sveltepress/theme-default": "workspace:*",

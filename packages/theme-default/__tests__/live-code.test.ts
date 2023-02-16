@@ -34,4 +34,3 @@ describe('live code', () => {
     expect(code).toMatchSnapshot()
   })
 })
-

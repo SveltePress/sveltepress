@@ -15,4 +15,3 @@ export function getFileLastUpdateTime(file: string) {
     child.on('error', reject)
   })
 }
-

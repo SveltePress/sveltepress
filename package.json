@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "devDependencies": {
-    "@casual-ui/eslint-config-svelte": "^0.0.5",
+    "@casual-ui/eslint-config-svelte": "^0.1.0",
     "@changesets/cli": "^2.26.0",
     "eslint": "^8.34.0",
     "prettier": "^2.8.4",
