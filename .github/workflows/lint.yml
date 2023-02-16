@@ -5,6 +5,7 @@ on:
     branches-ignore: 
       - 'changeset-release/main'
   pull_request:
+    types: [synchronize]
 
 jobs:
   linter:
