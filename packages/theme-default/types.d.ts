@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference types="@sveltepress/vite/types" />
+
 declare module 'virtual:sveltepress/theme-default' {
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'

@@ -5,6 +5,7 @@
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages } from './layout'
+  import HeroImage from './home/HeroImage.svelte'
   import { page } from '$app/stores'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   const routeId = $page.route.id
@@ -62,7 +63,11 @@
     </div>
   </div>
 {:else}
-  <Home {...fm} {siteConfig} />
+  <Home {...fm} {siteConfig}>
+    <slot name="hero-image" slot="hero-image">
+      <HeroImage heroImage={fm.heroImage} />
+    </slot>
+  </Home>
   <slot />
 {/if}
 

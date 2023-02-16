@@ -9,7 +9,6 @@
 
   export let features = []
   export let actions = []
-  export let heroImage = ''
   export let tagline = ''
   export let siteConfig
 
@@ -34,11 +33,7 @@
         </div>
       {/if}
     </div>
-    {#if heroImage}
-      <div class="hero-image">
-        <img src={heroImage} alt={siteConfig.title} width="192" />
-      </div>
-    {/if}
+    <slot name="hero-image" />
   </div>
 
   <div class="actions">
@@ -76,12 +71,6 @@
   }
   .intro {
     --at-apply: 'col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1 text-center sm:text-left';
-  }
-  .hero-image {
-    --at-apply: 'flex items-center justify-center col-start sm:col-span-5 col-span-6 col-start-4 sm:col-start-8';
-  }
-  .hero-image img {
-    --at-apply: 'sm:w-60 w-full max-w-[220px]';
   }
   .gradient-title {
     --at-apply: svp-gradient-text;
