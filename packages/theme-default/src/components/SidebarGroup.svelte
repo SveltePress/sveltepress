@@ -1,7 +1,8 @@
 <script>
-  import { slide } from 'svelte/transition'
+  import { scale, slide } from 'svelte/transition'
   import Link from './Link.svelte'
   import ArrowDown from './icons/ArrowDown.svelte'
+  import PointLeft from './icons/PointLeft.svelte'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
@@ -40,7 +41,13 @@
         {@const active = routeId.endsWith('/')
           ? to === routeId
           : to === `${routeId}/`}
-        <Link {to} {active} label={title} inline={false} highlight={false} />
+        <Link {to} {active} label={title} inline={false} highlight={false}>
+          {#if active}
+            <div transition:scale class="active-icon">
+              <PointLeft />
+            </div>
+          {/if}
+        </Link>
       {/each}
     </div>
   {/if}
@@ -64,5 +71,8 @@
   }
   .collapsed {
     --at-apply: rotate--90;
+  }
+  .active-icon {
+    --at-apply: 'text-rose-4 ml-4 flex items-center text-5';
   }
 </style>
