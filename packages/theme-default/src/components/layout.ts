@@ -17,7 +17,7 @@ export const scrollY = writable(0)
 
 export const isDark = writable(false)
 
-export const resolvedSidebar = writable([])
+export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar)).reduce((all, [, item]) => [...all, ...item], []))
 
 resolvedSidebar.subscribe(sidebar => {
   pages.set(sidebar.reduce(
