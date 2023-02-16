@@ -46,10 +46,6 @@ describe('wrap svelte code', () => {
       fm: {
         title: 'title',
       },
-      siteConfig: {
-        title: 'Site title',
-        description: 'Site desc',
-      },
       pageLayout: '/path/to/PageLayout.svelte',
     })).toMatchSnapshot()
   })

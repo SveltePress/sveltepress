@@ -4,7 +4,6 @@ exports[`wrap svelte code > with script, style and context script 1`] = `
 "<script context=\\"module\\">
 import PageLayout from '/path/to/PageLayout.svelte'
 const fm = {\\"title\\":\\"title\\"}
-const siteConfig = {\\"title\\":\\"Site title\\",\\"description\\":\\"Site desc\\"}
   export const someVar = 'some value'
 </script>
 <script>
@@ -24,7 +23,7 @@ let innerWidth
 </svelte:head>
 <svelte:body on:scroll></svelte:body>
 <svelte:window bind:innerWidth={innerWidth}></svelte:window>
-<PageLayout {fm} {siteConfig}>
+<PageLayout {fm}>
 
 
 

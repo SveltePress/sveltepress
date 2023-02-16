@@ -1,6 +1,6 @@
 import LRUCache from 'lru-cache'
 import type { MdsvexOptions } from 'mdsvex'
-import type { ResolvedTheme, SiteConfig } from '../types'
+import type { ResolvedTheme } from '../types'
 import mdToSvelte from '../markdown/md-to-svelte.js'
 import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
 import { getFileLastUpdateTime } from './get-file-last-update.js'
@@ -16,12 +16,10 @@ export async function wrapPage({
   layout,
   id,
   mdOrSvelteCode,
-  siteConfig,
   highlighter,
   rehypePlugins,
   remarkPlugins,
 }: {
-  siteConfig: SiteConfig
   mdOrSvelteCode: string
   id: string
   layout?: string
@@ -75,7 +73,6 @@ export async function wrapPage({
     wrappedCode = wrapSvelteCode({
       svelteCode,
       fm,
-      siteConfig,
       pageLayout: layout,
     })
   }
@@ -90,18 +87,15 @@ export async function wrapPage({
 export function wrapSvelteCode({
   pageLayout,
   svelteCode,
-  siteConfig,
   fm,
 }: {
   svelteCode: string
   pageLayout: string
-  siteConfig: SiteConfig
   fm: Record<string, any>
 }) {
   const imports = [
     `import PageLayout from '${pageLayout}'`,
     `const fm = ${JSON.stringify(fm)}`,
-    `const siteConfig = ${JSON.stringify(siteConfig)}`,
   ].join('\n')
 
   const svelteTagReArr = [svelteHeadRe, svelteBodyRe, svelteWindowRe]
@@ -135,7 +129,7 @@ export function wrapSvelteCode({
   svelteCode = svelteCode.replace(scriptRe, '')
   return `${scripts.join('\n')}
 ${svelteBuiltinTags.join('\n')}
-<PageLayout {fm} {siteConfig}>${svelteCode}</PageLayout>
+<PageLayout {fm}>${svelteCode}</PageLayout>
 ${styleCode}
 `
 }

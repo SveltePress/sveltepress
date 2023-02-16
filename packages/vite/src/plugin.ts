@@ -65,7 +65,6 @@ const sveltepress: (options: {
       if (PAGE_OR_LAYOUT_RE.test(id)) {
         return (await wrapPage({
           mdOrSvelteCode: src,
-          siteConfig,
           ...theme,
           id,
           layout: getLayout(id),
@@ -84,7 +83,6 @@ const sveltepress: (options: {
         ctx.read = async () => (await wrapPage({
           id: file,
           mdOrSvelteCode: src,
-          siteConfig,
           ...theme,
           layout: getLayout(file),
         })).wrappedCode

@@ -1,5 +1,6 @@
 <script>
   import { tick } from 'svelte'
+  import siteConfig from 'virtual:sveltepress/site'
   import Home from './Home.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
@@ -8,13 +9,12 @@
   import HeroImage from './home/HeroImage.svelte'
   import { page } from '$app/stores'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
+
   const routeId = $page.route.id
   const isHome = routeId === '/'
 
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
-
-  export let siteConfig = {}
 
   const {
     title,
