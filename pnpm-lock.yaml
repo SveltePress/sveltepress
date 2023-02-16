@@ -78,11 +78,11 @@ importers:
     specifiers:
       '@docsearch/css': ^3.3.3
       '@docsearch/js': ^3.3.3
-      '@sveltejs/kit': ^1.5.5
+      '@sveltejs/kit': ^1.7.0
       '@sveltejs/package': ^1.0.2
       '@sveltepress/vite': workspace:*
       '@vite-pwa/sveltekit': ^0.1.3
-      lru-cache: ^7.14.1
+      lru-cache: ^7.15.0
       mdsvex: ^0.10.6
       remark-admonitions: ^1.2.1
       shiki: ^0.12.1
@@ -100,8 +100,8 @@ importers:
     dependencies:
       '@docsearch/css': 3.3.3
       '@docsearch/js': 3.3.3
-      '@vite-pwa/sveltekit': 0.1.3_y5eualfhhhebblanuhj4tmnvi4
-      lru-cache: 7.14.1
+      '@vite-pwa/sveltekit': 0.1.3_njsq4kl4skko73pypmnfxtoqh4
+      lru-cache: 7.15.0
       remark-admonitions: 1.2.1
       shiki: 0.12.1
       uid: 2.0.1
@@ -111,7 +111,7 @@ importers:
       workbox-precaching: 6.5.4
       workbox-routing: 6.5.4
     devDependencies:
-      '@sveltejs/kit': 1.5.5_svelte@3.55.1+vite@4.1.1
+      '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@4.1.1
       '@sveltejs/package': 1.0.2_4x7phaipmicbaooxtnresslofa
       '@sveltepress/vite': link:../vite
       mdsvex: 0.10.6_svelte@3.55.1
@@ -123,7 +123,7 @@ importers:
 
   packages/vite:
     specifiers:
-      '@sveltejs/kit': ^1.5.5
+      '@sveltejs/kit': ^1.7.0
       '@types/cross-spawn': ^6.0.2
       '@types/estree': ^1.0.0
       '@types/fs-extra': ^9.0.13
@@ -131,7 +131,7 @@ importers:
       cross-spawn: ^7.0.3
       dayjs: ^1.11.7
       fs-extra: ^11.1.0
-      lru-cache: ^7.14.1
+      lru-cache: ^7.15.0
       mdsvex: ^0.10.6
       picocolors: ^1.0.0
       svelte: ^3.55.1
@@ -142,11 +142,11 @@ importers:
       vite-plugin-inspect: ^0.7.15
       vitest: ^0.26.3
     dependencies:
-      '@sveltejs/kit': 1.5.5_svelte@3.55.1+vite@4.1.1
+      '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@4.1.1
       cross-spawn: 7.0.3
       dayjs: 1.11.7
       fs-extra: 11.1.0
-      lru-cache: 7.14.1
+      lru-cache: 7.15.0
       mdsvex: 0.10.6_svelte@3.55.1
       picocolors: 1.0.0
       unified: 10.1.2
@@ -2477,6 +2477,34 @@ packages:
       svelte: 3.55.1
       tiny-glob: 0.2.9
       undici: 5.18.0
+      vite: 4.1.1_@types+node@18.13.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@sveltejs/kit/1.7.0_svelte@3.55.1+vite@4.1.1:
+    resolution: {integrity: sha512-Pxrf56vJEaWM64L26gEz3A9C1I4TOoERcxw04CImNR5Mcf6UGTITnEx9T8xGgqrZKhftl25izbxXinoKPFDTYw==}
+    engines: {node: ^16.14 || >=18}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      svelte: ^3.54.0
+      vite: ^4.0.0
+    dependencies:
+      '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.1+vite@4.1.1
+      '@types/cookie': 0.5.1
+      cookie: 0.5.0
+      devalue: 4.3.0
+      esm-env: 1.0.0
+      kleur: 4.1.5
+      magic-string: 0.27.0
+      mime: 3.0.0
+      sade: 1.8.1
+      set-cookie-parser: 2.5.1
+      sirv: 2.0.2
+      svelte: 3.55.1
+      tiny-glob: 0.2.9
+      undici: 5.18.0
       vite: 4.1.1
     transitivePeerDependencies:
       - supports-color
@@ -2919,14 +2947,14 @@ packages:
       - rollup
     dev: false
 
-  /@vite-pwa/sveltekit/0.1.3_y5eualfhhhebblanuhj4tmnvi4:
+  /@vite-pwa/sveltekit/0.1.3_njsq4kl4skko73pypmnfxtoqh4:
     resolution: {integrity: sha512-wOo8riFow/eT+5UWyOcfO3ol72+2bT2fHDwd+sryqqriCWbRxOSUBKivVLlqzyna0QA0sNkM1jDGjJShpwq7aQ==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
       vite-plugin-pwa: ^0.14.0
     dependencies:
-      '@sveltejs/kit': 1.5.5_svelte@3.55.1+vite@4.1.1
+      '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@4.1.1
       vite-plugin-pwa: 0.14.4_vite@4.1.1
     dev: false
 
@@ -5416,8 +5444,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lru-cache/7.14.1:
-    resolution: {integrity: sha512-ysxwsnTKdAx96aTRdhDOCQfDgbHnt8SK0KY8SEjO0wHinhWOFTESbjVCMPbU1uGXg/ch4lifqx0wfjOawU2+WA==}
+  /lru-cache/7.15.0:
+    resolution: {integrity: sha512-LKpNuyKR1lRsqN5DatvMOkW2nmUAwI22HoQK604nhs+WiRWSIC0MFUKq2XYUKv1fCVPK9Cro4d4Il3DxM80/fQ==}
     engines: {node: '>=12'}
     dev: false
 
