@@ -23,7 +23,7 @@
 
 <style>
   .btn {
-    --at-apply: 'ml-2 px-4 leading-9 inline-flex items-center cursor-pointer active:translate-y-[2px] rounded select-none';
+    --at-apply: 'ml-2 px-4 leading-9 inline-flex items-center cursor-pointer active:translate-y-[2px] translate-x-0 rounded select-none';
   }
   .primary {
     --at-apply: 'svp-gradient-bg text-gray-8 hover:shadow-lg';
