@@ -10,7 +10,7 @@
   "devDependencies": {
     "@casual-ui/eslint-config-svelte": "^0.0.2",
     "@sveltejs/adapter-static": "^2.0.1",
-    "@sveltejs/kit": "^1.5.5",
+    "@sveltejs/kit": "^1.7.0",
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/vite": "workspace:*",
     "@types/node": "^18.13.0",

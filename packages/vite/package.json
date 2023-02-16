@@ -49,11 +49,11 @@
     "vitest": "^0.26.3"
   },
   "dependencies": {
-    "@sveltejs/kit": "^1.5.5",
+    "@sveltejs/kit": "^1.7.0",
     "cross-spawn": "^7.0.3",
     "dayjs": "^1.11.7",
     "fs-extra": "^11.1.0",
-    "lru-cache": "^7.14.1",
+    "lru-cache": "^7.15.0",
     "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",
     "unified": "^10.1.2",
