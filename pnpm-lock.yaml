@@ -53,8 +53,8 @@ importers:
       '@casual-ui/eslint-config-svelte': ^0.0.2
       '@sveltejs/adapter-static': ^2.0.1
       '@sveltejs/kit': ^1.7.0
-      '@sveltepress/theme-default': workspace:0.21.0
-      '@sveltepress/vite': workspace:0.14.3
+      '@sveltepress/theme-default': workspace:*
+      '@sveltepress/vite': workspace:*
       '@types/node': ^18.13.0
       ali-oss-static-web-deploy: ^0.3.4
       svelte: ^3.55.1
@@ -82,7 +82,7 @@ importers:
       '@docsearch/js': ^3.3.3
       '@sveltejs/kit': ^1.7.0
       '@sveltejs/package': ^1.0.2
-      '@sveltepress/vite': workspace:0.14.3
+      '@sveltepress/vite': workspace:*
       '@vite-pwa/sveltekit': ^0.1.3
       lru-cache: ^7.15.0
       mdsvex: ^0.10.6
