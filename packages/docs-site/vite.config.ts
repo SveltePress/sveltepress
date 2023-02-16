@@ -67,6 +67,10 @@ const config = defineConfig({
                   to: '/guide/default-theme/sidebar/',
                 },
                 {
+                  title: 'Home page',
+                  to: '/guide/default-theme/home-page/',
+                },
+                {
                   title: 'Links',
                   to: '/guide/default-theme/links/',
                 },

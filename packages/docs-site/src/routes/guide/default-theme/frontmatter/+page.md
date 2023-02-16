@@ -2,7 +2,7 @@
 title: Frontmatter in default theme
 ---
 
-## Common frontmatter
+## Shared frontmatter
 
 ```ts
 interface CommonFrontmatter {
@@ -14,41 +14,8 @@ interface CommonFrontmatter {
 The final page title would be `page frontmatter title | siteConfig.title`  
 The final page description would be use the page frontmatter if provided instead of `siteConfig.description`
 
+## Special frontmatter
 
-## Home page frontmatter
+See:
 
-The `src/routes/+page.(md|svelte)` would be identified as home page
-
-Home frontmatter can be like this.  
-Take the frontmatter this site use for example:
-
-@code(../../../+page.md,1,25)
-
-And you can see [Home page](/) for result
-
-### `heroImage`
-
-The home page logo image. It is recommended to use a high quality
-
-### `tagline`
-
-The small description text under site title and description
-
-### `actions`
-
-The action buttons
-* `label`  
-  The label text of action button
-* `to`  
-  The link address of action button
-* `external`  
-  Determine whether to render a external icon on the right of action button
-
-### `features`
-
-The feature cards
-
-* `title`  
-  The title
-* `description`  
-  The text description under the title
+[Home page frontmatter](/guide/default-theme/home-page/#Frontmatter)
