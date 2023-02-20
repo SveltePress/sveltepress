@@ -35,6 +35,10 @@ declare module 'virtual:sveltepress/theme-default' {
     themeColor?: {
       light: string
       dark: string
+      gradient?: {
+        start: string
+        end: string
+      }
     }
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>

@@ -17,6 +17,11 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
 const defaultTheme: ThemeDefault = options => {
+  const { start, end } = options.themeColor?.gradient ?? {
+    start: '#fa709a',
+    end: '#fee140',
+  }
+
   const vitePluginsPre = [
     Unocss({
       mode: 'svelte-scoped',
@@ -31,7 +36,7 @@ const defaultTheme: ThemeDefault = options => {
         },
       },
       shortcuts: {
-        'svp-gradient-bg': 'bg-gradient-linear bg-gradient-[45deg,#fa709a,#fee140]',
+        'svp-gradient-bg': `bg-gradient-linear bg-gradient-[45deg,${start},${end}]`,
         'svp-gradient-text': 'svp-gradient-bg bg-clip-text text-transparent',
         'svp-modal-bg': 'sm:display-none fixed top-0 bottom-0 right-0 left-0 bg-black dark:bg-white bg-opacity-70 dark:bg-opacity-70 z-900 opacity-0 pointer-events-none transition-opacity transition-300',
         'svp-modal-bg-show': 'opacity-100 pointer-events-auto',
