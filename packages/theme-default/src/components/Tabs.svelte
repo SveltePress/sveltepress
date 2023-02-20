@@ -119,7 +119,7 @@
     --at-apply: 'relative overflow-hidden';
   }
   .tab-header {
-    --at-apply: 'relative flex items-center justify-center sm:justify-start bg-white dark:bg-black rounded-t-lg text-4';
+    --at-apply: 'relative flex items-center justify-center sm:justify-start bg-white dark:bg-black rounded-t-lg text-4 b-b-1 b-b-gray-2 dark:b-b-gray-8 b-b-solid';
   }
   .tab-header-item {
     --at-apply: 'py-3 px-4 sm:px-8 sm:py-4 cursor-pointer hover:text-svp-hover transition-color flex items-center';
