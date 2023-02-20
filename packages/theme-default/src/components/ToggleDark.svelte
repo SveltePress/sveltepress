@@ -7,7 +7,7 @@
   const key = 'SVELTEPRESS_DARK_MODE'
 
   let isDark = false
-  const themeColor = themeOptions.themeColor
+  const themeColor = themeOptions.themeColor || { light: '#fff', dark: '#000' }
   const addOrRemoveClass = () => {
     if (isDark) {
       document.querySelector('html').classList.add('dark')
