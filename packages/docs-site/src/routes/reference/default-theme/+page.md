@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,6,37)
+@code(/../theme-default/types.d.ts,8,43)
 
 ### `navbar`
 
@@ -99,6 +99,13 @@ The color of window bar when opened as a local pwa application.
 
 * `light` - the color that applied on light theme
 * `dark` - the color that applied on dark theme
+* `gradient` - the gradient theme color. Would be applied on home page action button and main title. Default is:
+```js
+const defaultGradient = {
+  start: '#fa709a',
+  end: '#fee140',
+}
+```
 
 ## Virtual modules
 
