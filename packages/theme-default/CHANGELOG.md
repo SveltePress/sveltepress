@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 0.22.1
+
+### Patch Changes
+
+- [`d0c06ee`](https://github.com/SveltePress/sveltepress/commit/d0c06eea1cf1a618b115322411a9ef487a36757f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: live within tab should not have margin bottom
+
+- [`a54d5c5`](https://github.com/SveltePress/sveltepress/commit/a54d5c5941c186e636faf2b37a2d81fe757cca69) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: nav dropdown use theme primary color
+
+- [`0a43fbd`](https://github.com/SveltePress/sveltepress/commit/0a43fbd75576eed5e570135c72ba3f5fe6dd152d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add tab header bottom border
+
+- [`66c2ea8`](https://github.com/SveltePress/sveltepress/commit/66c2ea8a4110ac1aa5e151a30690c31121944de9) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for iconify
+
 ## 0.22.0
 
 ### Minor Changes
