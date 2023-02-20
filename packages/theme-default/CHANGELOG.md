@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 0.21.2
+
+### Patch Changes
+
+- [`dac9bfc`](https://github.com/SveltePress/sveltepress/commit/dac9bfc5841baedfc19cda1f99daa7af5600b9d1) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: provide default themeColor config when user not provided
+
+- [`d4d8221`](https://github.com/SveltePress/sveltepress/commit/d4d822116a37205b69fb4e0d78f2276f1664587f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for customize gradient theme color
+
 ## 0.21.1
 
 ### Patch Changes
