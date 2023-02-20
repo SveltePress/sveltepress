@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.20.2
+
+### Patch Changes
+
+- [`dac9bfc`](https://github.com/SveltePress/sveltepress/commit/dac9bfc5841baedfc19cda1f99daa7af5600b9d1) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: provide default themeColor config when user not provided
+
+- [`3683728`](https://github.com/SveltePress/sveltepress/commit/36837281623255106a36e93e3eaff799addd16df) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add preset gitignore
+
 ## 0.20.1
 
 ### Patch Changes
