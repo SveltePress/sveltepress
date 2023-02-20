@@ -110,7 +110,10 @@
 
 <style>
   .svp-tab {
-    --at-apply: ' b-1 b-solid b-gray-2 rounded-lg dark:b-gray-8';
+    --at-apply: 'b-1 b-solid b-gray-2 rounded-lg dark:b-gray-8';
+  }
+  :global(.svp-tab .svp-live-code--container) {
+    margin-bottom: 0;
   }
   .padding {
     --at-apply: 'p-4';
