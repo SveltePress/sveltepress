@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 0.22.0
+
+### Minor Changes
+
+- [`d9156f9`](https://github.com/SveltePress/sveltepress/commit/d9156f9cac6d82a61841400ce9425cef4f67d810) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for customize theme color
+
 ## 0.21.2
 
 ### Patch Changes
