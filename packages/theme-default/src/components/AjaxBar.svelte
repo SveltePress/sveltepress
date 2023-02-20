@@ -49,7 +49,7 @@
     --at-apply: fixed top-0 left-0 right-0 bottom-0 h-[3px] z-99999;
   }
   .progress {
-    --at-apply: transition-width transition-100 bg-rose-4 h-full;
+    --at-apply: transition-width transition-100 bg-svp-primary h-full;
     width: var(--ajax-bar-width);
   }
 </style>

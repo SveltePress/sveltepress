@@ -35,6 +35,8 @@ declare module 'virtual:sveltepress/theme-default' {
     themeColor?: {
       light: string
       dark: string
+      primary?: string
+      hover?: string
       gradient?: {
         start: string
         end: string

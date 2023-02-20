@@ -88,7 +88,7 @@
     text-indent: calc((var(--heading-depth) - 2) * 1.2em);
   }
   .item:not(.active) {
-    --at-apply: 'hover:text-rose-4 cursor-pointer';
+    --at-apply: 'hover:text-svp-primary cursor-pointer';
   }
 
   .anchors {
@@ -99,7 +99,7 @@
     content: ' ';
   }
   .active-bar {
-    --at-apply: 'absolute z-2 bg-rose-1 bg-opacity-80 left-0 h-[2em] border-l-[3px] border-l-solid border-rose-4 border-opacity-80 w-full transition-transform transition-300 top-0 dark:border-rose-8 dark:bg-rose-8 dark:bg-opacity-20';
+    --at-apply: 'absolute z-2 left-0 h-[2em] border-l-[3px] border-l-solid border-svp-primary border-opacity-80 w-full transition-transform transition-300 top-0';
     transform: translateY(var(--bar-top));
   }
   .collapsed {

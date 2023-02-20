@@ -122,13 +122,13 @@
     --at-apply: 'relative flex items-center justify-center sm:justify-start bg-white dark:bg-black rounded-t-lg text-4';
   }
   .tab-header-item {
-    --at-apply: 'py-3 px-4 sm:px-8 sm:py-4 cursor-pointer hover:text-rose-5 transition-color flex items-center';
+    --at-apply: 'py-3 px-4 sm:px-8 sm:py-4 cursor-pointer hover:text-svp-hover transition-color flex items-center';
   }
   .name {
     --at-apply: 'ml-2';
   }
   .active-bar {
-    --at-apply: 'absolute bottom-0 h-[4px] bg-rose-5';
+    --at-apply: 'absolute bottom-0 h-[4px] bg-svp-primary';
     width: var(--bar-width);
     left: var(--bar-left);
   }

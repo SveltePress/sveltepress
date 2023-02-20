@@ -73,6 +73,6 @@
     --at-apply: rotate--90;
   }
   .active-icon {
-    --at-apply: 'text-rose-4 ml-4 flex items-center text-5';
+    --at-apply: 'text-svp-primary ml-4 flex items-center text-5';
   }
 </style>

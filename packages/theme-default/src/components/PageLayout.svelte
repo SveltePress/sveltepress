@@ -77,7 +77,7 @@
   :global(.theme-default--page-layout h4 .svp-title-anchor),
   :global(.theme-default--page-layout h5 .svp-title-anchor),
   :global(.theme-default--page-layout h6 .svp-title-anchor) {
-    --at-apply: 'absolute left-0 top-[50%] flex items-center opacity-0 pointer-events-none hover:text-rose-5 transition-all transition-200';
+    --at-apply: 'absolute left-0 top-[50%] flex items-center opacity-0 pointer-events-none hover:text-svp-hover transition-all transition-200';
     transform: translate(-100%, -50%);
   }
 

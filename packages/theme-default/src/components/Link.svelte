@@ -29,10 +29,10 @@
 
 <style>
   .highlight {
-    --at-apply: text-rose-4;
+    --at-apply: text-svp-primary;
   }
   .link {
-    --at-apply: 'inline-flex hover:text-rose-5 cursor-pointer items-center transition-200 transition-color';
+    --at-apply: 'inline-flex hover:text-svp-hover cursor-pointer items-center transition-200 transition-color';
   }
   .link.no-inline {
     --at-apply: 'flex';

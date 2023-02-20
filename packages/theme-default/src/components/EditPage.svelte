@@ -29,7 +29,7 @@
 
 <style>
   .edit-link {
-    --at-apply: 'flex items-center text-rose-4 hover:text-rose-6 cursor-pointer';
+    --at-apply: 'flex items-center text-svp-primary hover:text-svp-hover cursor-pointer';
   }
   .edit-icon {
     --at-apply: text-5 flex items-center;
