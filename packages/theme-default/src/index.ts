@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
-import { presetUno, transformerDirectives } from 'unocss'
+import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import liveCode from './markdown/live-code.js'
@@ -37,6 +37,7 @@ const defaultTheme: ThemeDefault = options => {
       mode: 'svelte-scoped',
       presets: [
         presetUno(),
+        presetIcons(),
       ],
       transformers: [transformerDirectives()],
       theme: {
