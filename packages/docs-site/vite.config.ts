@@ -12,7 +12,17 @@ const config = defineConfig({
         }, {
           title: 'Reference',
           to: '/reference/vite-plugin/',
-        }],
+        },
+        // {
+        //   title: 'With Children',
+        //   items: [
+        //     {
+        //       title: 'Child1',
+        //       to: '/',
+        //     },
+        //   ],
+        // }
+        ],
         sidebar: {
           '/guide/': [
             {
