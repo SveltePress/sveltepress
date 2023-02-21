@@ -52,9 +52,6 @@ const sveltepress: (options: {
           $sveltepress: resolve(process.cwd(), '.sveltepress'),
         },
       },
-      optimizeDeps: {
-        exclude: ['@sveltepress/vite'],
-      },
     }),
     resolveId(id) {
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
