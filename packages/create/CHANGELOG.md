@@ -1,5 +1,15 @@
 # @sveltepress/create
 
+## 0.21.0
+
+### Minor Changes
+
+- [`d64336a`](https://github.com/SveltePress/sveltepress/commit/d64336a4d154811881361e89b1c06b383839215f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+### Patch Changes
+
+- [`ab7fe7e`](https://github.com/SveltePress/sveltepress/commit/ab7fe7ea1719226e53d117ac9b2a8b173bdb2a03) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update template sveltekit and adapter static version
+
 ## 0.20.3
 
 ### Patch Changes

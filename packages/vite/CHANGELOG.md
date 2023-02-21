@@ -1,5 +1,17 @@
 # @sveltepress/vite
 
+## 0.15.0
+
+### Minor Changes
+
+- [`d64336a`](https://github.com/SveltePress/sveltepress/commit/d64336a4d154811881361e89b1c06b383839215f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+### Patch Changes
+
+- [`c7653bb`](https://github.com/SveltePress/sveltepress/commit/c7653bb64ff1b29e75a1ec38818e009d91dbd30b) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: narrow down cache size
+
+- [`bf193f1`](https://github.com/SveltePress/sveltepress/commit/bf193f1af155aa640a2bd43a332e9dfd84fa8574) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: remove useless unocss dep
+
 ## 0.14.4
 
 ### Patch Changes
