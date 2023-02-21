@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 1.0.1
+
+### Patch Changes
+
+- [`7660569`](https://github.com/SveltePress/sveltepress/commit/766056985e3ba5d21e357989fc1b8ac681157cb0) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use unbuild for bundle
+
+- Updated dependencies [[`7660569`](https://github.com/SveltePress/sveltepress/commit/766056985e3ba5d21e357989fc1b8ac681157cb0)]:
+  - @sveltepress/vite@0.15.1
+
 ## 1.0.0
 
 ### Minor Changes
