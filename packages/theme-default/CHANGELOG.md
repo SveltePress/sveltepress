@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 2.0.0
+
+### Patch Changes
+
+- [`51f0bc8`](https://github.com/SveltePress/sveltepress/commit/51f0bc8e2b8b6e92a2731b2592d58fa0966488d8) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use unbuild for bundle
+
+- Updated dependencies [[`51f0bc8`](https://github.com/SveltePress/sveltepress/commit/51f0bc8e2b8b6e92a2731b2592d58fa0966488d8), [`1223fe2`](https://github.com/SveltePress/sveltepress/commit/1223fe2f89467a8c44a7b53e1476492422308a8d), [`2efa6b9`](https://github.com/SveltePress/sveltepress/commit/2efa6b904cff334b73b5384e17b1d1d71737b0d9)]:
+  - @sveltepress/vite@0.16.0
+
 ## 1.0.0
 
 ### Minor Changes

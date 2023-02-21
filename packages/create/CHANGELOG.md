@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.21.1
+
+### Patch Changes
+
+- [`51f0bc8`](https://github.com/SveltePress/sveltepress/commit/51f0bc8e2b8b6e92a2731b2592d58fa0966488d8) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use unbuild for bundle
+
 ## 0.21.0
 
 ### Minor Changes
