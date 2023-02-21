@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.16.0
+
+### Minor Changes
+
+- [`1223fe2`](https://github.com/SveltePress/sveltepress/commit/1223fe2f89467a8c44a7b53e1476492422308a8d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use unbuild for bundle
+
+### Patch Changes
+
+- [`2efa6b9`](https://github.com/SveltePress/sveltepress/commit/2efa6b904cff334b73b5384e17b1d1d71737b0d9) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: should not exclude @sveltepress/vite
+
 ## 0.15.0
 
 ### Minor Changes
