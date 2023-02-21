@@ -5,7 +5,7 @@ import mdToSvelte from '../markdown/md-to-svelte.js'
 import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
 import { getFileLastUpdateTime } from './get-file-last-update.js'
 
-const cache = new LRUCache<string, any>({ max: 1024 })
+const cache = new LRUCache<string, any>({ max: 100 })
 export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
 const styleRe = /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/g
 const svelteHeadRe = /<svelte:head>[\s\S]*?<\/svelte:head>/g
