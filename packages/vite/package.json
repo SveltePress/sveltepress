@@ -8,18 +8,17 @@
     "types.d.ts"
   ],
   "type": "module",
-  "types": "./dist/es/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/es/index.js",
+    ".": "./dist/index.mjs",
     "./types": {
       "types": "./types.d.ts"
     }
   },
   "scripts": {
     "test": "vitest",
-    "build:es": "tsc -p tsconfig.json -m esnext --outDir dist/es",
-    "build": "pnpm build:es"
+    "build": "unbuild"
   },
   "keywords": [
     "vite",
@@ -39,21 +38,22 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@sveltejs/kit": "^1.7.0",
     "@types/cross-spawn": "^6.0.2",
     "@types/estree": "^1.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.13.0",
+    "svelte": "^3.55.1",
     "typescript": "^4.9.5",
+    "unbuild": "^1.1.1",
     "vite": "^4.1.1",
-    "vitest": "^0.26.3",
-    "@sveltejs/kit": "^1.7.0",
-    "svelte": "^3.55.1"
+    "dayjs": "^1.11.7",
+    "vitest": "^0.26.3"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
-    "dayjs": "^1.11.7",
-    "fs-extra": "^11.1.0",
     "lru-cache": "^7.15.0",
+    "fs-extra": "^11.1.0",
     "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",
     "unified": "^10.1.2",
@@ -61,7 +61,7 @@
   },
   "peerDependencies": {
     "@sveltejs/kit": "^1.7.0",
-    "vite": "^4.1.1",
-    "svelte": "^3.55.1"
+    "svelte": "^3.55.1",
+    "vite": "^4.1.1"
   }
 }

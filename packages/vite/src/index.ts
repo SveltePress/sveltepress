@@ -2,7 +2,7 @@ import type { PluginOption } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import SveltepressVitePlugin from './plugin.js'
-import type { Highlighter, LoadTheme, SiteConfig, SveltepressVitePluginOptions } from './types.js'
+import type { Highlighter, LoadTheme, SiteConfig, SveltepressVitePluginOptions } from './types'
 export * as log from './utils/log.js'
 
 const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
