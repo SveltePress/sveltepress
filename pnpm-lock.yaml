@@ -143,9 +143,9 @@ importers:
       vitest: ^0.26.3
     dependencies:
       cross-spawn: 7.0.3
-      dayjs: 1.11.7
       fs-extra: 11.1.0
       lru-cache: 7.15.0
+      mdsvex: 0.10.6_svelte@3.55.1
       picocolors: 1.0.0
       unified: 10.1.2
       vite-plugin-inspect: 0.7.15_vite@4.1.1
@@ -155,7 +155,7 @@ importers:
       '@types/estree': 1.0.0
       '@types/fs-extra': 9.0.13
       '@types/node': 18.13.0
-      mdsvex: 0.10.6_svelte@3.55.1
+      dayjs: 1.11.7
       svelte: 3.55.1
       typescript: 4.9.5
       unbuild: 1.1.1
@@ -3609,7 +3609,7 @@ packages:
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
-    dev: false
+    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -5500,7 +5500,6 @@ packages:
       prismjs: 1.29.0
       svelte: 3.55.1
       vfile-message: 2.0.4
-    dev: true
 
   /meow/6.1.1:
     resolution: {integrity: sha512-3YffViIt2QWgTy6Pale5QpopX/IvU3LPL03jOTqp6pGj3VjesdO/U8CuHMKpnQr4shCNCM5fd5XFFvIIl6JBHg==}
@@ -6111,12 +6110,10 @@ packages:
 
   /prism-svelte/0.4.7:
     resolution: {integrity: sha512-yABh19CYbM24V7aS7TuPYRNMqthxwbvx6FF/Rw920YbyBWO3tnyPIqRMgHuSVsLmuHkkBS1Akyof463FVdkeDQ==}
-    dev: true
 
   /prismjs/1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
-    dev: true
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
