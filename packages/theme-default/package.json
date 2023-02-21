@@ -54,6 +54,12 @@
     "workbox-precaching": "^6.5.4",
     "workbox-routing": "^6.5.4"
   },
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.7.0",
+    "@sveltepress/vite": "workspace:*",
+    "svelte": "^3.55.1",
+    "vite": "^4.1.1"
+  },
   "type": "module",
   "types": "./src/index.ts",
   "exports": {

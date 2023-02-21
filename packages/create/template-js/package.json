@@ -12,8 +12,8 @@
     "@sveltejs/adapter-static": "^2.0.1",
     "@sveltejs/kit": "^1.7.0",
     "@types/node": "^18.11.17",
-    "svelte": "^3.54.0",
-    "vite": "^4.0.3"
+    "svelte": "^3.55.1",
+    "vite": "^4.1.1"
   },
   "type": "module",
   "license": "MIT"

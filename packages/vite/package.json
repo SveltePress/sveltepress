@@ -43,13 +43,13 @@
     "@types/estree": "^1.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.13.0",
-    "svelte": "^3.55.1",
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
-    "vitest": "^0.26.3"
+    "vitest": "^0.26.3",
+    "@sveltejs/kit": "^1.7.0",
+    "svelte": "^3.55.1"
   },
   "dependencies": {
-    "@sveltejs/kit": "^1.7.0",
     "cross-spawn": "^7.0.3",
     "dayjs": "^1.11.7",
     "fs-extra": "^11.1.0",
@@ -60,6 +60,8 @@
     "vite-plugin-inspect": "^0.7.15"
   },
   "peerDependencies": {
-    "@sveltejs/kit": "^1.7.0"
+    "@sveltejs/kit": "^1.7.0",
+    "vite": "^4.1.1",
+    "svelte": "^3.55.1"
   }
 }

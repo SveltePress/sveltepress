@@ -141,7 +141,6 @@ importers:
       vite-plugin-inspect: ^0.7.15
       vitest: ^0.26.3
     dependencies:
-      '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@4.1.1
       cross-spawn: 7.0.3
       dayjs: 1.11.7
       fs-extra: 11.1.0
@@ -151,6 +150,7 @@ importers:
       unified: 10.1.2
       vite-plugin-inspect: 0.7.15_vite@4.1.1
     devDependencies:
+      '@sveltejs/kit': 1.7.0_svelte@3.55.1+vite@4.1.1
       '@types/cross-spawn': 6.0.2
       '@types/estree': 1.0.0
       '@types/fs-extra': 9.0.13
