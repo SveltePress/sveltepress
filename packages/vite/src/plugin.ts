@@ -10,7 +10,7 @@ export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 
-// only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by PageLayout
+// only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by theme.pageLayout
 export const PAGE_OR_LAYOUT_RE = /\/src\/routes\/[ \(\)\w+-\[\]\.\/]*\+(page)|(layout)(@\w+)?\.(svelte|md)$/
 
 if (!existsSync(BASE_PATH))
@@ -51,6 +51,9 @@ const sveltepress: (options: {
         alias: {
           $sveltepress: resolve(process.cwd(), '.sveltepress'),
         },
+      },
+      optimizeDeps: {
+        exclude: ['@sveltepress/vite'],
       },
     }),
     resolveId(id) {

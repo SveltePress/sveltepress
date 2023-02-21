@@ -57,7 +57,9 @@
     "mdsvex": "^0.10.6",
     "picocolors": "^1.0.0",
     "unified": "^10.1.2",
-    "unocss": "^0.48.5",
     "vite-plugin-inspect": "^0.7.15"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.7.0"
   }
 }
