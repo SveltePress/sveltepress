@@ -1,5 +1,4 @@
 import LRUCache from 'lru-cache'
-import type { MdsvexOptions } from 'mdsvex'
 import type { ResolvedTheme } from '../types'
 import mdToSvelte from '../markdown/md-to-svelte.js'
 import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
@@ -29,13 +28,6 @@ export async function wrapPage({
   if (cached)
     return cached
 
-  const mdsvexOptions: MdsvexOptions = {
-    highlight: {
-      highlighter,
-    },
-    remarkPlugins,
-    rehypePlugins,
-  }
   let fm: Record<string, any> = {}
   let svelteCode = ''
 
@@ -44,8 +36,9 @@ export async function wrapPage({
   if (id.endsWith('.md')) {
     const { code, data } = await mdToSvelte({
       mdContent: mdOrSvelteCode,
-      filename: id,
-      mdsvexOptions,
+      highlighter,
+      remarkPlugins,
+      rehypePlugins,
     }) || { code: '', data: {} }
     const { fm: dataFm = {}, ...others } = data || { fm: {} }
     fm = {
