@@ -2,6 +2,7 @@
   import '@docsearch/css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import { onMount } from 'svelte'
   import AjaxBar from './AjaxBar.svelte'
   import {
     anchors,
@@ -14,7 +15,6 @@
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
-  import Pwa from './pwa/Pwa.svelte'
   import FloatActions from './FloatActions.svelte'
   import Backdrop from './Backdrop.svelte'
   import Error from './Error.svelte'
@@ -32,6 +32,13 @@
     $sidebarCollapsed = true
     $navCollapsed = true
     resolveSidebar(to.route.id)
+  })
+
+  let pwaComponent
+
+  onMount(async () => {
+    if (themeOptions.pwa)
+      pwaComponent = (await import('./pwa/Pwa.svelte')).default
   })
 
   $$restProps
@@ -60,8 +67,8 @@
 
     <GoogleAnalytics />
 
-    {#if themeOptions.pwa}
-      <Pwa />
+    {#if pwaComponent}
+      <svelte:component this={pwaComponent} />
     {/if}
   </main>
 {/if}

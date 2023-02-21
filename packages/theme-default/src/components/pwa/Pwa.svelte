@@ -1,15 +1,18 @@
 <script>
   import { onMount } from 'svelte'
-  import { pwaInfo } from 'virtual:pwa-info'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { isDark } from '../layout'
 
   let ReloadPrompt
+  let webManifest
   onMount(async () => {
-    pwaInfo && (ReloadPrompt = (await import('./ReloadPrompt.svelte')).default)
+    if (themeOptions.pwa) {
+      const { pwaInfo } = await import('virtual:pwa-info')
+      webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+      pwaInfo &&
+        (ReloadPrompt = (await import('./ReloadPrompt.svelte')).default)
+    }
   })
-
-  $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 </script>
 
 <svelte:head>

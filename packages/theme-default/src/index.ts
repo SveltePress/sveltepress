@@ -15,6 +15,8 @@ import installPkg from './markdown/install-pkg.js'
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
+const VIRTUAL_PWA = 'virtual:pwa-info'
+const VIRTUAL_PWA_SVELTE_REGISTER = 'virtual:pwa-register/svelte'
 
 const DEFAULT_GRADIENT = {
   start: '#fa709a',
@@ -92,11 +94,29 @@ const defaultTheme: ThemeDefault = options => {
       const plugins = [
         ...vitePluginsPre,
         corePlugin,
-        SvelteKitPWA({
+      ]
+      if (options.pwa) {
+        plugins.push(SvelteKitPWA({
           ...options.pwa,
           srcDir: resolve(__dirname, './components/pwa'),
-        }),
-      ]
+        }))
+      } else {
+        plugins.push({
+          name: '@sveltepress/virtual-pwa',
+          resolveId(id) {
+            if (id === VIRTUAL_PWA)
+              return VIRTUAL_PWA
+            if (id === VIRTUAL_PWA_SVELTE_REGISTER)
+              return VIRTUAL_PWA_SVELTE_REGISTER
+          },
+          load(id) {
+            if (id === VIRTUAL_PWA)
+              return 'export const pwaInfo = null'
+            if (id === VIRTUAL_PWA_SVELTE_REGISTER)
+              return 'export const useRegisterSW = () => ({ needRefresh: false, updateServiceWorker: false, offlineReady: false })'
+          },
+        })
+      }
       return plugins
     },
     remarkPlugins: [
