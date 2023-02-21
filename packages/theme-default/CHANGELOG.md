@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 0.22.2
+
+### Patch Changes
+
+- [`bc81d15`](https://github.com/SveltePress/sveltepress/commit/bc81d15fa809d35db33ccae2b81045b5895969a9) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for empty pwa virtual module
+
 ## 0.22.1
 
 ### Patch Changes
