@@ -8,6 +8,7 @@ import { parse } from 'yaml'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkDirective from 'remark-directive'
 import { visit } from 'unist-util-visit'
+import remarkGfm from 'remark-gfm'
 import type { Highlighter } from '../types'
 
 interface CompileOptions {
@@ -28,7 +29,8 @@ export default async ({
     .use(remarkParse)
     .use(remarkDirective)
     .use(remarkFrontmatter)
-    .use(remarkExtractFrontmatter, { yaml: parse }) as any
+    .use(remarkExtractFrontmatter, { yaml: parse })
+    .use(remarkGfm)
 
   remarkPlugins?.forEach(plugin => {
     if (Array.isArray(plugin)) {
