@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.15.2
+
+### Patch Changes
+
+- [`13fa0cc`](https://github.com/SveltePress/sveltepress/commit/13fa0cc1c078f575e961ab763e33edf833e1b315) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: replace mdsvex
+
 ## 0.15.1
 
 ### Patch Changes
