@@ -9,7 +9,7 @@ import CopyCode from '@sveltepress/theme-default/CopyCode.svelte'
 import Tabs from '@sveltepress/theme-default/Tabs.svelte'
 import TabPanel from '@sveltepress/theme-default/TabPanel.svelte'
 import InstallPkg from '@sveltepress/theme-default/InstallPkg.svelte'
-import LiveCodebf45ffcab82 from '$sveltepress/live-code/LiveCodebf45ffcab82.svelte'
+import LiveCode5666bdf98c2 from '$sveltepress/live-code/LiveCode5666bdf98c2.svelte'
   const a = 'a'
   export const b = 'b'
 </script>
@@ -17,7 +17,7 @@ import LiveCodebf45ffcab82 from '$sveltepress/live-code/LiveCodebf45ffcab82.svel
   import Foo from '/path/to/Foo.svelte'
 </script>
 <Foo />
-<div class=\\"svp-live-code--container\\"><div class=\\"svp-live-code--demo\\"><LiveCodebf45ffcab82 /></div><CExpansion title=\\"Click fold/expand code\\" reverse={true}><pre><code class=\\"language-svelte\\">&#x3C;script>
+<div class=\\"svp-live-code--container\\"><div class=\\"svp-live-code--demo\\"><LiveCode5666bdf98c2 /></div><CExpansion title=\\"Click fold/expand code\\" reverse={true}><pre><code class=\\"language-svelte\\">&#x3C;script>
   let count = 1
 &#x3C;/script>
 
