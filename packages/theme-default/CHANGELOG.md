@@ -1,5 +1,16 @@
 # @sveltepress/theme-default
 
+## 2.0.0
+
+### Minor Changes
+
+- [`2a222e5`](https://github.com/SveltePress/sveltepress/commit/2a222e5c1b0972dc96341389e028c3778a96e561) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove mdsvex
+
+### Patch Changes
+
+- Updated dependencies [[`2a222e5`](https://github.com/SveltePress/sveltepress/commit/2a222e5c1b0972dc96341389e028c3778a96e561)]:
+  - @sveltepress/vite@0.16.0
+
 ## 1.0.1
 
 ### Patch Changes

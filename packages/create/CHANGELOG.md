@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.22.0
+
+### Minor Changes
+
+- [`2a222e5`](https://github.com/SveltePress/sveltepress/commit/2a222e5c1b0972dc96341389e028c3778a96e561) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove mdsvex
+
 ## 0.21.1
 
 ### Patch Changes
