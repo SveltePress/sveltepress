@@ -51,23 +51,22 @@
     "vitest": "^0.26.3"
   },
   "dependencies": {
-    "yaml": "^2.2.1",
-    "vfile": "^5.3.7",
-    "unist-util-visit": "^4.1.2",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^11.1.0",
+    "lru-cache": "^7.15.0",
+    "picocolors": "^1.0.0",
     "rehype-stringify": "^9.0.3",
+    "remark-directive": "^2.0.1",
     "remark-extract-frontmatter": "^3.2.0",
     "remark-frontmatter": "^4.0.1",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
-    "remark-directive": "^2.0.1",
     "remark-stringify": "^10.0.2",
-    "cross-spawn": "^7.0.3",
-    "fs-extra": "^11.1.0",
-    "lru-cache": "^7.15.0",
-    "mdsvex": "^0.10.6",
-    "picocolors": "^1.0.0",
     "unified": "^10.1.2",
-    "vite-plugin-inspect": "^0.7.15"
+    "unist-util-visit": "^4.1.2",
+    "vfile": "^5.3.7",
+    "vite-plugin-inspect": "^0.7.15",
+    "yaml": "^2.2.1"
   },
   "peerDependencies": {
     "@sveltejs/kit": "^1.7.0",

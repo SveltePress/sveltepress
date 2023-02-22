@@ -46,7 +46,7 @@ For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
 * If passed a function. It will accept the `sveltepress` plugin and need to return a group of plugins.  
   You can customize the `sveltepress` plugin order in your returned plugin chain.  
 
-:::info About theme vite plugins
+:::info[About theme vite plugins]
   It maybe a little strange that theme has vite plugins.  
   But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp files. 
 :::

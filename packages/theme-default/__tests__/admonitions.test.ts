@@ -13,6 +13,7 @@ Some tip content
 describe('admonitions', () => {
   it('tip', async () => {
     const { code, data } = await mdToSvelte({
+      filename: 'demo.md',
       mdContent: source,
       remarkPlugins: [admonitions],
     })

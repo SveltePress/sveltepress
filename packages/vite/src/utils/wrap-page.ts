@@ -39,6 +39,7 @@ export async function wrapPage({
       highlighter,
       remarkPlugins,
       rehypePlugins,
+      filename: id,
     }) || { code: '', data: {} }
     const { fm: dataFm = {}, ...others } = data || { fm: {} }
     fm = {

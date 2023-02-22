@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { describe, expect, it } from 'vitest'
-import { compile } from 'mdsvex'
+import { mdToSvelte } from '@sveltepress/vite'
 import codeImport, { importRe } from '../src/markdown/code-import'
 import highlighter from '../src/markdown/highlighter'
 
@@ -20,14 +20,12 @@ describe('code import', async () => {
       @code(/src/index.ts,20,37)"
     `)
 
-    const { code } = await compile(mdContent, {
+    const { code } = await mdToSvelte({
+      mdContent,
       filename: mdPath,
-      extensions: ['.md'],
-      highlight: {
-        highlighter,
-      },
+      highlighter,
       remarkPlugins: [codeImport],
-    }) || { code: '' }
+    })
     expect(code).toMatchSnapshot()
   })
 

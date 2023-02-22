@@ -13,12 +13,35 @@ Hello, world!
 
 - 1
 - 2
+
+\`\`\`js
+const a = 'a'
+function hello(msg) {
+  console.log('Hello ', msg)
+}
+\`\`\`
+
+<script>
+  import Counter from './Counter.svelte'
+  let count = 0
+</script>
+
+<button on:click="{() => count++}">
+  You've clicked {count} times
+</button>
+
+<style>
+  .foo {
+    color: blue;
+  }
+</style>
 `
 
 describe('md to svelte', () => {
-  it('simple', async () => {
+  it('complex demo', async () => {
     const { code, data } = await mdToSvelte({
       mdContent: source,
+      filename: 'simple.md',
     })
 
     expect(code).toMatchInlineSnapshot(`
@@ -27,7 +50,24 @@ describe('md to svelte', () => {
       <ul>
       <li>1</li>
       <li>2</li>
-      </ul>"
+      </ul>
+      <pre><code class=\\"language-js\\">const a = 'a'
+      function hello(msg) {
+        console.log('Hello ', msg)
+      }
+      </code></pre>
+      <script>
+        import Counter from './Counter.svelte'
+        let count = 0
+      </script>
+      <button on:click=\\"{() => count++}\\">
+        You've clicked {count} times
+      </button>
+      <style>
+        .foo {
+          color: blue;
+        }
+      </style>"
     `)
 
     expect(data).toMatchInlineSnapshot(`
@@ -43,6 +83,7 @@ describe('md to svelte', () => {
       mdOrSvelteCode: source,
       id: '/foo/+page.md',
       layout: '/path/to/CustomLayout.svelte',
+      highlighter: (code, lang) => Promise.resolve(`<div>${lang}</div><div>${code}</div>`),
     })
     expect(code).toMatchInlineSnapshot(`
       {
@@ -55,6 +96,8 @@ describe('md to svelte', () => {
         "wrappedCode": "<script>
       import PageLayout from '/path/to/CustomLayout.svelte'
       const fm = {\\"pageType\\":\\"md\\",\\"lastUpdate\\":\\"Invalid Date\\",\\"title\\":\\"Page Title\\",\\"description\\":\\"Some page description\\"}
+        import Counter from './Counter.svelte'
+        let count = 0
       </script>
 
       <PageLayout {fm}><h3>Hi</h3>
@@ -62,8 +105,21 @@ describe('md to svelte', () => {
       <ul>
       <li>1</li>
       <li>2</li>
-      </ul></PageLayout>
+      </ul>
+      <div>js</div><div>const a = 'a'
+      function hello(msg) {
+        console.log('Hello ', msg)
+      }</div>
 
+      <button on:click=\\"{() => count++}\\">
+        You've clicked {count} times
+      </button>
+      </PageLayout>
+      <style>
+        .foo {
+          color: blue;
+        }
+      </style>
       ",
       }
     `)

@@ -7,6 +7,7 @@ import remarkExtractFrontmatter from 'remark-extract-frontmatter'
 import { parse } from 'yaml'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkDirective from 'remark-directive'
+import { visit } from 'unist-util-visit'
 import type { Highlighter } from '../types'
 
 interface CompileOptions {
@@ -14,9 +15,15 @@ interface CompileOptions {
   highlighter?: Highlighter
   remarkPlugins?: Array<Plugin | [Plugin, any]>
   rehypePlugins?: Plugin[]
+  filename: string
 }
 
-export default async ({ mdContent, remarkPlugins, rehypePlugins }: CompileOptions) => {
+export default async ({
+  mdContent,
+  remarkPlugins,
+  rehypePlugins,
+  highlighter, filename,
+}: CompileOptions) => {
   let processorBeforeRehype = unified()
     .use(remarkParse)
     .use(remarkDirective)
@@ -32,9 +39,34 @@ export default async ({ mdContent, remarkPlugins, rehypePlugins }: CompileOption
     }
   })
 
-  let processorAfterRehype = processorBeforeRehype = processorBeforeRehype.use(remarkRehype, {
-    allowDangerousHtml: true,
-  })
+  if (highlighter) {
+    processorBeforeRehype = processorBeforeRehype.use(
+      () => {
+        return async (tree: any) => {
+          const codeNodes: any[] = []
+          visit(tree, (node, idx, parent) => {
+            if (node.type === 'code') {
+              codeNodes.push({
+                node,
+                idx,
+                parent,
+              })
+            }
+          })
+          await Promise.all(codeNodes.map(async ({ node, idx, parent }) => {
+            const highlightedCode = await highlighter?.(node.value, node.lang)
+            parent.children.splice(idx, 1, {
+              type: 'html',
+              value: highlightedCode,
+            })
+          }))
+        }
+      }) }
+
+  let processorAfterRehype = processorBeforeRehype = processorBeforeRehype
+    .use(remarkRehype, {
+      allowDangerousHtml: true,
+    })
 
   rehypePlugins?.forEach(plugin => {
     processorAfterRehype = processorAfterRehype.use(plugin) as any
@@ -45,7 +77,10 @@ export default async ({ mdContent, remarkPlugins, rehypePlugins }: CompileOption
       allowDangerousHtml: true,
       allowDangerousCharacters: true,
     })
-    .process(new VFile(mdContent))
+    .process(new VFile({
+      value: mdContent,
+      path: filename,
+    }))
 
   const code = String(vFile)
 

@@ -21,8 +21,7 @@ exports[`links > simple 1`] = `
               \\"line\\": 2,
               \\"column\\": 7,
               \\"offset\\": 7
-            },
-            \\"indent\\": []
+            }
           }
         }
       ],
@@ -36,8 +35,7 @@ exports[`links > simple 1`] = `
           \\"line\\": 2,
           \\"column\\": 7,
           \\"offset\\": 7
-        },
-        \\"indent\\": []
+        }
       }
     },
     {
@@ -60,10 +58,7 @@ exports[`links > simple 1`] = `
               \\"line\\": 5,
               \\"column\\": 1,
               \\"offset\\": 40
-            },
-            \\"indent\\": [
-              1
-            ]
+            }
           }
         },
         {
@@ -81,10 +76,7 @@ exports[`links > simple 1`] = `
           \\"line\\": 5,
           \\"column\\": 16,
           \\"offset\\": 55
-        },
-        \\"indent\\": [
-          1
-        ]
+        }
       }
     }
   ],

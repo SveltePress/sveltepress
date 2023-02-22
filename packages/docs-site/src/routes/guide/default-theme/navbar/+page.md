@@ -13,7 +13,7 @@ Each item can hold these props:
 * `external` - Determine whether the item is an external link
 * `items` - Sub links
 
-:::note One level only
+:::note[One level only]
 For now, navbar can only hold one level sub links.  
 :::
 
