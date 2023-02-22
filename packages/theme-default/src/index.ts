@@ -1,17 +1,17 @@
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
-import admonitions from 'remark-admonitions'
 import Unocss from 'unocss/vite'
 import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
+import admonitions from './markdown/admonitions.js'
 import liveCode from './markdown/live-code.js'
 import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
-import { customTypes } from './markdown/admonitions.js'
 import installPkg from './markdown/install-pkg.js'
+
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
@@ -121,7 +121,7 @@ const defaultTheme: ThemeDefault = options => {
     },
     remarkPlugins: [
       liveCode,
-      [admonitions, { customTypes }] as any,
+      admonitions,
       links,
       anchors,
       codeImport,

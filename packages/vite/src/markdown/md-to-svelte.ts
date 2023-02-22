@@ -4,45 +4,55 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import { VFile } from 'vfile'
 import remarkExtractFrontmatter from 'remark-extract-frontmatter'
-import remarkStringify from 'remark-stringify'
 import { parse } from 'yaml'
 import remarkFrontmatter from 'remark-frontmatter'
+import remarkDirective from 'remark-directive'
 import type { Highlighter } from '../types'
-import parseFrontmatter from './parse-frontmatter'
 
 interface CompileOptions {
   mdContent: string
   highlighter?: Highlighter
-  remarkPlugins?: Plugin[]
+  remarkPlugins?: Array<Plugin | [Plugin, any]>
   rehypePlugins?: Plugin[]
 }
 
 export default async ({ mdContent, remarkPlugins, rehypePlugins }: CompileOptions) => {
-  let processorBeforeRehype = unified().use(remarkParse)
+  let processorBeforeRehype = unified()
+    .use(remarkParse)
+    .use(remarkDirective)
+    .use(remarkFrontmatter)
+    .use(remarkExtractFrontmatter, { yaml: parse }) as any
 
   remarkPlugins?.forEach(plugin => {
-    processorBeforeRehype = processorBeforeRehype.use(plugin) as any
+    if (Array.isArray(plugin)) {
+      const [p, options] = plugin
+      processorBeforeRehype = processorBeforeRehype.use(p, options) as any
+    } else {
+      processorBeforeRehype = processorBeforeRehype.use(plugin) as any
+    }
   })
 
-  processorBeforeRehype = processorBeforeRehype.use(remarkRehype)
+  let processorAfterRehype = processorBeforeRehype = processorBeforeRehype.use(remarkRehype, {
+    allowDangerousHtml: true,
+  })
 
   rehypePlugins?.forEach(plugin => {
-    processorBeforeRehype = processorBeforeRehype.use(plugin) as any
+    processorAfterRehype = processorAfterRehype.use(plugin) as any
   })
 
-  processorBeforeRehype = processorBeforeRehype
-    .use(remarkStringify)
-    .use(remarkFrontmatter)
-    .use(remarkExtractFrontmatter, { yaml: parse })
-    .use(parseFrontmatter)
-
-  const file = await processorBeforeRehype
-    .use(rehypeStringify)
+  const vFile = await processorAfterRehype
+    .use(rehypeStringify, {
+      allowDangerousHtml: true,
+      allowDangerousCharacters: true,
+    })
     .process(new VFile(mdContent))
 
-  const code = String(file)
+  const code = String(vFile)
 
-  const data = file.data
+  const data = vFile?.data || {}
 
-  return { code, data }
+  return {
+    code,
+    data,
+  }
 }

@@ -3,7 +3,6 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
-import type { Highlighter as ShikiHighlighter } from 'shiki'
 import LRUCache from 'lru-cache'
 import { processCommands } from './commands.js'
 
@@ -14,19 +13,19 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
 const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
 
-let shikiHighlighter: ShikiHighlighter
-
 const createHighlightWithTheme = async theme => {
-  if (!shikiHighlighter) {
-    shikiHighlighter = await getHighlighter({
-      theme,
-      langs: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss'],
-    })
-  }
+  const shikiHighlighter = await getHighlighter({
+    theme,
+    langs: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss'],
+  })
   return (code, lang) => shikiHighlighter.codeToHtml(code, { lang })
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;')
 }
+
+const highlighterDark = createHighlightWithTheme(nightOwl)
+
+const highlighterLight = createHighlightWithTheme(vitesseLight)
 
 const highlighter: Highlighter = async (code, lang, meta) => {
   const cacheKey = JSON.stringify({ code, lang, meta })
@@ -49,10 +48,6 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   if (titleMeta)
     title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')
 
-  const highlighterDark = await createHighlightWithTheme(nightOwl)
-
-  const highlighterLight = await createHighlightWithTheme(vitesseLight)
-
   cached = `
 <div class="svp-code-block-wrapper">${title
 ? `<div class="svp-code-block--title">${title}</div>
@@ -60,8 +55,8 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 : ''}
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
-    ${await highlighterLight(code, lang)}
-    ${await highlighterDark(code, lang)}
+    ${(await highlighterLight)(code, lang)}
+    ${(await highlighterDark)(code, lang)}
     <div class="svp-code-block--lang">
       ${lang}
     </div>
