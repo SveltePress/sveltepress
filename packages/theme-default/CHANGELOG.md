@@ -1,5 +1,16 @@
 # @sveltepress/theme-default
 
+## 2.0.0
+
+### Minor Changes
+
+- [#101](https://github.com/SveltePress/sveltepress/pull/101) [`b307ce9`](https://github.com/SveltePress/sveltepress/commit/b307ce94f30ed2a174d3d3fefa46e200016f3fd5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: replace mdseve with custom md parse implement
+
+### Patch Changes
+
+- Updated dependencies [[`b307ce9`](https://github.com/SveltePress/sveltepress/commit/b307ce94f30ed2a174d3d3fefa46e200016f3fd5)]:
+  - @sveltepress/vite@0.16.0
+
 ## 1.0.1
 
 ### Patch Changes
