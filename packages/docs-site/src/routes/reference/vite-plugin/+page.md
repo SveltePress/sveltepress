@@ -4,11 +4,11 @@ title: Vite plugin
 
 ## Plugin options
 
-@code(/../vite/src/types.ts,25,29)
+@code(/../vite/src/types.ts,21,25)
 
 ### `siteConfig`
 
-@code(/../vite/src/types.ts,12,15)
+@code(/../vite/src/types.ts,8,11)
 
 * `title`: The site title. Would be `'Untitled site'` if not provided.
 * `description`: The site description. Would be `'Build by sveltepress'` if not provided.
@@ -24,7 +24,7 @@ See [ResolvedTheme](#ResolvedTheme) below
 
 ## ResolvedTheme
 
-@code(/../vite/src/types.ts,16,24)
+@code(/../vite/src/types.ts,12,20)
 
 ### `name`   
 

@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,8,43)
+@code(/../theme-default/types.d.ts,19,45)
 
 ### `navbar`
 
@@ -106,6 +106,8 @@ const defaultGradient = {
   end: '#fee140',
 }
 ```
+* `primary` - the primary theme color of the site
+* `hover` - the hovered links color
 
 ## Virtual modules
 

@@ -61,14 +61,17 @@ const liveCode: Plugin<[], any> = function () {
 
           const path = resolve(BASE_PATH, name)
           writeFileSync(path, node.value || '')
+
+          const componentName = name.replace(/\.svelte$/, '')
+
           liveCodePaths.push({
-            componentName: name.replace(/\.svelte$/, ''),
+            componentName,
             path: `$sveltepress/live-code/${name}`,
           })
 
           const svelteComponent = {
             type: 'html',
-            value: `<div class="svp-live-code--demo"><${name.replace(/\.svelte$/, '')} /></div>`,
+            value: `<div class="svp-live-code--demo"><${componentName} /></div>`,
           }
 
           const liveCodeNode = {

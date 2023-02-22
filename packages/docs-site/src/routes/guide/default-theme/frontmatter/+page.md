@@ -16,6 +16,4 @@ The final page description would be use the page frontmatter if provided instead
 
 ## Special frontmatter
 
-See:
-
-[Home page frontmatter](/guide/default-theme/home-page/#Frontmatter)
+* [Home page frontmatter](/guide/default-theme/home-page/#Frontmatter)
