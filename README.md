@@ -42,7 +42,6 @@ This project can not be done without these projects
 * [Svelte](https://svelte.dev/)
 * [Vitest](https://vitest.dev/)
 * [Vite](https://vitejs.dev/)
-* [Mdsvex](https://mdsvex.com/)
 * [Unocss](https://github.com/unocss/unocss)
 * [Shiki](https://github.com/shikijs/shiki)
 * [Remark](https://github.com/remarkjs/remark)

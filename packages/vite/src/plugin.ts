@@ -79,7 +79,7 @@ const sveltepress: (options: {
       const { file } = ctx
       if (PAGE_OR_LAYOUT_RE.test(file)) {
         const src = await ctx.read()
-        // overwrite read() to return content parsed by mdsvex so that sveltekit can handle the HMR
+        // overwrite read() to return content parsed by md-to-svelte so that sveltekit can handle the HMR
         ctx.read = async () => (await wrapPage({
           id: file,
           mdOrSvelteCode: src,
