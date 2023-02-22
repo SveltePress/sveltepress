@@ -8,12 +8,20 @@
     "types.d.ts"
   ],
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.ts",
   "exports": {
-    "./package.json": "./package.json",
-    ".": "./dist/index.mjs",
+    ".": "./src/index.ts",
     "./types": {
       "types": "./types.d.ts"
+    }
+  },
+  "publishConfig": {
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": "./dist/index.mjs",
+      "./types": {
+        "types": "./types.d.ts"
+      }
     }
   },
   "scripts": {
