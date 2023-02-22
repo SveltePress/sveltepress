@@ -2,7 +2,7 @@
 title:  Code related
 ---
 
-:::tip Tips
+:::tip[Tips]
 All the code block features are fully compatible with dark mode.  
 Toggle dark mode to see the styles.
 :::
@@ -175,7 +175,7 @@ Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current lin
 
 **Input**
 
-:::warning Not Supported
+:::warning[Not Supported]
 Multi `// [svp! fc]` in one single code block is not supported
 :::
 
@@ -331,7 +331,7 @@ For example you have file tree like this
 * `@code(./Foo.svelte,5,10)` - import the line 10 to line 20 in Foo.svelte
 * `@code(/src/routes/foo/Foo.svelte,10,20)` - import the line 10 to line 20 in Foo.svelte
 
-:::tip Tip
+:::tip[Tip]
 Notice that start line and end line both would be included in the final content.
 :::
 

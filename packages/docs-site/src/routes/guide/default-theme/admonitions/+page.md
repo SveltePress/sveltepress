@@ -48,13 +48,13 @@ Some info content
 
 **Input**
 ```md
-:::note Note
+:::note[Note title]
 Some note content
 :::
 ```
 
 **Output**
-:::note Note
+:::note[Note title]
 Some note content
 :::
 
