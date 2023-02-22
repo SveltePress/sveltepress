@@ -30,10 +30,8 @@ jobs:
           version: 7.14.0
       - name: Install Dependencies
         run: pnpm i
-      - name: Test vite package
-        run: cd ./packages/vite && npx vitest run && cd ../..
-      - name: Test theme default package
-        run:  cd ./packages/theme-default && npx vitest run
+      - name: Test
+        run: pnpm test
 
           
         
