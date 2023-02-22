@@ -50,7 +50,7 @@ const liveCode: Plugin<[], any> = function () {
 
           // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          const blockId = `${vFile.filename}-${idx}`
+          const blockId = `${vFile.path}-${idx}`
 
           let name = idNameMap[blockId]
           if (!name) {
