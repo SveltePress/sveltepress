@@ -1,5 +1,13 @@
 # @sveltepress/vite
 
+## 0.15.3
+
+### Patch Changes
+
+- [`7578aa5`](https://github.com/SveltePress/sveltepress/commit/7578aa543ef9789a33552c25fb5d0af464ae09c9) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add gfm support
+
+- [`e9e3bc8`](https://github.com/SveltePress/sveltepress/commit/e9e3bc89080c21c3eeea52646dd072451b8ebb8f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: pass missing code block meta field
+
 ## 0.15.2
 
 ### Patch Changes
