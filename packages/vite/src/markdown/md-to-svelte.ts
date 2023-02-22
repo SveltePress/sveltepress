@@ -56,7 +56,7 @@ export default async ({
             }
           })
           await Promise.all(codeNodes.map(async ({ node, idx, parent }) => {
-            const highlightedCode = await highlighter?.(node.value, node.lang)
+            const highlightedCode = await highlighter?.(node.value, node.lang, node.meta)
             parent.children.splice(idx, 1, {
               type: 'html',
               value: highlightedCode,
