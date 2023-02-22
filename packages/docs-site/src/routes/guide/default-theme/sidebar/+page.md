@@ -27,7 +27,7 @@ const sidebar = {
 }
 ```
 
-:::info Auto external
+:::info[Auto external]
 Unlike the navbar item, sidebar item use the `Link` component.  
 Which means link starts with `http(s)` would be auto recognized as external links.
 :::

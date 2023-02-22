@@ -1,18 +1,93 @@
-import { compile } from 'mdsvex'
-import type { MdsvexOptions } from 'mdsvex'
-import type { Highlighter } from '../types.js'
+import { type Plugin, unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
+import { VFile } from 'vfile'
+import remarkExtractFrontmatter from 'remark-extract-frontmatter'
+import { parse } from 'yaml'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkDirective from 'remark-directive'
+import { visit } from 'unist-util-visit'
+import type { Highlighter } from '../types'
 
-export default async ({ mdContent, filename, mdsvexOptions }: {
+interface CompileOptions {
   mdContent: string
-  filename: string
   highlighter?: Highlighter
-  mdsvexOptions?: MdsvexOptions
-}) => {
-  const transformedSvelteCode = await compile(mdContent, {
-    extensions: ['.md'],
-    filename,
-    ...mdsvexOptions,
-  }) || { code: '', data: {} }
+  remarkPlugins?: Array<Plugin | [Plugin, any]>
+  rehypePlugins?: Plugin[]
+  filename: string
+}
 
-  return transformedSvelteCode
+export default async ({
+  mdContent,
+  remarkPlugins,
+  rehypePlugins,
+  highlighter, filename,
+}: CompileOptions) => {
+  let processorBeforeRehype = unified()
+    .use(remarkParse)
+    .use(remarkDirective)
+    .use(remarkFrontmatter)
+    .use(remarkExtractFrontmatter, { yaml: parse }) as any
+
+  remarkPlugins?.forEach(plugin => {
+    if (Array.isArray(plugin)) {
+      const [p, options] = plugin
+      processorBeforeRehype = processorBeforeRehype.use(p, options) as any
+    } else {
+      processorBeforeRehype = processorBeforeRehype.use(plugin) as any
+    }
+  })
+
+  if (highlighter) {
+    processorBeforeRehype = processorBeforeRehype.use(
+      () => {
+        return async (tree: any) => {
+          const codeNodes: any[] = []
+          visit(tree, (node, idx, parent) => {
+            if (node.type === 'code') {
+              codeNodes.push({
+                node,
+                idx,
+                parent,
+              })
+            }
+          })
+          await Promise.all(codeNodes.map(async ({ node, idx, parent }) => {
+            const highlightedCode = await highlighter?.(node.value, node.lang)
+            parent.children.splice(idx, 1, {
+              type: 'html',
+              value: highlightedCode,
+            })
+          }))
+        }
+      }) }
+
+  let processorAfterRehype = processorBeforeRehype = processorBeforeRehype
+    .use(remarkRehype, {
+      allowDangerousHtml: true,
+    })
+
+  rehypePlugins?.forEach(plugin => {
+    processorAfterRehype = processorAfterRehype.use(plugin) as any
+  })
+
+  const vFile = await processorAfterRehype
+    .use(rehypeStringify, {
+      allowDangerousHtml: true,
+      allowDangerousCharacters: true,
+    })
+    .process(new VFile({
+      value: mdContent,
+      path: filename,
+    }))
+
+  const code = String(vFile)
+
+  const data = vFile?.data || {}
+
+  return {
+    code,
+    data,
+  }
 }

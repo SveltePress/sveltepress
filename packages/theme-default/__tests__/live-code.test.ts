@@ -1,5 +1,5 @@
+import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
-import { compile } from 'mdsvex'
 import liveCode from '../src/markdown/live-code'
 
 const md = `
@@ -27,7 +27,9 @@ const md = `
 
 describe('live code', () => {
   it('simple parse', async () => {
-    const { code } = await compile(md, {
+    const { code } = await mdToSvelte({
+      filename: 'demo.md',
+      mdContent: md,
       remarkPlugins: [liveCode],
     }) || { code: '' }
 

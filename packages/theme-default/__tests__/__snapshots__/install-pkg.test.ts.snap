@@ -1,8 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`install-pkg > md 1`] = `
-"
-<InstallPkg><div slot=\\"npm\\">
+"<InstallPkg><div slot=\\"npm\\">
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
@@ -14,9 +13,7 @@ exports[`install-pkg > md 1`] = `
     <CopyCode />
     
   </div>
-</div></div><div
-  slot=\\"yarn\\"
->
+</div></div><div slot=\\"yarn\\">
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
@@ -28,9 +25,7 @@ exports[`install-pkg > md 1`] = `
     <CopyCode />
     
   </div>
-</div></div><div
-  slot=\\"pnpm\\"
->
+</div></div><div slot=\\"pnpm\\">
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
@@ -42,6 +37,5 @@ exports[`install-pkg > md 1`] = `
     <CopyCode />
     
   </div>
-</div></div></InstallPkg>
-"
+</div></div></InstallPkg>"
 `;

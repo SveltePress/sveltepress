@@ -1,5 +1,5 @@
+import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
-import { compile } from 'mdsvex'
 import links from '../src/markdown/links'
 
 const md = `
@@ -12,22 +12,21 @@ const md = `
 
 describe('links', () => {
   it('simple', async () => {
-    const r = await compile(md, {
+    const r = await mdToSvelte({
+      mdContent: md,
+      filename: 'demo.md',
       remarkPlugins: [links, () => tree => {
         expect(JSON.stringify(tree, null, 2)).toMatchSnapshot()
       }],
     })
     expect(r).toMatchInlineSnapshot(`
       {
-        "code": "
-      <h2>Foo</h2>
+        "code": "<h2>Foo</h2>
       <p><Link to=\\"https://www.google.com/\\" label=\\"foo\\" />
-      <Link to=\\"/foo/bar\\" label=\\"bar\\" /></p>
-      ",
+      <Link to=\\"/foo/bar\\" label=\\"bar\\" /></p>",
         "data": {
           "anchors": [],
         },
-        "map": "",
       }
     `)
   })

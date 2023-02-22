@@ -91,7 +91,7 @@ title: Tabs
 </Tabs>
 ```
 
-:::info Auto import in markdown
+:::info[Auto import in markdown]
 Notice that you won't need to import `Tabs` and `TabPanel` manually in markdown.  
 But needed when in svelte files.
 :::

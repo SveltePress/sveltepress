@@ -30,7 +30,7 @@ This feature is provided by [Mdsvex](https://mdsvex.com/)
   let count = 0
 </script>
 
-<button on:click={() => count++}>
+<button on:click="{() => count++}">
   You've clicked {count} times
 </button>
 

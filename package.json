@@ -17,7 +17,10 @@
     "build:c": "cd packages/create && pnpm build && cd ../..",
     "build:td": "cd packages/theme-default && pnpm build && cd ../..",
     "build:all": "pnpm build:c && pnpm build:vite && pnpm build:td",
-    "release": "pnpm build:all && changeset publish"
+    "release": "pnpm build:all && changeset publish",
+    "test:vite": "cd packages/vite && npx vitest run && cd ../..",
+    "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
+    "test": "pnpm build:vite && pnpm test:vite && pnpm test:theme-default"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.4.8"

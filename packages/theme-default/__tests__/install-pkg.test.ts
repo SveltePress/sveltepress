@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { compile } from 'mdsvex'
+import { mdToSvelte } from '@sveltepress/vite'
 import installPkg, { pkgRe } from '../src/markdown/install-pkg'
 import highlighter from '../src/markdown/highlighter'
 
@@ -24,14 +24,12 @@ describe('install-pkg', () => {
   it('md', async () => {
     const source = '@install-pkg(@sveltepress/vite,create)'
 
-    const { code } = await compile(source, {
+    const { code } = await mdToSvelte({
+      mdContent: source,
       filename: 'install-pkg.md',
-      extensions: ['.md'],
-      highlight: {
-        highlighter,
-      },
+      highlighter,
       remarkPlugins: [installPkg],
-    }) || { code: '' }
+    })
     expect(code).toMatchSnapshot()
   })
 })

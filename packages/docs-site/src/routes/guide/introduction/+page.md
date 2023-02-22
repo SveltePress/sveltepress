@@ -18,7 +18,7 @@ For example:
 
 ## Layout hierarchy
 
-:::note Root layout is required
+:::note[Root layout is required]
 There must be a `src/routes/+layout.svelte` or `src/routes/+layout.md` as root layout file.  
 **Otherwise the global layout provided by theme would not working!**
 :::
