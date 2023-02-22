@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.0.3
+
+### Patch Changes
+
+- [`d1b5627`](https://github.com/SveltePress/sveltepress/commit/d1b5627c0eb618669462a1d96fc64da7cbcfbaa8) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use vFile.path instead of vFile.filename as live code block id prefix
+
 ## 1.0.2
 
 ### Patch Changes
