@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.0.5
+
+### Patch Changes
+
+- [`311c9f3`](https://github.com/SveltePress/sveltepress/commit/311c9f30b24cef153db73d796f95bffaee4c3f5d) Thanks [@Blackman99](https://github.com/Blackman99)! - remove: @sveltepress/vite as peerDep
+
 ## 1.0.4
 
 ### Patch Changes
