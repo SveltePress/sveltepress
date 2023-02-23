@@ -54,7 +54,6 @@
   },
   "peerDependencies": {
     "@sveltejs/kit": "^1.7.0",
-    "@sveltepress/vite": "workspace:*",
     "svelte": "^3.55.1",
     "vite": "^4.1.1"
   },
