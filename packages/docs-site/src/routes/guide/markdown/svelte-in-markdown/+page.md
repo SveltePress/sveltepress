@@ -10,16 +10,16 @@ This feature allow you to write
 
 **Input**
 
-````md
+```md
 > A counter
 <script>
   let count = 0
 </script>
 
-<button on:click={() => count++}>
+<button on:click="{() => count++}">
   You've clicked {count} times
 </button>
-````
+```
 
 **Output**
 
@@ -30,9 +30,17 @@ This feature allow you to write
   let count = 0
 </script>
 
-<button on:click="{() => count++}">
+<button on:click="{() => count++}" style="margin-bottom: 12px;">
   You've clicked {count} times
 </button>
+
+:::note[Syntax Restrictions]
+Always use quotes in markdown files.
+```svelte
+  <button on:click={() => count++}></button> // [svp! --]
+  <button on:click="{() => count++}"></button> // [svp! ++]
+```
+:::
 
 ## Import svelte in md
 
