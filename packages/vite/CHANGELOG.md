@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.16.0
+
+### Minor Changes
+
+- [`7b1a226`](https://github.com/SveltePress/sveltepress/commit/7b1a226290a9e79a41795ea5c4e2bffe40feca0a) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for use custom remark and rehype plugins
+
 ## 0.15.3
 
 ### Patch Changes
