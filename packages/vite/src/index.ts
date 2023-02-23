@@ -10,6 +10,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   theme,
   addInspect,
   siteConfig,
+  remarkPlugins,
+  rehypePlugins,
 } = {
   addInspect: false,
 }) => {
@@ -18,7 +20,12 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     description: siteConfig?.description || 'Build by Sveltepress',
   }
   const corePlugin = [
-    SveltepressVitePlugin({ theme, siteConfig: requiredSiteConfig }),
+    SveltepressVitePlugin({
+      theme,
+      siteConfig: requiredSiteConfig,
+      remarkPlugins,
+      rehypePlugins,
+    }),
     sveltekit(),
   ]
 

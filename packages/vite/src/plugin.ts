@@ -2,7 +2,8 @@ import { resolve } from 'path'
 import { existsSync, mkdirSync } from 'fs'
 import type { PluginOption } from 'vite'
 
-import type { ResolvedTheme, SiteConfig } from './types'
+import type { Plugin } from 'unified'
+import type { SveltepressVitePluginOptions } from './types'
 import { wrapPage } from './utils/wrap-page.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -16,13 +17,24 @@ export const PAGE_OR_LAYOUT_RE = /\/src\/routes\/[ \(\)\w+-\[\]\.\/]*\+(page)|(l
 if (!existsSync(BASE_PATH))
   mkdirSync(BASE_PATH, { recursive: true })
 
-const sveltepress: (options: {
-  theme?: ResolvedTheme
-  siteConfig: Required<SiteConfig>
-}) => PluginOption = ({
+const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   theme,
   siteConfig,
+  rehypePlugins,
+  remarkPlugins,
 }) => {
+  const allRemarkPlugins: Plugin[] = []
+  const allRehypePlugins: Plugin[] = []
+
+  if (theme?.remarkPlugins)
+    allRemarkPlugins.push(...theme.remarkPlugins)
+  if (remarkPlugins)
+    allRemarkPlugins.push(...remarkPlugins)
+  if (theme?.rehypePlugins)
+    allRehypePlugins.push(...theme.rehypePlugins)
+  if (rehypePlugins)
+    allRehypePlugins.push(...rehypePlugins)
+
   function getLayout(path: string) {
     let layout: string | undefined
     if (isRootLayout(path))
@@ -31,6 +43,15 @@ const sveltepress: (options: {
       layout = theme?.pageLayout
     return layout
   }
+
+  const getWrappedCode = async (id: string, src: string) => (await wrapPage({
+    id,
+    mdOrSvelteCode: src,
+    ...theme,
+    remarkPlugins: allRemarkPlugins,
+    rehypePlugins: allRehypePlugins,
+    layout: getLayout(id),
+  })).wrappedCode
 
   return {
     name: '@sveltepress/vite',
@@ -62,14 +83,8 @@ const sveltepress: (options: {
         return `export default ${JSON.stringify(siteConfig)}`
     },
     async transform(src, id) {
-      if (PAGE_OR_LAYOUT_RE.test(id)) {
-        return (await wrapPage({
-          mdOrSvelteCode: src,
-          ...theme,
-          id,
-          layout: getLayout(id),
-        })).wrappedCode
-      }
+      if (PAGE_OR_LAYOUT_RE.test(id))
+        return await getWrappedCode(id, src)
 
       return {
         code: src,
@@ -80,12 +95,7 @@ const sveltepress: (options: {
       if (PAGE_OR_LAYOUT_RE.test(file)) {
         const src = await ctx.read()
         // overwrite read() to return content parsed by md-to-svelte so that sveltekit can handle the HMR
-        ctx.read = async () => (await wrapPage({
-          id: file,
-          mdOrSvelteCode: src,
-          ...theme,
-          layout: getLayout(file),
-        })).wrappedCode
+        ctx.read = async () => await getWrappedCode(file, src)
       }
     },
   }

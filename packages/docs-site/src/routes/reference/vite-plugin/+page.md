@@ -4,7 +4,7 @@ title: Vite plugin
 
 ## Plugin options
 
-@code(/../vite/src/types.ts,21,25)
+@code(/../vite/src/types.ts,21,27)
 
 ### `siteConfig`
 
@@ -21,6 +21,16 @@ It is useful to inspect or observe the vite pipeline.
 ### `theme`
 
 See [ResolvedTheme](#ResolvedTheme) below
+
+### `remarkPlugins`
+
+The remark plugins used for markdown parse.  
+Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details. 
+
+### `rehypePlugins`  
+
+The rehype plugins used for html generator.
+Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
 
 ## ResolvedTheme
 
@@ -66,6 +76,26 @@ Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more detai
 
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
+
+:::important[Plugins order]
+The remark and rehype plugins that theme provide would be called before the plugins provide by vite plugin.
+For example:
+```js title="vite.config.(js|ts)"
+import { defineConfig } from 'vite'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme(/* theme options */),
+      remarkPlugins: [yourRemarkPlugin]
+    })
+  ]
+})
+```
+yourRemarkPlugin would run after the remark plugins in defaultTheme
+:::
 
 ## Virtual modules
 
