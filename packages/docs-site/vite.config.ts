@@ -81,12 +81,8 @@ const config = defineConfig({
                   to: '/guide/default-theme/home-page/',
                 },
                 {
-                  title: 'Links',
-                  to: '/guide/default-theme/links/',
-                },
-                {
-                  title: 'Tabs',
-                  to: '/guide/default-theme/tabs/',
+                  title: 'Built-in Components',
+                  to: '/guide/default-theme/builtin-components/',
                 },
                 {
                   title: 'Headings & Anchors',

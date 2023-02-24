@@ -5,10 +5,6 @@ import { vitePreprocess } from '@sveltejs/kit/vite'
  */
 const config = {
   preprocess: [vitePreprocess()],
-  package: {
-    source: 'src',
-    dir: 'dist',
-  },
 }
 
 export default config

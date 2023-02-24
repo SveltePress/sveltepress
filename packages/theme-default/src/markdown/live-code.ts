@@ -8,12 +8,7 @@ const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 
 const globalComponentsImporters = [
-  'import CExpansion from \'@sveltepress/theme-default/CExpansion.svelte\'',
-  'import Link from \'@sveltepress/theme-default/Link.svelte\'',
-  'import CopyCode from \'@sveltepress/theme-default/CopyCode.svelte\'',
-  'import Tabs from \'@sveltepress/theme-default/Tabs.svelte\'',
-  'import TabPanel from \'@sveltepress/theme-default/TabPanel.svelte\'',
-  'import InstallPkg from \'@sveltepress/theme-default/InstallPkg.svelte\'',
+  'import { CExpansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from \'@sveltepress/theme-default/components\'',
 ]
 
 const liveCode: Plugin<[], any> = function () {

@@ -37,11 +37,10 @@ You can directly use Link component in md pages which is auto imported
 
 ## Link components in svelte
 
-Link component in svelte files should import manually.
 
 ```svelte live
 <script>
-  import Link from '@sveltepress/theme-default/Link.svelte' // [svp! ~~]
+  import { Link } from '@sveltepress/theme-default/components' // [svp! ~~]
 </script>
 <div style="line-height: 24px;">
   <Link to="/" label="Home page" /> <br />
