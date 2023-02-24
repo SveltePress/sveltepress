@@ -148,6 +148,14 @@ Would auto add a external icon when link address starts with http or https
 * `title` - The expansion title
 * `showIcon` - Determine whether to the icon or not. Default is `true`
 * `headerStyle` - Customize the header inline style
+* `bind:expanded` - Determine the expanded status. Default is `false`
+
+### Slots
+
+* `default` - The expansion content
+* `icon-fold` - The icon used for folded
+* `icon-expanded` - The icon used for expanded
+* `arrow` - Customize the expansion arrow indicator
 
 ### In markdown
 
@@ -180,4 +188,3 @@ Would auto add a external icon when link address starts with http or https
   <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
 </CExpansion>
 ```
-
