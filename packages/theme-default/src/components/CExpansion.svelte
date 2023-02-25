@@ -1,6 +1,7 @@
 <script>
   import Svelte from './icons/Svelte.svelte'
   import SvelteWithColor from './icons/SvelteWithColor.svelte'
+  import Markdown from './icons/Markdown.svelte'
   import ArrowDown from './icons/ArrowDown.svelte'
   import slide from './actions/slide'
 
@@ -27,6 +28,8 @@
    * @type {string}
    */
   export let headerStyle = ''
+
+  export let codeType = 'svelte'
 
   export let showIcon = true
   /**
@@ -62,11 +65,23 @@
           <!-- The content before title -->
           {#if expanded}
             <slot name="icon-expanded">
-              <SvelteWithColor />
+              {#if codeType === 'svelte'}
+                <SvelteWithColor />
+              {:else if codeType === 'md'}
+                <div class="flex items-center text-6 text-svp-primary">
+                  <Markdown />
+                </div>
+              {/if}
             </slot>
           {:else}
             <slot name="icon-fold">
-              <Svelte />
+              {#if codeType === 'svelte'}
+                <Svelte />
+              {:else if codeType === 'md'}
+                <div class="flex items-center text-6">
+                  <Markdown />
+                </div>
+              {/if}
             </slot>
           {/if}
         </div>
@@ -101,7 +116,7 @@
 
 <style>
   :global(.svp-live-code--container) {
-    --at-apply: 'mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded';
+    --at-apply: 'mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded-lg';
   }
   :global(.svp-live-code--demo) {
     --at-apply: p-4;

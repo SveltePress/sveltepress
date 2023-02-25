@@ -9,9 +9,7 @@ Toggle dark mode to see the styles.
 
 ## Code highlight
 
-**Input**
-
-````md
+````md live
 ```svelte
 <script>
   const msg = 'world!'
@@ -22,24 +20,10 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 ````
-
-**Output**
-
-```svelte
-<script>
-  const msg = 'world!'
-</script>
-  
-<h1>
-  Hello, {msg}
-</h1>
-```
 
 ## Code title
 
-**Input**
-
-````md
+````md live
 ```svelte title="HelloWorld.svelte"
 <script>
   const msg = 'world!'
@@ -50,24 +34,12 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 ````
-
-**Output**
-
-```svelte title="HelloWorld.svelte"
-<script>
-  const msg = 'world!'
-</script>
-  
-<h1>
-  Hello, {msg}
-</h1>
-```
 
 ## Line numbers
 
 Add `ln` in code block meta field would add line numbers in the rendered result.
 
-````md
+````md live
 ```svelte ln
 <script>
   const msg = 'world!'
@@ -78,28 +50,13 @@ Add `ln` in code block meta field would add line numbers in the rendered result.
 </h1>
 ```
 ````
-
-**Output**
-
-```svelte ln
-<script>
-  const msg = 'world!'
-</script>
-  
-<h1>
-  Hello, {msg}
-</h1>
-```
-
 
 ## Line highlight
 
 Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want  
 Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the current line you want
 
-**Input**
-
-````md
+````md live
 ```svelte
 <script>
   const msg = 'world!' // [svp! hl]
@@ -118,33 +75,12 @@ Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the
 ```
 ````
 
-**Output**
-
-```svelte
-<script>
-  const msg = 'world!' // [svp! hl]
-
-  function hello() {
-    const foo = 'bar' // [svp! hl:2]
-    const bar = foo
-
-    return foo
-  }
-</script>
-  
-<h1>
-  Hello, {msg} // [svp! ~~]
-</h1>
-```
-
 ## Diff
 
 Use `// [svp! df:+]` or `// [svp! ++]` for diff add  
 Use `// [svp! df:-]` or `// [svp! --]` for diff subtract
 
-**Input**
-
-````md
+````md live
 ```js
 const msg = 'world!' // [svp! df:-]
 const newMsg = 'new world!' // [svp! df:+]
@@ -155,31 +91,17 @@ function hello() {
 }
 ```
 ````
-
-**Output**
-
-```js
-const msg = 'world!' // [svp! df:-]
-const newMsg = 'new world!' // [svp! df:+]
-
-function hello() {
-  console.log('Hello', msg) // [svp! --]
-  console.log('Hello', newMsg) // [svp! ++]
-}
-```
 
 ## Focus
 
 Use `// [svp! fc]` or `// [svp! !!]` to focus line  
 Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current line
 
-**Input**
-
 :::warning[Not Supported]
 Multi `// [svp! fc]` in one single code block is not supported
 :::
 
-````md
+````md live
 ```html
 <div>
   this would be blur
@@ -199,25 +121,32 @@ Multi `// [svp! fc]` in one single code block is not supported
 ```
 ````
 
+## Markdown live code
+
+Use md lang and live prop would render the result and the markdown source codes under the result.
+
+**Input**
+
+`````md
+````md live
+### Title
+* item1
+* item2
+```js
+const foo = 'bar'
+```
+````
+`````
 **Output**
 
-```html
-<div>
-  this would be blur
-</div>
-<div>
-  this would be blur
-</div>
-<h1> // [svp! !!:3]
-  this would be focus
-</h1>
-<div>
-  this would be blur
-</div>
-<div>
-  this would be blur
-</div>
+````md live
+### Title
+* item1
+* item2
+```js
+const foo = 'bar'
 ```
+````
 
 ## Svelte live code
 
@@ -276,6 +205,17 @@ Use svelte lang and live prop would render the result and the source codes under
   }
 </style>
 ```
+
+:::warning[Live code in live code is not supported]
+The nested live code block below would be rendered as normal highlight code block.
+`````md live
+````md
+```md live
+### Title
+```
+````
+`````
+:::
 
 ## Combine features
 

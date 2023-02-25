@@ -14,81 +14,46 @@ Some admonition content
 
 ## Tip
 
-**Input** 
-
-```md
+```md live
 :::tip[Tip title]
 Some tip content
 :::
 ```
-
-**Output**
-
-:::tip[Tip title]
-Some tip content
-:::
 
 ## Info
 
-**Input**
-
-```md
+```md live
 :::info[Info title]
 Some info content
 :::
 ```
-
-**Output**
-
-:::info[Info title]
-Some info content
-:::
 
 ## Note
 
-**Input**
-```md
+```md live
 :::note[Note title]
 Some note content
 :::
 ```
-
-**Output**
-:::note[Note title]
-Some note content
-:::
 
 ## Warning
-**Input**
-```md
-:::warning[Warning title]
-Some warning content
-:::
-```
-**Output**
-:::warning[Warning title]
-Some warning content
-:::
-## Important
-**Input**
-```md
-:::important[Important title]
-Some important content
-:::
-```
-**Output**
-:::important[Important title]
-Some important content
-:::
-## Caution
-**Input**
-```md
-:::caution[Caution title]
-Some caution content
-:::
-```
-**Output**
-:::caution[Caution title]
-Some caution content
-:::
 
+```md live
+:::warning[Warning title]
+Some warning content
+:::
+```
+## Important
+
+```md live
+:::important[Important title]
+Some important content
+:::
+```
+
+## Caution
+```md live
+:::caution[Caution title]
+Some caution content
+:::
+```

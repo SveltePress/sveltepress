@@ -1,6 +1,7 @@
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
 import liveCode from '../src/markdown/live-code'
+import highlighter from '../src/markdown/highlighter'
 
 const md = `
 ### title level 3
@@ -23,6 +24,14 @@ const md = `
   You've clicked {count} times
 </button>
 \`\`\`
+
+\`\`\`md live
+### title
+
+* list item1
+* list item2
+[Google](https://google.com)
+\`\`\`
 `
 
 describe('live code', () => {
@@ -31,6 +40,7 @@ describe('live code', () => {
       filename: 'demo.md',
       mdContent: md,
       remarkPlugins: [liveCode],
+      highlighter,
     }) || { code: '' }
 
     expect(code).toMatchSnapshot()

@@ -20,17 +20,10 @@ Would auto add a external icon when link address starts with http or https
 
 ### In markdown
 
-**Input**
-
-```md title="/src/routes/foo/+page.md"
+```md live
 * <Link to="https://github.com/" label="Github" />  
 * <Link to="/" label="Home page" />
 ```
-
-**Output**
-
-* <Link to="https://github.com/" label="Github" />  
-* <Link to="/" label="Home page" />
 
 ### In svelte
 
@@ -56,13 +49,10 @@ Would auto add a external icon when link address starts with http or https
 * `name` - The panel name.
 
 
-### Use in Markdown
+### In Markdown
 
-**Input**
-
-````md
+````md live
 <Tabs activeName="Svelte">
-
   <TabPanel name="Svelte">
 
 ```svelte title="Counter.svelte"
@@ -90,40 +80,8 @@ Would auto add a external icon when link address starts with http or https
 ```
 
   </TabPanel>
-
 </Tabs>
 ````
-
-**Output**
-
-<Tabs activeName="Svelte" bodyPadding={false}>
-  <TabPanel name="Svelte">
-
-```svelte title="Counter.svelte"
-<script>
-  let count = 0
-</script>
-<button on:click={() => count++}>
-  You've clicked {count} times
-</button>
-```
-
-  </TabPanel>
-  <TabPanel name="Vue">
-
-```html  title="Counter.vue"
-<script setup>
-  import { ref } from 'vue'
-
-  const count = ref(0)
-</script>
-<button @click="count++">
-  You've clicked {count} times
-</button>
-```
-
-  </TabPanel>
-</Tabs>
 
 ### In svelte
 

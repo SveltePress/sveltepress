@@ -215,4 +215,7 @@
   :global(.svp-anchor-item) {
     --at-apply: relative bottom-[100px];
   }
+  :global(.svp-live-code--demo .svp-code-block-wrapper) {
+    --at-apply: 'mb-0';
+  }
 </style>

@@ -39,6 +39,17 @@ Toggle the window size or use different device to ses what's happening
 </div>
 ```
 
+## Easily pure css icons
+[You can find icon sets here](https://icones.js.org/)
+
+```svelte live
+<div class="text-[56px]">
+  <div class="i-openmoji-red-apple"></div>
+  <div class="i-openmoji-banana"></div>
+  <div class="i-openmoji-grapes"></div>
+</div>
+``` 
+
 ## And more...
 
 Use your talents, ideas to achieve more!

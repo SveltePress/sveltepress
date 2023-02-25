@@ -3,9 +3,19 @@ import { resolve } from 'path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
 import type { Plugin } from 'unified'
+import { mdToSvelte } from '@sveltepress/vite'
+import highlighter from './highlighter.js'
+import admonitions from './admonitions.js'
+import anchors from './anchors.js'
+import links from './links.js'
+import codeImport from './code-import.js'
+import installPkg from './install-pkg.js'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
+
+const SUPPORTED_LIVE_LANGS = ['svelte', 'md'] as const
+type SupportedLiveLang = typeof SUPPORTED_LIVE_LANGS[number]
 
 const globalComponentsImporters = [
   'import { CExpansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from \'@sveltepress/theme-default/components\'',
@@ -23,13 +33,15 @@ const liveCode: Plugin<[], any> = function () {
 
   let hasScript = false
   const liveCodePaths = []
-  return (tree, vFile) => {
+
+  return async (tree, vFile) => {
+    const asyncNodeOperations: Promise<any>[] = []
     visit(
       tree,
       (node, idx, parent) => {
         const { meta, lang, type, data } = node
         if (type === 'code' &&
-            lang === 'svelte' &&
+            SUPPORTED_LIVE_LANGS.includes(lang) &&
             meta?.split(' ').includes('live') &&
             idx !== null && !data?.liveCodeResolved
         ) {
@@ -41,60 +53,84 @@ const liveCode: Plugin<[], any> = function () {
             },
           }
 
-          const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
+          const getLiveNodeFromLang = async (lang: SupportedLiveLang) => {
+            if (lang === 'svelte') {
+              const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
 
-          // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          const blockId = `${vFile.path}-${idx}`
+              const blockId = `${vFile.path}-${idx}`
 
-          let name = idNameMap[blockId]
-          if (!name) {
-            const svelteFileName = `LiveCode${uid()}`
-            name = idNameMap[blockId] = `${svelteFileName}.svelte`
-            writeFileSync(LIVE_CODE_MAP, JSON.stringify(idNameMap, null, 2))
-          }
+              let name = idNameMap[blockId]
+              if (!name) {
+                const svelteFileName = `LiveCode${uid()}`
+                name = idNameMap[blockId] = `${svelteFileName}.svelte`
+                writeFileSync(LIVE_CODE_MAP, JSON.stringify(idNameMap, null, 2))
+              }
 
-          const path = resolve(BASE_PATH, name)
-          writeFileSync(path, node.value || '')
+              const path = resolve(BASE_PATH, name)
+              writeFileSync(path, node.value || '')
 
-          const componentName = name.replace(/\.svelte$/, '')
+              const componentName = name.replace(/\.svelte$/, '')
 
-          liveCodePaths.push({
-            componentName,
-            path: `$sveltepress/live-code/${name}`,
-          })
+              liveCodePaths.push({
+                componentName,
+                path: `$sveltepress/live-code/${name}`,
+              })
 
-          const svelteComponent = {
-            type: 'html',
-            value: `<div class="svp-live-code--demo"><${componentName} /></div>`,
-          }
-
-          const liveCodeNode = {
-            type: 'liveCode',
-            data: {
-              hName: 'div',
-              hProperties: {
-                className: 'svp-live-code--container',
-              },
-            },
-            children: [
-              svelteComponent,
-              {
+              const svelteComponent = {
                 type: 'html',
-                value: '<CExpansion title="Click fold/expand code" reverse={true}>',
-              },
-              codeHighlightNode,
-              {
+                value: `<div class="svp-live-code--demo"><${componentName} /></div>`,
+              }
+              return svelteComponent
+            } else if (lang === 'md') {
+              const renderedHTML = (await mdToSvelte({
+                mdContent: node.value,
+                filename: vFile.path,
+                highlighter,
+                remarkPlugins: [
+                  admonitions,
+                  links,
+                  anchors,
+                  codeImport,
+                  installPkg,
+                ],
+              })).code
+              return {
                 type: 'html',
-                value: '</CExpansion>',
-              },
-            ],
+                value: `<div class="svp-live-code--demo">${renderedHTML}</div>`,
+              }
+            }
           }
 
-          parent.children.splice(idx, 1, liveCodeNode)
+          const asyncAdd = async () => {
+            const liveCodeNode = {
+              type: 'liveCode',
+              data: {
+                hName: 'div',
+                hProperties: {
+                  className: 'svp-live-code--container',
+                },
+              },
+              children: [
+                await getLiveNodeFromLang(lang),
+                {
+                  type: 'html',
+                  value: `<CExpansion codeType="${lang}" title="Click fold/expand code" reverse={true}>`,
+                },
+                codeHighlightNode,
+                {
+                  type: 'html',
+                  value: '</CExpansion>',
+                },
+              ],
+            }
+
+            parent.children.splice(idx, 1, liveCodeNode)
+          }
+
+          asyncNodeOperations.push(asyncAdd())
         }
       })
-
+    await Promise.all(asyncNodeOperations)
     const liveCodeImports = liveCodePaths.map(({ componentName, path }) => `import ${componentName} from '${path}'`)
 
     visit(tree, (node, idx, parent) => {
