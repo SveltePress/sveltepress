@@ -18,7 +18,7 @@ const SUPPORTED_LIVE_LANGS = ['svelte', 'md'] as const
 type SupportedLiveLang = typeof SUPPORTED_LIVE_LANGS[number]
 
 const globalComponentsImporters = [
-  'import { CExpansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from \'@sveltepress/theme-default/components\'',
+  'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from \'@sveltepress/theme-default/components\'',
 ]
 
 const liveCode: Plugin<[], any> = function () {
@@ -114,12 +114,12 @@ const liveCode: Plugin<[], any> = function () {
                 await getLiveNodeFromLang(lang),
                 {
                   type: 'html',
-                  value: `<CExpansion codeType="${lang}" title="Click fold/expand code" reverse={true}>`,
+                  value: `<Expansion codeType="${lang}" title="Click fold/expand code" reverse={true}>`,
                 },
                 codeHighlightNode,
                 {
                   type: 'html',
-                  value: '</CExpansion>',
+                  value: '</Expansion>',
                 },
               ],
             }

@@ -1,4 +1,4 @@
-import CExpansion from './CExpansion.svelte'
+import Expansion from './Expansion.svelte'
 import Link from './Link.svelte'
 import Tabs from './Tabs.svelte'
 import TabPanel from './TabPanel.svelte'
@@ -7,7 +7,7 @@ import CopyCode from './CopyCode.svelte'
 
 export {
   CopyCode,
-  CExpansion,
+  Expansion,
   Link,
   Tabs,
   TabPanel,

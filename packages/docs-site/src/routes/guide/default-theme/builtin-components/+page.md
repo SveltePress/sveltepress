@@ -99,7 +99,7 @@ Would auto add a external icon when link address starts with http or https
 </Tabs>
 ```
 
-## CExpansion
+## Expansion
 
 ### Props
 
@@ -118,22 +118,22 @@ Would auto add a external icon when link address starts with http or https
 ### In markdown
 
 ```md live
-<CExpansion title="Click to expand/fold panel">
+<Expansion title="Click to expand/fold panel">
   <div class="text-[24px]">Some content</div>
-</CExpansion>
+</Expansion>
 ```
 ### In svelte
 
 ```svelte live
 <script>
-  import { CExpansion } from '@sveltepress/theme-default/components'
+  import { Expansion } from '@sveltepress/theme-default/components'
 </script>
-<CExpansion title="A expansion without custom icon and arrow">
+<Expansion title="A expansion without custom icon and arrow">
   <div class="p-4 text-[24px]">
     Look at the icon left. It gets colored when expanded!
   </div>
   <div slot="icon-fold" class="i-bxs-wink-smile"></div>
   <div slot="icon-expanded" class="i-fxemoji-smiletongue"></div>
   <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
-</CExpansion>
+</Expansion>
 ```

@@ -6,7 +6,7 @@
   import TocClose from './icons/TocClose.svelte'
   import NavItem from './NavItem.svelte'
   import Logo from './Logo.svelte'
-  import CExpansion from './CExpansion.svelte'
+  import Expansion from './Expansion.svelte'
 
   const toggleNav = () => {
     $navCollapsed = !$navCollapsed
@@ -26,11 +26,11 @@
     <Logo />
     {#each themeOptions.navbar as navItem}
       {#if navItem.items}
-        <CExpansion title={navItem.title} showIcon={false}>
+        <Expansion title={navItem.title} showIcon={false}>
           {#each navItem.items as subItem}
             <NavItem {...subItem} />
           {/each}
-        </CExpansion>
+        </Expansion>
       {:else}
         <NavItem {...navItem} />
       {/if}
