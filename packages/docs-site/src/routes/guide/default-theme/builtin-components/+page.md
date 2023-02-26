@@ -117,20 +117,11 @@ Would auto add a external icon when link address starts with http or https
 
 ### In markdown
 
-**Input**
-
-```md
+```md live
 <CExpansion title="Click to expand/fold panel">
   <div class="text-[24px]">Some content</div>
 </CExpansion>
 ```
-
-**Output**
-
-<CExpansion title="Click to expand/fold panel">
-  <div class="text-[24px]">Some content</div>
-</CExpansion>
-
 ### In svelte
 
 ```svelte live
