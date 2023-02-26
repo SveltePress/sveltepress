@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.17.0
+
+### Minor Changes
+
+- [`93cd37b`](https://github.com/SveltePress/sveltepress/commit/93cd37b501d1e404266c27ca554c4b2fa479604e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for mardown live code
+
 ## 0.16.0
 
 ### Minor Changes
