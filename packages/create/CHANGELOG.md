@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.22.0
+
+### Minor Changes
+
+- [`93cd37b`](https://github.com/SveltePress/sveltepress/commit/93cd37b501d1e404266c27ca554c4b2fa479604e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for mardown live code
+
+- [`51f4f06`](https://github.com/SveltePress/sveltepress/commit/51f4f061a5db3af856653dec5b429357415e6fd3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: upgrade svelte-package and reorganize theme default exports
+
 ## 0.21.2
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @sveltepress/theme-default
 
+## 1.1.0
+
+### Minor Changes
+
+- [`93cd37b`](https://github.com/SveltePress/sveltepress/commit/93cd37b501d1e404266c27ca554c4b2fa479604e) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for mardown live code
+
+- [`51f4f06`](https://github.com/SveltePress/sveltepress/commit/51f4f061a5db3af856653dec5b429357415e6fd3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: upgrade svelte-package and reorganize theme default exports
+
+### Patch Changes
+
+- [`61f80b5`](https://github.com/SveltePress/sveltepress/commit/61f80b5c3fe4f83ec2c7fcf3f444426f23a8dc4d) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: tab header label should only have margin left when icon is present
+
+- [`4de572f`](https://github.com/SveltePress/sveltepress/commit/4de572fae536f97dfa796a452981e7002228f580) Thanks [@Blackman99](https://github.com/Blackman99)! - refactor: rename CExpansion to Expansion
+
 ## 1.0.5
 
 ### Patch Changes
