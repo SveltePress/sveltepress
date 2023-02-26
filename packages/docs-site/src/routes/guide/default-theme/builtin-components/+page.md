@@ -47,6 +47,8 @@ Would auto add a external icon when link address starts with http or https
 ### TabPanel Props
 
 * `name` - The panel name.
+* `activeIcon` - The icon component used when tab is active
+* `inactiveIcon` - The icon component used when tab is inactive
 
 
 ### In Markdown
