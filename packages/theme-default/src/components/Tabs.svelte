@@ -79,7 +79,7 @@
         {:else if inactiveIcon}
           <svelte:component this={inactiveIcon} />
         {/if}
-        <div class="name">
+        <div class:name={(active && activeIcon) || (!active && inactiveIcon)}>
           {name}
         </div>
       </div>
