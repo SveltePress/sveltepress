@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.17.1
+
+### Patch Changes
+
+- [`42cd907`](https://github.com/SveltePress/sveltepress/commit/42cd9074654315aa8ad5c4804364dda805b099d0) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update sveltekit
+
 ## 0.17.0
 
 ### Minor Changes
