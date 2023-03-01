@@ -55,7 +55,7 @@ You can find all the icon sets [here](https://github.com/unocss/unocss/tree/main
   <div class="i-openmoji-banana"></div>
   <div class="i-openmoji-grapes"></div>
 </div>
-``` 
+```
 
 ## And more...
 
