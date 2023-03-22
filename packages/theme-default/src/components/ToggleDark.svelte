@@ -41,7 +41,7 @@
   <meta
     id="theme-color"
     name="theme-color"
-    content={themeOptions?.themeColor.light || '#fff'}
+    content={themeColor.light || '#fff'}
   />
   {@html `
 <script>
