@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.22.1
+
+### Patch Changes
+
+- [`42cd907`](https://github.com/SveltePress/sveltepress/commit/42cd9074654315aa8ad5c4804364dda805b099d0) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update sveltekit
+
+- [`f65cca8`](https://github.com/SveltePress/sveltepress/commit/f65cca8446e31780b87e02e54c9a5ea92059b480) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: import docsearch css error
+
 ## 0.22.0
 
 ### Minor Changes
