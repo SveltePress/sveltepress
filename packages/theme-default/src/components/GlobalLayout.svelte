@@ -1,5 +1,5 @@
 <script>
-  import '@docsearch/css'
+  import '@docsearch/css/dist/style.css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { onMount } from 'svelte'
