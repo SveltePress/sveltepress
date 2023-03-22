@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.1.2
+
+### Patch Changes
+
+- [`e26c67c`](https://github.com/SveltePress/sveltepress/commit/e26c67c5b6f8335b055a76070456c2519b61470e) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: toggle dark read theme color
+
 ## 1.1.1
 
 ### Patch Changes
