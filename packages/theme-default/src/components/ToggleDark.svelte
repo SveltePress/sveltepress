@@ -45,7 +45,7 @@
   />
   {@html `
 <script>
-  const themeColor = JSON.parse('${JSON.stringify(themeOptions.themeColor)}')
+  const themeColor = JSON.parse('${JSON.stringify(themeColor)}')
   if(window.localStorage.getItem('${key}') === 'on') {
     document.querySelector('html').classList.add('dark')
     document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
