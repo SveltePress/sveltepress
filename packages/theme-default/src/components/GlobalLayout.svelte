@@ -105,19 +105,9 @@
   :global(li + li) {
     margin-top: 0.5rem;
   }
-
-  :global(html.dark ::-webkit-scrollbar) {
-    width: 10px;
-    height: 10px;
+  :global(.dark) {
+    color-scheme: dark;
   }
-  :global(html.dark ::-webkit-scrollbar-track) {
-    --at-apply: bg-gray-8;
-  }
-  :global(html.dark ::-webkit-scrollbar-thumb) {
-    --at-apply: bg-black;
-    border-radius: 6px;
-  }
-
   :global(code) {
     --at-apply: 'bg-[#e9e9e9] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded break-all';
   }
