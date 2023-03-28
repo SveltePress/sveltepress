@@ -1,6 +1,7 @@
 <script>
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Home from './Home.svelte'
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
@@ -53,8 +54,10 @@
         </h1>
       {/if}
       <slot />
-      <div class="meta">
-        <EditPage {pageType} />
+      <div class="meta" class:without-edit-link={!themeOptions.editLink}>
+        {#if themeOptions.editLink}
+          <EditPage {pageType} />
+        {/if}
         <LastUpdate {lastUpdate} />
       </div>
       {#if ready && $pages.length}
@@ -109,5 +112,8 @@
   }
   .meta {
     --at-apply: 'sm:flex justify-between mt-20 column';
+  }
+  .without-edit-link {
+    --at-apply: 'justify-end';
   }
 </style>
