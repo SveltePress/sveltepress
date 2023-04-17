@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.22.3
+
+### Patch Changes
+
+- [`d2e7599`](https://github.com/SveltePress/sveltepress/commit/d2e759921fdc4396e59b3e228d2dca6d84675f73) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: auto hide edit link when config not provided
+
 ## 0.22.2
 
 ### Patch Changes

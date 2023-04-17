@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.1.4
+
+### Patch Changes
+
+- [`d2e7599`](https://github.com/SveltePress/sveltepress/commit/d2e759921fdc4396e59b3e228d2dca6d84675f73) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: auto hide edit link when config not provided
+
+## 1.1.3
+
+### Patch Changes
+
+- [`64de58b`](https://github.com/SveltePress/sveltepress/commit/64de58b8a45eafb6acd5d9b4941311cc48ba4787) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use color scheme instead of customize scroll bar in dark mode
+
 ## 1.1.2
 
 ### Patch Changes
