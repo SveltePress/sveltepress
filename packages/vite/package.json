@@ -37,7 +37,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@sveltejs/kit": "^1.9.1",
+    "@sveltejs/kit": "^1.15.5",
     "@types/cross-spawn": "^6.0.2",
     "@types/estree": "^1.0.0",
     "@types/fs-extra": "^9.0.13",
