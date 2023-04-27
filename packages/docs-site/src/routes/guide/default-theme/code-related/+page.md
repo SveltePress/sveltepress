@@ -221,9 +221,7 @@ The nested live code block below would be rendered as normal highlight code bloc
 
 You can use more than one features mentioned above: 
 
-**Input**
-
-````md
+````md live
 ```js ln title="complex-example.js"
 function hello() {
   const oldMsg = 'Some msg with focus, diff --' // [svp! --] // [svp! !!:3]
@@ -232,16 +230,6 @@ function hello() {
 }
 ```
 ````
-
-**Output**
-
-```js ln title="complex-example.js"
-function hello() {
-  const oldMsg = 'Some msg with focus, diff --' // [svp! --] // [svp! !!:3]
-  const newMsg1 = 'Some msg with focus, diff ++, highlight line' // [svp! ++] // [svp! ~~]
-  const newMsg2 = 'Some msg with focus, diff ++' // [svp! ++]
-}
-```
 
 ## Import code
 
