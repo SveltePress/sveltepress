@@ -32,7 +32,7 @@ export const focus: Command = (linesNumberToFocus, idx, lines) => {
   const res = [
     wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
   ]
-  res.push(wrapFocus(`calc(12px + ${(start + 1) * 1.5}em)`, `calc(12px + ${(lines - start) * 1.5}em)`))
+  res.push(wrapFocus(`calc(12px + ${(start + 1) * 1.5}em)`, `calc(12px + ${(lines - start - 1) * 1.5}em)`))
 
   return res.join('\n')
 }
