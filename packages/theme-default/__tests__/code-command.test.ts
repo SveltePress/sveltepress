@@ -59,7 +59,7 @@ describe('code commands', () => {
         [
           "<div class=\\"svp-code-block--command-line svp-code-block--diff-bg-add\\"  style=\\"top: calc(0em + 12px);\\"><div class=\\"svp-code-block--diff-add\\">+</div></div>",
           "<div class=\\"svp-code-block--focus\\" style=\\"top: 0;height: calc(12px + 0em);\\"></div>
-      <div class=\\"svp-code-block--focus\\" style=\\"top: calc(12px + 4.5em);height: calc(12px + -1.5em);\\"></div>",
+      <div class=\\"svp-code-block--focus\\" style=\\"top: calc(12px + 4.5em);height: calc(12px + -3em);\\"></div>",
           "<div class=\\"svp-code-block--command-line svp-code-block--hl\\"  style=\\"top: calc(0em + 12px);\\"></div>",
         ],
         "const foo = 1   ",
