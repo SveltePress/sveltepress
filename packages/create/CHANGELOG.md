@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.22.4
+
+### Patch Changes
+
+- [`3bacebe`](https://github.com/SveltePress/sveltepress/commit/3bacebeb1543c1e455b8c866e9ed2bd45323fb64) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update sveltekit version
+
 ## 0.22.3
 
 ### Patch Changes
