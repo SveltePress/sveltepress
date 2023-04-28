@@ -101,6 +101,7 @@ const defaultTheme: ThemeDefault = options => {
           srcDir: resolve(__dirname, './components/pwa'),
         }))
       } else {
+        // In case of pwa relative virtual modules are not found
         plugins.push({
           name: '@sveltepress/virtual-pwa',
           resolveId(id) {
