@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.1.5
+
+### Patch Changes
+
+- [`3bacebe`](https://github.com/SveltePress/sveltepress/commit/3bacebeb1543c1e455b8c866e9ed2bd45323fb64) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update sveltekit version
+
+- [`93d4694`](https://github.com/SveltePress/sveltepress/commit/93d4694e510eb4db98c40847d244dbf7c3ee0315) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: blur line end calc error
+
 ## 1.1.4
 
 ### Patch Changes
