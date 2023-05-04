@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.1.6
+
+### Patch Changes
+
+- [`3de34c5`](https://github.com/SveltePress/sveltepress/commit/3de34c56a9893778f4025f0fdd174e7564ff2b18) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar transform not working in new project
+
 ## 1.1.5
 
 ### Patch Changes
