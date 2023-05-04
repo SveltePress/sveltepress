@@ -48,6 +48,10 @@ This project can not be done without these projects
 * [Rehype](https://github.com/rehypejs/rehype)
 * [Vite PWA](https://github.com/vite-pwa/docs)
 
+## Who's using
+
+* [Kryptokrona](https://github.com/kryptokrona/kryptokrona-kotlin-sdk)
+
 ## LICENSE
 
 [MIT](./LICENSE)
