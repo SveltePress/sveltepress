@@ -47,7 +47,8 @@
     --at-apply: 'sm:h-[72px] flex items-center justify-between mb-4 py-4 sm:py-0 sticky top-0 bg-inherit border-b-solid border-b border-light-8 dark:border-b-gray-7';
   }
   .collapsed {
-    --at-apply: 'sm:translate-x-0 translate-x-[-100%]';
+    --at-apply: 'sm:translate-x-0';
+    transform: translateX(-100%);
   }
   .close {
     --at-apply: 'text-5 flex items-center sm:display-none ml-4';
