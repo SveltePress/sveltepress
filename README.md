@@ -50,7 +50,7 @@ This project can not be done without these projects
 
 ## Who's using
 
-* [Kryptokrona](https://github.com/kryptokrona/kryptokrona-kotlin-sdk)
+[<img src="https://avatars.githubusercontent.com/u/49562229?s=200&v=4" style="width:200px;" />](https://github.com/kryptokrona/kryptokrona-kotlin-sdk)
 
 ## LICENSE
 
