@@ -9,6 +9,10 @@ Depend on what package manager you are using
 
 @install-pkg(@sveltepress,create)
 
+:::tip[PNPM first]
+Use pnpm as much as possible. It respects package version more than npm.
+:::
+
 ## Adding to an existing sveltekit project
 
 ### Install vite plugin package
