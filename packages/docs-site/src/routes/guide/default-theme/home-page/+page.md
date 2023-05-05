@@ -15,7 +15,7 @@ And you can see [Home page](/) for result
 
 ### `heroImage`
 
-The home page logo image. It is recommended to use a high quality
+The home page logo image. It is recommended to use an image with high quality
 
 ### `tagline`
 
