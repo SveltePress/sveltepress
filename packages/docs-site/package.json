@@ -10,7 +10,7 @@
   "devDependencies": {
     "@iconify/json": "^2.2.27",
     "@sveltejs/adapter-static": "^2.0.1",
-    "@sveltejs/kit": "^1.15.5",
+    "@sveltejs/kit": "^1.16.2",
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/vite": "workspace:*",
     "@types/node": "^18.13.0",
@@ -18,7 +18,7 @@
     "svelte": "^3.55.1",
     "svelte-check": "^2.10.3",
     "typescript": "^4.9.5",
-    "vite": "^4.1.1",
+    "vite": "^4.3.5",
     "workbox-window": "^6.5.4"
   },
   "type": "module",

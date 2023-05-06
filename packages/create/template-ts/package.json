@@ -10,11 +10,11 @@
     "@sveltepress/theme-default": "^1.0.0",
     "@sveltepress/vite": "^0.15.0",
     "@sveltejs/adapter-static": "^2.0.1",
-    "@sveltejs/kit": "^1.9.1",
+    "@sveltejs/kit": "^1.16.2",
     "@types/node": "^18.11.17",
     "svelte": "^3.55.1",
     "typescript": "^4.9.3",
-    "vite": "^4.1.1"
+    "vite": "^4.3.5"
   },
   "type": "module",
   "license": "MIT"
