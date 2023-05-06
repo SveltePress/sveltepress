@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.2.0
+
+### Minor Changes
+
+- [`0442d54`](https://github.com/SveltePress/sveltepress/commit/0442d54800212f5440d9237fa3344267fd0b2811) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: update sveltekit and vite version to fix file not found in vite manifest bug
+
 ## 1.1.6
 
 ### Patch Changes
