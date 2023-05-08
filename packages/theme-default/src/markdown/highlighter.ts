@@ -13,19 +13,20 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
 const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
 
-const createHighlightWithTheme = async theme => {
+const createHighlighterWithTheme = async (theme: any) => {
   const shikiHighlighter = await getHighlighter({
     theme,
     langs: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss'],
   })
-  return (code, lang) => shikiHighlighter.codeToHtml(code, { lang })
+  const highlighter: Highlighter = (code, lang) => shikiHighlighter.codeToHtml(code, { lang })
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;')
+  return highlighter
 }
 
-const highlighterDark = createHighlightWithTheme(nightOwl)
+const highlighterDark = createHighlighterWithTheme(nightOwl)
 
-const highlighterLight = createHighlightWithTheme(vitesseLight)
+const highlighterLight = createHighlighterWithTheme(vitesseLight)
 
 const highlighter: Highlighter = async (code, lang, meta) => {
   const cacheKey = JSON.stringify({ code, lang, meta })
@@ -35,7 +36,7 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   const metaArray = (meta || '').split(' ')
   const containLineNumbers = metaArray.some(item => item.trim() === 'ln')
   const titleMeta = metaArray.find(item => item.startsWith('title='))
-  const commandDoms = []
+  const commandDoms: string[] = []
   const lines = code.split('\n')
   if (lang !== 'md') {
     code = lines.map((line, i) => {
@@ -44,7 +45,7 @@ const highlighter: Highlighter = async (code, lang, meta) => {
       return newLine
     }).join('\n')
   }
-  let title: string
+  let title: string | undefined
   if (titleMeta)
     title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')
 
