@@ -24,9 +24,9 @@ const createHighlighterWithTheme = async (theme: any) => {
   return highlighter
 }
 
-const highlighterDark = createHighlighterWithTheme(nightOwl)
+const darkHighlighter = createHighlighterWithTheme(nightOwl)
 
-const highlighterLight = createHighlighterWithTheme(vitesseLight)
+const lightHighlighter = createHighlighterWithTheme(vitesseLight)
 
 const highlighter: Highlighter = async (code, lang, meta) => {
   const cacheKey = JSON.stringify({ code, lang, meta })
@@ -56,8 +56,8 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 : ''}
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
-    ${(await highlighterLight)(code, lang)}
-    ${(await highlighterDark)(code, lang)}
+    ${(await lightHighlighter)(code, lang)}
+    ${(await darkHighlighter)(code, lang)}
     <div class="svp-code-block--lang">
       ${lang}
     </div>

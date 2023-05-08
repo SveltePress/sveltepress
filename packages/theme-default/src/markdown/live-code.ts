@@ -17,6 +17,11 @@ const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
 const SUPPORTED_LIVE_LANGS = ['svelte', 'md'] as const
 type SupportedLiveLang = typeof SUPPORTED_LIVE_LANGS[number]
 
+interface LiveCodePathItem {
+  componentName: string
+  path: string
+}
+
 const globalComponentsImporters = [
   'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from \'@sveltepress/theme-default/components\'',
 ]
@@ -32,7 +37,7 @@ const liveCode: Plugin<[], any> = function () {
     writeFileSync(LIVE_CODE_MAP, '{}')
 
   let hasScript = false
-  const liveCodePaths = []
+  const liveCodePaths: LiveCodePathItem[] = []
 
   return async (tree, vFile) => {
     const asyncNodeOperations: Promise<any>[] = []
@@ -136,7 +141,7 @@ const liveCode: Plugin<[], any> = function () {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
         hasScript = true
-        const value = node.value.replace(/^<script[ \w+="\w+"]*>/, m =>
+        const value = node.value.replace(/^<script[ \w+="\w+"]*>/, (m: string) =>
           [m, ...globalComponentsImporters, ...liveCodeImports].join('\n'))
         parent.children.splice(idx, 1, {
           type: 'html',

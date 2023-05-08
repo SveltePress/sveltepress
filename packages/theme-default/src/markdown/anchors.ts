@@ -1,9 +1,15 @@
 import type { Plugin } from 'unified'
 import { visit } from 'unist-util-visit'
 
+interface Anchor {
+  slugId: string
+  title: string
+  depth: number
+}
+
 const anchors: Plugin<any[], any> = () => {
   return (tree, vFile) => {
-    const anchors = []
+    const anchors: Anchor[] = []
     visit(tree, (node, idx, parent) => {
       if (node.type === 'heading' && !node.data?.anchorAdded) {
         if (!node.data) {
@@ -14,7 +20,7 @@ const anchors: Plugin<any[], any> = () => {
         else {
           node.data.anchorAdded = true
         }
-        const title = node.children.filter(c => ['text', 'inlineCode'].includes(c.type)).map(c => c.value).join('')
+        const title = (node.children as any[]).filter(c => ['text', 'inlineCode'].includes(c.type)).map(c => c.value).join('')
         const slugId = title.replace(/ |\/|:/g, '-')
 
         node.children.unshift({

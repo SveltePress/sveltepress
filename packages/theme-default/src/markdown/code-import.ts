@@ -16,7 +16,7 @@ const codeImport: Plugin<any[], any> = () => {
             const [, params] = matches
             if (params) {
               const [path, start, end] = params.split(',')
-              const lang = path.split('/').pop().split('.').pop()
+              const lang = path.split('/').pop()?.split('.').pop()
 
               const filename = vFile.path
               if (!filename) return

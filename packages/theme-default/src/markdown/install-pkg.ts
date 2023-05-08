@@ -3,6 +3,8 @@ import { visit } from 'unist-util-visit'
 
 export const pkgRe = /^@install-pkg\((\S+)(,\S+)?\)/
 
+type PackageManager = 'npm' | 'yarn' | 'pnpm'
+
 const installPkg: Plugin<any[], any> = () => {
   return async tree => {
     visit(tree, (node, idx, parent) => {
@@ -14,7 +16,7 @@ const installPkg: Plugin<any[], any> = () => {
             const [, pkgNameMaybeWithCustomScript] = matches
             if (pkgNameMaybeWithCustomScript) {
               const [pkgName, customScript] = pkgNameMaybeWithCustomScript.split(',')
-              const wrapWithSlot = (slotName, installScript) => {
+              const wrapWithSlot = (slotName: PackageManager, installScript: string) => {
                 return {
                   type: 'InstallPkg',
                   data: {

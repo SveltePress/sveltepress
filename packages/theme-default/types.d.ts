@@ -42,6 +42,11 @@ declare module 'virtual:sveltepress/theme-default' {
         end: string
       }
     }
+    highlighter: {
+      languages: string[]
+      themeLight: string
+      themeDark: string
+    }
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>
 

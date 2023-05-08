@@ -3,8 +3,7 @@ import { visit } from 'unist-util-visit'
 
 // parse [foo](bar) to <Link label="foo" to="bar" />
 const anchors: Plugin<any[], any> = () => {
-  return (tree, vFile) => {
-    const anchors = []
+  return tree => {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'link') {
         parent.children.splice(idx, 1, {
@@ -13,7 +12,6 @@ const anchors: Plugin<any[], any> = () => {
         })
       }
     })
-    vFile.data.anchors = anchors
   }
 }
 
