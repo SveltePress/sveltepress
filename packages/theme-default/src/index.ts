@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import Unocss from 'unocss/vite'
 import { presetIcons, presetUno, transformerDirectives } from 'unocss'
-import type { ThemeDefault } from 'virtual:sveltepress/theme-default'
+import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import type { PluginOption } from 'vite'
 import admonitions from './markdown/admonitions.js'
@@ -28,7 +28,14 @@ const DEFAULT_PRIMARY = '#fb7185'
 
 const DEFAULT_HOVER = '#f43f5e'
 
+export const themeOptionsRef: {
+  value?: DefaultThemeOptions
+} = {
+  value: undefined,
+}
+
 const defaultTheme: ThemeDefault = options => {
+  themeOptionsRef.value = options
   const { gradient = DEFAULT_GRADIENT, primary = DEFAULT_PRIMARY, hover = DEFAULT_HOVER } = options?.themeColor || {
     gradient: DEFAULT_GRADIENT,
     primary: DEFAULT_PRIMARY,

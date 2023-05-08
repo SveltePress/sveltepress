@@ -1,10 +1,14 @@
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
+import type { Lang } from 'shiki'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
 import LRUCache from 'lru-cache'
+import { themeOptionsRef } from '../index.js'
 import { processCommands } from './commands.js'
+
+const DEFAULT_SUPPORT_LANGUAGES: Lang[] = ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']
 
 const cache = new LRUCache<string, any>({ max: 1024 })
 
@@ -13,10 +17,10 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
 const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
 
-const createHighlighterWithTheme = async (theme: any) => {
+const createHighlighterWithThemeAndLangs = async (theme: any, langs: Lang[]) => {
   const shikiHighlighter = await getHighlighter({
     theme,
-    langs: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss'],
+    langs,
   })
   const highlighter: Highlighter = (code, lang) => shikiHighlighter.codeToHtml(code, { lang })
     .replace(/\{/g, '&#123;')
@@ -24,15 +28,27 @@ const createHighlighterWithTheme = async (theme: any) => {
   return highlighter
 }
 
-const darkHighlighter = createHighlighterWithTheme(nightOwl)
+let darkHighlighter: Promise<Highlighter>
 
-const lightHighlighter = createHighlighterWithTheme(vitesseLight)
+let lightHighlighter: Promise<Highlighter>
+
+const ensureHighlighter = () => {
+  const highlighterConfig = themeOptionsRef.value?.highlighter
+  const languages = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
+
+  if (!darkHighlighter)
+    darkHighlighter = createHighlighterWithThemeAndLangs(highlighterConfig?.themeDark || nightOwl, languages)
+
+  if (!lightHighlighter)
+    lightHighlighter = createHighlighterWithThemeAndLangs(highlighterConfig?.themeLight || vitesseLight, languages)
+}
 
 const highlighter: Highlighter = async (code, lang, meta) => {
   const cacheKey = JSON.stringify({ code, lang, meta })
   let cached = cache.get(cacheKey)
   if (cached)
     return cached
+  ensureHighlighter()
   const metaArray = (meta || '').split(' ')
   const containLineNumbers = metaArray.some(item => item.trim() === 'ln')
   const titleMeta = metaArray.find(item => item.startsWith('title='))

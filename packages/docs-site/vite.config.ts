@@ -6,6 +6,9 @@ const config = defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme({
+        highlighter: {
+          languages: ['kotlin'],
+        },
         navbar: [{
           title: 'Guide',
           to: '/guide/introduction/',
@@ -13,15 +16,6 @@ const config = defineConfig({
           title: 'Reference',
           to: '/reference/vite-plugin/',
         },
-        // {
-        //   title: 'With Children',
-        //   items: [
-        //     {
-        //       title: 'Child1',
-        //       to: '/',
-        //     },
-        //   ],
-        // }
         ],
         sidebar: {
           '/guide/': [

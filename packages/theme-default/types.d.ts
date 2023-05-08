@@ -1,7 +1,9 @@
 /// <reference types="vite/client" />
 /// <reference types="@sveltepress/vite/types" />
 
+
 declare module 'virtual:sveltepress/theme-default' {
+  import { Lang } from 'shiki'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 
@@ -42,10 +44,10 @@ declare module 'virtual:sveltepress/theme-default' {
         end: string
       }
     }
-    highlighter: {
-      languages: string[]
-      themeLight: string
-      themeDark: string
+    highlighter?: {
+      languages?: Lang[]
+      themeLight?: string
+      themeDark?: string
     }
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>
