@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,19,45)
+@code(/../theme-default/types.d.ts,22,53)
 
 ### `navbar`
 
@@ -67,6 +67,20 @@ An object, key is the group route prefix, value is an array of object with follo
   The link address
 * `items`  
   Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
+
+### `highlight`
+
+An object that contains custom highlight options.
+
+* `languages` - Customize the supported highlight languages.
+Default is:
+
+@code(/../theme-default/src/markdown/highlighter.ts,11,12)
+
+* `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
+* `darkTheme` - The code theme that will be applied in dark mode. Default is `night-owl`
+
+You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki) 
 
 ### `editLink`
 

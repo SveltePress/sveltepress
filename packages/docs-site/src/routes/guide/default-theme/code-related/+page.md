@@ -9,6 +9,8 @@ Toggle dark mode to see the styles.
 
 ## Code highlight
 
+This feature integrate [Shiki](https://github.com/shikijs/shiki)
+
 ````md live
 ```svelte
 <script>
@@ -20,6 +22,8 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 ````
+
+You can customize the supported languages and theme in light/dark mode. More info reference to [Default theme reference - highlight option](/reference/default-theme/#highlight)
 
 ## Code title
 
@@ -34,6 +38,10 @@ Toggle dark mode to see the styles.
 </h1>
 ```
 ````
+
+:::tip[Custom highlight options]
+Reference [Theme default - ]
+:::
 
 ## Line numbers
 
