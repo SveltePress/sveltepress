@@ -34,9 +34,11 @@ export default config
   The label text of the navbar item
 * `to`  
   The link address
+* `icon`
+  An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar
 * `external`  
   Determine whether the link is external or not.  
-  Would render an external icon if set to `true`.
+  Would render an external icon if set to `true`
 * `items`  
   Children links. If this prop is provided would render a dropdown instead of a single nav link
 

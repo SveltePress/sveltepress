@@ -5,8 +5,8 @@
   export let title = ''
   export let to = '/'
   export let items = []
+  /** @type {string | boolean} */
   export let icon = false
-
   export let external = false
 
   const handleClick = () => {
@@ -39,7 +39,11 @@
     on:keypress={handleClick}
   >
     <slot>
-      {title}
+      {#if typeof icon === 'string'}
+        {@html icon}
+      {:else}
+        {title}
+      {/if}
       {#if external}
         <External />
       {/if}
