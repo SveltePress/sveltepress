@@ -13,10 +13,6 @@ const config = defineConfig({
           title: 'Reference',
           to: '/reference/vite-plugin/',
         },
-        {
-          title: 'Twitter',
-          to: 'https://twitter.com/',
-        },
         ],
         sidebar: {
           '/guide/': [
