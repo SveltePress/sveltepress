@@ -3,7 +3,7 @@ import type { PluginOption } from 'vite'
 
 export type RemarkLiveCode = Plugin<[], any>
 
-export type Highlighter = (code: string, lang?: string, meta?: string) => Promise<string>
+export type Highlighter = (code: string, lang?: string, meta?: string) => string | Promise<string>
 
 export interface SiteConfig {
   title?: string
