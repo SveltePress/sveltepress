@@ -8,10 +8,11 @@ declare module 'virtual:sveltepress/theme-default' {
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 
   export interface WithTitle {
-    title: string
+    title?: string
   }
 
   export interface LinkItem extends WithTitle {
+    icon?: string
     to?: string
     external?: boolean
     collapsible?: boolean
