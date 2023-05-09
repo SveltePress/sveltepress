@@ -6,9 +6,6 @@ const config = defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme({
-        highlighter: {
-          languages: ['kotlin'],
-        },
         navbar: [{
           title: 'Guide',
           to: '/guide/introduction/',
