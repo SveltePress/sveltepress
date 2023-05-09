@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.3.0
+
+### Minor Changes
+
+- [`6a2def1`](https://github.com/SveltePress/sveltepress/commit/6a2def113a48a70a04aa509fcac6925c7660e370) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for customize icon nav item
+
+- [`456f9fe`](https://github.com/SveltePress/sveltepress/commit/456f9fecffa325de6aafcca6e7f9a615e54e6102) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for customize highlighter langs and themes
+
 ## 1.2.0
 
 ### Minor Changes
