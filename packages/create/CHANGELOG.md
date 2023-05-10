@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.25.0
+
+### Minor Changes
+
+- [`f964b09`](https://github.com/SveltePress/sveltepress/commit/f964b09b48c1b3c5cad2047e1de0d1c9630ae9f7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add transition animation for dark mode toggle
+
 ## 0.24.0
 
 ### Minor Changes

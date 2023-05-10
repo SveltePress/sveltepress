@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.4.0
+
+### Minor Changes
+
+- [`f964b09`](https://github.com/SveltePress/sveltepress/commit/f964b09b48c1b3c5cad2047e1de0d1c9630ae9f7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add transition animation for dark mode toggle
+
+### Patch Changes
+
+- [`545a84a`](https://github.com/SveltePress/sveltepress/commit/545a84a28ba845626546d40538abbc28e07757f2) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: icon nav item height on mobile
+
+- [`5f55d6a`](https://github.com/SveltePress/sveltepress/commit/5f55d6aadd81496d76299f4e72652718de3cc6a4) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: auto add divider between icon nav items
+
 ## 1.3.0
 
 ### Minor Changes
