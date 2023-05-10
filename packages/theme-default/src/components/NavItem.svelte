@@ -59,6 +59,12 @@
   .nav-item--icon {
     --at-apply: text-6;
   }
+  .nav-item--icon:not(:first-child)::after,
+  :global(.navbar-pc .toggle::after) {
+    --uno: 'absolute left-0 bg-stone-2 w-[1px] top-[50%] h-[20px] dark:bg-stone-7';
+    transform: translateY(-50%);
+    content: ' ';
+  }
   .nav-item--icon:hover {
     --at-apply: opacity-80;
   }

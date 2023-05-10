@@ -39,24 +39,19 @@
         {#each themeOptions.navbar as navItem}
           <NavItem {...navItem} />
         {/each}
+        {#if themeOptions.github}
+          <NavItem to={themeOptions.github} external icon>
+            <Github />
+          </NavItem>
+        {/if}
+
+        {#if themeOptions.discord}
+          <NavItem to={themeOptions.discord} external icon>
+            <Discord />
+          </NavItem>
+        {/if}
+        <ToggleDark />
       </div>
-
-      {#if themeOptions.github}
-        <span class="divider" />
-        <NavItem to={themeOptions.github} external icon>
-          <Github />
-        </NavItem>
-      {/if}
-
-      {#if themeOptions.discord}
-        <span class="divider" />
-        <NavItem to={themeOptions.discord} external icon>
-          <Discord />
-        </NavItem>
-      {/if}
-
-      <span class="divider" />
-      <ToggleDark />
     </nav>
   </div>
 </header>
@@ -84,17 +79,11 @@
   .doc-search.move {
     --at-apply: 'sm:left-[15.5vw]';
   }
-  .divider {
-    --at-apply: 'bg-stone-2 w-[1px] my-6 dark:bg-stone-7';
-  }
 
   .navbar-pc {
     --at-apply: 'items-stretch display-none sm:display-flex';
   }
   .nav-links {
     --at-apply: flex items-stretch flex-grow justify-end;
-  }
-  .nav-links span:first-of-type {
-    --at-apply: 'display-none sm:display-block';
   }
 </style>
