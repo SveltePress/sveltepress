@@ -17,7 +17,7 @@
 </script>
 
 {#if items && items.length}
-  <div class="nav-item">
+  <div class="nav-item" class:nav-item--icon={icon}>
     {title}
     <div class="arrow">
       <NavArrowDown />

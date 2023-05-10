@@ -48,6 +48,10 @@
   :global(.navbar-mobile .nav-item) {
     --at-apply: 'leading-12 px-4';
   }
+  :global(.navbar-mobile .nav-item--icon) {
+    --uno: 'h-12';
+  }
+
   :global(.navbar-mobile .c-expansion--title) {
     --at-apply: 'text-4 font-700';
   }
