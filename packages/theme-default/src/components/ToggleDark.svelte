@@ -59,7 +59,7 @@
         },
         {
           duration: 400,
-          easing: 'ease-out',
+          easing: isDark ? 'ease-out' : 'ease-in',
           pseudoElement: isDark
             ? '::view-transition-old(root)'
             : '::view-transition-new(root)',
