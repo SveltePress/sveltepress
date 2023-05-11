@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.4.1
+
+### Patch Changes
+
+- [`cdd1031`](https://github.com/SveltePress/sveltepress/commit/cdd1031ea99dfc55a4af216c9457c53203b8a680) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use different animation curve in dark mode toggle
+
+- [`671c908`](https://github.com/SveltePress/sveltepress/commit/671c9085d2db0096ea850a2edf4a5f86e94eb249) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: builtin github and discord icon not shown in mobile
+
 ## 1.4.0
 
 ### Minor Changes
