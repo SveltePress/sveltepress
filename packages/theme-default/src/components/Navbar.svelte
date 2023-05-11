@@ -81,9 +81,13 @@
   }
 
   .navbar-pc {
-    --at-apply: 'items-stretch display-none sm:display-flex';
+    --at-apply: 'items-stretch flex';
   }
   .nav-links {
     --at-apply: flex items-stretch flex-grow justify-end;
+  }
+
+  :global(.navbar-pc .nav-item:not(.nav-item--icon)) {
+    --uno: 'display-none sm:display-flex';
   }
 </style>

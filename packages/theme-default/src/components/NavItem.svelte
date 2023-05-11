@@ -65,6 +65,10 @@
     transform: translateY(-50%);
     content: ' ';
   }
+  .nav-item--icon:first-of-type::after {
+    --uno: 'display-none sm:display-unset';
+  }
+
   .nav-item--icon:hover {
     --at-apply: opacity-80;
   }
