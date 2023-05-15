@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.26.0
+
+### Minor Changes
+
+- [`a2a509d`](https://github.com/SveltePress/sveltepress/commit/a2a509db925dec15b28c4ab4a7bcf31974f09c44) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for removing default home page content
+
 ## 0.25.0
 
 ### Minor Changes
