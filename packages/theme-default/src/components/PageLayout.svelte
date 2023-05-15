@@ -12,7 +12,6 @@
   import { afterNavigate, beforeNavigate } from '$app/navigation'
 
   const routeId = $page.route.id
-  const isHome = routeId === '/'
 
   // The frontmatter info. This would be injected by sveltepress
   export let fm = {}
@@ -23,7 +22,10 @@
     pageType,
     lastUpdate,
     anchors: fmAnchors = [],
+    home,
   } = fm
+
+  const isHome = routeId === '/'
 
   anchors.set(fmAnchors)
 
@@ -66,11 +68,13 @@
     </div>
   </div>
 {:else}
-  <Home {...fm} {siteConfig}>
-    <slot name="hero-image" slot="hero-image">
-      <HeroImage heroImage={fm.heroImage} />
-    </slot>
-  </Home>
+  {#if home !== false}
+    <Home {...fm} {siteConfig}>
+      <slot name="hero-image" slot="hero-image">
+        <HeroImage heroImage={fm.heroImage} />
+      </slot>
+    </Home>
+  {/if}
   <slot />
 {/if}
 

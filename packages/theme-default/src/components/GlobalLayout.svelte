@@ -9,6 +9,7 @@
     navCollapsed,
     resolveSidebar,
     scrollY,
+    sidebar,
     sidebarCollapsed,
   } from './layout'
   import Navbar from './Navbar.svelte'
@@ -53,7 +54,9 @@
   <main>
     <AjaxBar bind:this={ajaxBar} />
     <FloatActions />
-    <Sidebar />
+    {#if $sidebar}
+      <Sidebar />
+    {/if}
     <Navbar />
     <Backdrop
       show={!$navCollapsed}
