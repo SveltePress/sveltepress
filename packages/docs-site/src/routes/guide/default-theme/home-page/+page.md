@@ -40,6 +40,10 @@ The feature cards
 * `description`  
   The text description under the title
 
+### `home`
+
+Config to `false` to remove all home page content that mentioned above.
+
 ## Slots
 
 ### `hero-image`
