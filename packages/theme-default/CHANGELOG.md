@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 1.6.0
+
+### Minor Changes
+
+- [`c635695`](https://github.com/SveltePress/sveltepress/commit/c63569593f28dce79f935294a7c957843f7866f2) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add i18n for fixed text contents
+
+### Patch Changes
+
+- [`b720d56`](https://github.com/SveltePress/sveltepress/commit/b720d5685eb80813547aa6083ccae403368650b3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: pc nav dropdown icon should not show in mobile view
+
 ## 1.5.0
 
 ### Minor Changes
