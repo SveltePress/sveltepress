@@ -1,0 +1,22 @@
+{
+  "name": "Sveltepress zh-CN",
+  "short_name": "Sveltepress",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "lang": "zh-CN",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#18181b"
+}

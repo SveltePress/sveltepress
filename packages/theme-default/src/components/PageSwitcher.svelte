@@ -1,4 +1,5 @@
 <script>
+  import themOptions from 'virtual:sveltepress/theme-default'
   import Prev from './icons/Prev.svelte'
   import Next from './icons/Next.svelte'
   import { pages } from './layout'
@@ -12,6 +13,9 @@
   const hasActivePage = activeIdx !== -1
   const hasPrevPage = hasActivePage && activeIdx > 0
   const hasNextPage = hasActivePage && activeIdx < $pages.length - 1
+
+  const DEFAULT_PREVIOUS_TEXT = 'Previous'
+  const DEFAULT_NEXT_TEXT = 'Next'
 </script>
 
 <div class="page-switcher">
@@ -19,7 +23,9 @@
     {#if hasPrevPage}
       {@const prevPage = $pages[activeIdx - 1]}
       <a href={prevPage.to} class="trigger">
-        <div class="hint">Previous</div>
+        <div class="hint">
+          {themOptions.i18n?.previousPage || DEFAULT_PREVIOUS_TEXT}
+        </div>
         <div class="title">
           <div class="switch-icon">
             <Prev />
@@ -35,7 +41,9 @@
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
       <a href={nextPage.to} class="trigger">
-        <div class="hint">Next</div>
+        <div class="hint">
+          {themOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
+        </div>
         <div class="title">
           <div class="title-label">
             {nextPage.title}

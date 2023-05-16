@@ -6,6 +6,8 @@
 
   export let pageType = 'md'
 
+  const DEFAULT_TEXT = 'Suggest changes to this page'
+
   const handleEditLinkClick = () => {
     if (themeOptions.editLink) {
       window.open(
@@ -24,7 +26,9 @@
   <div class="edit-icon">
     <Edit />
   </div>
-  <div class="edit-text">Suggest changes to this page</div>
+  <div class="edit-text">
+    {themeOptions.i18n?.suggestChangesToThisPage || DEFAULT_TEXT}
+  </div>
 </div>
 
 <style>

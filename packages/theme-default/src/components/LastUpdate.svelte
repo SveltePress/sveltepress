@@ -1,10 +1,14 @@
 <script>
+  import themeOptions from 'virtual:sveltepress/theme-default'
   export let lastUpdate = ''
+
+  const DEFAULT_TEXT = 'Last update at:'
 </script>
 
 {#if lastUpdate}
   <div class="last-update">
-    Last update at: {lastUpdate}
+    {themeOptions.i18n?.lastUpdateAt || DEFAULT_TEXT}
+    {lastUpdate}
   </div>
 {/if}
 

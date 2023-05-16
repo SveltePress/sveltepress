@@ -7,18 +7,17 @@ const config = defineConfig({
     sveltepress({
       theme: defaultTheme({
         navbar: [{
-          title: 'Guide',
+          title: '指南',
           to: '/guide/introduction/',
         }, {
-          title: 'Reference',
+          title: '参考',
           to: '/reference/vite-plugin/',
-        },
-        {
+        }, {
           icon: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M27.85 29H30l-6-15h-2.35l-6 15h2.15l1.6-4h6.85zm-7.65-6l2.62-6.56L25.45 23zM18 7V5h-7V2H9v3H2v2h10.74a14.71 14.71 0 0 1-3.19 6.18A13.5 13.5 0 0 1 7.26 9h-2.1a16.47 16.47 0 0 0 3 5.58A16.84 16.84 0 0 1 3 18l.75 1.86A18.47 18.47 0 0 0 9.53 16a16.92 16.92 0 0 0 5.76 3.84L16 18a14.48 14.48 0 0 1-5.12-3.37A17.64 17.64 0 0 0 14.8 7z"/></svg>',
           items: [
             {
-              title: '简体中文',
-              to: 'https://cn.sveltepress.site/',
+              title: 'English',
+              to: 'https://sveltepress.site/',
               external: true,
             },
           ],
@@ -27,42 +26,42 @@ const config = defineConfig({
         sidebar: {
           '/guide/': [
             {
-              title: 'Introduction',
+              title: '介绍',
               collapsible: true,
               items: [
                 {
-                  title: 'What is sveltepress',
+                  title: 'Sveltepress 是什么',
                   to: '/guide/introduction/',
                 },
                 {
-                  title: 'Quick start',
+                  title: '快速开始',
                   to: '/guide/quick-start/',
                 },
                 {
-                  title: 'Themes',
+                  title: '主题',
                   to: '/guide/themes/',
                 },
                 {
-                  title: 'Working with Typescript',
+                  title: '与 Typescript 一起开发',
                   to: '/guide/typescript/',
                 },
               ],
             },
             {
-              title: 'Markdown features',
+              title: 'Markdown 相关',
               items: [
                 {
                   title: 'Frontmatter',
                   to: '/guide/markdown/frontmatter/',
                 },
                 {
-                  title: 'Svelte in markdown',
+                  title: '在 Markdown 中使用 Svelte',
                   to: '/guide/markdown/svelte-in-markdown/',
                 },
               ],
             },
             {
-              title: 'Default theme features',
+              title: '默认主题特性',
               collapsible: true,
               items: [
                 {
@@ -70,31 +69,31 @@ const config = defineConfig({
                   to: '/guide/default-theme/frontmatter/',
                 },
                 {
-                  title: 'Navbar',
+                  title: '导航栏',
                   to: '/guide/default-theme/navbar/',
                 },
                 {
-                  title: 'Sidebar',
+                  title: '侧边栏',
                   to: '/guide/default-theme/sidebar/',
                 },
                 {
-                  title: 'Home page',
+                  title: '主页',
                   to: '/guide/default-theme/home-page/',
                 },
                 {
-                  title: 'Built-in Components',
+                  title: '内置组件',
                   to: '/guide/default-theme/builtin-components/',
                 },
                 {
-                  title: 'Headings & Anchors',
+                  title: '标题与页内导航',
                   to: '/guide/default-theme/headings-and-anchors/',
                 },
                 {
-                  title: 'Admonitions',
+                  title: '高亮块',
                   to: '/guide/default-theme/admonitions/',
                 },
                 {
-                  title: 'Code related',
+                  title: '代码相关',
                   to: '/guide/default-theme/code-related/',
                 },
                 {
@@ -117,13 +116,13 @@ const config = defineConfig({
             },
           ],
           '/reference/': [{
-            title: 'Reference',
+            title: '参考',
             items: [
               {
-                title: 'Vite plugin',
+                title: 'Vite 插件',
                 to: '/reference/vite-plugin/',
               }, {
-                title: 'Default theme',
+                title: '默认主题',
                 to: '/reference/default-theme/',
               },
             ],
@@ -150,8 +149,8 @@ const config = defineConfig({
           manifest: {
             start_url: '/',
             scope: '/',
-            name: 'Sveltepress',
-            short_name: 'Sveltepress',
+            name: 'Sveltepress zh-CN',
+            short_name: 'Sveltepress zh-CN',
             icons: [
               {
                 src: '/android-chrome-192x192.png',
@@ -180,10 +179,17 @@ const config = defineConfig({
           light: '#f2f2f2',
           dark: '#18181b',
         },
+        i18n: {
+          suggestChangesToThisPage: '在 Github 上编辑此页',
+          lastUpdateAt: '最后更新于：',
+          previousPage: '上一页',
+          nextPage: '下一页',
+          expansionTitle: '点击展开/折叠代码',
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',
-        description: 'A content centered site build tool',
+        description: '一个以内容为中心的站点构建工具',
       },
       addInspect: true,
     }),

@@ -18,10 +18,14 @@
 
 {#if items && items.length}
   <div class="nav-item" class:nav-item--icon={icon}>
-    {title}
-    <div class="arrow">
-      <NavArrowDown />
-    </div>
+    {#if icon}
+      {@html icon}
+    {:else}
+      {title}
+      <div class="arrow">
+        <NavArrowDown />
+      </div>
+    {/if}
     <div class="dropdown">
       {#each items as subItem}
         <svelte:self {...subItem} />
@@ -58,6 +62,9 @@
   }
   .nav-item--icon {
     --at-apply: text-6;
+  }
+  .nav-item--icon .dropdown {
+    --uno: 'text-4';
   }
   .nav-item--icon:not(:first-child)::after,
   :global(.navbar-pc .toggle::after) {

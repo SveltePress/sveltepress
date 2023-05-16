@@ -4,6 +4,7 @@ import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
 import type { Plugin } from 'unified'
 import { mdToSvelte } from '@sveltepress/vite'
+import { themeOptionsRef } from '../index.js'
 import highlighter from './highlighter.js'
 import admonitions from './admonitions.js'
 import anchors from './anchors.js'
@@ -119,7 +120,7 @@ const liveCode: Plugin<[], any> = function () {
                 await getLiveNodeFromLang(lang),
                 {
                   type: 'html',
-                  value: `<Expansion codeType="${lang}" title="Click fold/expand code" reverse={true}>`,
+                  value: `<Expansion codeType="${lang}" title="${themeOptionsRef.value?.i18n?.expansionTitle || 'Click fold/expand code'}" reverse={true}>`,
                 },
                 codeHighlightNode,
                 {

@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,22,53)
+@code(/../theme-default/types.d.ts,22,60)
 
 ### `navbar`
 
@@ -124,6 +124,16 @@ const defaultGradient = {
 ```
 * `primary` - the primary theme color of the site
 * `hover` - the hovered links color
+
+### `i18n`
+
+The fixed text contents that can be replaced by your config.
+
+* `suggestChangesToThisPage` - The text for "Suggest changes to this page"
+* `lastUpdateAt` - The text for "Last update at:"
+* `previousPage` - The text for "Previous"
+* `nextPage` - The text for "Next"
+* `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
 
 ## Virtual modules
 

@@ -50,6 +50,13 @@ declare module 'virtual:sveltepress/theme-default' {
       themeLight?: string
       themeDark?: string
     }
+    i18n?: {
+      suggestChangesToThisPage?: string
+      lastUpdateAt?: string
+      previousPage?: string
+      nextPage?: string
+      expansionTitle?: string
+    }
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>
 
