@@ -27,6 +27,15 @@
     {#each themeOptions.navbar as navItem}
       {#if navItem.items}
         <Expansion title={navItem.title} showIcon={false}>
+          <div slot="title">
+            {#if navItem.icon}
+              <div class="text-6">
+                {@html navItem.icon}
+              </div>
+            {:else}
+              {navItem.title}
+            {/if}
+          </div>
           {#each navItem.items as subItem}
             <NavItem {...subItem} />
           {/each}

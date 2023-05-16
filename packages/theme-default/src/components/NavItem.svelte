@@ -8,6 +8,7 @@
   /** @type {string | boolean} */
   export let icon = false
   export let external = false
+  export let builtInIcon = false
 
   const handleClick = () => {
     if (external) window.open(to, '_blank')
@@ -17,8 +18,13 @@
 </script>
 
 {#if items && items.length}
-  <div class="nav-item" class:nav-item--icon={icon}>
-    {#if icon}
+  <div
+    class="nav-item"
+    class:built-in-icon={builtInIcon}
+    class:nav-item--icon={icon}
+    class:nav-item--user-icon={icon}
+  >
+    {#if typeof icon === 'string'}
       {@html icon}
     {:else}
       {title}

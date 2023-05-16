@@ -12,8 +12,10 @@
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
   $: hasError = $page.error
+  let innerWidth
 </script>
 
+<svelte:window bind:innerWidth />
 <header class="header">
   <div class="header-inner">
     <div class="left">
@@ -36,17 +38,19 @@
 
     <nav class="nav-links">
       <div class="navbar-pc">
-        {#each themeOptions.navbar as navItem}
-          <NavItem {...navItem} />
-        {/each}
+        {#if innerWidth >= 950}
+          {#each themeOptions.navbar as navItem}
+            <NavItem {...navItem} />
+          {/each}
+        {/if}
         {#if themeOptions.github}
-          <NavItem to={themeOptions.github} external icon>
+          <NavItem to={themeOptions.github} external icon builtInIcon>
             <Github />
           </NavItem>
         {/if}
 
         {#if themeOptions.discord}
-          <NavItem to={themeOptions.discord} external icon>
+          <NavItem to={themeOptions.discord} external icon builtInIcon>
             <Discord />
           </NavItem>
         {/if}
@@ -87,7 +91,8 @@
     --at-apply: flex items-stretch flex-grow justify-end;
   }
 
-  :global(.navbar-pc .nav-item:not(.nav-item--icon)) {
+  .navbar-pc :global(.nav-item:not(.nav-item--icon)),
+  .navbar-pc :global(.nav-item--user-icon) {
     --uno: 'display-none sm:display-flex';
   }
 </style>
