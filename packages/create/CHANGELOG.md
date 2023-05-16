@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.27.0
+
+### Minor Changes
+
+- [`c635695`](https://github.com/SveltePress/sveltepress/commit/c63569593f28dce79f935294a7c957843f7866f2) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add i18n for fixed text contents
+
 ## 0.26.0
 
 ### Minor Changes
