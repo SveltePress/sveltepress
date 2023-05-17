@@ -12,6 +12,7 @@
       appId,
       apiKey,
       indexName,
+      ...$$restProps,
     })
   })
 </script>

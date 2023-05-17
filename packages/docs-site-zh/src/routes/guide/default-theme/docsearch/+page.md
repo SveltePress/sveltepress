@@ -19,6 +19,7 @@ export default defineConfig({
           appId: 'XXX',
           apiKey: 'XXX',
           indexName: 'XXX',
+          // 其他 Docsearch 支持的选项
         }
       })
     })

@@ -20,4 +20,4 @@ title: PWA
 
 用此站点使用的配置来举例：
 
-@code(/vite.config.ts,141,177)
+@code(/config/pwa.ts)
