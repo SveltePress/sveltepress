@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.6.1
+
+### Patch Changes
+
+- [`8de716d`](https://github.com/SveltePress/sveltepress/commit/8de716da43de3000793ec5c532cad4511eed4b37) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for other options in docsearch
+
+- [`3e80579`](https://github.com/SveltePress/sveltepress/commit/3e805797c910bf739f2fafe77b41451f67efefdb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: should do regular dark mode toggle when clip-path animation not supported by some browsers like Safari and IE
+
 ## 1.6.0
 
 ### Minor Changes
