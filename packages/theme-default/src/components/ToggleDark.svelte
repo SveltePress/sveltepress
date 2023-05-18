@@ -34,6 +34,7 @@
 
     if (!isAppearanceTransition) {
       isDark = !isDark
+      addOrRemoveClass()
       return
     }
 
