@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.27.1
+
+### Patch Changes
+
+- [`8de716d`](https://github.com/SveltePress/sveltepress/commit/8de716da43de3000793ec5c532cad4511eed4b37) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for other options in docsearch
+
 ## 0.27.0
 
 ### Minor Changes
