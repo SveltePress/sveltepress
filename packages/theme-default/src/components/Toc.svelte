@@ -92,7 +92,7 @@
   }
 
   .anchors {
-    --at-apply: 'relative z-3 sm:w-[15vw]';
+    --at-apply: 'relative z-3 sm:w-[15vw] max-h-[70vh] overflow-y-auto overflow-x-hidden';
   }
   .anchors::after {
     --at-apply: 'absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8 display-none sm:display-block';
