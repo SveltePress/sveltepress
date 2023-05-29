@@ -8,7 +8,7 @@ title: 主页
 
 用当前站点使用的主页配置举例：
 
-@code(../../../+page.md,1,25)
+@code(../../../+page.md)
 
 您可以在[本站的首页](/)看到效果
 
@@ -38,6 +38,16 @@ title: 主页
   标题
 * `description`  
   描述
+* `icon`  
+自定义卡片图标
+  * `type` - `'svg' 或者 'iconify'`
+  * `value` - svg 的 DOM 内容
+  * `collection` - Iconfiy 分类名称
+  * `name` - Iconfiy 分类下的图标名称
+
+:::note[图标需要预构建]
+用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中
+:::
 
 ### `home`
 

@@ -27,7 +27,7 @@ export default config
 
 ## 主题配置
 
-@code(/../theme-default/types.d.ts,22,60)
+@code(/../theme-default/types.d.ts,22,63)
 
 ### `navbar`
 
@@ -127,6 +127,15 @@ const defaultGradient = {
 * `previousPage` - "Previous"
 * `nextPage` - "Next"
 * `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
+
+### `preBuildIconifyIcons`
+一些你可能在编写文档过程中用到的 [Iconify](https://iconify.design/) 图标
+
+为一个对象，键是分类名称，值是该分类下需要预构建的图标集合，下面是此站点的配置
+
+@code(/vite.config.ts,33,37)
+
+这些图标被用到了首页的特性卡片上
 
 ## 虚拟模块
 

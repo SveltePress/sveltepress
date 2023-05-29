@@ -14,12 +14,32 @@ actions:
 features:
   - title: Markdown centered
     description: To help you can start writing with minimal configuration.
+    icon:
+      type: iconify
+      collection: vscode-icons
+      name: file-type-markdown
   - title: Build with Sveltekit
     description: Preserve the full power of Sveltekit. So that you can do more than SSG.
+    icon:
+      type: iconify
+      collection: logos
+      name: svelte-kit
   - title: Svelte in Markdown
     description: Feel free to use svelte in markdown. Explore infinite possibilities.
+    icon:
+      type: iconify
+      collection: vscode-icons
+      name: file-type-svelte
   - title: Type friendly
     description: All APIs are fully typed with typescript.
+    icon:
+      type: iconify
+      collection: logos
+      name: typescript-icon
   - title: Theme Customizable
     description: Feel free to use default theme, community themes or write your own.
+    icon:
+      type: iconify
+      collection: emojione
+      name: artist-palette
 ---

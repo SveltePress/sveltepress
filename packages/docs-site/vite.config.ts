@@ -26,6 +26,11 @@ const config = defineConfig({
           light: '#f2f2f2',
           dark: '#18181b',
         },
+        preBuildIconifyIcons: {
+          'vscode-icons': ['file-type-svelte', 'file-type-markdown'],
+          'logos': ['typescript-icon', 'svelte-kit'],
+          'emojione': ['artist-palette'],
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',

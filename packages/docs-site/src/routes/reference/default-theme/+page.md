@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,22,60)
+@code(/../theme-default/types.d.ts,22,63)
 
 ### `navbar`
 
@@ -134,6 +134,13 @@ The fixed text contents that can be replaced by your config.
 * `previousPage` - The text for "Previous"
 * `nextPage` - The text for "Next"
 * `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
+
+### `preBuildIconifyIcons`
+
+The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.   
+An object, key is the collection name, value is the icons array, for example:
+
+@code(/vite.config.ts,29,33)
 
 ## Virtual modules
 

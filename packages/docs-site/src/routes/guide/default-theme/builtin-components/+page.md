@@ -139,3 +139,28 @@ Would auto add a external icon when link address starts with http or https
   <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
 </Expansion>
 ```
+
+## Icons (Pre-build iconify icons)
+
+:::note[Icon pre-build required]
+The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
+:::
+
+### In markdown
+
+```md live
+<div style="font-size: 28px;">
+  <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
+</div>
+```
+
+### In svelte
+
+```svelte live
+<script>
+  import { IconifyIcon } from '@sveltepress/theme-default/components'
+</script>
+<div style="font-size: 28px;">
+  <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
+</div>
+```

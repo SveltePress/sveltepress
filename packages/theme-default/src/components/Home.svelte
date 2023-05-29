@@ -1,18 +1,11 @@
 <script>
   import ActionButton from './ActionButton.svelte'
-  import Apple from './icons/Apple.svelte'
-  import Banana from './icons/Banana.svelte'
-  import Grapes from './icons/Grapes.svelte'
-  import Peach from './icons/Peach.svelte'
-  import Tomato from './icons/Tomato.svelte'
-  import Watermelon from './icons/Watermelon.svelte'
+  import Feature from './home/Feature.svelte'
 
   export let features = []
   export let actions = []
   export let tagline = ''
   export let siteConfig
-
-  const icons = [Apple, Banana, Grapes, Peach, Tomato, Watermelon]
 
   // Need this for avoid props not provided by let xxx warning
   $$restProps
@@ -44,17 +37,7 @@
 
   <div class="features">
     {#each features as fe, i}
-      <div class="feature-item">
-        <div class="icon">
-          <svelte:component this={icons[i % icons.length]} />
-        </div>
-        <div class="feature-title">
-          {fe.title}
-        </div>
-        <div class="feature-desc">
-          {fe.description}
-        </div>
-      </div>
+      <Feature {...fe} {i} />
     {/each}
   </div>
 </div>
@@ -83,17 +66,5 @@
   }
   .features {
     --at-apply: 'grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4';
-  }
-  .feature-title {
-    --at-apply: font-600 mt-3;
-  }
-  .feature-desc {
-    --at-apply: text-slate-5 mt-3 text-[14px];
-  }
-  .feature-item {
-    --at-apply: 'bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md transition-shadow transition-300';
-  }
-  .icon {
-    --at-apply: 'text-10 inline-flex items-center p-1 bg-[#e5e5e5] dark:bg-[#252525] rounded-md';
   }
 </style>

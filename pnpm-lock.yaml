@@ -150,6 +150,12 @@ importers:
       '@docsearch/js':
         specifier: ^3.3.3
         version: 3.3.3(@algolia/client-search@4.17.0)
+      '@iconify/json':
+        specifier: ^2.2.27
+        version: 2.2.27
+      '@iconify/utils':
+        specifier: ^2.1.5
+        version: 2.1.5
       '@vite-pwa/sveltekit':
         specifier: ^0.1.3
         version: 0.1.3(@sveltejs/kit@1.16.2)(vite-plugin-pwa@0.14.4)
@@ -2735,13 +2741,12 @@ packages:
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.0
-    dev: true
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  /@iconify/utils@2.1.1:
-    resolution: {integrity: sha512-H8xz74JDzDw8f0qLxwIaxFMnFkbXTZNWEufOk3WxaLFHV4h0A2FjIDgNk5LzC0am4jssnjdeJJdRs3UFu3582Q==}
+  /@iconify/utils@2.1.5:
+    resolution: {integrity: sha512-6MvDI+I6QMvXn5rK9KQGdpEE4mmLTcuQdLZEiX5N+uZB+vc4Yw9K1OtnOgkl8mp4d9X0UrILREyZgF1NUwUt+Q==}
     dependencies:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.2
@@ -3416,7 +3421,7 @@ packages:
   /@unocss/preset-icons@0.48.5:
     resolution: {integrity: sha512-pXgerhZfSZX2YNXW+1S6UtJEDgAGEz7u5Popx8IBoVmUr8xnFN1+AYZOTNH0KATx4R7s9NyRIr0sxD4DMq8bcA==}
     dependencies:
-      '@iconify/utils': 2.1.1
+      '@iconify/utils': 2.1.5
       '@unocss/core': 0.48.5
       ohmyfetch: 0.4.21
     transitivePeerDependencies:

@@ -1,5 +1,7 @@
 <script>
   import '@docsearch/css/dist/style.css'
+  // customize iconify css
+  import 'virtual:sveltepress/feature-icons.css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { onMount } from 'svelte'

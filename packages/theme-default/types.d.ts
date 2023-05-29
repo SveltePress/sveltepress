@@ -57,6 +57,9 @@ declare module 'virtual:sveltepress/theme-default' {
       nextPage?: string
       expansionTitle?: string
     }
+    preBuildIconifyIcons?: {
+      [iconSetName: string]: string[]
+    }
   }
   export type ThemeDefault = LoadTheme<DefaultThemeOptions>
 

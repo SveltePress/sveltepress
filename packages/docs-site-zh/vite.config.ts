@@ -30,6 +30,11 @@ const config = defineConfig({
           nextPage: '下一页',
           expansionTitle: '点击展开/折叠代码',
         },
+        preBuildIconifyIcons: {
+          'vscode-icons': ['file-type-svelte', 'file-type-markdown'],
+          'logos': ['typescript-icon', 'svelte-kit'],
+          'emojione': ['artist-palette'],
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',

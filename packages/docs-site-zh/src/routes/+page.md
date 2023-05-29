@@ -14,12 +14,32 @@ actions:
 features:
   - title: 以 Markdown 为中心
     description: 以最小的配置开始写作
+    icon:
+      type: iconify
+      collection: vscode-icons
+      name: file-type-markdown
   - title: 基于 Sveltekit 构建
     description: 保留了 Sveltekit 的完整能力，你可以做的远不止 SSG
+    icon:
+      type: iconify
+      collection: logos
+      name: svelte-kit
   - title: 支持在 Markdown 中编写 Svelte
     description: 在 Markdown 中自由的编写 Svelte，探索无限可能
+    icon:
+      type: iconify
+      collection: vscode-icons
+      name: file-type-svelte
   - title: 类型友好
     description: 所有的 API 以及配置均有 TS 类型提示
+    icon:
+      type: iconify
+      collection: logos
+      name: typescript-icon
   - title: 支持主题自定义
-    description: 根据您的需要选择默认主题，社区主题，或者自行开发主题
+    description: 根据您的需要选择默认主题，社区主题，或者自行开发主题own.
+    icon:
+      type: iconify
+      collection: emojione
+      name: artist-palette
 ---

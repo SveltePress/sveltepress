@@ -9,7 +9,7 @@ The `src/routes/+page.(md|svelte)` would be identified as home page
 Home frontmatter can be like this.  
 Take the frontmatter this site use for example:
 
-@code(../../../+page.md,1,25)
+@code(../../../+page.md)
 
 And you can see [Home page](/) for result
 
@@ -39,6 +39,16 @@ The feature cards
   The title
 * `description`  
   The text description under the title
+* `icon`  
+custom icon config
+  * `type` - `'svg' | 'iconify'`
+  * `value` - the svg content for svg type icon
+  * `collection` - the collection name of iconify
+  * `name` - the icon name in the specified collection of iconify
+
+:::note[Icon pre-build required]
+The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
+:::
 
 ### `home`
 

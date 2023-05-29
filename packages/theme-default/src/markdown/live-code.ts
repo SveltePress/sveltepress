@@ -24,7 +24,7 @@ interface LiveCodePathItem {
 }
 
 const globalComponentsImporters = [
-  'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from \'@sveltepress/theme-default/components\'',
+  'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from \'@sveltepress/theme-default/components\'',
 ]
 
 const liveCode: Plugin<[], any> = function () {

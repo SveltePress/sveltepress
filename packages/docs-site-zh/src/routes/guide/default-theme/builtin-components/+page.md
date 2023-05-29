@@ -138,3 +138,28 @@ title: 内置组件
   <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
 </Expansion>
 ```
+
+## Icons (Iconify 图标预构建)
+
+:::note[图标需要预构建]
+用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中
+:::
+
+### Markdown 中使用
+
+```md live
+<div style="font-size: 28px;">
+  <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
+</div>
+```
+
+### Svelte 中使用
+
+```svelte live
+<script>
+  import { IconifyIcon } from '@sveltepress/theme-default/components'
+</script>
+<div style="font-size: 28px;">
+  <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
+</div>
+```
