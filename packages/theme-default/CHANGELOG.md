@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 1.7.0
+
+### Minor Changes
+
+- [`bb036b7`](https://github.com/SveltePress/sveltepress/commit/bb036b77e5c1138ccaf018ecaf7b647b1fbd90dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: iconfiy icons pre-build
+
+### Patch Changes
+
+- [`e416732`](https://github.com/SveltePress/sveltepress/commit/e416732fff073628a3ccd0c8911a7a4fa7a237f4) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: add max height for page toc
+
 ## 1.6.1
 
 ### Patch Changes
