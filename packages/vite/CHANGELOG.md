@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.20.0
+
+### Minor Changes
+
+- [`bb036b7`](https://github.com/SveltePress/sveltepress/commit/bb036b77e5c1138ccaf018ecaf7b647b1fbd90dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: iconfiy icons pre-build
+
 ## 0.19.0
 
 ### Minor Changes
