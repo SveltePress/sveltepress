@@ -3,7 +3,7 @@
 exports[`live code > simple parse 1`] = `
 "<h3>title level 3</h3>
 <script context=\\"module\\">
-import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg } from '@sveltepress/theme-default/components'
+import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from '@sveltepress/theme-default/components'
 import LiveCode5666bdf98c2 from '$sveltepress/live-code/LiveCode5666bdf98c2.svelte'
   const a = 'a'
   export const b = 'b'
