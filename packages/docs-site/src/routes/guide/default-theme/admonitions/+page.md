@@ -16,7 +16,7 @@ Some admonition content
 
 ```md live
 :::tip[Tip title]
-Some tip content
+Some tip content  
 :::
 ```
 

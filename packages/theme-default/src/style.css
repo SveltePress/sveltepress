@@ -96,88 +96,45 @@ html[data-theme="dark"] {
 
 /* default for custom types */
 .admonition {
-  background-color: rgb(118 51 219 / 10%);
-  border-left: 8px solid #7633db;
+  --admonition-bg: rgb(118 51 219 / 10%);
+  --admonition-color: #7633db;
+  background-color: var(--admonition-bg);
+  border-left: 8px solid var(--admonition-color);
 }
 
 .admonition h5 {
-  color: #7633db;
+  color: var(--admonition-color);
 }
 
 .admonition .admonition-icon svg {
-  stroke: #7633db;
-  fill: #7633db;
+  stroke: var(--admonition-color);
+  fill: var(--admonition-color);
 }
 
 /** native types */
 .admonition-caution {
-  background-color: rgb(230 126 34 / 10%);
-  border-left: 8px solid #e67e22;
-}
-
-.admonition-caution h5 {
-  color: #e67e22;
-}
-
-.admonition-caution .admonition-icon svg {
-  stroke: #e67e22;
-  fill: #e67e22;
+  --admonition-color: #e67e22;
+  --admonition-bg: rgb(230 126 34 / 10%);
 }
 
 .admonition-tip {
-  background-color: rgb(46 204 113 / 10%);
-  border-left: 8px solid #2ecc71;
-}
-
-.admonition-tip h5 {
-  color: #2ecc71;
-}
-
-.admonition-tip .admonition-icon svg {
-  stroke: #2ecc71;
-  fill: #2ecc71;
+  --admonition-color: #2ecc71;
+  --admonition-bg: rgb(46 204 113 / 10%);
 }
 
 .admonition-warning {
-  background-color: rgb(231 76 60 / 10%);
-  border-left: 8px solid #e74c3c;
-}
-
-.admonition-warning h5 {
-  color: #e74c3c;
-}
-
-.admonition-warning .admonition-icon svg {
-  stroke: #e74c3c;
-  fill: #e74c3c;
+  --admonition-color: #e74c3c;
+  --admonition-bg: rgb(231 76 60 / 10%);
 }
 
 .admonition-important {
-  background-color: rgb(52 152 219 / 10%);
-  border-left: 8px solid #3498db;
-}
-
-.admonition-important h5 {
-  color: #3498db;
-}
-
-.admonition-important .admonition-icon svg {
-  stroke: #3498db;
-  fill: #3498db;
+  --admonition-bg: rgb(52 152 219 / 10%);
+  --admonition-color: #3498db;
 }
 
 .admonition-note {
-  background-color: rgb(241 196 15 / 10%);
-  border-left: 8px solid #f1c40f;
-}
-
-.admonition-note h5 {
-  color: #f1c40f;
-}
-
-.admonition-note .admonition-icon svg {
-  stroke: #f1c40f;
-  fill: #f1c40f;
+  --admonition-bg: rgb(241 196 15 / 10%);
+  --admonition-color: #f1c40f;
 }
 
 .c-expansion--body .shiki {
