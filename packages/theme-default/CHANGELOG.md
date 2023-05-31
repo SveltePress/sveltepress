@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.8.0
+
+### Minor Changes
+
+- [`20f2387`](https://github.com/SveltePress/sveltepress/commit/20f2387a4cb677bb72039467f3453a7667146955) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: missing support for svelte syntax
+
 ## 1.7.1
 
 ### Patch Changes
