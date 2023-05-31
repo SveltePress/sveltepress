@@ -10,6 +10,7 @@ import remarkDirective from 'remark-directive'
 import { visit } from 'unist-util-visit'
 import remarkGfm from 'remark-gfm'
 import type { Highlighter } from '../types'
+import reserveSvelteCommands from './reserve-svelte-commands'
 
 interface CompileOptions {
   mdContent: string
@@ -27,6 +28,7 @@ export default async ({
 }: CompileOptions) => {
   let processorBeforeRehype = unified()
     .use(remarkParse)
+    .use(reserveSvelteCommands)
     .use(remarkDirective)
     .use(remarkFrontmatter)
     .use(remarkExtractFrontmatter, { yaml: parse })

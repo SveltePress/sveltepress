@@ -275,6 +275,9 @@ importers:
       '@types/fs-extra':
         specifier: ^9.0.13
         version: 9.0.13
+      '@types/mdast':
+        specifier: ^3.0.11
+        version: 3.0.11
       '@types/node':
         specifier: ^18.13.0
         version: 18.13.0
@@ -3161,8 +3164,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/mdast@3.0.10:
-    resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
+  /@types/mdast@3.0.11:
+    resolution: {integrity: sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==}
     dependencies:
       '@types/unist': 2.0.6
 
@@ -6275,7 +6278,7 @@ packages:
   /mdast-util-definitions@5.1.2:
     resolution: {integrity: sha512-8SVPMuHqlPME/z3gqVwWY4zVXn8lqKv/pAhC57FuJ40ImXyBpmO5ukh98zB2v7Blql2FiHjHv9LVztSIqjY+MA==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       '@types/unist': 2.0.6
       unist-util-visit: 4.1.2
     dev: false
@@ -6283,7 +6286,7 @@ packages:
   /mdast-util-directive@2.2.4:
     resolution: {integrity: sha512-sK3ojFP+jpj1n7Zo5ZKvoxP1MvLyzVG63+gm40Z/qI00avzdPCYxt7RBMgofwAva9gBjbDBWVRB/i+UD+fUCzQ==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       '@types/unist': 2.0.6
       mdast-util-from-markdown: 1.3.0
       mdast-util-to-markdown: 1.5.0
@@ -6297,7 +6300,7 @@ packages:
   /mdast-util-find-and-replace@2.2.2:
     resolution: {integrity: sha512-MTtdFRz/eMDHXzeK6W3dO7mXUlF82Gom4y0oOgvHhh/HXZAGvIQDUvQ0SuUx+j2tv44b8xTHOm8K/9OoRFnXKw==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       escape-string-regexp: 5.0.0
       unist-util-is: 5.2.0
       unist-util-visit-parents: 5.1.3
@@ -6306,7 +6309,7 @@ packages:
   /mdast-util-from-markdown@0.8.5:
     resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-string: 2.0.0
       micromark: 2.11.4
       parse-entities: 2.0.0
@@ -6318,7 +6321,7 @@ packages:
   /mdast-util-from-markdown@1.3.0:
     resolution: {integrity: sha512-HN3W1gRIuN/ZW295c7zi7g9lVBllMgZE40RxCX37wrTPWXCWtpvOZdfnuK+1WNpvZje6XuJeI3Wnb4TJEUem+g==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       '@types/unist': 2.0.6
       decode-named-character-reference: 1.0.2
       mdast-util-to-string: 3.1.1
@@ -6337,7 +6340,7 @@ packages:
   /mdast-util-frontmatter@1.0.1:
     resolution: {integrity: sha512-JjA2OjxRqAa8wEG8hloD0uTU0kdn8kbtOWpPP94NBkfAlbxn4S8gCGf/9DwFtEeGPXrDcNXdiDjVaRdUFqYokw==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-markdown: 1.5.0
       micromark-extension-frontmatter: 1.0.0
     dev: false
@@ -6345,7 +6348,7 @@ packages:
   /mdast-util-gfm-autolink-literal@1.0.3:
     resolution: {integrity: sha512-My8KJ57FYEy2W2LyNom4n3E7hKTuQk/0SES0u16tjA9Z3oFkF4RrC/hPAPgjlSpezsOvI8ObcXcElo92wn5IGA==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       ccount: 2.0.1
       mdast-util-find-and-replace: 2.2.2
       micromark-util-character: 1.1.0
@@ -6354,7 +6357,7 @@ packages:
   /mdast-util-gfm-footnote@1.0.2:
     resolution: {integrity: sha512-56D19KOGbE00uKVj3sgIykpwKL179QsVFwx/DCW0u/0+URsryacI4MAdNJl0dh+u2PSsD9FtxPFbHCzJ78qJFQ==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-markdown: 1.5.0
       micromark-util-normalize-identifier: 1.0.0
     dev: false
@@ -6362,14 +6365,14 @@ packages:
   /mdast-util-gfm-strikethrough@1.0.3:
     resolution: {integrity: sha512-DAPhYzTYrRcXdMjUtUjKvW9z/FNAMTdU0ORyMcbmkwYNbKocDpdk+PX1L1dQgOID/+vVs1uBQ7ElrBQfZ0cuiQ==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-markdown: 1.5.0
     dev: false
 
   /mdast-util-gfm-table@1.0.7:
     resolution: {integrity: sha512-jjcpmNnQvrmN5Vx7y7lEc2iIOEytYv7rTvu+MeyAsSHTASGCCRA79Igg2uKssgOs1i1po8s3plW0sTu1wkkLGg==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       markdown-table: 3.0.3
       mdast-util-from-markdown: 1.3.0
       mdast-util-to-markdown: 1.5.0
@@ -6380,7 +6383,7 @@ packages:
   /mdast-util-gfm-task-list-item@1.0.2:
     resolution: {integrity: sha512-PFTA1gzfp1B1UaiJVyhJZA1rm0+Tzn690frc/L8vNX1Jop4STZgOE6bxUhnzdVSB+vm2GU1tIsuQcA9bxTQpMQ==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-markdown: 1.5.0
     dev: false
 
@@ -6401,7 +6404,7 @@ packages:
   /mdast-util-phrasing@3.0.1:
     resolution: {integrity: sha512-WmI1gTXUBJo4/ZmSk79Wcb2HcjPJBzM1nlI/OUWA8yk2X9ik3ffNbBGsU+09BFmXaL1IBb9fiuvq6/KMiNycSg==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       unist-util-is: 5.2.0
     dev: false
 
@@ -6409,7 +6412,7 @@ packages:
     resolution: {integrity: sha512-pits93r8PhnIoU4Vy9bjW39M2jJ6/tdHyja9rrot9uujkN7UTU9SDnE6WNJz/IGyQk3XHX6yNNtrBH6cQzm8Hw==}
     dependencies:
       '@types/hast': 2.3.4
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-definitions: 5.1.2
       micromark-util-sanitize-uri: 1.1.0
       trim-lines: 3.0.1
@@ -6421,7 +6424,7 @@ packages:
   /mdast-util-to-markdown@1.5.0:
     resolution: {integrity: sha512-bbv7TPv/WC49thZPg3jXuqzuvI45IL2EVAr/KxF0BSdHsU0ceFHOmwQn6evxAh1GaoK/6GQ1wp4R4oW2+LFL/A==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       '@types/unist': 2.0.6
       longest-streak: 3.1.0
       mdast-util-phrasing: 3.0.1
@@ -6438,7 +6441,7 @@ packages:
   /mdast-util-to-string@3.1.1:
     resolution: {integrity: sha512-tGvhT94e+cVnQt8JWE9/b3cUQZWS732TJxXHktvP+BYo62PpYD53Ls/6cC60rW21dW+txxiM4zMdc6abASvZKA==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
     dev: false
 
   /mdn-data@2.0.30:
@@ -7556,7 +7559,7 @@ packages:
   /remark-directive@2.0.1:
     resolution: {integrity: sha512-oosbsUAkU/qmUE78anLaJePnPis4ihsE7Agp0T/oqTzvTea8pOiaYEtfInU/+xMOVTS9PN5AhGOiaIVe4GD8gw==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-directive: 2.2.4
       micromark-extension-directive: 2.1.2
       unified: 10.1.2
@@ -7571,7 +7574,7 @@ packages:
   /remark-frontmatter@4.0.1:
     resolution: {integrity: sha512-38fJrB0KnmD3E33a5jZC/5+gGAC2WKNiPw1/fdXJvijBlhA7RCsvJklrYJakS0HedninvaCYW8lQGf9C918GfA==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-frontmatter: 1.0.1
       micromark-extension-frontmatter: 1.0.0
       unified: 10.1.2
@@ -7580,7 +7583,7 @@ packages:
   /remark-gfm@3.0.1:
     resolution: {integrity: sha512-lEFDoi2PICJyNrACFOfDD3JlLkuSbOa5Wd8EPt06HUdptv8Gn0bxYTdbU/XXQ3swAPkEaGxxPN9cbnMHvVu1Ig==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-gfm: 2.0.2
       micromark-extension-gfm: 2.0.1
       unified: 10.1.2
@@ -7591,7 +7594,7 @@ packages:
   /remark-parse@10.0.1:
     resolution: {integrity: sha512-1fUyHr2jLsVOkhbvPRBJ5zTKZZyD6yZzYaWCS6BPBdQ8vEMBCH+9zNCDA6tET/zHCi/jLqjCWtlJZUPk+DbnFw==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-from-markdown: 1.3.0
       unified: 10.1.2
     transitivePeerDependencies:
@@ -7602,7 +7605,7 @@ packages:
     resolution: {integrity: sha512-EFmR5zppdBp0WQeDVZ/b66CWJipB2q2VLNFMabzDSGR66Z2fQii83G5gTBbgGEnEEA0QRussvrFHxk1HWGJskw==}
     dependencies:
       '@types/hast': 2.3.4
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-hast: 12.3.0
       unified: 10.1.2
     dev: false
@@ -7610,7 +7613,7 @@ packages:
   /remark-stringify@10.0.2:
     resolution: {integrity: sha512-6wV3pvbPvHkbNnWB0wdDvVFHOe1hBRAx1Q/5g/EpH4RppAII6J8Gnwe7VbHuXaoKIF6LAg6ExTel/+kNqSQ7lw==}
     dependencies:
-      '@types/mdast': 3.0.10
+      '@types/mdast': 3.0.11
       mdast-util-to-markdown: 1.5.0
       unified: 10.1.2
     dev: false

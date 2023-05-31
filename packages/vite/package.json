@@ -41,6 +41,7 @@
     "@types/cross-spawn": "^6.0.2",
     "@types/estree": "^1.0.0",
     "@types/fs-extra": "^9.0.13",
+    "@types/mdast": "^3.0.11",
     "@types/node": "^18.13.0",
     "dayjs": "^1.11.7",
     "svelte": "^3.55.1",

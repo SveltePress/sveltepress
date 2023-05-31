@@ -3,10 +3,142 @@ title: 在 Markdown 中使用 Svelte
 ---
 
 借助这个特性，您可以在 md 文件中使用
-`<style>`, `<script>` 以及 `<script context="module">`
+`<style>`，`<script>`， `<script context="module">`，`#if`, `#each`, `#await`, `@html`，`@const`，`<svelte:xxx>` 等 svelte 专属语法
 
 
-## 简单示例
+## 基础使用
+
+这是一个使用了 `#if`，`#each`，`#await`，`@html`，`@const` 的基础示例
+
+**输入**
+
+```md
+<script>
+  const items = ['foo', 'bar', 'zoo']
+  let boolVal = false
+
+  const promisePass = () => new Promise(resolve => {
+    setTimeout(() => {
+      resolve('Promise Passed!')
+    }, 2000)
+  })
+
+  const promiseFail = () => new Promise((_, reject) => {
+    setTimeout(() => {
+      reject('Promise Failed!')
+    }, 2000)
+  })
+
+  $: promise = boolVal ? promisePass() : promiseFail()
+</script>
+
+<ul>
+{#each items as item, i}
+{@const str = `${i + 1}: ${item}`}
+  <li>
+    {str}
+  </li>
+{/each}
+</ul>
+
+<button on:click="{() => boolVal = !boolVal}">
+Toggle
+</button>
+
+{#if boolVal}
+  <h3 class="pass">
+    Pass
+  </h3>
+{:else}
+  <h3 class="fail">
+    Fail
+  </h3>
+{/if}
+
+{#await promise}
+  <h3 class="loading">
+    Loading
+  </h3>
+{:then res}
+  <h3 class="pass">
+    {res}
+  </h3>
+{:catch err}
+  <h3 class="fail">
+    {err}
+  </h3>
+{/await}
+
+{@html "<h1>用 @html 渲染的内容</h1>"}
+
+<style>
+.loading {
+  --uno: 'text-orange';
+}
+.pass {
+  --uno: 'text-green';
+}
+.fail {
+  --uno: 'text-red';
+}
+</style>
+```
+
+**Output**
+
+<ul>
+{#each items as item, i}
+{@const str = `${i + 1}: ${item}`}
+  <li>
+    {str}
+  </li>
+{/each}
+</ul>
+
+<button on:click="{() => boolVal = !boolVal}">
+Toggle
+</button>
+
+{#if boolVal}
+  <h3 class="pass">
+    Pass
+  </h3>
+{:else}
+  <h3 class="fail">
+    Fail
+  </h3>
+{/if}
+
+{#await promise}
+  <h3 class="loading">
+    Loading
+  </h3>
+{:then res}
+  <h3 class="pass">
+    {res}
+  </h3>
+{:catch err}
+  <h3 class="fail">
+    {err}
+  </h3>
+{/await}
+
+{@html "<h1>用 @html 渲染的内容</h1>"}
+
+<style>
+.pass {
+  --uno: 'text-green';
+}
+.fail {
+  --uno: 'text-red';
+}
+.loading {
+  --uno: 'text-orange';
+}
+</style>
+
+
+## 一个简单的计数器
 
 **输入**
 

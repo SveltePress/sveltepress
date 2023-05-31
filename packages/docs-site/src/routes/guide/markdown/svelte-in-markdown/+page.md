@@ -3,10 +3,149 @@ title: Svelte in markdown
 ---
 
 This feature allow you to write 
-`<style>`, `<script>` and `<script context="module">` in .md files
+`<style>`, `<script>`, `<script context="module">`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` in .md files
+
+## Basic
+
+Here's a basic example with `#if`, `#each`, `#await`, `@html`, `@const`
+
+**Input**
+
+```md
+<script>
+  const items = ['foo', 'bar', 'zoo']
+  let boolVal = false
+
+  const promisePass = () => new Promise(resolve => {
+    setTimeout(() => {
+      resolve('Promise Passed!')
+    }, 2000)
+  })
+
+  const promiseFail = () => new Promise((_, reject) => {
+    setTimeout(() => {
+      reject('Promise Failed!')
+    }, 2000)
+  })
+
+  $: promise = boolVal ? promisePass() : promiseFail()
+</script>
+
+<ul>
+{#each items as item, i}
+{@const str = `${i + 1}: ${item}`}
+  <li>
+    {str}
+  </li>
+{/each}
+</ul>
+
+<button on:click="{() => boolVal = !boolVal}">
+Toggle
+</button>
+
+{#if boolVal}
+  <h3 class="pass">
+    Pass
+  </h3>
+{:else}
+  <h3 class="fail">
+    Fail
+  </h3>
+{/if}
+
+{#await promise}
+  <h3 class="loading">
+    Loading
+  </h3>
+{:then res}
+  <h3 class="pass">
+    {res}
+  </h3>
+{:catch err}
+  <h3 class="fail">
+    {err}
+  </h3>
+{/await}
+
+{@html "<h1>Content render with @html</h1>"}
+
+<style>
+.loading {
+  --uno: 'text-orange';
+}
+.pass {
+  --uno: 'text-green';
+}
+.fail {
+  --uno: 'text-red';
+}
+</style>
+```
+
+**Output**
+
+<ul>
+{#each items as item, i}
+{@const str = `${i + 1}: ${item}`}
+  <li>
+    {str}
+  </li>
+{/each}
+</ul>
+
+<button on:click="{() => boolVal = !boolVal}">
+Toggle
+</button>
+
+{#if boolVal}
+  <h3 class="pass">
+    Pass
+  </h3>
+{:else}
+  <h3 class="fail">
+    Fail
+  </h3>
+{/if}
+
+{#await promise}
+  <h3 class="loading">
+    Loading
+  </h3>
+{:then res}
+  <h3 class="pass">
+    {res}
+  </h3>
+{:catch err}
+  <h3 class="fail">
+    {err}
+  </h3>
+{/await}
+
+{@html "<h1>Content render with @html</h1>"}
+
+<style>
+.pass {
+  --uno: 'text-green';
+}
+.fail {
+  --uno: 'text-red';
+}
+.loading {
+  --uno: 'text-orange';
+}
+</style>
+
+:::note[Syntax Restrictions]
+Always use quotes in markdown files.
+```svelte
+  <button on:click={() => count++}></button> // [svp! --]
+  <button on:click="{() => count++}"></button> // [svp! ++]
+```
+:::
 
 
-## Simple example
+## A Counter
 
 **Input**
 
@@ -28,19 +167,24 @@ This feature allow you to write
 <script>
   import Counter from './Counter.svelte'
   let count = 0
+  const items = ['foo', 'bar', 'zoo']
+  let boolVal = false
+  const promisePass = () => new Promise(resolve => {
+    setTimeout(() => {
+      resolve('Promise Passed!')
+    }, 2000)
+  })
+  const promiseFail = () => new Promise((_, reject) => {
+    setTimeout(() => {
+      reject('Promise Failed!')
+    }, 2000)
+  })
+  $: promise = boolVal ? promisePass() : promiseFail()
 </script>
 
 <button on:click="{() => count++}" style="margin-bottom: 12px;">
   You've clicked {count} times
 </button>
-
-:::note[Syntax Restrictions]
-Always use quotes in markdown files.
-```svelte
-  <button on:click={() => count++}></button> // [svp! --]
-  <button on:click="{() => count++}"></button> // [svp! ++]
-```
-:::
 
 ## Import svelte in md
 
