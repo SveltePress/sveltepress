@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.7.1
+
+### Patch Changes
+
+- [`c0ffe16`](https://github.com/SveltePress/sveltepress/commit/c0ffe16a42bfeb41d163f68766a9365faf9cb12c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize link color in admonitions
+
 ## 1.7.0
 
 ### Minor Changes
