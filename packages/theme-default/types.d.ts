@@ -56,6 +56,13 @@ declare module 'virtual:sveltepress/theme-default' {
       previousPage?: string
       nextPage?: string
       expansionTitle?: string
+      pwa?: {
+        tip?: string
+        reload?: string
+        close?: string
+        appReadyToWorkOffline?: string
+        newContentAvailable?: string
+      }
     }
     preBuildIconifyIcons?: {
       [iconSetName: string]: string[]

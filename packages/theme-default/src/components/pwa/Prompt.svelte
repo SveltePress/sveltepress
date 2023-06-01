@@ -1,8 +1,10 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   import { fade } from 'svelte/transition'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Close from '../icons/Close.svelte'
   import Btn from './Btn.svelte'
+
   export let message
 
   const dispatcher = createEventDispatcher()
@@ -10,17 +12,20 @@
   const handleClose = () => {
     dispatcher('close')
   }
+
+  const DEFAULT_TIP = 'Tip'
+  const DEFAULT_CLOSE = 'Close'
 </script>
 
 <div class="pwa-toast" role="alert" in:fade>
-  <div class="pwa-title">Tip</div>
+  <div class="pwa-title">{themeOptions?.i18n?.pwa?.tip || DEFAULT_TIP}</div>
   <div class="message">
     <span> {message} </span>
   </div>
   <div class="actions">
     <slot />
     <Btn on:click={handleClose} flat>
-      Close
+      {themeOptions?.i18n?.pwa?.close || DEFAULT_CLOSE}
       <Close />
     </Btn>
   </div>

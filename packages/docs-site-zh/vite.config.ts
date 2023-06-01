@@ -5,6 +5,7 @@ import sidebar from './config/sidebar'
 import docsearch from './config/docsearch'
 import pwa from './config/pwa'
 import navbar from './config/navbar'
+import i18n from './config/i18n'
 
 const config = defineConfig({
   plugins: [
@@ -23,13 +24,7 @@ const config = defineConfig({
           light: '#f2f2f2',
           dark: '#18181b',
         },
-        i18n: {
-          suggestChangesToThisPage: '在 Github 上编辑此页',
-          lastUpdateAt: '最后更新于：',
-          previousPage: '上一页',
-          nextPage: '下一页',
-          expansionTitle: '点击展开/折叠代码',
-        },
+        i18n,
         preBuildIconifyIcons: {
           'vscode-icons': ['file-type-svelte', 'file-type-markdown'],
           'logos': ['typescript-icon', 'svelte-kit'],
