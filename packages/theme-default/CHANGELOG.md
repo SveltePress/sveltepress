@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.9.1
+
+### Patch Changes
+
+- [`3453650`](https://github.com/SveltePress/sveltepress/commit/34536503e6e50369c5fb8a1fa6d3300b750f3468) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: prebbuild iconify icons inline css resolve error
+
 ## 1.9.0
 
 ### Minor Changes
