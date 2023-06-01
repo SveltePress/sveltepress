@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,22,63)
+@code(/../theme-default/types.d.ts,22,70)
 
 ### `navbar`
 
@@ -134,6 +134,12 @@ The fixed text contents that can be replaced by your config.
 * `previousPage` - The text for "Previous"
 * `nextPage` - The text for "Next"
 * `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
+* `pwa` - The pwa prompt relative text contents. All of the following fields correspond to the same text in pwa prompt 
+  * `tip`
+  * `reload`
+  * `close`
+  * `appReadyToWorkOffline`
+  * `newContentAvailable`
 
 ### `preBuildIconifyIcons`
 

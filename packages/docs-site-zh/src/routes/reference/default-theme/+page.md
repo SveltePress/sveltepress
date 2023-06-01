@@ -127,6 +127,12 @@ const defaultGradient = {
 * `previousPage` - "Previous"
 * `nextPage` - "Next"
 * `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
+* `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本 
+  * `tip`
+  * `reload`
+  * `close`
+  * `appReadyToWorkOffline`
+  * `newContentAvailable`
 
 ### `preBuildIconifyIcons`
 一些你可能在编写文档过程中用到的 [Iconify](https://iconify.design/) 图标
