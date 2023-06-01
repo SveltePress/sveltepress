@@ -4,12 +4,14 @@ import type { PluginOption } from 'vite'
 import { getIconsCSS } from '@iconify/utils'
 import { locate } from '@iconify/json'
 
-const ALL_ICONS_MODULE = 'virtual:sveltepress/feature-icons.css'
+const ALL_ICONS_MODULE = 'virtual:sveltepress/prebuild-iconify-icons.css'
+const ALL_ICONS_INLINE = 'sveltepress/prebuild-iconify-icons.css?inline='
 
 const iconifyIcons: (themeOptions?: DefaultThemeOptions) => PluginOption = themeOptions => ({
   name: '@sveltepress/theme-default/iconify-feature-icons',
   resolveId(id) {
     if (id === ALL_ICONS_MODULE) return ALL_ICONS_MODULE
+    if (id === ALL_ICONS_INLINE) return ALL_ICONS_INLINE
   },
   async load(id) {
     if (id === ALL_ICONS_MODULE) {
@@ -24,6 +26,7 @@ const iconifyIcons: (themeOptions?: DefaultThemeOptions) => PluginOption = theme
       }
       return code
     }
+    if (id === ALL_ICONS_INLINE) return ''
   },
 })
 

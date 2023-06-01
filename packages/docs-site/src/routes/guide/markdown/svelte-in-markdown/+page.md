@@ -45,42 +45,30 @@ Toggle
 </button>
 
 {#if boolVal}
-  <h3 class="pass">
+  <h3 class="text-green">
     Pass
   </h3>
 {:else}
-  <h3 class="fail">
+  <h3 class="text-red">
     Fail
   </h3>
 {/if}
 
 {#await promise}
-  <h3 class="loading">
+  <h3 class="text-orange">
     Loading
   </h3>
 {:then res}
-  <h3 class="pass">
+  <h3 class="text-green">
     {res}
   </h3>
 {:catch err}
-  <h3 class="fail">
+  <h3 class="text-red">
     {err}
   </h3>
 {/await}
 
 {@html "<h1>Content render with @html</h1>"}
-
-<style>
-.loading {
-  --uno: 'text-orange';
-}
-.pass {
-  --uno: 'text-green';
-}
-.fail {
-  --uno: 'text-red';
-}
-</style>
 ```
 
 **Output**
@@ -99,42 +87,30 @@ Toggle
 </button>
 
 {#if boolVal}
-  <h3 class="pass">
+  <h3 class="text-green">
     Pass
   </h3>
 {:else}
-  <h3 class="fail">
+  <h3 class="text-red">
     Fail
   </h3>
 {/if}
 
 {#await promise}
-  <h3 class="loading">
+  <h3 class="text-orange">
     Loading
   </h3>
 {:then res}
-  <h3 class="pass">
+  <h3 class="text-green">
     {res}
   </h3>
 {:catch err}
-  <h3 class="fail">
+  <h3 class="text-red">
     {err}
   </h3>
 {/await}
 
 {@html "<h1>Content render with @html</h1>"}
-
-<style>
-.pass {
-  --uno: 'text-green';
-}
-.fail {
-  --uno: 'text-red';
-}
-.loading {
-  --uno: 'text-orange';
-}
-</style>
 
 :::note[Syntax Restrictions]
 Always use quotes in markdown files.

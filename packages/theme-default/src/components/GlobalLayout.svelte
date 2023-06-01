@@ -1,8 +1,7 @@
 <script>
-  import '@docsearch/css/dist/style.css'
   import 'uno.css'
-  // customize iconify css
-  import 'virtual:sveltepress/feature-icons.css'
+  import '@docsearch/css/dist/style.css'
+  import 'virtual:sveltepress/prebuild-iconify-icons.css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { onMount } from 'svelte'
