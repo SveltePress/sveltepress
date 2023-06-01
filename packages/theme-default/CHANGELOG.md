@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.9.0
+
+### Minor Changes
+
+- [`cdd687e`](https://github.com/SveltePress/sveltepress/commit/cdd687e3fc8d1bf0d489de26394ad494bf02c4e5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for pwa prompt translation
+
+- [`94f3426`](https://github.com/SveltePress/sveltepress/commit/94f3426815f491bdede39347e3af155e34539464) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove svelte-scoped in unocss
+
 ## 1.8.0
 
 ### Minor Changes
