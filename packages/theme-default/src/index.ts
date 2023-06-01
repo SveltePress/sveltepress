@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import Unocss from 'unocss/vite'
-import { presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { presetIcons, presetUno, transformerCompileClass, transformerDirectives } from 'unocss'
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import type { PluginOption } from 'vite'
@@ -45,12 +45,11 @@ const defaultTheme: ThemeDefault = options => {
 
   const vitePluginsPre: PluginOption = [
     Unocss({
-      mode: 'svelte-scoped',
       presets: [
         presetUno(),
         presetIcons(),
       ],
-      transformers: [transformerDirectives()],
+      transformers: [transformerCompileClass(), transformerDirectives()],
       theme: {
         colors: {
           svp: {

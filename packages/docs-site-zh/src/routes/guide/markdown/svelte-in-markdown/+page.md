@@ -46,45 +46,33 @@ Toggle
 </button>
 
 {#if boolVal}
-  <h3 class="pass">
+  <h3 class="text-green">
     Pass
   </h3>
 {:else}
-  <h3 class="fail">
+  <h3 class="text-red">
     Fail
   </h3>
 {/if}
 
 {#await promise}
-  <h3 class="loading">
+  <h3 class="text-orange">
     Loading
   </h3>
 {:then res}
-  <h3 class="pass">
+  <h3 class="text-green">
     {res}
   </h3>
 {:catch err}
-  <h3 class="fail">
+  <h3 class="text-red">
     {err}
   </h3>
 {/await}
 
 {@html "<h1>用 @html 渲染的内容</h1>"}
-
-<style>
-.loading {
-  --uno: 'text-orange';
-}
-.pass {
-  --uno: 'text-green';
-}
-.fail {
-  --uno: 'text-red';
-}
-</style>
 ```
 
-**Output**
+**输出**
 
 <ul>
 {#each items as item, i}
@@ -100,42 +88,30 @@ Toggle
 </button>
 
 {#if boolVal}
-  <h3 class="pass">
+  <h3 class="text-green">
     Pass
   </h3>
 {:else}
-  <h3 class="fail">
+  <h3 class="text-red">
     Fail
   </h3>
 {/if}
 
 {#await promise}
-  <h3 class="loading">
+  <h3 class="text-orange">
     Loading
   </h3>
 {:then res}
-  <h3 class="pass">
+  <h3 class="text-green">
     {res}
   </h3>
 {:catch err}
-  <h3 class="fail">
+  <h3 class="text-red">
     {err}
   </h3>
 {/await}
 
 {@html "<h1>用 @html 渲染的内容</h1>"}
-
-<style>
-.pass {
-  --uno: 'text-green';
-}
-.fail {
-  --uno: 'text-red';
-}
-.loading {
-  --uno: 'text-orange';
-}
-</style>
 
 
 ## 一个简单的计数器
@@ -160,6 +136,21 @@ Toggle
 <script>
   import Counter from './Counter.svelte'
   let count = 0
+  const items = ['foo', 'bar', 'zoo']
+  let boolVal = false
+  const promisePass = () => new Promise(resolve => {
+    setTimeout(() => {
+      resolve('Promise Passed!')
+    }, 2000)
+  })
+
+  const promiseFail = () => new Promise((_, reject) => {
+    setTimeout(() => {
+      reject('Promise Failed!')
+    }, 2000)
+  })
+
+  $: promise = boolVal ? promisePass() : promiseFail()
 </script>
 
 <button on:click="{() => count++}" style="margin-bottom: 12px;">
@@ -192,4 +183,3 @@ Toggle
 **Output**
 
 <Counter />
-

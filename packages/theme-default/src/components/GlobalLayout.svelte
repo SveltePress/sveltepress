@@ -1,5 +1,6 @@
 <script>
   import '@docsearch/css/dist/style.css'
+  import 'uno.css'
   // customize iconify css
   import 'virtual:sveltepress/feature-icons.css'
   import '../style.css'
