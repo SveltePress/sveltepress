@@ -146,7 +146,7 @@ The fixed text contents that can be replaced by your config.
 The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.   
 An object, key is the collection name, value is the icons array, for example:
 
-@code(/vite.config.ts,29,33)
+@code(/vite.config.ts,29,34)
 
 ## Virtual modules
 

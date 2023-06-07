@@ -41,10 +41,11 @@ const codeImport: Plugin<any[], any> = () => {
                   if (initialBlankNumbers > 0)
                     valueArr = valueArr.map(line => line.replace(new RegExp(`^ {${initialBlankNumbers}}`), ''))
                 }
+                const codeStr = valueArr.join('\n')
                 const node = {
                   type: 'code',
                   lang,
-                  value: valueArr.join('\n'),
+                  value: codeStr.endsWith(',') ? codeStr.slice(0, codeStr.length - 1) : codeStr,
                 }
                 parent.children.splice(idx, 1, node)
               }

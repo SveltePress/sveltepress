@@ -75,12 +75,15 @@ html[data-theme="dark"] {
   margin-top: 0;
   margin-bottom: 8px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
 
 .admonition-icon {
-  display: inline-block;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
   margin-right: 0.2em;
+  font-size: 1.5rem;
 }
 
 .admonition-icon svg {
