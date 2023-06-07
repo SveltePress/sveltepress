@@ -214,6 +214,24 @@ Use svelte lang and live prop would render the result and the source codes under
 </style>
 ```
 
+## Async svelte live code
+
+The js file that render the demo part would be bundled into a single js file and load async in the page
+
+**Input**
+
+````md
+```svelte live async
+<h1>This is a async svelte live code</h1>
+```
+````
+
+**Output**
+
+```svelte live async
+<h1>This is a async svelte live code</h1>
+```
+
 :::warning[Live code in live code is not supported]
 The nested live code block below would be rendered as normal highlight code block.
 `````md live

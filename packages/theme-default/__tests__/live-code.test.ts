@@ -1,3 +1,4 @@
+import { writeFileSync } from 'node:fs'
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
 import liveCode from '../src/markdown/live-code'
@@ -44,5 +45,25 @@ describe('live code', () => {
     }) || { code: '' }
 
     expect(code).toMatchSnapshot()
+  })
+
+  it('async svelte live code', async () => {
+    const source = `---
+title: Test Page
+---
+
+\`\`\`svelte live async
+<h1>This is a async svelte live code</h1>
+\`\`\`
+`
+    const { code } = await mdToSvelte({
+      filename: 'demo.md',
+      mdContent: source,
+      remarkPlugins: [liveCode],
+      highlighter,
+    }) || { code: '' }
+
+    expect(code).toMatchSnapshot()
+    writeFileSync('test.svelte', code)
   })
 })

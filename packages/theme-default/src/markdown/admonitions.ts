@@ -92,7 +92,7 @@ const admonitions: Plugin<any[], any> = () => {
                         },
                         children: [{
                           type: 'html',
-                          value: `<IconifyIcon collection="${collection}" name="${name}" />`,
+                          value: icon ? `<IconifyIcon collection="${collection}" name="${name}" />` : ad.svg,
                         }],
                       },
                       {

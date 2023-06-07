@@ -27,6 +27,22 @@ const globalComponentsImporters = [
   'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from \'@sveltepress/theme-default/components\'',
 ]
 
+const createAsyncImportCode = (componentPath: string) => `
+{#await import('${componentPath}')}
+  <div class="svp--async-live-code--loading">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+      <defs><filter id="svgSpinnersGooeyBalls20"><feGaussianBlur in="SourceGraphic" result="y" stdDeviation="1"/><feColorMatrix in="y" result="z" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -7"/><feBlend in="SourceGraphic" in2="z"/></filter></defs><g filter="url(#svgSpinnersGooeyBalls20)"><circle cx="5" cy="12" r="4" fill="currentColor"><animate attributeName="cx" calcMode="spline" dur="2s" keySplines=".36,.62,.43,.99;.79,0,.58,.57" repeatCount="indefinite" values="5;8;5"/></circle><circle cx="19" cy="12" r="4" fill="currentColor"><animate attributeName="cx" calcMode="spline" dur="2s" keySplines=".36,.62,.43,.99;.79,0,.58,.57" repeatCount="indefinite" values="19;16;19"/></circle><animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></g>
+    </svg>
+  </div>
+{:then compoImported}
+  <svelte:component this="{compoImported.default}" />
+{:catch err}
+  <div class="svp--async-live-code--error">
+    {err}
+  </div>
+{/await}
+`
+
 const liveCode: Plugin<[], any> = function () {
   if (!existsSync(BASE_PATH)) {
     mkdirSync(BASE_PATH, {
@@ -39,16 +55,17 @@ const liveCode: Plugin<[], any> = function () {
 
   let hasScript = false
   const liveCodePaths: LiveCodePathItem[] = []
-
   return async (tree, vFile) => {
     const asyncNodeOperations: Promise<any>[] = []
     visit(
       tree,
       (node, idx, parent) => {
         const { meta, lang, type, data } = node
+        const metaArray = meta?.split(' ') || []
+        const isAsync = metaArray.includes('async')
         if (type === 'code' &&
             SUPPORTED_LIVE_LANGS.includes(lang) &&
-            meta?.split(' ').includes('live') &&
+            metaArray.includes('live') &&
             idx !== null && !data?.liveCodeResolved
         ) {
           const codeHighlightNode = {
@@ -76,15 +93,20 @@ const liveCode: Plugin<[], any> = function () {
               writeFileSync(path, node.value || '')
 
               const componentName = name.replace(/\.svelte$/, '')
-
-              liveCodePaths.push({
-                componentName,
-                path: `$sveltepress/live-code/${name}`,
-              })
-
+              const componentPath = `/.sveltepress/live-code/${name}`
+              if (!isAsync) {
+                liveCodePaths.push({
+                  componentName,
+                  path: componentPath,
+                })
+              }
               const svelteComponent = {
                 type: 'html',
-                value: `<div class="svp-live-code--demo"><${componentName} /></div>`,
+                value: `
+<div class="svp-live-code--demo">
+  ${isAsync ? createAsyncImportCode(componentPath) : `<${componentName} />`}
+</div>
+`,
               }
               return svelteComponent
             } else if (lang === 'md') {
@@ -136,7 +158,10 @@ const liveCode: Plugin<[], any> = function () {
           asyncNodeOperations.push(asyncAdd())
         }
       })
+
+    // wait for all promise add done
     await Promise.all(asyncNodeOperations)
+
     const liveCodeImports = liveCodePaths.map(({ componentName, path }) => `import ${componentName} from '${path}'`)
 
     visit(tree, (node, idx, parent) => {

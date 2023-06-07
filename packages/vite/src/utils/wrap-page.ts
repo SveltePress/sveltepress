@@ -8,7 +8,7 @@ const cache = new LRUCache<string, any>({ max: 100 })
 export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
 const styleRe = /<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/g
 const svelteHeadRe = /<svelte:head>[\s\S]*?<\/svelte:head>/g
-const svelteBodyRe = /(<svelte:body\b[^>]*>[\s\S]*?<\/svelte:body>)|(<svelte\b[^>]*\/>)/g
+const svelteBodyRe = /(<svelte:body\b[^>]*>[\s\S]*?<\/svelte:body>)/g
 const svelteWindowRe = /(<svelte:window\b[^>]*>[\s\S]*?<\/svelte:window>)|(<window\b[^>]*\/>)/g
 
 export async function wrapPage({

@@ -83,9 +83,10 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         return `export default ${JSON.stringify(siteConfig)}`
     },
     async transform(src, id) {
-      if (PAGE_OR_LAYOUT_RE.test(id))
-        return await getWrappedCode(id, src)
-
+      if (PAGE_OR_LAYOUT_RE.test(id)) {
+        const code = await getWrappedCode(id, src)
+        return code
+      }
       return {
         code: src,
       }

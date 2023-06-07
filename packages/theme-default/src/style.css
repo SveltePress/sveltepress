@@ -212,3 +212,14 @@ html.dark .shiki.night-owl {
 .dark::view-transition-new(root) {
   z-index: 1;
 }
+
+.svp--async-live-code--loading {
+  color: var(--docsearch-primary-color);
+  font-size: 2rem;
+}
+
+.svp--async-live-code--erro {
+  color: #e74c3c;
+  font-size: 16px;
+}
+

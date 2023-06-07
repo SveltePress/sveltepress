@@ -34,18 +34,14 @@ describe('svelte built-in commands', async () => {
   </h3>
 {/if}
 
-{#await Promise.resolve(1)}
-  <h3>
-    Loading
-  </h3>
+{#await Promise.reject('Hello')}
+  Loading
 {:then val}
-  <h3>
-    {val}
-  </h3>
-{:catch}
-  <h3>
-    Error
-  </h3>
+  <h1>Val: {val}</h1>
+{:catch err}
+  <div class="text-gray-8">
+  {err.message}
+  </div>
 {/await}
 
 {@debug items}

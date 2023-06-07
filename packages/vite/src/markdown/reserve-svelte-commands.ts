@@ -13,6 +13,7 @@ const commands = [
   '@debug',
   '@const',
 ]
+const reservedDirectiveNames = ['else', 'else if', 'then', 'catch']
 
 const isCommand = (textContent: string) => {
   const trimTextContent = textContent.trim()
@@ -23,28 +24,21 @@ const reserveSvelteCommands: ReserveSvelteCommandsPlugin = () => {
   return (tree, _vFile) => {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'paragraph' && node.children) {
-        const [textNode] = node.children
-        if (textNode && textNode.type === 'text' && isCommand(textNode.value)) {
-          let value = ''
-          const getValue = (node: any) => {
-            if (Array.isArray(node.children)) {
-              node.children.forEach((n: any) => {
-                if (n.type === 'inlineCode')
-                  value += `\`${n.value}\``
-                else if ('value' in n)
-                  value += n.value
-                else
-                  getValue(n)
-
-                getValue(n)
-              })
+        if (node && node.type === 'paragraph') {
+          const firstNode = node.children?.[0]
+          if (firstNode && firstNode.type === 'text' && isCommand(firstNode.value)) {
+            let value = ''
+            const getValue = (node: any) => {
+              if (node.type === 'inlineCode')
+                value += `\`${node.value}\``
+              else if (node.type === 'textDirective' && reservedDirectiveNames.includes(node.name))
+                value += `:${node.name}`
+              else if ('value' in node)
+                value += node.value
             }
-          }
-          getValue(node)
-          if (textNode.value.trim().startsWith('{@html'))
-            value = value.replace(/&#x3C;/g, '<')
-
-          if (parent && idx !== null) {
+            node.children.forEach(getValue)
+            if (node.value?.trim().startsWith('{@html'))
+              value = value.replace(/&#x3C;/g, '<')
             parent.children.splice(idx, 1, {
               type: 'html',
               value,
