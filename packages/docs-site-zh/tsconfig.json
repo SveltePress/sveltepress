@@ -11,7 +11,8 @@
 		"sourceMap": true,
 		"strict": true,
 		"lib": ["ESNext"],
-		"module": "ESNext"
+		"module": "ESNext",
+		"ignoreDeprecations": "5.0"
 	},
 	"exclude": ["deploy/index.cjs"]
 }
