@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.11.0
+
+### Minor Changes
+
+- [`6e31ff6`](https://github.com/SveltePress/sveltepress/commit/6e31ff64fbaab0546cda1334ea391f012a223620) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for async svelte live code block
+
+- [`2e521a5`](https://github.com/SveltePress/sveltepress/commit/2e521a594a3f70aa565a9ade19dc4178fbc6d999) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for use custom pre-build iconify icons in admonitions
+
 ## 1.10.0
 
 ### Minor Changes
