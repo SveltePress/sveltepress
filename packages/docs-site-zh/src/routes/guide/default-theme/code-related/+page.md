@@ -2,7 +2,7 @@
 title: 代码相关
 ---
 
-:::tip[提示]
+:::tip[提示]{icon=mdi:theme-light-dark}
 所有的代码特性都完全与暗黑模式兼容，您可以切换来查看效果
 :::
 
@@ -280,7 +280,7 @@ function hello() {
 * `@code(./Foo.svelte,5,10)` - 导入 Foo.svelte 的第 5 至 第 10 行代码 
 * `@code(/src/routes/foo/Foo.svelte,10,20)` - 导入 Foo.svelte 的第 10 至 第 20 行代码 
 
-:::tip[提示]
+:::tip[提示]{icon=solar:chat-square-code-outline}
 开始与结束行都会被包含在结果中
 :::
 

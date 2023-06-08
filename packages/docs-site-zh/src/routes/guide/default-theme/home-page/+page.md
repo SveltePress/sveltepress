@@ -45,7 +45,7 @@ title: 主页
   * `collection` - Iconfiy 分类名称
   * `name` - Iconfiy 分类下的图标名称
 
-:::note[图标需要预构建]
+:::important[图标需要预构建]{icon=tabler:icons}
 用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中
 :::
 

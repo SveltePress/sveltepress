@@ -41,14 +41,6 @@ Toggle the window size or use different device to ses what's happening
 
 ## Easily pure css icons
 
-:::note[Dependency required]
-Make sure the icon set packages are installed.
-
-@install-pkg(@iconify-json/[the-collection-you-want])
-
-You can find all the icon sets [here](https://github.com/unocss/unocss/tree/main/packages/preset-icons/)
-:::
-
 ```svelte live
 <div class="text-[56px]">
   <div class="i-openmoji-red-apple"></div>

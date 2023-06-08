@@ -6,7 +6,7 @@ title: Admonitions
 
 This feature integrated [remark-directive](https://github.com/remarkjs/remark-directive) 
 
-:::note[Icon pre-build required]
+:::important[Icon pre-build required]{icon=tabler:icons}
 The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
 :::
 

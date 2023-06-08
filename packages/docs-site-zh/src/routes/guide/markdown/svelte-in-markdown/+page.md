@@ -157,7 +157,7 @@ Toggle
   您点击了 {count} 次
 </button>
 
-:::note[语法限制]
+:::note[语法限制]{icon=solar:chat-square-code-outline}
 确保总是使用双引号包裹
 ```svelte
   <button on:click={() => count++}></button> // [svp! --]

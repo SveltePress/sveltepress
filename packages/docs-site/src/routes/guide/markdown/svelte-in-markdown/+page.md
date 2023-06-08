@@ -112,7 +112,7 @@ Toggle
 
 {@html "<h1>Content render with @html</h1>"}
 
-:::note[Syntax Restrictions]
+:::note[Syntax Restrictions]{icon=solar:chat-square-code-outline}
 Always use quotes in markdown files.
 ```svelte
   <button on:click={() => count++}></button> // [svp! --]

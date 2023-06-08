@@ -139,10 +139,24 @@ const defaultGradient = {
 
 为一个对象，键是分类名称，值是该分类下需要预构建的图标集合，下面是此站点的配置
 
-@code(/vite.config.ts,28,33)
+@code(/vite.config.ts,28,40)
 
-这些图标被用到了首页的特性卡片上
-
+这些图标看起来像这样：
+```svelte live
+<script>
+  import { IconifyIcon } from '@sveltepress/theme-default/components'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+</script>
+<div class="flex items-center gap-4 text-[48px] flex-wrap">
+  {#each Object.entries(themeOptions.preBuildIconifyIcons) as [collection, names]}
+    {#each names as name}
+      <div>
+        <IconifyIcon {collection} {name} />
+      </div>
+    {/each}
+  {/each}
+</div>
+```
 ## 虚拟模块
 
 ### `virtual:sveltepress/theme-default`

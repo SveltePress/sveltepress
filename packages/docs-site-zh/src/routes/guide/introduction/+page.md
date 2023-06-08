@@ -15,14 +15,14 @@ Sveltepress 是一个以内容（Markdown）为中心的站点构建工具
 * `src/routes/+page.md` 将会被用作首页
 * `src/routes/+layout.md` 将会被用作自定义全局布局
 
-:::tip[Sveltekit 的完整能力]
+:::tip[Sveltekit 的完整能力]{icon=logos:svelte-kit}
 Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态站点构建
 比如使用 +page.server.js, +layout.server.js, hooks.server.js 去做一些像鉴权，认证，数据库对接等功能
 :::
 
 ## 布局层级
 
-:::note[根 Layout 是必须的]
+:::note[根布局文件是必须的]{icon=ph:layout-duotone}
 必须有一个 `src/routes/+layout.svelte` 或者 `src/routes/+layout.md` 作为根布局组件  
 **否则由主题提供的全局布局将不会工作！**
 :::

@@ -144,9 +144,28 @@ The fixed text contents that can be replaced by your config.
 ### `preBuildIconifyIcons`
 
 The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.   
-An object, key is the collection name, value is the icons array, for example:
+An object, key is the collection name, value is the icons array.  
+For example these are the icons this site using:
 
-@code(/vite.config.ts,29,34)
+@code(/vite.config.ts,29,40)
+
+These icons looks like this:
+
+```svelte live
+<script>
+  import { IconifyIcon } from '@sveltepress/theme-default/components'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+</script>
+<div class="flex items-center gap-4 text-[48px] flex-wrap">
+  {#each Object.entries(themeOptions.preBuildIconifyIcons) as [collection, names]}
+    {#each names as name}
+      <div>
+        <IconifyIcon {collection} {name} />
+      </div>
+    {/each}
+  {/each}
+</div>
+```
 
 ## Virtual modules
 

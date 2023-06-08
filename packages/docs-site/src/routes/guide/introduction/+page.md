@@ -16,14 +16,14 @@ For example:
 * `src/routes/+page.md` is recognized as home page
 * `src/routes/+layout.md` is used for root custom layout
 
-:::tip[Full power of Sveltekit]
+:::tip[Full power of Sveltekit]{icon=logos:svelte-kit}
 Sveltepress preserves the full power of sveltekit. You can do more than SSG.
 For example use +page.server.js, +layout.server.js, hooks.server.js to do some server side logic like: Authentication, DB Docking, ...
 :::
 
 ## Layout hierarchy
 
-:::note[Root layout is required]
+:::note[Root layout is required]{icon=ph:layout-duotone}
 There must be a `src/routes/+layout.svelte` or `src/routes/+layout.md` as root layout file.  
 **Otherwise the global layout provided by theme would not working!**
 :::

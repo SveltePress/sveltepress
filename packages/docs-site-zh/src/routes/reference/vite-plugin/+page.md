@@ -52,7 +52,7 @@ title: Vite 插件
 * 如果传递了一个单一插件或者一组插件，这些插件将会在 `sveltepress` 核心插件之前被注册
 * 如果传递了一个函数，将会接受 `sveltepress` 插件作为入参，并且该函数需要返回插件组，您可以通过此方式来自定义插件顺序
 
-:::info[关于提供 Vite 插件选项]
+:::info[关于提供 Vite 插件选项]{icon=vscode-icons:file-type-vite}
   也许这种行为显得比较奇怪，但是当主题需要添加一些自定义[虚拟模块](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention)时会很有用
 :::
 
@@ -70,7 +70,7 @@ title: Vite 插件
 
 阅读 [Rehype plugins](https://github.com/rehypejs/rehype#plugins) 来获得更多信息
 
-:::important[插件顺序]
+:::important[插件顺序]{icon=solar:reorder-outline}
 主题提供的 remark 以及 rehype 插件将会在 vite 插件提供的之前调用  
 例如：
 ```js title="vite.config.(js|ts)"

@@ -4,7 +4,7 @@ title: 高亮块
 
 ## 语法
 
-:::note[图标需要预构建]
+:::important[图标需要预构建]{icon=tabler:icons}
 用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中
 :::
 

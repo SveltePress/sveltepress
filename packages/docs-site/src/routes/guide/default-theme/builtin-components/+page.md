@@ -2,7 +2,7 @@
 title: Built-in Components
 ---
 
-:::note[Manually import]
+:::note[Manually import]{icon=carbon:import-export}
 All built-in Components can directly use in markdown files.  
 But should be imported manually in svelte files. 
 :::
@@ -14,7 +14,7 @@ But should be imported manually in svelte files.
 * `label` - the link label text
 * `to` - the link address
 
-:::info[Auto external icon]
+:::info[Auto external icon]{icon=ic:sharp-rocket-launch}
 Would auto add a external icon when link address starts with http or https
 :::
 
@@ -142,7 +142,7 @@ Would auto add a external icon when link address starts with http or https
 
 ## Icons (Pre-build iconify icons)
 
-:::note[Icon pre-build required]
+:::important[Icon pre-build required]{icon=tabler:icons}
 The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
 :::
 

@@ -39,12 +39,6 @@ title: Unocss
 
 ## 纯 CSS 图标
 
-:::note[需要对应的图标库依赖]
-@install-pkg(@iconify-json/[the-collection-you-want])
-
-You can find all the icon sets [here](https://github.com/unocss/unocss/tree/main/packages/preset-icons/)
-:::
-
 ```svelte live
 <div class="text-[56px]">
   <div class="i-openmoji-red-apple"></div>

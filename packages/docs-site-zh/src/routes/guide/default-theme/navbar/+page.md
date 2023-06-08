@@ -21,7 +21,7 @@ title: 导航栏
 * `external` - 是否展示外部链接的图标
 * `items` - 子链接
 
-:::note[仅一层链接]
+:::note[仅一层链接]{icon=carbon:tree-view-alt}
 对于现在的 Sveltepress 来说，一个导航栏只能拥有一级子导航  
 :::
 

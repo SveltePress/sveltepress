@@ -56,7 +56,7 @@ For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
 * If passed a function. It will accept the `sveltepress` plugin and need to return a group of plugins.  
   You can customize the `sveltepress` plugin order in your returned plugin chain.  
 
-:::info[About theme vite plugins]
+:::info[About theme vite plugins]{icon=vscode-icons:file-type-vite}
   It maybe a little strange that theme has vite plugins.  
   But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp files. 
 :::
@@ -77,7 +77,7 @@ Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more detai
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
 
-:::important[Plugins order]
+:::important[Plugins order]{icon=solar:reorder-outline}
 The remark and rehype plugins that theme provide would be called before the plugins provide by vite plugin.
 For example:
 ```js title="vite.config.(js|ts)"

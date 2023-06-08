@@ -2,7 +2,7 @@
 title: 内置组件
 ---
 
-:::note[手动与自动导入]
+:::note[手动与自动导入]{icon=carbon:import-export}
 所有的内置组件都可以直接在 md 文件中使用，但是必须在 svelte 中手动导入
 :::
 
@@ -13,7 +13,7 @@ title: 内置组件
 * `label` - 链接文案
 * `to` - 链接地址
 
-:::info[自动外部化图标]
+:::info[自动外部化图标]{icon=ic:sharp-rocket-launch}
 以 `http(s)` 开头的链接将会被自动识别为外部链接，会展示外部链接的图标
 :::
 
@@ -141,7 +141,7 @@ title: 内置组件
 
 ## Icons (Iconify 图标预构建)
 
-:::note[图标需要预构建]
+:::important[图标需要预构建]{icon=tabler:icons}
 用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中
 :::
 

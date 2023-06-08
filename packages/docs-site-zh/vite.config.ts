@@ -26,10 +26,17 @@ const config = defineConfig({
         },
         i18n,
         preBuildIconifyIcons: {
-          'vscode-icons': ['file-type-svelte', 'file-type-markdown'],
+          'vscode-icons': ['file-type-svelte', 'file-type-markdown', 'file-type-vite'],
           'logos': ['typescript-icon', 'svelte-kit'],
           'emojione': ['artist-palette'],
           'openmoji': ['red-apple'],
+          'ph': ['smiley', 'layout-duotone'],
+          'noto': ['package'],
+          'solar': ['chat-square-code-outline', 'reorder-outline'],
+          'carbon': ['tree-view-alt', 'import-export'],
+          'ic': ['sharp-rocket-launch'],
+          'tabler': ['icons'],
+          'mdi': ['theme-light-dark'],
         },
       }),
       siteConfig: {

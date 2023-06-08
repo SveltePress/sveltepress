@@ -46,7 +46,7 @@ custom icon config
   * `collection` - the collection name of iconify
   * `name` - the icon name in the specified collection of iconify
 
-:::note[Icon pre-build required]
+:::important[Icon pre-build required]{icon=tabler:icons}
 The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
 :::
 

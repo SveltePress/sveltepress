@@ -27,7 +27,7 @@ const sidebar = {
 }
 ```
 
-:::info[Auto external]
+:::info[Auto external]{icon=ic:sharp-rocket-launch}
 Unlike the navbar item, sidebar item use the `Link` component.  
 Which means link starts with `http(s)` would be auto recognized as external links.
 :::

@@ -2,7 +2,7 @@
 title:  Code related
 ---
 
-:::tip[Tips]
+:::tip[Dark Mode Compatible]{icon=mdi:theme-light-dark}
 All the code block features are fully compatible with dark mode.  
 Toggle dark mode to see the styles.
 :::
@@ -38,10 +38,6 @@ You can customize the supported languages and theme in light/dark mode. More inf
 </h1>
 ```
 ````
-
-:::tip[Custom highlight options]
-Reference [Theme default - ]
-:::
 
 ## Line numbers
 
@@ -285,7 +281,7 @@ For example you have file tree like this
 * `@code(./Foo.svelte,5,10)` - import the line 10 to line 20 in Foo.svelte
 * `@code(/src/routes/foo/Foo.svelte,10,20)` - import the line 10 to line 20 in Foo.svelte
 
-:::tip[Tip]
+:::tip[Tip]{icon=solar:chat-square-code-outline}
 Notice that start line and end line both would be included in the final content.
 :::
 
