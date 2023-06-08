@@ -211,6 +211,25 @@ const foo = 'bar'
 </style>
 ```
 
+## 异步的 Svelte 可折叠代码块
+
+这种类型的代码块对应的打包后的 JS 文件将会在页面中懒加载，减少页面初始加载的 JS 文件大小，减轻页面初始加载压力
+
+**输入**
+
+````md
+```svelte live async
+<h1 class="text-rose">这是一个异步的 Svelte 可折叠代码块</h1>
+```
+````
+
+**输出**
+
+```svelte live async
+<h1 class="text-rose">这是一个异步的 Svelte 可折叠代码块</h1>
+```
+
+
 :::warning[不支持嵌套]
 可折叠代码块中的可折叠代码块不予支持，将会作为普通的代码块渲染
 `````md live
