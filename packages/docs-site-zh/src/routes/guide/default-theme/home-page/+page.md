@@ -44,6 +44,10 @@ title: 主页
   * `value` - svg 的 DOM 内容
   * `collection` - Iconfiy 分类名称
   * `name` - Iconfiy 分类下的图标名称
+* `link`  
+  点击特性卡片跳转的链接地址   
+  当提供此项时特性卡片将会具有一个可点击的交互样式  
+  以 http(s) 开头的链接将会被自动识别为外部链接，将会在卡片右上角出现一个外部图标
 
 :::important[图标需要预构建]{icon=tabler:icons}
 用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中

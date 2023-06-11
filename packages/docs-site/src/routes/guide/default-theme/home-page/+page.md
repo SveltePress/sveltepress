@@ -45,6 +45,10 @@ custom icon config
   * `value` - the svg content for svg type icon
   * `collection` - the collection name of iconify
   * `name` - the icon name in the specified collection of iconify
+* `link`  
+  The link that would go to when the feature card is clicked.  
+  If the link starts with http(s), would be auto recognized as external link. And would add an external icon on the top-right corner.  
+  And the feature card has a clickable style when link is provided.
 
 :::important[Icon pre-build required]{icon=tabler:icons}
 The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)

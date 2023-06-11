@@ -18,6 +18,7 @@ features:
       type: iconify
       collection: vscode-icons
       name: file-type-markdown
+    link: /guide/markdown/frontmatter/
   - title: Build with Sveltekit
     description: Preserve the full power of Sveltekit. So that you can do more than SSG.
     icon:
@@ -30,6 +31,7 @@ features:
       type: iconify
       collection: vscode-icons
       name: file-type-svelte
+    link: /guide/markdown/svelte-in-markdown/
   - title: Type friendly
     description: All APIs are fully typed with typescript.
     icon:
