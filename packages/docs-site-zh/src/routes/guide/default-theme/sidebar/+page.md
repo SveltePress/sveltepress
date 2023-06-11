@@ -52,4 +52,4 @@ const sidebar = {
 
 ### `items`
 
-子项
+组内的子项
