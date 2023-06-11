@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.32.0
+
+### Minor Changes
+
+- [`8733c79`](https://github.com/SveltePress/sveltepress/commit/8733c79557dc4f4ad5c73e759c8732e3b0abd561) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: make feature card linkable
+
 ## 0.31.0
 
 ### Minor Changes
