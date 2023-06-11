@@ -1,13 +1,13 @@
 <script>
-  import { goto } from '$app/navigation'
   import IconifyIcon from '../IconifyIcon.svelte'
   import Apple from '../icons/Apple.svelte'
   import Banana from '../icons/Banana.svelte'
-    import External from '../icons/External.svelte'
+  import External from '../icons/External.svelte'
   import Grapes from '../icons/Grapes.svelte'
   import Peach from '../icons/Peach.svelte'
   import Tomato from '../icons/Tomato.svelte'
   import Watermelon from '../icons/Watermelon.svelte'
+  import { goto } from '$app/navigation'
 
   export let i
   export let title
@@ -24,15 +24,17 @@
   const iconsArray = Object.values(icons)
 
   const handleFeatureCardClick = () => {
-    if (external) {
-      window.open(link, '_blank')
-    } else {
-      goto(link)
-    }
+    if (external) window.open(link, '_blank')
+    else goto(link)
   }
 </script>
 
-<div class="feature-item" class:clickable="{link}" on:click={handleFeatureCardClick} on:keypress>
+<div
+  class="feature-item"
+  class:clickable={link}
+  on:click={handleFeatureCardClick}
+  on:keypress
+>
   <div class="flex justify-between items-start">
     <div class="icon">
       {#if icon === undefined}
