@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.12.0
+
+### Minor Changes
+
+- [`8733c79`](https://github.com/SveltePress/sveltepress/commit/8733c79557dc4f4ad5c73e759c8732e3b0abd561) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: make feature card linkable
+
 ## 1.11.0
 
 ### Minor Changes
