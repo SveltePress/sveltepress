@@ -24,7 +24,8 @@ export default async ({
   mdContent,
   remarkPlugins,
   rehypePlugins,
-  highlighter, filename,
+  highlighter,
+  filename,
 }: CompileOptions) => {
   let processorBeforeRehype = unified()
     .use(remarkParse)

@@ -105,6 +105,44 @@ yourRemarkPlugin 将会在默认主题中的 remark plugins 之后调用
 <p>站点描述：{siteConfig.description}</p>
 ```
 
+## 更低层级的 markdown API
+
+@sveltepress/vite 包导出了一个名为 `mdToSvelte` 的更低层级的函数，它支撑了所有 Sveltepress 的 markdown 渲染
+
+这个函数可以作为一些 Markdown 转换 Svelte 工具的基础，这是一个使用的示例
+
+```ts
+import { mdToSvelte } from '@sveltepress/vite'
+
+const mdSource = `
+---
+title: Foo 
+---
+<script>
+  const foo = 'bar'
+</script>
+# Title
+
+foo in script is: {foo}
+
+[Foo Link](https://foo.bar)
+`
+
+const { code, data } = await mdToSvelte({
+  mdContent,
+  remarkPlugins: [], // 自定义 remark 插件
+  rehypePlugins: [], // 自定义 rehype 插件
+  highlighter: async (code, lang, meta) => Promise.resolve('高亮后的 HTML 结果'), // 自定义代码高亮函数
+  filename, // 虚拟文件路径
+})
+
+// 渲染后的 Svelte 代码
+code
+
+// 解析后的 frontmatter 对象，这里是： { title: 'Foo' }
+data
+```
+
 ## Typescript
 
 您需要在 src/app.d.ts 文件中包含 `@sveltepress/vite/types` 来获得相关的类型提示

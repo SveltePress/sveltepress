@@ -112,6 +112,48 @@ This module hold the siteConfig. Here's an example
 <p>The site description is: {siteConfig.description}</p>
 ```
 
+## Low level API
+
+The @sveltepress/vite package has a low level api function `mdToSvelte`
+
+It is used for all the major markdown render in Sveltepress.  
+
+It can be used for a more basic markdown render engine involved with Svelte.
+
+Here's usage example:
+
+```ts
+import { mdToSvelte } from '@sveltepress/vite'
+
+const mdContent = `
+---
+title: Foo 
+---
+<script>
+  const foo = 'bar'
+</script>
+# Title
+
+foo in script is: {foo}
+
+[Foo Link](https://foo.bar)
+`
+
+const { code, data } = await mdToSvelte({
+  mdContent,
+  remarkPlugins: [], // your custom remark plugins
+  rehypePlugins: [], // your custom rehype plugins
+  highlighter: async (code, lang, meta) => Promise.resolve('The rendered highlighted code html'), // your custom code highlighter
+  filename, // the virtual file path
+})
+
+// The rendered svelte code
+code
+
+// The frontmatter object, { title: 'Foo' }
+data
+```
+
 ## Working with typescript
 
 You need to include `@sveltepress/vite/types` in your src/app.d.ts to get plugin options and virtual modules type tips
