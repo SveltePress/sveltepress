@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.12.1
+
+### Patch Changes
+
+- [#138](https://github.com/SveltePress/sveltepress/pull/138) [`108995d`](https://github.com/SveltePress/sveltepress/commit/108995dc6a6e79a4c144e9e18813fd3f11c51211) Thanks [@Myrmod](https://github.com/Myrmod)! - fix: add tabIndex to pwa button to avoid build time warning
+
 ## 1.12.0
 
 ### Minor Changes
