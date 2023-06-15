@@ -22,7 +22,7 @@
 </div>
 
 {#if !$navCollapsed}
-  <div class="navbar-mobile" transition:slide>
+  <nav class="navbar-mobile" transition:slide aria-label="Menu">
     <Logo />
     {#each themeOptions.navbar as navItem}
       {#if navItem.items}
@@ -44,7 +44,7 @@
         <NavItem {...navItem} />
       {/if}
     {/each}
-  </div>
+  </nav>
 {/if}
 
 <style>

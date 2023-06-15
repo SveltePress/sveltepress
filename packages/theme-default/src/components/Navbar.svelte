@@ -36,7 +36,7 @@
       </div>
     {/if}
 
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Menu">
       <div class="navbar-pc">
         {#if innerWidth >= 950}
           {#each themeOptions.navbar as navItem}
