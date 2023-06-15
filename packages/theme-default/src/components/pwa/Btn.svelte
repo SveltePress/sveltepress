@@ -17,6 +17,7 @@
   class:flat
   on:click={handleClick}
   on:keyup={handleClick}
+  tabindex="0"
 >
   <slot />
 </div>
