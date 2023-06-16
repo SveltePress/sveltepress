@@ -28,19 +28,20 @@ const createHighlighterWithThemeAndLangs = async (theme: any, langs: Lang[]) => 
   return highlighter
 }
 
-let darkHighlighter: Promise<Highlighter>
+const highlighterRef: {
+  light?: Highlighter
+  dark?: Highlighter
+} = {}
 
-let lightHighlighter: Promise<Highlighter>
-
-const ensureHighlighter = () => {
+const ensureHighlighter = async () => {
   const highlighterConfig = themeOptionsRef.value?.highlighter
   const languages = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
 
-  if (!darkHighlighter)
-    darkHighlighter = createHighlighterWithThemeAndLangs(highlighterConfig?.themeDark || nightOwl, languages)
+  if (!highlighterRef.dark)
+    highlighterRef.dark = await createHighlighterWithThemeAndLangs(highlighterConfig?.themeDark || nightOwl, languages)
 
-  if (!lightHighlighter)
-    lightHighlighter = createHighlighterWithThemeAndLangs(highlighterConfig?.themeLight || vitesseLight, languages)
+  if (!highlighterRef.light)
+    highlighterRef.light = await createHighlighterWithThemeAndLangs(highlighterConfig?.themeLight || vitesseLight, languages)
 }
 
 const highlighter: Highlighter = async (code, lang, meta) => {
@@ -48,7 +49,7 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   let cached = cache.get(cacheKey)
   if (cached)
     return cached
-  ensureHighlighter()
+  await ensureHighlighter()
   const metaArray = (meta || '').split(' ')
   const containLineNumbers = metaArray.some(item => item.trim() === 'ln')
   const titleMeta = metaArray.find(item => item.startsWith('title='))
@@ -72,8 +73,8 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 : ''}
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
-    ${(await lightHighlighter)(code, lang)}
-    ${(await darkHighlighter)(code, lang)}
+    ${await highlighterRef.light?.(code, lang)}
+    ${await highlighterRef.dark?.(code, lang)}
     <div class="svp-code-block--lang">
       ${lang}
     </div>
