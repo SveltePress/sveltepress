@@ -4,9 +4,11 @@ title: Docsearch
 
 Pass `docsearch` to theme default to add a [Docsearch](https://docsearch.algolia.com/) on navbar
 
-`docsearch` contain these props: `appId`, `apiKey`,`indexName`
+`docsearch` contain these main props: `appId`, `apiKey`,`indexName`
 
-All provided by Docsearch.
+Complete options can be found [here](https://docsearch.algolia.com/docs/api)
+
+All provided by Docsearch. 
 
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
