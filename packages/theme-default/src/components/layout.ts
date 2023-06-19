@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store'
+import { get, writable } from 'svelte/store'
 import type { LinkItem } from 'virtual:sveltepress/theme-default'
 import themeOptions from 'virtual:sveltepress/theme-default'
 
@@ -16,11 +16,21 @@ export const pages = writable<LinkItem[]>([])
 
 export const scrollY = writable(0)
 
+export const oldScrollY = writable(0)
+
+export const scrollDirection = writable('up')
+
 export const isDark = writable(false)
 
 export const sidebar = writable(true)
 
 export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
+
+scrollY.subscribe(sy => {
+  const nextDirection = sy - get(oldScrollY) > 0 ? 'down' : 'up'
+  if (nextDirection !== get(scrollDirection))
+    scrollDirection.set(nextDirection)
+})
 
 resolvedSidebar.subscribe(sidebar => {
   pages.set(sidebar.reduce<LinkItem[]>(

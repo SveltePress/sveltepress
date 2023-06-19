@@ -9,6 +9,7 @@
   import {
     anchors,
     navCollapsed,
+    oldScrollY,
     resolveSidebar,
     scrollY,
     sidebar,
@@ -18,7 +19,7 @@
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
-  import FloatActions from './FloatActions.svelte'
+  import BackToTop from './BackToTop.svelte'
   import Backdrop from './Backdrop.svelte'
   import Error from './Error.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
@@ -47,7 +48,10 @@
   $$restProps
 </script>
 
-<svelte:window bind:scrollY={$scrollY} />
+<svelte:window
+  on:scroll={() => ($oldScrollY = $scrollY)}
+  bind:scrollY={$scrollY}
+/>
 
 {#if $page.error}
   <Navbar />
@@ -55,7 +59,6 @@
 {:else}
   <main>
     <AjaxBar bind:this={ajaxBar} />
-    <FloatActions />
     {#if $sidebar}
       <Sidebar />
     {/if}
@@ -75,6 +78,7 @@
     {#if pwaComponent}
       <svelte:component this={pwaComponent} />
     {/if}
+    <BackToTop />
   </main>
 {/if}
 

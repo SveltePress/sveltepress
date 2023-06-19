@@ -7,37 +7,16 @@
   import Search from './Search.svelte'
   import Discord from './icons/Discord.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
+  import { scrollDirection } from './layout'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
   $: hasError = $page.error
   let innerWidth
-
-  let direction = 'up'
-
-  let oldScrollY = 0
-  let scrollY
-
-  const handleScrollOld = () => {
-    oldScrollY = scrollY
-  }
-
-  const recomputeDirection = () => {
-    const delta = scrollY - oldScrollY
-    const nextDirection = delta > 0 ? 'down' : 'up'
-    if (direction !== nextDirection) direction = nextDirection
-  }
-
-  $: {
-    scrollY
-    recomputeDirection()
-  }
 </script>
 
-<svelte:window bind:innerWidth on:scroll={handleScrollOld} bind:scrollY />
-
-<header class="header" class:hidden-in-mobile={direction === 'down'}>
+<header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>
   <div class="header-inner">
     <div class="left">
       <NavbarMobile />
