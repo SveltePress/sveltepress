@@ -1,5 +1,21 @@
 # @sveltepress/theme-default
 
+## 1.13.0
+
+### Minor Changes
+
+- [`72a54fd`](https://github.com/SveltePress/sveltepress/commit/72a54fd296042898d26ca89220bfe4c77398f975) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize navbar with a sub nav on the bottom of navbar
+
+- [`6cf0e98`](https://github.com/SveltePress/sveltepress/commit/6cf0e986db127e30be8e1a6a5e88960b52498cdc) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: remove floating actions
+
+- [`cb17d5d`](https://github.com/SveltePress/sveltepress/commit/cb17d5d54cec7bf53972f9a3ef24c6aafb1cab66) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: navbar auto hide in mobile view
+
+### Patch Changes
+
+- [`630ccaf`](https://github.com/SveltePress/sveltepress/commit/630ccafc0391f51bb36b3e098e0ec87d08a72203) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add aria-label for nav
+
+- [`25eaa61`](https://github.com/SveltePress/sveltepress/commit/25eaa61fa43adf9455f9b05c71215970188651ab) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: change the sidebar text color to have a better contrast
+
 ## 1.12.1
 
 ### Patch Changes
