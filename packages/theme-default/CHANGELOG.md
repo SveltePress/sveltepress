@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.13.1
+
+### Patch Changes
+
+- [`95f9689`](https://github.com/SveltePress/sveltepress/commit/95f96890c99da6236bf51b8dbddc025923f8936c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize navbar in mobile view
+
 ## 1.13.0
 
 ### Minor Changes
