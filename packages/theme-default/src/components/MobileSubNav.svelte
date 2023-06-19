@@ -12,19 +12,21 @@
   }
 </script>
 
-<nav class="sub-nav">
+<nav class="sub-nav" aria-label="Browse docs">
   <div
+    role="button"
+    tabindex="0"
     class="i-ic-round-menu-open text-6"
     on:click={openSidebar}
     on:keypress={openSidebar}
   />
-  <div on:click={openToc} on:keypress={openToc}>
+  <div role="button" tabindex="0" on:click={openToc} on:keypress={openToc}>
     {themeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
   </div>
 </nav>
 
 <style>
   .sub-nav {
-    --uno: 'flex items-center justify-between sm:display-none px-4 py-2 bg-white dark:bg-black';
+    --uno: 'flex items-center justify-between sm:display-none px-4 py-2';
   }
 </style>

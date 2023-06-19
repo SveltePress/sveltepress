@@ -20,7 +20,6 @@
   import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
-  import BackToTop from './BackToTop.svelte'
   import Backdrop from './Backdrop.svelte'
   import Error from './Error.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
@@ -80,13 +79,12 @@
     {#if pwaComponent}
       <svelte:component this={pwaComponent} />
     {/if}
-    <BackToTop />
   </main>
 {/if}
 
 <style uno:preflights uno:safelist global>
   main {
-    --at-apply: 'pt-[56px] sm:pt-[73px]';
+    --at-apply: 'pt-[96px] sm:pt-[73px]';
   }
   :global(html) {
     --at-apply: 'scroll-smooth';

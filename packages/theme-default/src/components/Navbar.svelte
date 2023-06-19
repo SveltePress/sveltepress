@@ -65,11 +65,11 @@
 
 <style>
   .header {
-    --at-apply: 'transition-transform fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] z-888 dark:bg-opacity-40';
+    --at-apply: 'transition-transform fixed top-0 left-0 right-0 sm:h-[73px] z-888 dark:bg-opacity-40';
     backdrop-filter: blur(5px);
   }
   .hidden-in-mobile {
-    --uno: 'translate-y-[-56px] sm:translate-y-0';
+    --uno: 'translate-y-[-100%] sm:translate-y-0';
   }
   .logo-container {
     --at-apply: 'display-none sm:display-block';
