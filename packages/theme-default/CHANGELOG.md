@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.13.2
+
+### Patch Changes
+
+- [`2a7ee41`](https://github.com/SveltePress/sveltepress/commit/2a7ee412a3e3b2eebfb9bb81b07909f9b0871833) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: main content padding-top in mobile view
+
 ## 1.13.1
 
 ### Patch Changes
