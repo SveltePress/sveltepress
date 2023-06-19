@@ -1,5 +1,10 @@
+<script context="module">
+  export const DEFAULT_ON_THIS_PAGE = 'On this page'
+</script>
+
 <script>
   import { onMount, tick } from 'svelte'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import { tocCollapsed } from './layout'
   import Backdrop from './Backdrop.svelte'
   import { afterNavigate } from '$app/navigation'
@@ -56,7 +61,9 @@
 <svelte:window bind:scrollY />
 {#if anchors.length}
   <div class="toc" class:collapsed={$tocCollapsed}>
-    <div class="title">On this page</div>
+    <div class="title">
+      {themeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
+    </div>
     <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
       {#each anchors as an, i}
         {@const active = activeIdx === i}
@@ -81,7 +88,7 @@
     --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[70vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-988 sm:dark:bg-transparent';
   }
   .toc a {
-    --uno: 'text-[#213547]';
+    --uno: 'text-[#213547] dark:text-gray-3';
   }
   .title {
     --at-apply: 'font-bold pl-4 text-gray-8 dark:text-gray-2';

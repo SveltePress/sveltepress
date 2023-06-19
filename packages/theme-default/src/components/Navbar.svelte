@@ -7,13 +7,13 @@
   import Search from './Search.svelte'
   import Discord from './icons/Discord.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
-  import { scrollDirection } from './layout'
+  import MobileSubNav from './MobileSubNav.svelte'
+  import { innerWidth, scrollDirection } from './layout'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
   $: hasError = $page.error
-  let innerWidth
 </script>
 
 <header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>
@@ -38,7 +38,7 @@
 
     <nav class="nav-links" aria-label="Menu">
       <div class="navbar-pc">
-        {#if innerWidth >= 950}
+        {#if $innerWidth >= 950}
           {#each themeOptions.navbar as navItem}
             <NavItem {...navItem} />
           {/each}
@@ -58,6 +58,9 @@
       </div>
     </nav>
   </div>
+  {#if !isHome}
+    <MobileSubNav />
+  {/if}
 </header>
 
 <style>
@@ -66,7 +69,7 @@
     backdrop-filter: blur(5px);
   }
   .hidden-in-mobile {
-    --uno: 'translate-y-[-100%] sm:translate-y-0';
+    --uno: 'translate-y-[-56px] sm:translate-y-0';
   }
   .logo-container {
     --at-apply: 'display-none sm:display-block';

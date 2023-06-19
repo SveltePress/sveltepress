@@ -8,6 +8,7 @@
   import AjaxBar from './AjaxBar.svelte'
   import {
     anchors,
+    innerWidth,
     navCollapsed,
     oldScrollY,
     resolveSidebar,
@@ -51,6 +52,7 @@
 <svelte:window
   on:scroll={() => ($oldScrollY = $scrollY)}
   bind:scrollY={$scrollY}
+  bind:innerWidth={$innerWidth}
 />
 
 {#if $page.error}

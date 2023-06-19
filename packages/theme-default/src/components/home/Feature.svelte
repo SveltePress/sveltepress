@@ -12,7 +12,7 @@
   export let i
   export let title
   export let description
-  export let link
+  export let link = undefined
   /**
    * @type {import('./types').CustomIcon}
    */

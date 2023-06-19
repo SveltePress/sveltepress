@@ -27,7 +27,7 @@ export default config
 
 ## 主题配置
 
-@code(/../theme-default/types.d.ts,22,63)
+@code(/../theme-default/types.d.ts,22,71)
 
 ### `navbar`
 
@@ -122,6 +122,7 @@ const defaultGradient = {
 
 一些固定的文本内容，可以被您的配置所覆盖，方便站点国际化
 
+* `onThisPage` - "On this page"
 * `suggestChangesToThisPage` - "Suggest changes to this page"
 * `lastUpdateAt` - "Last update at:"
 * `previousPage` - "Previous"

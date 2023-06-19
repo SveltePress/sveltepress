@@ -51,6 +51,7 @@ declare module 'virtual:sveltepress/theme-default' {
       themeDark?: string
     }
     i18n?: {
+      onThisPage: string
       suggestChangesToThisPage?: string
       lastUpdateAt?: string
       previousPage?: string

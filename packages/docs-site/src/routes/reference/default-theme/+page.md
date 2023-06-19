@@ -26,7 +26,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,22,70)
+@code(/../theme-default/types.d.ts,22,71)
 
 ### `navbar`
 
@@ -129,6 +129,7 @@ const defaultGradient = {
 
 The fixed text contents that can be replaced by your config.
 
+* `onThisPage` - The text for "On this page"
 * `suggestChangesToThisPage` - The text for "Suggest changes to this page"
 * `lastUpdateAt` - The text for "Last update at:"
 * `previousPage` - The text for "Previous"
