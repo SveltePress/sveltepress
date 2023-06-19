@@ -84,7 +84,7 @@
 
 <style uno:preflights uno:safelist global>
   main {
-    --at-apply: 'pt-[96px] sm:pt-[73px]';
+    --at-apply: 'pt-[76px] sm:pt-[73px]';
   }
   :global(html) {
     --at-apply: 'scroll-smooth';
