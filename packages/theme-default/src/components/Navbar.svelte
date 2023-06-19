@@ -13,10 +13,31 @@
   $: isHome = routeId === '/'
   $: hasError = $page.error
   let innerWidth
+
+  let direction = 'up'
+
+  let oldScrollY = 0
+  let scrollY
+
+  const handleScrollOld = () => {
+    oldScrollY = scrollY
+  }
+
+  const recomputeDirection = () => {
+    const delta = scrollY - oldScrollY
+    const nextDirection = delta > 0 ? 'down' : 'up'
+    if (direction !== nextDirection) direction = nextDirection
+  }
+
+  $: {
+    scrollY
+    recomputeDirection()
+  }
 </script>
 
-<svelte:window bind:innerWidth />
-<header class="header">
+<svelte:window bind:innerWidth on:scroll={handleScrollOld} bind:scrollY />
+
+<header class="header" class:hidden-in-mobile={direction === 'down'}>
   <div class="header-inner">
     <div class="left">
       <NavbarMobile />
@@ -62,8 +83,11 @@
 
 <style>
   .header {
-    --at-apply: 'fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] z-888 dark:bg-opacity-40';
+    --at-apply: 'transition-transform fixed top-0 left-0 right-0 h-[56px] sm:h-[73px] z-888 dark:bg-opacity-40';
     backdrop-filter: blur(5px);
+  }
+  .hidden-in-mobile {
+    --uno: 'translate-y-[-100%] sm:translate-y-0';
   }
   .logo-container {
     --at-apply: 'display-none sm:display-block';
