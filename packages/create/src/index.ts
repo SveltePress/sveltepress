@@ -1,7 +1,6 @@
-/* eslint-disable no-mixed-operators */
 /* eslint-disable no-console */
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import spawn from 'cross-spawn'
 import minimist from 'minimist'

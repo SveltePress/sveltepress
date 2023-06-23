@@ -1,5 +1,6 @@
 <script>
   import siteConfig from 'virtual:sveltepress/site'
+  
   export let heroImage
 </script>
 

@@ -4,7 +4,7 @@ export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))
 
 export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
   const num = Number(linesNumberToHighlight)
-  if (isNaN(num) || num < 1)
+  if (Number.isNaN(num) || num < 1)
     return warpLine('svp-code-block--hl', idx)
   const max = lines - idx
   return Array.from({ length: num > max ? max : num }).map((_, i) => {
@@ -28,7 +28,7 @@ export const focus: Command = (linesNumberToFocus, idx, lines) => {
   const num = Number(linesNumberToFocus)
   const wrapFocus = (top: string, height: string) =>
     `<div class="svp-code-block--focus" style="top: ${top};height: ${height};"></div>`
-  const start = (isNaN(num) || num < 1) ? idx : idx + num - 1
+  const start = (Number.isNaN(num) || num < 1) ? idx : idx + num - 1
   const res = [
     wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
   ]

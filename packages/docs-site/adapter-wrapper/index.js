@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-static'
 
-const adapterWrapper = options => {
+function adapterWrapper(options) {
   return {
     name: '@sveltepress/adapter',
     async adapt(builder) {

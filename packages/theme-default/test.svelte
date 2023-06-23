@@ -1,5 +1,5 @@
 <script>
-import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from '@sveltepress/theme-default/components'
+import { CopyCode, Expansion } from '@sveltepress/theme-default/components'
 </script>
 <div class="svp-live-code--container">
 <div class="svp-live-code--demo">

@@ -1,10 +1,10 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs'
-import { resolve } from 'path'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { defineBuildConfig } from 'unbuild'
 
 const resolvePkgPath = (cwdRelativePath: string) => resolve(process.cwd(), `${cwdRelativePath}/package.json`)
 
-const getPkg = (cwdRelativePath: string) => {
+function getPkg(cwdRelativePath: string) {
   const absolutePackagePath = resolvePkgPath(cwdRelativePath)
   if (!existsSync(absolutePackagePath)) {
     console.error('package.json path not found: ', absolutePackagePath)
@@ -19,7 +19,7 @@ interface Dependency {
   version: string
 }
 
-const writeDevDependencies = (dependencies: Dependency[], pkgDirs: string[]) => {
+function writeDevDependencies(dependencies: Dependency[], pkgDirs: string[]) {
   pkgDirs.forEach(pkgDir => {
     const pkgObj = getPkg(pkgDir)
     if (!('devDependencies' in pkgObj))
@@ -33,7 +33,7 @@ const writeDevDependencies = (dependencies: Dependency[], pkgDirs: string[]) => 
   })
 }
 
-const padStartWithVersion = (dependencies: Dependency[]) => {
+function padStartWithVersion(dependencies: Dependency[]) {
   dependencies.forEach(dep => {
     dep.version = `^${dep.version}`
   })

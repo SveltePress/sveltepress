@@ -1,5 +1,5 @@
-import { existsSync, readFileSync } from 'fs'
-import { resolve } from 'path'
+import { existsSync, readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import type { Plugin } from 'unified'
 import { visit } from 'unist-util-visit'
 
@@ -30,9 +30,9 @@ const codeImport: Plugin<any[], any> = () => {
                 let valueArr = readFileSync(realPath, 'utf-8').split('\n')
                 const startLine = Number(start)
                 const endLine = Number(end)
-                if (!isNaN(startLine)) {
+                if (!Number.isNaN(startLine)) {
                   valueArr = valueArr.slice(startLine - 1)
-                  if (!isNaN(endLine) && endLine > startLine)
+                  if (!Number.isNaN(endLine) && endLine > startLine)
                     valueArr = valueArr.slice(0, endLine - startLine + 1)
                 }
                 if (valueArr.length) {

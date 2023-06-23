@@ -1,5 +1,6 @@
 <script>
   import themeOptions from 'virtual:sveltepress/theme-default'
+  
   export let lastUpdate = ''
 
   const DEFAULT_TEXT = 'Last update at:'

@@ -3,6 +3,6 @@ import pc from 'picocolors'
 
 const SVELTEPRESS_INFO_PREFIX = '[Sveltepress]'
 
-export const info = (...messages: any[]) => {
+export function info(...messages: any[]) {
   console.log(pc.bold(pc.white(pc.bgCyan(SVELTEPRESS_INFO_PREFIX))), ...messages)
 }

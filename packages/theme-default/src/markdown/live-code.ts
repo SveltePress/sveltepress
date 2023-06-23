@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
-import { resolve } from 'path'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
 import type { Plugin } from 'unified'
@@ -27,7 +27,8 @@ const globalComponentsImporters = [
   'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from \'@sveltepress/theme-default/components\'',
 ]
 
-const createAsyncImportCode = (componentPath: string) => `
+function createAsyncImportCode(componentPath: string) {
+  return `
 {#await import('${componentPath}')}
   <div class="svp--async-live-code--loading">
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
@@ -42,6 +43,7 @@ const createAsyncImportCode = (componentPath: string) => `
   </div>
 {/await}
 `
+}
 
 const liveCode: Plugin<[], any> = function () {
   if (!existsSync(BASE_PATH)) {

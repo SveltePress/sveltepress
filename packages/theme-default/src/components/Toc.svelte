@@ -22,7 +22,7 @@
 
   let mounted = false
 
-  const computeActiveIdx = () => {
+  function computeActiveIdx() {
     if (!mounted) return
     const positions = anchors.map(
       ({ slugId }) => document.getElementById(slugId).offsetTop
@@ -53,7 +53,7 @@
     tick().then(computeActiveIdx)
   })
 
-  const handleTocToggleClick = () => {
+  function handleTocToggleClick() {
     $tocCollapsed = !$tocCollapsed
   }
 </script>

@@ -14,7 +14,7 @@
     onRegistered() {},
     onRegisterError() {},
   })
-  const close = () => {
+  function close() {
     offlineReady.set(false)
     needRefresh.set(false)
   }

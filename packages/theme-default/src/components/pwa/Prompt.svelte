@@ -9,7 +9,7 @@
 
   const dispatcher = createEventDispatcher()
 
-  const handleClose = () => {
+  function handleClose() {
     dispatcher('close')
   }
 

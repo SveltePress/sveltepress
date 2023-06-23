@@ -3,11 +3,11 @@
   import { DEFAULT_ON_THIS_PAGE } from './Toc.svelte'
   import { sidebarCollapsed, tocCollapsed } from './layout'
 
-  const openSidebar = () => {
+  function openSidebar() {
     $sidebarCollapsed = false
   }
 
-  const openToc = () => {
+  function openToc() {
     $tocCollapsed = false
   }
 </script>

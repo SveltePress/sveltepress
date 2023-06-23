@@ -4,6 +4,7 @@ import vitePluginInspect from 'vite-plugin-inspect'
 import SveltepressVitePlugin from './plugin.js'
 import type { Highlighter, LoadTheme, SiteConfig, SveltepressVitePluginOptions } from './types'
 import mdToSvelte from './markdown/md-to-svelte'
+
 export * as log from './utils/log.js'
 
 const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({

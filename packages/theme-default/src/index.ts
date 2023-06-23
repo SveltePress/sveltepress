@@ -1,5 +1,5 @@
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import Unocss from 'unocss/vite'
 import { presetIcons, presetUno, transformerCompileClass, transformerDirectives } from 'unocss'
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'

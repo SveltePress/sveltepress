@@ -1,6 +1,7 @@
 <script>
   import { getContext } from 'svelte'
   import { activeNameContextKey, itemsKey } from './Tabs.svelte'
+  
   export let name
   export let activeIcon = ''
   export let inactiveIcon = ''

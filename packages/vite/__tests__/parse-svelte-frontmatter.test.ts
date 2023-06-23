@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { parseSvelteFrontmatter } from '../src/utils/parse-svelte-frontmatter'
 
-const wrapFrontmatter = (obj: Record<string, any>) => `
+function wrapFrontmatter(obj: Record<string, any>) {
+  return `
 <script context="module">
   export const frontmatter = ${JSON.stringify(obj)}
 </script>
@@ -14,6 +15,7 @@ const wrapFrontmatter = (obj: Record<string, any>) => `
   propName is {{propName}}
 </h1>
 `
+}
 
 describe('parse svelte frontmatter', () => {
   it('simple', async () => {

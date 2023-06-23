@@ -14,7 +14,7 @@
   /**
    * Start the ajax bar
    */
-  export const start = () => {
+  export function start() {
     if (startedFlag) clearTimeout(startedFlag)
     barWidth = 0
     interval = 200
@@ -29,7 +29,7 @@
   /**
    * End the ajax bar
    */
-  export const end = () => {
+  export function end() {
     if (barWidth > 0) barWidth = 100
 
     if (startedFlag) clearInterval(startedFlag)

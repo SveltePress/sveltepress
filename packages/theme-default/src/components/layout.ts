@@ -53,7 +53,7 @@ tocCollapsed.subscribe(v => {
     sidebarCollapsed.set(true)
 })
 
-export const resolveSidebar = (routeId: string) => {
+export function resolveSidebar(routeId: string) {
   if (!routeId) return
   const key = Object.keys(themeOptions.sidebar || {}).find(key =>
     routeId.startsWith(key),
