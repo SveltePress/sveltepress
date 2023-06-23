@@ -1,4 +1,3 @@
-import { writeFileSync } from 'node:fs'
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
 import liveCode from '../src/markdown/live-code'
@@ -64,6 +63,5 @@ title: Test Page
     }) || { code: '' }
 
     expect(code).toMatchSnapshot()
-    writeFileSync('test.svelte', code)
   })
 })
