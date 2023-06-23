@@ -2,6 +2,7 @@
 
 exports[`code import > existing and non-existing file 2`] = `
 "<h2>Title</h2>
+<p>@code(./fake-file.ts)</p>
 
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">

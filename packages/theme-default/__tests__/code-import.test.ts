@@ -15,6 +15,8 @@ describe('code import', async () => {
     expect(mdContent).toMatchInlineSnapshot(`
       "## Title
 
+      @code(./fake-file.ts)
+
       @code(/src/index.ts,20,37)"
     `)
 
@@ -27,7 +29,7 @@ describe('code import', async () => {
     expect(code).toMatchSnapshot()
   })
 
-  it('re tests', () => {
+  it('re tests', async () => {
     const matches = importRe.exec('@code(./foo/bar/Comp.svelte,10,20)')
     expect(matches).toMatchInlineSnapshot(`
       [
