@@ -15,8 +15,6 @@ describe('code import', async () => {
     expect(mdContent).toMatchInlineSnapshot(`
       "## Title
 
-      @code(./svelte.test.ts)
-
       @code(/src/index.ts,20,37)"
     `)
 

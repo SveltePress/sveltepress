@@ -2,7 +2,6 @@
 
 exports[`code import > import example 2`] = `
 "<h2>Title</h2>
-<p>@code(./svelte.test.ts)</p>
 
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
