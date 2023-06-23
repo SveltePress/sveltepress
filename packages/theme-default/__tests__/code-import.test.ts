@@ -11,7 +11,7 @@ const mdPath = resolve(__dirname, 'code-import.md')
 const mdContent = readFileSync(mdPath, 'utf-8')
 
 describe('code import', async () => {
-  it('import example', async () => {
+  it('existing and non-existing file', async () => {
     expect(mdContent).toMatchInlineSnapshot(`
       "## Title
 
