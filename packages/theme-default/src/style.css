@@ -136,7 +136,7 @@ html[data-theme="dark"] {
 }
 
 .admonition-note {
-  --admonition-bg: rgb(241 196 15 / 10%);
+  --admonition-bg: rgba(241, 196, 15, 0.06);
   --admonition-color: #f1c40f;
 }
 
