@@ -15,6 +15,7 @@
   class:show
   on:click={handleClose}
   on:keyup={handleClose}
+  role="none"
   style:top
   style:z-index={zIndex}
 />

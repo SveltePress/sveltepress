@@ -1,4 +1,4 @@
-import LRUCache from 'lru-cache'
+import { LRUCache } from 'lru-cache'
 import type { ResolvedTheme } from '../types'
 import mdToSvelte from '../markdown/md-to-svelte.js'
 import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'

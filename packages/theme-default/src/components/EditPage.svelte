@@ -2,13 +2,14 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Edit from './icons/Edit.svelte'
   import { page } from '$app/stores'
+
   const routeId = $page.route.id
 
   export let pageType = 'md'
 
   const DEFAULT_TEXT = 'Suggest changes to this page'
 
-  const handleEditLinkClick = () => {
+  function handleEditLinkClick() {
     if (themeOptions.editLink) {
       window.open(
         themeOptions.editLink.replace(':route', `${routeId}/+page.${pageType}`),
@@ -22,6 +23,8 @@
   class="edit-link"
   on:click={handleEditLinkClick}
   on:keyup={handleEditLinkClick}
+  role="link"
+  tabindex="0"
 >
   <div class="edit-icon">
     <Edit />

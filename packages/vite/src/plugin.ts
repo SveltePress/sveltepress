@@ -60,8 +60,6 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
      * @see https://github.com/sveltejs/vite-plugin-svelte/blob/1cef575c8f9188456934e38dad7a869b43fe7d46/packages/vite-plugin-svelte/src/index.ts#L58
      */
     enforce: 'pre',
-    async buildStart() {
-    },
     config: () => ({
       server: {
         fs: {

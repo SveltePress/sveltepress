@@ -1,10 +1,10 @@
-import { readFileSync } from 'fs'
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { Lang } from 'shiki'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
-import LRUCache from 'lru-cache'
+import { LRUCache } from 'lru-cache'
 import { themeOptionsRef } from '../index.js'
 import { processCommands } from './commands.js'
 
@@ -17,7 +17,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
 const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
 
-const createHighlighterWithThemeAndLangs = async (theme: any, langs: Lang[]) => {
+async function createHighlighterWithThemeAndLangs(theme: any, langs: Lang[]) {
   const shikiHighlighter = await getHighlighter({
     theme,
     langs,
@@ -33,7 +33,7 @@ const highlighterRef: {
   dark?: Highlighter
 } = {}
 
-const ensureHighlighter = async () => {
+async function ensureHighlighter() {
   const highlighterConfig = themeOptionsRef.value?.highlighter
   const languages = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
 

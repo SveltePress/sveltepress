@@ -9,6 +9,7 @@
   import { flip } from 'svelte/animate'
   import { crossfade } from 'svelte/transition'
   import { cubicInOut } from 'svelte/easing'
+
   export let activeName
 
   const items = writable([])
@@ -22,7 +23,7 @@
   setContext(activeNameContextKey, current)
   setContext(itemsKey, items)
 
-  const toggleTab = name => {
+  function toggleTab(name) {
     $current = name
   }
 
@@ -71,6 +72,8 @@
         data-tab-name={name}
         on:click={() => toggleTab(name)}
         on:keypress={() => toggleTab(name)}
+        role="tab"
+        tabindex="0"
       >
         {#if active}
           {#if activeIcon}

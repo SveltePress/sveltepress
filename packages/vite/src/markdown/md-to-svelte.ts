@@ -20,13 +20,16 @@ interface CompileOptions {
   filename: string
 }
 
-export default async ({
+export default async function ({
   mdContent,
   remarkPlugins,
   rehypePlugins,
   highlighter,
   filename,
-}: CompileOptions) => {
+}: CompileOptions): Promise< {
+  data: Record<string, any>
+  code: string
+}> {
   let processorBeforeRehype = unified()
     .use(remarkParse)
     .use(reserveSvelteCommands)
@@ -85,7 +88,7 @@ export default async ({
     .process(new VFile({
       value: mdContent,
       path: filename,
-    }))
+    }) as any)
 
   const code = String(vFile)
 

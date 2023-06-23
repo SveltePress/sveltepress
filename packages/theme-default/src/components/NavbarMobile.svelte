@@ -8,12 +8,18 @@
   import Logo from './Logo.svelte'
   import Expansion from './Expansion.svelte'
 
-  const toggleNav = () => {
+  function toggleNav() {
     $navCollapsed = !$navCollapsed
   }
 </script>
 
-<div class="nav-trigger" on:click={toggleNav} on:keypress={toggleNav}>
+<div
+  class="nav-trigger"
+  on:click={toggleNav}
+  on:keypress={toggleNav}
+  role="menu"
+  tabindex="0"
+>
   {#if $navCollapsed}
     <TocMenu />
   {:else}

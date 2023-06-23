@@ -1,11 +1,12 @@
 <script>
   import Copy from './icons/Copy.svelte'
   import CopyDone from './icons/CopyDone.svelte'
+
   let container
 
   let copied = false
 
-  const handleClick = () => {
+  function handleClick() {
     const content =
       container?.parentElement?.querySelector('.shiki')?.textContent || ''
     navigator.clipboard.writeText(content)
@@ -26,6 +27,8 @@
     class="svp-code-bock--copy-code"
     on:click={handleClick}
     on:keyup={handleClick}
+    role="button"
+    tabindex="0"
   >
     <Copy />
   </div>

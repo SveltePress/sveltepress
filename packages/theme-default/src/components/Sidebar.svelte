@@ -9,7 +9,7 @@
   $: routeId = $page.route.id
   $: isHome = routeId === '/'
 
-  const handleClose = () => {
+  function handleClose() {
     $sidebarCollapsed = true
   }
 </script>
@@ -21,7 +21,13 @@
 >
   <div class="sidebar-logo">
     <Logo />
-    <div class="close" on:click={handleClose} on:keyup={handleClose}>
+    <div
+      class="close"
+      on:click={handleClose}
+      on:keyup={handleClose}
+      role="button"
+      tabindex="0"
+    >
       <Close />
     </div>
   </div>

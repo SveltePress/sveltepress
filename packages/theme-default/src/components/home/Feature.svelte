@@ -23,7 +23,7 @@
   const icons = { Apple, Banana, Grapes, Peach, Tomato, Watermelon }
   const iconsArray = Object.values(icons)
 
-  const handleFeatureCardClick = () => {
+  function handleFeatureCardClick() {
     if (external) window.open(link, '_blank')
     else goto(link)
   }
@@ -34,6 +34,8 @@
   class:clickable={link}
   on:click={handleFeatureCardClick}
   on:keypress
+  role="link"
+  tabindex="0"
 >
   <div class="flex justify-between items-start">
     <div class="icon">

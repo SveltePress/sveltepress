@@ -58,6 +58,8 @@
     style={headerStyle}
     on:click|stopPropagation={onHeaderClick}
     on:keypress={onHeaderClick}
+    role="button"
+    tabindex="0"
   >
     <div class="c-expansion--header-left">
       {#if showIcon}

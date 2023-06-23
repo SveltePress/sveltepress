@@ -8,7 +8,7 @@
 
   let isDark = false
   const themeColor = themeOptions.themeColor || { light: '#fff', dark: '#000' }
-  const addOrRemoveClass = () => {
+  function addOrRemoveClass() {
     if (isDark) {
       document.querySelector('html').classList.add('dark')
       if (themeColor) {
@@ -26,7 +26,7 @@
     }
   }
 
-  const toggle = evt => {
+  function toggle(evt) {
     localStorage.setItem(key, isDark ? 'off' : 'on')
     const isAppearanceTransition =
       document.startViewTransition &&
@@ -93,7 +93,13 @@
 </script>`}
 </svelte:head>
 
-<div class="toggle" on:click={toggle} on:keyup={toggle}>
+<div
+  class="toggle"
+  on:click={toggle}
+  on:keyup={toggle}
+  role="menuitem"
+  tabindex="0"
+>
   {#if isDark}
     <Moon />
   {:else}

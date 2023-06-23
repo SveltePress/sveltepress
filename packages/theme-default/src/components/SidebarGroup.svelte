@@ -13,7 +13,7 @@
 
   let collapsed = false
 
-  const handleToggle = () => {
+  function handleToggle() {
     collapsed = !collapsed
   }
 </script>
@@ -28,6 +28,8 @@
         class="collapse-control"
         on:click={handleToggle}
         on:keypress={handleToggle}
+        role="menu"
+        tabindex="0"
       >
         <div class="arrow" class:collapsed>
           <ArrowDown />

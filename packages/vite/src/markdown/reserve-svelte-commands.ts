@@ -15,7 +15,7 @@ const commands = [
 ]
 const reservedDirectiveNames = ['else', 'else if', 'then', 'catch']
 
-const isCommand = (textContent: string) => {
+function isCommand(textContent: string) {
   const trimTextContent = textContent.trim()
   return commands.some(c => trimTextContent.startsWith(`{${c}`))
 }

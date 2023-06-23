@@ -10,7 +10,7 @@
   export let external = false
   export let builtInIcon = false
 
-  const handleClick = () => {
+  function handleClick() {
     if (external) window.open(to, '_blank')
   }
 
@@ -47,6 +47,8 @@
     {...external ? { target: '_blank' } : {}}
     on:click={handleClick}
     on:keypress={handleClick}
+    role="link"
+    tabindex="0"
   >
     <slot>
       {#if typeof icon === 'string'}
