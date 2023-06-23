@@ -1,6 +1,6 @@
 <script>
   import External from './icons/External.svelte'
-  
+
   export let label = ''
   export let to = ''
   export let inline = true
