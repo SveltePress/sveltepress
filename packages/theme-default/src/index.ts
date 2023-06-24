@@ -35,6 +35,8 @@ export const themeOptionsRef: {
   value: undefined,
 }
 
+export const SERVICE_WORKER_PATH = './node_modules/@sveltepress/theme-default/dist/components/pwa/sw.js'
+
 const defaultTheme: ThemeDefault = options => {
   themeOptionsRef.value = options
   const { gradient = DEFAULT_GRADIENT, primary = DEFAULT_PRIMARY, hover = DEFAULT_HOVER } = options?.themeColor || {
@@ -105,9 +107,17 @@ const defaultTheme: ThemeDefault = options => {
       ]
       if (options?.pwa) {
         plugins.push(SvelteKitPWA({
-          ...options.pwa,
+          strategies: 'injectManifest',
           srcDir: resolve(__dirname, './components/pwa'),
           filename: 'sw.ts',
+          injectManifest: {
+            globDirectory: '.svelte-kit/output',
+            globPatterns: [
+              'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+              'prerendered/**/*.html',
+            ],
+          },
+          ...options.pwa,
         }))
       } else {
         // In case of pwa relative virtual modules are not found

@@ -27,11 +27,4 @@ export default {
     background_color: '#f2f2f2',
     display: 'standalone',
   },
-  injectManifest: {
-    globDirectory: '.svelte-kit/output',
-    globPatterns: [
-      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
-      '../../.sveltepress/prerendered/**/*.html',
-    ],
-  },
 } as any

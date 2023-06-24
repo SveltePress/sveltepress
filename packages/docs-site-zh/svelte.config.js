@@ -1,5 +1,6 @@
 import { vitePreprocess } from '@sveltejs/kit/vite'
-import adapter from './adapter-wrapper/index.js'
+import adapter from '@sveltejs/adapter-static'
+import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,6 +11,9 @@ const config = {
       pages: 'dist',
       fallback: '404.html',
     }),
+    files: {
+      serviceWorker: SERVICE_WORKER_PATH,
+    },
   },
 }
 
