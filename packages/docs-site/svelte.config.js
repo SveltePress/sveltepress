@@ -10,6 +10,9 @@ const config = {
       pages: 'dist',
       fallback: '404.html',
     }),
+    serviceWorker: {
+      register: false,
+    },
   },
 }
 

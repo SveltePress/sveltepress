@@ -65,10 +65,10 @@ const liveCode: Plugin<[], any> = function () {
         const { meta, lang, type, data } = node
         const metaArray = meta?.split(' ') || []
         const isAsync = metaArray.includes('async')
-        if (type === 'code' &&
-            SUPPORTED_LIVE_LANGS.includes(lang) &&
-            metaArray.includes('live') &&
-            idx !== null && !data?.liveCodeResolved
+        if (type === 'code'
+            && SUPPORTED_LIVE_LANGS.includes(lang)
+            && metaArray.includes('live')
+            && idx !== null && !data?.liveCodeResolved
         ) {
           const codeHighlightNode = {
             ...node,

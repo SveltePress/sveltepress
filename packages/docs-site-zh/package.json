@@ -8,9 +8,9 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.81",
+    "@iconify/json": "^2.2.82",
     "@sveltejs/adapter-static": "^2.0.2",
-    "@sveltejs/kit": "^1.20.4",
+    "@sveltejs/kit": "^1.20.5",
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/vite": "workspace:*",
     "@types/node": "^20.3.1",

@@ -19,7 +19,8 @@ const codeImport: Plugin<any[], any> = () => {
               const lang = path.split('/').pop()?.split('.').pop()
 
               const filename = vFile.path
-              if (!filename) return
+              if (!filename)
+                return
               // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
               // @ts-ignore
               const absolutePathArray = filename.split('/')

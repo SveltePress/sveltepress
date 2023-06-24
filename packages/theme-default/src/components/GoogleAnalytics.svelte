@@ -10,10 +10,12 @@
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
+        // eslint-disable-next-line prefer-rest-params, no-undef
         dataLayer.push(arguments)
       }
       gtag('js', new Date())
 
+      // eslint-disable-next-line no-template-curly-in-string
       gtag('config', '${ga}')
     </script>`}
   {/if}

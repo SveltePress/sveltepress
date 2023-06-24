@@ -2,7 +2,6 @@ import { type Plugin, unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
-import { VFile } from 'vfile'
 import remarkExtractFrontmatter from 'remark-extract-frontmatter'
 import { parse } from 'yaml'
 import remarkFrontmatter from 'remark-frontmatter'
@@ -85,10 +84,10 @@ export default async function ({
       allowDangerousHtml: true,
       allowDangerousCharacters: true,
     })
-    .process(new VFile({
+    .process({
       value: mdContent,
       path: filename,
-    }) as any)
+    })
 
   const code = String(vFile)
 

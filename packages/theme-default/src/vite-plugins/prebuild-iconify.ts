@@ -10,13 +10,16 @@ const ALL_ICONS_INLINE = 'sveltepress/prebuild-iconify-icons.css?inline='
 const iconifyIcons: (themeOptions?: DefaultThemeOptions) => PluginOption = themeOptions => ({
   name: '@sveltepress/theme-default/iconify-feature-icons',
   resolveId(id) {
-    if (id === ALL_ICONS_MODULE) return ALL_ICONS_MODULE
-    if (id === ALL_ICONS_INLINE) return ALL_ICONS_INLINE
+    if (id === ALL_ICONS_MODULE)
+      return ALL_ICONS_MODULE
+    if (id === ALL_ICONS_INLINE)
+      return ALL_ICONS_INLINE
   },
   async load(id) {
     if (id === ALL_ICONS_MODULE) {
       const icons = themeOptions?.preBuildIconifyIcons
-      if (!icons) return ''
+      if (!icons)
+        return ''
       let code = ''
       for (const prefix in icons) {
         const filename = locate(prefix)
@@ -26,7 +29,8 @@ const iconifyIcons: (themeOptions?: DefaultThemeOptions) => PluginOption = theme
       }
       return code
     }
-    if (id === ALL_ICONS_INLINE) return ''
+    if (id === ALL_ICONS_INLINE)
+      return ''
   },
 })
 

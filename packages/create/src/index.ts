@@ -151,8 +151,8 @@ async function init() {
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
   const isYarn1 = pkgManager === 'yarn' && pkgInfo?.version.startsWith('1.')
 
-  const { customCommand } =
-    FRAMEWORKS.find(v => v.name === template) ?? {}
+  const { customCommand }
+    = FRAMEWORKS.find(v => v.name === template) ?? {}
 
   if (customCommand) {
     const fullCustomCommand = customCommand

@@ -46,8 +46,8 @@
 <div class={`c-expansion ${expanded ? 'c-expansion--expanded' : ''}`}>
   {#if reverse}
     <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
-      <!--  
-        Expansion body content 
+      <!--
+        Expansion body content
       -->
       <slot />
     </div>
@@ -108,8 +108,8 @@
   </div>
   {#if !reverse}
     <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
-      <!--  
-        Expansion body content 
+      <!--
+        Expansion body content
       -->
       <slot />
     </div>

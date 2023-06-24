@@ -107,6 +107,7 @@ const defaultTheme: ThemeDefault = options => {
         plugins.push(SvelteKitPWA({
           ...options.pwa,
           srcDir: resolve(__dirname, './components/pwa'),
+          filename: 'sw.ts',
         }))
       } else {
         // In case of pwa relative virtual modules are not found
