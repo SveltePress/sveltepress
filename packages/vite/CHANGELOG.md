@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.24.0
+
+### Minor Changes
+
+- [`afa6270`](https://github.com/SveltePress/sveltepress/commit/afa6270b0c01e39e588f0685bcd43ac814912b55) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: upgrade svelte to version 4
+
+- [`afa6270`](https://github.com/SveltePress/sveltepress/commit/afa6270b0c01e39e588f0685bcd43ac814912b55) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: ally warning
+
+- [`a6db351`](https://github.com/SveltePress/sveltepress/commit/a6db351cc59adbcbdf8730254034a79ecb4cbb14) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use new eslint rules
+
 ## 0.23.0
 
 ### Minor Changes
