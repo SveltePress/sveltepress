@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.14.2
+
+### Patch Changes
+
+- [`4909cfe`](https://github.com/SveltePress/sveltepress/commit/4909cfe17a30608053821d76012aa7c7d95a81e6) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: process not defined in sw
+
 ## 1.14.1
 
 ### Patch Changes
