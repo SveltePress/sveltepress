@@ -83,6 +83,11 @@ const defaultTheme: ThemeDefault = options => {
       },
       config() {
         return {
+          define: {
+            'process.env.NODE_ENV': process.env.NODE_ENV === 'production'
+              ? '"production"'
+              : '"development"',
+          },
           optimizeDeps: {
             exclude: ['@sveltepress/theme-default'],
           },
