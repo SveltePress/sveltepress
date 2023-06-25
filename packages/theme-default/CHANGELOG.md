@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.14.1
+
+### Patch Changes
+
+- [`4496cf7`](https://github.com/SveltePress/sveltepress/commit/4496cf745e55166a6521889cc4881b9c7cf6c014) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`4496cf7`](https://github.com/SveltePress/sveltepress/commit/4496cf745e55166a6521889cc4881b9c7cf6c014) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update eslint
+
+- [`4496cf7`](https://github.com/SveltePress/sveltepress/commit/4496cf745e55166a6521889cc4881b9c7cf6c014) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: vFile
+
+- [`916bac5`](https://github.com/SveltePress/sveltepress/commit/916bac51eb2f55f37d0302b0684394ec1e3b8cc6) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: pwa
+
 ## 1.14.0
 
 ### Minor Changes
