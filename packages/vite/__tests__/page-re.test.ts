@@ -20,11 +20,11 @@ describe('page re', () => {
 
     // don't match server files
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/+page.ts')).toBe(false)
-    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/+page.js')).toBe(false)
-    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/foo/+page@abc.ts')).toBe(false)
+    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/+page.server.js')).toBe(false)
+    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/foo/+page@abc.server.ts')).toBe(false)
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/foo/+page.js')).toBe(false)
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo)/+page.ts')).toBe(false)
-    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo)/bar/+page@cba.js')).toBe(false)
+    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo)/bar/+page@cba.server.js')).toBe(false)
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo)/bar/+page.ts')).toBe(false)
   })
 })
