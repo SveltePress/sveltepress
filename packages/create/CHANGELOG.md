@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.34.0
+
+### Minor Changes
+
+- [`470316c`](https://github.com/SveltePress/sveltepress/commit/470316c2fc497f584e2e963fad9231a86b1c989a) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: core vite plugin should only handle +page/+layout files
+
 ## 0.33.1
 
 ### Patch Changes
