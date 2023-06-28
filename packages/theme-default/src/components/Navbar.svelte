@@ -44,13 +44,25 @@
           {/each}
         {/if}
         {#if themeOptions.github}
-          <NavItem to={themeOptions.github} external icon builtInIcon>
+          <NavItem
+            to={themeOptions.github}
+            external
+            icon
+            builtInIcon
+            title="Github"
+          >
             <Github />
           </NavItem>
         {/if}
 
         {#if themeOptions.discord}
-          <NavItem to={themeOptions.discord} external icon builtInIcon>
+          <NavItem
+            to={themeOptions.discord}
+            external
+            icon
+            builtInIcon
+            title="Discord"
+          >
             <Discord />
           </NavItem>
         {/if}

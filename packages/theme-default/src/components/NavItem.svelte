@@ -24,6 +24,7 @@
     class:nav-item--icon={icon}
     class:nav-item--user-icon={icon}
     role="link"
+    aria-label={title}
   >
     {#if typeof icon === 'string'}
       {@html icon}
@@ -50,6 +51,7 @@
     on:keypress={handleClick}
     role="link"
     tabindex="0"
+    aria-label={title}
   >
     <slot>
       {#if typeof icon === 'string'}
