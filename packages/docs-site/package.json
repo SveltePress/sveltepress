@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.2",
+    "@sveltejs/adapter-vercel": "^3.0.1",
     "@sveltejs/kit": "^1.20.5",
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/vite": "workspace:*",
