@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 1.15.1
+
+### Patch Changes
+
+- [`dbc90dc`](https://github.com/SveltePress/sveltepress/commit/dbc90dc5fe72c6331af5ce386a97e1f69d0529ff) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add aria-label for nav items
+
+- [`3c1035f`](https://github.com/SveltePress/sveltepress/commit/3c1035f7c314c5fa2d1e60afc4a321a605764472) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add role for nav items
+
+- [`0f2addb`](https://github.com/SveltePress/sveltepress/commit/0f2addb1cea43e6db3b77af3c6f5c8ad7018ac16) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: use pwa js
+
 ## 1.15.0
 
 ### Minor Changes
