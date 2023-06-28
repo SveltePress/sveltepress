@@ -1,7 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+/* eslint-disable no-restricted-globals */
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
-
-declare let self
 
 self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING')
@@ -22,7 +23,7 @@ precacheAndRoute(entriesAfterProcessed)
 // clean old assets
 cleanupOutdatedCaches()
 
-let allowlist: undefined | RegExp[]
+let allowlist
 if (import.meta.env.DEV)
   allowlist = [/^\/$/]
 

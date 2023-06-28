@@ -114,7 +114,7 @@ const defaultTheme: ThemeDefault = options => {
         plugins.push(SvelteKitPWA({
           strategies: 'injectManifest',
           srcDir: resolve(__dirname, './components/pwa'),
-          filename: 'sw.ts',
+          filename: 'sw.js',
           injectManifest: {
             globDirectory: '.svelte-kit/output',
             globPatterns: [
