@@ -14,6 +14,9 @@ const config = {
     files: {
       serviceWorker: SERVICE_WORKER_PATH,
     },
+    serviceWorker: {
+      register: false,
+    },
   },
 }
 

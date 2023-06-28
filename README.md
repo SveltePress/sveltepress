@@ -17,6 +17,12 @@ A content centered site build tool
   </a>
 </p>
 
+<p align="center">
+  <a href="https://sveltepress.site/" target="_blank" rel="noopener noreferrer" >
+    <img src="./asset/../assets/lighthouse.png" alt="Sveltepress lighthouse" width="600" height="auto">
+  </a>
+</p>
+
 ## :pizza: Introduction
 
 Inspired by [Vitepress](https://vitepress.vuejs.org/)  
