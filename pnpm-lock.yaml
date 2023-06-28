@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -70,9 +66,6 @@ importers:
 
   packages/docs-site:
     devDependencies:
-      '@iconify/json':
-        specifier: ^2.2.82
-        version: 2.2.82
       '@sveltejs/adapter-static':
         specifier: ^2.0.2
         version: 2.0.2(@sveltejs/kit@1.20.5)
@@ -109,9 +102,6 @@ importers:
 
   packages/docs-site-zh:
     devDependencies:
-      '@iconify/json':
-        specifier: ^2.2.82
-        version: 2.2.82
       '@sveltejs/adapter-static':
         specifier: ^2.0.2
         version: 2.0.2(@sveltejs/kit@1.20.5)
@@ -2481,9 +2471,11 @@ packages:
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1
+    dev: false
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+    dev: false
 
   /@iconify/utils@2.1.7:
     resolution: {integrity: sha512-P8S3z/L1LcV4Qem9AoCfVAaTFGySEMzFEY4CHZLkfRj0Fv9LiR+AwjDgrDrzyI93U2L2mg9JHsbTJ52mF8suNw==}
@@ -9524,3 +9516,7 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
