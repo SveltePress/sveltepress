@@ -99,9 +99,9 @@
   class="toggle"
   on:click={toggle}
   on:keyup={toggle}
-  role="menuitem"
-  tabindex="0"
   aria-label="Toggle dark mode"
+  role="button"
+  tabindex="0"
 >
   {#if isDark}
     <Moon />
