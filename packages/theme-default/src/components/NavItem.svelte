@@ -23,6 +23,7 @@
     class:built-in-icon={builtInIcon}
     class:nav-item--icon={icon}
     class:nav-item--user-icon={icon}
+    role="link"
   >
     {#if typeof icon === 'string'}
       {@html icon}
