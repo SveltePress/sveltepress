@@ -26,7 +26,20 @@ description: 页面描述
 </script>
 ```
 
+## 在 Markdown 中访问 frontmatter
+
+直接使用 `fm` 变量即可:
+
+```md live
+当前页面的 frontmatter 是：
+<pre>
+{JSON.stringify(fm, null, 2)}
+</pre>
+```
+
 ## 站点 frontmatter
+
+下面的 frontmatter 配置可以用于任意页面（+page.md）
 
 ```ts
 interface SiteConfig {

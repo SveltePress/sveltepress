@@ -26,7 +26,7 @@ features:
       collection: logos
       name: svelte-kit
   - title: Svelte in Markdown
-    description: Feel free to use svelte in markdown. Explore infinite possibilities.
+    description: Feel free to use svelte (3 and 4) in markdown. Explore infinite possibilities.
     icon:
       type: iconify
       collection: vscode-icons

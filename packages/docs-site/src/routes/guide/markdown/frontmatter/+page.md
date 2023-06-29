@@ -26,7 +26,20 @@ Export a const variable name as `frontmatter` in [Svelte context module](https:/
 </script>
 ```
 
+## Accessing frontmatter in markdown
+
+Use `fm` variable:
+
+```md live
+Frontmatter of this page is: 
+<pre>
+{JSON.stringify(fm, null, 2)}
+</pre>
+```
+
 ## Site frontmatter
+
+The global shared frontmatter for every +page.md file
 
 ```ts
 interface SiteConfig {
