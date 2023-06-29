@@ -28,7 +28,7 @@
         class="collapse-control"
         on:click={handleToggle}
         on:keypress={handleToggle}
-        role="menu"
+        role="button"
         tabindex="0"
       >
         <div class="arrow" class:collapsed>
