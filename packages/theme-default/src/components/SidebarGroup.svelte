@@ -30,6 +30,7 @@
         on:keypress={handleToggle}
         role="button"
         tabindex="0"
+        aria-label="Collapsable button"
       >
         <div class="arrow" class:collapsed>
           <ArrowDown />

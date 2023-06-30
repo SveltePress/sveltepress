@@ -82,7 +82,7 @@ html[data-theme="dark"] {
 .admonition-icon {
   display: flex;
   align-items: center;
-  margin-right: 0.2em;
+  margin-right: 0.3em;
   font-size: 1.5rem;
 }
 
@@ -105,8 +105,12 @@ html[data-theme="dark"] {
   border-left: 8px solid var(--admonition-color);
 }
 
-.admonition h5 {
+.admonition .admonition-heading {
   color: var(--admonition-color);
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .admonition .admonition-icon svg {

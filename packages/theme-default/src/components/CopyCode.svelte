@@ -29,6 +29,7 @@
     on:keyup={handleClick}
     role="button"
     tabindex="0"
+    aria-label="Copy code"
   >
     <Copy />
   </div>

@@ -79,27 +79,19 @@ const admonitions: Plugin<any[], any> = () => {
                   {
                     type: 'SvpAdmonition',
                     data: {
-                      hName: 'h5',
+                      hName: 'span',
+                      hProperties: {
+                        className: 'admonition-icon',
+                      },
                     },
-                    children: [
-                      {
-                        type: 'SvpAdmonition',
-                        data: {
-                          hName: 'span',
-                          hProperties: {
-                            className: 'admonition-icon',
-                          },
-                        },
-                        children: [{
-                          type: 'html',
-                          value: icon ? `<IconifyIcon collection="${collection}" name="${name}" />` : ad.svg,
-                        }],
-                      },
-                      {
-                        type: 'text',
-                        value: title,
-                      },
-                    ],
+                    children: [{
+                      type: 'html',
+                      value: icon ? `<IconifyIcon collection="${collection}" name="${name}" />` : ad.svg,
+                    }],
+                  },
+                  {
+                    type: 'text',
+                    value: title,
                   },
                 ],
               },

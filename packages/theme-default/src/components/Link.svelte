@@ -17,6 +17,7 @@
   class:active
   class:highlight
   {...isExternal ? { target: '_blank' } : {}}
+  aria-label={label}
 >
   <slot name="pre" />
   <div>
