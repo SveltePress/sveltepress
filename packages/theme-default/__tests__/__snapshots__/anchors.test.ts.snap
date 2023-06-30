@@ -24,7 +24,8 @@ exports[`anchors > simple 1`] = `
             \\"hName\\": \\"a\\",
             \\"hProperties\\": {
               \\"href\\": \\"#Foo-foo\\",
-              \\"className\\": \\"svp-title-anchor\\"
+              \\"className\\": \\"svp-title-anchor\\",
+              \\"ariaLabel\\": \\"Foo foo\\"
             }
           },
           \\"children\\": [
@@ -171,7 +172,8 @@ exports[`anchors > simple 1`] = `
             \\"hName\\": \\"a\\",
             \\"hProperties\\": {
               \\"href\\": \\"#Bar-a\\",
-              \\"className\\": \\"svp-title-anchor\\"
+              \\"className\\": \\"svp-title-anchor\\",
+              \\"ariaLabel\\": \\"Bar/a\\"
             }
           },
           \\"children\\": [
