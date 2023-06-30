@@ -30,6 +30,7 @@ const anchors: Plugin<any[], any> = () => {
             hProperties: {
               href: `#${slugId}`,
               className: 'svp-title-anchor',
+              ariaLabel: title,
             },
           },
           children: [{
