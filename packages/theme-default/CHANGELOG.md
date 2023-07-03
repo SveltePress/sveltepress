@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.16.0
+
+### Minor Changes
+
+- [`3cfb7f5`](https://github.com/SveltePress/sveltepress/commit/3cfb7f509b6c3adf644e429c585c1aee84f772ea) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: improve heading anchors ally
+
+- [`7d97dd0`](https://github.com/SveltePress/sveltepress/commit/7d97dd0411e756d4e0f2538280eb31bde13a1024) Thanks [@Blackman99](https://github.com/Blackman99)! - perf: accessbility
+
+### Patch Changes
+
+- [`f0234b5`](https://github.com/SveltePress/sveltepress/commit/f0234b5ad0d2f358cf7232399f5877960baabbe3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: sidebar collapse control role
+
 ## 1.15.1
 
 ### Patch Changes
