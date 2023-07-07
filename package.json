@@ -4,7 +4,7 @@
     "@casual-ui/eslint-config-svelte": "^0.5.0",
     "@changesets/cli": "^2.26.2",
     "eslint": "^8.44.0",
-    "prettier": "^3.0.0",
+    "prettier": "~2.8.8",
     "prettier-plugin-svelte": "^2.10.1",
     "svelte": "^4.0.5",
     "typescript": "~5.1.6"

@@ -7,6 +7,7 @@ exports[`code import > existing and non-existing file 2`] = `
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #AB5959\\">const </span><span style=\\"color: #B07D48\\">VIRTUAL_PWA</span><span style=\\"color: #AB5959\\"> = </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">virtual:pwa-info</span><span style=\\"color: #B56959AA\\">&#39;</span></span>
 <span class=\\"line\\"><span style=\\"color: #AB5959\\">const </span><span style=\\"color: #B07D48\\">VIRTUAL_PWA_SVELTE_REGISTER</span><span style=\\"color: #AB5959\\"> = </span><span style=\\"color: #B56959AA\\">&#39;</span><span style=\\"color: #B56959\\">virtual:pwa-register/svelte</span><span style=\\"color: #B56959AA\\">&#39;</span></span>
 <span class=\\"line\\"></span>
@@ -25,6 +26,7 @@ exports[`code import > existing and non-existing file 2`] = `
 <span class=\\"line\\"><span style=\\"color: #999999\\">  </span><span style=\\"color: #998418\\">value</span><span style=\\"color: #999999\\">: </span><span style=\\"color: #AB5959\\">undefined</span><span style=\\"color: #999999\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color: #999999\\">&#125;</span></span>
 <span class=\\"line\\"></span></code></pre>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #C792EA\\">const</span><span style=\\"color: #C792EA; font-style: italic\\"> </span><span style=\\"color: #82AAFF; font-style: italic\\">VIRTUAL_PWA</span><span style=\\"color: #C792EA; font-style: italic\\"> </span><span style=\\"color: #C792EA\\">=</span><span style=\\"color: #C792EA; font-style: italic\\"> </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">virtual:pwa-info</span><span style=\\"color: #D9F5DD\\">&#39;</span></span>
 <span class=\\"line\\"><span style=\\"color: #C792EA\\">const</span><span style=\\"color: #C792EA; font-style: italic\\"> </span><span style=\\"color: #82AAFF; font-style: italic\\">VIRTUAL_PWA_SVELTE_REGISTER</span><span style=\\"color: #C792EA; font-style: italic\\"> </span><span style=\\"color: #C792EA\\">=</span><span style=\\"color: #C792EA; font-style: italic\\"> </span><span style=\\"color: #D9F5DD\\">&#39;</span><span style=\\"color: #ECC48D\\">virtual:pwa-register/svelte</span><span style=\\"color: #D9F5DD\\">&#39;</span></span>
 <span class=\\"line\\"></span>
