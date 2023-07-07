@@ -73,7 +73,9 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 : ''}
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     ${await highlighterRef.light?.(code, lang)}
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     ${await highlighterRef.dark?.(code, lang)}
     <div class="svp-code-block--lang">
       ${lang}

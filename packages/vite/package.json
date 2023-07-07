@@ -37,17 +37,17 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@sveltejs/kit": "^1.20.5",
+    "@sveltejs/kit": "^1.22.1",
     "@types/cross-spawn": "^6.0.2",
     "@types/estree": "^1.0.1",
     "@types/fs-extra": "^11.0.1",
-    "@types/mdast": "^3.0.11",
-    "@types/node": "^20.3.1",
-    "dayjs": "^1.11.8",
-    "svelte": "^4.0.0",
+    "@types/mdast": "^4.0.0",
+    "@types/node": "^20.4.0",
+    "dayjs": "^1.11.9",
+    "svelte": "^4.0.5",
     "unbuild": "^1.2.1",
-    "vite": "^4.3.9",
-    "vitest": "^0.32.2"
+    "vite": "^4.4.1",
+    "vitest": "^0.33.0"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
@@ -65,7 +65,7 @@
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.2",
     "vfile": "^6.0.0",
-    "vite-plugin-inspect": "^0.7.28",
+    "vite-plugin-inspect": "^0.7.32",
     "yaml": "^2.3.1"
   },
   "peerDependencies": {

@@ -5,8 +5,8 @@ exports[`install-pkg > md 1`] = `
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
-    <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\"><code><span class=\\"line\\"><span style=\\"color: #59873A\\">npm</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">create</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">@sveltepress/vite</span></span></code></pre>
-    <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\"><code><span class=\\"line\\"><span style=\\"color: #D6DEEB\\">npm </span><span style=\\"color: #ECC48D\\">create</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">@sveltepress/vite</span></span></code></pre>
+    <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #59873A\\">npm</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">create</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">@sveltepress/vite</span></span></code></pre>
+    <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #82AAFF; font-style: italic\\">npm</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">create</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">@sveltepress/vite</span></span></code></pre>
     <div class=\\"svp-code-block--lang\\">
       sh
     </div>
@@ -17,8 +17,8 @@ exports[`install-pkg > md 1`] = `
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
-    <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\"><code><span class=\\"line\\"><span style=\\"color: #59873A\\">yarn</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">create</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">@sveltepress/vite</span></span></code></pre>
-    <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\"><code><span class=\\"line\\"><span style=\\"color: #D6DEEB\\">yarn </span><span style=\\"color: #ECC48D\\">create</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">@sveltepress/vite</span></span></code></pre>
+    <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #59873A\\">yarn</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">create</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">@sveltepress/vite</span></span></code></pre>
+    <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #82AAFF; font-style: italic\\">yarn</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">create</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">@sveltepress/vite</span></span></code></pre>
     <div class=\\"svp-code-block--lang\\">
       sh
     </div>
@@ -29,8 +29,8 @@ exports[`install-pkg > md 1`] = `
 <div class=\\"svp-code-block-wrapper\\">
   <div class=\\"svp-code-block\\">
     
-    <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\"><code><span class=\\"line\\"><span style=\\"color: #59873A\\">pnpm</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">create</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">@sveltepress/vite</span></span></code></pre>
-    <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\"><code><span class=\\"line\\"><span style=\\"color: #D6DEEB\\">pnpm </span><span style=\\"color: #ECC48D\\">create</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">@sveltepress/vite</span></span></code></pre>
+    <pre class=\\"shiki vitesse-light\\" style=\\"background-color: #ffffff\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #59873A\\">pnpm</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">create</span><span style=\\"color: #393A34\\"> </span><span style=\\"color: #B56959\\">@sveltepress/vite</span></span></code></pre>
+    <pre class=\\"shiki night-owl\\" style=\\"background-color: #011627\\" tabindex=\\"0\\"><code><span class=\\"line\\"><span style=\\"color: #82AAFF; font-style: italic\\">pnpm</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">create</span><span style=\\"color: #D6DEEB\\"> </span><span style=\\"color: #ECC48D\\">@sveltepress/vite</span></span></code></pre>
     <div class=\\"svp-code-block--lang\\">
       sh
     </div>

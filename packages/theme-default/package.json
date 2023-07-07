@@ -30,25 +30,25 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@sveltejs/kit": "^1.20.5",
+    "@sveltejs/kit": "^1.22.1",
     "@sveltejs/package": "^2.1.0",
     "@sveltepress/vite": "workspace:*",
-    "svelte": "^4.0.0",
+    "svelte": "^4.0.5",
     "unified": "^10.1.2",
-    "vite": "^4.3.9",
-    "vitest": "^0.32.2"
+    "vite": "^4.4.1",
+    "vitest": "^0.33.0"
   },
   "dependencies": {
     "@docsearch/css": "^3.5.1",
     "@docsearch/js": "^3.5.1",
-    "@iconify/json": "^2.2.82",
+    "@iconify/json": "^2.2.87",
     "@iconify/utils": "^2.1.7",
     "@vite-pwa/sveltekit": "^0.2.5",
     "lru-cache": "^10.0.0",
-    "shiki": "^0.13.0",
+    "shiki": "^0.14.3",
     "uid": "^2.0.2",
     "unist-util-visit": "^4.1.2",
-    "unocss": "^0.53.3",
+    "unocss": "^0.53.4",
     "vite-plugin-pwa": "^0.16.4",
     "workbox-precaching": "^7.0.0",
     "workbox-routing": "^7.0.0"
