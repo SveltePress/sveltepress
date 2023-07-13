@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.34.1
+
+### Patch Changes
+
+- [`2b91144`](https://github.com/SveltePress/sveltepress/commit/2b911444904c817ea9910a655ffe96109fd7df08) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: disable a11y by new shiki
+
+- [`2b91144`](https://github.com/SveltePress/sveltepress/commit/2b911444904c817ea9910a655ffe96109fd7df08) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 0.34.0
 
 ### Minor Changes

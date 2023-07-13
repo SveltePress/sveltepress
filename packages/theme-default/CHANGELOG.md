@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.16.1
+
+### Patch Changes
+
+- [`2387d4e`](https://github.com/SveltePress/sveltepress/commit/2387d4eaf68aeaecb67158cfd33e87afbd4b49c7) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: narrow down prettier to version2
+
+- [`2387d4e`](https://github.com/SveltePress/sveltepress/commit/2387d4eaf68aeaecb67158cfd33e87afbd4b49c7) Thanks [@Blackman99](https://github.com/Blackman99)! - test: update snapshots
+
+- [`2b91144`](https://github.com/SveltePress/sveltepress/commit/2b911444904c817ea9910a655ffe96109fd7df08) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: disable a11y by new shiki
+
+- [`2b91144`](https://github.com/SveltePress/sveltepress/commit/2b911444904c817ea9910a655ffe96109fd7df08) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.16.0
 
 ### Minor Changes
