@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import process from 'node:process'
 import { visit } from 'unist-util-visit'
 import { uid } from 'uid'
 import type { Plugin } from 'unified'

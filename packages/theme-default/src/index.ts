@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import process from 'node:process'
 import Unocss from 'unocss/vite'
 import { presetIcons, presetUno, transformerCompileClass, transformerDirectives } from 'unocss'
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'

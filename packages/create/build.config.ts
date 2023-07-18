@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import process from 'node:process'
 import { defineBuildConfig } from 'unbuild'
 
 const resolvePkgPath = (cwdRelativePath: string) => resolve(process.cwd(), `${cwdRelativePath}/package.json`)

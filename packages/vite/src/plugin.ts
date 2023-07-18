@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 import { existsSync, mkdirSync } from 'node:fs'
+import process from 'node:process'
 import type { PluginOption } from 'vite'
 
 import type { Plugin } from 'unified'

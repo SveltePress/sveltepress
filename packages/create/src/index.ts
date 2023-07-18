@@ -2,6 +2,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import process from 'node:process'
 import spawn from 'cross-spawn'
 import minimist from 'minimist'
 import prompts from 'prompts'
