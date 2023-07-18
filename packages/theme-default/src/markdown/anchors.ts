@@ -21,7 +21,7 @@ const anchors: Plugin<any[], any> = () => {
           node.data.anchorAdded = true
         }
         const title = (node.children as any[]).filter(c => ['text', 'inlineCode'].includes(c.type)).map(c => c.value).join('')
-        const slugId = title.replace(/ |\/|:/g, '-')
+        const slugId = encodeURIComponent(title)
 
         node.children.unshift({
           type: 'Anchor',

@@ -8,7 +8,7 @@ And multi levels are supported
 
 ```md
 ## Heading1
-### Heading1 nested1
+### Some heading contains special characters&?:/.
 ### Heading1 nested2
 
 ## Heading2
@@ -17,7 +17,7 @@ And multi levels are supported
 ```
 
 ## Heading1
-### Heading1 nested1
+### Some heading contains special characters&?:/.
 ### Heading1 nested2
 
 ## Heading2

@@ -9,7 +9,7 @@ exports[`anchors > simple 1`] = `
       \\"data\\": {
         \\"hName\\": \\"div\\",
         \\"hProperties\\": {
-          \\"id\\": \\"Foo-foo\\",
+          \\"id\\": \\"Foo%20foo\\",
           \\"className\\": \\"svp-anchor-item\\"
         }
       }
@@ -23,7 +23,7 @@ exports[`anchors > simple 1`] = `
           \\"data\\": {
             \\"hName\\": \\"a\\",
             \\"hProperties\\": {
-              \\"href\\": \\"#Foo-foo\\",
+              \\"href\\": \\"#Foo%20foo\\",
               \\"className\\": \\"svp-title-anchor\\",
               \\"ariaLabel\\": \\"Foo foo\\"
             }
@@ -157,7 +157,7 @@ exports[`anchors > simple 1`] = `
       \\"data\\": {
         \\"hName\\": \\"div\\",
         \\"hProperties\\": {
-          \\"id\\": \\"Bar-a\\",
+          \\"id\\": \\"Bar%2Fa%26%3F\\",
           \\"className\\": \\"svp-anchor-item\\"
         }
       }
@@ -171,9 +171,9 @@ exports[`anchors > simple 1`] = `
           \\"data\\": {
             \\"hName\\": \\"a\\",
             \\"hProperties\\": {
-              \\"href\\": \\"#Bar-a\\",
+              \\"href\\": \\"#Bar%2Fa%26%3F\\",
               \\"className\\": \\"svp-title-anchor\\",
-              \\"ariaLabel\\": \\"Bar/a\\"
+              \\"ariaLabel\\": \\"Bar/a&?\\"
             }
           },
           \\"children\\": [
@@ -216,6 +216,22 @@ exports[`anchors > simple 1`] = `
               \\"offset\\": 58
             }
           }
+        },
+        {
+          \\"type\\": \\"text\\",
+          \\"value\\": \\"&?\\",
+          \\"position\\": {
+            \\"start\\": {
+              \\"line\\": 7,
+              \\"column\\": 14,
+              \\"offset\\": 58
+            },
+            \\"end\\": {
+              \\"line\\": 7,
+              \\"column\\": 16,
+              \\"offset\\": 60
+            }
+          }
         }
       ],
       \\"position\\": {
@@ -226,8 +242,8 @@ exports[`anchors > simple 1`] = `
         },
         \\"end\\": {
           \\"line\\": 7,
-          \\"column\\": 14,
-          \\"offset\\": 58
+          \\"column\\": 16,
+          \\"offset\\": 60
         }
       },
       \\"data\\": {
@@ -244,12 +260,12 @@ exports[`anchors > simple 1`] = `
             \\"start\\": {
               \\"line\\": 9,
               \\"column\\": 1,
-              \\"offset\\": 60
+              \\"offset\\": 62
             },
             \\"end\\": {
               \\"line\\": 9,
               \\"column\\": 19,
-              \\"offset\\": 78
+              \\"offset\\": 80
             }
           }
         }
@@ -258,12 +274,12 @@ exports[`anchors > simple 1`] = `
         \\"start\\": {
           \\"line\\": 9,
           \\"column\\": 1,
-          \\"offset\\": 60
+          \\"offset\\": 62
         },
         \\"end\\": {
           \\"line\\": 9,
           \\"column\\": 19,
-          \\"offset\\": 78
+          \\"offset\\": 80
         }
       }
     }
@@ -277,7 +293,7 @@ exports[`anchors > simple 1`] = `
     \\"end\\": {
       \\"line\\": 11,
       \\"column\\": 1,
-      \\"offset\\": 80
+      \\"offset\\": 82
     }
   }
 }"
