@@ -1,5 +1,19 @@
 # @sveltepress/vite
 
+## 0.26.0
+
+### Minor Changes
+
+- [`c0adb3b`](https://github.com/SveltePress/sveltepress/commit/c0adb3b0a8525bc2f167c1afd8f0e3ef80107268) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for special heading
+
+- [`973dee2`](https://github.com/SveltePress/sveltepress/commit/973dee28e8698d6187ac59532b6306e5f052d8dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for complex heading content
+
+- [`973dee2`](https://github.com/SveltePress/sveltepress/commit/973dee28e8698d6187ac59532b6306e5f052d8dd) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: disable leaf and text directives
+
+### Patch Changes
+
+- [`0c95b4e`](https://github.com/SveltePress/sveltepress/commit/0c95b4e98bc9c688afab280d1776a630e70674de) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 0.25.1
 
 ### Patch Changes
