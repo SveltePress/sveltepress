@@ -10,6 +10,7 @@ import { visit } from 'unist-util-visit'
 import remarkGfm from 'remark-gfm'
 import type { Highlighter } from '../types'
 import reserveSvelteCommands from './reserve-svelte-commands'
+import disableLeafTextDirective from './disable-leaft-text-directive'
 
 interface CompileOptions {
   mdContent: string
@@ -31,8 +32,9 @@ export default async function ({
 }> {
   let processorBeforeRehype = unified()
     .use(remarkParse)
-    .use(reserveSvelteCommands)
     .use(remarkDirective)
+    .use(disableLeafTextDirective)
+    .use(reserveSvelteCommands)
     .use(remarkFrontmatter)
     .use(remarkExtractFrontmatter, { yaml: parse })
     .use(remarkGfm)

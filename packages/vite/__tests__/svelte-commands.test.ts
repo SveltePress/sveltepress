@@ -44,6 +44,10 @@ describe('svelte built-in commands', async () => {
   </div>
 {/await}
 
+:i[content]{.blue.green a=b}
+
+::hr[Title]{.red}
+
 {@debug items}
 
 {@html "<div class="foo">Foo</div>"}

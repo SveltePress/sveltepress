@@ -28,13 +28,15 @@ exports[`svelte built-in commands > commands 1`] = `
 {/if}
 {#await Promise.reject('Hello')}
 Loading
-{:then val}
+{:then  val}
   <h1>Val: {val}</h1>
 {:catch err}
   <div class=\\"text-gray-8\\">
   {err.message}
   </div>
 {/await}
+<p>:i[content]{.blue.green a=b}</p>
+::hr[Title]{.red}
 {@debug items}
 {@html \\"<div class=\\"foo\\">Foo</div>\\"}"
 `;

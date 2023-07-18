@@ -13,7 +13,6 @@ const commands = [
   '@debug',
   '@const',
 ]
-const reservedDirectiveNames = ['else', 'else if', 'then', 'catch']
 
 function isCommand(textContent: string) {
   const trimTextContent = textContent.trim()
@@ -31,8 +30,6 @@ const reserveSvelteCommands: ReserveSvelteCommandsPlugin = () => {
             const getValue = (node: any) => {
               if (node.type === 'inlineCode')
                 value += `\`${node.value}\``
-              else if (node.type === 'textDirective' && reservedDirectiveNames.includes(node.name))
-                value += `:${node.name}`
               else if ('value' in node)
                 value += node.value
             }
