@@ -41,8 +41,8 @@
     const x = evt.clientX
     const y = evt.clientY
     const endRadius = Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
     )
     const transition = document.startViewTransition(async () => {
       isDark = !isDark

@@ -17,7 +17,6 @@ export const pages = writable<LinkItem[]>([])
 export const scrollY = writable(0)
 
 export const oldScrollY = writable(0)
-export const innerWidth = writable(0)
 
 export const scrollDirection = writable('up')
 

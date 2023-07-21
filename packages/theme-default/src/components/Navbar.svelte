@@ -8,7 +8,7 @@
   import Discord from './icons/Discord.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
   import MobileSubNav from './MobileSubNav.svelte'
-  import { innerWidth, scrollDirection } from './layout'
+  import { scrollDirection } from './layout'
   import { page } from '$app/stores'
 
   $: routeId = $page.route.id
@@ -38,11 +38,11 @@
 
     <nav class="nav-links" aria-label="Menu">
       <div class="navbar-pc">
-        {#if $innerWidth >= 950}
+        <div class="sm:display-contents display-none">
           {#each themeOptions.navbar as navItem}
             <NavItem {...navItem} />
           {/each}
-        {/if}
+        </div>
         {#if themeOptions.github}
           <NavItem
             to={themeOptions.github}

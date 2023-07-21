@@ -8,7 +8,6 @@
   import AjaxBar from './AjaxBar.svelte'
   import {
     anchors,
-    innerWidth,
     navCollapsed,
     oldScrollY,
     resolveSidebar,
@@ -25,17 +24,18 @@
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { page } from '$app/stores'
 
+  resolveSidebar($page.route.id)
   let ajaxBar
 
-  beforeNavigate(() => {
-    ajaxBar.start()
+  beforeNavigate(({ to }) => {
+    ajaxBar?.start()
+    resolveSidebar(to.route.id)
   })
 
-  afterNavigate(({ to }) => {
+  afterNavigate(() => {
     ajaxBar?.end()
     $sidebarCollapsed = true
     $navCollapsed = true
-    resolveSidebar(to.route.id)
   })
 
   let pwaComponent
@@ -51,11 +51,10 @@
 <svelte:window
   on:scroll={() => ($oldScrollY = $scrollY)}
   bind:scrollY={$scrollY}
-  bind:innerWidth={$innerWidth}
 />
 
+<Navbar />
 {#if $page.error}
-  <Navbar />
   <Error error={$page.error} />
 {:else}
   <main>
@@ -63,7 +62,6 @@
     {#if $sidebar}
       <Sidebar />
     {/if}
-    <Navbar />
     <Backdrop
       show={!$navCollapsed}
       on:close={() => ($navCollapsed = true)}
