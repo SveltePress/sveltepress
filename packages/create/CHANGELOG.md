@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.35.1
+
+### Patch Changes
+
+- [`677c1f5`](https://github.com/SveltePress/sveltepress/commit/677c1f57756578f7d4a31e8225ce16c58bb5e7b7) Thanks [@Blackman99](https://github.com/Blackman99)! - perf: optimize navbar and sidebar load
+
 ## 0.35.0
 
 ### Minor Changes
