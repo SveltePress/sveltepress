@@ -5,7 +5,7 @@
   import { base } from '$app/paths'
 </script>
 
-<NavItem to={base} title={siteConfig.title}>
+<NavItem to={base === '' ? '/' : base} title={siteConfig.title}>
   {#if themeOptions.logo}
     <img
       class="logo"

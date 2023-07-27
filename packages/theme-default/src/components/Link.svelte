@@ -1,17 +1,20 @@
 <script>
   import External from './icons/External.svelte'
+  import { base } from '$app/paths'
 
   export let label = ''
   export let to = ''
   export let inline = true
   export let active = false
   export let highlight = true
+  export let withBase = true
 
   $: isExternal = /^https?/.test(to)
+  $: toWithBase = isExternal ? to : `${base}${to}`
 </script>
 
 <a
-  href={to}
+  href={withBase ? toWithBase : to}
   class="link"
   class:no-inline={!inline}
   class:active

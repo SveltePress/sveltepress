@@ -11,8 +11,9 @@ But should be imported manually in svelte files.
 
 ### Props
 
-* `label` - the link label text
-* `to` - the link address
+* `label` - The link label text
+* `to` - The link address
+* `withBase` - Determine whether to with [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base). Default is `true`
 
 :::info[Auto external icon]{icon=ic:sharp-rocket-launch}
 Would auto add a external icon when link address starts with http or https
