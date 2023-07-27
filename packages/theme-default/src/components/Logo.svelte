@@ -2,9 +2,10 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import siteConfig from 'virtual:sveltepress/site'
   import NavItem from './NavItem.svelte'
+  import { base } from '$app/paths'
 </script>
 
-<NavItem to="/" title={siteConfig.title}>
+<NavItem to={base} title={siteConfig.title}>
   {#if themeOptions.logo}
     <img
       class="logo"
