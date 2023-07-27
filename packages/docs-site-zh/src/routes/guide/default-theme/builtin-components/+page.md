@@ -12,6 +12,7 @@ title: 内置组件
 
 * `label` - 链接文案
 * `to` - 链接地址
+* `withBase` - 是否用 [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base) 属性作为前缀，默认为 `true`
 
 :::info[自动外部化图标]{icon=ic:sharp-rocket-launch}
 以 `http(s)` 开头的链接将会被自动识别为外部链接，会展示外部链接的图标
