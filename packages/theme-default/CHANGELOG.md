@@ -1,5 +1,13 @@
 # @sveltepress/theme-default
 
+## 1.17.2
+
+### Patch Changes
+
+- [`f162e91`](https://github.com/SveltePress/sveltepress/commit/f162e917f73232f7cab1bc573102cbe4be572c2c) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: make Link component support for withBase
+
+- [`d3478f4`](https://github.com/SveltePress/sveltepress/commit/d3478f405b32b2a63cc20d733ab1c4a81866ccb1) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: links should combine with base path
+
 ## 1.17.1
 
 ### Patch Changes
