@@ -106,3 +106,11 @@ You can use [`theme.footnoteLabel`](/reference/vite-plugin/#footnoteLabel) to di
 * [ ] to do
 * [x] done
 ```
+
+## Emojis
+
+```md live
+I :heart: :pizza:
+
+Emojis in this text will be replaced: :dog: :+1:
+```

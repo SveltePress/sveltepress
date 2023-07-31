@@ -106,3 +106,13 @@ contact@example.com
 * [ ] 未完成任务
 * [x] 已完成任务
 ```
+
+## Emojis
+
+```md live
+我 :heart: :pizza:
+
+这是一只狗头 :dog: 
+
+这是一个 +1 :+1:
+```

@@ -8,6 +8,7 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkDirective from 'remark-directive'
 import { visit } from 'unist-util-visit'
 import remarkGfm from 'remark-gfm'
+import emoji from 'remark-emoji'
 import type { Highlighter } from '../types'
 import reserveSvelteCommands from './reserve-svelte-commands'
 import disableLeafTextDirective from './disable-leaft-text-directive'
@@ -34,6 +35,7 @@ export default async function ({
 }> {
   let processorBeforeRehype = unified()
     .use(remarkParse)
+    .use(emoji)
     .use(remarkDirective)
     .use(disableLeafTextDirective)
     .use(reserveSvelteCommands)

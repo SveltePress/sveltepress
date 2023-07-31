@@ -53,6 +53,7 @@
     "cross-spawn": "^7.0.3",
     "fs-extra": "^11.1.1",
     "lru-cache": "^10.0.0",
+    "remark-emoji": "^3.1.2",
     "picocolors": "^1.0.0",
     "rehype-stringify": "^9.0.3",
     "remark-directive": "^2.0.1",
