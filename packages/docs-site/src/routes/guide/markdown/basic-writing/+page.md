@@ -20,7 +20,7 @@ This is paragraph
 
 This is another paragraph  
 
-Lines with more than one spaces would be  
+Lines end with more than one space would be  
 soft wrap
 ```
 
