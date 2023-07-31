@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.18.0
+
+### Minor Changes
+
+- [`c5238d2`](https://github.com/SveltePress/sveltepress/commit/c5238d2abdcb4b08b3604840c1d8c9c1f10cd6df) Thanks [@Blackman99](https://github.com/Blackman99)! - docs: add markdown writing guide
+
+- [`b4f7059`](https://github.com/SveltePress/sveltepress/commit/b4f70592fc79826ca8950af84672cebc8541ec68) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: make footnote label work in md live code
+
+- [`36608c7`](https://github.com/SveltePress/sveltepress/commit/36608c77f45d283c0a90b2102f14d00b709bb204) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for footnote
+
+- [`adcf360`](https://github.com/SveltePress/sveltepress/commit/adcf360e43a130df3d4e26c57506fa717824c030) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for emojis
+
 ## 1.17.2
 
 ### Patch Changes
