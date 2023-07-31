@@ -4,7 +4,7 @@ title: Vite plugin
 
 ## Plugin options
 
-@code(/../vite/src/types.ts,21,27)
+@code(/../vite/src/types.ts,25,31)
 
 ### `siteConfig`
 
@@ -34,7 +34,7 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 
 ## ResolvedTheme
 
-@code(/../vite/src/types.ts,12,20)
+@code(/../vite/src/types.ts,12,24)
 
 ### `name`   
 

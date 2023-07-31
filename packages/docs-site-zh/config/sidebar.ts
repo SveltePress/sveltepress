@@ -26,6 +26,10 @@ export default {
       title: 'Markdown 相关',
       items: [
         {
+          title: '写作基础',
+          to: '/guide/markdown/basic-writing/',
+        },
+        {
           title: 'Frontmatter',
           to: '/guide/markdown/frontmatter/',
         },

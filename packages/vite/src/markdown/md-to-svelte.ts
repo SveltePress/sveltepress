@@ -18,6 +18,7 @@ interface CompileOptions {
   remarkPlugins?: Array<Plugin | [Plugin, any]>
   rehypePlugins?: Plugin[]
   filename: string
+  footnoteLabel?: string
 }
 
 export default async function ({
@@ -26,6 +27,7 @@ export default async function ({
   rehypePlugins,
   highlighter,
   filename,
+  footnoteLabel,
 }: CompileOptions): Promise< {
   data: Record<string, any>
   code: string
@@ -75,6 +77,7 @@ export default async function ({
   let processorAfterRehype = processorBeforeRehype = processorBeforeRehype
     .use(remarkRehype, {
       allowDangerousHtml: true,
+      footnoteLabel,
     })
 
   rehypePlugins?.forEach(plugin => {

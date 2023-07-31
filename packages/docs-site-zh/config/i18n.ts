@@ -11,4 +11,6 @@ export default {
     appReadyToWorkOffline: '应用已经可以离线工作',
     newContentAvailable: '发现新内容，点击刷新按钮来更新',
   },
+  onThisPage: '当前页面',
+  footnoteLabel: '脚注',
 }

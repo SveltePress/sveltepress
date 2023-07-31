@@ -51,7 +51,7 @@ declare module 'virtual:sveltepress/theme-default' {
       themeDark?: string
     }
     i18n?: {
-      onThisPage: string
+      onThisPage?: string
       suggestChangesToThisPage?: string
       lastUpdateAt?: string
       previousPage?: string
@@ -64,6 +64,7 @@ declare module 'virtual:sveltepress/theme-default' {
         appReadyToWorkOffline?: string
         newContentAvailable?: string
       }
+      footnoteLabel?: string
     }
     preBuildIconifyIcons?: {
       [iconSetName: string]: string[]

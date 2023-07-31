@@ -11,6 +11,7 @@ title: Default theme
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
+
 import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 
 const config = defineConfig({
@@ -26,7 +27,7 @@ export default config
 
 ## Theme Options
 
-@code(/../theme-default/types.d.ts,22,71)
+@code(/../theme-default/types.d.ts,22,72)
 
 ### `navbar`
 
@@ -141,6 +142,7 @@ The fixed text contents that can be replaced by your config.
   * `close`
   * `appReadyToWorkOffline`
   * `newContentAvailable`
+* `footnoteLabel` - The auto generated footnotes title. Default is `"Footnotes"`
 
 ### `preBuildIconifyIcons`
 

@@ -56,3 +56,4 @@ Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态
 [静态适配器](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) 将会被默认使用
 
 您可以根据需要换成任何想要的适配器
+

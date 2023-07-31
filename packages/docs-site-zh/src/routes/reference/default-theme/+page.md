@@ -11,6 +11,7 @@ title: Default theme
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
+
 import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 
 const config = defineConfig({
@@ -27,7 +28,7 @@ export default config
 
 ## 主题配置
 
-@code(/../theme-default/types.d.ts,22,71)
+@code(/../theme-default/types.d.ts,22,72)
 
 ### `navbar`
 
@@ -134,6 +135,7 @@ const defaultGradient = {
   * `close`
   * `appReadyToWorkOffline`
   * `newContentAvailable`
+* `footnoteLabel` - 自动生成的脚注标题，默认为 `"Footnotes"`
 
 ### `preBuildIconifyIcons`
 一些你可能在编写文档过程中用到的 [Iconify](https://iconify.design/) 图标

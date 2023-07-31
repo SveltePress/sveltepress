@@ -4,7 +4,7 @@ title: Vite 插件
 
 ## 插件选项
 
-@code(/../vite/src/types.ts,21,27)
+@code(/../vite/src/types.ts,25,31)
 
 ### `siteConfig`
 
@@ -31,7 +31,7 @@ title: Vite 插件
 
 ## `ResolvedTheme`
 
-@code(/../vite/src/types.ts,12,20)
+@code(/../vite/src/types.ts,12,24)
 
 ### `name`   
 

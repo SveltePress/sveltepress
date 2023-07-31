@@ -17,6 +17,10 @@ export interface ResolvedTheme {
   highlighter: Highlighter
   remarkPlugins?: Plugin[]
   rehypePlugins?: Plugin[]
+  /**
+   * The footnote label used for [remark rehype](https://github.com/remarkjs/remark-rehype#api)
+   */
+  footnoteLabel?: string
 }
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
