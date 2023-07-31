@@ -90,6 +90,10 @@ export default defineConfig({
 yourRemarkPlugin 将会在默认主题中的 remark plugins 之后调用
 :::
 
+### `footnoteLabel`
+
+自定义脚注标题，默认为：`"Footnotes"`
+
 ## 虚拟模块
 
 ### `virtual:sveltepress/site`

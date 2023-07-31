@@ -85,7 +85,7 @@ contact@example.com
 
 复杂的脚注[^bigfootnote]
 
-[^1]: Footnote item
+[^1]: 普通的脚注
 
 [^bigfootnote]: 复杂的脚注  
   
@@ -97,7 +97,7 @@ contact@example.com
 ````
 
 :::info[标题自定义]
-你可以使用 [`theme.footnoteLabel`](/reference/vite-plugin/#ResolvedTheme) 来自定义脚注标题
+你可以使用 [`theme.footnoteLabel`](/reference/vite-plugin/#footnoteLabel) 来自定义脚注标题
 :::
 
 ## 任务列表

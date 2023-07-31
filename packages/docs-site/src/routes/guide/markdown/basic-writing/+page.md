@@ -97,7 +97,7 @@ Big footnote[^bigfootnote]
 ````
 
 :::info[Label customization]
-You can use [`theme.footnoteLabel`](/reference/vite-plugin/#ResolvedTheme) to display your custom auto generated footnotes title
+You can use [`theme.footnoteLabel`](/reference/vite-plugin/#footnoteLabel) to display your custom auto generated footnotes title
 :::
 
 ## Task list

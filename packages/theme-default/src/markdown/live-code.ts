@@ -114,6 +114,7 @@ const liveCode: Plugin<[], any> = function () {
               return svelteComponent
             } else if (lang === 'md') {
               const renderedHTML = (await mdToSvelte({
+                footnoteLabel: themeOptionsRef?.value?.i18n?.footnoteLabel,
                 mdContent: node.value,
                 filename: vFile.path,
                 highlighter,

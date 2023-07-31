@@ -155,6 +155,7 @@ const defaultTheme: ThemeDefault = options => {
       installPkg,
     ],
     highlighter,
+    footnoteLabel: options?.i18n?.footnoteLabel,
   }
 }
 

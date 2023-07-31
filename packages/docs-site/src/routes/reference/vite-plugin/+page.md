@@ -97,6 +97,10 @@ export default defineConfig({
 yourRemarkPlugin would run after the remark plugins in defaultTheme
 :::
 
+### `footnoteLabel`
+
+Customize the footnotes title, default is: `"Footnotes"`
+
 ## Virtual modules
 
 ### `virtual:sveltepress/site`

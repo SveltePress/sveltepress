@@ -18,6 +18,7 @@ export async function wrapPage({
   highlighter,
   rehypePlugins,
   remarkPlugins,
+  footnoteLabel,
 }: {
   mdOrSvelteCode: string
   id: string
@@ -40,6 +41,7 @@ export async function wrapPage({
       remarkPlugins,
       rehypePlugins,
       filename: id,
+      footnoteLabel,
     }) || { code: '', data: {} }
     const { fm: dataFm = {}, ...others } = data || { fm: {} }
     fm = {
