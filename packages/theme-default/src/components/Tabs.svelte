@@ -50,7 +50,7 @@
         left: item.offsetLeft,
         width: item.offsetWidth,
         name: item.dataset.tabName,
-      })
+      }),
     )
   }
 

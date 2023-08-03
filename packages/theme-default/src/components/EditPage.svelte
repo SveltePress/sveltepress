@@ -13,7 +13,7 @@
     if (themeOptions.editLink) {
       window.open(
         themeOptions.editLink.replace(':route', `${routeId}/+page.${pageType}`),
-        '_blank'
+        '_blank',
       )
     }
   }

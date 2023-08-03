@@ -9,14 +9,14 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^2.0.2",
-    "@sveltejs/kit": "^1.22.3",
+    "@sveltejs/adapter-static": "^2.0.3",
+    "@sveltejs/kit": "^1.22.4",
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/vite": "workspace:*",
-    "@types/node": "^20.4.2",
-    "svelte": "^4.0.5",
+    "@types/node": "^20.4.6",
+    "svelte": "^4.1.2",
     "svelte-check": "^3.4.6",
-    "vite": "^4.4.3",
+    "vite": "^4.4.8",
     "workbox-window": "^7.0.0"
   },
   "type": "module",

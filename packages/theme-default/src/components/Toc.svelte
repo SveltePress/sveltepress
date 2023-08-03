@@ -25,7 +25,7 @@
   function computeActiveIdx() {
     if (!mounted) return
     const positions = anchors.map(
-      ({ slugId }) => document.getElementById(slugId).offsetTop
+      ({ slugId }) => document.getElementById(slugId).offsetTop,
     )
     for (let i = 0; i < positions.length; i++) {
       const pos = positions[i]

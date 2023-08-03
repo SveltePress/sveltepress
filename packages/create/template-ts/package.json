@@ -7,14 +7,14 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^2.0.2",
-    "@sveltejs/kit": "^1.22.3",
-    "@sveltepress/theme-default": "^1.16.1",
-    "@sveltepress/vite": "^0.25.1",
-    "@types/node": "^20.4.2",
-    "svelte": "^4.0.5",
+    "@sveltejs/adapter-static": "^2.0.3",
+    "@sveltejs/kit": "^1.22.4",
+    "@sveltepress/theme-default": "^1.18.0",
+    "@sveltepress/vite": "^0.27.0",
+    "@types/node": "^20.4.6",
+    "svelte": "^4.1.2",
     "typescript": "^5.1.6",
-    "vite": "^4.4.3"
+    "vite": "^4.4.8"
   },
   "type": "module",
   "license": "MIT"
