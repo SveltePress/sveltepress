@@ -47,7 +47,7 @@
     "svelte": "^4.0.5",
     "unbuild": "^1.2.1",
     "vite": "^4.4.3",
-    "vitest": "^0.33.0"
+    "vitest": "^0.34.0"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
