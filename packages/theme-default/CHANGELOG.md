@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.18.1
+
+### Patch Changes
+
+- [`0c79689`](https://github.com/SveltePress/sveltepress/commit/0c79689ee7d4f29b57d60f39437ddf68760c67bc) Thanks [@Blackman99](https://github.com/Blackman99)! - chore(deps): update deps
+
 ## 1.18.0
 
 ### Minor Changes
