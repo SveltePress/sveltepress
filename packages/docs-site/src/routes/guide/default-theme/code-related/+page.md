@@ -16,7 +16,7 @@ This feature integrate [Shiki](https://github.com/shikijs/shiki)
 <script>
   const msg = 'world!'
 </script>
-  
+
 <h1>
   Hello, {msg}
 </h1>
@@ -32,7 +32,7 @@ You can customize the supported languages and theme in light/dark mode. More inf
 <script>
   const msg = 'world!'
 </script>
-  
+
 <h1>
   Hello, {msg}
 </h1>
@@ -48,7 +48,7 @@ Add `ln` in code block meta field would add line numbers in the rendered result.
 <script>
   const msg = 'world!'
 </script>
-  
+
 <h1>
   Hello, {msg}
 </h1>
@@ -72,7 +72,7 @@ Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the
     return foo
   }
 </script>
-  
+
 <h1>
   Hello, {msg}  // [svp! ~~]
 </h1>
@@ -218,14 +218,14 @@ The js file that render the demo part would be bundled into a single js file and
 
 ````md
 ```svelte live async
-<h1>This is a async svelte live code</h1>
+<h1>This is an async svelte live code</h1>
 ```
 ````
 
 **Output**
 
 ```svelte live async
-<h1>This is a async svelte live code</h1>
+<h1>This is an async svelte live code</h1>
 ```
 
 :::warning[Live code in live code is not supported]
