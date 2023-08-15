@@ -34,14 +34,14 @@ export default async function ({
   code: string
 }> {
   let processorBeforeRehype = unified()
-    .use(remarkParse)
+    .use(remarkParse as any)
     .use(emoji)
-    .use(remarkDirective)
+    .use(remarkDirective as any)
     .use(disableLeafTextDirective)
     .use(reserveSvelteCommands)
-    .use(remarkFrontmatter)
+    .use(remarkFrontmatter as any)
     .use(remarkExtractFrontmatter, { yaml: parse })
-    .use(remarkGfm)
+    .use(remarkGfm as any)
 
   remarkPlugins?.forEach(plugin => {
     if (Array.isArray(plugin)) {
@@ -77,7 +77,7 @@ export default async function ({
       }) }
 
   let processorAfterRehype = processorBeforeRehype = processorBeforeRehype
-    .use(remarkRehype, {
+    .use(remarkRehype as any, {
       allowDangerousHtml: true,
       footnoteLabel,
     })
@@ -87,7 +87,7 @@ export default async function ({
   })
 
   const vFile = await processorAfterRehype
-    .use(rehypeStringify, {
+    .use(rehypeStringify as any, {
       allowDangerousHtml: true,
       allowDangerousCharacters: true,
     })
