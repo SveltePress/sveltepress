@@ -2,7 +2,7 @@
 title: Svelte in markdown
 ---
 
-This feature allow you to write 
+This feature allows you to write 
 `<style>`, `<script>`, `<script context="module">`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` in .md files
 
 ## Basic
