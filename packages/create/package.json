@@ -41,7 +41,7 @@
     "@types/node": "^20.5.0",
     "@types/prompts": "^2.4.4",
     "typescript": "^5.1.6",
-    "unbuild": "^1.2.1"
+    "unbuild": "^2.0.0"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
