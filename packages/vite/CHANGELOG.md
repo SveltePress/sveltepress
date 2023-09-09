@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.28.0
+
+### Minor Changes
+
+- [`385e76c`](https://github.com/SveltePress/sveltepress/commit/385e76c04d18fc0f7bbcab6cdfca6ddc24bfdf49) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+### Patch Changes
+
+- [`40b6663`](https://github.com/SveltePress/sveltepress/commit/40b666395da977f2805057f614c6e3879cbb6cb1) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 0.27.1
 
 ### Patch Changes
