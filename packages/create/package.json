@@ -36,12 +36,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/cross-spawn": "^6.0.2",
+    "@types/cross-spawn": "^6.0.3",
     "@types/minimist": "^1.2.2",
-    "@types/node": "^20.5.0",
+    "@types/node": "^20.6.0",
     "@types/prompts": "^2.4.4",
-    "typescript": "^5.1.6",
-    "unbuild": "^1.2.1"
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
