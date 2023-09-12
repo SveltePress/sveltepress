@@ -41,7 +41,7 @@
   "dependencies": {
     "@docsearch/css": "^3.5.2",
     "@docsearch/js": "^3.5.2",
-    "@iconify/json": "^2.2.113",
+    "@iconify/json": "^2.2.114",
     "@iconify/utils": "^2.1.9",
     "@vite-pwa/sveltekit": "^0.2.7",
     "lru-cache": "^10.0.1",
