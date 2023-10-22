@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.29.1
+
+### Patch Changes
+
+- [`edf9ac8`](https://github.com/SveltePress/sveltepress/commit/edf9ac8b55956d26e89c769d49aaf55acf6b81f8) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove display-xxx usage in new version of unocss
+
 ## 0.29.0
 
 ### Minor Changes
