@@ -54,7 +54,7 @@ export async function wrapPage({
   }
   else if (id.endsWith('page.svelte')) {
     fm = {
-      ...parseSvelteFrontmatter(mdOrSvelteCode),
+      ...(await parseSvelteFrontmatter(mdOrSvelteCode)),
       pageType: 'svelte',
       lastUpdate,
     }

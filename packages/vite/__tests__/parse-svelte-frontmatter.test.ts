@@ -3,16 +3,16 @@ import { parseSvelteFrontmatter } from '../src/utils/parse-svelte-frontmatter'
 
 function wrapFrontmatter(obj: Record<string, any>) {
   return `
-<script context="module">
-  export const frontmatter = ${JSON.stringify(obj)}
+<script context="module" lang="ts">
+  export const frontmatter: any = ${JSON.stringify(obj)}
 </script>
-<script>
-  export let propName
+<script lang="ts">
+  export let propName: string
 
   const someVariable = 'some value'
 </script>
 <h1>
-  propName is {{propName}}
+  propName is {propName}
 </h1>
 `
 }
@@ -22,7 +22,7 @@ describe('parse svelte frontmatter', () => {
     const simpleObj = {
       title: 'some title',
     }
-    expect(parseSvelteFrontmatter(wrapFrontmatter(simpleObj))).toMatchObject(simpleObj)
+    expect(await parseSvelteFrontmatter(wrapFrontmatter(simpleObj))).toMatchObject(simpleObj)
   })
 
   const arrObj = {
@@ -30,7 +30,7 @@ describe('parse svelte frontmatter', () => {
   }
 
   it('array', async () => {
-    expect(parseSvelteFrontmatter(wrapFrontmatter(arrObj))).toMatchObject(arrObj)
+    expect(await parseSvelteFrontmatter(wrapFrontmatter(arrObj))).toMatchObject(arrObj)
   })
 
   const objObj = {
@@ -40,7 +40,7 @@ describe('parse svelte frontmatter', () => {
   }
 
   it('object', async () => {
-    expect(parseSvelteFrontmatter(wrapFrontmatter(objObj))).toMatchObject(objObj)
+    expect(await parseSvelteFrontmatter(wrapFrontmatter(objObj))).toMatchObject(objObj)
   })
 
   const complexObj = {
@@ -60,6 +60,6 @@ describe('parse svelte frontmatter', () => {
   }
 
   it('complex object', async () => {
-    expect(parseSvelteFrontmatter(wrapFrontmatter(complexObj))).toMatchObject(complexObj)
+    expect(await parseSvelteFrontmatter(wrapFrontmatter(complexObj))).toMatchObject(complexObj)
   })
 })

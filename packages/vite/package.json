@@ -50,6 +50,7 @@
     "vitest": "^0.34.4"
   },
   "dependencies": {
+    "svelte-preprocess": "^5.0.4",
     "cross-spawn": "^7.0.3",
     "fs-extra": "^11.1.1",
     "lru-cache": "^10.0.1",

@@ -1,4 +1,7 @@
-import { parse } from 'svelte/compiler'
+import { resolve } from 'node:path'
+import { cwd } from 'node:process'
+import { parse, preprocess } from 'svelte/compiler'
+import sveltePreproces from 'svelte-preprocess'
 import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estree'
 
 /**
@@ -21,9 +24,15 @@ import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estr
  * ```
  * @param svelteCode the svelte source code
  */
-export function parseSvelteFrontmatter(svelteCode: string) {
+export async function parseSvelteFrontmatter(svelteCode: string) {
+  const preprocessedResult = await preprocess(svelteCode, sveltePreproces({
+    tsconfigDirectory: resolve(cwd(), 'tsconfig.json'),
+  }), {
+    filename: 'App.svelte',
+  })
+
   const fm: Record<string, any> = {}
-  const ast = parse(svelteCode)
+  const ast = parse(preprocessedResult.code)
   if (!ast.module)
     return fm
   ast.module.content.body.forEach(line => {
