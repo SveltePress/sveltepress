@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 1.20.0
+
+### Minor Changes
+
+- [`0ed98f4`](https://github.com/SveltePress/sveltepress/commit/0ed98f4becf301da1ba9e9b8f348440b26543d9f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`23f59b3`](https://github.com/SveltePress/sveltepress/commit/23f59b30821bc0c8a97bd0a302c3536284d38827) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: ts not supported in +page.svelte
+
+### Patch Changes
+
+- [`fa9330d`](https://github.com/SveltePress/sveltepress/commit/fa9330de2a09da539e92371b7f9bf9677d43abd8) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.19.0
 
 ### Minor Changes

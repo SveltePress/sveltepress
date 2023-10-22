@@ -1,7 +1,7 @@
 {
   "name": "@sveltepress/vite",
   "homepage": "https://sveltepress.site/",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "description": "Sveltepress plugin for vite",
   "files": [
     "dist",
