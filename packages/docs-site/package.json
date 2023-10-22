@@ -14,7 +14,7 @@
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/vite": "workspace:*",
     "@types/node": "^20.8.7",
-    "svelte": "^4.2.2",
+    "svelte": "^4.2.0",
     "svelte-check": "^3.5.2",
     "vite": "^4.5.0",
     "workbox-window": "^7.0.0"

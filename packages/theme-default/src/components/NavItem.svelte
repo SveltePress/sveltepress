@@ -84,7 +84,7 @@
     content: ' ';
   }
   .nav-item--icon:first-of-type::after {
-    --uno: 'display-none sm:display-unset';
+    --uno: 'hidden sm:display-[unset]';
   }
 
   .nav-item--icon:hover {

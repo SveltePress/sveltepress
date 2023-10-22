@@ -44,7 +44,7 @@
 
 <style>
   .is-home {
-    --at-apply: 'sm:display-none';
+    --at-apply: 'sm:hidden';
   }
   .theme-default-sidebar {
     --at-apply: 'fixed top-0 left-0 bottom-0 pr-6 pb-4 sm:pb-32 overflow-y-auto bg-light-6 dark:bg-dark-9 z-999 sm:w-[25vw] w-[70vw] pl-4 sm:pl-[5vw] md:pl-[10vw] box-border transition-transform transition-300 shadow-md sm:shadow-none';
@@ -57,6 +57,6 @@
     transform: translateX(-100%);
   }
   .close {
-    --at-apply: 'text-5 flex items-center sm:display-none ml-4';
+    --at-apply: 'text-5 flex items-center sm:hidden ml-4';
   }
 </style>

@@ -27,6 +27,6 @@
 
 <style>
   .sub-nav {
-    --uno: 'flex items-center justify-between sm:display-none px-4 py-2';
+    --uno: 'flex items-center justify-between sm:hidden px-4 py-2';
   }
 </style>

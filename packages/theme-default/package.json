@@ -33,7 +33,7 @@
     "@sveltejs/kit": "^1.26.0",
     "@sveltejs/package": "^2.2.2",
     "@sveltepress/vite": "workspace:*",
-    "svelte": "^4.2.2",
+    "svelte": "^4.2.0",
     "unified": "^11.0.3",
     "vite": "^4.5.0",
     "vitest": "^0.34.6"

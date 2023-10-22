@@ -55,7 +55,7 @@
 
 <style>
   .nav-trigger {
-    --at-apply: 'ml-4 text-6 flex items-center sm:display-none';
+    --at-apply: 'ml-4 text-6 flex items-center sm:hidden';
   }
   .navbar-mobile {
     --at-apply: 'fixed top-[48px] left-0 right-0 bg-white dark:bg-black z-900 shadow-lg pb-4 dark:shadow-gray-8';

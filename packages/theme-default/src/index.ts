@@ -68,7 +68,7 @@ const defaultTheme: ThemeDefault = options => {
       shortcuts: {
         'svp-gradient-bg': `bg-gradient-linear bg-gradient-[45deg,${gradient.start},${gradient.end}]`,
         'svp-gradient-text': 'svp-gradient-bg bg-clip-text text-transparent',
-        'svp-modal-bg': 'sm:display-none fixed top-0 bottom-0 right-0 left-0 bg-black dark:bg-white bg-opacity-70 dark:bg-opacity-70 z-900 opacity-0 pointer-events-none transition-opacity transition-300',
+        'svp-modal-bg': 'sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-black dark:bg-white bg-opacity-70 dark:bg-opacity-70 z-900 opacity-0 pointer-events-none transition-opacity transition-300',
         'svp-modal-bg-show': 'opacity-100 pointer-events-auto',
       },
     }),

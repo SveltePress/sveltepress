@@ -38,7 +38,7 @@
 
     <nav class="nav-links" aria-label="Menu">
       <div class="navbar-pc">
-        <div class="sm:display-contents display-none">
+        <div class="sm:flex none">
           {#each themeOptions.navbar as navItem}
             <NavItem {...navItem} />
           {/each}
@@ -84,7 +84,7 @@
     --uno: 'translate-y-[-100%] sm:translate-y-0';
   }
   .logo-container {
-    --at-apply: 'display-none sm:display-block';
+    --at-apply: 'hidden sm:block';
   }
   .header-inner {
     --at-apply: 'sm:w-[80vw] h-full flex items-stretch justify-between mx-auto';
@@ -111,6 +111,6 @@
 
   .navbar-pc :global(.nav-item:not(.nav-item--icon)),
   .navbar-pc :global(.nav-item--user-icon) {
-    --uno: 'display-none sm:display-flex';
+    --uno: 'hidden sm:flex';
   }
 </style>
