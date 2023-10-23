@@ -48,7 +48,7 @@
     "shiki": "^0.14.5",
     "uid": "^2.0.2",
     "unist-util-visit": "^5.0.0",
-    "unocss": "^0.56.5",
+    "unocss": "^0.57.0",
     "vite-plugin-pwa": "^0.16.5",
     "workbox-precaching": "^7.0.0",
     "workbox-routing": "^7.0.0"
