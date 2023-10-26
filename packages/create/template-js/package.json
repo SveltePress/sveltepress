@@ -9,8 +9,8 @@
   "devDependencies": {
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.26.0",
-    "@sveltepress/theme-default": "^1.19.0",
-    "@sveltepress/vite": "^0.29.0",
+    "@sveltepress/theme-default": "^1.20.1",
+    "@sveltepress/vite": "^0.29.1",
     "@types/node": "^20.8.7",
     "svelte": "^4.2.2",
     "vite": "^4.5.0"
