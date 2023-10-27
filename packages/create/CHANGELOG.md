@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.39.0
+
+### Minor Changes
+
+- [`cf7f2f2`](https://github.com/SveltePress/sveltepress/commit/cf7f2f2fbdb639dc0e3ba45a5dc05aeb775f6b8b) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for nested sidebar
+
 ## 0.38.1
 
 ### Patch Changes
