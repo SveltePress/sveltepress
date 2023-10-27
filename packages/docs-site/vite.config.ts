@@ -37,6 +37,7 @@ const config = defineConfig({
           'ic': ['sharp-rocket-launch'],
           'tabler': ['icons'],
           'mdi': ['theme-light-dark'],
+          'bi': ['list-nested'],
         },
       }),
       siteConfig: {
