@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.21.1
+
+### Patch Changes
+
+- [`086f070`](https://github.com/SveltePress/sveltepress/commit/086f07062928a8b14b866b61b64939dde0a241a0) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher should contain base path
+
 ## 1.21.0
 
 ### Minor Changes
