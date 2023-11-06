@@ -1,15 +1,18 @@
 <script>
   import External from './icons/External.svelte'
+  import { base } from '$app/paths'
 
   export let label
   export let type = ''
   export let to
   export let external = false
+
+  const toWithBase = base + to
 </script>
 
 <a
   role="button"
-  href={to}
+  href={toWithBase}
   class={`svp-action ${type ? `svp-action--${type}` : ''}`}
   target={external ? '_blank' : ''}
 >
