@@ -53,3 +53,7 @@ Determine wether the sidebar group is collapsible or not. Default is `false`
 ### `items`
 
 Sub items
+
+:::info[Nested items]{icon=bi:list-nested}
+Nested items is supported
+:::

@@ -53,3 +53,7 @@ const sidebar = {
 ### `items`
 
 组内的子项
+
+:::info[嵌套子项]{icon=bi:list-nested}
+支持嵌套子项
+:::

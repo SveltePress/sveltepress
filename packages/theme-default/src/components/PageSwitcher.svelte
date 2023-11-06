@@ -4,6 +4,7 @@
   import Next from './icons/Next.svelte'
   import { pages } from './layout'
   import { page } from '$app/stores'
+  import { base } from '$app/paths'
 
   const routeId = $page.route.id
 
@@ -22,7 +23,7 @@
   <div class:switcher={hasPrevPage}>
     {#if hasPrevPage}
       {@const prevPage = $pages[activeIdx - 1]}
-      <a href={prevPage.to} class="trigger">
+      <a href={base + prevPage.to} class="trigger">
         <div class="hint">
           {themOptions.i18n?.previousPage || DEFAULT_PREVIOUS_TEXT}
         </div>
@@ -40,7 +41,7 @@
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
-      <a href={nextPage.to} class="trigger">
+      <a href={base + nextPage.to} class="trigger">
         <div class="hint">
           {themOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
         </div>

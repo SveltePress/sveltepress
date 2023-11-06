@@ -1,5 +1,23 @@
 # @sveltepress/vite
 
+## 0.30.1
+
+### Patch Changes
+
+- [`086f070`](https://github.com/SveltePress/sveltepress/commit/086f07062928a8b14b866b61b64939dde0a241a0) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: page switcher should contain base path
+
+## 0.30.0
+
+### Minor Changes
+
+- [`cf7f2f2`](https://github.com/SveltePress/sveltepress/commit/cf7f2f2fbdb639dc0e3ba45a5dc05aeb775f6b8b) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for nested sidebar
+
+## 0.29.1
+
+### Patch Changes
+
+- [`edf9ac8`](https://github.com/SveltePress/sveltepress/commit/edf9ac8b55956d26e89c769d49aaf55acf6b81f8) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: remove display-xxx usage in new version of unocss
+
 ## 0.29.0
 
 ### Minor Changes

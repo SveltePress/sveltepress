@@ -10,6 +10,7 @@
   export let items = []
   export let title = ''
   export let collapsible = false
+  export let nested = false
 
   let collapsed = false
 
@@ -18,8 +19,8 @@
   }
 </script>
 
-<div class="sidebar-group">
-  <div class="group-title">
+<div class="sidebar-group" class:nested>
+  <div class="group-title" class:with-mb={!nested}>
     <div>
       {title}
     </div>
@@ -40,28 +41,44 @@
   </div>
   {#if !collapsed}
     <div class="links" transition:slide>
-      {#each items as { to, title }}
+      {#each items as item}
         {@const active = routeId.endsWith('/')
-          ? to === routeId
-          : to === `${routeId}/`}
-        <Link {to} {active} label={title} inline={false} highlight={false}>
-          {#if active}
-            <div transition:scale class="active-icon">
-              <PointLeft />
-            </div>
-          {/if}
-        </Link>
+          ? item.to === routeId
+          : item.to === `${routeId}/`}
+        {#if Array.isArray(item.items) && item.items.length}
+          <svelte:self {...item} nested />
+        {:else}
+          <Link
+            to={item.to}
+            {active}
+            label={item.title}
+            inline={false}
+            highlight={false}
+          >
+            {#if active}
+              <div transition:scale class="active-icon">
+                <PointLeft />
+              </div>
+            {/if}
+          </Link>
+        {/if}
       {/each}
     </div>
   {/if}
 </div>
 
 <style>
+  .nested {
+    --uno: 'pl-4';
+  }
+  .with-mb {
+    --uno: 'mb-2 sm:mb-4';
+  }
   .sidebar-group:not(:last-of-type) {
     --at-apply: 'border-b-solid border-b border-light-8 dark:border-b-gray-7 mb-4 pb-4';
   }
   .group-title {
-    --at-apply: 'font-bold text-slate-8 dark:text-slate-2 mb-2 sm:mb-4 flex items-center justify-between';
+    --at-apply: 'font-bold text-slate-8 dark:text-slate-2 flex items-center justify-between';
   }
   .links {
     --at-apply: leading-8 overflow-hidden;
