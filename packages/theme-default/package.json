@@ -49,7 +49,7 @@
     "uid": "^2.0.2",
     "unist-util-visit": "^5.0.0",
     "unocss": "^0.57.0",
-    "vite-plugin-pwa": "^0.16.5",
+    "vite-plugin-pwa": "^0.17.0",
     "workbox-precaching": "^7.0.0",
     "workbox-routing": "^7.0.0"
   },
