@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@changesets/changelog-github':
-        specifier: ^0.4.8
-        version: 0.4.8
+        specifier: ^0.5.0
+        version: 0.5.0
     devDependencies:
       '@casual-ui/eslint-config-svelte':
         specifier: ^0.6.0
@@ -1791,11 +1791,11 @@ packages:
       '@changesets/types': 5.2.1
     dev: true
 
-  /@changesets/changelog-github@0.4.8:
-    resolution: {integrity: sha512-jR1DHibkMAb5v/8ym77E4AMNWZKB5NPzw5a5Wtqm1JepAuIF+hrKp2u04NKM14oBZhHglkCfrla9uq8ORnK/dw==}
+  /@changesets/changelog-github@0.5.0:
+    resolution: {integrity: sha512-zoeq2LJJVcPJcIotHRJEEA2qCqX0AQIeFE+L21L8sRLPVqDhSXY8ZWAt2sohtBpFZkBwu+LUwMSKRr2lMy3LJA==}
     dependencies:
-      '@changesets/get-github-info': 0.5.2
-      '@changesets/types': 5.2.1
+      '@changesets/get-github-info': 0.6.0
+      '@changesets/types': 6.0.0
       dotenv: 8.6.0
     transitivePeerDependencies:
       - encoding
@@ -1868,8 +1868,8 @@ packages:
       semver: 7.5.3
     dev: true
 
-  /@changesets/get-github-info@0.5.2:
-    resolution: {integrity: sha512-JppheLu7S114aEs157fOZDjFqUDpm7eHdq5E8SSR0gUBTEK0cNSHsrSR5a66xs0z3RWuo46QvA3vawp8BxDHvg==}
+  /@changesets/get-github-info@0.6.0:
+    resolution: {integrity: sha512-v/TSnFVXI8vzX9/w3DU2Ol+UlTZcu3m0kXTjTT4KlAdwSvwutcByYwyYn9hwerPWfPkT2JfpoX0KgvCEi8Q/SA==}
     dependencies:
       dataloader: 1.4.0
       node-fetch: 2.6.9
@@ -1947,6 +1947,11 @@ packages:
 
   /@changesets/types@5.2.1:
     resolution: {integrity: sha512-myLfHbVOqaq9UtUKqR/nZA/OY7xFjQMdfgfqeZIBK4d0hA6pgxArvdv8M+6NUzzBsjWLOtvApv8YHr4qM+Kpfg==}
+    dev: true
+
+  /@changesets/types@6.0.0:
+    resolution: {integrity: sha512-b1UkfNulgKoWfqyHtzKS5fOZYSJO+77adgL7DLRDr+/7jhChN+QcHnbjiQVOz/U+Ts3PGNySq7diAItzDgugfQ==}
+    dev: false
 
   /@changesets/write@0.2.3:
     resolution: {integrity: sha512-Dbamr7AIMvslKnNYsLFafaVORx4H0pvCA2MHqgtNCySMe1blImEyAEOzDmcgKAkgz4+uwoLz7demIrX+JBr/Xw==}
@@ -7788,7 +7793,7 @@ packages:
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.3
-      acorn: 8.9.0
+      acorn: 8.10.0
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: false
