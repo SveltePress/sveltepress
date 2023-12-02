@@ -67,7 +67,7 @@
     "unified": "^11.0.3",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.1",
-    "vite-plugin-inspect": "^0.7.40",
+    "vite-plugin-inspect": "^0.8.0",
     "yaml": "^2.3.3"
   },
   "peerDependencies": {
