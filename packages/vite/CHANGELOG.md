@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.31.0
+
+### Minor Changes
+
+- [`5fe4feb`](https://github.com/SveltePress/sveltepress/commit/5fe4feb286decc62d243147eebbf863ef2665ca8) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+### Patch Changes
+
+- [`d586a22`](https://github.com/SveltePress/sveltepress/commit/d586a2253e20b2ccad72737f2bda91a51f55ee74) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: ActionButton link should be with base
+
 ## 0.30.1
 
 ### Patch Changes
