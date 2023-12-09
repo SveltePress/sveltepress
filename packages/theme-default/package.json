@@ -36,7 +36,7 @@
     "svelte": "^4.2.8",
     "unified": "^11.0.4",
     "vite": "^5.0.4",
-    "vitest": "^0.34.6"
+    "vitest": "^1.0.0"
   },
   "dependencies": {
     "@docsearch/css": "^3.5.2",
