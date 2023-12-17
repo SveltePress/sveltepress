@@ -54,7 +54,7 @@
     "workbox-routing": "^7.0.0"
   },
   "peerDependencies": {
-    "@sveltejs/kit": "^1.20.4",
+    "@sveltejs/kit": "^1.20.4 || ^2.0.0",
     "svelte": "^3.55.1 || ^4.0.0",
     "vite": "^4.3.9 || ^5.0.0"
   },
