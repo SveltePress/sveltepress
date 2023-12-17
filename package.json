@@ -3,11 +3,11 @@
   "devDependencies": {
     "@casual-ui/eslint-config-svelte": "^0.6.0",
     "@changesets/cli": "^2.27.1",
-    "eslint": "^8.55.0",
-    "prettier": "~3.1.0",
+    "eslint": "^8.56.0",
+    "prettier": "~3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.2.8",
-    "typescript": "~5.3.2"
+    "typescript": "~5.3.3"
   },
   "scripts": {
     "lint": "eslint -c ./.eslintrc.cjs --ext .js,.ts,.svelte ./packages",
