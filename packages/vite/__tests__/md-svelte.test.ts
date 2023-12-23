@@ -51,7 +51,7 @@ describe('md to svelte', () => {
       <li>1</li>
       <li>2</li>
       </ul>
-      <pre><code class=\\"language-js\\">const a = 'a'
+      <pre><code class="language-js">const a = 'a'
       function hello(msg) {
         console.log('Hello ', msg)
       }
@@ -60,7 +60,7 @@ describe('md to svelte', () => {
         import Counter from './Counter.svelte'
         let count = 0
       </script>
-      <button on:click=\\"{() => count++}\\">
+      <button on:click="{() => count++}">
         You've clicked {count} times
       </button>
       <style>
@@ -95,7 +95,7 @@ describe('md to svelte', () => {
         },
         "wrappedCode": "<script>
       import PageLayout from '/path/to/CustomLayout.svelte'
-      const fm = {\\"pageType\\":\\"md\\",\\"lastUpdate\\":\\"Invalid Date\\",\\"title\\":\\"Page Title\\",\\"description\\":\\"Some page description\\"}
+      const fm = {"pageType":"md","lastUpdate":"Invalid Date","title":"Page Title","description":"Some page description"}
         import Counter from './Counter.svelte'
         let count = 0
       </script>
@@ -111,7 +111,7 @@ describe('md to svelte', () => {
         console.log('Hello ', msg)
       }</div>
 
-      <button on:click=\\"{() => count++}\\">
+      <button on:click="{() => count++}">
         You've clicked {count} times
       </button>
       </PageLayout>

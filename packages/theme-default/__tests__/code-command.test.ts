@@ -57,10 +57,10 @@ describe('code commands', () => {
     expect(processCommands('const foo = 1 // [svp! ++] // [svp! !!:3] // [svp! ~~]', 0, 1)).toMatchInlineSnapshot(`
       [
         [
-          "<div class=\\"svp-code-block--command-line svp-code-block--diff-bg-add\\"  style=\\"top: calc(0em + 12px);\\"><div class=\\"svp-code-block--diff-add\\">+</div></div>",
-          "<div class=\\"svp-code-block--focus\\" style=\\"top: 0;height: calc(12px + 0em);\\"></div>
-      <div class=\\"svp-code-block--focus\\" style=\\"top: calc(12px + 4.5em);height: calc(12px + -3em);\\"></div>",
-          "<div class=\\"svp-code-block--command-line svp-code-block--hl\\"  style=\\"top: calc(0em + 12px);\\"></div>",
+          "<div class="svp-code-block--command-line svp-code-block--diff-bg-add"  style="top: calc(0em + 12px);"><div class="svp-code-block--diff-add">+</div></div>",
+          "<div class="svp-code-block--focus" style="top: 0;height: calc(12px + 0em);"></div>
+      <div class="svp-code-block--focus" style="top: calc(12px + 4.5em);height: calc(12px + -3em);"></div>",
+          "<div class="svp-code-block--command-line svp-code-block--hl"  style="top: calc(0em + 12px);"></div>",
         ],
         "const foo = 1   ",
       ]

@@ -2,94 +2,94 @@
 
 exports[`links > simple 1`] = `
 "{
-  \\"type\\": \\"root\\",
-  \\"children\\": [
+  "type": "root",
+  "children": [
     {
-      \\"type\\": \\"heading\\",
-      \\"depth\\": 2,
-      \\"children\\": [
+      "type": "heading",
+      "depth": 2,
+      "children": [
         {
-          \\"type\\": \\"text\\",
-          \\"value\\": \\"Foo\\",
-          \\"position\\": {
-            \\"start\\": {
-              \\"line\\": 2,
-              \\"column\\": 4,
-              \\"offset\\": 4
+          "type": "text",
+          "value": "Foo",
+          "position": {
+            "start": {
+              "line": 2,
+              "column": 4,
+              "offset": 4
             },
-            \\"end\\": {
-              \\"line\\": 2,
-              \\"column\\": 7,
-              \\"offset\\": 7
+            "end": {
+              "line": 2,
+              "column": 7,
+              "offset": 7
             }
           }
         }
       ],
-      \\"position\\": {
-        \\"start\\": {
-          \\"line\\": 2,
-          \\"column\\": 1,
-          \\"offset\\": 1
+      "position": {
+        "start": {
+          "line": 2,
+          "column": 1,
+          "offset": 1
         },
-        \\"end\\": {
-          \\"line\\": 2,
-          \\"column\\": 7,
-          \\"offset\\": 7
+        "end": {
+          "line": 2,
+          "column": 7,
+          "offset": 7
         }
       }
     },
     {
-      \\"type\\": \\"paragraph\\",
-      \\"children\\": [
+      "type": "paragraph",
+      "children": [
         {
-          \\"type\\": \\"html\\",
-          \\"value\\": \\"<Link to=\\\\\\"https://www.google.com/\\\\\\" label=\\\\\\"foo\\\\\\" />\\"
+          "type": "html",
+          "value": "<Link to=\\"https://www.google.com/\\" label=\\"foo\\" />"
         },
         {
-          \\"type\\": \\"text\\",
-          \\"value\\": \\"\\\\n\\",
-          \\"position\\": {
-            \\"start\\": {
-              \\"line\\": 4,
-              \\"column\\": 31,
-              \\"offset\\": 39
+          "type": "text",
+          "value": "\\n",
+          "position": {
+            "start": {
+              "line": 4,
+              "column": 31,
+              "offset": 39
             },
-            \\"end\\": {
-              \\"line\\": 5,
-              \\"column\\": 1,
-              \\"offset\\": 40
+            "end": {
+              "line": 5,
+              "column": 1,
+              "offset": 40
             }
           }
         },
         {
-          \\"type\\": \\"html\\",
-          \\"value\\": \\"<Link to=\\\\\\"/foo/bar\\\\\\" label=\\\\\\"bar\\\\\\" />\\"
+          "type": "html",
+          "value": "<Link to=\\"/foo/bar\\" label=\\"bar\\" />"
         }
       ],
-      \\"position\\": {
-        \\"start\\": {
-          \\"line\\": 4,
-          \\"column\\": 1,
-          \\"offset\\": 9
+      "position": {
+        "start": {
+          "line": 4,
+          "column": 1,
+          "offset": 9
         },
-        \\"end\\": {
-          \\"line\\": 5,
-          \\"column\\": 16,
-          \\"offset\\": 55
+        "end": {
+          "line": 5,
+          "column": 16,
+          "offset": 55
         }
       }
     }
   ],
-  \\"position\\": {
-    \\"start\\": {
-      \\"line\\": 1,
-      \\"column\\": 1,
-      \\"offset\\": 0
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
     },
-    \\"end\\": {
-      \\"line\\": 7,
-      \\"column\\": 1,
-      \\"offset\\": 57
+    "end": {
+      "line": 7,
+      "column": 1,
+      "offset": 57
     }
   }
 }"
