@@ -20,5 +20,8 @@
     "workbox-window": "^7.0.0"
   },
   "type": "module",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.0.1"
+  }
 }

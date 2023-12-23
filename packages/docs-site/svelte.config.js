@@ -1,4 +1,4 @@
-import { vitePreprocess } from '@sveltejs/kit/vite'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import adapter from '@sveltejs/adapter-static'
 import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default'
 
