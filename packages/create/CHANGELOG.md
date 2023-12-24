@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.40.1
+
+### Patch Changes
+
+- [`c5b0c70`](https://github.com/SveltePress/sveltepress/commit/c5b0c709fc0c921d84032baa28603453bac7df77) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 0.40.0
 
 ### Minor Changes
