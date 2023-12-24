@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.31.1
+
+### Patch Changes
+
+- [`b33a409`](https://github.com/SveltePress/sveltepress/commit/b33a40940c9dd2a1ff20de877e9f1f2e22805cdc) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: vitePreprocess import
+
+- [`c5b0c70`](https://github.com/SveltePress/sveltepress/commit/c5b0c709fc0c921d84032baa28603453bac7df77) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`bbc58e5`](https://github.com/SveltePress/sveltepress/commit/bbc58e5e18883a4ffa6b1b9fe59fd570550d7661) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: vitest snapshots
+
 ## 0.31.0
 
 ### Minor Changes
