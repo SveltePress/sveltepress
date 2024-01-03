@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.31.2
+
+### Patch Changes
+
+- [`07cc659`](https://github.com/SveltePress/sveltepress/commit/07cc6590895e40ede2f9cc96f33127c3ff8ad8e6) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 0.31.1
 
 ### Patch Changes
