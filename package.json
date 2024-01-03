@@ -16,7 +16,7 @@
     "build:c": "cd packages/create && pnpm build && cd ../..",
     "build:td": "cd packages/theme-default && pnpm build && cd ../..",
     "build:all": "pnpm build:c && pnpm build:vite && pnpm build:td",
-    "prepare": "pnpm build:td && pnpm build:vite",
+    "prepare": "pnpm build:all",
     "release": "changeset publish",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
