@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.22.3
+
+### Patch Changes
+
+- [`c64a842`](https://github.com/SveltePress/sveltepress/commit/c64a84202399f29cc85c3c910e922f6453ac23e8) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: vitePreprocess import position
+
 ## 1.22.2
 
 ### Patch Changes
