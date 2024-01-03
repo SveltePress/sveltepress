@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.40.3
+
+### Patch Changes
+
+- [`1f4dff0`](https://github.com/SveltePress/sveltepress/commit/1f4dff0ab6b11d877fcbd740fc632c1fcbbf2f7e) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: create package does not build before publish
+
 ## 0.40.2
 
 ### Patch Changes
