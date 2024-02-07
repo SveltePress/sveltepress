@@ -46,7 +46,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@vite-pwa/sveltekit": "^0.3.0",
     "lru-cache": "^10.1.0",
-    "shiki": "^0.14.7",
+    "shiki": "^1.0.0",
     "uid": "^2.0.2",
     "unist-util-visit": "^5.0.0",
     "unocss": "^0.58.3",
