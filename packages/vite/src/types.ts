@@ -1,9 +1,10 @@
+import type { BundledLanguage } from 'shiki/langs'
 import type { Plugin } from 'unified'
 import type { PluginOption } from 'vite'
 
 export type RemarkLiveCode = Plugin<[], any>
 
-export type Highlighter = (code: string, lang?: string, meta?: string) => string | Promise<string>
+export type Highlighter = (code: string, lang: BundledLanguage, meta?: string) => string | Promise<string>
 
 export interface SiteConfig {
   title?: string
