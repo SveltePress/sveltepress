@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.22.4
+
+### Patch Changes
+
+- [#222](https://github.com/SveltePress/sveltepress/pull/222) [`e1357e4`](https://github.com/SveltePress/sveltepress/commit/e1357e428212309efe1f24c181bb432b5780a022) Thanks [@renovate](https://github.com/apps/renovate)! - chore: update shiki to 1.0
+
 ## 1.22.3
 
 ### Patch Changes
