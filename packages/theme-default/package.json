@@ -1,7 +1,7 @@
 {
   "name": "@sveltepress/theme-default",
   "homepage": "https://sveltepress.site/",
-  "version": "1.22.4",
+  "version": "1.22.5",
   "description": "The default theme for sveltepress",
   "scripts": {
     "test": "vitest",

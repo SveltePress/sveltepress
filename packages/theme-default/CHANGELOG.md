@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 1.22.5
+
+### Patch Changes
+
+- [`af69ac0`](https://github.com/SveltePress/sveltepress/commit/af69ac0a09074c18f57a07312a3b7d638fbd85bc) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: customize hilighter theme broken #227
+
 ## 1.22.4
 
 ### Patch Changes
