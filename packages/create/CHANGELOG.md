@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.40.6
+
+### Patch Changes
+
+- [`af69ac0`](https://github.com/SveltePress/sveltepress/commit/af69ac0a09074c18f57a07312a3b7d638fbd85bc) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: customize hilighter theme broken #227
+
 ## 0.40.5
 
 ### Patch Changes
