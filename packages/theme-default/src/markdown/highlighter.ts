@@ -19,7 +19,7 @@ const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light
 
 async function createHighlighterWithThemeAndLangs(theme: any, langs: BundledLanguage[]) {
   const shikiHighlighter = await getHighlighter({
-    themes: ['vitesse-light', 'night-owl'],
+    themes: [theme],
     langs,
   })
   const highlighter: Highlighter = (code, lang) => shikiHighlighter.codeToHtml(code, { lang, theme })
