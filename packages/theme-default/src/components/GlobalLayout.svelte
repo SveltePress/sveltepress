@@ -173,7 +173,7 @@
     --at-apply: 'absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px] transition-300 transition-opacity';
   }
   :global(.svp-code-block--command-line) {
-    --at-apply: absolute left-0 right-0 z-2 h-[1.5em];
+    --at-apply: absolute left-0 right-0 z-4 h-[1.5em];
   }
   :global(.svp-code-block--focus) {
     --at-apply: 'bg-white dark:bg-black pointer-events-none bg-opacity-20 dark:bg-opacity-20 absolute left-0 right-0 z-4 transition-300 transition-opacity';
