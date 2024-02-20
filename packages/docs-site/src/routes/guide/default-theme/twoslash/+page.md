@@ -35,5 +35,14 @@ const a: number = '1'
 const hi = 'Hello'
 const msg = `${hi}, world`
 //    ^?
+
+//
+//
+Number.parseInt('123', 10)
+//      ^|
+//
+//
+//
+//
 ```
 ````

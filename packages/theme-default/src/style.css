@@ -23,6 +23,7 @@ html[data-theme='dark'] {
   --docsearch-footer-background: #1e1e20;
   --docsearch-hit-background: #313136;
   --docsearch-hit-color: var(--svp-text);
+  --twoslash-popup-bg: var(--svp-expansion-bg);
 }
 
 .c-expansion {
