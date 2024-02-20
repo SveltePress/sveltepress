@@ -4,11 +4,11 @@ title: Vite 插件
 
 ## 插件选项
 
-@code(/../vite/src/types.ts,25,31)
+@code(/../vite/src/types.ts,26,32)
 
 ### `siteConfig`
 
-@code(/../vite/src/types.ts,8,11)
+@code(/../vite/src/types.ts,9,12)
 
 * `title`: 站点标题，默认为：`'Untitled site'`
 * `description`: 站点描述，默认为：`'Build by sveltepress'`
@@ -31,7 +31,7 @@ title: Vite 插件
 
 ## `ResolvedTheme`
 
-@code(/../vite/src/types.ts,12,24)
+@code(/../vite/src/types.ts,13,25)
 
 ### `name`   
 

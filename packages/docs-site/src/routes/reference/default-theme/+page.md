@@ -150,7 +150,7 @@ The icons in [Iconify](https://iconify.design/) that you want to pre-build for f
 An object, key is the collection name, value is the icons array.  
 For example these are the icons this site using:
 
-@code(/vite.config.ts,29,40)
+@code(/vite.config.ts,29,41)
 
 These icons looks like this:
 

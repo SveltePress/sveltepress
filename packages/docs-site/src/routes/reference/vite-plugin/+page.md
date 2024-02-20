@@ -4,11 +4,11 @@ title: Vite plugin
 
 ## Plugin options
 
-@code(/../vite/src/types.ts,25,31)
+@code(/../vite/src/types.ts,26,32)
 
 ### `siteConfig`
 
-@code(/../vite/src/types.ts,8,11)
+@code(/../vite/src/types.ts,9,12)
 
 * `title`: The site title. Would be `'Untitled site'` if not provided.
 * `description`: The site description. Would be `'Build by sveltepress'` if not provided.
@@ -34,7 +34,7 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 
 ## ResolvedTheme
 
-@code(/../vite/src/types.ts,12,24)
+@code(/../vite/src/types.ts,13,25)
 
 ### `name`   
 

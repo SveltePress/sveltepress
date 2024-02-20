@@ -142,7 +142,7 @@ const defaultGradient = {
 
 为一个对象，键是分类名称，值是该分类下需要预构建的图标集合，下面是此站点的配置
 
-@code(/vite.config.ts,28,40)
+@code(/vite.config.ts,29,41)
 
 这些图标看起来像这样：
 ```svelte live
