@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.40.7
+
+### Patch Changes
+
+- [`5b6546f`](https://github.com/SveltePress/sveltepress/commit/5b6546fb0878f50564c2961b5c2a397e1aaba3b5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: use shiki built-in light/dark theme support
+
 ## 0.40.6
 
 ### Patch Changes
