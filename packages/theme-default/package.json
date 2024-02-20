@@ -43,6 +43,7 @@
     "@docsearch/js": "^3.5.2",
     "@iconify/json": "^2.2.164",
     "@iconify/utils": "^2.1.14",
+    "@shikijs/twoslash": "^1.1.5",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "@vite-pwa/sveltekit": "^0.3.0",
     "lru-cache": "^10.1.0",
@@ -56,9 +57,9 @@
   },
   "peerDependencies": {
     "@sveltejs/kit": "^1.20.4 || ^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.1",
     "svelte": "^3.55.1 || ^4.0.0",
-    "vite": "^4.3.9 || ^5.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.1"
+    "vite": "^4.3.9 || ^5.0.0"
   },
   "type": "module",
   "types": "./src/index.ts",

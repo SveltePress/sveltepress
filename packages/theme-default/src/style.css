@@ -164,7 +164,6 @@ html[data-theme='dark'] {
   border-radius: 4px;
   margin: 0;
   overflow-x: auto;
-  overflow-y: hidden;
   line-height: 1.5em;
   background-color: transparent !important;
   position: relative;
@@ -217,7 +216,7 @@ html.dark .shiki span {
   font-size: 2rem;
 }
 
-.svp--async-live-code--erro {
+.svp--async-live-code--error {
   color: #e74c3c;
   font-size: 16px;
 }

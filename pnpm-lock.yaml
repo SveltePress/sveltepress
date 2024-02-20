@@ -148,6 +148,9 @@ importers:
       '@iconify/utils':
         specifier: ^2.1.14
         version: 2.1.14
+      '@shikijs/twoslash':
+        specifier: ^1.1.5
+        version: 1.1.5(typescript@5.3.3)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.0.1
         version: 3.0.1(svelte@4.2.8)(vite@5.0.10)
@@ -3190,6 +3193,20 @@ packages:
     resolution: {integrity: sha512-UMKGMZ+8b88N0/n6DWwWth1PHsOaxjW+R2u+hzSiargZWTv+l3s1l8dhuIxUSsEUPlBDKLs2CSMiFZeviKQM1w==}
     dev: false
 
+  /@shikijs/core@1.1.5:
+    resolution: {integrity: sha512-cKc5vGQ4p/4sjx48BHIO7CvLaN32vqpz5Wh7v2n+U1EezGdfX4Wms7khBctKz3iCg9yYq4sfGUc2t+JWj6EUsw==}
+    dev: false
+
+  /@shikijs/twoslash@1.1.5(typescript@5.3.3):
+    resolution: {integrity: sha512-Ne2GycEAtFs1ZWgf+bKRuG99iB+SQnriygyaJ9E24g8Op8PkH6v6mIYzBdKL9EJG+QceUGnCl/mizh0Brl/c5g==}
+    dependencies:
+      '@shikijs/core': 1.1.5
+      twoslash: 0.2.4(typescript@5.3.3)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: false
+
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
@@ -3599,6 +3616,14 @@ packages:
       '@typescript-eslint/types': 6.2.1
       eslint-visitor-keys: 3.4.2
     dev: true
+
+  /@typescript/vfs@1.5.0:
+    resolution: {integrity: sha512-AJS307bPgbsZZ9ggCT3wwpg3VbTKMFNHfaY/uF0ahSkYYrPF2dSSKDNIDIQAHm9qJqbLvCsSJH7yN4Vs/CsMMg==}
+    dependencies:
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -8455,6 +8480,22 @@ packages:
       wcwidth: 1.0.1
       yargs: 17.6.2
     dev: true
+
+  /twoslash-protocol@0.2.4:
+    resolution: {integrity: sha512-AEGTJj4mFGfvQc/M6qi0+s82Zq+mxLcjWZU+EUHGG8LQElyHDs+uDR+/3+m1l+WP7WL+QmWrVzFXgFX+hBg+bg==}
+    dev: false
+
+  /twoslash@0.2.4(typescript@5.3.3):
+    resolution: {integrity: sha512-hc3y11BjLHP4kV37TR6lUKksxpZp0LQi9kCy95ka6qobye/gV49PqXZIuWlRaRVGNvp4AJBMg8aiwkp0M8x/nQ==}
+    peerDependencies:
+      typescript: '*'
+    dependencies:
+      '@typescript/vfs': 1.5.0
+      twoslash-protocol: 0.2.4
+      typescript: 5.3.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

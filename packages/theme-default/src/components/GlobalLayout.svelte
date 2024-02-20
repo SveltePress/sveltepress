@@ -1,5 +1,6 @@
 <script>
   import 'uno.css'
+  import '@shikijs/twoslash/style-rich.css'
   import '@docsearch/css/dist/style.css'
   import 'virtual:sveltepress/prebuild-iconify-icons.css'
   import '../style.css'
@@ -148,7 +149,7 @@
     --at-apply: 'mx-none';
   }
   :global(.svp-code-block) {
-    --at-apply: relative px-[18px] py-[12px];
+    --at-apply: relative px-[18px] py-[12px] overflow-auto;
   }
   :global(.svp-code-block--title) {
     --at-apply: 'px-[18px] leading-10 font-700 b-b b-b-solid b-b-gray-2 dark:b-b-gray-8';

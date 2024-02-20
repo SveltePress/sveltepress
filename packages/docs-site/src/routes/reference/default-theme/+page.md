@@ -6,7 +6,7 @@ title: Default theme
 
 @install-pkg(@sveltepress/theme-default)
 
-## Add in your vite config
+## Add in your vite config 
 
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
@@ -25,9 +25,11 @@ const config = defineConfig({
 export default config
 ```
 
-## Theme Options
+## Types overview
 
-@code(/../theme-default/types.d.ts,22,72)
+@code(/../theme-default/types.d.ts)
+
+## Theme Options
 
 ### `navbar`
 
@@ -76,7 +78,7 @@ An object that contains custom highlight options.
 * `languages` - Customize the supported highlight languages.
 Default is:
 
-@code(/../theme-default/src/markdown/highlighter.ts,11,12)
+@code(/../theme-default/src/markdown/highlighter.ts,9,10)
 
 * `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
 * `darkTheme` - The code theme that will be applied in dark mode. Default is `night-owl`

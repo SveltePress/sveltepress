@@ -2,13 +2,13 @@
 title: Vite plugin
 ---
 
+## Types overview
+
+@code(/../vite/src/types.ts)
+
 ## Plugin options
 
-@code(/../vite/src/types.ts,26,32)
-
 ### `siteConfig`
-
-@code(/../vite/src/types.ts,9,12)
 
 * `title`: The site title. Would be `'Untitled site'` if not provided.
 * `description`: The site description. Would be `'Build by sveltepress'` if not provided.
@@ -34,7 +34,7 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 
 ## ResolvedTheme
 
-@code(/../vite/src/types.ts,13,25)
+<!-- @code(/../vite/src/types.ts,13,25) -->
 
 ### `name`   
 
@@ -126,12 +126,12 @@ It can be used for a more basic markdown render engine involved with Svelte.
 
 Here's usage example:
 
-```ts
+```ts ln
 import { mdToSvelte } from '@sveltepress/vite'
 
 const mdContent = `
 ---
-title: Foo 
+title: Foo
 ---
 <script>
   const foo = 'bar'
@@ -148,7 +148,7 @@ const { code, data } = await mdToSvelte({
   remarkPlugins: [], // your custom remark plugins
   rehypePlugins: [], // your custom rehype plugins
   highlighter: async (code, lang, meta) => Promise.resolve('The rendered highlighted code html'), // your custom code highlighter
-  filename, // the virtual file path
+  filename: 'foo.md', // the virtual file path
 })
 
 // The rendered svelte code

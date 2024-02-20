@@ -2,6 +2,7 @@ import type { BundledLanguage } from 'shiki/langs'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
 import { LRUCache } from 'lru-cache'
+import { transformerTwoslash } from '@shikijs/twoslash'
 import { themeOptionsRef } from '../index.js'
 import { processCommands } from './commands.js'
 
@@ -24,6 +25,11 @@ async function createHighlighterWithThemeAndLangs() {
       dark: darkTheme,
       light: lightTheme,
     },
+    transformers: [
+      transformerTwoslash({
+        // renderer: TODO: Custom renderer to support fixed position popup
+      }),
+    ],
   })
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;')
@@ -69,7 +75,7 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    ${await highlighterRef.value?.(code, lang)}
+    ${await highlighterRef.value?.(code, lang, meta)}
     <div class="svp-code-block--lang">
       ${lang}
     </div>

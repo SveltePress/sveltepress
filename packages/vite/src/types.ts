@@ -23,6 +23,7 @@ export interface ResolvedTheme {
    */
   footnoteLabel?: string
 }
+// @noErrors
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
   siteConfig?: SiteConfig

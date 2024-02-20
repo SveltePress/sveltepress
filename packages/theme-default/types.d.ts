@@ -1,9 +1,11 @@
+// @noErrors
+
 /// <reference types="vite/client" />
 /// <reference types="@sveltepress/vite/types" />
 
 
 declare module 'virtual:sveltepress/theme-default' {
-  import { Lang } from 'shiki'
+  import type { BundledLanguage } from 'shiki/langs'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 
@@ -46,7 +48,7 @@ declare module 'virtual:sveltepress/theme-default' {
       }
     }
     highlighter?: {
-      languages?: Lang[]
+      languages?: BundledLanguage[]
       themeLight?: string
       themeDark?: string
     }

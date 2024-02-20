@@ -76,6 +76,10 @@ export default {
           to: '/guide/default-theme/code-related/',
         },
         {
+          title: 'Twoslash',
+          to: '/guide/default-theme/twoslash/',
+        },
+        {
           title: 'Unocss',
           to: '/guide/default-theme/unocss/',
         },
