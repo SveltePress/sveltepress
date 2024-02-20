@@ -133,11 +133,11 @@ foo in script is: {foo}
 `
 
 const { code, data } = await mdToSvelte({
-  mdContent,
+  mdContent: mdSource,
   remarkPlugins: [], // 自定义 remark 插件
   rehypePlugins: [], // 自定义 rehype 插件
   highlighter: async (code, lang, meta) => Promise.resolve('高亮后的 HTML 结果'), // 自定义代码高亮函数
-  filename, // 虚拟文件路径
+  filename: 'Foo.svelte', // 虚拟文件路径
 })
 
 // 渲染后的 Svelte 代码

@@ -72,7 +72,7 @@ Logo 图片
 
 * `languages` - 自定义支持的语言列表，默认为：
 
-@code(/../theme-default/src/markdown/highlighter.ts,11,12)
+@code(/../theme-default/src/markdown/highlighter.ts,9,10)
 
 * `themeLight` - 日间模式所使用的高亮主题，默认为：`vitesse-light`
 * `darkTheme` - 夜间模式所使用的高亮主题，默认为：`night-owl`
