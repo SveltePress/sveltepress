@@ -1,6 +1,3 @@
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { BundledLanguage } from 'shiki/langs'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
@@ -12,36 +9,34 @@ const DEFAULT_SUPPORT_LANGUAGES: BundledLanguage[] = ['svelte', 'sh', 'js', 'htm
 
 const cache = new LRUCache<string, any>({ max: 1024 })
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
-const nightOwl = JSON.parse(readFileSync(resolve(__dirname, './night-owl.json'), 'utf-8'))
-const vitesseLight = JSON.parse(readFileSync(resolve(__dirname, './vitesse-light.json'), 'utf-8'))
-
-async function createHighlighterWithThemeAndLangs(theme: any, langs: BundledLanguage[]) {
+async function createHighlighterWithThemeAndLangs() {
+  const highlighterConfig = themeOptionsRef.value?.highlighter
+  const langs = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
+  const darkTheme = highlighterConfig?.themeDark ?? 'night-owl'
+  const lightTheme = highlighterConfig?.themeLight ?? 'vitesse-light'
   const shikiHighlighter = await getHighlighter({
-    themes: [theme],
+    themes: [darkTheme, lightTheme],
     langs,
   })
-  const highlighter: Highlighter = (code, lang) => shikiHighlighter.codeToHtml(code, { lang, theme })
+  const highlighter: Highlighter = (code, lang) => shikiHighlighter.codeToHtml(code, {
+    lang,
+    themes: {
+      dark: darkTheme,
+      light: lightTheme,
+    },
+  })
     .replace(/\{/g, '&#123;')
     .replace(/\}/g, '&#125;')
   return highlighter
 }
 
 const highlighterRef: {
-  light?: Highlighter
-  dark?: Highlighter
+  value?: Highlighter
 } = {}
 
 async function ensureHighlighter() {
-  const highlighterConfig = themeOptionsRef.value?.highlighter
-  const languages = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
-
-  if (!highlighterRef.dark)
-    highlighterRef.dark = await createHighlighterWithThemeAndLangs(highlighterConfig?.themeDark || nightOwl, languages)
-
-  if (!highlighterRef.light)
-    highlighterRef.light = await createHighlighterWithThemeAndLangs(highlighterConfig?.themeLight || vitesseLight, languages)
+  if (!highlighterRef.value)
+    highlighterRef.value = await createHighlighterWithThemeAndLangs()
 }
 
 const highlighter: Highlighter = async (code, lang, meta) => {
@@ -74,9 +69,7 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    ${await highlighterRef.light?.(code, lang)}
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    ${await highlighterRef.dark?.(code, lang)}
+    ${await highlighterRef.value?.(code, lang)}
     <div class="svp-code-block--lang">
       ${lang}
     </div>

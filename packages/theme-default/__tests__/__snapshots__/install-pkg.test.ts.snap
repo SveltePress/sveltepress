@@ -6,9 +6,7 @@ exports[`install-pkg > md 1`] = `
   <div class="svp-code-block">
     
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki vitesse-light" style="background-color:#ffffff;color:#393a34" tabindex="0"><code><span class="line"><span style="color:#59873A">npm</span><span style="color:#B56959"> create @sveltepress/vite</span></span></code></pre>
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki night-owl" style="background-color:#011627;color:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#82AAFF;font-style:italic">npm</span><span style="color:#ECC48D"> create @sveltepress/vite</span></span></code></pre>
+    <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#59873A;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic">npm</span><span style="color:#B56959;--shiki-dark:#ECC48D"> create @sveltepress/vite</span></span></code></pre>
     <div class="svp-code-block--lang">
       sh
     </div>
@@ -20,9 +18,7 @@ exports[`install-pkg > md 1`] = `
   <div class="svp-code-block">
     
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki vitesse-light" style="background-color:#ffffff;color:#393a34" tabindex="0"><code><span class="line"><span style="color:#59873A">yarn</span><span style="color:#B56959"> create @sveltepress/vite</span></span></code></pre>
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki night-owl" style="background-color:#011627;color:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#82AAFF;font-style:italic">yarn</span><span style="color:#ECC48D"> create @sveltepress/vite</span></span></code></pre>
+    <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#59873A;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic">yarn</span><span style="color:#B56959;--shiki-dark:#ECC48D"> create @sveltepress/vite</span></span></code></pre>
     <div class="svp-code-block--lang">
       sh
     </div>
@@ -34,9 +30,7 @@ exports[`install-pkg > md 1`] = `
   <div class="svp-code-block">
     
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki vitesse-light" style="background-color:#ffffff;color:#393a34" tabindex="0"><code><span class="line"><span style="color:#59873A">pnpm</span><span style="color:#B56959"> create @sveltepress/vite</span></span></code></pre>
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki night-owl" style="background-color:#011627;color:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#82AAFF;font-style:italic">pnpm</span><span style="color:#ECC48D"> create @sveltepress/vite</span></span></code></pre>
+    <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#59873A;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic">pnpm</span><span style="color:#B56959;--shiki-dark:#ECC48D"> create @sveltepress/vite</span></span></code></pre>
     <div class="svp-code-block--lang">
       sh
     </div>
