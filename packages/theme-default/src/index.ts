@@ -161,4 +161,5 @@ const defaultTheme: ThemeDefault = options => {
 
 export {
   defaultTheme,
+  highlighter,
 }

@@ -164,3 +164,43 @@ title: 内置组件
   <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
 </div>
 ```
+
+## Floating
+
+### Markdown 中使用
+
+```md live
+<Floating placement="top">
+  <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
+    Trigger
+  </div>
+
+  <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
+    Floating content
+  </div>
+</Floating>
+```
+
+### Svelte 中使用
+
+
+```svelte live
+<script>
+  import { Floating } from '@sveltepress/theme-default/components'
+</script>
+<Floating placement="right">
+  <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
+    将鼠标浮动至这里
+  </div>
+
+  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
+    漂浮内容
+  </div>
+</Floating>
+```
+
+### Props
+
+* `alwaysShow` - 是否始终展示浮动内容，默认为 `false`
+* `placement` - 指定浮动弹出层相对于触发内容的位置，完整取值参考：[placement - floating-ui](https://floating-ui.com/docs/computePosition#placement)，默认为：`bottom`.
+* `floatingClass` - 加到弹出层容器上的额外自定义样式类名
