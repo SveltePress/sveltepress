@@ -5,7 +5,6 @@ import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default'
 const excludePaths = [
   '/guide/..mailto:contact@example.com',
   '/reference/.../',
-  '/.https://github.com/Blackman99/sveltepress',
 ]
 
 /** @type {import('@sveltejs/kit').Config} */
