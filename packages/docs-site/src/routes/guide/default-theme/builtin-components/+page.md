@@ -165,3 +165,43 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
   <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
 </div>
 ```
+
+## Floating
+
+### In markdown
+
+```md live
+<Floating placement="top">
+  <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
+    Trigger
+  </div>
+
+  <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
+    Floating content
+  </div>
+</Floating>
+```
+
+### In svelte
+
+
+```svelte live
+<script>
+  import { Floating } from '@sveltepress/theme-default/components'
+</script>
+<Floating placement="right">
+  <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
+    Trigger
+  </div>
+
+  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
+    Floating content
+  </div>
+</Floating>
+```
+
+### Props
+
+* `alwaysShow` - Determine whether to always show the floating content. Default is `false`
+* `placement` - Determine the floating content position. See [placement - floating-ui](https://floating-ui.com/docs/computePosition#placement). Default is `bottom`.
+* `floatingClass` - The addition classes that will be added to the floating content container.

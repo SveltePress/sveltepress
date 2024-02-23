@@ -5,10 +5,10 @@ import TabPanel from './TabPanel.svelte'
 import InstallPkg from './InstallPkg.svelte'
 import CopyCode from './CopyCode.svelte'
 import IconifyIcon from './IconifyIcon.svelte'
-import FloatingWrapper from './floating/FloatingWrapper.svelte'
+import Floating from './floating/FloatingWrapper.svelte'
 
 export {
-  FloatingWrapper,
+  Floating,
   IconifyIcon,
   CopyCode,
   Expansion,

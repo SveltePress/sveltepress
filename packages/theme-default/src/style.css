@@ -178,7 +178,7 @@ code {
 }
 
 html.dark .shiki,
-html.dark .shiki span,
+html.dark .shiki span:not(.twoslash-tag-icon),
 html.dark .twoslash-popup-container span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;

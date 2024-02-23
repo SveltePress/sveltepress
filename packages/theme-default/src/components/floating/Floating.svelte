@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte'
-  import { autoUpdate, computePosition, offset } from '@floating-ui/dom'
+  import { autoUpdate, computePosition } from '@floating-ui/dom'
   import teleport from '../actions/teleport'
 
   export let show = false
   export let alwaysShow = false
+  export let placement = 'bottom-start'
   export let floatingClass
 
   let container
@@ -14,8 +15,8 @@
     if (alwaysShow || nextShow) {
       computePosition(container, floatingContent, {
         strategy: 'fixed',
-        placement: 'bottom-start',
-        middleware: [offset(5)],
+        placement,
+        middleware: [],
       }).then(({ x, y }) => {
         Object.assign(floatingContent.style, {
           left: `${x}px`,
@@ -44,12 +45,17 @@
   <slot />
   <div
     use:teleport
-    class="floating-content {floatingClass ? ` ${floatingClass}` : ''}"
-    class:show={alwaysShow || show}
+    class="floating-content-wrapper {floatingClass ? ` ${floatingClass}` : ''}"
     class:always-show={alwaysShow}
+    class:show={alwaysShow || show}
     bind:this={floatingContent}
+    on:mouseenter={() => (show = true)}
+    on:mouseleave={() => (show = false)}
+    role="tooltip"
   >
-    <slot name="floating-content" />
+    <div class="floating-content">
+      <slot name="floating-content" />
+    </div>
   </div>
 </span>
 
@@ -57,15 +63,17 @@
   .container {
     word-spacing: -6px;
   }
+  .floating-content-wrapper {
+    --at-apply: '-z-1 fixed hidden max-w-[60vw] text-[14px] p-1';
+  }
   .floating-content {
-    --at-apply: '-z-1 fixed hidden max-w-[60vw] bg-white dark:bg-black rounded text-[14px] p-2';
+    --at-apply: 'b-1 dark:b-dark-3 b-warm-gray-3 b-solid p-2 rounded bg-white dark:bg-dark-9';
   }
   .show:not(.always-show) {
     z-index: 99999;
   }
   .always-show {
     z-index: 99998;
-    --at-apply: 'b-1 dark:b-dark-3 b-warm-gray-4 b-solid';
   }
   .show {
     display: block;

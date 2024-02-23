@@ -11,7 +11,9 @@
     ".": "./dist/index.mjs"
   },
   "keywords": [],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "Dongsheng Zhao",
   "license": "MIT",
   "devDependencies": {
@@ -22,6 +24,10 @@
     "vitest": "^1.1.1"
   },
   "dependencies": {
-    "@shikijs/twoslash": "^1.1.5"
+    "@shikijs/twoslash": "^1.1.5",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-gfm": "^3.0.0",
+    "mdast-util-to-hast": "^13.1.0",
+    "shiki": "^1.0.0"
   }
 }
