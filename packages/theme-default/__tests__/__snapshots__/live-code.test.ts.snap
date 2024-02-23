@@ -2,7 +2,7 @@
 
 exports[`live code > async svelte live code 1`] = `
 "<script>
-import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, FloatingWrapper as Floating } from '@sveltepress/theme-default/components'
+import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, Floating } from '@sveltepress/theme-default/components'
 </script>
 <div class="svp-live-code--container">
 <div class="svp-live-code--demo">
@@ -40,7 +40,7 @@ import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, Flo
 exports[`live code > simple parse 1`] = `
 "<h3>title level 3</h3>
 <script context="module">
-import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, FloatingWrapper as Floating } from '@sveltepress/theme-default/components'
+import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, Floating } from '@sveltepress/theme-default/components'
 import LiveCode5666bdf98c2 from '/.sveltepress/live-code/LiveCode5666bdf98c2.svelte'
   const a = 'a'
   export const b = 'b'
