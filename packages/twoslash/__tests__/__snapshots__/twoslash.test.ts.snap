@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`twoslash > renderer floating svelte 1`] = `
+"
+<div class="svp-code-block-wrapper">
+  <div class="svp-code-block">
+    
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <pre class="shiki shiki-themes vitesse-light night-owl twoslash lsp" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"></span>
+<span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">const</span><span style="color:#B07D48;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic"> </span><span style="color:#B07D48;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic"><Floating class="twoslash-hover"><span>num</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">const</span><span style="color:#B07D48;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic"> num</span><span style="color:#999999;--shiki-dark:#7FDBCA">:</span><span style="color:#2F798A;--shiki-dark:#F78C6C"> 1</span></span></code></span></svelte:fragment></Floating></span><span style="color:#999999;--shiki-dark:#C792EA"> =</span><span style="color:#2F798A;--shiki-dark:#F78C6C"> 1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">const</span><span style="color:#B07D48;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic"> </span><span style="color:#B07D48;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic"><Floating class="twoslash-hover"><span>foo</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">const</span><span style="color:#B07D48;--shiki-dark:#82AAFF;font-style:inherit;--shiki-dark-font-style:italic"> foo</span><span style="color:#999999;--shiki-dark:#7FDBCA">:</span><span style="color:#B5695999;--shiki-dark:#D9F5DD"> "</span><span style="color:#B56959;--shiki-dark:#ECC48D">bar</span><span style="color:#B5695999;--shiki-dark:#D9F5DD">"</span></span></code></span></svelte:fragment></Floating></span><span style="color:#999999;--shiki-dark:#C792EA"> =</span><span style="color:#B5695999;--shiki-dark:#D9F5DD"> '</span><span style="color:#B56959;--shiki-dark:#ECC48D">bar</span><span style="color:#B5695999;--shiki-dark:#D9F5DD">'</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+    <div class="svp-code-block--lang">
+      ts
+    </div>
+    <CopyCode />
+    
+  </div>
+</div>"
+`;

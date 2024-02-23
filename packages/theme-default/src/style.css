@@ -178,7 +178,8 @@ code {
 }
 
 html.dark .shiki,
-html.dark .shiki span {
+html.dark .shiki span,
+html.dark .twoslash-popup-container span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
   /* Optional, if you also want font styles */
@@ -221,4 +222,29 @@ html.dark .shiki span {
 .svp--async-live-code--error {
   color: #e74c3c;
   font-size: 16px;
+}
+
+.twoslash-popup-code {
+  background-color: transparent !important;
+}
+
+.twoslash-popup-docs-tag {
+  display: block;
+}
+
+.twoslash-popup-docs {
+  --at-apply: 'text-gray-5 dark:text-gray-4';
+}
+
+.twoslash-popup-docs-tag-name {
+  padding-right: 4px;
+}
+
+.twoslash-completion-list {
+  margin: 0;
+  padding: 0;
+}
+
+.twoslash-hover {
+  word-spacing: -6px;
 }

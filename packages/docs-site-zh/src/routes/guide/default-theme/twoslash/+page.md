@@ -4,6 +4,8 @@ title: Twoslash
 
 该功能集成了 [Twoslash](https://github.com/twoslashes/twoslash)
 
+所有的 Typescript 代码块将会自动添加鼠标上浮的类型提示
+
 ## 基础类型注释
 
 ````md live
@@ -44,5 +46,65 @@ Number.parseInt('123', 10)
 //
 //
 //
+```
+````
+
+## 自定义代码内提示
+
+````md live
+```ts
+// @log: 自定义信息
+const a = 1
+
+// @error: 自定义信息
+const b = 1
+
+// @warn: 自定义信息
+const c = 1
+
+// @annotate: 自定义信息
+```
+````
+
+## 代码裁剪
+
+### 向前裁剪
+
+使用 `// ---cut---` or `// ---cut-before---` 注释可以将该行之前的所有代码从结果中裁剪调
+
+````md live
+```ts
+const level: string = 'Danger'
+// ---cut---
+console.log(level)
+```
+````
+
+
+### 向后裁剪
+
+使用 `// ---cut-after---` 注释可以将该行之后的所有代码从结果中裁剪调
+
+````md live
+```ts
+const level: string = 'Danger'
+// ---cut-before---
+console.log(level)
+// ---cut-after---
+console.log('This is not shown')
+```
+````
+
+### 自定义裁剪段落
+
+使用 `// ---cut-start---` 与 `// ---cut-end---` 注释可以指定裁剪这两个注释之间的所有代码
+
+````md live
+```ts
+const level: string = 'Danger'
+// ---cut-start---
+console.log(level) // This is not shown.
+// ---cut-end---
+console.log('This is shown')
 ```
 ````

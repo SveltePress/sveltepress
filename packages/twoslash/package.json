@@ -1,0 +1,27 @@
+{
+  "name": "@sveltepress/twoslash",
+  "version": "0.0.1",
+  "description": "Twoslash for sveltepress",
+  "scripts": {
+    "test": "vitest",
+    "build": "unbuild"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
+  "keywords": [],
+  "files": ["dist"],
+  "author": "Dongsheng Zhao",
+  "license": "MIT",
+  "devDependencies": {
+    "@sveltepress/theme-default": "workspace:*",
+    "@types/hast": "^3.0.4",
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0",
+    "vitest": "^1.1.1"
+  },
+  "dependencies": {
+    "@shikijs/twoslash": "^1.1.5"
+  }
+}

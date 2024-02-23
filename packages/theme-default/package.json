@@ -41,10 +41,12 @@
   "dependencies": {
     "@docsearch/css": "^3.5.2",
     "@docsearch/js": "^3.5.2",
+    "@floating-ui/dom": "^1.6.3",
     "@iconify/json": "^2.2.164",
     "@iconify/utils": "^2.1.14",
     "@shikijs/twoslash": "^1.1.5",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@sveltepress/twoslash": "workspace:*",
     "@vite-pwa/sveltekit": "^0.3.0",
     "lru-cache": "^10.1.0",
     "shiki": "^1.0.0",
@@ -71,6 +73,10 @@
       "svelte": "./src/components/index.ts",
       "types": "./src/components/index.ts"
     },
+    "./Floating.svelte": {
+      "import": "./src/components/floating/Floating.svelte",
+      "svelte": "./src/components/floating/Floating.svelte"
+    },
     "./PageLayout.svelte": {
       "import": "./src/components/PageLayout.svelte",
       "svelte": "./src/components/PageLayout.svelte"
@@ -92,6 +98,11 @@
         "svelte": "./dist/components/index.js",
         "import": "./dist/components/index.js",
         "types": "./dist/components/index.d.ts"
+      },
+      "./Floating.svelte": {
+        "import": "./dist/components/floating/Floating.svelte",
+        "svelte": "./dist/components/floating/Floating.svelte",
+        "types": "./dist/components/floating/Floating.svelte.d.ts"
       },
       "./PageLayout.svelte": {
         "svelte": "./dist/components/PageLayout.svelte",
