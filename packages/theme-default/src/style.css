@@ -169,7 +169,6 @@ html[data-theme='dark'] {
   background-color: transparent !important;
   position: relative;
   z-index: 3;
-  min-height: 60px;
 }
 
 .shiki code,
