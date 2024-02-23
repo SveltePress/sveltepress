@@ -9,7 +9,7 @@
   export let highlight = true
   export let withBase = true
 
-  $: isExternal = /^https?/.test(to)
+  $: isExternal = /^(https?)|(mailto:)/.test(to)
   $: toWithBase = isExternal ? to : `${base}${to}`
 </script>
 

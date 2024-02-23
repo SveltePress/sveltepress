@@ -12,7 +12,7 @@
 
 <a
   role="button"
-  href={toWithBase}
+  href={external ? to : toWithBase}
   class={`svp-action ${type ? `svp-action--${type}` : ''}`}
   target={external ? '_blank' : ''}
 >
