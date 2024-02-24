@@ -6,7 +6,7 @@ title: Docsearch
 
 `docsearch` 具有这几个属性： `appId`, `apiKey`,`indexName`，都提供自 Docsearch
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'

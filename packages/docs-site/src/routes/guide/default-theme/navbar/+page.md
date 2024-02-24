@@ -31,7 +31,7 @@ For now, navbar can only hold one level sub links.
 
 ## Example
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'

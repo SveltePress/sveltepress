@@ -6,31 +6,43 @@ title: 侧边栏
 
 传递 `sidebar` 选项给默认主题来配置侧边栏
 
-## 示例
+## 配置示例
 
-```js
-const sidebar = {
-  '/foo/': [
-    {
-      title: 'Bar',
-      to: '/foo/bar/',
-    },
-    {
-      title: 'Zoo',
-      collapsible: true,
-      items: [
-        {
-          title: 'Sub item',
-          to: '/sub/item/link'
+```ts
+import { defineConfig } from 'vite'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        sidebar: {
+          '/foo/': [
+            {
+              title: 'Bar',
+              to: '/foo/bar/',
+            },
+            {
+              title: 'Zoo',
+              collapsible: true,
+              items: [
+                {
+                  title: 'Sub item',
+                  to: '/sub/item/link'
+                }
+              ]
+            },
+            {
+              title: 'GitHub 外部链接',
+              to: 'https://github.com'
+            }
+          ]
         }
-      ]
-    },
-    {
-      title: 'GitHub 外部链接',
-      to: 'https://github.com'
-    }
+      })
+    })
   ]
-}
+})
 ```
 
 ### `title`

@@ -57,6 +57,9 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   const titleMeta = metaArray.find(item => item.startsWith('title='))
   const commandDoms: string[] = []
   const lines = code.split('\n')
+  let noErrorsFirstLine: string | undefined
+  if (lines[0] === '// @noErrors')
+    noErrorsFirstLine = lines.shift()
   if (lang !== 'md') {
     code = lines.map((line, i) => {
       const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length)
@@ -67,6 +70,8 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   let title: string | undefined
   if (titleMeta)
     title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')
+  if (noErrorsFirstLine)
+    code = `${noErrorsFirstLine}\n${code}`
 
   cached = `
 <div class="svp-code-block-wrapper">${title

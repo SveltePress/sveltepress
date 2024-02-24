@@ -21,10 +21,11 @@ Use pnpm as much as possible. It respects package version more than npm.
 
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
+// @noErrors
 import { defineConfig } from 'vite'
 
-import { sveltekit } from '@sveltejs/kit' // [svp! --]
+import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
 
@@ -40,9 +41,10 @@ export default config
 
 ### Add `'.md'` extension to the `extensions` options in your svelte.config.js
 
-```js title="svelte.config.js"
+```ts title="svelte.config.js"
+// @noErrors
 import adapter from '@sveltejs/adapter-static'
-import { vitePreprocess } from '@sveltejs/kit/vite'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 /**
  * @type {import('@sveltejs/kit').Config}

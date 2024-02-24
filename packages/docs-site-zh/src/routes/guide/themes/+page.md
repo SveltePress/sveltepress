@@ -16,9 +16,11 @@ title: 主题
 
 ### 在 vite.config.(js|ts) 中配置
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
+// @noErrors
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
+
 import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 
 const config = defineConfig({

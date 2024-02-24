@@ -20,9 +20,12 @@ title: 快速开始
 
 ### 在 vite.config.(js|ts) 中替换 `sveltekit` 插件
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
+// @noErrors
 import { defineConfig } from 'vite'
+
 import { sveltekit } from '@sveltejs/kit' // [svp! --]
+
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
 
 const config = defineConfig({
@@ -37,9 +40,10 @@ export default config
 
 ### 在 svelte.config.js 中添加 `'.md'` 到 `extensions` 选项
 
-```js title="svelte.config.js"
+```ts title="svelte.config.js"
+// @noErrors
 import adapter from '@sveltejs/adapter-static'
-import { vitePreprocess } from '@sveltejs/kit/vite'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 /**
  * @type {import('@sveltejs/kit').Config}

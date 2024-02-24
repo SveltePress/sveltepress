@@ -124,7 +124,7 @@ title: 内置组件
   <div class="text-[24px]">一些可折叠的内容</div>
 </Expansion>
 ```
-### In svelte
+### Svelte 中使用
 
 ```svelte live
 <script>
@@ -172,11 +172,11 @@ title: 内置组件
 ```md live
 <Floating placement="top">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
-    Trigger
+    将鼠标放置在这里
   </div>
 
   <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
-    Floating content
+    漂浮内容
   </div>
 </Floating>
 ```
@@ -190,7 +190,7 @@ title: 内置组件
 </script>
 <Floating placement="right">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
-    将鼠标浮动至这里
+    将鼠标放置在这里
   </div>
 
   <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">

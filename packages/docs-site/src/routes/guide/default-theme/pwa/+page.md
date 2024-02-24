@@ -10,8 +10,8 @@ Pass `pwa` option to theme default to use pwa. The options are exactly the same 
 
 And the svelte.config.js need to config `files.serviceWorker`, use the `SERVICE_WORKER_PATH` exported from `@sveltepress/theme-default`
 
-```js title="svelte.config.js"
-import { vitePreprocess } from '@sveltejs/kit/vite'
+```ts title="svelte.config.js"
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import adapter from '@sveltejs/adapter-static'
 
 import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default' // [svp! ++]

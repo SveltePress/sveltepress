@@ -10,8 +10,8 @@ title: PWA
 
 在 svelte.config.js 中使用从 `@sveltepress/theme-default` 导出的  `SERVICE_WORKER_PATH` 配置 `files.serviceWorker`
 
-```js title="svelte.config.js"
-import { vitePreprocess } from '@sveltejs/kit/vite'
+```ts title="svelte.config.js"
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import adapter from '@sveltejs/adapter-static'
 
 import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default' // [svp! ++]

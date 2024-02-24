@@ -10,7 +10,7 @@ Complete options can be found [here](https://docsearch.algolia.com/docs/api)
 
 All provided by Docsearch. 
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'

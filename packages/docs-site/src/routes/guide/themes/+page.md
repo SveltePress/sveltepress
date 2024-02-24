@@ -16,7 +16,7 @@ Read [Vite plugin options](/reference/vite-plugin/) and [Default theme options](
 
 ### Add in your vite config
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 

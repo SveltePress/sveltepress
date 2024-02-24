@@ -1,6 +1,6 @@
 type Command = (params: string, lineIndex: number, lines: number) => string
 
-export const COMMAND_RE = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))(:\S+)?\]/
+export const COMMAND_RE = /\/\/ \[svp! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(!!))(:\S+)?\]/
 
 export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
   const num = Number(linesNumberToHighlight)
@@ -59,13 +59,13 @@ export const processCommands: (
 => [string[], string] = (line: string, lineIndex, lineLength) => {
   const commandDoms: string[] = []
   let newLine = line
-  const re = /\/\/ \[svp\! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(\!\!))(:\S+)?\]/g
+  const re = /\/\/ \[svp! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(!!))(:\S+)?\]/g
   let matches = re.exec(line)
 
   while (matches && matches.length) {
     const [commandRaw] = matches
     // [svp! command:param1,params2] => command:param1,params2
-    const command = commandRaw.replace(/^\/\/ \[svp\! /, '').replace(/\]$/, '')
+    const command = commandRaw.replace(/^\/\/ \[svp! /, '').replace(/\]$/, '')
     const [name, params] = command.split(':')
     const commandExecutor = COMMAND_CHEAT_LIST[name]
     if (commandExecutor)

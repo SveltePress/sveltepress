@@ -8,29 +8,41 @@ Pass `sidebar` option to theme default to configure sidebar
 
 ## Example
 
-```js
-const sidebar = {
-  '/foo/': [
-    {
-      title: 'Bar',
-      to: '/foo/bar/',
-    },
-    {
-      title: 'Zoo',
-      collapsible: true,
-      items: [
-        {
-          title: 'Sub item',
-          to: '/sub/item/link'
+```ts
+import { defineConfig } from 'vite'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        sidebar: {
+          '/foo/': [
+            {
+              title: 'Bar',
+              to: '/foo/bar/',
+            },
+            {
+              title: 'Zoo',
+              collapsible: true,
+              items: [
+                {
+                  title: 'Sub item',
+                  to: '/sub/item/link'
+                }
+              ]
+            },
+            {
+              title: 'External github page',
+              to: 'https://github.com'
+            }
+          ]
         }
-      ]
-    },
-    {
-      title: 'External github page',
-      to: 'https://github.com'
-    }
+      })
+    })
   ]
-}
+})
 ```
 
 ### `title`
