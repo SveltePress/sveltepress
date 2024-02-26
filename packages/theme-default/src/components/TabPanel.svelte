@@ -3,8 +3,8 @@
   import { activeNameContextKey, itemsKey } from './Tabs.svelte'
 
   export let name
-  export let activeIcon = ''
-  export let inactiveIcon = ''
+  export let activeIcon
+  export let inactiveIcon
 
   const current = getContext(activeNameContextKey)
   const items = getContext(itemsKey)
