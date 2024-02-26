@@ -8,13 +8,13 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
-    "@sveltejs/kit": "^2.0.6",
+    "@sveltejs/kit": "^2.5.1",
+    "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@sveltepress/theme-default": "^1.23.0",
     "@sveltepress/vite": "^0.32.0",
-    "@types/node": "^20.10.6",
-    "svelte": "^4.2.8",
-    "vite": "^5.0.10",
-    "@sveltejs/vite-plugin-svelte": "^3.0.1"
+    "@types/node": "^20.11.20",
+    "svelte": "^4.2.12",
+    "vite": "^5.1.4"
   },
   "type": "module",
   "license": "MIT"
