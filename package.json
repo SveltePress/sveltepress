@@ -7,6 +7,7 @@
     "prettier": "~3.2.0",
     "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.2.8",
+    "taze": "^0.13.3",
     "typescript": "~5.3.3"
   },
   "scripts": {
