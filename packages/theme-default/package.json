@@ -47,7 +47,7 @@
     "@shikijs/twoslash": "^1.1.7",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "@sveltepress/twoslash": "workspace:*",
-    "@vite-pwa/sveltekit": "^0.3.0",
+    "@vite-pwa/sveltekit": "^0.4.0",
     "lru-cache": "^10.2.0",
     "shiki": "^1.1.7",
     "uid": "^2.0.2",
