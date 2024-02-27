@@ -5,4 +5,4 @@
 "@sveltepress/vite": patch
 ---
 
-feat: add context module and pass the isDark store
+feat: add context module and pass the isDark store #243 
