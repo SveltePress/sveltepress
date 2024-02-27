@@ -73,6 +73,11 @@
       "svelte": "./src/components/index.ts",
       "types": "./src/components/index.ts"
     },
+    "./context": {
+      "import": "./src/context/index.ts",
+      "svelte": "./src/context/index.ts",
+      "types": "./src/context/index.ts"
+    },
     "./Floating.svelte": {
       "import": "./src/components/floating/Floating.svelte",
       "svelte": "./src/components/floating/Floating.svelte"
@@ -94,6 +99,11 @@
     "exports": {
       ".": "./dist/index.js",
       "./style.css": "./dist/style.css",
+      "./context": {
+        "import": "./dist/context/index.js",
+        "svelte": "./dist/context/index.js",
+        "types": "./dist/context/index.d.ts"
+      },
       "./components": {
         "svelte": "./dist/components/index.js",
         "import": "./dist/components/index.js",

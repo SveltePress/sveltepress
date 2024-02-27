@@ -172,6 +172,33 @@ These icons looks like this:
 </div>
 ```
 
+## Global context
+
+The global context key is in the `@sveltepress/theme-default/context`. You can get all the contexts with the [`getContext`](https://svelte.dev/docs/svelte#getcontext) API
+
+This is an example:
+```svelte live
+<script>
+  import { getContext } from 'svelte'
+  import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+
+  const { isDark } = getContext(SVELTEPRESS_CONTEXT_KEY)
+</script>
+
+<div class:dark-text="{$isDark}" class="text-10">
+  isDark: {$isDark}
+</div>
+<style>
+  .dark-text {
+    --at-apply: 'text-red';
+  }
+</style>
+```
+
+All contexts:
+* `$isDark` - Determine the current theme is dark or not. It is a [reactive svelte store](https://svelte.dev/docs/svelte-store).
+
+
 ## Virtual modules
 
 ### `virtual:sveltepress/theme-default`

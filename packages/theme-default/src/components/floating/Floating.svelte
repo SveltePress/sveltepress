@@ -6,7 +6,7 @@
   export let show = false
   export let alwaysShow = false
   export let placement = 'bottom-start'
-  export let floatingClass
+  export let floatingClass = undefined
 
   let container
   let floatingContent

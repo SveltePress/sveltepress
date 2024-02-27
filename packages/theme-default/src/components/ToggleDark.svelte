@@ -3,13 +3,13 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Moon from './icons/Moon.svelte'
   import Sun from './icons/Sun.svelte'
+  import { isDark } from './layout'
 
   const key = 'SVELTEPRESS_DARK_MODE'
 
-  let isDark = false
   const themeColor = themeOptions.themeColor || { light: '#fff', dark: '#000' }
   function addOrRemoveClass() {
-    if (isDark) {
+    if ($isDark) {
       document.querySelector('html').classList.add('dark')
       if (themeColor) {
         document
@@ -27,13 +27,13 @@
   }
 
   function toggle(evt) {
-    localStorage.setItem(key, isDark ? 'off' : 'on')
+    localStorage.setItem(key, $isDark ? 'off' : 'on')
     const isAppearanceTransition =
       document.startViewTransition &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition) {
-      isDark = !isDark
+      $isDark = !$isDark
       addOrRemoveClass()
       return
     }
@@ -45,7 +45,7 @@
       Math.max(y, window.innerHeight - y),
     )
     const transition = document.startViewTransition(async () => {
-      isDark = !isDark
+      $isDark = !$isDark
       await tick()
       addOrRemoveClass()
     })
@@ -56,12 +56,12 @@
       ]
       document.documentElement.animate(
         {
-          clipPath: isDark ? [...clipPath].reverse() : clipPath,
+          clipPath: $isDark ? [...clipPath].reverse() : clipPath,
         },
         {
           duration: 400,
-          easing: isDark ? 'ease-out' : 'ease-in',
-          pseudoElement: isDark
+          easing: $isDark ? 'ease-out' : 'ease-in',
+          pseudoElement: $isDark
             ? '::view-transition-old(root)'
             : '::view-transition-new(root)',
         },
@@ -69,7 +69,7 @@
     })
   }
   onMount(() => {
-    isDark = localStorage.getItem(key) === 'on'
+    $isDark = localStorage.getItem(key) === 'on'
     addOrRemoveClass()
   })
 </script>
@@ -103,7 +103,7 @@
   role="button"
   tabindex="0"
 >
-  {#if isDark}
+  {#if $isDark}
     <Moon />
   {:else}
     <Sun />
