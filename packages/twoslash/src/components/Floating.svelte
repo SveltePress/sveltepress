@@ -1,16 +1,18 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte'
+  import type { Placement } from '@floating-ui/dom'
   import { arrow, autoUpdate, computePosition, offset } from '@floating-ui/dom'
   import teleport from '../actions/teleport'
+  import type { EDirection } from './types'
 
   export let show = false
   export let alwaysShow = false
-  export let placement = 'bottom-start'
-  export let floatingClass = undefined
+  export let placement: Placement = 'bottom-start'
+  export let floatingClass: string | undefined = undefined
 
-  let container
-  let floatingContent
-  let arrowEl
+  let container: HTMLSpanElement
+  let floatingContent: HTMLDivElement
+  let arrowEl: HTMLDivElement
 
   const recomputePosition = (nextShow = show) => {
     if (alwaysShow || nextShow) {
@@ -28,14 +30,14 @@
           left: `${x}px`,
           top: `${y}px`,
         })
-        const side = placement.split('-')[0]
+        const side = placement.split('-')[0] as EDirection
 
-        const staticSide = {
+        const staticSide: Record<EDirection, string> = {
           top: 'bottom',
           right: 'left',
           bottom: 'top',
           left: 'right',
-        }[side]
+        }
         const translate = {
           top: 'translateY(-50%)',
           right: 'translateX(50%)',
@@ -44,7 +46,7 @@
         }
         if (middlewareData.arrow) {
           Object.assign(arrowEl.style, {
-            [staticSide]: `${-arrowEl.offsetWidth}px`,
+            [staticSide[side]]: `${-arrowEl.offsetWidth}px`,
             borderWidth: `${side === 'bottom' || side === 'left' ? '1px' : 0} ${side === 'left' || side === 'top' ? '1px' : 0} ${side === 'top' || side === 'right' ? '1px' : 0} ${side === 'bottom' || side === 'right' ? '1px' : 0}`,
             transform: `${translate[side]} rotate(45deg)`,
           })
@@ -90,7 +92,19 @@
     word-spacing: -6px;
   }
   .floating-content-wrapper {
-    --at-apply: '-z-1 fixed hidden max-w-[60vw] text-[14px] b-1 dark:b-dark-3 b-warm-gray-3 b-solid p-2 rounded bg-white dark:bg-dark-9';
+    z-index: -1;
+    position: fixed;
+    display: none;
+    max-width: 60vw;
+    font-size: 14px;
+    border: 1px solid #d6d3d1;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: white;
+  }
+  :global(html.dark) .floating-content-wrapper {
+    border-color: #2d2d2d;
+    background-color: #0f0f0f;
   }
   .show:not(.always-show) {
     z-index: 99999;
@@ -102,9 +116,42 @@
     display: block;
   }
   .arrow {
-    --at-apply: 'absolute bg-inherit w-2 h-2 b-solid dark:b-dark-3 b-warm-gray-3';
+    position: absolute;
+    background-color: inherit;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-style: solid;
+    border-color: #d6d3d1;
     color: white;
     font-weight: bold;
     font-size: 90%;
+  }
+  :global(html.dark .arrow) {
+    border-color: #2d2d2d;
+  }
+
+  :global(.twoslash-popup-code) {
+    background-color: transparent !important;
+  }
+
+  :global(.twoslash-popup-docs-tag) {
+    display: block;
+  }
+
+  :global(.twoslash-popup-docs) {
+    --at-apply: 'text-gray-5 dark:text-gray-4';
+  }
+
+  :global(.twoslash-popup-docs-tag-name) {
+    padding-right: 4px;
+  }
+
+  :global(.twoslash-completion-list) {
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(.twoslash-hover) {
+    word-spacing: -6px;
   }
 </style>

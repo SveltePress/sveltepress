@@ -25,7 +25,8 @@ interface LiveCodePathItem {
 }
 
 const globalComponentsImporters = [
-  'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, Floating } from \'@sveltepress/theme-default/components\'',
+  'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from \'@sveltepress/theme-default/components\'',
+  'import Floating from \'@sveltepress/twoslash/FloatingWrapper.svelte\'',
 ]
 
 function createAsyncImportCode(componentPath: string) {

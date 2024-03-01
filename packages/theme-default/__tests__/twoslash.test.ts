@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { highlighter } from '@sveltepress/theme-default'
+import highlighter from '../src/markdown/highlighter'
 
 describe('twoslash', () => {
   it('renderer floating svelte', async () => {
