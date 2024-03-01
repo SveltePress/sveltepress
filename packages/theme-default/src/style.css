@@ -222,28 +222,3 @@ html.dark .twoslash-popup-container span {
   color: #e74c3c;
   font-size: 16px;
 }
-
-.twoslash-popup-code {
-  background-color: transparent !important;
-}
-
-.twoslash-popup-docs-tag {
-  display: block;
-}
-
-.twoslash-popup-docs {
-  --at-apply: 'text-gray-5 dark:text-gray-4';
-}
-
-.twoslash-popup-docs-tag-name {
-  padding-right: 4px;
-}
-
-.twoslash-completion-list {
-  margin: 0;
-  padding: 0;
-}
-
-.twoslash-hover {
-  word-spacing: -6px;
-}

@@ -1,5 +1,15 @@
 # @sveltepress/vite
 
+## 0.32.1
+
+### Patch Changes
+
+- [`3be117c`](https://github.com/SveltePress/sveltepress/commit/3be117c342d59b409377e3e93caa15a31e802afe) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`aa4a9a2`](https://github.com/SveltePress/sveltepress/commit/aa4a9a2cacc40f65eca4e074817cb97dc7812fbb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: floatingClass should have a default undefined value
+
+- [`aa4a9a2`](https://github.com/SveltePress/sveltepress/commit/aa4a9a2cacc40f65eca4e074817cb97dc7812fbb) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add context module and pass the isDark store #243
+
 ## 0.32.0
 
 ### Minor Changes

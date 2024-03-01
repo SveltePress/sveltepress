@@ -5,10 +5,12 @@
   import 'virtual:sveltepress/prebuild-iconify-icons.css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
-  import { onMount } from 'svelte'
+  import { onMount, setContext } from 'svelte'
+  import { SVELTEPRESS_CONTEXT_KEY } from '../context'
   import AjaxBar from './AjaxBar.svelte'
   import {
     anchors,
+    isDark,
     navCollapsed,
     oldScrollY,
     resolveSidebar,
@@ -24,6 +26,10 @@
   import Error from './Error.svelte'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { page } from '$app/stores'
+
+  setContext(SVELTEPRESS_CONTEXT_KEY, {
+    isDark,
+  })
 
   resolveSidebar($page.route.id)
   let ajaxBar

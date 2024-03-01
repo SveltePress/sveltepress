@@ -160,6 +160,33 @@ const defaultGradient = {
   {/each}
 </div>
 ```
+
+## 全局上下文
+
+全局上下文的键在模块 `@sveltepress/theme-default/context` 中，你可以通过 [`getContext`](https://svelte.dev/docs/svelte#getcontext) API 来获取所有的上下文，下面是一个示例：
+
+```svelte live
+<script>
+  import { getContext } from 'svelte'
+  import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+
+  const { isDark } = getContext(SVELTEPRESS_CONTEXT_KEY)
+</script>
+
+<div class:dark-text="{$isDark}" class="text-10">
+  isDark: {$isDark}
+</div>
+<style>
+  .dark-text {
+    --at-apply: 'text-red';
+  }
+</style>
+```
+
+上下文属性一览：
+
+* `$isDark` - 用来表示当前的主题是否为暗色，是一个响应式的 [svelte store](https://svelte.dev/docs/svelte-store)
+
 ## 虚拟模块
 
 ### `virtual:sveltepress/theme-default`

@@ -1,1 +1,1 @@
-export { default as rendererFloatingSvelte } from './renderer-floating-svelte'
+export { default as rendererFloatingSvelte } from './renderer-floating-svelte/index.js'

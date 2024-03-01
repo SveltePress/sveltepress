@@ -1,6 +1,6 @@
 {
   "name": "@sveltepress/create",
-  "version": "0.41.0",
+  "version": "0.41.1",
   "description": "The helper for creating sveltepress projects",
   "exports": {
     ".": {
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/cross-spawn": "^6.0.6",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.11.20",
     "@types/prompts": "^2.4.9",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0"
