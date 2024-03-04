@@ -33,6 +33,7 @@
     "@sveltejs/kit": "^2.5.1",
     "@sveltejs/package": "^2.2.7",
     "@sveltepress/vite": "workspace:*",
+    "@types/node": "^20.11.20",
     "svelte": "^4.2.12",
     "unified": "^11.0.4",
     "vite": "^5.1.4",
@@ -57,9 +58,9 @@
     "workbox-routing": "^7.0.0"
   },
   "peerDependencies": {
-    "@sveltepress/vite": "workspace:*",
     "@sveltejs/kit": "^1.20.4 || ^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@sveltepress/vite": "workspace:*",
     "svelte": "^3.55.1 || ^4.0.0",
     "vite": "^4.3.9 || ^5.0.0"
   },

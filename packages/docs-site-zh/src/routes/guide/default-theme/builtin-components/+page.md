@@ -183,10 +183,9 @@ title: 内置组件
 
 ### Svelte 中使用
 
-
 ```svelte live
 <script>
-  import { Floating } from '@sveltepress/theme-default/components'
+  import Floating from '@sveltepress/twoslash/FloatingWrapper.svelte'
 </script>
 <Floating placement="right">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">

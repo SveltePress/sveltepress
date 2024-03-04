@@ -187,7 +187,7 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 
 ```svelte live
 <script>
-  import { Floating } from '@sveltepress/theme-default/components'
+  import Floating from '@sveltepress/twoslash/FloatingWrapper.svelte'
 </script>
 <Floating placement="right">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
