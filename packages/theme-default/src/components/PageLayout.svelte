@@ -79,6 +79,7 @@
 {/if}
 
 <style>
+  :global(.theme-default--page-layout h1 .svp-title-anchor),
   :global(.theme-default--page-layout h2 .svp-title-anchor),
   :global(.theme-default--page-layout h3 .svp-title-anchor),
   :global(.theme-default--page-layout h4 .svp-title-anchor),
@@ -91,6 +92,7 @@
   :global(.theme-default--page-layout h2 .svp-title-anchor) {
     transform: translate(-100%, calc((-100% + 1rem) / 2));
   }
+  :global(.theme-default--page-layout h1),
   :global(.theme-default--page-layout h2),
   :global(.theme-default--page-layout h3),
   :global(.theme-default--page-layout h4),
@@ -101,12 +103,13 @@
   :global(.theme-default--page-layout h2) {
     --at-apply: 'border-t-solid border-t border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4';
   }
+  :global(.theme-default--page-layout h1:hover .svp-title-anchor),
   :global(.theme-default--page-layout h2:hover .svp-title-anchor),
   :global(.theme-default--page-layout h3:hover .svp-title-anchor),
   :global(.theme-default--page-layout h4:hover .svp-title-anchor),
   :global(.theme-default--page-layout h5:hover .svp-title-anchor),
   :global(.theme-default--page-layout h6:hover .svp-title-anchor) {
-    --at-apply: pointer-events-auto opacity-100;
+    --at-apply: 'pointer-events-auto opacity-100';
   }
   .content {
     --at-apply: 'sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw]';

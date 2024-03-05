@@ -10,6 +10,9 @@
   import { afterNavigate } from '$app/navigation'
   import { page } from '$app/stores'
 
+  /**
+   * @type {Array<import('../markdown/anchors').Anchor>}
+   */
   export let anchors = []
 
   let scrollY
@@ -68,10 +71,10 @@
       {#each anchors as an, i}
         {@const active = activeIdx === i}
         <a
-          href={`#${an.slugId}`}
+          href="#${an.slugId}"
           class="item"
           class:active
-          style={`--heading-depth: ${an.depth};`}
+          style="--heading-depth: ${an.depth < 2 ? 2 : an.depth};"
         >
           {an.title}
         </a>

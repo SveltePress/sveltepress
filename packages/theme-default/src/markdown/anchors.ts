@@ -1,7 +1,7 @@
 import type { Plugin } from 'unified'
 import { visit } from 'unist-util-visit'
 
-interface Anchor {
+export interface Anchor {
   slugId: string
   title: string
   depth: number
