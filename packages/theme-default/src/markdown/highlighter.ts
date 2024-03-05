@@ -3,7 +3,7 @@ import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
 import { LRUCache } from 'lru-cache'
 import { transformerTwoslash } from '@shikijs/twoslash'
-import { rendererFloatingSvelte } from '@sveltepress/twoslash'
+import { createTwoslasher, rendererFloatingSvelte } from '@sveltepress/twoslash'
 import { themeOptionsRef } from '../index.js'
 import { processCommands } from './commands.js'
 
@@ -28,6 +28,7 @@ async function createHighlighterWithThemeAndLangs() {
     },
     transformers: [
       transformerTwoslash({
+        twoslasher: createTwoslasher(),
         renderer: rendererFloatingSvelte(),
       }),
     ],

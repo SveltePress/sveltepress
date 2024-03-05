@@ -80,7 +80,7 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 :::important[Plugins order]{icon=solar:reorder-outline}
 The remark and rehype plugins that theme provide would be called before the plugins provide by vite plugin.
 For example:
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
@@ -89,7 +89,7 @@ export default defineConfig({
   plugins: [
     sveltepress({
       theme: defaultTheme(/* theme options */),
-      remarkPlugins: [yourRemarkPlugin]
+      remarkPlugins: [/* yourRemarkPlugin */]
     })
   ]
 })
