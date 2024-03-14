@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
@@ -10,7 +11,7 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "removeComments": false,
-    "module": "ESNext",
+    "module": "ESNext"
   },
   "include": ["src"]
 }
