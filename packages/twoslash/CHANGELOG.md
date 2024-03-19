@@ -1,5 +1,23 @@
 # @sveltepress/twoslash
 
+## 0.2.0
+
+### Minor Changes
+
+- [#263](https://github.com/SveltePress/sveltepress/pull/263) [`88b5058`](https://github.com/SveltePress/sveltepress/commit/88b5058c806ea268b412679aa60e1524107d879f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for twoslash in svelte
+
+### Patch Changes
+
+- [`feef5e9`](https://github.com/SveltePress/sveltepress/commit/feef5e9e6fb0d9979ec5a4bac59395fbf09cf603) Thanks [@Blackman99](https://github.com/Blackman99)! - refactor: extract twoslash relative things into twoslash package
+
+- [#263](https://github.com/SveltePress/sveltepress/pull/263) [`88b5058`](https://github.com/SveltePress/sveltepress/commit/88b5058c806ea268b412679aa60e1524107d879f) Thanks [@Blackman99](https://github.com/Blackman99)! - docs: use Tabs/TabPanel to optimize svelte in markdown section docs
+
+- docs: update twoslash in svelte
+
+- [`21cd863`](https://github.com/SveltePress/sveltepress/commit/21cd863ce92786ea1820a292e247371c30aef2bd) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: only import ts code snippet would need to add @noError leading line
+
+- fix: page toc
+
 ## 0.1.1
 
 ### Patch Changes

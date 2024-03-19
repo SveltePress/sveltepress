@@ -1,5 +1,29 @@
 # @sveltepress/theme-default
 
+## 2.0.0
+
+### Minor Changes
+
+- [#263](https://github.com/SveltePress/sveltepress/pull/263) [`88b5058`](https://github.com/SveltePress/sveltepress/commit/88b5058c806ea268b412679aa60e1524107d879f) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: support for twoslash in svelte
+
+### Patch Changes
+
+- [`aa8162c`](https://github.com/SveltePress/sveltepress/commit/aa8162c8c9b9957aaee7b013c392124b4ad735e6) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: restrict heading depth
+
+- [`feef5e9`](https://github.com/SveltePress/sveltepress/commit/feef5e9e6fb0d9979ec5a4bac59395fbf09cf603) Thanks [@Blackman99](https://github.com/Blackman99)! - refactor: extract twoslash relative things into twoslash package
+
+- [#263](https://github.com/SveltePress/sveltepress/pull/263) [`88b5058`](https://github.com/SveltePress/sveltepress/commit/88b5058c806ea268b412679aa60e1524107d879f) Thanks [@Blackman99](https://github.com/Blackman99)! - docs: use Tabs/TabPanel to optimize svelte in markdown section docs
+
+- docs: update twoslash in svelte
+
+- [`21cd863`](https://github.com/SveltePress/sveltepress/commit/21cd863ce92786ea1820a292e247371c30aef2bd) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: only import ts code snippet would need to add @noError leading line
+
+- fix: page toc
+
+- Updated dependencies [[`feef5e9`](https://github.com/SveltePress/sveltepress/commit/feef5e9e6fb0d9979ec5a4bac59395fbf09cf603), [`88b5058`](https://github.com/SveltePress/sveltepress/commit/88b5058c806ea268b412679aa60e1524107d879f), [`21cd863`](https://github.com/SveltePress/sveltepress/commit/21cd863ce92786ea1820a292e247371c30aef2bd), [`88b5058`](https://github.com/SveltePress/sveltepress/commit/88b5058c806ea268b412679aa60e1524107d879f)]:
+  - @sveltepress/twoslash@0.2.0
+  - @sveltepress/vite@0.33.0
+
 ## 1.23.1
 
 ### Patch Changes
