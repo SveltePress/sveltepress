@@ -183,7 +183,6 @@ title: 内置组件
 
 ### Svelte 中使用
 
-
 ```svelte live
 <script>
   import { Floating } from '@sveltepress/theme-default/components'

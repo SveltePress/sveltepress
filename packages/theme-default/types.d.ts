@@ -4,7 +4,6 @@
 /// <reference types="@sveltepress/vite/types" />
 
 
-
 declare module 'virtual:sveltepress/theme-default' {
   import type { BundledLanguage } from 'shiki/langs'
   import type { LoadTheme } from '@sveltepress/vite'
@@ -89,4 +88,12 @@ declare module '@sveltepress/theme-default/components' {
   export const Tabs: any
   export const TabPanel: any
   export const InstallPkg: any
+}
+
+declare module '@sveltepress/theme-default/context' {
+  import { Writable } from 'svelte/store'
+  export interface SveltepressContext {
+    isDark: Writable<boolean>
+  }
+  export const SVELTEPRESS_CONTEXT_KEY: Symbol
 }

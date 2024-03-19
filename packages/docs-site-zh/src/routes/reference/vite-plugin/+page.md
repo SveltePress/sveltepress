@@ -73,7 +73,7 @@ title: Vite 插件
 :::important[插件顺序]{icon=solar:reorder-outline}
 主题提供的 remark 以及 rehype 插件将会在 vite 插件提供的之前调用  
 例如：
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
@@ -81,8 +81,8 @@ import { defaultTheme } from '@sveltepress/theme-default'
 export default defineConfig({
   plugins: [
     sveltepress({
-      theme: defaultTheme(/* theme options */),
-      remarkPlugins: [yourRemarkPlugin]
+      theme: defaultTheme(/* 默认主题选项 */),
+      remarkPlugins: [/* 你的 remark 插件 */]
     })
   ]
 })

@@ -6,7 +6,10 @@ All headings in your page md files would render the toc on the right of the page
 As you currently can see on every page  
 And multi levels are supported
 
+# Level 1 heading
+
 ```md
+
 ## Heading1
 ### Some heading contains special characters&?:/.
 ### Heading1 nested2

@@ -109,7 +109,7 @@ console.log('This is shown')
 ```
 ````
 
-### svelte 支持
+## 支持 svelte 代码块
 
 ```svelte
 <script>

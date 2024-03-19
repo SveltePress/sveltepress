@@ -8,7 +8,7 @@ title: Default theme
 
 ### 在 vite.config.(js|ts) 中配置
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
 
@@ -16,9 +16,9 @@ import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 
 const config = defineConfig({
   plugins: [
-    sveltepress(), // [svp! --]
+    sveltepress({/** 配置 */}), // [svp! --]
     sveltepress({ // [svp! ++]
-      theme: defaultTheme(/** theme options */) // [svp! ++]
+      theme: defaultTheme(/** 主题配置 */) // [svp! ++]
     }) // [svp! ++]
   ],
 })
@@ -28,7 +28,14 @@ export default config
 
 ## 主题配置
 
-@code(/../theme-default/types.d.ts,22,72)
+### 类型一览
+
+<Expansion title="类型一览">
+
+@code(/../theme-default/types.d.ts)
+
+</Expansion>
+
 
 ### `navbar`
 
@@ -146,12 +153,12 @@ const defaultGradient = {
 
 这些图标看起来像这样：
 ```svelte live
-<script>
+<script lang="ts">
   import { IconifyIcon } from '@sveltepress/theme-default/components'
   import themeOptions from 'virtual:sveltepress/theme-default'
 </script>
 <div class="flex items-center gap-4 text-[48px] flex-wrap">
-  {#each Object.entries(themeOptions.preBuildIconifyIcons) as [collection, names]}
+  {#each Object.entries(themeOptions.preBuildIconifyIcons || []) as [collection, names]}
     {#each names as name}
       <div>
         <IconifyIcon {collection} {name} />
@@ -166,11 +173,12 @@ const defaultGradient = {
 全局上下文的键在模块 `@sveltepress/theme-default/context` 中，你可以通过 [`getContext`](https://svelte.dev/docs/svelte#getcontext) API 来获取所有的上下文，下面是一个示例：
 
 ```svelte live
-<script>
+<script lang="ts">
   import { getContext } from 'svelte'
   import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+  import type { SveltepressContext } from '@sveltepress/theme-default/context'
 
-  const { isDark } = getContext(SVELTEPRESS_CONTEXT_KEY)
+  const { isDark } = getContext<SveltepressContext>(SVELTEPRESS_CONTEXT_KEY)
 </script>
 
 <div class:dark-text="{$isDark}" class="text-10">

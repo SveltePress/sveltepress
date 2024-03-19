@@ -162,7 +162,7 @@ These icons looks like this:
   import themeOptions from 'virtual:sveltepress/theme-default'
 </script>
 <div class="flex items-center gap-4 text-[48px] flex-wrap">
-  {#each Object.entries(themeOptions.preBuildIconifyIcons) as [collection, names]}
+  {#each Object.entries(themeOptions.preBuildIconifyIcons || {}) as [collection, names]}
     {#each names as name}
       <div>
         <IconifyIcon {collection} {name} />
@@ -178,11 +178,12 @@ The global context key is in the `@sveltepress/theme-default/context`. You can g
 
 This is an example:
 ```svelte live
-<script>
+<script lang="ts">
   import { getContext } from 'svelte'
+  import type { SveltepressContext } from '@sveltepress/theme-default/context'
   import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
 
-  const { isDark } = getContext(SVELTEPRESS_CONTEXT_KEY)
+  const { isDark } = getContext<SveltepressContext>(SVELTEPRESS_CONTEXT_KEY)
 </script>
 
 <div class:dark-text="{$isDark}" class="text-10">
