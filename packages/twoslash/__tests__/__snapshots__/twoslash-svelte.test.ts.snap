@@ -186,19 +186,6 @@ import FloatingWrapper",
     "type": "hover",
   },
   {
-    "character": 15,
-    "docs": undefined,
-    "length": 5,
-    "line": 19,
-    "start": 360,
-    "tags": undefined,
-    "target": "props",
-    "text": "(property) ComponentConstructorOptions<{ floatingClass: string; }>.props?: {
-    floatingClass: string;
-} | undefined",
-    "type": "hover",
-  },
-  {
     "character": 26,
     "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
 
