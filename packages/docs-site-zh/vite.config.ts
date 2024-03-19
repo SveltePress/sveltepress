@@ -46,6 +46,10 @@ const config = defineConfig({
       addInspect: true,
     }),
   ],
+  server: {
+    host: '0.0.0.0',
+    port: 5554,
+  },
 })
 
 export default config

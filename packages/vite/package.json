@@ -17,7 +17,8 @@
   },
   "scripts": {
     "test": "vitest",
-    "build": "unbuild"
+    "build": "unbuild",
+    "prepare": "pnpm build"
   },
   "keywords": [
     "vite",
@@ -37,6 +38,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@sveltepress/theme-default": "workspace:*",
     "@sveltejs/kit": "^2.5.1",
     "@types/cross-spawn": "^6.0.6",
     "@types/estree": "^1.0.5",

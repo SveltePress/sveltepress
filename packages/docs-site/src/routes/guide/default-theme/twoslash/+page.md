@@ -107,3 +107,20 @@ console.log(level) // This is not shown.
 console.log('This is shown')
 ```
 ````
+
+## Twoslash for svelte
+
+```svelte
+<script>
+  import { onMount } from 'svelte'
+
+  let count = 0
+
+  onMount(() => {
+    console.log('mount')
+  })
+</script>
+<button on:click="{count++}">
+  Count is: { count }
+</button>
+```

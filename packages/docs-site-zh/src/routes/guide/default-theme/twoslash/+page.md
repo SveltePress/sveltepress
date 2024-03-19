@@ -108,3 +108,20 @@ console.log(level) // This is not shown.
 console.log('This is shown')
 ```
 ````
+
+## 支持 svelte 代码块
+
+```svelte
+<script>
+  import { onMount } from 'svelte'
+
+  let count = 0
+
+  onMount(() => {
+    console.log('mount')
+  })
+</script>
+<button on:click="{count++}">
+  您点击了: { count } 次
+</button>
+```

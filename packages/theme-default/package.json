@@ -7,7 +7,8 @@
     "test": "vitest",
     "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
     "build:comps": "svelte-package -i src",
-    "build": "pnpm build:comps && pnpm cp:assets"
+    "build": "pnpm build:comps && pnpm cp:assets",
+    "prepare": "pnpm build"
   },
   "files": [
     "dist",
@@ -31,7 +32,7 @@
   "license": "MIT",
   "devDependencies": {
     "@sveltejs/kit": "^2.5.1",
-    "@sveltejs/package": "^2.2.7",
+    "@sveltejs/package": "^2.3.0",
     "@sveltepress/vite": "workspace:*",
     "@types/node": "^20.11.20",
     "svelte": "^4.2.12",

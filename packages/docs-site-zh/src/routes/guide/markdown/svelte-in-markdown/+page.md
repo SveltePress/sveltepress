@@ -10,7 +10,50 @@ title: 在 Markdown 中使用 Svelte
 
 这是一个使用了 `#if`，`#each`，`#await`，`@html`，`@const` 的基础示例
 
-**输入**
+<Tabs activeName="输出">
+  <TabPanel name="输出">
+
+<ul>
+{#each items as item, i}
+{@const str = `${i + 1}: ${item}`}
+  <li>
+    {str}
+  </li>
+{/each}
+</ul>
+
+<button on:click="{() => boolVal = !boolVal}">
+Toggle
+</button>
+
+{#if boolVal}
+  <h3 class="text-green">
+    Pass
+  </h3>
+{:else}
+  <h3 class="text-red">
+    Fail
+  </h3>
+{/if}
+
+{#await promise}
+  <h3 class="text-orange">
+    Loading
+  </h3>
+{:then res}
+  <h3 class="text-green">
+    {res}
+  </h3>
+{:catch err}
+  <h3 class="text-red">
+    {err}
+  </h3>
+{/await}
+
+{@html "<h1>用 @html 渲染的内容</h1>"}
+
+  </TabPanel>
+  <TabPanel name="输入">
 
 ```md
 <script>
@@ -72,51 +115,24 @@ Toggle
 {@html "<h1>用 @html 渲染的内容</h1>"}
 ```
 
-**输出**
-
-<ul>
-{#each items as item, i}
-{@const str = `${i + 1}: ${item}`}
-  <li>
-    {str}
-  </li>
-{/each}
-</ul>
-
-<button on:click="{() => boolVal = !boolVal}">
-Toggle
-</button>
-
-{#if boolVal}
-  <h3 class="text-green">
-    Pass
-  </h3>
-{:else}
-  <h3 class="text-red">
-    Fail
-  </h3>
-{/if}
-
-{#await promise}
-  <h3 class="text-orange">
-    Loading
-  </h3>
-{:then res}
-  <h3 class="text-green">
-    {res}
-  </h3>
-{:catch err}
-  <h3 class="text-red">
-    {err}
-  </h3>
-{/await}
-
-{@html "<h1>用 @html 渲染的内容</h1>"}
-
+  </TabPanel>
+</Tabs>
 
 ## 一个简单的计数器
 
-**输入**
+<Tabs activeName="输出">
+
+  <TabPanel name="输出">
+
+> 一个计数器
+
+<button on:click="{() => count++}" style="margin-bottom: 12px;">
+  您点击了 {count} 次
+</button>
+
+  </TabPanel>
+
+  <TabPanel name="输入">
 
 ```md
 > 一个计数器
@@ -129,9 +145,8 @@ Toggle
 </button>
 ```
 
-**输出**
-
-> 一个计数器
+  </TabPanel>
+</Tabs>
 
 <script>
   import Counter from './Counter.svelte'
@@ -153,25 +168,27 @@ Toggle
   $: promise = boolVal ? promisePass() : promiseFail()
 </script>
 
-<button on:click="{() => count++}" style="margin-bottom: 12px;">
-  您点击了 {count} 次
-</button>
 
 :::note[语法限制]{icon=solar:chat-square-code-outline}
 确保总是使用双引号包裹
 ```svelte
-  <button on:click={() => count++}></button> // [svp! --]
-  <button on:click="{() => count++}"></button> // [svp! ++]
+<script>
+  let count = 0
+</script>
+<button on:click={() => count++}></button> // [svp! --]
+<button on:click="{() => count++}"></button> // [svp! ++]
 ```
 :::
 
 ## 在 md 文件中导入 svelte 文件
 
-**Counter.svelte**
-
-@code(./Counter.svelte) 
-
-**Input**
+<Tabs activeName="输出">
+  <TabPanel name="输出">
+  
+<Counter />
+  
+  </TabPanel>
+  <TabPanel name="输入">
 
 ```md
 <script>
@@ -180,6 +197,10 @@ Toggle
 <Counter />
 ```
 
-**Output**
+  </TabPanel>
+  <TabPanel name="Counter.svelte">
 
-<Counter />
+@code(./Counter.svelte) 
+
+  </TabPanel>
+</Tabs>

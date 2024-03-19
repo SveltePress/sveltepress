@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`svelte to tsx > tsx code 1`] = `
+"///<reference types="svelte" />
+;
+  export const FOO = 'BAR'
+;;
+
+import { onMount } from 'svelte'
+import FloatingWrapper from '../src/components/FloatingWrapper.svelte'
+function render() {
+
+  
+  
+
+  let count = 0
+
+  onMount(() => {
+    console.log('mounted')
+  })
+;
+async () => {
+
+
+
+ { svelteHTML.createElement("button", {  "on:click":() => count++,});
+    count;
+ }
+
+ { const $$_repparWgnitaolF0C = __sveltets_2_ensureComponent(FloatingWrapper); new $$_repparWgnitaolF0C({ target: __sveltets_2_any(), props: {  "floatingClass":\`custom-floating-class\`,}});   FloatingWrapper}
+};
+return { props: {} as Record<string, never>, slots: {}, events: {} }}
+
+export default class Index__SvelteComponent_ extends __sveltets_2_createSvelte2TsxComponent(__sveltets_2_with_any_event(render())) {
+}"
+`;

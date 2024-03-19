@@ -1,0 +1,1888 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`shiki > tokens 1`] = `
+[
+  [
+    {
+      "content": "<",
+      "offset": 0,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "script",
+      "offset": 1,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 7,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "context",
+      "offset": 8,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 15,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 16,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "module",
+      "offset": 17,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 23,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 24,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "lang",
+      "offset": 25,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 29,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 30,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "ts",
+      "offset": 31,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 33,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 34,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 36,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "export",
+      "offset": 38,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 44,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "const",
+      "offset": 45,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 50,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "FOO",
+      "offset": 51,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#005CC5",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 54,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 55,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 56,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 57,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "BAR",
+      "offset": 58,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 61,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "</",
+      "offset": 63,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "script",
+      "offset": 65,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 71,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [],
+  [
+    {
+      "content": "<",
+      "offset": 74,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "script",
+      "offset": 75,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 81,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "lang",
+      "offset": 82,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 86,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 87,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "ts",
+      "offset": 88,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 90,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 91,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 93,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "import",
+      "offset": 95,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 101,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "{",
+      "offset": 102,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 103,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "onMount",
+      "offset": 104,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 111,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "}",
+      "offset": 112,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 113,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "from",
+      "offset": 114,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 118,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 119,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "svelte",
+      "offset": 120,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 126,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 128,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "import",
+      "offset": 130,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 136,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "FloatingWrapper",
+      "offset": 137,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 152,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "from",
+      "offset": 153,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 157,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 158,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "../src/components/FloatingWrapper.svelte",
+      "offset": 159,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 199,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [],
+  [
+    {
+      "content": "  ",
+      "offset": 202,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "let",
+      "offset": 204,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 207,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "count",
+      "offset": 208,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 213,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 214,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 215,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "0",
+      "offset": 216,
+      "variants": {
+        "dark": {
+          "color": "#4C9A91",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#005CC5",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [],
+  [
+    {
+      "content": "  ",
+      "offset": 219,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "onMount",
+      "offset": 221,
+      "variants": {
+        "dark": {
+          "color": "#80A665",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "(()",
+      "offset": 228,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 231,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=>",
+      "offset": 232,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 234,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "{",
+      "offset": 235,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "    ",
+      "offset": 237,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "console",
+      "offset": 241,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ".",
+      "offset": 248,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "log",
+      "offset": 249,
+      "variants": {
+        "dark": {
+          "color": "#80A665",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "(",
+      "offset": 252,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 253,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "mounted",
+      "offset": 254,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "'",
+      "offset": 261,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ")",
+      "offset": 262,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 264,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "})",
+      "offset": 266,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "</",
+      "offset": 269,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "script",
+      "offset": 271,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 277,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [],
+  [
+    {
+      "content": "<",
+      "offset": 280,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "button",
+      "offset": 281,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 287,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "on",
+      "offset": 288,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ":",
+      "offset": 290,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "click",
+      "offset": 291,
+      "variants": {
+        "dark": {
+          "color": "#5DA994",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "={()",
+      "offset": 296,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 300,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=>",
+      "offset": 301,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 303,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "count",
+      "offset": 304,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "++",
+      "offset": 309,
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "}>",
+      "offset": 311,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  Count is: ",
+      "offset": 314,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "{",
+      "offset": 326,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "count",
+      "offset": 327,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "}",
+      "offset": 332,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "</",
+      "offset": 334,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "button",
+      "offset": 336,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 342,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [],
+  [
+    {
+      "content": "<",
+      "offset": 345,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "FloatingWrapper",
+      "offset": 346,
+      "variants": {
+        "dark": {
+          "color": "#B8A965",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#005CC5",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 361,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "floatingClass",
+      "offset": 362,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 375,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 376,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "custom-floating-class",
+      "offset": 377,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 398,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D99",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 400,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 402,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "Some floating content",
+      "offset": 403,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "</",
+      "offset": 424,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "FloatingWrapper",
+      "offset": 426,
+      "variants": {
+        "dark": {
+          "color": "#B8A965",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#005CC5",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": ">",
+      "offset": 442,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [],
+]
+`;
+
+exports[`shiki > twoslash svelte 1`] = `
+"<pre class="shiki shiki-themes github-light vitesse-dark twoslash lsp" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> context</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">module</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> const</span><span style="color:#005CC5;--shiki-dark:#BD976A"> </span><span style="color:#005CC5;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>FOO</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">const</span><span style="color:#005CC5;--shiki-dark:#BD976A"> FOO</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">BAR</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span></span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">BAR</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>onMount</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> onMount</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#6F42C1;--shiki-dark:#80A665">fn</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> () </span><span style="color:#D73A49;--shiki-dark:#666666">=></span><span style="color:#6F42C1;--shiki-dark:#5DA994"> NotFunction</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">> </span><span style="color:#D73A49;--shiki-dark:#666666">|</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Promise</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">NotFunction</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">>> </span><span style="color:#D73A49;--shiki-dark:#666666">|</span><span style="color:#24292E;--shiki-dark:#666666"> (() </span><span style="color:#D73A49;--shiki-dark:#666666">=></span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">))</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> void</span></span></code><div class="twoslash-popup-docs"><p>The <code>onMount</code> function schedules a callback to run as soon as the component has been mounted to the DOM.
+It must be called during the component's initialisation (but doesn't need to live <em>inside</em> the component;
+it can be called from an external module).</p>
+<p>If a function is returned <em>synchronously</em> from <code>onMount</code>, it will be called when the component is unmounted.</p>
+<p><code>onMount</code> does not run inside a <a href="https://svelte.dev/docs#run-time-server-side-component-api">server-side component</a>.</p>
+<p><a href="https://svelte.dev/docs/svelte#onmount">https://svelte.dev/docs/svelte#onmount</a></p></div></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">Props</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Events</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Slots</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span></span></code><div class="twoslash-popup-docs"><p>Base class for Svelte components with some minor dev-enhancements. Used when dev=true.</p>
+<p>Can be used to create strongly typed Svelte components.</p>
+<h4>Example:</h4>
+<p>You have component library on npm called <code>component-library</code>, from which
+you export a component called <code>MyComponent</code>. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a <code>index.d.ts</code>:</p>
+<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> MyComponent</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#80A665"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;{</span><span style="color:#E36209;--shiki-dark:#BD976A">foo</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">}></span><span style="color:#24292E;--shiki-dark:#666666"> {}</span></span></code></pre>
+<p>Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:</p>
+<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">	import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> MyComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">component-library</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965">MyComponent</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> foo</span><span style="color:#24292E;--shiki-dark:#666666">={</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">bar</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#24292E;--shiki-dark:#666666">}</span><span style="color:#24292E;--shiki-dark:#666666"> /></span></span></code></pre></div></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">../src/components/FloatingWrapper.svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">  let</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#80A665">  </span><span style="color:#6F42C1;--shiki-dark:#80A665"><Floating class="twoslash-hover"><span>onMount</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#6F42C1;--shiki-dark:#80A665">onMount</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">void</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#24292E;--shiki-dark:#BD976A">fn</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#D73A49;--shiki-dark:#CB7676"> void</span><span style="color:#D73A49;--shiki-dark:#CB7676"> |</span><span style="color:#24292E;--shiki-dark:#666666"> (()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#BD976A"> any</span><span style="color:#24292E;--shiki-dark:#666666">)</span><span style="color:#D73A49;--shiki-dark:#CB7676"> |</span><span style="color:#005CC5;--shiki-dark:#B8A965"> Promise</span><span style="color:#D73A49;--shiki-dark:#666666">&#x3C;</span><span style="color:#D73A49;--shiki-dark:#CB7676">void</span><span style="color:#D73A49;--shiki-dark:#666666">></span><span style="color:#24292E;--shiki-dark:#666666">)</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#D73A49;--shiki-dark:#CB7676">void</span></span></code><div class="twoslash-popup-docs"><p>The <code>onMount</code> function schedules a callback to run as soon as the component has been mounted to the DOM.
+It must be called during the component's initialisation (but doesn't need to live <em>inside</em> the component;
+it can be called from an external module).</p>
+<p>If a function is returned <em>synchronously</em> from <code>onMount</code>, it will be called when the component is unmounted.</p>
+<p><code>onMount</code> does not run inside a <a href="https://svelte.dev/docs#run-time-server-side-component-api">server-side component</a>.</p>
+<p><a href="https://svelte.dev/docs/svelte#onmount">https://svelte.dev/docs/svelte#onmount</a></p></div></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">(()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#666666"> {</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#BD976A">    </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>console</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">var</span><span style="color:#24292E;--shiki-dark:#BD976A"> console</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Console</span></span></code></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">.</span><span style="color:#6F42C1;--shiki-dark:#80A665"><Floating class="twoslash-hover"><span>log</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#24292E;--shiki-dark:#BD976A">Console</span><span style="color:#24292E;--shiki-dark:#666666">.</span><span style="color:#6F42C1;--shiki-dark:#80A665">log</span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#D73A49;--shiki-dark:#666666">...</span><span style="color:#24292E;--shiki-dark:#BD976A">data</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#24292E;--shiki-dark:#BD976A">any</span><span style="color:#24292E;--shiki-dark:#666666">[])</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#D73A49;--shiki-dark:#CB7676">void</span></span></code><div class="twoslash-popup-docs"><p><a href="https://developer.mozilla.org/docs/Web/API/console/log">MDN Reference</a></p></div></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">mounted</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#24292E;--shiki-dark:#666666">)</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  })</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#D73A49;--shiki-dark:#4D9375"> on</span><span style="color:#24292E;--shiki-dark:#666666">:</span><span style="color:#6F42C1;--shiki-dark:#5DA994">cl</span><span style="color:#6F42C1;--shiki-dark:#5DA994">ick</span><span style="color:#24292E;--shiki-dark:#666666">={()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#CB7676">++</span><span style="color:#24292E;--shiki-dark:#666666">}></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  Count is: </span><span style="color:#24292E;--shiki-dark:#666666">{</span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></span></code></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">}</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">Props</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Events</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Slots</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span></span></code><div class="twoslash-popup-docs"><p>Base class for Svelte components with some minor dev-enhancements. Used when dev=true.</p>
+<p>Can be used to create strongly typed Svelte components.</p>
+<h4>Example:</h4>
+<p>You have component library on npm called <code>component-library</code>, from which
+you export a component called <code>MyComponent</code>. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a <code>index.d.ts</code>:</p>
+<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> MyComponent</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#80A665"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;{</span><span style="color:#E36209;--shiki-dark:#BD976A">foo</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">}></span><span style="color:#24292E;--shiki-dark:#666666"> {}</span></span></code></pre>
+<p>Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:</p>
+<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">	import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> MyComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">component-library</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965">MyComponent</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> foo</span><span style="color:#24292E;--shiki-dark:#666666">={</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">bar</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#24292E;--shiki-dark:#666666">}</span><span style="color:#24292E;--shiki-dark:#666666"> /></span></span></code></pre></div></span></svelte:fragment></Floating></span><span style="color:#6F42C1;--shiki-dark:#BD976A"> floatingClass</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">custom-floating-class</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  ></span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">Some floating content</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#005CC5;--shiki-dark:#B8A965"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">Props</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Events</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Slots</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span></span></code><div class="twoslash-popup-docs"><p>Base class for Svelte components with some minor dev-enhancements. Used when dev=true.</p>
+<p>Can be used to create strongly typed Svelte components.</p>
+<h4>Example:</h4>
+<p>You have component library on npm called <code>component-library</code>, from which
+you export a component called <code>MyComponent</code>. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a <code>index.d.ts</code>:</p>
+<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> MyComponent</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#80A665"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;{</span><span style="color:#E36209;--shiki-dark:#BD976A">foo</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">}></span><span style="color:#24292E;--shiki-dark:#666666"> {}</span></span></code></pre>
+<p>Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:</p>
+<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">	import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> MyComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D99"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">component-library</span><span style="color:#032F62;--shiki-dark:#C98A7D99">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965">MyComponent</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> foo</span><span style="color:#24292E;--shiki-dark:#666666">={</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">bar</span><span style="color:#032F62;--shiki-dark:#C98A7D99">'</span><span style="color:#24292E;--shiki-dark:#666666">}</span><span style="color:#24292E;--shiki-dark:#666666"> /></span></span></code></pre></div></span></svelte:fragment></Floating></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"></span></code></pre>"
+`;

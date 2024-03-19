@@ -1,0 +1,222 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`shiki > twoslash svelte hover 1`] = `
+[
+  {
+    "character": 15,
+    "docs": undefined,
+    "length": 3,
+    "line": 1,
+    "start": 51,
+    "tags": undefined,
+    "target": "FOO",
+    "text": "const FOO: "BAR"",
+    "type": "hover",
+  },
+  {
+    "character": 11,
+    "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
+It must be called during the component's initialisation (but doesn't need to live *inside* the component;
+it can be called from an external module).
+
+If a function is returned _synchronously_ from \`onMount\`, it will be called when the component is unmounted.
+
+\`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
+
+https://svelte.dev/docs/svelte#onmount",
+    "length": 7,
+    "line": 5,
+    "start": 104,
+    "tags": undefined,
+    "target": "onMount",
+    "text": "(alias) function onMount<T>(fn: () => NotFunction<T> | Promise<NotFunction<T>> | (() => any)): void
+import onMount",
+    "type": "hover",
+  },
+  {
+    "character": 9,
+    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+
+Can be used to create strongly typed Svelte components.
+
+#### Example:
+
+You have component library on npm called \`component-library\`, from which
+you export a component called \`MyComponent\`. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a \`index.d.ts\`:
+\`\`\`ts
+import { SvelteComponent } from "svelte";
+export class MyComponent extends SvelteComponent<{foo: string}> {}
+\`\`\`
+Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:
+\`\`\`svelte
+<script lang="ts">
+	import { MyComponent } from "component-library";
+</script>
+<MyComponent foo={'bar'} />
+\`\`\`",
+    "length": 15,
+    "line": 6,
+    "start": 137,
+    "tags": undefined,
+    "target": "FloatingWrapper",
+    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+import FloatingWrapper",
+    "type": "hover",
+  },
+  {
+    "character": 6,
+    "docs": undefined,
+    "length": 5,
+    "line": 8,
+    "start": 208,
+    "tags": undefined,
+    "target": "count",
+    "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 2,
+    "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
+It must be called during the component's initialisation (but doesn't need to live *inside* the component;
+it can be called from an external module).
+
+If a function is returned _synchronously_ from \`onMount\`, it will be called when the component is unmounted.
+
+\`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
+
+https://svelte.dev/docs/svelte#onmount",
+    "length": 7,
+    "line": 10,
+    "start": 221,
+    "tags": undefined,
+    "target": "onMount",
+    "text": "(alias) onMount<void>(fn: () => void | (() => any) | Promise<void>): void
+import onMount",
+    "type": "hover",
+  },
+  {
+    "character": 4,
+    "docs": undefined,
+    "length": 7,
+    "line": 11,
+    "start": 241,
+    "tags": undefined,
+    "target": "console",
+    "text": "var console: Console",
+    "type": "hover",
+  },
+  {
+    "character": 12,
+    "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log)",
+    "length": 3,
+    "line": 11,
+    "start": 249,
+    "tags": undefined,
+    "target": "log",
+    "text": "(method) Console.log(...data: any[]): void",
+    "type": "hover",
+  },
+  {
+    "character": 0,
+    "docs": undefined,
+    "length": 13,
+    "line": 15,
+    "start": 280,
+    "tags": undefined,
+    "target": "createElement",
+    "text": "any",
+    "type": "hover",
+  },
+  {
+    "character": 24,
+    "docs": undefined,
+    "length": 5,
+    "line": 15,
+    "start": 304,
+    "tags": undefined,
+    "target": "count",
+    "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 13,
+    "docs": undefined,
+    "length": 5,
+    "line": 16,
+    "start": 327,
+    "tags": undefined,
+    "target": "count",
+    "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 1,
+    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+
+Can be used to create strongly typed Svelte components.
+
+#### Example:
+
+You have component library on npm called \`component-library\`, from which
+you export a component called \`MyComponent\`. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a \`index.d.ts\`:
+\`\`\`ts
+import { SvelteComponent } from "svelte";
+export class MyComponent extends SvelteComponent<{foo: string}> {}
+\`\`\`
+Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:
+\`\`\`svelte
+<script lang="ts">
+	import { MyComponent } from "component-library";
+</script>
+<MyComponent foo={'bar'} />
+\`\`\`",
+    "length": 15,
+    "line": 19,
+    "start": 346,
+    "tags": undefined,
+    "target": "FloatingWrapper",
+    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+import FloatingWrapper",
+    "type": "hover",
+  },
+  {
+    "character": 26,
+    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+
+Can be used to create strongly typed Svelte components.
+
+#### Example:
+
+You have component library on npm called \`component-library\`, from which
+you export a component called \`MyComponent\`. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a \`index.d.ts\`:
+\`\`\`ts
+import { SvelteComponent } from "svelte";
+export class MyComponent extends SvelteComponent<{foo: string}> {}
+\`\`\`
+Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:
+\`\`\`svelte
+<script lang="ts">
+	import { MyComponent } from "component-library";
+</script>
+<MyComponent foo={'bar'} />
+\`\`\`",
+    "length": 15,
+    "line": 20,
+    "start": 426,
+    "tags": undefined,
+    "target": "FloatingWrapper",
+    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+import FloatingWrapper",
+    "type": "hover",
+  },
+]
+`;

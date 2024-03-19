@@ -22,8 +22,6 @@ const codeImport: Plugin<any[], any> = () => {
               const filename = vFile.path
               if (!filename)
                 return
-              // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
-              // @ts-ignore
               const absolutePathArray = filename.split('/')
               absolutePathArray.pop()
               const dir = absolutePathArray.join('/')

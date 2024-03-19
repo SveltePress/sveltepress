@@ -185,7 +185,7 @@ title: 内置组件
 
 ```svelte live
 <script>
-  import Floating from '@sveltepress/twoslash/FloatingWrapper.svelte'
+  import { Floating } from '@sveltepress/theme-default/components'
 </script>
 <Floating placement="right">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
