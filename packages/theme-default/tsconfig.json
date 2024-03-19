@@ -3,8 +3,8 @@
     "declaration": true,
     "module": "ESNext",
     "moduleResolution": "node",
-    "typeRoots": ["types"],
     "outDir": "dist",
+    "types": ["svelte"],
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true

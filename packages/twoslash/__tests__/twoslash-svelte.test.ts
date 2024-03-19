@@ -9,6 +9,6 @@ const twoslasher = await createTwoslasher()
 
 describe('shiki', () => {
   it('twoslash svelte hover', async () => {
-    expect(twoslasher(svelteCode, 'svelte')).toMatchSnapshot()
+    expect(twoslasher(svelteCode, 'svelte').hovers).toMatchSnapshot()
   })
 })

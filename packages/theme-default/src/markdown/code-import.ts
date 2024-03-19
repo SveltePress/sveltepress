@@ -22,8 +22,6 @@ const codeImport: Plugin<any[], any> = () => {
               const filename = vFile.path
               if (!filename)
                 return
-              // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
-              // @ts-ignore
               const absolutePathArray = filename.split('/')
               absolutePathArray.pop()
               const dir = absolutePathArray.join('/')
@@ -43,7 +41,9 @@ const codeImport: Plugin<any[], any> = () => {
                   if (initialBlankNumbers > 0)
                     valueArr = valueArr.map(line => line.replace(new RegExp(`^ {${initialBlankNumbers}}`), ''))
                 }
-                const codeStr = `// @noErrors\n${valueArr.join('\n')}`
+                let codeStr = valueArr.join('\n')
+                if (lang === 'ts')
+                  codeStr = `// @noErrors\n${codeStr}`
                 const node = {
                   type: 'code',
                   lang,

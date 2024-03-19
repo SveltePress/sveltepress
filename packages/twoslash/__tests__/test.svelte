@@ -4,6 +4,7 @@
 
 <script lang="ts">
   import { onMount } from 'svelte'
+  import FloatingWrapper from '../src/components/FloatingWrapper.svelte'
 
   let count = 0
 
@@ -15,3 +16,7 @@
 <button on:click={() => count++}>
   Count is: {count}
 </button>
+
+<FloatingWrapper floatingClass="custom-floating-class"
+  >Some floating content</FloatingWrapper
+>

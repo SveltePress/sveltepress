@@ -9,7 +9,52 @@ This feature allows you to write
 
 Here's a basic example with `#if`, `#each`, `#await`, `@html`, `@const`
 
-**Input**
+<Tabs activeName="Output">
+
+<TabPanel name="Output">
+
+<ul>
+{#each items as item, i}
+{@const str = `${i + 1}: ${item}`}
+  <li>
+    {str}
+  </li>
+{/each}
+</ul>
+
+<button on:click="{() => boolVal = !boolVal}">
+Toggle
+</button>
+
+{#if boolVal}
+  <h3 class="text-green">
+    Pass
+  </h3>
+{:else}
+  <h3 class="text-red">
+    Fail
+  </h3>
+{/if}
+
+{#await promise}
+  <h3 class="text-orange">
+    Loading
+  </h3>
+{:then res}
+  <h3 class="text-green">
+    {res}
+  </h3>
+{:catch err}
+  <h3 class="text-red">
+    {err}
+  </h3>
+{/await}
+
+{@html "<h1>Content render with @html</h1>"}
+
+</TabPanel>
+
+<TabPanel name="Input">
 
 ```md
 <script>
@@ -71,59 +116,39 @@ Toggle
 {@html "<h1>Content render with @html</h1>"}
 ```
 
-**Output**
+</TabPanel>
 
-<ul>
-{#each items as item, i}
-{@const str = `${i + 1}: ${item}`}
-  <li>
-    {str}
-  </li>
-{/each}
-</ul>
+</Tabs>
 
-<button on:click="{() => boolVal = !boolVal}">
-Toggle
-</button>
-
-{#if boolVal}
-  <h3 class="text-green">
-    Pass
-  </h3>
-{:else}
-  <h3 class="text-red">
-    Fail
-  </h3>
-{/if}
-
-{#await promise}
-  <h3 class="text-orange">
-    Loading
-  </h3>
-{:then res}
-  <h3 class="text-green">
-    {res}
-  </h3>
-{:catch err}
-  <h3 class="text-red">
-    {err}
-  </h3>
-{/await}
-
-{@html "<h1>Content render with @html</h1>"}
+<div class="mt-4"></div>
 
 :::note[Syntax Restrictions]{icon=solar:chat-square-code-outline}
 Always use quotes in markdown files.
 ```svelte
-  <button on:click={() => count++}></button> // [svp! --]
-  <button on:click="{() => count++}"></button> // [svp! ++]
+<script>
+  let count = 0
+</script>
+<button on:click={() => count++}></button> // [svp! --]
+<button on:click="{() => count++}"></button> // [svp! ++]
 ```
 :::
 
 
 ## A Counter
 
-**Input**
+<Tabs activeName="Output">
+
+<TabPanel name="Output">
+
+> A counter
+
+<button on:click="{() => count++}" style="margin-bottom: 12px;">
+  You've clicked {count} times
+</button>
+
+</TabPanel>
+
+<TabPanel name="Input">
 
 ```md
 > A counter
@@ -136,9 +161,9 @@ Always use quotes in markdown files.
 </button>
 ```
 
-**Output**
+</TabPanel>
 
-> A counter
+</Tabs>
 
 <script>
   import Counter from './Counter.svelte'
@@ -158,17 +183,17 @@ Always use quotes in markdown files.
   $: promise = boolVal ? promisePass() : promiseFail()
 </script>
 
-<button on:click="{() => count++}" style="margin-bottom: 12px;">
-  You've clicked {count} times
-</button>
-
 ## Import svelte in md
 
-**Counter.svelte**
+<Tabs activeName="Output">
 
-@code(./Counter.svelte)
+<TabPanel name="Output">
 
-**Input**
+<Counter />
+
+</TabPanel>
+
+<TabPanel name="Input">
 
 ```md
 <script>
@@ -177,7 +202,13 @@ Always use quotes in markdown files.
 <Counter />
 ```
 
-**Output**
+</TabPanel>
 
-<Counter />
+<TabPanel name="Counter.svelte">
+
+@code(./Counter.svelte)
+
+</TabPanel>
+
+</Tabs>
 

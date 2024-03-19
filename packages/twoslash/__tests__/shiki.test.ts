@@ -22,13 +22,22 @@ describe('shiki', () => {
       },
       transformers: [
         createTransformerFactory(await createTwoslasher())({
-          langs: ['ts', 'tsx', 'svelte'],
-          renderer: rendererFloatingSvelte({
-            lang: 'ts',
-          }),
+          langs,
+          renderer: rendererFloatingSvelte(),
         }),
       ],
     })
     expect(html).toMatchSnapshot()
+  })
+
+  it('tokens', () => {
+    const tokens = shikiHighlighter.codeToTokensWithThemes(svelteCode, {
+      themes: {
+        dark: 'vitesse-dark',
+        light: 'github-light',
+      },
+      lang: 'svelte',
+    })
+    expect(tokens).toMatchSnapshot()
   })
 })

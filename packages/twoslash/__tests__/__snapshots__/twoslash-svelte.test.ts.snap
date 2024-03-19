@@ -1,303 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`shiki > twoslash svelte hover 1`] = `
-{
-  "code": "<script context="module" lang="ts">
-  export const FOO = 'BAR'
-</script>
-
-<script lang="ts">
-  import { onMount } from 'svelte'
-
-  let count = 0
-
-  onMount(() => {
-    console.log('mounted')
-  })
-</script>
-
-<button on:click={() => count++}>
-  Count is: {count}
-</button>
-",
-  "completions": [],
-  "errors": [],
-  "highlights": [],
-  "hovers": [
-    {
-      "character": 35,
-      "docs": undefined,
-      "length": 3,
-      "line": 1,
-      "start": 49,
-      "tags": undefined,
-      "target": "FOO",
-      "text": "const FOO: "BAR"",
-      "type": "hover",
-    },
-    {
-      "character": 9,
-      "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
-It must be called during the component's initialisation (but doesn't need to live *inside* the component;
-it can be called from an external module).
-
-If a function is returned _synchronously_ from \`onMount\`, it will be called when the component is unmounted.
-
-\`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
-
-https://svelte.dev/docs/svelte#onmount",
-      "length": 7,
-      "line": 5,
-      "start": 74,
-      "tags": undefined,
-      "target": "onMount",
-      "text": "(alias) function onMount<T>(fn: () => NotFunction<T> | Promise<NotFunction<T>> | (() => any)): void
-import onMount",
-      "type": "hover",
-    },
-    {
-      "character": 6,
-      "docs": undefined,
-      "length": 5,
-      "line": 7,
-      "start": 129,
-      "tags": undefined,
-      "target": "count",
-      "text": "let count: number",
-      "type": "hover",
-    },
-    {
-      "character": 2,
-      "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
-It must be called during the component's initialisation (but doesn't need to live *inside* the component;
-it can be called from an external module).
-
-If a function is returned _synchronously_ from \`onMount\`, it will be called when the component is unmounted.
-
-\`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
-
-https://svelte.dev/docs/svelte#onmount",
-      "length": 7,
-      "line": 9,
-      "start": 142,
-      "tags": undefined,
-      "target": "onMount",
-      "text": "(alias) onMount<void>(fn: () => void | (() => any) | Promise<void>): void
-import onMount",
-      "type": "hover",
-    },
-    {
-      "character": 4,
-      "docs": undefined,
-      "length": 7,
-      "line": 10,
-      "start": 162,
-      "tags": undefined,
-      "target": "console",
-      "text": "var console: Console",
-      "type": "hover",
-    },
-    {
-      "character": 12,
-      "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log)",
-      "length": 3,
-      "line": 10,
-      "start": 170,
-      "tags": undefined,
-      "target": "log",
-      "text": "(method) Console.log(...data: any[]): void",
-      "type": "hover",
-    },
-    {
-      "character": 58,
-      "docs": undefined,
-      "length": 5,
-      "line": 20,
-      "start": 267,
-      "tags": undefined,
-      "target": "count",
-      "text": "let count: number",
-      "type": "hover",
-    },
-    {
-      "character": 4,
-      "docs": undefined,
-      "length": 5,
-      "line": 15,
-      "start": 283,
-      "tags": undefined,
-      "target": "count",
-      "text": "let count: number",
-      "type": "hover",
-    },
-    {
-      "character": 9,
-      "docs": undefined,
-      "length": 5,
-      "line": 24,
-      "start": 305,
-      "tags": undefined,
-      "target": "props",
-      "text": "(property) props: {}",
-      "type": "hover",
-    },
-    {
-      "character": 59,
-      "docs": undefined,
-      "length": 5,
-      "line": 24,
-      "start": 355,
-      "tags": undefined,
-      "target": "slots",
-      "text": "(property) slots: {}",
-      "type": "hover",
-    },
-    {
-      "character": 70,
-      "docs": undefined,
-      "length": 6,
-      "line": 24,
-      "start": 366,
-      "tags": undefined,
-      "target": "events",
-      "text": "(property) events: {}",
-      "type": "hover",
-    },
-    {
-      "character": 21,
-      "docs": undefined,
-      "length": 23,
-      "line": 26,
-      "start": 402,
-      "tags": undefined,
-      "target": "Index__SvelteComponent_",
-      "text": "class Index__SvelteComponent_",
-      "type": "hover",
-    },
-    {
-      "character": 59,
-      "docs": undefined,
-      "length": 6,
-      "line": 29,
-      "start": 627,
-      "tags": undefined,
-      "target": "params",
-      "text": "(parameter) params: any",
-      "type": "hover",
-    },
-    {
-      "character": 41,
-      "docs": undefined,
-      "length": 6,
-      "line": 30,
-      "start": 686,
-      "tags": undefined,
-      "target": "params",
-      "text": "(parameter) params: any",
-      "type": "hover",
-    },
-    {
-      "character": 48,
-      "docs": undefined,
-      "length": 6,
-      "line": 31,
-      "start": 752,
-      "tags": undefined,
-      "target": "params",
-      "text": "(parameter) params: any",
-      "type": "hover",
-    },
-  ],
-  "meta": {
-    "compilerOptions": {
-      "allowJs": true,
-      "baseUrl": "/home/ubuntu/github-projects/sveltepress/packages/twoslash/",
-      "module": 99,
-      "moduleDetection": 3,
-      "plugins": [
-        {
-          "name": "typescript-svelte-plugin",
-        },
-      ],
-      "skipDefaultLibCheck": true,
-      "skipLibCheck": true,
-      "strict": true,
-      "target": 99,
-    },
-    "extension": "svelte",
-    "flagNotations": [],
-    "handbookOptions": {
-      "errors": [],
-      "keepNotations": false,
-      "noErrorValidation": false,
-      "noErrors": false,
-      "noErrorsCutted": false,
-      "noStaticSemanticInfo": false,
-      "showEmit": false,
-      "showEmittedFile": undefined,
-    },
-    "positionCompletions": [],
-    "positionHighlights": [],
-    "positionQueries": [],
-    "removals": [],
-    "virtualFiles": [
-      {
-        "content": "///<reference types="svelte" />
-;
-  export const FOO = 'BAR'
-;;
-
-import { onMount } from 'svelte'
-function render() {
-
-  
-
-  let count = 0
-
-  onMount(() => {
-    console.log('mounted')
-  })
-;
-async () => {
-
-
-
- { svelteHTML.createElement("button", {  "on:click":() => count++,});
-    count;
- }
-};
-return { props: /** @type {Record<string, never>} */ ({}), slots: {}, events: {} }}
-
-export default class Index__SvelteComponent_ extends __sveltets_2_createSvelte2TsxComponent(__sveltets_2_partial(__sveltets_2_with_any_event(render()))) {
-}
-declare const svelteHTML: any
-declare function __sveltets_2_createSvelte2TsxComponent(...params: any): any
-declare function __sveltets_2_partial(...params: any): any
-declare function __sveltets_2_with_any_event(...params: any): any
-",
-        "extension": "tsx",
-        "filename": "index.tsx",
-        "filepath": "/home/ubuntu/github-projects/sveltepress/packages/twoslash/index.tsx",
-        "offset": 0,
-        "supportLsp": true,
-      },
-    ],
+[
+  {
+    "character": 15,
+    "docs": undefined,
+    "length": 3,
+    "line": 1,
+    "start": 51,
+    "tags": undefined,
+    "target": "FOO",
+    "text": "const FOO: "BAR"",
+    "type": "hover",
   },
-  "nodes": [
-    {
-      "character": 35,
-      "docs": undefined,
-      "length": 3,
-      "line": 1,
-      "start": 49,
-      "tags": undefined,
-      "target": "FOO",
-      "text": "const FOO: "BAR"",
-      "type": "hover",
-    },
-    {
-      "character": 9,
-      "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
+  {
+    "character": 11,
+    "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
 It must be called during the component's initialisation (but doesn't need to live *inside* the component;
 it can be called from an external module).
 
@@ -306,29 +24,62 @@ If a function is returned _synchronously_ from \`onMount\`, it will be called wh
 \`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
 
 https://svelte.dev/docs/svelte#onmount",
-      "length": 7,
-      "line": 5,
-      "start": 74,
-      "tags": undefined,
-      "target": "onMount",
-      "text": "(alias) function onMount<T>(fn: () => NotFunction<T> | Promise<NotFunction<T>> | (() => any)): void
+    "length": 7,
+    "line": 5,
+    "start": 104,
+    "tags": undefined,
+    "target": "onMount",
+    "text": "(alias) function onMount<T>(fn: () => NotFunction<T> | Promise<NotFunction<T>> | (() => any)): void
 import onMount",
-      "type": "hover",
-    },
-    {
-      "character": 6,
-      "docs": undefined,
-      "length": 5,
-      "line": 7,
-      "start": 129,
-      "tags": undefined,
-      "target": "count",
-      "text": "let count: number",
-      "type": "hover",
-    },
-    {
-      "character": 2,
-      "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
+    "type": "hover",
+  },
+  {
+    "character": 9,
+    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+
+Can be used to create strongly typed Svelte components.
+
+#### Example:
+
+You have component library on npm called \`component-library\`, from which
+you export a component called \`MyComponent\`. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a \`index.d.ts\`:
+\`\`\`ts
+import { SvelteComponent } from "svelte";
+export class MyComponent extends SvelteComponent<{foo: string}> {}
+\`\`\`
+Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:
+\`\`\`svelte
+<script lang="ts">
+	import { MyComponent } from "component-library";
+</script>
+<MyComponent foo={'bar'} />
+\`\`\`",
+    "length": 15,
+    "line": 6,
+    "start": 137,
+    "tags": undefined,
+    "target": "FloatingWrapper",
+    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+import FloatingWrapper",
+    "type": "hover",
+  },
+  {
+    "character": 6,
+    "docs": undefined,
+    "length": 5,
+    "line": 8,
+    "start": 208,
+    "tags": undefined,
+    "target": "count",
+    "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 2,
+    "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
 It must be called during the component's initialisation (but doesn't need to live *inside* the component;
 it can be called from an external module).
 
@@ -337,138 +88,148 @@ If a function is returned _synchronously_ from \`onMount\`, it will be called wh
 \`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
 
 https://svelte.dev/docs/svelte#onmount",
-      "length": 7,
-      "line": 9,
-      "start": 142,
-      "tags": undefined,
-      "target": "onMount",
-      "text": "(alias) onMount<void>(fn: () => void | (() => any) | Promise<void>): void
+    "length": 7,
+    "line": 10,
+    "start": 221,
+    "tags": undefined,
+    "target": "onMount",
+    "text": "(alias) onMount<void>(fn: () => void | (() => any) | Promise<void>): void
 import onMount",
-      "type": "hover",
-    },
-    {
-      "character": 4,
-      "docs": undefined,
-      "length": 7,
-      "line": 10,
-      "start": 162,
-      "tags": undefined,
-      "target": "console",
-      "text": "var console: Console",
-      "type": "hover",
-    },
-    {
-      "character": 12,
-      "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log)",
-      "length": 3,
-      "line": 10,
-      "start": 170,
-      "tags": undefined,
-      "target": "log",
-      "text": "(method) Console.log(...data: any[]): void",
-      "type": "hover",
-    },
-    {
-      "character": 58,
-      "docs": undefined,
-      "length": 5,
-      "line": 20,
-      "start": 267,
-      "tags": undefined,
-      "target": "count",
-      "text": "let count: number",
-      "type": "hover",
-    },
-    {
-      "character": 4,
-      "docs": undefined,
-      "length": 5,
-      "line": 15,
-      "start": 283,
-      "tags": undefined,
-      "target": "count",
-      "text": "let count: number",
-      "type": "hover",
-    },
-    {
-      "character": 9,
-      "docs": undefined,
-      "length": 5,
-      "line": 24,
-      "start": 305,
-      "tags": undefined,
-      "target": "props",
-      "text": "(property) props: {}",
-      "type": "hover",
-    },
-    {
-      "character": 59,
-      "docs": undefined,
-      "length": 5,
-      "line": 24,
-      "start": 355,
-      "tags": undefined,
-      "target": "slots",
-      "text": "(property) slots: {}",
-      "type": "hover",
-    },
-    {
-      "character": 70,
-      "docs": undefined,
-      "length": 6,
-      "line": 24,
-      "start": 366,
-      "tags": undefined,
-      "target": "events",
-      "text": "(property) events: {}",
-      "type": "hover",
-    },
-    {
-      "character": 21,
-      "docs": undefined,
-      "length": 23,
-      "line": 26,
-      "start": 402,
-      "tags": undefined,
-      "target": "Index__SvelteComponent_",
-      "text": "class Index__SvelteComponent_",
-      "type": "hover",
-    },
-    {
-      "character": 59,
-      "docs": undefined,
-      "length": 6,
-      "line": 29,
-      "start": 627,
-      "tags": undefined,
-      "target": "params",
-      "text": "(parameter) params: any",
-      "type": "hover",
-    },
-    {
-      "character": 41,
-      "docs": undefined,
-      "length": 6,
-      "line": 30,
-      "start": 686,
-      "tags": undefined,
-      "target": "params",
-      "text": "(parameter) params: any",
-      "type": "hover",
-    },
-    {
-      "character": 48,
-      "docs": undefined,
-      "length": 6,
-      "line": 31,
-      "start": 752,
-      "tags": undefined,
-      "target": "params",
-      "text": "(parameter) params: any",
-      "type": "hover",
-    },
-  ],
-  "queries": [],
-  "tags": [],
-}
+    "type": "hover",
+  },
+  {
+    "character": 4,
+    "docs": undefined,
+    "length": 7,
+    "line": 11,
+    "start": 241,
+    "tags": undefined,
+    "target": "console",
+    "text": "var console: Console",
+    "type": "hover",
+  },
+  {
+    "character": 12,
+    "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log)",
+    "length": 3,
+    "line": 11,
+    "start": 249,
+    "tags": undefined,
+    "target": "log",
+    "text": "(method) Console.log(...data: any[]): void",
+    "type": "hover",
+  },
+  {
+    "character": 0,
+    "docs": undefined,
+    "length": 13,
+    "line": 15,
+    "start": 280,
+    "tags": undefined,
+    "target": "createElement",
+    "text": "any",
+    "type": "hover",
+  },
+  {
+    "character": 24,
+    "docs": undefined,
+    "length": 5,
+    "line": 15,
+    "start": 304,
+    "tags": undefined,
+    "target": "count",
+    "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 13,
+    "docs": undefined,
+    "length": 5,
+    "line": 16,
+    "start": 327,
+    "tags": undefined,
+    "target": "count",
+    "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 1,
+    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+
+Can be used to create strongly typed Svelte components.
+
+#### Example:
+
+You have component library on npm called \`component-library\`, from which
+you export a component called \`MyComponent\`. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a \`index.d.ts\`:
+\`\`\`ts
+import { SvelteComponent } from "svelte";
+export class MyComponent extends SvelteComponent<{foo: string}> {}
+\`\`\`
+Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:
+\`\`\`svelte
+<script lang="ts">
+	import { MyComponent } from "component-library";
+</script>
+<MyComponent foo={'bar'} />
+\`\`\`",
+    "length": 15,
+    "line": 19,
+    "start": 346,
+    "tags": undefined,
+    "target": "FloatingWrapper",
+    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+import FloatingWrapper",
+    "type": "hover",
+  },
+  {
+    "character": 15,
+    "docs": undefined,
+    "length": 5,
+    "line": 19,
+    "start": 360,
+    "tags": undefined,
+    "target": "props",
+    "text": "(property) ComponentConstructorOptions<{ floatingClass: string; }>.props?: {
+    floatingClass: string;
+} | undefined",
+    "type": "hover",
+  },
+  {
+    "character": 26,
+    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
+
+Can be used to create strongly typed Svelte components.
+
+#### Example:
+
+You have component library on npm called \`component-library\`, from which
+you export a component called \`MyComponent\`. For Svelte+TypeScript users,
+you want to provide typings. Therefore you create a \`index.d.ts\`:
+\`\`\`ts
+import { SvelteComponent } from "svelte";
+export class MyComponent extends SvelteComponent<{foo: string}> {}
+\`\`\`
+Typing this makes it possible for IDEs like VS Code with the Svelte extension
+to provide intellisense and to use the component like this in a Svelte file
+with TypeScript:
+\`\`\`svelte
+<script lang="ts">
+	import { MyComponent } from "component-library";
+</script>
+<MyComponent foo={'bar'} />
+\`\`\`",
+    "length": 15,
+    "line": 20,
+    "start": 426,
+    "tags": undefined,
+    "target": "FloatingWrapper",
+    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+import FloatingWrapper",
+    "type": "hover",
+  },
+]
 `;

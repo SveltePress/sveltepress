@@ -13,5 +13,6 @@
     "removeComments": false,
     "module": "ESNext"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/twoslash-svelte/types.ts"]
 }

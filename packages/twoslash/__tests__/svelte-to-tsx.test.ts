@@ -1,13 +1,30 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { svelte2tsx } from 'svelte2tsx'
+import { DocumentSnapshot } from 'svelte-language-server/dist/src/plugins/typescript/DocumentSnapshot'
+import { parse } from 'svelte/compiler'
+import { Document } from 'svelte-language-server/dist/src/lib/documents'
 
-const svelteCode = readFileSync(resolve(import.meta.dirname, 'test.svelte'), 'utf-8')
+const svelteFilePath = resolve(import.meta.dirname, 'test.svelte')
+const svelteCode = readFileSync(svelteFilePath, 'utf-8')
 
-describe('shiki', () => {
-  it('twoslash svelte', async () => {
-    const { code } = svelte2tsx(svelteCode)
-    expect(code).toMatchSnapshot()
+describe('svelte to tsx', () => {
+  const doc = DocumentSnapshot.fromDocument(new Document('index.svelte', svelteCode), {
+    parse,
+    version: '4',
+    transformOnTemplateError: false,
+    typingsNamespace: '',
+  })
+  it('tsx code', async () => {
+    expect(doc.getFullText()).toMatchSnapshot()
+    expect(doc.getOriginalPosition({
+      line: 2,
+      character: 15,
+    })).toMatchInlineSnapshot(`
+      {
+        "character": 15,
+        "line": 1,
+      }
+    `)
   })
 })

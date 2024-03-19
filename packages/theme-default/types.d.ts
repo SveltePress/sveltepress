@@ -4,15 +4,16 @@
 /// <reference types="@sveltepress/vite/types" />
 
 
+
 declare module 'virtual:sveltepress/theme-default' {
   import type { BundledLanguage } from 'shiki/langs'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
-
+  
   export interface WithTitle {
     title?: string
   }
-
+  
   export interface LinkItem extends WithTitle {
     icon?: string
     to?: string
@@ -76,4 +77,16 @@ declare module 'virtual:sveltepress/theme-default' {
 
   const options: DefaultThemeOptions
   export default options
+}
+
+
+declare module '@sveltepress/theme-default/components' {
+  export const Link: any
+  export const Floating: any
+  export const IconifyIcon: any
+  export const CopyCode: any
+  export const Expansion: any
+  export const Tabs: any
+  export const TabPanel: any
+  export const InstallPkg: any
 }
