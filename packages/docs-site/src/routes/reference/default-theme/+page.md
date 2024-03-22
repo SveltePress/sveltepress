@@ -71,19 +71,19 @@ An object, key is the group route prefix, value is an array of object with follo
 * `items`  
   Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
 
-### `highlight`
+### `highlighter`
 
 An object that contains custom highlight options.
 
 * `languages` - Customize the supported highlight languages.
-Default is:
-
-@code(/../theme-default/src/markdown/highlighter.ts,9,10)
-
+Default is: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
 * `darkTheme` - The code theme that will be applied in dark mode. Default is `night-owl`
+* `twoslash` - Set to `true` to enable [Twoslash](/guide/default-theme/twoslash/). Default is `false`
 
+:::important[TIP]
 You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki) 
+:::
 
 ### `editLink`
 

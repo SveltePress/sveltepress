@@ -1,4 +1,5 @@
 import type { BundledLanguage } from 'shiki/langs'
+import type { BundledTheme, CodeToHastOptions } from 'shiki'
 import { getHighlighter } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
 import { LRUCache } from 'lru-cache'
@@ -20,23 +21,28 @@ async function createHighlighterWithThemeAndLangs() {
     themes: [darkTheme, lightTheme],
     langs,
   })
-  const _highlighter: Highlighter = async (code, lang) => shikiHighlighter.codeToHtml(code, {
-    lang,
-    themes: {
-      dark: darkTheme,
-      light: lightTheme,
-    },
-    transformers: [
-      createTransformerFactory(await createTwoslasher())({
+
+  const _highlighter: Highlighter = async (code, lang) => {
+    const shikiOptions: CodeToHastOptions<BundledLanguage, BundledTheme> = {
+      lang,
+      themes: {
+        dark: darkTheme,
+        light: lightTheme,
+      },
+      transformers: [],
+    }
+    if (themeOptionsRef.value?.highlighter?.twoslash) {
+      shikiOptions.transformers?.push(createTransformerFactory(await createTwoslasher())({
         langs: ['ts', 'tsx', 'svelte'],
         renderer: rendererFloatingSvelte({
           lang: 'ts',
         }),
-      }),
-    ],
-  })
-    .replace(/\{/g, '&#123;')
-    .replace(/\}/g, '&#125;')
+      }))
+    }
+    return shikiHighlighter.codeToHtml(code, shikiOptions)
+      .replace(/\{/g, '&#123;')
+      .replace(/\}/g, '&#125;')
+  }
 
   return _highlighter
 }

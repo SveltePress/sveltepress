@@ -51,6 +51,7 @@ declare module 'virtual:sveltepress/theme-default' {
       languages?: BundledLanguage[]
       themeLight?: string
       themeDark?: string
+      twoslash?: boolean
     }
     i18n?: {
       onThisPage?: string

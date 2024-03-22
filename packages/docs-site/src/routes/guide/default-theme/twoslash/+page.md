@@ -6,6 +6,31 @@ This feature integrate [Twoslash](https://github.com/twoslashes/twoslash)
 
 All of the Typescript code blocks would provide inline type hover.
 
+## Enable twoslash
+
+* Install @sveltepress/twoslash package
+
+@install-pkg(@sveltepress/twoslash)
+
+* Config `highlighter.twoslash` to `true`
+```ts title="vite.config.(js|ts)"
+import { defineConfig } from 'vite'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        highlighter: { // [svp! ++]
+          twoslash: true // [svp! ++]
+        } // [svp! ++]
+      })
+    })
+  ]
+})
+```
+
 ## Basic type annotation
 
 ````md live

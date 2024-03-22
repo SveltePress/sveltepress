@@ -39,6 +39,9 @@ const config = defineConfig({
           'mdi': ['theme-light-dark'],
           'bi': ['list-nested'],
         },
+        highlighter: {
+          twoslash: true,
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',

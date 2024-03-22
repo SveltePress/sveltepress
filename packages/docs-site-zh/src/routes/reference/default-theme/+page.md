@@ -73,18 +73,18 @@ Logo 图片
 * `items`  
   子链接，若配置该属性，则 `to` 将会失效，展示一个分组链接
 
-### `highlight`
+### `highlighter`
 
 一个包含如下属性的代码块高亮相关配置：
 
-* `languages` - 自定义支持的语言列表，默认为：
-
-@code(/../theme-default/src/markdown/highlighter.ts,9,10)
-
+* `languages` - 自定义支持的语言列表，默认为：`['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - 日间模式所使用的高亮主题，默认为：`vitesse-light`
 * `darkTheme` - 夜间模式所使用的高亮主题，默认为：`night-owl`
+* `twoslash` - 设置为 `true` 可以开启 [Twoslash](/guide/default-theme/twoslash/) 功能. 默认为 `false`
 
+:::important[TIP]
 你可以在 [Shiki Repo](https://github.com/shikijs/shiki) 获得所有支持的语言以及主题
+:::
 
 ### `editLink`
 

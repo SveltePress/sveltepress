@@ -6,6 +6,31 @@ title: Twoslash
 
 所有的 Typescript 代码块将会自动添加鼠标上浮的类型提示
 
+## 开启 twoslash
+
+* 安装 @sveltepress/twoslash 依赖
+
+@install-pkg(@sveltepress/twoslash)
+
+* 将默认主题 `highlighter.twoslash` 选项设置为 `true`
+```ts title="vite.config.(js|ts)"
+import { defineConfig } from 'vite'
+import { sveltepress } from '@sveltepress/vite'
+import { defaultTheme } from '@sveltepress/theme-default'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        highlighter: { // [svp! ++]
+          twoslash: true // [svp! ++]
+        } // [svp! ++]
+      })
+    })
+  ]
+})
+```
+
 ## 基础类型注释
 
 ````md live

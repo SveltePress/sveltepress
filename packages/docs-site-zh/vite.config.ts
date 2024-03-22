@@ -38,6 +38,9 @@ const config = defineConfig({
           'tabler': ['icons'],
           'mdi': ['theme-light-dark'],
         },
+        highlighter: {
+          twoslash: true,
+        },
       }),
       siteConfig: {
         title: 'Sveltepress',

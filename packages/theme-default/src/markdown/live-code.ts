@@ -26,8 +26,9 @@ interface LiveCodePathItem {
 
 const globalComponentsImporters = [
   'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from \'@sveltepress/theme-default/components\'',
-  'import Floating from \'@sveltepress/twoslash/FloatingWrapper.svelte\'',
 ]
+
+const twoslashImporter = ['import Floating from \'@sveltepress/twoslash/FloatingWrapper.svelte\'']
 
 function createAsyncImportCode(componentPath: string) {
   return `
@@ -173,7 +174,7 @@ const liveCode: Plugin<[], any> = function () {
       if (node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
         hasScript = true
         const value = node.value.replace(/^<script[ \w+="\w+"]*>/, (m: string) =>
-          [m, ...globalComponentsImporters, ...liveCodeImports].join('\n'))
+          [m, ...globalComponentsImporters, ...(themeOptionsRef.value?.highlighter?.twoslash ? [twoslashImporter] : []), ...liveCodeImports].join('\n'))
         parent.children.splice(idx, 1, {
           type: 'html',
           value,
@@ -184,7 +185,7 @@ const liveCode: Plugin<[], any> = function () {
     if (!hasScript) {
       tree.children.unshift({
         type: 'html',
-        value: ['<script>', ...globalComponentsImporters, ...liveCodeImports, '</script>'].join('\n'),
+        value: ['<script>', ...globalComponentsImporters, ...(themeOptionsRef.value?.highlighter?.twoslash ? [twoslashImporter] : []), ...liveCodeImports, '</script>'].join('\n'),
       })
     }
   }
