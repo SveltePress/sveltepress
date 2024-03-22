@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.42.1
+
+### Patch Changes
+
+- [`21fda3d`](https://github.com/SveltePress/sveltepress/commit/21fda3daebbf250c24618c135fd82bb630f33875) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: make twoslash required exlict option by user
+
 ## 0.42.0
 
 ### Minor Changes

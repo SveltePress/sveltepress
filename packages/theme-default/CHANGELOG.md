@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 2.0.1
+
+### Patch Changes
+
+- [`21fda3d`](https://github.com/SveltePress/sveltepress/commit/21fda3daebbf250c24618c135fd82bb630f33875) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: make twoslash required exlict option by user
+
+- Updated dependencies [[`21fda3d`](https://github.com/SveltePress/sveltepress/commit/21fda3daebbf250c24618c135fd82bb630f33875)]:
+  - @sveltepress/twoslash@0.2.1
+  - @sveltepress/vite@0.33.1
+
 ## 2.0.0
 
 ### Minor Changes
