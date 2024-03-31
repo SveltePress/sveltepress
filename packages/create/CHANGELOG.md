@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 0.42.2
+
+### Patch Changes
+
+- [`94af3b4`](https://github.com/SveltePress/sveltepress/commit/94af3b4ae6f7be2f0b916048ac5fc14c529b29b7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: moving twoslash style import into twoslash package
+
+- [`94af3b4`](https://github.com/SveltePress/sveltepress/commit/94af3b4ae6f7be2f0b916048ac5fc14c529b29b7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add frontmatter to manually control sidebar and header
+
 ## 0.42.1
 
 ### Patch Changes
