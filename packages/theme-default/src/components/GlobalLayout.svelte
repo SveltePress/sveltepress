@@ -1,6 +1,5 @@
 <script>
   import 'uno.css'
-  import '@shikijs/twoslash/style-rich.css'
   import '@docsearch/css/dist/style.css'
   import 'virtual:sveltepress/prebuild-iconify-icons.css'
   import '../style.css'
@@ -15,6 +14,7 @@
     oldScrollY,
     resolveSidebar,
     scrollY,
+    showHeader,
     sidebar,
     sidebarCollapsed,
   } from './layout'
@@ -60,11 +60,13 @@
   bind:scrollY={$scrollY}
 />
 
-<Navbar />
+{#if $showHeader}
+  <Navbar />
+{/if}
 {#if $page.error}
   <Error error={$page.error} />
 {:else}
-  <main>
+  <main class:without-header={$showHeader === false}>
     <AjaxBar bind:this={ajaxBar} />
     {#if $sidebar}
       <Sidebar />
@@ -90,6 +92,9 @@
 <style uno:preflights uno:safelist global>
   main {
     --at-apply: 'pt-[76px] sm:pt-[73px]';
+  }
+  main.without-header {
+    --at-apply: 'pt-4';
   }
   :global(html) {
     --at-apply: 'scroll-smooth';

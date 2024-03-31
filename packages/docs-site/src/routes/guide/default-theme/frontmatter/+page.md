@@ -24,6 +24,14 @@ It will affect the "last update at: " content at the end of the page.
 Default it would read the git commit time of the +page file.    
 You can override it by config this field.  
 
+### `sidebar`
+
+Determine to show the sidebar or not. Default is `true`, change to `false` to hide the sidebar
+
+### `header`
+
+Determine to show the header or not. Default is `true`, change to `false` to hide the header
+
 ## Special frontmatter
 
 * [Home page frontmatter](/guide/default-theme/home-page/#Frontmatter)

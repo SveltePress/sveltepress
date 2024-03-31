@@ -6,7 +6,7 @@
   import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
   import LastUpdate from './LastUpdate.svelte'
-  import { anchors, pages } from './layout'
+  import { anchors, pages, showHeader, sidebar } from './layout'
   import HeroImage from './home/HeroImage.svelte'
   import { page } from '$app/stores'
   import { afterNavigate, beforeNavigate } from '$app/navigation'
@@ -23,7 +23,12 @@
     lastUpdate,
     anchors: fmAnchors = [],
     home,
+    sidebar: fmSidebar = true,
+    header = true,
   } = fm
+
+  $sidebar = fmSidebar
+  $showHeader = header
 
   const isHome = routeId === '/'
 

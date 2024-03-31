@@ -3,6 +3,7 @@
   import type { Placement } from '@floating-ui/dom'
   import { arrow, autoUpdate, computePosition, offset } from '@floating-ui/dom'
   import teleport from '../actions/teleport'
+  import '@shikijs/twoslash/style-rich.css'
   import type { EDirection } from './types'
 
   export let show = false
