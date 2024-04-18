@@ -1,40 +1,47 @@
 {
   "name": "@sveltepress/create",
+  "type": "module",
   "version": "0.42.2",
   "description": "The helper for creating sveltepress projects",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
-  "homepage": "https://sveltepress.site/",
-  "scripts": {
-    "build": "unbuild"
-  },
-  "bin": "index.js",
-  "type": "module",
-  "files": [
-    "dist",
-    "template-*"
-  ],
-  "keywords": [
-    "svelte",
-    "sveltekit",
-    "sveltepress"
-  ],
   "author": {
     "name": "Dongsheng Zhao",
     "email": "1197160272@qq.com"
   },
+  "license": "MIT",
+  "homepage": "https://sveltepress.site/",
   "repository": {
     "type": "github",
     "url": "https://github.com/Blackman99/sveltepress",
     "directory": "packages/create"
   },
-  "license": "MIT",
+  "keywords": [
+    "svelte",
+    "sveltekit",
+    "sveltepress"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "bin": "index.js",
+  "files": [
+    "dist",
+    "template-*"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "prepare": "pnpm build"
+  },
+  "dependencies": {
+    "cross-spawn": "^7.0.3",
+    "minimist": "^1.2.8",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2"
+  },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.6",
     "@types/minimist": "^1.2.5",
@@ -42,11 +49,5 @@
     "@types/prompts": "^2.4.9",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0"
-  },
-  "dependencies": {
-    "cross-spawn": "^7.0.3",
-    "minimist": "^1.2.8",
-    "picocolors": "^1.0.0",
-    "prompts": "^2.4.2"
   }
 }
