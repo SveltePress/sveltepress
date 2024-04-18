@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.42.3
+
+### Patch Changes
+
+- [`d206d01`](https://github.com/SveltePress/sveltepress/commit/d206d01a123ded84c8379c5b1445a6df6d863646) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: prepublish should build first
+
 ## 0.42.2
 
 ### Patch Changes
