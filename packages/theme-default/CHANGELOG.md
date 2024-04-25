@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 2.0.3
+
+### Patch Changes
+
+- [`de2329b`](https://github.com/SveltePress/sveltepress/commit/de2329b09e0daa38530a95165d1effae895ed599) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: wrong unocss format causing sveltekit build error
+
+- Updated dependencies []:
+  - @sveltepress/vite@0.33.2
+
 ## 2.0.2
 
 ### Patch Changes
