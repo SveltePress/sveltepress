@@ -10,7 +10,7 @@
 
 <style>
   .hero-image {
-    --at-apply: 'flex items-center justify-center col-start sm:col-span-5 col-span-6 col-start-4 sm:col-start-8';
+    --at-apply: 'flex items-center justify-center sm:col-span-5 col-span-6 col-start-4 sm:col-start-8';
   }
   .hero-image img {
     --at-apply: 'sm:w-60 w-full max-w-[220px]';
