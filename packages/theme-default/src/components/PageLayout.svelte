@@ -116,6 +116,9 @@
   :global(.theme-default--page-layout h6:hover .svp-title-anchor) {
     --at-apply: 'pointer-events-auto opacity-100';
   }
+  :global(.theme-default--page-layout img) {
+    --at-apply: 'max-w-full';
+  }
   .content {
     --at-apply: 'sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw]';
   }
