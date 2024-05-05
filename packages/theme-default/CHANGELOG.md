@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 2.0.4
+
+### Patch Changes
+
+- [`4af651b`](https://github.com/SveltePress/sveltepress/commit/4af651b7ebeee76d9156ac51c8c6b9a7bef038f7) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add max width restriction for images
+
+- Updated dependencies []:
+  - @sveltepress/vite@0.33.2
+
 ## 2.0.3
 
 ### Patch Changes
