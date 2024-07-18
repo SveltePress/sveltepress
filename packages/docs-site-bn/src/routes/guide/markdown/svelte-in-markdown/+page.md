@@ -1,13 +1,12 @@
 ---
-title: Svelte in markdown
+title: Markdown এ Svelte 
 ---
 
-This feature allows you to write 
-`<style>`, `<script>`, `<script context="module">`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` in .md files
+এই ফিচারটি আপনাকে .md ফাইলে `<style>`, `<script>`, `<script context="module">`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` লিখতে দেয়। 
 
-## Basic
+## প্রাথমিক
 
-Here's a basic example with `#if`, `#each`, `#await`, `@html`, `@const`
+এখানে একটি `#if`, `#each`, `#await`, `@html`, `@const` এর প্রাথমিক উদাহরণ 
 
 <Tabs activeName="Output">
 
@@ -122,8 +121,8 @@ Toggle
 
 <div class="mt-4"></div>
 
-:::note[Syntax Restrictions]{icon=solar:chat-square-code-outline}
-Always use quotes in markdown files.
+:::note[Syntax এর বিধিনিষেধ]{icon=solar:chat-square-code-outline}
+মার্কডাউন ফাইলে সর্বদা উদ্ধৃতি ব্যবহার করুন।
 ```svelte
 <script>
   let count = 0
@@ -134,16 +133,16 @@ Always use quotes in markdown files.
 :::
 
 
-## A Counter
+## একটি কাউন্টার
 
 <Tabs activeName="Output">
 
 <TabPanel name="Output">
 
-> A counter
+> একটি কাউন্টার
 
 <button on:click="{() => count++}" style="margin-bottom: 12px;">
-  You've clicked {count} times
+ আপনি {count} বার ক্লিক করেছেন
 </button>
 
 </TabPanel>
@@ -157,8 +156,8 @@ Always use quotes in markdown files.
 </script>
 
 <button on:click="{() => count++}">
-  You've clicked {count} times
-</button>
+ আপনি {count} বার ক্লিক করেছেন
+ </button>
 ```
 
 </TabPanel>
@@ -183,7 +182,7 @@ Always use quotes in markdown files.
   $: promise = boolVal ? promisePass() : promiseFail()
 </script>
 
-## Import svelte in md
+## md ফাইলে svelte ইম্পোর্ট 
 
 <Tabs activeName="Output">
 
