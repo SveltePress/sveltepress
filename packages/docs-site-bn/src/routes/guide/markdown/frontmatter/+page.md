@@ -2,9 +2,10 @@
 title: Frontmatter
 ---
 
-## Frontmatter in markdown
+## Markdown এ Frontmatter 
 
-Use yaml format at the beginning of your md file.
+আপনার md ফাইলের শুরুতে yaml ফরম্যাট ব্যবহার করুন। 
+
 
 ```md
 ---
@@ -13,9 +14,9 @@ description: some description
 ---
 ```
 
-## Frontmatter in svelte
+## Svelte এ Frontmatter
 
-Export a const variable name as `frontmatter` in [Svelte context module](https://svelte.dev/docs#component-format-script-context-module) would do
+[Svelte context module](https://svelte.dev/docs#component-format-script-context-module) এ`frontmatter` নামক একটি const variable এক্সপোর্ট করুন 
 
 ```svelte title="/src/routes/foo/+page.svelte"
 <script context="module">
@@ -26,9 +27,9 @@ Export a const variable name as `frontmatter` in [Svelte context module](https:/
 </script>
 ```
 
-## Accessing frontmatter in markdown
+## markdown এ frontmatter অ্যাক্সেস করা
 
-Use `fm` variable:
+`fm` variable ব্যবহার করুন:
 
 ```md live
 Frontmatter of this page is: 
@@ -37,9 +38,9 @@ Frontmatter of this page is:
 </pre>
 ```
 
-## Site frontmatter
+## সাইট frontmatter
 
-The global shared frontmatter for every +page.md file
+প্রত্যেকটি +page.md ফাইল থেকে অ্যাক্সেস করা যাবে এমন ব্যাপক frontmatter
 
 ```ts
 interface SiteConfig {
