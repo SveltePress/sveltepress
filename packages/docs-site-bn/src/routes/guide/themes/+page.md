@@ -1,20 +1,20 @@
 ---
-title: Themes
+title: থিম
 ---
 
-## Introduction
+## পরিচিত
 
-Pass `theme` option to sveltepress to use a theme
+থিম ব্যবহার করতে `theme` অপশন sveltepress এ পাঠিয়ে দিন। 
 
-Read [Vite plugin options](/reference/vite-plugin/) and [Default theme options](/reference/default-theme/) for more details
+বিস্তারিত জানতে [ভিট প্লাগিন অপশন](/reference/vite-plugin/) এবং [ডিফল্ট থিম অপশন](/reference/default-theme/) পড়ুন। 
 
-## Default theme
+## ডিফল্ট থিম
 
-### Install
+### ইন্সটল
 
 @install-pkg(@sveltepress/theme-default)
 
-### Add in your vite config
+### আপনার ভিট কনফিগে যুক্ত করুন
 
 ```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
@@ -33,4 +33,4 @@ const config = defineConfig({
 export default config
 ```
 
-Get more info about default theme in [Default theme reference](/reference/default-theme/#Theme-Options)
+ডিফল্ট থিম সম্পর্কে আরো বিস্তারিত জানতে [ডিফল্ট থিম রেফারেন্স](/reference/default-theme/#Theme-Options)
