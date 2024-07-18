@@ -1,34 +1,35 @@
 ---
-title: Introduction
+title: পরিচিতি
 ---
 
-Sveltepress is a site build tool.  
-Inspired by [Vitepress](https://vitepress.vuejs.org/).  
-Build on top of [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss).
+Sveltepress হচ্ছে একটি সাইট বানানোর টুল।   
+[Vitepress](https://vitepress.vuejs.org/) থেকে অনুপ্রাণিত।  
+[SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss) এর উপর নির্ভর করে তৈরী। 
 
 
-## Project structure
+## প্রজেক্টের স্ট্র্যাকচার
 
-Exactly the same as [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure)
+হুবহু [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure) এর মতই। 
 
-Except for that you can use .md files for pages or layouts.  
-For example:
-* `src/routes/+page.md` is recognized as home page
-* `src/routes/+layout.md` is used for root custom layout
+শুধু পার্থক্য এই যে- পেজ এবং লআউটের জন্য .md ফাইল ব্যবহার করা যাবে। 
 
-:::tip[Full power of Sveltekit]{icon=logos:svelte-kit}
-Sveltepress preserves the full power of sveltekit. You can do more than SSG.
-For example use +page.server.js, +layout.server.js, hooks.server.js to do some server side logic like: Authentication, DB Docking, ...
+উদাহরণস্বরূপ:
+* `src/routes/+page.md` হোমপেজ হিসেবে চিহ্নিত হবে। 
+* `src/routes/+layout.md` রুটের কাস্টম লেআউট। 
+
+:::tip[Sveltekit এর পূর্ণ শক্তি]{icon=logos:svelte-kit}
+Sveltepress sveltekit এর পূর্ণ শক্তি অক্ষুণ্ণ রাখে। আপনি SSG এর চেয়েও বেশি কিছু করতে পারবেন। 
+যেমন, +page.server.js, +layout.server.js, hooks.server.js সার্ভার সাইড লজিক- যেমন অথেনটিকেশন, ডাটাবেস কানেকশন ইত্যাদির জন্য ব্যবহার করা যাবে।
 :::
 
-## Layout hierarchy
+## লেআউট অনুক্রম
 
-:::note[Root layout is required]{icon=ph:layout-duotone}
-There must be a `src/routes/+layout.svelte` or `src/routes/+layout.md` as root layout file.  
-**Otherwise the global layout provided by theme would not working!**
+:::note[রুট লেআউট বাধ্যতামূলক]{icon=ph:layout-duotone}
+অবশ্যই `src/routes/+layout.svelte` অথবা `src/routes/+layout.md` থাকতে হবে রুট লেআউট হিসেবে। 
+**অন্যথায় থিম থেকে আসা গ্লোবাল লেআউট কাজ করবে না!**
 :::
 
-For example if your file tree look like this
+যেমন আপনার ফাইল ট্রি দেখতে এইরকম হলে
 
 ```txt
 .
@@ -42,20 +43,19 @@ For example if your file tree look like this
 
 `theme.globalLayout` > `src/routes/+layout.(svelte|md)` > `theme.pageLayout` > `src/routes/foo/+layout.(md|svelte)` > `src/routes/foo/+page.md`
 
-Here's a graph to help you understand
+আপনাকে বুঝতে সাহায্য করার জন্য এখানে একটি গ্রাফ
 
 <img src="/layout-hierarchy.png" style="width:100%;" alt="" />
 
-## Configuration
+## কনফিগারেশন
 
-Sveltepress's config is passed to `@sveltepress/vite` vite plugin, all options are fully typed. 
+Sveltepress এর কনফিগ `@sveltepress/vite` ভিট প্লাগিনে পাঠিয়ে দেয়া হয়, সমস্ত অপশন সম্পূর্ণরূপে টাইপকৃত।  
 
-Read [Vite plugins options](/reference/vite-plugin/) for more details.
+আরো বিস্তারিত জানার জন্য [ভিট প্লাগিন অপশন](/reference/vite-plugin/) পড়ুন। 
 
-## Deployment
+## ডিপ্লয়মেন্ট
+প্রথমেই [Adapters - SvelteKit](https://kit.svelte.dev/docs/adapters) পড়া জরুরী।   
+যদি আপনি `npm/yarn/pnpm create @sveltepress` ব্যবহার করে থাকেন তাহলে [Adapter Static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) ডিফল্ট হিসেবে ব্যবহৃত হবে। 
 
-It is recommended to read [Adapters - SvelteKit](https://kit.svelte.dev/docs/adapters) first.  
-If you use `npm/yarn/pnpm create @sveltepress` to create a new project.  
-The [Adapter Static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) would be used as default.
 
-But feel free to change to any adapters you want.
+কিন্তু আপনি নির্দ্বিধায়। যে কোনো অ্যাডাপ্টার পরিবর্তন করতে পারেন। 
