@@ -1,32 +1,32 @@
 ---
-title: Built-in Components
+title: বিল্ট-ইন কম্পোনেন্ট
 ---
 
-:::note[Manually import]{icon=carbon:import-export}
-All built-in Components can directly use in markdown files.  
-But should be imported manually in svelte files. 
+:::note[ম্যানুয়ালি ইমপোর্ট]{icon=carbon:import-export}
+বিল্ট-ইন কম্পোনেন্টগুলো মার্কডাউন ফাইলে সরাসরি ব্যবহার করা যাবে। 
+কিন্তু svelte ফাইলে ম্যানুয়ালি ইমপোর্ট করতে হবে।  
 :::
 
 ## Links
 
 ### Props
 
-* `label` - The link label text
-* `to` - The link address
-* `withBase` - Determine whether to with [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base). Default is `true`
+* `label` - লিংকের লেবেলের লেখা
+* `to` - লিংকের ঠিকানা
+* `withBase` - [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base) সঙ্গে কিনা তা নির্ধারণ করে। ডিফল্ট হচ্ছে `true`
 
-:::info[Auto external icon]{icon=ic:sharp-rocket-launch}
-Would auto add a external icon when link address starts with http or https
+:::info[অটো এক্সটার্নাল আইকন]{icon=ic:sharp-rocket-launch}
+লিংক অ্যাড্রেস http বা https দিয়ে শুরু হলে একটি অটো এক্সটার্নাল আইকন যুক্ত করবে।
 :::
 
-### In markdown
+### Markdown এ 
 
 ```md live
 * <Link to="https://github.com/" label="Github" />  
 * <Link to="/" label="Home page" />
 ```
 
-### In svelte
+### Svelte এ 
 
 ```svelte live
 <script>
@@ -42,17 +42,17 @@ Would auto add a external icon when link address starts with http or https
 
 ### Tab Props
 
-* `activeName` - The default active panel name.
-* `bodyPadding` - Determine whether the panel body has a padding or not. Default is `true`
+* `activeName` - ডিফল্ট অ্যাক্টিভ প্যানেলের নাম
+* `bodyPadding` - প্যানেল বডিতে প্যাডিং আছে কিনা তা নির্ধারণ করে, ডিফল্ট হচ্ছে `true`
 
 ### TabPanel Props
 
-* `name` - The panel name.
-* `activeIcon` - The icon component used when tab is active
-* `inactiveIcon` - The icon component used when tab is inactive
+* `name` - প্যানেলের নাম। 
+* `activeIcon` - ট্যাব অ্যাক্টিভ থাকাকালীন যে আইকন কম্পোনেন্ট ব্যবহার হবে। 
+* `inactiveIcon` - ট্যাব ইন্যাক্টিভ থাকাকালীন যে আইকন কম্পোনেন্ট ব্যবহার হবে। 
 
 
-### In Markdown
+### Markdown এ 
 
 ````md live
 <Tabs activeName="Svelte">
@@ -86,7 +86,7 @@ Would auto add a external icon when link address starts with http or https
 </Tabs>
 ````
 
-### In svelte
+### Svelte এ 
 
 ```svelte live
 <script>
@@ -106,26 +106,26 @@ Would auto add a external icon when link address starts with http or https
 
 ### Props
 
-* `title` - The expansion title
-* `showIcon` - Determine whether to the icon or not. Default is `true`
-* `headerStyle` - Customize the header inline style
-* `bind:expanded` - Determine the expanded status. Default is `false`
+* `title` - এক্সপ্যানসন এর টাইটেল।
+* `showIcon` - আইকন দেখাবে কিনা তা নির্ধারণ করে, ডিফল্ট হচ্ছে `true`।
+* `headerStyle` - হেডারের ইনলাইন স্টাইল কাস্টমাইজ করতে।
+* `bind:expanded` - সম্প্রসারিত অংশের অবস্থা নির্ধারণ, ডিফল্ট হচ্ছ...`false`
 
 ### Slots
 
-* `default` - The expansion content
-* `icon-fold` - The icon used for folded
-* `icon-expanded` - The icon used for expanded
-* `arrow` - Customize the expansion arrow indicator
+* `default` - এক্সপ্যানসন এর কন্টেন্ট
+* `icon-fold` - ফোল্ড করা অবস্থার আইকন
+* `icon-expanded` - এক্সপ্যান্ড করা অবস্থার আইকন
+* `arrow` - এক্সপ্যানসন এর তীর নির্দেশক কাস্টমাইজ করা 
 
-### In markdown
+### Markdown এ 
 
 ```md live
 <Expansion title="Click to expand/fold panel">
   <div class="text-[24px]">Some content</div>
 </Expansion>
 ```
-### In svelte
+### Svelte এ 
 
 ```svelte live
 <script>
@@ -143,11 +143,11 @@ Would auto add a external icon when link address starts with http or https
 
 ## Icons (Pre-build iconify icons)
 
-:::important[Icon pre-build required]{icon=tabler:icons}
-The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
+:::important[আইকন প্রিবিল্ড আবশ্যক]{icon=tabler:icons}
+Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে 
 :::
 
-### In markdown
+### Markdown এ 
 
 ```md live
 <div style="font-size: 28px;">
@@ -155,7 +155,7 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 </div>
 ```
 
-### In svelte
+### Svelte এ 
 
 ```svelte live
 <script>
@@ -168,21 +168,21 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 
 ## Floating
 
-### In markdown
+### Markdown এ 
 
 ```md live
 <Floating placement="top">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
-    Trigger
+    এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
 
   <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
-    Floating content
+    হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ 
   </div>
 </Floating>
 ```
 
-### In svelte
+### Svelte এ 
 
 
 ```svelte live
@@ -191,17 +191,17 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 </script>
 <Floating placement="right">
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
-    Trigger
+    এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
 
   <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
-    Floating content
+    হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ 
   </div>
 </Floating>
 ```
 
 ### Props
 
-* `alwaysShow` - Determine whether to always show the floating content. Default is `false`
-* `placement` - Determine the floating content position. See [placement - floating-ui](https://floating-ui.com/docs/computePosition#placement). Default is `bottom`.
-* `floatingClass` - The addition classes that will be added to the floating content container.
+* `alwaysShow` - ফ্লোটিং কন্টেন্ট সর্বদা দেখাবে কিনা- তা নির্ধারণ করে। ডিফল্ট হচ্ছে `false`
+* `placement` - ফ্লোটিং কন্টেন্টের পজিশন নির্ধারণ করে। দেখুন- [placement - floating-ui](https://floating-ui.com/docs/computePosition#placement) । ডিফল্ট হচ্ছে `bottom`.
+* `floatingClass` - ফ্লোটিং কন্টেন্ট কন্টেইনারে যোগ করার জন্য অতিরিক্তি ক্লাস।
