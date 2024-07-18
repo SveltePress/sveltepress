@@ -1,13 +1,13 @@
 ---
-title: Admonitions
+title: অ্যাডমনিশন
 ---
 
-## Grammar
+## গ্রামার
 
-This feature integrated [remark-directive](https://github.com/remarkjs/remark-directive) 
+এই ফিচারটি [remark-directive](https://github.com/remarkjs/remark-directive) সমন্বিত করেছে। 
 
 :::important[Icon pre-build required]{icon=tabler:icons}
-The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
+এই iconify আইকনটি [প্রি-বিল্ড iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে। 
 :::
 
 ```md
@@ -16,72 +16,72 @@ Some admonition content
 :::
 ```
 
-## Tip
+## টিপ
 
 ```md live
-:::tip[Tip title]
-Some tip content  
+:::tip[টিপ টাইটেল]
+টিপের বর্ণনা  
 :::
 
-:::tip[Tip with custom icon]{icon=ph:smiley}
-Some tip content
+:::tip[কাস্টম আইকনযুক্ত টিপ]{icon=ph:smiley}
+টিপের বর্ণনা  
 :::
 ```
 
-## Info
+## ইনফো
 
 ```md live
-:::info[Info title]
-Some info content
+:::info[ইনফোর শিরোনাম]
+বিস্তারিত বর্ণনা
 :::
 
-:::info[Info with custom icon]{icon=ph:smiley}
-Some info content
+:::info[কাস্টম আইকনযুক্ত ইনফোর শিরোনাম]{icon=ph:smiley}
+বিস্তারিত বর্ণনা
 :::
 ```
 
-## Note
+## নোট 
 
 ```md live
-:::note[Note title]
-Some note content
+:::note[নোট টাইটেল]
+নোটের বিস্তারিত
 :::
 
-:::note[Note with custom icon]{icon=ph:smiley}
-Some note content
+:::note[কাস্টম আইকনযুক্ত নোট টাইটেল]{icon=ph:smiley}
+নোটের বিস্তারিত
 :::
 ```
 
-## Warning
+## ওয়ার্নিং
 
 ```md live
-:::warning[Warning title]
-Some warning content
+:::warning[ওয়ার্নিং শিরোনাম]
+সতর্কতার বর্ণনা
 :::
 
-:::warning[Warning with custom icon]{icon=ph:smiley}
-Some warning content
+:::warning[কাস্টম আইকনযুক্ত ওয়ার্নিং শিরোনাম]{icon=ph:smiley}
+সতর্কতার বর্ণনা
 :::
 ```
-## Important
+## ইমপর্ট্যান্ট
 
 ```md live
-:::important[Important title]
-Some important content
+:::important[ইমপর্ট্যান্ট শিরোনাম]
+কিছু গুরুত্বপূর্ণ তথ্য
 :::
 
-:::important[Important with custom icon]{icon=ph:smiley}
-Some important content
+:::important[কাস্টম আইকনযুক্ত ইমপর্ট্যান্ট শিরোনাম]{icon=ph:smiley}
+কিছু গুরুত্বপূর্ণ তথ্য
 :::
 ```
 
-## Caution
+## সতর্কতা
 ```md live
-:::caution[Caution title]
-Some caution content
+:::caution[সতর্কতার শিরোনাম]
+সতর্কতার বিষয়বস্তু
 :::
 
-:::caution[Caution with custom icon]{icon=ph:smiley}
-Some caution content
+:::caution[কাস্টম আইকনযুক্ত সতর্কতার শিরোনাম]{icon=ph:smiley}
+সতর্কতার বিষয়বস্তু
 :::
 ```
