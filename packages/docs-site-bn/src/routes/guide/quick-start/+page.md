@@ -1,25 +1,25 @@
 ---
-title: Quick Start
+title: দ্রুত শুরু
 ---
 
-## Creating a project
+## প্রজেক্ট তৈরী
 
-Run one of the following command  
-Depend on what package manager you are using
+নিম্নলিখিত কমান্ডগুলির মধ্যে একটি ব্যবহার করুন
+আপনি কোন প্যাকেজ ম্যানেজার ব্যবহার করছেন তার উপর নির্ভর করে
 
 @install-pkg(@sveltepress,create)
 
-:::tip[PNPM first]
-Use pnpm as much as possible. It respects package version more than npm.
+:::tip[PNPM কে প্রাধান্য দিন]
+যতটা সম্ভব pnpm ব্যবহার করুন। এটি প্যাকেজ সংস্করণকে npm এর চেয়ে বেশি সম্মান করে।
 :::
 
-## Adding to an existing sveltekit project
+## একটি বিদ্যমান sveltekit প্রজেক্টে যোগ করা
 
-### Install vite plugin package
+### ভিট প্লাগিন প্যাকেজ ইন্সটল করুন
 
 @install-pkg(@sveltepress/vite)
 
-### Replace `sveltekit` plugin in vite.config.(js|ts)
+### vite.config.(js|ts) এ `sveltekit` plugin পরিবর্তন করুন 
 
 ```ts title="vite.config.(js|ts)"
 // @noErrors
@@ -39,7 +39,7 @@ const config = defineConfig({
 export default config
 ```
 
-### Add `'.md'` extension to the `extensions` options in your svelte.config.js
+### svelte.config.js এর `extensions` অপশনে `'.md'` extension যুক্ত করুন
 
 ```ts title="svelte.config.js"
 // @noErrors
