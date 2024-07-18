@@ -1,8 +1,8 @@
 ---
-title: Working with Typescript
+title: Typescript ব্যবহার
 ---
 
-See 
+দেখুন
 
-* [Vite plugin typescript support](/reference/vite-plugin/#Working-with-typescript)
-* [Default theme typescript support](/reference/default-theme/#Working-with-typescript)
+* [ভিট প্লাগিন টাইপস্ক্রিপ্ট সাপোর্ট](/reference/vite-plugin/#Working-with-typescript)
+* [ডিফল্ট থিম টাইপস্ক্রিপ্ট সাপোর্ট](/reference/default-theme/#Working-with-typescript)

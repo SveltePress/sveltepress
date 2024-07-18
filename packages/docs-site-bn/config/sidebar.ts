@@ -26,7 +26,7 @@ export default {
       title: 'Markdown এর ফিচারসমূহ',
       items: [
         {
-          title: 'প্রাথমিক লেখা',
+          title: 'হাতেখড়ি',
           to: '/guide/markdown/basic-writing/',
         },
         {

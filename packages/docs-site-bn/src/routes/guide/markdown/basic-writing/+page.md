@@ -1,89 +1,89 @@
 ---
-title: Basic writing
+title: হাতেখড়ি
 ---
 
-## Heading
+## হেডিং
 
 ```md live
-# Heading level1
-## Heading level2
-### Heading level3
-#### Heading level4
-##### Heading level5
-###### Heading level6
+# হেডিং লেভেল ১
+## হেডিং লেভেল ২
+### হেডিং লেভেল ৩
+#### হেডিং লেভেল ৪
+##### হেডিং লেভেল ৫
+###### হেডিং লেভেল ৬
 ```
 
-## Paragraph
+## প্যারাগ্রাফ
 
 ```md live
-This is paragraph
+এটি একটি প্যারাগ্রাফ
 
-This is another paragraph  
+এটি আরেকটি প্যারাগ্রাফ
 
-Lines end with more than one space would be  
-soft wrap
+যেসব লাইনের শেষে একটির বেশি স্পেস আছে সেগুলো 
+soft wrap হবে।
 ```
 
-## Bold
+## বোল্ড
 
 ```md live
-**Bold text**
+**বোল্ড লেখা**
 ```
 
-## Strike through
+## স্ট্রাইক থ্রু
 
 ```md live
-~one~ or ~~two~~ tildes.
+~এক~ অথবা ~~দুই~~ tildes `~` 
 ```
 
-## Inline code
+## ইনলাইন কোড
 
 ```md live
 `const foo = 'bar'`
 ```
 
-## Links
+## লিংক
 
 ```md live
-Normal links  
-[Home page](/)  
-[Google](https://google.com/)
+সাধারণ লিংক  
+[হোম পেজ](/)  
+[গুগল](https://google.com/)
 
-Auto links  
+অটো লিংক  
 www.example.com  
 https://example.com  
 contact@example.com
 ```
 
-## List
+## লিস্ট
 
 ```md live
 
-- item1
-- item2
-- item3
+- আইটেম১
+- আইটেম২
+- আইটেম৩
 
-* item1
-* item2
-* item3
+* আইটেম১
+* আইটেম২
+* আইটেম৩
 ```
 
-## Table
+## টেবিল
 
 ```md live
-| Name | Color | Count |
+| নাম | রঙ | সংখ্যা |
 | --- | --- | --- |
-| Apple | Red | 1 |
-| Grapes | Purple | 20 |
-| Banana | Yellow | 3 |
+| আপেল | লাল | ১ |
+| আঙ্গুর | বেগুনি | ২০ |
+| কলা | হলুদ | ৩ |
 ```
 
-## Footnote
+## ফুটনোট
 
 ````md live
-Something[^1]
+কিছু লেখা[^1]
 
-Big footnote[^bigfootnote]
+বড় ফুটনোট[^bigfootnote]
 
 [^1]: Footnote item
 
@@ -96,21 +96,21 @@ Big footnote[^bigfootnote]
     ```
 ````
 
-:::info[Label customization]
-You can use [`theme.footnoteLabel`](/reference/vite-plugin/#footnoteLabel) to display your custom auto generated footnotes title
+:::info[লেবেল ইচ্ছামত পরিবর্তন]
+আপনি আপনার কাস্টম অটো জেনারেটেড ফুটনোট টাইটেল দেখাতে [`theme.footnoteLabel`](/reference/vite-plugin/#footnoteLabel) ব্যবহার করতে পারেন 
 :::
 
-## Task list
+## টাস্ক লিস্ট 
 
 ```md live
-* [ ] to do
-* [x] done
+* [ ] করতে হবে
+* [x] করা হয়েছে 
 ```
 
-## Emojis
+## ইমোজি
 
 ```md live
-I :heart: :pizza:
+আমি :pizza: :heart: 
 
-Emojis in this text will be replaced: :dog: :+1:
+এই লেখার মধ্যে থাকা ইমোজির শব্দগুলো পরিবর্তন হয়ে যাবে: :dog: :+1:
 ```
