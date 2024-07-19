@@ -1,12 +1,12 @@
 ---
-title: Default theme
+title: ডিফল্ট থিম
 ---
 
-## Install
+## ইন্সটল
 
 @install-pkg(@sveltepress/theme-default)
 
-## Add in your vite config 
+## আপনার vite config এ যুক্ত করুন
 
 ```js title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
@@ -25,79 +25,79 @@ const config = defineConfig({
 export default config
 ```
 
-## Types overview
+## এক নজরে Types 
 
 @code(/../theme-default/types.d.ts)
 
-## Theme Options
+## থিম অপশন
 
 ### `navbar`
 
 * `title`  
-  The label text of the navbar item
+  ন্যাভবার আইটেমের লেবেল টেক্সট
 * `to`  
-  The link address
+  লিংক অ্যাড্রেস
 * `icon`
-  An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar
+  HTML স্ট্রিং। `title` এর পরিবর্তে এইচটিএমএল কন্টেন্ট দেখাবে। ন্যাভবারে কাস্টম আইকন দেখাতে এটি উপকারী। 
 * `external`  
-  Determine whether the link is external or not.  
-  Would render an external icon if set to `true`
+  লিংকটি কি এক্সটার্নাল কিনা তা নির্ধারণ করে। 
+  এক্সটার্নাল আইকন দেখাবে যদি `true` সেট করা থাকে। 
 * `items`  
-  Children links. If this prop is provided would render a dropdown instead of a single nav link
+  চিলড্রেনের লিংক। এই প্রপ দেয়া হলে ড্রপডাউন দেখাবে সিংগেল ন্যাভ লিং না দেখিয়ে
 
 ### `discord`
-The discord chat channel link  
-Would show a discord icon on the navbar when provided
+ডিসকর্ডের চ্যাট চ্যানেল লিংক 
+এটি দেয়া হলে ন্যাভবারে ডিসকর্ডের আইকন দেখাবে।
 
 ### `github`
-The github repo link  
-Would show a github icon on the navbar when provided
+গিটহাবের রিপোর লিংক 
+এটি দেয়া হলে ন্যাভবারে গিটহাবের আইকন দেখাবে।
 
 ### `logo`
 
-The logo image  
-Would show on the navbar 
+লোগো ইমেজ 
+যা ন্যাভবারে দেখাবে
 
 ### `sidebar`
 
-An object, key is the group route prefix, value is an array of object with following fields:
+একটি অবজেক্ট, কী হবে গ্রুপের রাউটের নাম, ভ্যালু হবে নিম্নে বর্ণিত ফিল্ডসহ অ্যারে অফ অবজেক্ট:
 
 * `title`  
-  The label text of the sidebar item
+  সাইডবার আইটেমের লেবেলের লেখা
 * `collapsible`  
-  Determine whtheme-default/+paether the sidebar group is collapsible or not.
+  কলাপ্স করা যায় কিনা তা নির্ধারণ করে। 
 * `to`  
-  The link address
+  লিংক অ্যাড্রেস
 * `items`  
-  Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
+  চিলড্রেনের লিংক। এটি প্রোভাইড করা হলে একক সাইডবার আইটেমের পরিবর্তে সাইডবার গ্রুপ দেখাবে। 
 
 ### `highlighter`
 
-An object that contains custom highlight options.
+একটি অবজেক্ট যাতে কাস্টম হাইলাইট অপশন থাকে। 
 
-* `languages` - Customize the supported highlight languages.
-Default is: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
-* `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
-* `darkTheme` - The code theme that will be applied in dark mode. Default is `night-owl`
-* `twoslash` - Set to `true` to enable [Twoslash](/guide/default-theme/twoslash/). Default is `false`
+* `languages` - সাপোর্টেড হাইলাইট ল্যাংগুয়েজ কাস্টমাইজ করা। 
+ডিফল্ট হচ্ছে: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
+* `themeLight` - কোড থিম যা লাইট মোডে অ্যাপ্লাই হবে, ডিফল্ট হচ্ছে `vitesse-light`
+* `darkTheme` - কোড থিম যা ডার্ক মোডে অ্যাপ্লাই হবে, ডিফল্ট হচ্ছে `night-owl`
+* `twoslash` -  [Twoslash](/guide/default-theme/twoslash/) চালু করতে `true` সেট করুন. ডিফল্টে `false`
 
-:::important[TIP]
-You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki) 
+:::important[টিপ]
+আপনি সব সাপোর্টেড ল্যাংগুয়েজ এবং থিম [Shiki Repo](https://github.com/shikijs/shiki) তে পাবেন
 :::
 
 ### `editLink`
 
-The link used for bottom edit this page on github button  
-For example this site use `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
+এই লিংকটি edit this page on github বাটনে থাকে। 
+উদাহরণস্বরূপ, এই সাইটটি `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route` ব্যবহার করে। 
 
-`:route` represent the route path, for example: /foo/bar/+page.md
+`:route` রাউট প্যাথ বোঝায়, যেমন: /foo/bar/+page.md
 
 ### `ga`
 
-The id provided by [Google Analytics](https://analytics.google.com/).  
-Something like `G-XXXXXXX`.
+[Google Analytics](https://analytics.google.com/) থেকে প্রোভাইডকৃত আইডি। 
+দেখতে অনেকটা এরকম `G-XXXXXXX`
 
-Would add gtag script in site head if provided.
+সাইট-হেডে gtag স্ক্রিপ্ট যুক্ত করে। 
 
 ### `docsearch`
 
@@ -105,56 +105,56 @@ Would add gtag script in site head if provided.
 * apiKey
 * indexName
 
-All these values are provided by the docsearch.  
-Visit [Docsearch](https://docsearch.algolia.com/) for more details.
+এই সব ভ্যলু docsearch প্রোভাইড করে।   
+আরো বিস্তারিত জানতে [Docsearch](https://docsearch.algolia.com/) ভিজিট করুন। 
 
 ### `pwa`
 
-See [PWA](/guide/default-theme/pwa/) for details.
+বিস্তারিত জানতে [PWA](/guide/default-theme/pwa/) দেখুন
 
 ### `themeColor`
 
-The color of window bar when opened as a local pwa application.
+local pwa application হিসেবে ওপেন করলে উইন্ডোবারের রঙ। 
 
-* `light` - the color that applied on light theme
-* `dark` - the color that applied on dark theme
-* `gradient` - the gradient theme color. Would be applied on home page action button and main title. Default is:
+* `light` - লাইট থিমে প্রযোজ্য রঙ।
+* `dark` - ডার্ক থিমে প্রযোজ্য রঙ।
+* `gradient` - গ্রেডিয়েন্ট থিম কালার। হোমপেজে অ্যাকশন বাটন ও মেইন টাইটেলে ব্যবহার হবে। ডিফল্ট হচ্ছে:
 ```js
 const defaultGradient = {
   start: '#fa709a',
   end: '#fee140',
 }
 ```
-* `primary` - the primary theme color of the site
-* `hover` - the hovered links color
+* `primary` - সাইটের প্রাইমারি থিম কালার
+* `hover` - হোভার করা অবস্থায় লিংকের কালার
 
 ### `i18n`
 
-The fixed text contents that can be replaced by your config.
+ফিক্সড টেক্সট কন্টেন্ট যা আপনার কনফিগ দ্বারা পরিবর্তিত হতে পারে
 
-* `onThisPage` - The text for "On this page"
-* `suggestChangesToThisPage` - The text for "Suggest changes to this page"
-* `lastUpdateAt` - The text for "Last update at:"
-* `previousPage` - The text for "Previous"
-* `nextPage` - The text for "Next"
-* `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
-* `pwa` - The pwa prompt relative text contents. All of the following fields correspond to the same text in pwa prompt 
+* `onThisPage` -  "এই পেজে আছে"/"সূচীপত্র" এর লেখা
+* `suggestChangesToThisPage` - "এই পেজে পরিবর্তন সাজেস্ট করুন" এর লেখা
+* `lastUpdateAt` - "সর্বশেষ আপডেট:" এর লেখা
+* `previousPage` - "পূর্ববর্তী" এর লেখা
+* `nextPage` - "পরবর্তী" এর লেখা
+* `expansionTitle` - markdown বা svelte live code এর "কোড দেখতে বা হাইড করতে ক্লিক করুন" এর লেখা 
+* `pwa` - pwa prompt এর relative টেক্সট কন্টেন্ট. নিচের সব ফিল্ডই pwa prompt এর মতই 
   * `tip`
   * `reload`
   * `close`
   * `appReadyToWorkOffline`
   * `newContentAvailable`
-* `footnoteLabel` - The auto generated footnotes title. Default is `"Footnotes"`
+* `footnoteLabel` - অটো জেনারেটেড ফুটনোট টাইটেলে। ডিফল্ট হচ্ছে `"Footnotes"`
 
 ### `preBuildIconifyIcons`
 
-The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.   
-An object, key is the collection name, value is the icons array.  
-For example these are the icons this site using:
+[Iconify](https://iconify.design/) এর আইকন যা আপনি ভবিষ্যত ব্যবহারের জন্য প্রিবিল্ড করতে চান।  
+একটি অবজেক্ট, কী হচ্ছে কালেকশন নেম, ভ্যালু হচ্ছে আইকনের অ্যারে। 
+উদাহরণস্বরূপ, এগুলো হচ্ছে ঐসব আইকন যা এই সাইটে ব্যবহার করা হচ্ছে
 
 @code(/vite.config.ts,29,41)
 
-These icons looks like this:
+এই আইকনগুলো দেখতে এমন:
 
 ```svelte live
 <script>
@@ -172,11 +172,11 @@ These icons looks like this:
 </div>
 ```
 
-## Global context
+## গ্লোবাল কনটেক্সট
 
-The global context key is in the `@sveltepress/theme-default/context`. You can get all the contexts with the [`getContext`](https://svelte.dev/docs/svelte#getcontext) API
+গ্লোবাল কনটেক্সট কী আছে এখানে- `@sveltepress/theme-default/context`। আপনি সকল কনটেক্সট [`getContext`](https://svelte.dev/docs/svelte#getcontext) এপিআই দিয়ে পাবেন। 
 
-This is an example:
+এটি একটি উদাহরণ:
 ```svelte live
 <script lang="ts">
   import { getContext } from 'svelte'
@@ -196,17 +196,17 @@ This is an example:
 </style>
 ```
 
-All contexts:
-* `$isDark` - Determine the current theme is dark or not. It is a [reactive svelte store](https://svelte.dev/docs/svelte-store).
+সকল কনটেক্সট:
+* `$isDark` - বর্তমান থিম কি ডার্ক কিনা- তা নির্দেশ করে। এটি একটি [reactive svelte store](https://svelte.dev/docs/svelte-store).
 
 
-## Virtual modules
+## ভার্চুয়াল মডিউল
 
 ### `virtual:sveltepress/theme-default`
 
-This module hold the theme options that pass to `defaultTheme()` function.
+এই মডিউল `defaultTheme()` ফাংশনে পাস করে দেয়া থিম অপশন আয়ত্বে রাখে। 
 
-Here's an example for showing the theme options of this site:
+এখানে এই সাইটের থিম অপশন উদাহরণ হিসেবে দেখানো হলো:
 
 ```svelte live
 <script>
@@ -226,9 +226,9 @@ Here's an example for showing the theme options of this site:
 </style>
 ```
 
-## Working with typescript
+## typescript ব্যবহার
 
-You need to include `@sveltepress/theme-default/types` in your src/app.d.ts to get theme options and virtual modules type tips
+থিম অপশন এবং ভার্চুয়াল মডিউল টাইপ টিপস পেতে src/app.d.ts তে `@sveltepress/theme-default/types` যুক্ত করতে হবে 
 
 ```ts title="/src/app.d.ts"
 /// <reference types="@sveltepress/theme-default/types" />
