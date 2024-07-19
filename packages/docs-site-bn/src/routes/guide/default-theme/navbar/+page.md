@@ -1,17 +1,17 @@
 ---
-title: Navbar
+title: ন্যাভবার
 ---
 
-## Introduction
+## পরিচিতি
 
-Pass `navbar` option to theme default to configure navbar
+ন্যাভবার কনফিগ করতে থিম ডিফল্টে `navbar` অপশন প্রোভাইড করুন
 
-Each item can hold these props:
+প্রতিটি আইটেমে এই props থাকতে পারে:
 
-* `title` - The label text
-* `to` - The link address
+* `title` - লেবেলের লেখা
+* `to` - লিংক অ্যাড্রেস
 * `icon`
-  An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar. For example a twitter svg icon navbar item would be like this:
+  একটি HTML স্ট্রিং। যা `title` এর পরিবর্তে html কন্টেন্ট দেখাবে। এটি ন্যাভবারে কাস্টম আইকন দেখানোর জন্য উপকারী। যেমন, ন্যাভবারে টুইটারের একটি svg icon এরকম হবে
   ```js
   const twitterNavItem = {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
@@ -22,14 +22,14 @@ Each item can hold these props:
     to: 'https://twitter.com/'
   }
   ```
-* `external` - Determine whether the item is an external link
-* `items` - Sub links
+* `external` - আইটেম কি এক্সটার্নাল লিংক কিনা তা নির্ধারণ করে
+* `items` - সাব লিংক
 
-:::note[One level only]{icon=carbon:tree-view-alt}
-For now, navbar can only hold one level sub links.  
+:::note[শুধু এক লেভেল]{icon=carbon:tree-view-alt}
+বর্তমান অবস্থা অনুযায়ী ন্যাভবারে শুধু এক-লেভের সাব লিংক থাকতে পারে। 
 :::
 
-## Example
+## উদাহরণ
 
 ```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'

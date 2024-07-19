@@ -2,13 +2,13 @@
 title: PWA
 ---
 
-## Introduction
+## পরিচিতি
 
-This feature integrated [@vite-pwa/sveltekit](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin)
+এই ফিচারটি [@vite-pwa/sveltekit](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin) থেকে নেয়া। 
 
-Pass `pwa` option to theme default to use pwa. The options are exactly the same as [SvelteKit PWA Plugin Options](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin-options) except for `darkManifest`, which is the manifest path that would used for dark theme
+থিম ডিফল্টে `pwa` পাঠিয়ে দিয়ে pwa ব্যবহার করা যাবে। অপশঙ্গুলো হুবহু [SvelteKit PWA Plugin Options](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin-options) এর মতই, শুধু `darkManifest` বাদে, যা হচ্ছে ডার্ক থিমে ব্যবহারের জন্য manifest path 
 
-And the svelte.config.js need to config `files.serviceWorker`, use the `SERVICE_WORKER_PATH` exported from `@sveltepress/theme-default`
+এবং svelte.config.js -এ `files.serviceWorker` কনফিগ করতে হবে, `SERVICE_WORKER_PATH` ব্যবহার করুন যা `@sveltepress/theme-default` থেকে এক্সপোর্ট করা হয়। 
 
 ```ts title="svelte.config.js"
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
@@ -31,14 +31,14 @@ const config = {
 export default config
 ```
 
-:::note[package required]{icon=noto:package}
-If you want to enable pwa.  
-You will need to add `workbox-window` as a dev dependency to your Vite project.
+:::note[প্যাকেজ আবশ্যক]{icon=noto:package}
+যদি আপনি pwa চালু করতে চান। 
+আপনার Vite project এ dev dependency হিসেবে `workbox-window` যুক্ত করতে হবে
 :::
 
 
-## Example config
+## কনফিগের উদাহরণ
 
-Take the config this site use for example:
+এই সাইটের কনফিগ উদাহরণ হিসেবে দেখুন:
 
 @code(/config/pwa.ts)
