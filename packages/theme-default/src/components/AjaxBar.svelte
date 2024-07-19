@@ -41,7 +41,7 @@
 </script>
 
 <div class="ajax-bar" style={`--ajax-bar-width: ${barWidth}%;`}>
-  <div class="progress" />
+  <div class="progress"></div>
 </div>
 
 <style>

@@ -19,7 +19,7 @@
     class="i-ic-round-menu-open text-6"
     on:click={openSidebar}
     on:keypress={openSidebar}
-  />
+  ></div>
   <div role="button" tabindex="0" on:click={openToc} on:keypress={openToc}>
     {themeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
   </div>

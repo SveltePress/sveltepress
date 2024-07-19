@@ -90,13 +90,13 @@
     --at-apply: 'sm:w-[80vw] h-full flex items-stretch justify-between mx-auto';
   }
   .left {
-    --at-apply: flex items-center;
+    --at-apply: 'flex items-center';
   }
   .doc-search {
     --at-apply: 'flex-grow flex items-center relative transition-500 transition-left';
   }
   .doc-search.is-home {
-    --at-apply: left-2;
+    --at-apply: 'left-2';
   }
   .doc-search.move {
     --at-apply: 'sm:left-[15.5vw]';
@@ -106,7 +106,7 @@
     --at-apply: 'items-stretch flex';
   }
   .nav-links {
-    --at-apply: flex items-stretch flex-grow justify-end;
+    --at-apply: 'flex items-stretch flex-grow justify-end';
   }
 
   .navbar-pc :global(.nav-item:not(.nav-item--icon)),

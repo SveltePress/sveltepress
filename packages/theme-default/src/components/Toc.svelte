@@ -79,7 +79,7 @@
           {an.title}
         </a>
       {/each}
-      <div class="active-bar" />
+      <div class="active-bar"></div>
     </div>
   </div>
 {/if}

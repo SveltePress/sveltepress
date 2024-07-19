@@ -199,30 +199,30 @@
   }
   :global(.svp-code-block--with-line-numbers .svp-code-block--diff-add),
   :global(.svp-code-block--with-line-numbers .svp-code-block--diff-sub) {
-    --at-apply: pl-8;
+    --at-apply: 'pl-8';
   }
   :global(.svp-code-block--diff-add) {
-    --at-apply: text-green-4;
+    --at-apply: 'text-green-4';
   }
   :global(.svp-code-block--diff-sub) {
-    --at-apply: text-rose-4;
+    --at-apply: 'text-rose-4';
   }
   :global(.svp-code-block--diff-add),
   :global(.svp-code-block--diff-sub) {
-    --at-apply: absolute left-[4px] top-0 bottom-0 leading-[1.5em];
+    --at-apply: 'absolute left-[4px] top-0 bottom-0 leading-[1.5em]';
     font-family: var(--svp-code-font);
   }
   :global(.svp-code-block--hl) {
     --at-apply: 'bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10';
   }
   :global(.svp-code-block:hover .svp-code-block--focus) {
-    --at-apply: opacity-0;
+    --at-apply: 'opacity-0';
   }
   :global(blockquote) {
     --at-apply: 'border-l-[4px] border-l-solid border-gray-4 m-none bg-gray-2 indent-[1em] text-gray-4 py-[4px] my-4 dark:border-l-gray-5 dark:bg-gray-8';
   }
   :global(blockquote p) {
-    --at-apply: m-none;
+    --at-apply: 'm-none';
   }
 
   :global(table) {

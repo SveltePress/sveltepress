@@ -34,9 +34,9 @@
     --at-apply: 'svp-gradient-bg text-white dark:text-warm-gray-8';
   }
   .external-icon {
-    --at-apply: text-6 ml-2 flex items-center;
+    --at-apply: 'text-6 ml-2 flex items-center';
   }
   .label {
-    --at-apply: flex-grow text-center;
+    --at-apply: 'flex-grow text-center';
   }
 </style>

@@ -39,9 +39,9 @@
     --at-apply: 'flex items-center text-svp-primary hover:text-svp-hover cursor-pointer';
   }
   .edit-icon {
-    --at-apply: text-5 flex items-center;
+    --at-apply: 'text-5 flex items-center';
   }
   .edit-text {
-    --at-apply: ml-1;
+    --at-apply: 'ml-1';
   }
 </style>

@@ -24,9 +24,6 @@
 {/if}
 
 <style>
-  .tab-panel {
-    --at-apply: '';
-  }
   :global(.tab-panel .svp-code-block-wrapper) {
     --at-apply: 'm-none';
   }

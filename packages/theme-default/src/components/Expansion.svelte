@@ -121,24 +121,24 @@
     --at-apply: 'mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded-lg';
   }
   :global(.svp-live-code--demo) {
-    --at-apply: p-4;
+    --at-apply: 'p-4';
   }
   :global(.c-expansion--body .svp-code-block) {
-    --at-apply: mb-none;
+    --at-apply: 'mb-none';
   }
   .c-expansion--header {
-    --at-apply: rounded-b flex justify-between px-4 py-2 items-center;
+    --at-apply: 'rounded-b flex justify-between px-4 py-2 items-center';
   }
   .c-expansion--icon {
-    --at-apply: mr-2 text-6 flex items-center;
+    --at-apply: 'mr-2 text-6 flex items-center';
   }
   .c-expansion--arrow {
-    --at-apply: text-6 flex items-center;
+    --at-apply: 'text-6 flex items-center';
   }
   .c-expansion--header-left {
-    --at-apply: flex items-center;
+    --at-apply: 'flex items-center';
   }
   .c-expansion--title {
-    --at-apply: text-3.5;
+    --at-apply: 'text-3.5';
   }
 </style>

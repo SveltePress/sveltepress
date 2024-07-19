@@ -5,4 +5,4 @@
   $$restProps
 </script>
 
-<div class="icon--{collection} icon--{collection}--{name}" />
+<div class="icon--{collection} icon--{collection}--{name}"></div>

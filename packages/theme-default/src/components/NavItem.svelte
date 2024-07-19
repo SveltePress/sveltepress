@@ -88,10 +88,10 @@
   }
 
   .nav-item--icon:hover {
-    --at-apply: opacity-80;
+    --at-apply: 'opacity-80';
   }
   :global(:not(.dropdown) > .nav-item:not(.nav-item--icon):hover) {
-    --at-apply: svp-gradient-text;
+    --at-apply: 'svp-gradient-text';
   }
   .dropdown {
     --at-apply: 'transition-transform transition-opacity transition-300 opacity-0 pointer-events-none  absolute top-0 right-0 bg-white dark:bg-[#232323] whitespace-nowrap z-3 rounded shadow-sm p-2';
@@ -104,7 +104,7 @@
     background-image: none;
   }
   .nav-item:hover .dropdown {
-    --at-apply: opacity-100 pointer-events-initial;
+    --at-apply: 'opacity-100 pointer-events-initial';
     transform: translateY(54px);
   }
   .arrow {

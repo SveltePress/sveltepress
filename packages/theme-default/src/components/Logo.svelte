@@ -21,9 +21,9 @@
 
 <style>
   .logo {
-    --at-apply: h-[32px];
+    --at-apply: 'h-[32px]';
   }
   .title {
-    --at-apply: font-600 ml-2;
+    --at-apply: 'font-600 ml-2';
   }
 </style>

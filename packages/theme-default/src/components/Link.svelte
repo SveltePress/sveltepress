@@ -34,7 +34,7 @@
 
 <style>
   .highlight {
-    --at-apply: text-svp-primary;
+    --at-apply: 'text-svp-primary';
   }
   .link {
     --at-apply: 'inline-flex hover:text-svp-hover cursor-pointer items-center transition-200 transition-color';

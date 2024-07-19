@@ -42,6 +42,6 @@
     --at-apply: 'mb-3';
   }
   .actions {
-    --at-apply: flex justify-end mt-8;
+    --at-apply: 'flex justify-end mt-8';
   }
 </style>

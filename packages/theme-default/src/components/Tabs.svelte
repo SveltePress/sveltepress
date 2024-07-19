@@ -101,7 +101,7 @@
           duration: 200,
           easing: cubicInOut,
         }}
-      />
+      ></div>
     {/each}
   </div>
   <div class:padding={bodyPadding}>

@@ -66,27 +66,27 @@
     --at-apply: 'border-solid border-1 border-light-7 dark:border-gray-7 rounded-lg flex-grow cursor-pointer hover:border-svp-primary transition-300 transition-colors';
   }
   .hint {
-    --at-apply: text-gray-4 text-3;
+    --at-apply: 'text-gray-4 text-3';
   }
   .title {
-    --at-apply: flex items-center text-svp-primary mt-3;
+    --at-apply: 'flex items-center text-svp-primary mt-3';
   }
   .right .title {
-    --at-apply: justify-end;
+    --at-apply: 'justify-end';
   }
   .title-label {
-    --at-apply: ml-2;
+    --at-apply: 'ml-2';
   }
   .right .title-label {
-    --at-apply: mr-2 ml-none;
+    --at-apply: 'mr-2 ml-none';
   }
   .right {
-    --at-apply: text-right;
+    --at-apply: 'text-right';
   }
   .switch-icon {
-    --at-apply: text-5;
+    --at-apply: 'text-5';
   }
   .trigger {
-    --at-apply: px-4 py-2 block;
+    --at-apply: 'px-4 py-2 block';
   }
 </style>

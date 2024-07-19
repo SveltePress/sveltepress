@@ -56,7 +56,7 @@
     --at-apply: 'col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1 text-center sm:text-left';
   }
   .gradient-title {
-    --at-apply: svp-gradient-text;
+    --at-apply: 'svp-gradient-text';
   }
   .tagline {
     --at-apply: 'text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9 font-normal';

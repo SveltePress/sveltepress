@@ -81,16 +81,16 @@
     --at-apply: 'font-bold text-slate-8 dark:text-slate-2 flex items-center justify-between';
   }
   .links {
-    --at-apply: leading-8 overflow-hidden;
+    --at-apply: 'leading-8 overflow-hidden';
   }
   .collapse-control {
     --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 dark:hover:bg-gray-8 dark:active:bg-gray-7 w-[28px] h-[28px] flex items-center justify-center rounded';
   }
   .arrow {
-    --at-apply: flex items-center transition-300 transition-transform;
+    --at-apply: 'flex items-center transition-300 transition-transform';
   }
   .collapsed {
-    --at-apply: rotate--90;
+    --at-apply: 'rotate--90';
   }
   .active-icon {
     --at-apply: 'text-svp-primary ml-4 flex items-center text-5';
