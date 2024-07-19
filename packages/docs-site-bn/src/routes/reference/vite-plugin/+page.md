@@ -1,36 +1,36 @@
 ---
-title: Vite plugin
+title: Vite প্লাগিন
 ---
 
-## Types overview
+## এক নজরে Types
 
 @code(/../vite/src/types.ts)
 
-## Plugin options
+## প্লাগিন অপশন
 
 ### `siteConfig`
 
-* `title`: The site title. Would be `'Untitled site'` if not provided.
-* `description`: The site description. Would be `'Build by sveltepress'` if not provided.
+* `title`: সাইটের টাইটেল। না থাকলে `'Untitled site'` দেখাবে।
+* `description`: সাইটের ডেসক্রিপশন। না থাকলে `'Build by sveltepress'` দেখাবে।
 
 ### `addInspect`
 
-If set to `true`, will add [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect).   
-It is useful to inspect or observe the vite pipeline.
+যদি `true` সেট করা হয়, তাহলে [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect) যোগ করা হবে।
+ভিট পাইপলাইন দেখা ও পর্যবেক্ষণ করা বেশ উপকারী। 
 
 ### `theme`
 
-See [ResolvedTheme](#ResolvedTheme) below
+নিম্নে [ResolvedTheme](#ResolvedTheme) দেখুন
 
 ### `remarkPlugins`
 
-The remark plugins used for markdown parse.  
-Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details. 
+The remark plugins ব্যবহার করা হয়েছে মার্কডাউন এর জন্য।   
+আরো জানতে [Remark plugins](https://github.com/remarkjs/remark#plugins) পড়ুন। 
 
 ### `rehypePlugins`  
 
-The rehype plugins used for html generator.
-Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
+The rehype plugins ব্যবহার করা হয়েছে html জেনারেট করার জন্য।
+আরো জানতে [Rehype plugins](https://github.com/rehypejs/rehype#plugins) পড়ুন।
 
 ## ResolvedTheme
 
@@ -38,48 +38,48 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 
 ### `name`   
 
-The name of theme
+থিমের নাম
 
 ### `globalLayout`  
 
-The absolute path of global layout. **Should be a svelte file**  
-For example: `path.resolve(process.cwd(), 'ThemeGlobalLayout.svelte')`
+গ্লোবাল লে আউটের অ্যাবসোলুট পাথ। **svelte ফাইল হতে হবে**  
+যেমন: `path.resolve(process.cwd(), 'ThemeGlobalLayout.svelte')`
 
 ### `pageLayout`  
 
-The absolute path of page layout. **Should be a svelte file**  
-For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
+পেজ লে আউটের অ্যাবসোলুট পাথ **svelte ফাইল হতে হবে**  
+যেমন: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
   
 ### `vitePlugins`  
 
-* If passed a plugin or a group of plugins. These plugins would applied in front of `sveltepress`
-* If passed a function. It will accept the `sveltepress` plugin and need to return a group of plugins.  
-  You can customize the `sveltepress` plugin order in your returned plugin chain.  
+* যদি এক বা একাধিক প্লাগিন পাস করা হয়, সেই প্লাগিনগুলো `sveltepress` এর সামনে অ্যাপ্লাই করা হবে।  
+* যদি একটি ফাংশন পাস করা হয়, এটি `sveltepress` অ্যাক্সেপ্ট করবে এবং প্লাগিনের গ্রুপ রিটার্ন করবে।   
+আপনি রিটার্নকৃত প্লাগিন চেইনে `sveltepress` এর প্লাগিন অর্ডার কাস্টমাইজ করতে পারেন। 
 
-:::info[About theme vite plugins]{icon=vscode-icons:file-type-vite}
-  It maybe a little strange that theme has vite plugins.  
-  But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp files. 
+:::info[থিম ভিট প্লাগিন সম্পর্কে]{icon=vscode-icons:file-type-vite}
+  এটি হয়ত একটু অদ্ভুত যে থিমের ভিট প্লাগিন আছে।  
+  কিন্তু এটি উপকারী যখন থিম কিছু [ভার্চুয়াল মডিউল](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) যুক্ত করতে চায় অথবা কিছু টেম্প ফাইল তৈরি করতে চায়। 
 :::
 
 ### `highlighter`  
 
-Used for code highlighting.  
-For example, the default theme use [shiki](https://github.com/shikijs/shiki).  
-You can check the [Default theme highlighter source code](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) for detail usage.
+কোড হাইলাইটিং এর জন্য ব্যবহৃত।   
+যেমন, ডিফল্ট থিম [shiki](https://github.com/shikijs/shiki) ব্যবহার করে।  
+আপনি বিস্তারিত ব্যবহারবিধি জানতে [ডিফল্ট থিম হাইলাইটার সোর্স কোড](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) চেক করতে পারেন। 
 
 ### `remarkPlugins`  
 
-The remark plugins used for markdown parse.  
-Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details. 
+The remark plugins ব্যবহৃত হয় মার্কডাউন পার্সিং এর জন্য।  
+বিস্তারিত জানতে [Remark plugins](https://github.com/remarkjs/remark#plugins) পড়ুন। 
 
 ### `rehypePlugins`  
 
-The rehype plugins used for html generator.
-Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
+html জেনারেটরের জন্য The rehype plugins ব্যবহৃত হয়।
+বিস্তারিত জানতে [Rehype plugins](https://github.com/rehypejs/rehype#plugins) পড়ুন। 
 
-:::important[Plugins order]{icon=solar:reorder-outline}
-The remark and rehype plugins that theme provide would be called before the plugins provide by vite plugin.
-For example:
+:::important[প্লাগিনের ধারাবাহিকতা]{icon=solar:reorder-outline}
+থিম কর্তৃক প্রোভাইডকৃত The remark এবং rehype plugins তা ভিট প্লাগিনের প্রোভাইডকৃত প্লাগিনের পূর্বে কল করা হবে।
+উদাহরণস্বরূপ:
 ```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
@@ -94,18 +94,18 @@ export default defineConfig({
   ]
 })
 ```
-yourRemarkPlugin would run after the remark plugins in defaultTheme
+yourRemarkPlugin রান হবে ডিফল্ট থিমের remark plugins এর পরে।  
 :::
 
 ### `footnoteLabel`
 
-Customize the footnotes title, default is: `"Footnotes"`
+ফুটনোটের টাইটেল কাস্টমাইজ করতে। ডিফল্ট হচ্ছে `"Footnotes"`
 
 ## Virtual modules
 
 ### `virtual:sveltepress/site`
 
-This module hold the siteConfig. Here's an example
+এই মডিউল siteConfig কে হোল্ড করে। এখানে একটি উদাহরণ- 
 
 ```svelte live
 <script>
@@ -118,13 +118,11 @@ This module hold the siteConfig. Here's an example
 
 ## Low level API
 
-The @sveltepress/vite package has a low level api function `mdToSvelte`
+The @sveltepress/vite এর `mdToSvelte` একটি লোড লেভেল এপিআই ফাংশন আছে  
+এটি Sveltepress এ  সকল বড় বড় মার্কডাউন রেন্ডারের জন্য ব্যবহৃত হয়।  
+এটি Svelte এর সাথে সম্পৃক্ত আরো বেসিক মার্কডাউন রেন্ডারিং ইঞ্জিনের জন্য ব্যবহার করা যাবে ।
 
-It is used for all the major markdown render in Sveltepress.  
-
-It can be used for a more basic markdown render engine involved with Svelte.
-
-Here's usage example:
+ব্যবহারবিধি:
 
 ```ts ln
 import { mdToSvelte } from '@sveltepress/vite'
@@ -158,12 +156,12 @@ code
 data
 ```
 
-## Working with typescript
+## typescript এর ব্যবহার 
 
-You need to include `@sveltepress/vite/types` in your src/app.d.ts to get plugin options and virtual modules type tips
+প্লাগিন অপশন এবং ভার্চুয়াল মডিউল টাইপ টিপসের জন্য src/app.d.ts তে `@sveltepress/vite/types` যুক্ত করতে হবে 
 
 ```ts title="/src/app.d.ts"
 /// <reference types="@sveltepress/vite/types" />
 
-// Your other types
+// এখানে আপনার অন্যান্য টাইপ থাকবে
 ```
