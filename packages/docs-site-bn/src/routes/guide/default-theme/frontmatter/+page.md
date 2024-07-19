@@ -2,7 +2,7 @@
 title: Frontmatter in default theme
 ---
 
-## Shared frontmatter
+## শেয়ার্ড Frontmatter
 
 ```ts
 interface CommonFrontmatter {
@@ -13,25 +13,25 @@ interface CommonFrontmatter {
 ```
 
 ### `title`
-The final page title would be `page frontmatter title | siteConfig.title`  
+পেজের ফাইনাল টাইটাল হবে `page frontmatter title | siteConfig.title`  
 
 ### `description`
-The final page description would be use the page frontmatter if provided instead of `siteConfig.description`
+পেজের ফাইনাল ডেসক্রিপশন `siteConfig.description` ব্যবহার না করে পেজের ফ্রন্টম্যাটার ব্যবহার করবে, যদি `description` সেখানে থাকে। 
   
 ###  `lastUpdate` 
 
-It will affect the "last update at: " content at the end of the page.  
-Default it would read the git commit time of the +page file.    
-You can override it by config this field.  
+এটি পেজের নিচের "last update at: " তে পরিবর্তন আনবে।  
+ডিফল্টে +page এর গিট কমিটের টাইম দেখাবে।    
+এই ফিল্ড কনফিগ করে আপনি তা ওভাররাইড করতে পারবেন। 
 
 ### `sidebar`
 
-Determine to show the sidebar or not. Default is `true`, change to `false` to hide the sidebar
+সাইডবার দেখাবে কিনা তা নির্ধারণ করে। ডিফল্ট হচ্ছে `true`। সাইডবার হাইড করতে `false` করে দিন। 
 
 ### `header`
 
-Determine to show the header or not. Default is `true`, change to `false` to hide the header
+হেডার দেখাবে কিনা তা নির্ধারণ করে। ডিফল্ট হচ্ছে `true`। হেডার হাইড করতে `false` করে দিন। 
 
-## Special frontmatter
+## বিশেষ frontmatter
 
-* [Home page frontmatter](/guide/default-theme/home-page/#Frontmatter)
+* [হোম পেজ frontmatter](/guide/default-theme/home-page/#Frontmatter)

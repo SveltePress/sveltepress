@@ -2,13 +2,13 @@
 title: Docsearch
 ---
 
-Pass `docsearch` to theme default to add a [Docsearch](https://docsearch.algolia.com/) on navbar
+ন্যাভবারে [Docsearch](https://docsearch.algolia.com/) যুক্ত করতে থিম ডিফল্টে `docsearch` পাঠিয়ে দিন। 
 
-`docsearch` contain these main props: `appId`, `apiKey`,`indexName`
+`docsearch` এর মেইন প্রপস হচ্ছে এগুলো: `appId`, `apiKey`,`indexName`
 
-Complete options can be found [here](https://docsearch.algolia.com/docs/api)
+সকল অপশন [এখানে](https://docsearch.algolia.com/docs/api) পাওয়া যাবে 
 
-All provided by Docsearch. 
+Docsearch সব প্রোভাইড করছে।  
 
 ```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
