@@ -20,26 +20,26 @@ features:
       name: file-type-markdown
     link: /guide/markdown/frontmatter/
   - title: Sveltekit দিয়ে তৈরি
-    description: Sveltekit এর সম্পূর্ণ শক্তি  অক্ষুণ্ণ আছে, যাতে SSG এর চেয়ে বেশি কিছু করা যায়। 
+    description: Sveltekit এর সম্পূর্ণ শক্তি অক্ষুণ্ণ আছে, যাতে SSG এর চেয়ে বেশি কিছু করা যায়। 
     icon:
       type: iconify
       collection: logos
       name: svelte-kit
   - title: Markdown এ Svelte 
-    description: মার্কডাউনে নির্দ্বিধায় svelte (3 এবং 4) ব্যবহার অসীম সম্ভাবনার দুয়ার খুলে দেয়। 
+    description: মার্কডাউনে নির্দ্বিধায় Svelte (3 এবং 4) এর ব্যবহার অসীম সম্ভাবনার দুয়ার খুলে দেয়। 
     icon:
       type: iconify
       collection: vscode-icons
       name: file-type-svelte
     link: /guide/markdown/svelte-in-markdown/
   - title: টাইপ-বান্ধব
-    description: সমস্ত API সম্পূর্ণরূপে টাইপস্ক্রিপ্ট দিয়ে টাইপ করা হয়েছে।
+    description: সমস্ত API পুরোপুরি টাইপস্ক্রিপ্ট দিয়ে টাইপ করা হয়েছে।
     icon:
       type: iconify
       collection: logos
       name: typescript-icon
   - title: থিম কাস্টমাইজযোগ্য
-    description: নির্দ্বিধায়৷ ডিফল্ট থিম, কমিউনিটি থিম বা আপনার নিজের বানানো থিম ব্যবহার করুন। 
+    description: নির্দ্বিধায় ডিফল্ট থিম, কমিউনিটি থিম বা আপনার নিজের বানানো থিম ব্যবহার করুন। 
     icon:
       type: iconify
       collection: emojione

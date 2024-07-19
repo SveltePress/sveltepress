@@ -99,13 +99,13 @@ export default {
     },
   ],
   '/reference/': [{
-    title: 'Reference',
+    title: 'রেফারেন্স',
     items: [
       {
-        title: 'Vite plugin',
+        title: 'Vite প্লাগিন',
         to: '/reference/vite-plugin/',
       }, {
-        title: 'Default theme',
+        title: 'ডিফল্ট থিম',
         to: '/reference/default-theme/',
       },
     ],
