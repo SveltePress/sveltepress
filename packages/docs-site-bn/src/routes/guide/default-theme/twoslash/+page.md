@@ -2,17 +2,17 @@
 title: Twoslash
 ---
 
-This feature integrate [Twoslash](https://github.com/twoslashes/twoslash)
+এই ফিচারটি [Twoslash](https://github.com/twoslashes/twoslash) থেকে নেয়া। 
 
-All of the Typescript code blocks would provide inline type hover.
+সব টাইপস্ক্রিপ্ট কোড ব্লক inline type hover প্রোভাইড করে। 
 
-## Enable twoslash
+## twoslash চালু করা
 
-* Install @sveltepress/twoslash package
+* @sveltepress/twoslash প্যাকেজ ইন্সটল করুন
 
 @install-pkg(@sveltepress/twoslash)
 
-* Config `highlighter.twoslash` to `true`
+* `highlighter.twoslash` কনফিগ করে `true` করে দিন
 ```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
@@ -31,7 +31,7 @@ export default defineConfig({
 })
 ```
 
-## Basic type annotation
+## প্রাথমিক type annotation
 
 ````md live
 ```ts
@@ -44,7 +44,7 @@ const obj = {
 ```
 ````
 
-## Errors
+## এরোর
 
 ````md live
 ```ts
@@ -55,7 +55,7 @@ const a: number = '1'
 ```
 ````
 
-## Queries
+## কুয়েরি
 
 ````md live
 ```ts
@@ -74,7 +74,7 @@ Number.parseInt('123', 10)
 ```
 ````
 
-## Custom logs
+## কাস্টম লগ
 
 ````md live
 ```ts
@@ -91,11 +91,11 @@ const c = 1
 ```
 ````
 
-## Cut codes
+## কাট কোডস
 
-### cut before
+### আগে কাট
 
-use `// ---cut---` or `// ---cut-before---` can cut all codes before this line
+`// ---cut---` বা `// ---cut-before---` ব্যবহার করে এই লাইনের পূর্বের সকল কোড কাট করা যাবে। 
 
 ````md live
 ```ts
@@ -105,9 +105,9 @@ console.log(level)
 ```
 ````
 
-### cut after
+### পরে কাট
 
-use `// ---cut-after---` can cut all codes after this line
+`// ---cut-after---` বহার করে এই লাইনের পরের সকল কোড কাট করা যাবে। 
 
 ````md live
 ```ts
@@ -119,9 +119,9 @@ console.log('This is not shown')
 ```
 ````
 
-### cut start/end
+### কাট শুরু/শেষ
 
-use `// ---cut-start---` and `// ---cut-end---` to cut contents between them
+আইটেমের মাঝের কন্টেন্ট কাট করতে `// ---cut-start---` বা `// ---cut-end---`  ব্যবহার করুন 
 
 ````md live
 ```ts
@@ -133,7 +133,7 @@ console.log('This is shown')
 ```
 ````
 
-## Twoslash for svelte
+## svelte এর জন্য Twoslash 
 
 ```svelte
 <script>
