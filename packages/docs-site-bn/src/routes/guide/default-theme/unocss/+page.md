@@ -2,17 +2,16 @@
 title: Unocss
 ---
 
-## Introduction
+## ভূমিকা
 
-The default theme use the [Unocss](https://github.com/unocss/unocss) to implement all styles
+ডিফল্ট থিম সকল স্টাইলের জন্য [Unocss](https://github.com/unocss/unocss) ব্যবহার করে। 
 
-Let's have some examples to see the benefits:
+চলুন কিছু উদাহরণ দেখা যাক:
 
-## Easily dark mode
+## সহজে ডার্ক মোড
 
-The following content would show 3 red cards per line in light mode.  
-And 2 blue cards per line in dark mode.   
-Isn't this great with few codes?
+লাইট মোডে নিচে প্রতি লাইনে ৩টি করে কার্ড দেখা যাবে, এবং ডার্ক মোডে ২টি করে নীল কার্ড দেখা যাবে। 
+অল্প কোডে এটা করতে পারাটা খুবই ভাল, তাই না? 
 
 ```svelte live
 <div class="grid grid-cols-3 gap-4 dark:grid-cols-2">
@@ -29,9 +28,9 @@ Isn't this great with few codes?
 </style>
 ```
 
-## Easily multi screen compatible
+## সহজে একাধিক স্ক্রিনের যোগ্য করে তোলা
 
-Toggle the window size or use different device to ses what's happening
+কী ঘটছে তা দেখার জন্য উইন্ডো সাইজ পরিবর্তন করুন অথবা অন্য ডিভাইস ব্যবহার করুন 
 
 ```svelte live
 <div class="sm:text-5 sm:text-rose-5 text-blue-5 text-10">
@@ -39,7 +38,7 @@ Toggle the window size or use different device to ses what's happening
 </div>
 ```
 
-## Easily pure css icons
+## সহজে pure css আইকন
 
 ```svelte live
 <div class="text-[56px]">
@@ -49,6 +48,6 @@ Toggle the window size or use different device to ses what's happening
 </div>
 ```
 
-## And more...
+## এবং আরো অনেক কিছু...
 
-Use your talents, ideas to achieve more!
+আরো বেশি কিছু করতে আপনার মেধা, বুদ্ধি ও জ্ঞান ব্যবহার করুন! 
