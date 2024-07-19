@@ -1,15 +1,15 @@
 ---
-title:  Code related
+title: কোড সম্পর্কিত
 ---
 
-:::tip[Dark Mode Compatible]{icon=mdi:theme-light-dark}
-All the code block features are fully compatible with dark mode.  
-Toggle dark mode to see the styles.
+:::tip[ডার্ক মোড কম্পাটিবল]{icon=mdi:theme-light-dark}
+সকল কোড ব্লক ফিচার ডার্ক মোডের সাথে পুরোপুরি কম্পাটিবল।  
+স্টাইল দেখার জন্য ডার্ক মোড ব্যবহার করুন। 
 :::
 
-## Code highlight
+## কোড হাইলাইট
 
-This feature integrate [Shiki](https://github.com/shikijs/shiki)
+এই ফিচারটি [Shiki](https://github.com/shikijs/shiki) সমন্বয় করেছে। 
 
 ````md live
 ```svelte
@@ -23,9 +23,9 @@ This feature integrate [Shiki](https://github.com/shikijs/shiki)
 ```
 ````
 
-You can customize the supported languages and theme in light/dark mode. More info reference to [Default theme reference - highlight option](/reference/default-theme/#highlight)
+আপনি সাপোর্টেড ল্যাঙ্গুয়েজ এবং লাইট/ডার্ক মোডের জন্য থিম কাস্টমাইজ করতে পারবেন। আরো বিস্তারিতে জানতে [ডিফল্ট থিম রেফারেন্স - হাইলাইট অপশন](/reference/default-theme/#highlight)
 
-## Code title
+## কোড টাইটেল
 
 ````md live
 ```svelte title="HelloWorld.svelte"
@@ -39,9 +39,9 @@ You can customize the supported languages and theme in light/dark mode. More inf
 ```
 ````
 
-## Line numbers
+## লাইন নম্বর
 
-Add `ln` in code block meta field would add line numbers in the rendered result.
+কোড ব্লকের মেটা ফিল্ডে `ln` যুক্ত করার দ্বার লাইন নম্বর প্রদর্শন করানো যাবে। 
 
 ````md live
 ```svelte ln
@@ -55,10 +55,10 @@ Add `ln` in code block meta field would add line numbers in the rendered result.
 ```
 ````
 
-## Line highlight
+## লাইন হাইলাইট
 
-Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want  
-Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the current line you want
+যে লাইনটি হাইলাইট করতে চান সেটাতে `// [svp! hl]` `// [svp! ~~]` ব্যবহার করুন 
+একাধিক লাইন হাইলাইট করতে `// [svp! hl:num]` or `// [svp! ~~:num]` ব্যবহার করুন। 
 
 ````md live
 ```svelte
@@ -79,10 +79,10 @@ Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the
 ```
 ````
 
-## Diff
+## পার্থক্য
 
-Use `// [svp! df:+]` or `// [svp! ++]` for diff add  
-Use `// [svp! df:-]` or `// [svp! --]` for diff subtract
+নতুন লাইন যুক্ত করা দেখাতে `// [svp! df:+]` or `// [svp! ++]` 
+লাইন বিয়োগ করা দেখাতে `// [svp! df:-]` or `// [svp! --]` 
 
 ````md live
 ```js
@@ -96,13 +96,13 @@ function hello() {
 ```
 ````
 
-## Focus
+## ফোকাস
 
-Use `// [svp! fc]` or `// [svp! !!]` to focus line  
-Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current line
+লাইন ফোকাস করতে `// [svp! fc]` or `// [svp! !!]` ব্যবহার করুন। 
+একাধিক লাইন ফোকাস করতে `// [svp! fc:num]` or `// [svp! !!:num]` ব্যবহার করুন। 
 
-:::warning[Not Supported]
-Multi `// [svp! fc]` in one single code block is not supported
+:::warning[সাপোর্ট করবে না]
+এক কোড ব্লকে একাধিক `// [svp! fc]` সাপোর্ট করবে না। 
 :::
 
 ````md live
@@ -125,9 +125,9 @@ Multi `// [svp! fc]` in one single code block is not supported
 ```
 ````
 
-## Markdown live code
+## Markdown লাইভ কোড
 
-Use md lang and live prop would render the result and the markdown source codes under the result.
+md lang এবং live prop ব্যবহার করলে কোডের রেজাল্ট এবং তার নিচে Markdown এর সোর্স কোড দেখাবে। 
 
 **Input**
 
@@ -152,9 +152,9 @@ const foo = 'bar'
 ```
 ````
 
-## Svelte live code
+## Svelte লাইভ কোড
 
-Use svelte lang and live prop would render the result and the source codes under the result.
+svelte lang এবং live prop ব্যবহার করলে কোডের রেজাল্ট এবং তার নিচে সোর্স কোড দেখাবে। 
 
 **Input**
 
@@ -210,9 +210,9 @@ Use svelte lang and live prop would render the result and the source codes under
 </style>
 ```
 
-## Async svelte live code
+## Async svelte লাইভ কোড
 
-The js file that render the demo part would be bundled into a single js file and load async in the page
+ডেমোর অংশ রেন্ডার করে যে js ফাইল, সেটা একক js ফাইলে বান্ডল হবে এবং অ্যাসিঙ্ক্রোনাসলি পেজে লোড হবে। 
 
 **Input**
 
@@ -225,11 +225,11 @@ The js file that render the demo part would be bundled into a single js file and
 **Output**
 
 ```svelte live async
-<h1>This is an async svelte live code</h1>
+<h1>এটি একটি async svelte লাইভ কোড</h1>
 ```
 
-:::warning[Live code in live code is not supported]
-The nested live code block below would be rendered as normal highlight code block.
+:::warning[লাইভ কোডের ভিতরে লাইভ কোড সাপোর্ট করবে না]
+নিচের নেস্টেড লাইভ কোড ব্লক সাধারণ হাইলাইট কোড ব্লক হিসেবে রেন্ডার হবে। 
 `````md live
 ````md
 ```md live
@@ -239,9 +239,9 @@ The nested live code block below would be rendered as normal highlight code bloc
 `````
 :::
 
-## Combine features
+## একাধিক ফিচার একত্রিত করা
 
-You can use more than one features mentioned above: 
+আপনি উল্লেখিত একাধিক ফিচার একসাথে ব্যবহার করতে পারবেনঃ  
 
 ````md live
 ```js ln title="complex-example.js"
@@ -253,20 +253,20 @@ function hello() {
 ```
 ````
 
-## Import code
+## কোড ইমপোর্ট
 
-This feature can allow you to import some code directly from a file.  
-And use the file extension name as `lang` to highlight the code.
-And you can specify the startLine and endLine to intercept the code you want.
+এই ফিচারটি আপনাকে সরাসরি কোনো ফাইল থেকে কোড ইমপোর্ট করার সুযোগ দেয়।  
+এবং কোড হাইলাইট করতে ফাইল এক্সটেনশন .lang ব্যবহার করুন।
+আপনি শুরুর লাইন এবং শেষ লাইন নির্দিষ্ট করতে পারবেন আপনার কোডের নির্ধারিত অংশ নেয়ার জন্য।
 
 ```md
 @code(/path/to/file[,startLine[,endLine]])
 ```
-Path can starts with `.` or `/`
-* `.` is the relative path to the current md file
-* `/` is the relative path to project root, where you start the `vite` command
+পাথ শুরু হবে `.` বা `/` দিয়ে
+* `.` হচ্ছে বর্তমান md ফাইলের রিলেটিভ পাথ
+* `/` হচ্ছে প্রজেক্টের রুটের রিলেটিভ পাথ, যেখানে আপনি `vite` কমান্ড চালান। 
 
-For example you have file tree like this
+উদাহরণস্বরুপ, আপনার ফাইল ট্রি এমন হলে
 
 ```txt
 ├─ src
@@ -276,22 +276,22 @@ For example you have file tree like this
 │  │  │  ├─ Foo.svelte
 ```
 
-* `@code(./Foo.svelte)` - import all code from Foo.svelte
-* `@code(/src/routes/foo/Foo.svelte)` - import all code from Foo.svelte
-* `@code(./Foo.svelte,5,10)` - import the line 10 to line 20 in Foo.svelte
-* `@code(/src/routes/foo/Foo.svelte,10,20)` - import the line 10 to line 20 in Foo.svelte
+* `@code(./Foo.svelte)` - Foo.svelte থেকে সকল কোড ইমপোর্ট করা
+* `@code(/src/routes/foo/Foo.svelte)` - Foo.svelte থেকে সকল কোড ইমপোর্ট করা
+* `@code(./Foo.svelte,5,10)` - Foo.svelte এর ৫ম থেকে ১০তম লাইন ইমপোর্ট করা
+* `@code(/src/routes/foo/Foo.svelte,10,20)` - Foo.svelte এর ১০ম থেকে ২০তম লাইন ইমপোর্ট করা
 
-:::tip[Tip]{icon=solar:chat-square-code-outline}
-Notice that start line and end line both would be included in the final content.
+:::tip[টিপ]{icon=solar:chat-square-code-outline}
+লক্ষ্য করুন, ফাইন কন্টেন্টে শুরুর লাইন এবং শেষ লাইন উভয়টিই দেখাবে।
 :::
 
-## Cheat list
+## চিট লিস্ট
 
-| Alias    | Equals   | Function                             |
+| সংক্ষিপ্ত রূপ | যার বিকল্প  | ফাংশন                               |
 | -------- | -------- | ------------------------------------ |
-| `~~`     | `hl`     | highlight single line                |
-| `~~:num` | `hl:num` | highlight num line from current line |
-| `++`     | `df:+`   | diff add line                        |
-| `--`     | `df:-`   | diff subtract line                   |
-| `!!`     | `fc`     | focus single line                    |
-| `!!:num` | `fc:num` | focus num line from current line     |
+| `~~`     | `hl`     | এক লাইন হাইলাইট করা                   |
+| `~~:num` | `hl:num` | একটি নির্দিষ্ট লাইন থেকে বর্তমান লাইন হাইলাইট করা |
+| `++`     | `df:+`   | লাইন যুক্ত করার ফলে সৃষ্ট পার্থক্য দেখানো      |
+| `--`     | `df:-`   | লাইন বিয়োগ করার ফলে সৃষ্ট পার্থক্য দেখানো    |
+| `!!`     | `fc`     | এক লাইন ফোকাস করা                    |
+| `!!:num` | `fc:num` | কটি নির্দিষ্ট লাইন থেকে বর্তমান লাইন ফোকাস করা |

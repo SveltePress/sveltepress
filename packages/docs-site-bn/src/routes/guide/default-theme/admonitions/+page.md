@@ -4,7 +4,7 @@ title: অ্যাডমনিশন
 
 ## গ্রামার
 
-এই ফিচারটি [remark-directive](https://github.com/remarkjs/remark-directive) সমন্বিত করেছে। 
+এই ফিচারটি [remark-directive](https://github.com/remarkjs/remark-directive) সমন্বয় করেছে। 
 
 :::important[Icon pre-build required]{icon=tabler:icons}
 এই iconify আইকনটি [প্রি-বিল্ড iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে। 
