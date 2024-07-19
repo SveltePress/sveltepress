@@ -1,68 +1,68 @@
 ---
-title: Home Page
+title: হোম পেজ
 ---
 
 ## Frontmatter
 
-The `src/routes/+page.(md|svelte)` would be identified as home page
+`src/routes/+page.(md|svelte)` ফাইলটি হোম পেজ হিসেবে ব্যবহৃত হবে। 
 
-Home frontmatter can be like this.  
-Take the frontmatter this site use for example:
+Home frontmatter এরকম হতে পারে।  
+এই সাইট যেই frontmatter ব্যবহার করছে সেটিকে উদাহরণ হিসেবে দেখুন:
 
 @code(../../../+page.md)
 
-And you can see [Home page](/) for result
+আপনি রেজাল্ট দেখতে [হোম পেজে](/) যেতে পারেন। 
 
 ### `heroImage`
 
-The home page logo image. It is recommended to use an image with high quality
+হোম পেজের লোগো। হাই কোয়ালিটির ইমেজ ব্যবহার করা উত্তম।
 
 ### `tagline`
 
-The small description text under site title and description
+সাইটের টাইটেল এবং ডেসক্রিপশনের নিচে থাকা ছোট ডেসক্রিপশন
 
 ### `actions`
 
-The action buttons
+অ্যাকশন বাটন
 * `label`  
-  The label text of action button
+  অ্যাকশন নাটনের লেবেলের লেখা
 * `to`  
-  The link address of action button
+  অ্যাকশন নাটনের লেবেলের লিংক
 * `external`  
-  Determine whether to render a external icon on the right of action button
+  অ্যাকশন নাটনের ডানদিকে এক্সটার্নাল আইকন দেখাবে কিনা তা নির্ধারণ করে
 
 ### `features`
 
-The feature cards
+ফিচার কার্ড
 
 * `title`  
-  The title
+  টাইটেল
 * `description`  
-  The text description under the title
+  টাইটেলের নিচে থাকা ডেসক্রিপশন
 * `icon`  
-custom icon config
+  কাস্টম আইকন কনফিগ
   * `type` - `'svg' | 'iconify'`
-  * `value` - the svg content for svg type icon
-  * `collection` - the collection name of iconify
-  * `name` - the icon name in the specified collection of iconify
+  * `value` - svg টাইপের আইকনে ব্যবহারের জন্য svg কন্টেন্ট
+  * `collection` - iconify এর কালেকশন নাম 
+  * `name` - iconify এর কালেকশনের আইকনের নাম
 * `link`  
-  The link that would go to when the feature card is clicked.  
-  If the link starts with http(s), would be auto recognized as external link. And would add an external icon on the top-right corner.  
-  And the feature card has a clickable style when link is provided.
+  ফিচার কার্ডে ক্লিক করে যেই লিংকে যাবে, সেটা।  
+  যদি http(s) দিয়ে লিংক শুরু হয়ে থাকে, তাহলে অটোমেটিক লিংক হিসেবে চিনে নেবে এবং উপরের ডানদিকে এক্সটার্নাল আইকন থাকবে।  
+  এবং লিংক প্রোভাইড করা হলে ফিচার কার্ডে ক্লিক-করার-যোগ্য স্টাইল থাকবে। 
 
-:::important[Icon pre-build required]{icon=tabler:icons}
-The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
+:::important[প্রি-বিল্ড আইকন আবশ্যক]{icon=tabler:icons}
+iconify আইকন [প্রিবিল্ড iconify কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে। 
 :::
 
 ### `home`
 
-Config to `false` to remove all home page content that mentioned above.
+হোম পেজের সকল কন্টেন্ট যা উল্লেখ করা হয়েছে, তা রিমুভ করতে `false` করে দিন। 
 
-## Slots
+## স্লট
 
 ### `hero-image`
 
-Use custom hero image content. Example: 
+কাস্টম হিরো ইমেজ ব্যবহার, যেমন: 
 
 ```html title="/src/routes/+page.(md|svelte)"
 <div slot="hero-image">
