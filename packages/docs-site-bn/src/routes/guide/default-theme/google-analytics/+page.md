@@ -2,14 +2,14 @@
 title: Google Analytics
 ---
 
-## Introduction 
+## পরিচিতি 
 
-Pass `ga` to default theme to use Google Analytics.  
-Value is the id provided by [Google Analytics](https://analytics.google.com/analytics/web/).  
-Something like `G-XXXXXXXXX`.  
-Would auto config gtag script in site head if provided.  
+Google Analytics ব্যবহার করতে ডিফল্ট থিমে `ga` পাঠিয়ে দিন।  
+ভ্যালু হচ্ছে ঐ আইডি যা [Google Analytics](https://analytics.google.com/analytics/web/) দিয়েছে। 
+এরকম দেখতে `G-XXXXXXXXX`.  
+সাইট হেডে gtag স্ক্রিপ্ট পরিবর্তিত হয়ে যাবে। 
 
-## Example config
+## কনফিগের উদাহরণ 
 
 ```ts title="vite.config.(js|ts)"
 import { defineConfig } from 'vite'

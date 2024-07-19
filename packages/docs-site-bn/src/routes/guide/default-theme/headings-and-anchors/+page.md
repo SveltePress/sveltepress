@@ -1,30 +1,29 @@
 ---
-title: Headings & Anchors
+title: হেডিংস এবং অ্যাঙ্কর
 ---
 
-All headings in your page md files would render the toc on the right of the page  
-As you currently can see on every page  
-And multi levels are supported
+আপনার page.md ফাইলের সকল হেডিং পেজের উপরের ডানদিকে সূচীপত্র রেন্ডার করবে।  
+যা আপনি বর্তমানে সকল পেজে দেখতে পাচ্ছেন।  
+এবং একাধিক লেভেল সাপোর্ট করে। 
 
-# Level 1 heading
+# লেভেল ১ হেডিং
 
 ```md
+## হেডিং১
+### এমন হেডিং যেখানে স্পেশাল ক্যারেক্টার আছে&?:/.
+### হেডিং১ নেস্টেড২ 
 
-## Heading1
-### Some heading contains special characters&?:/.
-### Heading1 nested2
-
-## Heading2
-### Heading2 nested1
-### Heading2 nested2
+## হেডিং২
+### হেডিং২ নেস্টেড১ 
+### হেডিং২ নেস্টেড২
 ```
 
-## Heading1
-### Some heading contains special characters&?:/.
-### Heading1 nested2
+## হেডিং১
+### এমন হেডিং যেখানে স্পেশাল ক্যারেক্টার আছে&?:/.
+### হেডিং১ নেস্টেড২ 
 
-## Heading2
-### Heading2 nested1
-### Heading2 nested2
+## হেডিং২
+### হেডিং২ নেস্টেড১ 
+### হেডিং২ নেস্টেড২
 
-You can look the page toc to see the result
+রেজাল্ট দেখতে আপনি পেজের উপরের ডানদিকে সূচীপত্র দেখতে পারেন
