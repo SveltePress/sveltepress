@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 2.0.5
+
+### Patch Changes
+
+- [`8e0ee88`](https://github.com/SveltePress/sveltepress/commit/8e0ee883bab621962a93ae5cd452700c191cfe97) - chore: wrap all --at-apply with quotes
+
+- Updated dependencies []:
+  - @sveltepress/vite@0.33.2
+
 ## 2.0.4
 
 ### Patch Changes
