@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 2.0.6
+
+### Patch Changes
+
+- [`85cacdc`](https://github.com/SveltePress/sveltepress/commit/85cacdcdc2382a6ea74503ddaa17c58ee94e46a5) - feat: make all styles with --at-apply
+
+- Updated dependencies []:
+  - @sveltepress/vite@0.33.2
+
 ## 2.0.5
 
 ### Patch Changes
