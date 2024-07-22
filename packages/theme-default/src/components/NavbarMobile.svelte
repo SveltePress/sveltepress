@@ -64,7 +64,7 @@
     --at-apply: 'leading-12 px-4';
   }
   :global(.navbar-mobile .nav-item--icon) {
-    --uno: 'h-12';
+    --at-apply: 'h-12';
   }
 
   :global(.navbar-mobile .c-expansion--title) {

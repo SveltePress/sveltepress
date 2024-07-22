@@ -91,7 +91,7 @@
     --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[70vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-988 sm:dark:bg-transparent';
   }
   .toc a {
-    --uno: 'text-[#213547] dark:text-gray-3';
+    --at-apply: 'text-[#213547] dark:text-gray-3';
   }
   .title {
     --at-apply: 'font-bold pl-4 text-gray-8 dark:text-gray-2';

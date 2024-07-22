@@ -6,8 +6,7 @@
   --svp-code-font: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
   --docsearch-searchbox-background: transparent;
   --docsearch-logo-color: var(--docsearch-primary-color);
-  --docsearch-searchbox-shadow: inset 0px 0px 0px 1px
-    var(--docsearch-primary-color);
+  --docsearch-searchbox-shadow: inset 0px 0px 0px 1px var(--docsearch-primary-color);
 }
 
 html.dark,
@@ -95,7 +94,7 @@ html[data-theme='dark'] {
   stroke-width: 0;
 }
 
-.admonition-content > :last-child {
+.admonition-content> :last-child {
   margin-bottom: 0;
 }
 
@@ -200,15 +199,19 @@ html.dark .twoslash-popup-container span {
   animation: none;
   mix-blend-mode: normal;
 }
+
 ::view-transition-old(root) {
   z-index: 1;
 }
+
 ::view-transition-new(root) {
   z-index: 9999;
 }
+
 .dark::view-transition-old(root) {
   z-index: 9999;
 }
+
 .dark::view-transition-new(root) {
   z-index: 1;
 }
@@ -221,4 +224,13 @@ html.dark .twoslash-popup-container span {
 .svp--async-live-code--error {
   color: #e74c3c;
   font-size: 16px;
+}
+
+.admonition .highlight {
+  color: var(--admonition-color);
+}
+
+.admonition .link:hover {
+  color: var(--admonition-color);
+  opacity: 0.8;
 }

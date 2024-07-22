@@ -81,7 +81,7 @@
     backdrop-filter: blur(5px);
   }
   .hidden-in-mobile {
-    --uno: 'translate-y-[-100%] sm:translate-y-0';
+    --at-apply: 'translate-y-[-100%] sm:translate-y-0';
   }
   .logo-container {
     --at-apply: 'hidden sm:block';
@@ -111,6 +111,6 @@
 
   .navbar-pc :global(.nav-item:not(.nav-item--icon)),
   .navbar-pc :global(.nav-item--user-icon) {
-    --uno: 'hidden sm:flex';
+    --at-apply: 'hidden sm:flex';
   }
 </style>

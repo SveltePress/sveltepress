@@ -125,7 +125,7 @@
     --at-apply: 'text-[#002211] dark:text-[#efefef] decoration-none';
   }
   :global(sup a) {
-    --uno: 'c-svp-primary';
+    --at-apply: 'c-svp-primary';
   }
   :global(p) {
     --at-apply: leading-6;

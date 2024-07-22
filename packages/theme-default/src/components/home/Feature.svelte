@@ -61,10 +61,10 @@
 
 <style>
   .clickable {
-    --uno: 'cursor-pointer';
+    --at-apply: 'cursor-pointer';
   }
   .clickable:hover .feature-title {
-    --uno: 'underline';
+    --at-apply: 'underline';
   }
   .feature-title {
     --at-apply: font-600 mt-3;

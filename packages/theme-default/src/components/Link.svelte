@@ -45,10 +45,4 @@
   .active {
     --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';
   }
-  :global(.admonition .highlight) {
-    --uno: 'text-[var(--admonition-color)]';
-  }
-  :global(.admonition .link) {
-    --uno: 'hover:text-[var(--admonition-color)] hover:opacity-80';
-  }
 </style>

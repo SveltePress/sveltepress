@@ -69,10 +69,10 @@
 
 <style>
   .nested {
-    --uno: 'pl-4';
+    --at-apply: 'pl-4';
   }
   .with-mb {
-    --uno: 'mb-2 sm:mb-4';
+    --at-apply: 'mb-2 sm:mb-4';
   }
   .sidebar-group:not(:last-of-type) {
     --at-apply: 'border-b-solid border-b border-light-8 dark:border-b-gray-7 mb-4 pb-4';
