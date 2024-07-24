@@ -2,6 +2,6 @@
 
 <style>
   :global(.i-logos-svelte-kit) {
-    height: 3em;
+    width: 4em;
   }
 </style>
