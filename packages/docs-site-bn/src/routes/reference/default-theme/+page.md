@@ -226,7 +226,7 @@ const defaultGradient = {
 </style>
 ```
 
-## typescript ব্যবহার
+## Typescript এর ব্যবহার
 
 থিম অপশন এবং ভার্চুয়াল মডিউল টাইপ টিপস পেতে src/app.d.ts তে `@sveltepress/theme-default/types` যুক্ত করতে হবে 
 

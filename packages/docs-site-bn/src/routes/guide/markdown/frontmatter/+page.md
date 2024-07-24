@@ -27,7 +27,7 @@ description: some description
 </script>
 ```
 
-## markdown এ frontmatter অ্যাক্সেস করা
+## Markdown এ Frontmatter অ্যাক্সেস করা
 
 `fm` variable ব্যবহার করুন:
 
@@ -38,7 +38,7 @@ Frontmatter of this page is:
 </pre>
 ```
 
-## সাইট frontmatter
+## সাইট Frontmatter
 
 প্রত্যেকটি +page.md ফাইল থেকে অ্যাক্সেস করা যাবে এমন ব্যাপক frontmatter
 

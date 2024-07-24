@@ -156,7 +156,7 @@ code
 data
 ```
 
-## typescript এর ব্যবহার 
+## Typescript এর ব্যবহার 
 
 প্লাগিন অপশন এবং ভার্চুয়াল মডিউল টাইপ টিপসের জন্য src/app.d.ts তে `@sveltepress/vite/types` যুক্ত করতে হবে 
 
