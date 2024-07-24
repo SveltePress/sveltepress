@@ -1,7 +1,6 @@
 <script>
-  import 'uno.css'
+  import 'virtual:uno.css'
   import '@docsearch/css/dist/style.css'
-  import 'virtual:sveltepress/prebuild-iconify-icons.css'
   import '../style.css'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { onMount, setContext } from 'svelte'
@@ -89,7 +88,7 @@
   </main>
 {/if}
 
-<style uno:preflights uno:safelist global>
+<style>
   main {
     --at-apply: 'pt-[76px] sm:pt-[73px]';
   }
@@ -128,7 +127,7 @@
     --at-apply: 'c-svp-primary';
   }
   :global(p) {
-    --at-apply: leading-6;
+    --at-apply: 'leading-6';
   }
 
   :global(ul) {
@@ -160,32 +159,32 @@
     --at-apply: 'mx-none';
   }
   :global(.svp-code-block) {
-    --at-apply: relative px-[18px] py-[12px] overflow-auto;
+    --at-apply: 'relative px-[18px] py-[12px] overflow-auto';
   }
   :global(.svp-code-block--title) {
     --at-apply: 'px-[18px] leading-10 font-700 b-b b-b-solid b-b-gray-2 dark:b-b-gray-8';
   }
   :global(.svp-code-block--with-line-numbers) {
-    --at-apply: pl-10;
+    --at-apply: 'pl-10';
   }
   :global(.svp-code-block--line-numbers) {
     --at-apply: 'absolute left-0 top-0 bottom-0 py-inherit text-3 text-right text-gray-4 px-2 leading-[21px] b-r-solid b-r b-r-light-4 dark:b-r-gray-8';
     font-family: var(--svp-code-font);
   }
   :global(.svp-code-block:hover .svp-code-block--lang) {
-    --at-apply: opacity-0;
+    --at-apply: 'opacity-0';
   }
   :global(.c-expansion--body .svp-code-block) {
-    --at-apply: rounded-none;
+    --at-apply: 'rounded-none';
   }
   :global(.c-expansion--body .svp-code-block-wrapper) {
-    --at-apply: mb-none;
+    --at-apply: 'mb-none';
   }
   :global(.svp-code-block--lang) {
     --at-apply: 'absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px] transition-300 transition-opacity';
   }
   :global(.svp-code-block--command-line) {
-    --at-apply: absolute left-0 right-0 z-4 h-[1.5em] pointer-events-none;
+    --at-apply: 'absolute left-0 right-0 z-4 h-[1.5em] pointer-events-none';
   }
   :global(.svp-code-block--focus) {
     --at-apply: 'bg-white dark:bg-black pointer-events-none bg-opacity-20 dark:bg-opacity-20 absolute left-0 right-0 z-4 transition-300 transition-opacity';
@@ -226,7 +225,7 @@
   }
 
   :global(table) {
-    --at-apply: border-collapse w-full;
+    --at-apply: 'border-collapse w-full';
   }
   :global(table th) {
     --at-apply: text-left p-2;
@@ -238,7 +237,7 @@
     --at-apply: p-2;
   }
   :global(.svp-anchor-item) {
-    --at-apply: relative bottom-[100px];
+    --at-apply: 'relative bottom-[100px]';
   }
   :global(.svp-live-code--demo .svp-code-block-wrapper) {
     --at-apply: 'mb-0';

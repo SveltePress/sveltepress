@@ -227,10 +227,10 @@ html.dark .twoslash-popup-container span {
 }
 
 .admonition .highlight {
-  color: var(--admonition-color);
+  color: var(--admonition-color) !important;
 }
 
 .admonition .link:hover {
-  color: var(--admonition-color);
+  color: var(--admonition-color) !important;
   opacity: 0.8;
 }

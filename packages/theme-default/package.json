@@ -1,84 +1,37 @@
 {
   "name": "@sveltepress/theme-default",
-  "homepage": "https://sveltepress.site/",
+  "type": "module",
   "version": "2.0.6",
   "description": "The default theme for sveltepress",
-  "scripts": {
-    "test": "vitest",
-    "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
-    "build:comps": "svelte-package -i src",
-    "build": "pnpm build:comps && pnpm cp:assets",
-    "prepare": "pnpm build"
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
   },
-  "files": [
-    "dist",
-    "types.d.ts"
-  ],
+  "license": "MIT",
+  "homepage": "https://sveltepress.site/",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/theme-default"
+  },
   "keywords": [
     "Docs",
     "svelte",
     "svelte docs",
     "sveltepress"
   ],
-  "author": {
-    "name": "Dongsheng Zhao",
-    "email": "1197160272@qq.com"
-  },
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/Blackman99/sveltepress",
-    "directory": "packages/theme-default"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@sveltejs/kit": "^2.5.1",
-    "@sveltejs/package": "^2.3.0",
-    "@sveltepress/vite": "workspace:*",
-    "@types/node": "^20.11.20",
-    "svelte": "^4.2.12",
-    "unified": "^11.0.4",
-    "vite": "^5.1.4",
-    "vitest": "^1.3.1"
-  },
-  "dependencies": {
-    "@docsearch/css": "^3.5.2",
-    "@docsearch/js": "^3.5.2",
-    "@iconify/json": "^2.2.186",
-    "@iconify/utils": "^2.1.14",
-    "@shikijs/twoslash": "^1.1.7",
-    "@sveltejs/vite-plugin-svelte": "^3.0.2",
-    "@sveltepress/twoslash": "workspace:*",
-    "@vite-pwa/sveltekit": "^0.4.0",
-    "lru-cache": "^10.2.0",
-    "shiki": "^1.1.7",
-    "uid": "^2.0.2",
-    "unist-util-visit": "^5.0.0",
-    "unocss": "^0.58.3",
-    "vite-plugin-pwa": "^0.19.0",
-    "workbox-precaching": "^7.0.0",
-    "workbox-routing": "^7.0.0"
-  },
-  "peerDependencies": {
-    "@sveltejs/kit": "^1.20.4 || ^2.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.1",
-    "@sveltepress/vite": "workspace:*",
-    "svelte": "^3.55.1 || ^4.0.0",
-    "vite": "^4.3.9 || ^5.0.0"
-  },
-  "type": "module",
-  "types": "./src/index.ts",
   "exports": {
     ".": "./dist/index.js",
     "./style.css": "./src/style.css",
     "./components": {
+      "types": "./src/components/index.ts",
       "import": "./src/components/index.ts",
-      "svelte": "./src/components/index.ts",
-      "types": "./src/components/index.ts"
+      "svelte": "./src/components/index.ts"
     },
     "./context": {
+      "types": "./src/context/index.ts",
       "import": "./src/context/index.ts",
-      "svelte": "./src/context/index.ts",
-      "types": "./src/context/index.ts"
+      "svelte": "./src/context/index.ts"
     },
     "./PageLayout.svelte": {
       "import": "./src/components/PageLayout.svelte",
@@ -91,6 +44,52 @@
     "./types": {
       "types": "./types.d.ts"
     }
+  },
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "types.d.ts"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
+    "build:comps": "svelte-package -i src",
+    "build": "pnpm build:comps && pnpm cp:assets",
+    "prepare": "pnpm build"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.20.4 || ^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@sveltepress/vite": "workspace:*",
+    "svelte": "^3.55.1 || ^4.0.0",
+    "vite": "^4.3.9 || ^5.0.0"
+  },
+  "dependencies": {
+    "@docsearch/css": "^3.5.2",
+    "@docsearch/js": "^3.5.2",
+    "@shikijs/twoslash": "^1.1.7",
+    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@sveltepress/twoslash": "workspace:*",
+    "@unocss/extractor-svelte": "^0.61.5",
+    "@vite-pwa/sveltekit": "^0.4.0",
+    "lru-cache": "^10.2.0",
+    "shiki": "^1.1.7",
+    "uid": "^2.0.2",
+    "unist-util-visit": "^5.0.0",
+    "unocss": "^0.61.5",
+    "vite-plugin-pwa": "^0.19.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "^2.5.1",
+    "@sveltejs/package": "^2.3.0",
+    "@sveltepress/vite": "workspace:*",
+    "@types/node": "^20.11.20",
+    "svelte": "^4.2.12",
+    "unified": "^11.0.4",
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1"
   },
   "publishConfig": {
     "types": "./dist/index.d.ts",

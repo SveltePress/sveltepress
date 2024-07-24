@@ -1,8 +1,9 @@
 import process from 'node:process'
 import Unocss from 'unocss/vite'
-import { presetIcons, presetUno, transformerCompileClass, transformerDirectives } from 'unocss'
+import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import type { PluginOption } from 'vite'
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
+import extractorSvelte from '@unocss/extractor-svelte'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -15,6 +16,19 @@ const DEFAULT_PRIMARY = '#fb7185'
 
 const DEFAULT_HOVER = '#f43f5e'
 
+function getIconSafelist(themeOptions?: DefaultThemeOptions): string[] {
+  const icons = themeOptions?.preBuildIconifyIcons
+  if (!icons)
+    return []
+  const iconSafelist: string[] = []
+  for (const prefix in icons) {
+    icons[prefix].forEach(name => {
+      iconSafelist.push(`i-${prefix}-${name}`)
+    })
+  }
+  return iconSafelist
+}
+
 export default (options?: DefaultThemeOptions) => {
   const { gradient = DEFAULT_GRADIENT, primary = DEFAULT_PRIMARY, hover = DEFAULT_HOVER } = options?.themeColor || {
     gradient: DEFAULT_GRADIENT,
@@ -22,13 +36,18 @@ export default (options?: DefaultThemeOptions) => {
     hover: DEFAULT_HOVER,
   }
 
+  const iconSafelist = getIconSafelist(options)
+
   const vitePluginsPre: PluginOption = [
     Unocss({
+      extractors: [
+        extractorSvelte(),
+      ],
       presets: [
         presetUno(),
         presetIcons(),
       ],
-      transformers: [transformerCompileClass(), transformerDirectives()],
+      transformers: [transformerDirectives()],
       theme: {
         colors: {
           svp: {
@@ -47,6 +66,9 @@ export default (options?: DefaultThemeOptions) => {
         'svp-modal-bg': 'sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-black dark:bg-white bg-opacity-70 dark:bg-opacity-70 z-900 opacity-0 pointer-events-none transition-opacity transition-300',
         'svp-modal-bg-show': 'opacity-100 pointer-events-auto',
       },
+      safelist: [
+        ...iconSafelist,
+      ],
     }),
     {
       name: '@sveltepress/default-theme',
@@ -71,7 +93,7 @@ export default (options?: DefaultThemeOptions) => {
           server: {
             fs: {
               // Need this for dev
-              allow: ['../theme-default/src/fonts'],
+              allow: ['../theme-default/src'],
             },
           },
         }

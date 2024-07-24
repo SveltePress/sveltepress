@@ -103,7 +103,7 @@
   :global(.theme-default--page-layout h4),
   :global(.theme-default--page-layout h5),
   :global(.theme-default--page-layout h6) {
-    --at-apply: relative;
+    --at-apply: 'relative';
   }
   :global(.theme-default--page-layout h2) {
     --at-apply: 'border-t-solid border-t border-light-7 dark:border-gray-7 pt-4 mt-8 mb-4';
@@ -123,7 +123,7 @@
     --at-apply: 'sm:w-[45vw] mx-auto pb-8 sm:pb-28 w-[90vw]';
   }
   .page-title {
-    --at-apply: mt-none;
+    --at-apply: 'mt-none';
   }
   .meta {
     --at-apply: 'sm:flex justify-between mt-20 column';

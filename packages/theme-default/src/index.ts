@@ -10,7 +10,6 @@ import anchors from './markdown/anchors.js'
 import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
 import installPkg from './markdown/install-pkg.js'
-import prebuildIconify from './vite-plugins/prebuild-iconify.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -70,7 +69,6 @@ const defaultTheme: ThemeDefault = options => {
           },
         })
       }
-      plugins.push(prebuildIconify(options))
       return plugins
     },
     remarkPlugins: [

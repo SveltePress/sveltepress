@@ -1,15 +1,5 @@
 {
   "version": "0.0.1",
-  "devDependencies": {
-    "@casual-ui/eslint-config-svelte": "^0.6.0",
-    "@changesets/cli": "^2.27.1",
-    "eslint": "^8.57.0",
-    "prettier": "~3.2.5",
-    "prettier-plugin-svelte": "^3.2.1",
-    "svelte": "^4.2.12",
-    "taze": "^0.13.3",
-    "typescript": "~5.3.3"
-  },
   "scripts": {
     "lint": "eslint -c ./.eslintrc.cjs --ext .js,.ts,.svelte ./packages",
     "format": "prettier \"./**/*.svelte\" --check",
@@ -20,5 +10,15 @@
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0"
+  },
+  "devDependencies": {
+    "@casual-ui/eslint-config-svelte": "^0.6.0",
+    "@changesets/cli": "^2.27.1",
+    "eslint": "^8.57.0",
+    "prettier": "~3.2.5",
+    "prettier-plugin-svelte": "^3.2.1",
+    "svelte": "^4.2.12",
+    "taze": "^0.13.3",
+    "typescript": "~5.3.3"
   }
 }
