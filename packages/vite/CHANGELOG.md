@@ -1,5 +1,17 @@
 # @sveltepress/vite
 
+## 0.34.0
+
+### Minor Changes
+
+- [`975e128`](https://github.com/SveltePress/sveltepress/commit/975e12816d1a7560f7768bb0248062a75d310ddb) - fix: TabPanel & Feature component behaviour
+
+- [`975e128`](https://github.com/SveltePress/sveltepress/commit/975e12816d1a7560f7768bb0248062a75d310ddb) - feat: use unocess safelist reimplement prebuild iconify icons
+
+- [`975e128`](https://github.com/SveltePress/sveltepress/commit/975e12816d1a7560f7768bb0248062a75d310ddb) - chore: update deps
+
+- [`975e128`](https://github.com/SveltePress/sveltepress/commit/975e12816d1a7560f7768bb0248062a75d310ddb) - chore: remove @iconfiy/json package. Use @iconify-json/[collection] packages instead
+
 ## 0.33.2
 
 ### Patch Changes
