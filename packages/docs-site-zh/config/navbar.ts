@@ -13,6 +13,11 @@ export default [
         to: 'https://sveltepress.site/',
         external: true,
       },
+      {
+        title: 'বাংলা',
+        to: 'https://bn.sveltepress.site/',
+        external: true,
+      },
     ],
   },
 ]

@@ -12,8 +12,13 @@ export default [
     icon: languageIcon,
     items: [
       {
-        title: 'বাংলা',
-        to: 'https://bn.sveltepress.site/',
+        title: 'English',
+        to: 'https://sveltepress.site/',
+        external: true,
+      },
+      {
+        title: '简体中文',
+        to: 'https://cn.sveltepress.site/',
         external: true,
       },
     ],
