@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 0.43.1
+
+### Patch Changes
+
+- [`81bfc60`](https://github.com/SveltePress/sveltepress/commit/81bfc6064f8d4f75ec867036113b19e7e94d7640) - chore: update package.json fields order
+
 ## 0.43.0
 
 ### Minor Changes
