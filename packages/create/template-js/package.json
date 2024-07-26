@@ -1,7 +1,9 @@
 {
   "name": "sveltepress-js-starter",
-  "private": true,
+  "type": "module",
   "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build"
@@ -10,12 +12,10 @@
     "@sveltejs/adapter-static": "^3.0.1",
     "@sveltejs/kit": "^2.5.1",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
-    "@sveltepress/theme-default": "^2.0.6",
-    "@sveltepress/vite": "^0.33.2",
+    "@sveltepress/theme-default": "^3.0.0",
+    "@sveltepress/vite": "^0.34.0",
     "@types/node": "^20.11.20",
     "svelte": "^4.2.12",
     "vite": "^5.1.4"
-  },
-  "type": "module",
-  "license": "MIT"
+  }
 }
