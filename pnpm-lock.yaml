@@ -117,7 +117,7 @@ importers:
         version: 1.1.36
       '@sveltejs/adapter-static':
         specifier: ^3.0.1
-        version: 3.0.1(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))
+        version: 3.0.2(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))
       '@sveltejs/kit':
         specifier: ^2.5.1
         version: 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3))
@@ -195,7 +195,7 @@ importers:
         version: 1.1.36
       '@sveltejs/adapter-static':
         specifier: ^3.0.1
-        version: 3.0.1(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))
+        version: 3.0.2(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))
       '@sveltejs/kit':
         specifier: ^2.5.1
         version: 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3))
@@ -273,7 +273,7 @@ importers:
         version: 1.1.36
       '@sveltejs/adapter-static':
         specifier: ^3.0.1
-        version: 3.0.1(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))
+        version: 3.0.2(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))
       '@sveltejs/kit':
         specifier: ^2.5.1
         version: 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3))
@@ -2316,8 +2316,8 @@ packages:
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
 
-  '@sveltejs/adapter-static@3.0.1':
-    resolution: {integrity: sha512-6lMvf7xYEJ+oGeR5L8DFJJrowkefTK6ZgA4JiMqoClMkKq0s6yvsd3FZfCFvX1fQ0tpCD7fkuRVHsnUVgsHyNg==}
+  '@sveltejs/adapter-static@3.0.2':
+    resolution: {integrity: sha512-/EBFydZDwfwFfFEuF1vzUseBoRziwKP7AoHAwv+Ot3M084sE/HTVBHf9mCmXfdM9ijprY5YEugZjleflncX5fQ==}
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
 
@@ -8369,11 +8369,11 @@ snapshots:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.11
 
-  '@sveltejs/adapter-static@3.0.1(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))':
+  '@sveltejs/adapter-static@3.0.2(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))':
     dependencies:
       '@sveltejs/kit': 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.11.22)(terser@5.31.3))
 
-  '@sveltejs/adapter-static@3.0.1(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))':
+  '@sveltejs/adapter-static@3.0.2(@sveltejs/kit@2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))':
     dependencies:
       '@sveltejs/kit': 2.5.2(@sveltejs/vite-plugin-svelte@3.0.2(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)))(svelte@4.2.18)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3))
 
