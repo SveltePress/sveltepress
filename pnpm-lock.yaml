@@ -422,7 +422,7 @@ importers:
         version: 3.0.4
       svelte2tsx:
         specifier: ^0.7.4
-        version: 0.7.4(svelte@3.59.2)(typescript@5.5.4)
+        version: 0.7.13(svelte@3.59.2)(typescript@5.5.4)
       typescript:
         specifier: ^5.3.3
         version: 5.5.4
@@ -5621,6 +5621,12 @@ packages:
       typescript:
         optional: true
 
+  svelte2tsx@0.7.13:
+    resolution: {integrity: sha512-aObZ93/kGAiLXA/I/kP+x9FriZM+GboB/ReOIGmLNbVGEd2xC+aTCppm3mk1cc9I/z60VQf7b2QDxC3jOXu3yw==}
+    peerDependencies:
+      svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
+      typescript: ^4.9.4 || ^5.0.0
+
   svelte2tsx@0.7.4:
     resolution: {integrity: sha512-zAtbQD7JmeKe0JWdKO6l38t7P6wFP0+YTc0LLFdtzWdHEddcE+/VMvJquQI9NNsnrinUbtS9JF3kosPNeglMcQ==}
     peerDependencies:
@@ -5718,8 +5724,8 @@ packages:
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
 
-  tslib@2.5.0:
-    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
   tsutils@3.21.0:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
@@ -8438,7 +8444,7 @@ snapshots:
       sade: 1.8.1
       semver: 7.6.0
       svelte: 3.59.2
-      svelte2tsx: 0.7.4(svelte@3.59.2)(typescript@5.5.4)
+      svelte2tsx: 0.7.13(svelte@3.59.2)(typescript@5.5.4)
     transitivePeerDependencies:
       - typescript
 
@@ -10860,7 +10866,7 @@ snapshots:
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.6.3
 
   lru-cache@10.2.0: {}
 
@@ -11462,7 +11468,7 @@ snapshots:
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.5.0
+      tslib: 2.6.3
 
   node-emoji@2.1.0:
     dependencies:
@@ -11718,7 +11724,7 @@ snapshots:
   pascal-case@3.1.2:
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.0
+      tslib: 2.6.3
 
   path-exists@4.0.0: {}
 
@@ -12517,7 +12523,7 @@ snapshots:
       prettier-plugin-svelte: 3.2.2(prettier@3.2.5)(svelte@3.59.2)
       svelte: 3.59.2
       svelte-preprocess: 5.1.3(@babel/core@7.24.9)(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@3.59.2)(typescript@5.5.4)
-      svelte2tsx: 0.7.4(svelte@3.59.2)(typescript@5.5.4)
+      svelte2tsx: 0.7.13(svelte@3.59.2)(typescript@5.5.4)
       typescript: 5.5.4
       typescript-auto-import-cache: 0.3.2
       vscode-css-languageservice: 6.2.12
@@ -12565,7 +12571,7 @@ snapshots:
       postcss-load-config: 3.1.4(postcss@8.4.39)
       typescript: 5.5.4
 
-  svelte2tsx@0.7.4(svelte@3.59.2)(typescript@5.5.4):
+  svelte2tsx@0.7.13(svelte@3.59.2)(typescript@5.5.4):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
@@ -12686,7 +12692,7 @@ snapshots:
 
   tslib@1.14.1: {}
 
-  tslib@2.5.0: {}
+  tslib@2.6.3: {}
 
   tsutils@3.21.0(typescript@5.3.3):
     dependencies:
