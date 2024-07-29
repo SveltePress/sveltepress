@@ -519,7 +519,7 @@ importers:
         version: 20.11.22
       dayjs:
         specifier: ^1.11.10
-        version: 1.11.10
+        version: 1.11.12
       svelte:
         specifier: ^4.2.12
         version: 4.2.18
@@ -3089,8 +3089,8 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+  dayjs@1.11.12:
+    resolution: {integrity: sha512-Rt2g+nTbLlDWZTwwrIXjy9MeiZmSDI375FvZs72ngxx8PDC6YXOeR3q5LAuPzjZQxhiWdRKac7RKV+YyQYfYIg==}
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -9426,7 +9426,7 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  dayjs@1.11.10: {}
+  dayjs@1.11.12: {}
 
   debug@3.2.7:
     dependencies:
