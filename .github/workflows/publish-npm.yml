@@ -18,11 +18,11 @@ jobs:
       - name: Setup Node 18
         uses: actions/setup-node@v4
         with:
-          node-version: "20.10.0"
+          node-version: "21.7.3"
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3.0.0
+        uses: pnpm/action-setup@v4
         with: 
-          version: 8.12.1
+          version: 9.6.0
       - name: Install packages
         run: pnpm i
       - name: Create release and publish to npm
