@@ -1,5 +1,11 @@
 # @sveltepress/twoslash
 
+## 0.3.1
+
+### Patch Changes
+
+- [`8a5d1eb`](https://github.com/SveltePress/sveltepress/commit/8a5d1eb154f7b0a91573319d78e3ac228b7f35c8) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize shiki
+
 ## 0.3.0
 
 ### Minor Changes
