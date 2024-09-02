@@ -1,6 +1,6 @@
 import type { BundledLanguage } from 'shiki/langs'
 import type { BundledTheme, CodeToHastOptions } from 'shiki'
-import { getHighlighter } from 'shiki'
+import { codeToHtml } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
 import { LRUCache } from 'lru-cache'
 import { createTransformerFactory } from '@shikijs/twoslash'
@@ -8,19 +8,14 @@ import { createTwoslasher, rendererFloatingSvelte } from '@sveltepress/twoslash'
 import { themeOptionsRef } from '../index.js'
 import { processCommands } from './commands.js'
 
-const DEFAULT_SUPPORT_LANGUAGES: BundledLanguage[] = ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']
+const DEFAULT_SUPPORT_LANGUAGES: any[] = ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']
 
 const cache = new LRUCache<string, any>({ max: 1024 })
-
 async function createHighlighterWithThemeAndLangs() {
   const highlighterConfig = themeOptionsRef.value?.highlighter
   const langs = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
   const darkTheme = highlighterConfig?.themeDark ?? 'night-owl'
   const lightTheme = highlighterConfig?.themeLight ?? 'vitesse-light'
-  const shikiHighlighter = await getHighlighter({
-    themes: [darkTheme, lightTheme],
-    langs,
-  })
 
   const _highlighter: Highlighter = async (code, lang) => {
     const shikiOptions: CodeToHastOptions<BundledLanguage, BundledTheme> = {
@@ -32,14 +27,17 @@ async function createHighlighterWithThemeAndLangs() {
       transformers: [],
     }
     if (themeOptionsRef.value?.highlighter?.twoslash) {
-      shikiOptions.transformers?.push(createTransformerFactory(await createTwoslasher())({
-        langs: ['ts', 'tsx', 'svelte'],
-        renderer: rendererFloatingSvelte({
-          lang: 'ts',
-        }),
-      }))
+      shikiOptions.transformers?.push(
+        createTransformerFactory(
+          await createTwoslasher())(
+          {
+            langs: ['ts', 'tsx', 'svelte'],
+            renderer: rendererFloatingSvelte({
+              lang: 'ts',
+            }),
+          }))
     }
-    return shikiHighlighter.codeToHtml(code, shikiOptions)
+    return (await codeToHtml(code, shikiOptions))
       .replace(/\{/g, '&#123;')
       .replace(/\}/g, '&#125;')
   }
