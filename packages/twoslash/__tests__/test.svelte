@@ -17,6 +17,6 @@
   Count is: {count}
 </button>
 
-<FloatingWrapper floatingClass="custom-floating-class"
-  >Some floating content</FloatingWrapper
->
+<FloatingWrapper floatingClass="custom-floating-class">
+  Some floating content
+</FloatingWrapper>

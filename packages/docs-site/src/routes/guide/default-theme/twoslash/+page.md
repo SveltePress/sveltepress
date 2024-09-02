@@ -139,6 +139,8 @@ console.log('This is shown')
 <script>
   import { onMount } from 'svelte'
 
+  export let message = 'World'
+
   let count = 0
 
   onMount(() => {
@@ -148,4 +150,7 @@ console.log('This is shown')
 <button on:click="{count++}">
   Count is: { count }
 </button>
+<div class="text-6">
+  Hello, {message}
+</div>
 ```

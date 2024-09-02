@@ -68,7 +68,7 @@
     "@docsearch/css": "^3.5.2",
     "@docsearch/js": "^3.5.2",
     "@shikijs/twoslash": "^1.16.1",
-    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "@sveltepress/twoslash": "workspace:*",
     "@unocss/extractor-svelte": "^0.61.5",
     "@vite-pwa/sveltekit": "^0.4.0",

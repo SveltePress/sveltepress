@@ -1,11 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { SourceMapConsumer } from 'source-map-js'
 import type { CreateTwoslashOptions, TwoslashExecuteOptions, TwoslashInstance, TwoslashNode } from 'twoslash'
 import { createTwoslasher as createTwoslasherBase } from 'twoslash'
-import { DocumentSnapshot } from 'svelte-language-server/dist/src/plugins/typescript/DocumentSnapshot.js'
-import { Document } from 'svelte-language-server/dist/src/lib/documents/index.js'
-import { parse } from 'svelte/compiler'
+import { svelte2tsx } from 'svelte2tsx'
 
 const dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -25,37 +24,42 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
   function twoslasher(code: string, extension?: string, options: TwoslashSvelteExecuteOptions = {}) {
     if (extension !== 'svelte')
       return base(code, extension, options)
-    const svelteDoc = new Document('index.svelte', code)
-
-    const tsxDoc = DocumentSnapshot.fromDocument(svelteDoc, {
-      parse,
-      version: '4',
-      transformOnTemplateError: false,
-      typingsNamespace: '',
+    const codeLines = code.split('\n')
+    const tsxDoc = svelte2tsx(code, {
+      filename: 'source.svelte',
+      isTsFile: true,
     })
 
-    const twoslashReturn = base([tsxDoc.getFullText(), additionalTypes].join('\n'), 'tsx', {
+    const consumer = new SourceMapConsumer(tsxDoc.map as any)
+    const twoslashReturn = base([tsxDoc.code, additionalTypes].join('\n'), 'tsx', {
       compilerOptions: {
         jsx: 1,
         types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types'],
       },
       shouldGetHoverInfo(identifier) {
-        return !['__sveltets', 'Index__', 'svelteHTML', 'render', '$$_', 'target', 'props'].some(id => identifier.startsWith(id))
+        return !['__sveltets', 'Index__', 'svelteHTML', '$$_', 'target'].some(id => identifier.startsWith(id))
       },
     })
 
     twoslashReturn.meta.extension = 'svelte'
 
     function mapNode<T extends TwoslashNode>(node: T) {
-      const { line, character } = tsxDoc.getOriginalPosition(node)
-      node.line = line
-      node.character = character
-      node.start = svelteDoc.offsetAt(node)
+      const { line, column } = consumer.originalPositionFor({
+        line: node.line + 1,
+        column: node.character,
+      })
+      node.line = line - 1
+      node.character = column
+
+      node.start = codeLines.slice(0, line - 1).reduce((acc, l) => acc + l.length + 1, 0) + column
+
       return node
     }
 
     twoslashReturn.code = code
+
     twoslashReturn.hovers.forEach(mapNode)
+
     twoslashReturn.nodes = twoslashReturn.nodes.filter(n => n.line > -1)
     return twoslashReturn
   }

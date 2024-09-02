@@ -186,7 +186,7 @@ import FloatingWrapper",
     "type": "hover",
   },
   {
-    "character": 26,
+    "character": 2,
     "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
 
 Can be used to create strongly typed Svelte components.
@@ -210,8 +210,8 @@ with TypeScript:
 <MyComponent foo={'bar'} />
 \`\`\`",
     "length": 15,
-    "line": 20,
-    "start": 426,
+    "line": 21,
+    "start": 427,
     "tags": undefined,
     "target": "FloatingWrapper",
     "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>

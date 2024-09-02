@@ -27,10 +27,12 @@ async () => {
     count;
  }
 
- { const $$_repparWgnitaolF0C = __sveltets_2_ensureComponent(FloatingWrapper); new $$_repparWgnitaolF0C({ target: __sveltets_2_any(), props: {  "floatingClass":\`custom-floating-class\`,}});   FloatingWrapper}
+ { const $$_repparWgnitaolF0C = __sveltets_2_ensureComponent(FloatingWrapper); new $$_repparWgnitaolF0C({ target: __sveltets_2_any(), props: { "floatingClass":\`custom-floating-class\`,}});
+    
+ FloatingWrapper}
 };
-return { props: {} as Record<string, never>, slots: {}, events: {} }}
+return { props: /** @type {Record<string, never>} */ ({}), slots: {}, events: {} }}
 
-export default class Index__SvelteComponent_ extends __sveltets_2_createSvelte2TsxComponent(__sveltets_2_with_any_event(render())) {
+export default class extends __sveltets_2_createSvelte2TsxComponent(__sveltets_2_partial(__sveltets_2_with_any_event(render()))) {
 }"
 `;
