@@ -5,7 +5,6 @@ import { SourceMapConsumer } from 'source-map-js'
 import type { CreateTwoslashOptions, TwoslashExecuteOptions, TwoslashInstance, TwoslashNode } from 'twoslash'
 import { createTwoslasher as createTwoslasherBase } from 'twoslash'
 import { svelte2tsx } from 'svelte2tsx'
-import { ModuleKind, ModuleResolutionKind } from 'typescript'
 
 const dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -36,8 +35,8 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
       compilerOptions: {
         jsx: 1,
         types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types', '@sveltepress/theme-default/components'],
-        moduleResolution: ModuleResolutionKind.NodeNext,
-        module: ModuleKind.NodeNext,
+        moduleResolution: 99,
+        module: 199,
       },
       shouldGetHoverInfo(identifier) {
         return !['__sveltets', 'Index__', 'svelteHTML', '$$', 'target', 'createElement', 'props', '{}'].some(id => identifier.startsWith(id))
