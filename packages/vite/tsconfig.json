@@ -8,9 +8,9 @@
     "strict": true,
     "declaration": true,
     "outDir": "dist",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "removeComments": false,
-    "module": "ESNext",
+    "module": "nodenext"
   },
   "include": ["src", "types.d.ts"]
 }

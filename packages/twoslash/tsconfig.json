@@ -9,9 +9,9 @@
     "strict": true,
     "declaration": true,
     "outDir": "dist",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "removeComments": false,
-    "module": "ESNext"
+    "module": "NodeNext"
   },
   "include": ["src"],
   "exclude": ["src/twoslash-svelte/types.ts"]

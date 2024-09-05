@@ -1,7 +1,7 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
@@ -11,7 +11,7 @@
     "sourceMap": true,
     "strict": true,
     "lib": ["ESNext"],
-    "module": "ESNext",
+    "module": "nodenext",
     "ignoreDeprecations": "5.0"
   },
   "exclude": ["deploy/index.cjs"]

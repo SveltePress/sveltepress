@@ -17,6 +17,7 @@
     {...$$restProps}
   >
     <slot />
-    <slot name="floating-content" slot="floating-content" />
+    <!-- apply content -->
+    <slot slot="content" name="floating-content" />
   </svelte:component>
 {/await}

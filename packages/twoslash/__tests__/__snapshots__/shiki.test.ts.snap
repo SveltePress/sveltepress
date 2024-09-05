@@ -572,9 +572,25 @@ exports[`shiki > tokens 1`] = `
         },
       },
     },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 96,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
     {
       "content": "import",
-      "offset": 95,
+      "offset": 98,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -588,7 +604,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 101,
+      "offset": 104,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -602,7 +618,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "{",
-      "offset": 102,
+      "offset": 105,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -616,7 +632,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 103,
+      "offset": 106,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -630,7 +646,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "onMount",
-      "offset": 104,
+      "offset": 107,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -644,7 +660,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 111,
+      "offset": 114,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -658,7 +674,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "}",
-      "offset": 112,
+      "offset": 115,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -672,7 +688,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 113,
+      "offset": 116,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -686,7 +702,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "from",
-      "offset": 114,
+      "offset": 117,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -700,7 +716,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 118,
+      "offset": 121,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -714,7 +730,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "'",
-      "offset": 119,
+      "offset": 122,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -728,7 +744,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "svelte",
-      "offset": 120,
+      "offset": 123,
       "variants": {
         "dark": {
           "color": "#C98A7D",
@@ -742,7 +758,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "'",
-      "offset": 126,
+      "offset": 129,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -758,7 +774,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "  ",
-      "offset": 128,
+      "offset": 131,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -772,7 +788,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "import",
-      "offset": 130,
+      "offset": 133,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -786,7 +802,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 136,
+      "offset": 139,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -800,7 +816,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "FloatingWrapper",
-      "offset": 137,
+      "offset": 140,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -814,7 +830,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 152,
+      "offset": 155,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -828,7 +844,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "from",
-      "offset": 153,
+      "offset": 156,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -842,7 +858,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 157,
+      "offset": 160,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -856,7 +872,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "'",
-      "offset": 158,
+      "offset": 161,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -869,8 +885,8 @@ exports[`shiki > tokens 1`] = `
       },
     },
     {
-      "content": "../src/components/FloatingWrapper.svelte",
-      "offset": 159,
+      "content": "@sveltepress/twoslash/FloatingWrapper.svelte",
+      "offset": 162,
       "variants": {
         "dark": {
           "color": "#C98A7D",
@@ -884,7 +900,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "'",
-      "offset": 199,
+      "offset": 206,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -901,7 +917,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "  ",
-      "offset": 202,
+      "offset": 209,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -915,7 +931,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "let",
-      "offset": 204,
+      "offset": 211,
       "variants": {
         "dark": {
           "color": "#CB7676",
@@ -929,7 +945,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 207,
+      "offset": 214,
       "variants": {
         "dark": {
           "color": "#CB7676",
@@ -943,7 +959,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "count",
-      "offset": 208,
+      "offset": 215,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -957,7 +973,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 213,
+      "offset": 220,
       "variants": {
         "dark": {
           "color": "#CB7676",
@@ -971,7 +987,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "=",
-      "offset": 214,
+      "offset": 221,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -985,7 +1001,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 215,
+      "offset": 222,
       "variants": {
         "dark": {
           "color": "#CB7676",
@@ -999,7 +1015,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "0",
-      "offset": 216,
+      "offset": 223,
       "variants": {
         "dark": {
           "color": "#4C9A91",
@@ -1016,7 +1032,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "  ",
-      "offset": 219,
+      "offset": 226,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1030,7 +1046,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "onMount",
-      "offset": 221,
+      "offset": 228,
       "variants": {
         "dark": {
           "color": "#80A665",
@@ -1044,7 +1060,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "(()",
-      "offset": 228,
+      "offset": 235,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1058,7 +1074,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 231,
+      "offset": 238,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1072,7 +1088,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "=>",
-      "offset": 232,
+      "offset": 239,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1086,7 +1102,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 234,
+      "offset": 241,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1100,7 +1116,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "{",
-      "offset": 235,
+      "offset": 242,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1116,7 +1132,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "    ",
-      "offset": 237,
+      "offset": 244,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1130,7 +1146,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "console",
-      "offset": 241,
+      "offset": 248,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -1144,7 +1160,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": ".",
-      "offset": 248,
+      "offset": 255,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1158,7 +1174,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "log",
-      "offset": 249,
+      "offset": 256,
       "variants": {
         "dark": {
           "color": "#80A665",
@@ -1172,7 +1188,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "(",
-      "offset": 252,
+      "offset": 259,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1186,7 +1202,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "'",
-      "offset": 253,
+      "offset": 260,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -1200,7 +1216,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "mounted",
-      "offset": 254,
+      "offset": 261,
       "variants": {
         "dark": {
           "color": "#C98A7D",
@@ -1214,7 +1230,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "'",
-      "offset": 261,
+      "offset": 268,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -1228,7 +1244,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": ")",
-      "offset": 262,
+      "offset": 269,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1244,7 +1260,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "  ",
-      "offset": 264,
+      "offset": 271,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1258,7 +1274,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "})",
-      "offset": 266,
+      "offset": 273,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1274,7 +1290,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "</",
-      "offset": 269,
+      "offset": 276,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1288,7 +1304,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "script",
-      "offset": 271,
+      "offset": 278,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -1302,7 +1318,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": ">",
-      "offset": 277,
+      "offset": 284,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1319,7 +1335,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "<",
-      "offset": 280,
+      "offset": 287,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1333,7 +1349,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "button",
-      "offset": 281,
+      "offset": 288,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -1347,7 +1363,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 287,
+      "offset": 294,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1361,7 +1377,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "on",
-      "offset": 288,
+      "offset": 295,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -1375,7 +1391,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": ":",
-      "offset": 290,
+      "offset": 297,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1389,7 +1405,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "click",
-      "offset": 291,
+      "offset": 298,
       "variants": {
         "dark": {
           "color": "#5DA994",
@@ -1403,7 +1419,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "={()",
-      "offset": 296,
+      "offset": 303,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1417,7 +1433,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 300,
+      "offset": 307,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1431,7 +1447,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "=>",
-      "offset": 301,
+      "offset": 308,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1445,7 +1461,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 303,
+      "offset": 310,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1459,7 +1475,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "count",
-      "offset": 304,
+      "offset": 311,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -1473,7 +1489,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "++",
-      "offset": 309,
+      "offset": 316,
       "variants": {
         "dark": {
           "color": "#CB7676",
@@ -1487,7 +1503,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "}>",
-      "offset": 311,
+      "offset": 318,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1503,7 +1519,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "  Count is: ",
-      "offset": 314,
+      "offset": 321,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1517,7 +1533,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "{",
-      "offset": 326,
+      "offset": 333,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1531,7 +1547,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "count",
-      "offset": 327,
+      "offset": 334,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -1545,7 +1561,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "}",
-      "offset": 332,
+      "offset": 339,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1561,7 +1577,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "</",
-      "offset": 334,
+      "offset": 341,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1575,7 +1591,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "button",
-      "offset": 336,
+      "offset": 343,
       "variants": {
         "dark": {
           "color": "#4D9375",
@@ -1589,7 +1605,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": ">",
-      "offset": 342,
+      "offset": 349,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1606,7 +1622,7 @@ exports[`shiki > tokens 1`] = `
   [
     {
       "content": "<",
-      "offset": 345,
+      "offset": 352,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1620,7 +1636,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "FloatingWrapper",
-      "offset": 346,
+      "offset": 353,
       "variants": {
         "dark": {
           "color": "#B8A965",
@@ -1634,7 +1650,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": " ",
-      "offset": 361,
+      "offset": 368,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1647,8 +1663,8 @@ exports[`shiki > tokens 1`] = `
       },
     },
     {
-      "content": "floatingClass",
-      "offset": 362,
+      "content": "placement",
+      "offset": 369,
       "variants": {
         "dark": {
           "color": "#BD976A",
@@ -1662,7 +1678,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": "=",
-      "offset": 375,
+      "offset": 378,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1676,7 +1692,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": """,
-      "offset": 376,
+      "offset": 379,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -1689,8 +1705,8 @@ exports[`shiki > tokens 1`] = `
       },
     },
     {
-      "content": "custom-floating-class",
-      "offset": 377,
+      "content": "right",
+      "offset": 380,
       "variants": {
         "dark": {
           "color": "#C98A7D",
@@ -1704,7 +1720,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": """,
-      "offset": 398,
+      "offset": 385,
       "variants": {
         "dark": {
           "color": "#C98A7D77",
@@ -1718,7 +1734,7 @@ exports[`shiki > tokens 1`] = `
     },
     {
       "content": ">",
-      "offset": 399,
+      "offset": 386,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1733,8 +1749,150 @@ exports[`shiki > tokens 1`] = `
   ],
   [
     {
-      "content": "  Some floating content",
+      "content": "  ",
+      "offset": 388,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "<",
+      "offset": 390,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "div",
+      "offset": 391,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 394,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "class",
+      "offset": 395,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 400,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
       "offset": 401,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "text-xl b-1 b-solid b-blue rounded py-10 px-4",
+      "offset": 402,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 447,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 448,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "    Trigger",
+      "offset": 450,
       "variants": {
         "dark": {
           "color": "#DBD7CAEE",
@@ -1749,8 +1907,22 @@ exports[`shiki > tokens 1`] = `
   ],
   [
     {
+      "content": "  ",
+      "offset": 462,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
       "content": "</",
-      "offset": 425,
+      "offset": 464,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1763,22 +1935,22 @@ exports[`shiki > tokens 1`] = `
       },
     },
     {
-      "content": "FloatingWrapper",
-      "offset": 427,
+      "content": "div",
+      "offset": 466,
       "variants": {
         "dark": {
-          "color": "#B8A965",
+          "color": "#4D9375",
           "fontStyle": 0,
         },
         "light": {
-          "color": "#005CC5",
+          "color": "#22863A",
           "fontStyle": 0,
         },
       },
     },
     {
       "content": ">",
-      "offset": 442,
+      "offset": 469,
       "variants": {
         "dark": {
           "color": "#666666",
@@ -1792,6 +1964,350 @@ exports[`shiki > tokens 1`] = `
     },
   ],
   [],
+  [
+    {
+      "content": "  ",
+      "offset": 472,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "<",
+      "offset": 474,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "div",
+      "offset": 475,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 478,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "class",
+      "offset": 479,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 484,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 485,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "bg-white dark:bg-dark b-solid b-1 b-red rounded p-4",
+      "offset": 486,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 537,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": " ",
+      "offset": 538,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "slot",
+      "offset": 539,
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "=",
+      "offset": 543,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 544,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "floating-content",
+      "offset": 545,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": """,
+      "offset": 561,
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 562,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "    Floating content",
+      "offset": 564,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "  ",
+      "offset": 585,
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "</",
+      "offset": 587,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "div",
+      "offset": 589,
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 592,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
+  [
+    {
+      "content": "</",
+      "offset": 594,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": "FloatingWrapper",
+      "offset": 596,
+      "variants": {
+        "dark": {
+          "color": "#B8A965",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#005CC5",
+          "fontStyle": 0,
+        },
+      },
+    },
+    {
+      "content": ">",
+      "offset": 611,
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0,
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0,
+        },
+      },
+    },
+  ],
 ]
 `;
 
@@ -1800,28 +2316,19 @@ exports[`shiki > twoslash svelte 1`] = `
 <span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> const</span><span style="color:#005CC5;--shiki-dark:#BD976A"> </span><span style="color:#005CC5;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>FOO</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">const</span><span style="color:#005CC5;--shiki-dark:#BD976A"> FOO</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">BAR</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">BAR</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375"><Floating class="twoslash-hover"><span>script</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> render</span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> {</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#BD976A">    props</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">, </span><span style="color:#005CC5;--shiki-dark:#5DA994">never</span><span style="color:#24292E;--shiki-dark:#666666">>;</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#BD976A">    slots</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> {};</span></span>
+<span class="line"><span style="color:#E36209;--shiki-dark:#BD976A">    events</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> {};</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">}</span></span></code></pre></code></span></svelte:fragment></Floating></span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  </span></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>onMount</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> onMount</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#6F42C1;--shiki-dark:#80A665">fn</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> () </span><span style="color:#D73A49;--shiki-dark:#666666">=></span><span style="color:#6F42C1;--shiki-dark:#5DA994"> NotFunction</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">> </span><span style="color:#D73A49;--shiki-dark:#666666">|</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Promise</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">NotFunction</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">>> </span><span style="color:#D73A49;--shiki-dark:#666666">|</span><span style="color:#24292E;--shiki-dark:#666666"> (() </span><span style="color:#D73A49;--shiki-dark:#666666">=></span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">))</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> void</span></code><div class="twoslash-popup-docs"><p>The <code>onMount</code> function schedules a callback to run as soon as the component has been mounted to the DOM.
 It must be called during the component's initialisation (but doesn't need to live <em>inside</em> the component;
 it can be called from an external module).</p>
 <p>If a function is returned <em>synchronously</em> from <code>onMount</code>, it will be called when the component is unmounted.</p>
 <p><code>onMount</code> does not run inside a <a href="https://svelte.dev/docs#run-time-server-side-component-api">server-side component</a>.</p>
 <p><a href="https://svelte.dev/docs/svelte#onmount">https://svelte.dev/docs/svelte#onmount</a></p></div></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">Props</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Events</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Slots</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span></code><div class="twoslash-popup-docs"><p>Base class for Svelte components with some minor dev-enhancements. Used when dev=true.</p>
-<p>Can be used to create strongly typed Svelte components.</p>
-<h4>Example:</h4>
-<p>You have component library on npm called <code>component-library</code>, from which
-you export a component called <code>MyComponent</code>. For Svelte+TypeScript users,
-you want to provide typings. Therefore you create a <code>index.d.ts</code>:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> MyComponent</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#80A665"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;{</span><span style="color:#E36209;--shiki-dark:#BD976A">foo</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">}></span><span style="color:#24292E;--shiki-dark:#666666"> {}</span></span></code></pre>
-<p>Typing this makes it possible for IDEs like VS Code with the Svelte extension
-to provide intellisense and to use the component like this in a Svelte file
-with TypeScript:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">	import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> MyComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">component-library</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965">MyComponent</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> foo</span><span style="color:#24292E;--shiki-dark:#666666">={</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">bar</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#24292E;--shiki-dark:#666666">}</span><span style="color:#24292E;--shiki-dark:#666666"> /></span></span></code></pre></div></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">../src/components/FloatingWrapper.svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span></span>
+<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">@sveltepress/twoslash/FloatingWrapper.svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">  let</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span></span>
 <span class="line"></span>
@@ -1835,40 +2342,17 @@ it can be called from an external module).</p>
 <span class="line"><span style="color:#24292E;--shiki-dark:#666666">  })</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#D73A49;--shiki-dark:#4D9375"> on</span><span style="color:#24292E;--shiki-dark:#666666">:</span><span style="color:#6F42C1;--shiki-dark:#5DA994">cl</span><span style="color:#6F42C1;--shiki-dark:#5DA994">ick</span><span style="color:#24292E;--shiki-dark:#666666">={()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#CB7676">++</span><span style="color:#24292E;--shiki-dark:#666666">}></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#D73A49;--shiki-dark:#4D9375"> on</span><span style="color:#24292E;--shiki-dark:#666666">:</span><span style="color:#6F42C1;--shiki-dark:#5DA994">click</span><span style="color:#24292E;--shiki-dark:#666666">={()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span></svelte:fragment></Floating></span><span style="color:#D73A49;--shiki-dark:#CB7676">++</span><span style="color:#24292E;--shiki-dark:#666666">}></span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  Count is: </span><span style="color:#24292E;--shiki-dark:#666666">{</span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">}</span></span>
 <span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">Props</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Events</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Slots</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span></code><div class="twoslash-popup-docs"><p>Base class for Svelte components with some minor dev-enhancements. Used when dev=true.</p>
-<p>Can be used to create strongly typed Svelte components.</p>
-<h4>Example:</h4>
-<p>You have component library on npm called <code>component-library</code>, from which
-you export a component called <code>MyComponent</code>. For Svelte+TypeScript users,
-you want to provide typings. Therefore you create a <code>index.d.ts</code>:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> MyComponent</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#80A665"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;{</span><span style="color:#E36209;--shiki-dark:#BD976A">foo</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">}></span><span style="color:#24292E;--shiki-dark:#666666"> {}</span></span></code></pre>
-<p>Typing this makes it possible for IDEs like VS Code with the Svelte extension
-to provide intellisense and to use the component like this in a Svelte file
-with TypeScript:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">	import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> MyComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">component-library</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965">MyComponent</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> foo</span><span style="color:#24292E;--shiki-dark:#666666">={</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">bar</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#24292E;--shiki-dark:#666666">}</span><span style="color:#24292E;--shiki-dark:#666666"> /></span></span></code></pre></div></span></svelte:fragment></Floating></span><span style="color:#6F42C1;--shiki-dark:#BD976A"> floatingClass</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">custom-floating-class</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  Some floating content</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#005CC5;--shiki-dark:#B8A965"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">Props</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Events</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Slots</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Record</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">string</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">></span></code><div class="twoslash-popup-docs"><p>Base class for Svelte components with some minor dev-enhancements. Used when dev=true.</p>
-<p>Can be used to create strongly typed Svelte components.</p>
-<h4>Example:</h4>
-<p>You have component library on npm called <code>component-library</code>, from which
-you export a component called <code>MyComponent</code>. For Svelte+TypeScript users,
-you want to provide typings. Therefore you create a <code>index.d.ts</code>:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">export</span><span style="color:#D73A49;--shiki-dark:#CB7676"> class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> MyComponent</span><span style="color:#D73A49;--shiki-dark:#CB7676"> extends</span><span style="color:#6F42C1;--shiki-dark:#80A665"> SvelteComponent</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;{</span><span style="color:#E36209;--shiki-dark:#BD976A">foo</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">}></span><span style="color:#24292E;--shiki-dark:#666666"> {}</span></span></code></pre>
-<p>Typing this makes it possible for IDEs like VS Code with the Svelte extension
-to provide intellisense and to use the component like this in a Svelte file
-with TypeScript:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> lang</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">ts</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">	import</span><span style="color:#24292E;--shiki-dark:#666666"> {</span><span style="color:#24292E;--shiki-dark:#BD976A"> MyComponent</span><span style="color:#24292E;--shiki-dark:#666666"> }</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> "</span><span style="color:#032F62;--shiki-dark:#C98A7D">component-library</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">;</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965">MyComponent</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> foo</span><span style="color:#24292E;--shiki-dark:#666666">={</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">bar</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#24292E;--shiki-dark:#666666">}</span><span style="color:#24292E;--shiki-dark:#666666"> /></span></span></code></pre></div></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"></span></code></pre>"
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#B8A965"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span></code></span></svelte:fragment></Floating></span><span style="color:#6F42C1;--shiki-dark:#BD976A"> placement</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">right</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  &#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">div</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> class</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">text-xl b-1 b-solid b-blue rounded py-10 px-4</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">    Trigger</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  &#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">div</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  &#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">div</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> class</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">bg-white dark:bg-dark b-solid b-1 b-red rounded p-4</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> slot</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">floating-content</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">    Floating content</span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  &#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">div</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#005CC5;--shiki-dark:#B8A965"><Floating class="twoslash-hover"><span>FloatingWrapper</span><svelte:fragment slot="floating-content"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">class</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> FloatingWrapper</span></code></span></svelte:fragment></Floating></span><span style="color:#24292E;--shiki-dark:#666666">></span></span></code></pre>"
 `;

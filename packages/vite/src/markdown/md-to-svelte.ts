@@ -9,9 +9,9 @@ import remarkDirective from 'remark-directive'
 import { visit } from 'unist-util-visit'
 import remarkGfm from 'remark-gfm'
 import emoji from 'remark-emoji'
-import type { Highlighter } from '../types'
-import reserveSvelteCommands from './reserve-svelte-commands'
-import disableLeafTextDirective from './disable-leaft-text-directive'
+import type { Highlighter } from '../types.js'
+import reserveSvelteCommands from './reserve-svelte-commands.js'
+import disableLeafTextDirective from './disable-leaft-text-directive.js'
 
 interface CompileOptions {
   mdContent: string

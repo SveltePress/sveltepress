@@ -2,9 +2,9 @@
   import { onMount } from 'svelte'
   import type { Placement } from '@floating-ui/dom'
   import { arrow, autoUpdate, computePosition, offset } from '@floating-ui/dom'
-  import teleport from '../actions/teleport'
+  import teleport from '../actions/teleport.js'
   import '@shikijs/twoslash/style-rich.css'
-  import type { EDirection } from './types'
+  import type { EDirection } from './types.js'
 
   export let show = false
   export let alwaysShow = false
@@ -39,7 +39,7 @@
           bottom: 'top',
           left: 'right',
         }
-        const translate = {
+        const translate: any = {
           top: 'translateY(-50%)',
           right: 'translateX(50%)',
           bottom: 'translateY(50%)',
@@ -84,7 +84,7 @@
     role="tooltip"
   >
     <div bind:this={arrowEl} class="arrow"></div>
-    <slot name="floating-content" />
+    <slot name="content" />
   </div>
 </span>
 

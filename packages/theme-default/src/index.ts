@@ -12,6 +12,8 @@ import codeImport from './markdown/code-import.js'
 import installPkg from './markdown/install-pkg.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
+export { SERVICE_WORKER_PATH } from './constants.js'
+
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const VIRTUAL_PWA = 'virtual:pwa-info'
@@ -22,8 +24,6 @@ export const themeOptionsRef: {
 } = {
   value: undefined,
 }
-
-export const SERVICE_WORKER_PATH = './node_modules/@sveltepress/theme-default/dist/components/pwa/sw.js'
 
 const defaultTheme: ThemeDefault = options => {
   themeOptionsRef.value = options

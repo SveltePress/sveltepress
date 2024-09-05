@@ -79,18 +79,6 @@ declare module 'virtual:sveltepress/theme-default' {
   export default options
 }
 
-
-declare module '@sveltepress/theme-default/components' {
-  export const Link: any
-  export const Floating: any
-  export const IconifyIcon: any
-  export const CopyCode: any
-  export const Expansion: any
-  export const Tabs: any
-  export const TabPanel: any
-  export const InstallPkg: any
-}
-
 declare module '@sveltepress/theme-default/context' {
   import { Writable } from 'svelte/store'
   export interface SveltepressContext {

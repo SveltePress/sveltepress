@@ -6,10 +6,12 @@ exports[`svelte to tsx > tsx code 1`] = `
   export const FOO = 'BAR'
 ;;
 
+
 import { onMount } from 'svelte'
-import FloatingWrapper from '../src/components/FloatingWrapper.svelte'
+import FloatingWrapper from '@sveltepress/twoslash/FloatingWrapper.svelte'
 function render() {
 
+  
   
   
 
@@ -27,10 +29,15 @@ async () => {
     count;
  }
 
- { const $$_repparWgnitaolF0C = __sveltets_2_ensureComponent(FloatingWrapper); new $$_repparWgnitaolF0C({ target: __sveltets_2_any(), props: { "floatingClass":\`custom-floating-class\`,}});
+ { const $$_repparWgnitaolF0C = __sveltets_2_ensureComponent(FloatingWrapper); const $$_repparWgnitaolF0 = new $$_repparWgnitaolF0C({ target: __sveltets_2_any(), props: { "placement":\`right\`,}});
+   { svelteHTML.createElement("div", { "class":\`text-xl b-1 b-solid b-blue rounded py-10 px-4\`,});
     
- FloatingWrapper}
-};
+   }
+
+   {const {/*Ωignore_startΩ*/$$_$$/*Ωignore_endΩ*/,} = $$_repparWgnitaolF0.$$slot_def["floating-content"];$$_$$;{ svelteHTML.createElement("div", {  "class":\`bg-white dark:bg-dark b-solid b-1 b-red rounded p-4\`,});
+     
+   }}
+ FloatingWrapper}};
 return { props: /** @type {Record<string, never>} */ ({}), slots: {}, events: {} }}
 
 export default class extends __sveltets_2_createSvelte2TsxComponent(__sveltets_2_partial(__sveltets_2_with_any_event(render()))) {

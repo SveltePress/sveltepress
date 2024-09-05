@@ -25,8 +25,8 @@ If a function is returned _synchronously_ from \`onMount\`, it will be called wh
 
 https://svelte.dev/docs/svelte#onmount",
     "length": 7,
-    "line": 5,
-    "start": 104,
+    "line": 6,
+    "start": 107,
     "tags": undefined,
     "target": "onMount",
     "text": "(alias) function onMount<T>(fn: () => NotFunction<T> | Promise<NotFunction<T>> | (() => any)): void
@@ -35,43 +35,37 @@ import onMount",
   },
   {
     "character": 9,
-    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
-
-Can be used to create strongly typed Svelte components.
-
-#### Example:
-
-You have component library on npm called \`component-library\`, from which
-you export a component called \`MyComponent\`. For Svelte+TypeScript users,
-you want to provide typings. Therefore you create a \`index.d.ts\`:
-\`\`\`ts
-import { SvelteComponent } from "svelte";
-export class MyComponent extends SvelteComponent<{foo: string}> {}
-\`\`\`
-Typing this makes it possible for IDEs like VS Code with the Svelte extension
-to provide intellisense and to use the component like this in a Svelte file
-with TypeScript:
-\`\`\`svelte
-<script lang="ts">
-	import { MyComponent } from "component-library";
-</script>
-<MyComponent foo={'bar'} />
-\`\`\`",
+    "docs": undefined,
     "length": 15,
-    "line": 6,
-    "start": 137,
+    "line": 7,
+    "start": 140,
     "tags": undefined,
     "target": "FloatingWrapper",
-    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+    "text": "(alias) class FloatingWrapper
 import FloatingWrapper",
+    "type": "hover",
+  },
+  {
+    "character": 1,
+    "docs": undefined,
+    "length": 6,
+    "line": 4,
+    "start": 75,
+    "tags": undefined,
+    "target": "render",
+    "text": "function render(): {
+    props: Record<string, never>;
+    slots: {};
+    events: {};
+}",
     "type": "hover",
   },
   {
     "character": 6,
     "docs": undefined,
     "length": 5,
-    "line": 8,
-    "start": 208,
+    "line": 9,
+    "start": 215,
     "tags": undefined,
     "target": "count",
     "text": "let count: number",
@@ -89,8 +83,8 @@ If a function is returned _synchronously_ from \`onMount\`, it will be called wh
 
 https://svelte.dev/docs/svelte#onmount",
     "length": 7,
-    "line": 10,
-    "start": 221,
+    "line": 11,
+    "start": 228,
     "tags": undefined,
     "target": "onMount",
     "text": "(alias) onMount<void>(fn: () => void | (() => any) | Promise<void>): void
@@ -101,8 +95,8 @@ import onMount",
     "character": 4,
     "docs": undefined,
     "length": 7,
-    "line": 11,
-    "start": 241,
+    "line": 12,
+    "start": 248,
     "tags": undefined,
     "target": "console",
     "text": "var console: Console",
@@ -112,30 +106,19 @@ import onMount",
     "character": 12,
     "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log)",
     "length": 3,
-    "line": 11,
-    "start": 249,
+    "line": 12,
+    "start": 256,
     "tags": undefined,
     "target": "log",
     "text": "(method) Console.log(...data: any[]): void",
     "type": "hover",
   },
   {
-    "character": 0,
-    "docs": undefined,
-    "length": 13,
-    "line": 15,
-    "start": 280,
-    "tags": undefined,
-    "target": "createElement",
-    "text": "any",
-    "type": "hover",
-  },
-  {
     "character": 24,
     "docs": undefined,
     "length": 5,
-    "line": 15,
-    "start": 304,
+    "line": 16,
+    "start": 311,
     "tags": undefined,
     "target": "count",
     "text": "let count: number",
@@ -145,8 +128,8 @@ import onMount",
     "character": 13,
     "docs": undefined,
     "length": 5,
-    "line": 16,
-    "start": 327,
+    "line": 17,
+    "start": 334,
     "tags": undefined,
     "target": "count",
     "text": "let count: number",
@@ -154,67 +137,25 @@ import onMount",
   },
   {
     "character": 1,
-    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
-
-Can be used to create strongly typed Svelte components.
-
-#### Example:
-
-You have component library on npm called \`component-library\`, from which
-you export a component called \`MyComponent\`. For Svelte+TypeScript users,
-you want to provide typings. Therefore you create a \`index.d.ts\`:
-\`\`\`ts
-import { SvelteComponent } from "svelte";
-export class MyComponent extends SvelteComponent<{foo: string}> {}
-\`\`\`
-Typing this makes it possible for IDEs like VS Code with the Svelte extension
-to provide intellisense and to use the component like this in a Svelte file
-with TypeScript:
-\`\`\`svelte
-<script lang="ts">
-	import { MyComponent } from "component-library";
-</script>
-<MyComponent foo={'bar'} />
-\`\`\`",
+    "docs": undefined,
     "length": 15,
-    "line": 19,
-    "start": 346,
+    "line": 20,
+    "start": 353,
     "tags": undefined,
     "target": "FloatingWrapper",
-    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+    "text": "(alias) class FloatingWrapper
 import FloatingWrapper",
     "type": "hover",
   },
   {
     "character": 2,
-    "docs": "Base class for Svelte components with some minor dev-enhancements. Used when dev=true.
-
-Can be used to create strongly typed Svelte components.
-
-#### Example:
-
-You have component library on npm called \`component-library\`, from which
-you export a component called \`MyComponent\`. For Svelte+TypeScript users,
-you want to provide typings. Therefore you create a \`index.d.ts\`:
-\`\`\`ts
-import { SvelteComponent } from "svelte";
-export class MyComponent extends SvelteComponent<{foo: string}> {}
-\`\`\`
-Typing this makes it possible for IDEs like VS Code with the Svelte extension
-to provide intellisense and to use the component like this in a Svelte file
-with TypeScript:
-\`\`\`svelte
-<script lang="ts">
-	import { MyComponent } from "component-library";
-</script>
-<MyComponent foo={'bar'} />
-\`\`\`",
+    "docs": undefined,
     "length": 15,
-    "line": 21,
-    "start": 427,
+    "line": 28,
+    "start": 596,
     "tags": undefined,
     "target": "FloatingWrapper",
-    "text": "(alias) class FloatingWrapper<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any>
+    "text": "(alias) class FloatingWrapper
 import FloatingWrapper",
     "type": "hover",
   },

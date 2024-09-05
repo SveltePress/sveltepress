@@ -11,7 +11,7 @@
       "import": "./dist/index.js"
     },
     "./FloatingWrapper.svelte": {
-      "types": "./dist/components/Floating.svelte.d.ts",
+      "types": "./dist/components/FloatingWrapper.svelte.d.ts",
       "import": "./dist/components/FloatingWrapper.svelte",
       "default": "./dist/components/FloatingWrapper.svelte",
       "svelte": "./dist/components/FloatingWrapper.svelte"

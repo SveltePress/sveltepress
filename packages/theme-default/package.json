@@ -22,30 +22,32 @@
   ],
   "exports": {
     ".": "./dist/index.js",
-    "./style.css": "./src/style.css",
-    "./components": {
-      "types": "./src/components/index.ts",
-      "import": "./src/components/index.ts",
-      "svelte": "./src/components/index.ts"
-    },
+    "./style.css": "./dist/style.css",
     "./context": {
-      "types": "./src/context/index.ts",
-      "import": "./src/context/index.ts",
-      "svelte": "./src/context/index.ts"
+      "types": "./dist/context/index.d.ts",
+      "import": "./dist/context/index.js",
+      "svelte": "./dist/context/index.js"
+    },
+    "./components": {
+      "svelte": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
     },
     "./PageLayout.svelte": {
-      "import": "./src/components/PageLayout.svelte",
-      "svelte": "./src/components/PageLayout.svelte"
+      "svelte": "./dist/components/PageLayout.svelte",
+      "types": "./dist/components/PageLayout.svelte.d.ts",
+      "import": "./dist/components/PageLayout.svelte"
     },
     "./GlobalLayout.svelte": {
-      "import": "./src/components/GlobalLayout.svelte",
-      "svelte": "./src/components/GlobalLayout.svelte"
+      "types": "./dist/components/GlobalLayout.svelte.d.ts",
+      "import": "./dist/components/GlobalLayout.svelte",
+      "svelte": "./dist/components/GlobalLayout.svelte"
     },
     "./types": {
       "types": "./types.d.ts"
     }
   },
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "types.d.ts"
@@ -90,35 +92,5 @@
     "unified": "^11.0.4",
     "vite": "^5.1.4",
     "vitest": "^1.3.1"
-  },
-  "publishConfig": {
-    "types": "./dist/index.d.ts",
-    "exports": {
-      ".": "./dist/index.js",
-      "./style.css": "./dist/style.css",
-      "./context": {
-        "import": "./dist/context/index.js",
-        "svelte": "./dist/context/index.js",
-        "types": "./dist/context/index.d.ts"
-      },
-      "./components": {
-        "svelte": "./dist/components/index.js",
-        "import": "./dist/components/index.js",
-        "types": "./dist/components/index.d.ts"
-      },
-      "./PageLayout.svelte": {
-        "svelte": "./dist/components/PageLayout.svelte",
-        "import": "./dist/components/PageLayout.svelte",
-        "types": "./dist/components/PageLayout.svelte.d.ts"
-      },
-      "./GlobalLayout.svelte": {
-        "import": "./dist/components/GlobalLayout.svelte",
-        "svelte": "./dist/components/GlobalLayout.svelte",
-        "types": "./dist/components/GlobalLayout.svelte.d.ts"
-      },
-      "./types": {
-        "types": "./types.d.ts"
-      }
-    }
   }
 }

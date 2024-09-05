@@ -4,6 +4,7 @@ import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import type { PluginOption } from 'vite'
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import extractorSvelte from '@unocss/extractor-svelte'
+import { SERVICE_WORKER_PATH } from '../constants.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -92,8 +93,7 @@ export default (options?: DefaultThemeOptions) => {
           },
           server: {
             fs: {
-              // Need this for dev
-              allow: ['../theme-default/src'],
+              allow: [SERVICE_WORKER_PATH, 'node_modules/@sveltepress/theme-default/dist/fonts', '../theme-default/dist/fonts'],
             },
           },
         }

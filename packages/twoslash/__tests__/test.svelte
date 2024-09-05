@@ -3,8 +3,9 @@
 </script>
 
 <script lang="ts">
+  
   import { onMount } from 'svelte'
-  import FloatingWrapper from '../src/components/FloatingWrapper.svelte'
+  import FloatingWrapper from '@sveltepress/twoslash/FloatingWrapper.svelte'
 
   let count = 0
 
@@ -17,6 +18,12 @@
   Count is: {count}
 </button>
 
-<FloatingWrapper floatingClass="custom-floating-class">
-  Some floating content
+<FloatingWrapper placement="right">
+  <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
+    Trigger
+  </div>
+
+  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
+    Floating content
+  </div>
 </FloatingWrapper>

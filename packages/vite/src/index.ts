@@ -2,8 +2,8 @@ import type { PluginOption } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import SveltepressVitePlugin from './plugin.js'
-import type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions } from './types'
-import mdToSvelte from './markdown/md-to-svelte'
+import type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions } from './types.js'
+import mdToSvelte from './markdown/md-to-svelte.js'
 
 export * as log from './utils/log.js'
 
