@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 0.35.0
+
+### Minor Changes
+
+- [`fe78373`](https://github.com/SveltePress/sveltepress/commit/fe78373ebe3c6593a675c0bc89a66f6c8eb59da2) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: optimize twoslash for svelte
+
 ## 0.34.1
 
 ### Patch Changes
