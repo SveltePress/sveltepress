@@ -7,3 +7,4 @@
 **/.svelte-kit
 **/.sveltepress
 packages/theme-default/src/components/icons
+**/__tests__/**/*
