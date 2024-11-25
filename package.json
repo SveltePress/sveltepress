@@ -6,7 +6,8 @@
     "release": "changeset publish",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
-    "test": "pnpm test:vite && pnpm test:theme-default"
+    "test": "pnpm test:vite && pnpm test:theme-default",
+    "prepare": "husky"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0"
@@ -15,6 +16,8 @@
     "@antfu/eslint-config": "3.9.2",
     "@changesets/cli": "^2.27.1",
     "eslint": "catalog:",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
     "prettier": "~3.2.5",
     "prettier-plugin-svelte": "^3.2.6",
     "svelte": "catalog:",

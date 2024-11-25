@@ -10,12 +10,12 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
-    "@sveltejs/kit": "^2.5.1",
-    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@sveltejs/kit": "^2.8.1",
+    "@sveltejs/vite-plugin-svelte": "^4.0.1",
     "@sveltepress/theme-default": "^3.1.0",
     "@sveltepress/vite": "^0.35.0",
     "@types/node": "^20.11.20",
-    "svelte": "^4.2.12",
+    "svelte": "^5.0.0",
     "vite": "^5.1.4"
   }
 }

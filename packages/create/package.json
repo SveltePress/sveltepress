@@ -37,7 +37,7 @@
     "prepare": "pnpm build"
   },
   "dependencies": {
-    "cross-spawn": "^7.0.3",
+    "cross-spawn": "^7.0.6",
     "minimist": "^1.2.8",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2"
