@@ -40,5 +40,9 @@ export default antfu({
   files: ['**/*.svelte'],
   rules: {
     'prefer-const': 'off',
+    'antfu/if-newline': 'off',
+    'style/operator-linebreak': 'off',
+    'style/brace-style': 'off',
+    'svelte/indent': 'off',
   },
 })
