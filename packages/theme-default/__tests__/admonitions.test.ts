@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
 import { mdToSvelte } from '@sveltepress/vite'
+import { describe, expect, it } from 'vitest'
 import admonitions from '../src/markdown/admonitions'
 
 const source = `---

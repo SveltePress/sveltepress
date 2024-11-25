@@ -1,29 +1,17 @@
-<script context="module" lang="ts">
-  export const FOO = 'BAR'
-</script>
-
-<script lang="ts">
+<script>
   import { onMount } from 'svelte'
-  import FloatingWrapper from '@sveltepress/twoslash/FloatingWrapper.svelte'
 
-  let count = 0
+  let { message = 'World' } = $props()
+
+  let count = $state(0)
 
   onMount(() => {
-    console.log('mounted')
+    console.log('mount')
   })
 </script>
-
-<button on:click={() => count++}>
+<button onclick={() => count++}>
   Count is: {count}
 </button>
-
-<FloatingWrapper placement="right">
-  <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">Trigger</div>
-
-  <div
-    class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4"
-    slot="floating-content"
-  >
-    Floating content
-  </div>
-</FloatingWrapper>
+<div class="text-6">
+  Hello, {message}
+</div>

@@ -15,7 +15,7 @@ describe('links', () => {
     const r = await mdToSvelte({
       mdContent: md,
       filename: 'demo.md',
-      remarkPlugins: [links, () => tree => {
+      remarkPlugins: [links, () => (tree) => {
         expect(JSON.stringify(tree, null, 2)).toMatchSnapshot()
       }],
     })

@@ -1,19 +1,19 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
-  import Logo from './Logo.svelte'
-  import Github from './icons/Github.svelte'
-  import NavItem from './NavItem.svelte'
-  import ToggleDark from './ToggleDark.svelte'
-  import Search from './Search.svelte'
-  import Discord from './icons/Discord.svelte'
-  import NavbarMobile from './NavbarMobile.svelte'
-  import MobileSubNav from './MobileSubNav.svelte'
-  import { scrollDirection } from './layout'
   import { page } from '$app/stores'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+  import Discord from './icons/Discord.svelte'
+  import Github from './icons/Github.svelte'
+  import { scrollDirection } from './layout'
+  import Logo from './Logo.svelte'
+  import MobileSubNav from './MobileSubNav.svelte'
+  import NavbarMobile from './NavbarMobile.svelte'
+  import NavItem from './NavItem.svelte'
+  import Search from './Search.svelte'
+  import ToggleDark from './ToggleDark.svelte'
 
-  $: routeId = $page.route.id
-  $: isHome = routeId === '/'
-  $: hasError = $page.error
+  const routeId = $derived($page.route.id)
+  const isHome = $derived(routeId === '/')
+  const hasError = $derived($page.error)
 </script>
 
 <header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>

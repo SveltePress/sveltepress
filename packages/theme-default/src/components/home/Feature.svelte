@@ -1,4 +1,5 @@
 <script>
+  import { goto } from '$app/navigation'
   import IconifyIcon from '../IconifyIcon.svelte'
   import Apple from '../icons/Apple.svelte'
   import Banana from '../icons/Banana.svelte'
@@ -7,25 +8,37 @@
   import Peach from '../icons/Peach.svelte'
   import Tomato from '../icons/Tomato.svelte'
   import Watermelon from '../icons/Watermelon.svelte'
-  import { goto } from '$app/navigation'
 
-  export let i
-  export let title
-  export let description
-  export let link = undefined
   /**
-   * @type {import('./types').CustomIcon}
+   * @typedef {object} Props
+   * @property {any} i Index of the feature card
+   * @property {any} title Title of the feature card
+   * @property {any} description Description of the feature card
+   * @property {any} [link] Link to navigate to when the card is clicked
+   * @property {(e: any) => any} onkeypress Function to call when the card is pressed
+   * @property {import('./types').CustomIcon} [icon] Custom icon to display in the card
    */
-  export let icon = undefined
 
-  $: external = /^https?/.test(link)
+  /** @type {Props} */
+  const {
+    onkeypress = undefined,
+    i,
+    title,
+    description,
+    link = undefined,
+    icon = undefined,
+  } = $props()
+
+  const external = $derived(/^https?/.test(link))
 
   const icons = { Apple, Banana, Grapes, Peach, Tomato, Watermelon }
   const iconsArray = Object.values(icons)
 
   function handleFeatureCardClick() {
-    if (!link) return
-    if (external) window.open(link, '_blank')
+    if (!link)
+      return
+    if (external)
+      window.open(link, '_blank')
     else goto(link)
   }
 </script>
@@ -33,16 +46,18 @@
 <div
   class="feature-item"
   class:clickable={link}
-  on:click={handleFeatureCardClick}
-  on:keypress
+  onclick={handleFeatureCardClick}
+  {onkeypress}
   role="link"
   tabindex="0"
 >
   <div class="flex justify-between items-start">
     <div class="icon">
       {#if icon === undefined}
-        <svelte:component this={iconsArray[i % iconsArray.length]} />
+        {@const SvelteComponent = iconsArray[i % iconsArray.length]}
+        <SvelteComponent />
       {:else if icon.type === 'svg'}
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html icon.value}
       {:else if icon.type === 'iconify'}
         <IconifyIcon {...icon} />

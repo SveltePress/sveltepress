@@ -6,13 +6,13 @@ title: Default theme
 
 @install-pkg(@sveltepress/theme-default)
 
-## Add in your vite config 
+## Add in your vite config
 
 ```js title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 import { sveltepress } from '@sveltepress/vite'
 
-import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [
@@ -33,42 +33,42 @@ export default config
 
 ### `navbar`
 
-* `title`  
+* `title`
   The label text of the navbar item
-* `to`  
+* `to`
   The link address
 * `icon`
   An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar
-* `external`  
-  Determine whether the link is external or not.  
+* `external`
+  Determine whether the link is external or not.
   Would render an external icon if set to `true`
-* `items`  
+* `items`
   Children links. If this prop is provided would render a dropdown instead of a single nav link
 
 ### `discord`
-The discord chat channel link  
+The discord chat channel link
 Would show a discord icon on the navbar when provided
 
 ### `github`
-The github repo link  
+The github repo link
 Would show a github icon on the navbar when provided
 
 ### `logo`
 
-The logo image  
-Would show on the navbar 
+The logo image
+Would show on the navbar
 
 ### `sidebar`
 
 An object, key is the group route prefix, value is an array of object with following fields:
 
-* `title`  
+* `title`
   The label text of the sidebar item
-* `collapsible`  
+* `collapsible`
   Determine whtheme-default/+paether the sidebar group is collapsible or not.
-* `to`  
+* `to`
   The link address
-* `items`  
+* `items`
   Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
 
 ### `highlighter`
@@ -82,19 +82,19 @@ Default is: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `twoslash` - Set to `true` to enable [Twoslash](/guide/default-theme/twoslash/). Default is `false`
 
 :::important[TIP]
-You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki) 
+You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki)
 :::
 
 ### `editLink`
 
-The link used for bottom edit this page on github button  
+The link used for bottom edit this page on github button
 For example this site use `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
 
 `:route` represent the route path, for example: /foo/bar/+page.md
 
 ### `ga`
 
-The id provided by [Google Analytics](https://analytics.google.com/).  
+The id provided by [Google Analytics](https://analytics.google.com/).
 Something like `G-XXXXXXX`.
 
 Would add gtag script in site head if provided.
@@ -105,7 +105,7 @@ Would add gtag script in site head if provided.
 * apiKey
 * indexName
 
-All these values are provided by the docsearch.  
+All these values are provided by the docsearch.
 Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 
 ### `pwa`
@@ -138,7 +138,7 @@ The fixed text contents that can be replaced by your config.
 * `previousPage` - The text for "Previous"
 * `nextPage` - The text for "Next"
 * `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
-* `pwa` - The pwa prompt relative text contents. All of the following fields correspond to the same text in pwa prompt 
+* `pwa` - The pwa prompt relative text contents. All of the following fields correspond to the same text in pwa prompt
   * `tip`
   * `reload`
   * `close`
@@ -148,8 +148,8 @@ The fixed text contents that can be replaced by your config.
 
 ### `preBuildIconifyIcons`
 
-The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.   
-An object, key is the collection name, value is the icons array.  
+The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.
+An object, key is the collection name, value is the icons array.
 For example these are the icons this site using:
 
 @code(/vite.config.ts,29,41)
@@ -179,14 +179,14 @@ The global context key is in the `@sveltepress/theme-default/context`. You can g
 This is an example:
 ```svelte live
 <script lang="ts">
-  import { getContext } from 'svelte'
   import type { SveltepressContext } from '@sveltepress/theme-default/context'
   import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+  import { getContext } from 'svelte'
 
   const { isDark } = getContext<SveltepressContext>(SVELTEPRESS_CONTEXT_KEY)
 </script>
 
-<div class:dark-text="{$isDark}" class="text-10">
+<div class:dark-text={$isDark} class="text-10">
   isDark: {$isDark}
 </div>
 <style>
@@ -198,7 +198,6 @@ This is an example:
 
 All contexts:
 * `$isDark` - Determine the current theme is dark or not. It is a [reactive svelte store](https://svelte.dev/docs/svelte-store).
-
 
 ## Virtual modules
 

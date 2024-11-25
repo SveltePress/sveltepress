@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest'
 import { mdToSvelte } from '@sveltepress/vite'
-import installPkg, { pkgRe } from '../src/markdown/install-pkg'
+import { describe, expect, it } from 'vitest'
 import highlighter from '../src/markdown/highlighter'
+import installPkg, { pkgRe } from '../src/markdown/install-pkg'
 
 describe('install-pkg', () => {
   it('re', () => {

@@ -1,3 +1,7 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { cwd } from 'node:process'
+import { highlighter } from '@sveltepress/theme-default'
 import { describe, expect, it } from 'vitest'
 import mdToSvelte from '../src/markdown/md-to-svelte'
 import { wrapPage } from '../src/utils/wrap-page'
@@ -23,12 +27,18 @@ function hello(msg) {
 
 <script>
   import Counter from './Counter.svelte'
-  let count = 0
+  let count = $state(0)
 </script>
 
-<button on:click="{() => count++}">
+{#snippet someSnippet()}
+  something
+{/snippet}
+
+<button onclick="{() => count++}">
   You've clicked {count} times
 </button>
+
+{@render someSnippet()}
 
 <style>
   .foo {
@@ -58,11 +68,15 @@ describe('md to svelte', () => {
       </code></pre>
       <script>
         import Counter from './Counter.svelte'
-        let count = 0
+        let count = $state(0)
       </script>
-      <button on:click="{() => count++}">
+      {#snippet someSnippet()}
+      something
+      {/snippet}
+      <button onclick="{() => count++}">
         You've clicked {count} times
       </button>
+      {@render someSnippet()}
       <style>
         .foo {
           color: blue;
@@ -97,7 +111,7 @@ describe('md to svelte', () => {
       import PageLayout from '/path/to/CustomLayout.svelte'
       const fm = {"pageType":"md","lastUpdate":"Invalid Date","title":"Page Title","description":"Some page description"}
         import Counter from './Counter.svelte'
-        let count = 0
+        let count = $state(0)
       </script>
 
       <PageLayout {fm}><h3>Hi</h3>
@@ -111,9 +125,13 @@ describe('md to svelte', () => {
         console.log('Hello ', msg)
       }</div>
 
-      <button on:click="{() => count++}">
+      {#snippet someSnippet()}
+      something
+      {/snippet}
+      <button onclick="{() => count++}">
         You've clicked {count} times
       </button>
+      {@render someSnippet()}
       </PageLayout>
       <style>
         .foo {
@@ -123,5 +141,15 @@ describe('md to svelte', () => {
       ",
       }
     `)
+  })
+
+  it('real world', async () => {
+    const mdContent = readFileSync(resolve(cwd(), '../docs-site/src/routes/guide/default-theme/twoslash/+page.md'), 'utf-8')
+    const { code } = await mdToSvelte({
+      mdContent,
+      filename: 'real-world.md',
+      highlighter,
+    })
+    expect(code).toMatchFileSnapshot('real-world.svelte')
   })
 })

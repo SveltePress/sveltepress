@@ -1,15 +1,15 @@
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
+import { resolve } from 'node:path'
+
+import { fileURLToPath } from 'node:url'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import admonitions from './markdown/admonitions.js'
-import liveCode from './markdown/live-code.js'
-import highlighter from './markdown/highlighter.js'
 import anchors from './markdown/anchors.js'
-import links from './markdown/links.js'
 import codeImport from './markdown/code-import.js'
+import highlighter from './markdown/highlighter.js'
 import installPkg from './markdown/install-pkg.js'
+import links from './markdown/links.js'
+import liveCode from './markdown/live-code.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
 export { SERVICE_WORKER_PATH } from './constants.js'
@@ -25,14 +25,14 @@ export const themeOptionsRef: {
   value: undefined,
 }
 
-const defaultTheme: ThemeDefault = options => {
+const defaultTheme: ThemeDefault = (options) => {
   themeOptionsRef.value = options
 
   return {
     name: '@sveltepress/theme-default',
     globalLayout: '@sveltepress/theme-default/GlobalLayout.svelte',
     pageLayout: '@sveltepress/theme-default/PageLayout.svelte',
-    vitePlugins: corePlugin => {
+    vitePlugins: (corePlugin) => {
       const plugins = [
         ...createPreCorePlugins(options),
         corePlugin,
@@ -51,7 +51,8 @@ const defaultTheme: ThemeDefault = options => {
           },
           ...options.pwa,
         }))
-      } else {
+      }
+      else {
         // In case of pwa relative virtual modules are not found
         plugins.push({
           name: '@sveltepress/virtual-pwa',

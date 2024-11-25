@@ -1,9 +1,9 @@
-import { type RendererRichOptions, type TwoslashRenderer, rendererRich } from '@shikijs/twoslash'
 import type { Element, ElementContent, Text } from 'hast'
-import { gfmFromMarkdown } from 'mdast-util-gfm'
-import { fromMarkdown } from 'mdast-util-from-markdown'
-import { defaultHandlers, toHast } from 'mdast-util-to-hast'
 import type { ShikiTransformerContextCommon } from 'shiki'
+import { rendererRich, type RendererRichOptions, type TwoslashRenderer } from '@shikijs/twoslash'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { gfmFromMarkdown } from 'mdast-util-gfm'
+import { defaultHandlers, toHast } from 'mdast-util-to-hast'
 
 interface RendererFloatingSvelteOptions extends RendererRichOptions {}
 
@@ -35,12 +35,19 @@ function rendererFloatingSvelte(options: RendererFloatingSvelteOptions = {}): Tw
             children: [
               cursor,
               {
-                type: 'element',
-                tagName: 'svelte:fragment',
-                properties: {
-                  slot: 'floating-content',
+                type: 'comment',
+                value: 'svp-snippet-start',
+                data: {
+                  svpFloatingSnippet: true,
                 },
-                children: [popup],
+              },
+              popup,
+              {
+                type: 'comment',
+                value: 'svp-snippet-end',
+                data: {
+                  svpFloatingSnippet: true,
+                },
               },
             ],
           },
@@ -51,7 +58,7 @@ function rendererFloatingSvelte(options: RendererFloatingSvelteOptions = {}): Tw
   return rich
 }
 
-function compose(parts: { token: Element | Text; popup: Element }): ElementContent[] {
+function compose(parts: { token: Element | Text, popup: Element }): ElementContent[] {
   return [
     {
       type: 'element',
@@ -60,19 +67,26 @@ function compose(parts: { token: Element | Text; popup: Element }): ElementConte
       children: [parts.token as any],
     },
     {
-      type: 'element',
-      tagName: 'svelte:fragment',
-      properties: {
-        slot: 'floating-content',
+      type: 'comment',
+      value: 'svp-snippet-start',
+      data: {
+        svpFloatingSnippet: true,
       },
-      children: [parts.popup],
+    },
+    parts.popup,
+    {
+      type: 'comment',
+      value: 'svp-snippet-end',
+      data: {
+        svpFloatingSnippet: true,
+      },
     },
   ]
 }
 
 function renderMarkdown(this: ShikiTransformerContextCommon, md: string): ElementContent[] {
   const mdast = fromMarkdown(
-    md.replace(/{@link ([^}]*)}/g, '$1'), // replace jsdoc links
+    md.replace(/\{@link ([^}]*)\}/g, '$1'), // replace jsdoc links
     { mdastExtensions: [gfmFromMarkdown()] },
   )
 

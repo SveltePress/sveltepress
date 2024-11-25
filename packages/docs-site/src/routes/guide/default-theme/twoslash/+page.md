@@ -14,9 +14,9 @@ All of the Typescript code blocks would provide inline type hover.
 
 * Config `highlighter.twoslash` to `true`
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -62,38 +62,14 @@ const a: number = '1'
 const hi = 'Hello'
 const msg = `${hi}, world`
 //    ^?
-
 //
 //
-Number.parseInt('123', 10)
-//      ^|
-//
-//
-//
-//
-```
-````
-
-## Custom logs
-
-````md live
-```ts
-// @log: Custom log message
-const a = 1
-
-// @error: Custom error message
-const b = 1
-
-// @warn: Custom warning message
-const c = 1
-
-// @annotate: Custom annotation message
 ```
 ````
 
 ## Cut codes
 
-### cut before
+### Cut before
 
 use `// ---cut---` or `// ---cut-before---` can cut all codes before this line
 
@@ -105,7 +81,7 @@ console.log(level)
 ```
 ````
 
-### cut after
+### Cut after
 
 use `// ---cut-after---` can cut all codes after this line
 
@@ -119,7 +95,7 @@ console.log('This is not shown')
 ```
 ````
 
-### cut start/end
+### Cut start/end
 
 use `// ---cut-start---` and `// ---cut-end---` to cut contents between them
 
@@ -139,16 +115,16 @@ console.log('This is shown')
 <script>
   import { onMount } from 'svelte'
 
-  export let message = 'World'
+  let { message = 'World' } = $props()
 
-  let count = 0
+  let count = $state(0)
 
   onMount(() => {
-    console.log('mount')
   })
 </script>
-<button on:click="{count++}">
-  Count is: { count }
+
+<button onclick={() => count++}>
+  Count is: {count}
 </button>
 <div class="text-6">
   Hello, {message}

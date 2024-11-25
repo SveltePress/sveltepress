@@ -9,9 +9,9 @@ title: 侧边栏
 ## 配置示例
 
 ```ts
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -54,7 +54,7 @@ export default defineConfig({
 地址
 
 :::info[自动的外部链接图标]{icon=ic:sharp-rocket-launch}
-与导航栏不一样，侧边栏使用的是 [`Link`](/guide/default-theme/builtin-components/#Link) 组件.  
+与导航栏不一样，侧边栏使用的是 [`Link`](/guide/default-theme/builtin-components/#Link) 组件.
 这意味着以 `http(s)` 开头的链接将会被自动识别为外部链接，从而展示外部链接的图标
 :::
 

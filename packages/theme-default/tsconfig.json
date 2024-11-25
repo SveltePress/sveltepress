@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "outDir": "dist",
     "types": ["svelte"],
-    "esModuleInterop": true,
     "strict": true,
+    "declaration": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["dist"],
-  "include": ["src/**/*", "types.d.ts"]
+  "include": ["src/**/*", "types.d.ts"],
+  "exclude": ["dist"]
 }

@@ -3,17 +3,6 @@
 exports[`shiki > twoslash svelte hover 1`] = `
 [
   {
-    "character": 15,
-    "docs": undefined,
-    "length": 3,
-    "line": 1,
-    "start": 51,
-    "tags": undefined,
-    "target": "FOO",
-    "text": "const FOO: "BAR"",
-    "type": "hover",
-  },
-  {
     "character": 11,
     "docs": "The \`onMount\` function schedules a callback to run as soon as the component has been mounted to the DOM.
 It must be called during the component's initialisation (but doesn't need to live *inside* the component;
@@ -21,12 +10,10 @@ it can be called from an external module).
 
 If a function is returned _synchronously_ from \`onMount\`, it will be called when the component is unmounted.
 
-\`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
-
-https://svelte.dev/docs/svelte#onmount",
+\`onMount\` does not run inside [server-side components](https://svelte.dev/docs/svelte/svelte-server#render).",
     "length": 7,
-    "line": 6,
-    "start": 107,
+    "line": 1,
+    "start": 20,
     "tags": undefined,
     "target": "onMount",
     "text": "(alias) function onMount<T>(fn: () => NotFunction<T> | Promise<NotFunction<T>> | (() => any)): void
@@ -34,41 +21,66 @@ import onMount",
     "type": "hover",
   },
   {
-    "character": 9,
+    "character": 8,
     "docs": undefined,
-    "length": 15,
-    "line": 7,
-    "start": 140,
+    "length": 7,
+    "line": 3,
+    "start": 53,
     "tags": undefined,
-    "target": "FloatingWrapper",
-    "text": "(alias) class FloatingWrapper
-import FloatingWrapper",
+    "target": "message",
+    "text": "let message: any",
     "type": "hover",
   },
   {
-    "character": 1,
-    "docs": undefined,
+    "character": 30,
+    "docs": "Declares the props that a component accepts. Example:
+
+\`\`\`ts
+let { optionalProp = 42, requiredProp, bindableProp = $bindable() }: { optionalProp?: number; requiredProps: string; bindableProp: boolean } = $props();
+\`\`\`
+
+https://svelte.dev/docs/svelte/$props",
     "length": 6,
-    "line": 4,
+    "line": 3,
     "start": 75,
     "tags": undefined,
-    "target": "render",
-    "text": "function render(): {
-    props: Record<string, never>;
-    slots: {};
-    events: {};
-}",
+    "target": "$props",
+    "text": "function $props(): any",
     "type": "hover",
   },
   {
     "character": 6,
     "docs": undefined,
     "length": 5,
-    "line": 9,
-    "start": 215,
+    "line": 5,
+    "start": 91,
     "tags": undefined,
     "target": "count",
     "text": "let count: number",
+    "type": "hover",
+  },
+  {
+    "character": 14,
+    "docs": "Declares reactive state.
+
+Example:
+\`\`\`ts
+let count = $state(0);
+\`\`\`
+
+https://svelte.dev/docs/svelte/$state",
+    "length": 6,
+    "line": 5,
+    "start": 99,
+    "tags": [
+      [
+        "param",
+        "initial The initial value",
+      ],
+    ],
+    "target": "$state",
+    "text": "function $state<0>(initial: 0): 0 (+1 overload)
+namespace $state",
     "type": "hover",
   },
   {
@@ -79,12 +91,10 @@ it can be called from an external module).
 
 If a function is returned _synchronously_ from \`onMount\`, it will be called when the component is unmounted.
 
-\`onMount\` does not run inside a [server-side component](https://svelte.dev/docs#run-time-server-side-component-api).
-
-https://svelte.dev/docs/svelte#onmount",
+\`onMount\` does not run inside [server-side components](https://svelte.dev/docs/svelte/svelte-server#render).",
     "length": 7,
-    "line": 11,
-    "start": 228,
+    "line": 7,
+    "start": 112,
     "tags": undefined,
     "target": "onMount",
     "text": "(alias) onMount<void>(fn: () => void | (() => any) | Promise<void>): void
@@ -95,8 +105,8 @@ import onMount",
     "character": 4,
     "docs": undefined,
     "length": 7,
-    "line": 12,
-    "start": 248,
+    "line": 8,
+    "start": 132,
     "tags": undefined,
     "target": "console",
     "text": "var console: Console",
@@ -104,21 +114,21 @@ import onMount",
   },
   {
     "character": 12,
-    "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log)",
+    "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log_static)",
     "length": 3,
-    "line": 12,
-    "start": 256,
+    "line": 8,
+    "start": 140,
     "tags": undefined,
     "target": "log",
     "text": "(method) Console.log(...data: any[]): void",
     "type": "hover",
   },
   {
-    "character": 24,
+    "character": 23,
     "docs": undefined,
     "length": 5,
-    "line": 16,
-    "start": 311,
+    "line": 11,
+    "start": 191,
     "tags": undefined,
     "target": "count",
     "text": "let count: number",
@@ -128,35 +138,22 @@ import onMount",
     "character": 13,
     "docs": undefined,
     "length": 5,
-    "line": 17,
-    "start": 334,
+    "line": 12,
+    "start": 214,
     "tags": undefined,
     "target": "count",
     "text": "let count: number",
     "type": "hover",
   },
   {
-    "character": 1,
+    "character": 10,
     "docs": undefined,
-    "length": 15,
-    "line": 20,
-    "start": 353,
+    "length": 7,
+    "line": 15,
+    "start": 262,
     "tags": undefined,
-    "target": "FloatingWrapper",
-    "text": "(alias) class FloatingWrapper
-import FloatingWrapper",
-    "type": "hover",
-  },
-  {
-    "character": 2,
-    "docs": undefined,
-    "length": 15,
-    "line": 28,
-    "start": 596,
-    "tags": undefined,
-    "target": "FloatingWrapper",
-    "text": "(alias) class FloatingWrapper
-import FloatingWrapper",
+    "target": "message",
+    "text": "let message: any",
     "type": "hover",
   },
 ]

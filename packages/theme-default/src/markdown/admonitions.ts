@@ -40,7 +40,7 @@ export const customTypes: Record<string, Admonition> = {
 }
 
 const admonitions: Plugin<any[], any> = () => {
-  return tree => {
+  return (tree) => {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'containerDirective') {
         const type = node.name

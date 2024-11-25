@@ -1,17 +1,17 @@
-import { type Plugin, unified } from 'unified'
+import type { Highlighter } from '../types.js'
+import rehypeStringify from 'rehype-stringify'
+import remarkDirective from 'remark-directive'
+import emoji from 'remark-emoji'
+import remarkExtractFrontmatter from 'remark-extract-frontmatter'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
-import rehypeStringify from 'rehype-stringify'
-import remarkExtractFrontmatter from 'remark-extract-frontmatter'
-import { parse } from 'yaml'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkDirective from 'remark-directive'
+import { type Plugin, unified } from 'unified'
 import { visit } from 'unist-util-visit'
-import remarkGfm from 'remark-gfm'
-import emoji from 'remark-emoji'
-import type { Highlighter } from '../types.js'
-import reserveSvelteCommands from './reserve-svelte-commands.js'
+import { parse } from 'yaml'
 import disableLeafTextDirective from './disable-leaft-text-directive.js'
+import reserveSvelteCommands from './reserve-svelte-commands.js'
 
 interface CompileOptions {
   mdContent: string
@@ -30,9 +30,9 @@ export default async function ({
   filename,
   footnoteLabel,
 }: CompileOptions): Promise< {
-  data: Record<string, any>
-  code: string
-}> {
+    data: Record<string, any>
+    code: string
+  }> {
   let processorBeforeRehype = unified()
     .use(remarkParse as any)
     .use(emoji)
@@ -43,11 +43,12 @@ export default async function ({
     .use(remarkExtractFrontmatter, { yaml: parse })
     .use(remarkGfm as any)
 
-  remarkPlugins?.forEach(plugin => {
+  remarkPlugins?.forEach((plugin) => {
     if (Array.isArray(plugin)) {
       const [p, options] = plugin
       processorBeforeRehype = processorBeforeRehype.use(p, options) as any
-    } else {
+    }
+    else {
       processorBeforeRehype = processorBeforeRehype.use(plugin) as any
     }
   })
@@ -74,7 +75,9 @@ export default async function ({
             }
           }))
         }
-      }) }
+      },
+    )
+  }
 
   let processorAfterRehype = processorBeforeRehype = processorBeforeRehype
     .use(remarkRehype as any, {
@@ -82,7 +85,7 @@ export default async function ({
       footnoteLabel,
     })
 
-  rehypePlugins?.forEach(plugin => {
+  rehypePlugins?.forEach((plugin) => {
     processorAfterRehype = processorAfterRehype.use(plugin) as any
   })
 

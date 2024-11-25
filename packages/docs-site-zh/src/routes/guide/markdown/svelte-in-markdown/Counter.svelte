@@ -1,7 +1,7 @@
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 
-<button on:click={() => count++}>
+<button onclick={() => count++}>
   您点击了 {count} 次
 </button>

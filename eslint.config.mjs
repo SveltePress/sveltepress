@@ -1,0 +1,43 @@
+import antfu from '@antfu/eslint-config'
+
+export default antfu({
+  svelte: true,
+  typescript: true,
+  rules: {
+    'svelte/html-quotes': [
+      'error',
+      {
+        prefer: 'double',
+        dynamic: {
+          quoted: false,
+          avoidInvalidUnquotedInHTML: false,
+        },
+      },
+    ],
+  },
+  ignores: [
+    'node_modules',
+    '/build',
+    '/.svelte-kit',
+    '/package',
+    '.env',
+    '.env.*',
+    '!.env.example',
+    'pnpm-lock.yaml',
+    'package-lock.json',
+    'yarn.lock',
+    'types-template.ts',
+    'packages/twoslash/__tests__/test.svelte',
+    'packages/create',
+    'packages/twoslash/src/twoslash-svelte/types-template.d.ts',
+    '*.md',
+    '**/__tests__/**/*.svelte',
+    '**/__tests__/**/*.json',
+    '**/__tests__/**/*.tsx',
+  ],
+}, {
+  files: ['**/*.svelte'],
+  rules: {
+    'prefer-const': 'off',
+  },
+})

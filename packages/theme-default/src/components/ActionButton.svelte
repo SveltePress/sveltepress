@@ -1,11 +1,22 @@
 <script>
-  import External from './icons/External.svelte'
   import { base } from '$app/paths'
+  import External from './icons/External.svelte'
 
-  export let label
-  export let type = ''
-  export let to
-  export let external = false
+  /**
+   * @typedef {object} Props
+   * @property {any} label - The text to display on the button
+   * @property {string} [type] - The type of the button
+   * @property {any} to - The path to navigate to
+   * @property {boolean} [external] - Whether the link is external
+   */
+
+  /** @type {Props} */
+  let {
+    label,
+    type = '',
+    to,
+    external = false,
+  } = $props()
 
   const toWithBase = base + to
 </script>

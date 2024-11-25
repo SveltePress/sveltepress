@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "allowJs": true,
     "checkJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
     "strict": true,
     "declaration": true,
     "outDir": "dist",
-    "moduleResolution": "nodenext",
     "removeComments": false,
-    "module": "nodenext"
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": ["src", "types.d.ts"]
 }

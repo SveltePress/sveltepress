@@ -2,13 +2,7 @@
   import ActionButton from './ActionButton.svelte'
   import Feature from './home/Feature.svelte'
 
-  export let features = []
-  export let actions = []
-  export let tagline = ''
-  export let siteConfig
-
-  // Need this for avoid props not provided by let xxx warning
-  $$restProps
+  const { features = [], actions = [], tagline = '', siteConfig, heroImage } = $props()
 </script>
 
 <div class="home-page">
@@ -26,7 +20,7 @@
         </div>
       {/if}
     </div>
-    <slot name="hero-image" />
+    {@render heroImage()}
   </div>
 
   <div class="actions">

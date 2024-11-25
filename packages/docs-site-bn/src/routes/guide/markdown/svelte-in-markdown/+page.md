@@ -1,12 +1,12 @@
 ---
-title: Markdown এ Svelte 
+title: Markdown এ Svelte
 ---
 
-এই ফিচারটি আপনাকে .md ফাইলে `<style>`, `<script>`, `<script context="module">`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` লিখতে দেয়। 
+এই ফিচারটি আপনাকে .md ফাইলে `<style>`, `<script>`, `<script module>`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` লিখতে দেয়।
 
 ## প্রাথমিক
 
-এখানে একটি `#if`, `#each`, `#await`, `@html`, `@const` এর প্রাথমিক উদাহরণ 
+এখানে একটি `#if`, `#each`, `#await`, `@html`, `@const` এর প্রাথমিক উদাহরণ
 
 <Tabs activeName="Output">
 
@@ -125,13 +125,12 @@ Toggle
 মার্কডাউন ফাইলে সর্বদা উদ্ধৃতি ব্যবহার করুন।
 ```svelte
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
-<button on:click={() => count++}></button> // [svp! --]
-<button on:click="{() => count++}"></button> // [svp! ++]
+<button onclick={() => count++}></button> // [svp! --]
+<button onclick={() => count++}></button> // [svp! ++]
 ```
 :::
-
 
 ## একটি কাউন্টার
 
@@ -152,10 +151,10 @@ Toggle
 ```md
 > A counter
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 
-<button on:click="{() => count++}">
+<button onclick="{() => count++}">
  আপনি {count} বার ক্লিক করেছেন
  </button>
 ```
@@ -166,9 +165,9 @@ Toggle
 
 <script>
   import Counter from './Counter.svelte'
-  let count = 0
   const items = ['foo', 'bar', 'zoo']
-  let boolVal = false
+  let count = $state(0)
+  let boolVal = $state(false)
   const promisePass = () => new Promise(resolve => {
     setTimeout(() => {
       resolve('Promise Passed!')
@@ -179,10 +178,10 @@ Toggle
       reject('Promise Failed!')
     }, 2000)
   })
-  $: promise = boolVal ? promisePass() : promiseFail()
+  let promise = $derived(boolVal ? promisePass() : promiseFail())
 </script>
 
-## md ফাইলে svelte ইম্পোর্ট 
+## md ফাইলে svelte ইম্পোর্ট
 
 <Tabs activeName="Output">
 
@@ -210,4 +209,3 @@ Toggle
 </TabPanel>
 
 </Tabs>
-

@@ -13,3 +13,4 @@ package-lock.json
 yarn.lock
 types-template.ts
 packages/twoslash/__tests__/test.svelte
+packages/create

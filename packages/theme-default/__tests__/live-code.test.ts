@@ -1,11 +1,11 @@
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
-import liveCode from '../src/markdown/live-code'
 import highlighter from '../src/markdown/highlighter'
+import liveCode from '../src/markdown/live-code'
 
 const md = `
 ### title level 3
-<script context="module">
+<script module>
   const a = 'a'
   export const b = 'b'
 </script>

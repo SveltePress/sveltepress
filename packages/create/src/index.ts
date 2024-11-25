@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import spawn from 'cross-spawn'
 import minimist from 'minimist'
-import prompts from 'prompts'
 import pc from 'picocolors'
+import prompts from 'prompts'
 
 const { yellow, blue, reset, red } = pc
 // Avoids autoconversion to number of the project name by defining that the args
@@ -68,7 +68,7 @@ async function init() {
           name: 'projectName',
           message: reset('Project name:'),
           initial: defaultTargetDir,
-          onState: state => {
+          onState: (state) => {
             targetDir = formatTargetDir(state.value) || defaultTargetDir
           },
         },
@@ -106,7 +106,7 @@ async function init() {
           message:
             typeof argTemplate === 'string' && !TEMPLATES.includes(argTemplate)
               ? reset(
-                  `"${argTemplate}" isn't a valid template. Please choose from below: `,
+                `"${argTemplate}" isn't a valid template. Please choose from below: `,
               )
               : reset('Use Javascript or Typescript for your new project?'),
           initial: 0,
@@ -292,6 +292,6 @@ function pkgFromUserAgent(userAgent: string | undefined) {
   }
 }
 
-init().catch(e => {
+init().catch((e) => {
   console.error(e)
 })

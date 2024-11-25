@@ -1,7 +1,7 @@
 <script>
   import siteConfig from 'virtual:sveltepress/site'
 
-  export let heroImage
+  const { heroImage } = $props()
 </script>
 
 <div class="hero-image">

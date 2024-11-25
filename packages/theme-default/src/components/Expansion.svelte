@@ -1,63 +1,86 @@
 <script>
+  import slide from './actions/slide'
+  import ArrowDown from './icons/ArrowDown.svelte'
+  import Markdown from './icons/Markdown.svelte'
   import Svelte from './icons/Svelte.svelte'
   import SvelteWithColor from './icons/SvelteWithColor.svelte'
-  import Markdown from './icons/Markdown.svelte'
-  import ArrowDown from './icons/ArrowDown.svelte'
-  import slide from './actions/slide'
 
   /**
-   * The title of the expansion
+   * @typedef {object} Props
+   * @property {string} title The title of the expansion
+   * @property {boolean} expanded Determine whether the expansion is expanded or not. It is recomended to use `bind:expanded`
+   * @property {boolean} reverse Determine the expand direction, `false` means down, `true` means up
+   * @property {string} headerStyle Custom header style
+   * @property {'svelte' | 'md'} codeType The code type of the icon, `svelte` or `md`
+   */
+
+  /** @type {Props} */
+  let { title, expanded = false, reverse = false, headerStyle = '', codeType = 'svelte', showIcon = true, bodyDom, children } = $props()
+
+  /**
+   *
    * @type {string}
    */
-  export let title = ''
 
-  /**
-   * Determine whether the expansion is expanded or not. It is recomended to use `bind:expanded`
-   * @type {boolean}
-   */
-  export let expanded = false
-
-  /**
-   * Determine the expand direction, `false` means down, `true` means up
-   * @type {boolean}
-   */
-  export let reverse = false
-
-  /**
-   * Custom header style
-   * @type {string}
-   */
-  export let headerStyle = ''
-
-  export let codeType = 'svelte'
-
-  export let showIcon = true
   /**
    * The panel body dom
    * @type {HTMLDivElement}
    */
-  let bodyDom
 
-  function onHeaderClick() {
+  function onHeaderClick(e) {
+    e.stopPropagation()
     expanded = !expanded
   }
 </script>
 
-<div class={`c-expansion ${expanded ? 'c-expansion--expanded' : ''}`}>
-  {#if reverse}
-    <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
-      <!--
-        Expansion body content
-      -->
-      <slot />
+<!-- Expansion body content -->
+{#snippet body()}
+  <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
+    {@render children?.()}
+  </div>
+{/snippet}
+
+<!-- Customize icon display in expanded status -->
+{#snippet iconExpanded()}
+  {#if codeType === 'svelte'}
+    <SvelteWithColor />
+  {:else if codeType === 'md'}
+    <div class="flex items-center text-6 text-svp-primary">
+      <Markdown />
     </div>
   {/if}
-  <!-- The header click function, emit the expand status exchange -->
+{/snippet}
+
+<!-- Customize icon display in folded status -->
+{#snippet iconFold()}
+  {#if codeType === 'svelte'}
+    <Svelte />
+  {:else if codeType === 'md'}
+    <div class="flex items-center text-6">
+      <Markdown />
+    </div>
+  {/if}
+{/snippet}
+
+<!-- Customize the title content -->
+{#snippet customTitle()}
+  {title}
+{/snippet}
+
+<!-- Customize the arrow dom -->
+{#snippet arrow()}
+  <ArrowDown />
+{/snippet}
+
+<div class={`c-expansion ${expanded ? 'c-expansion--expanded' : ''}`}>
+  {#if reverse}
+    {@render body()}
+  {/if}
   <div
     class="c-expansion--header"
     style={headerStyle}
-    on:click|stopPropagation={onHeaderClick}
-    on:keypress={onHeaderClick}
+    onclick={onHeaderClick}
+    onkeypress={() => {}}
     role="button"
     tabindex="0"
   >
@@ -66,33 +89,14 @@
         <div class="c-expansion--icon">
           <!-- The content before title -->
           {#if expanded}
-            <slot name="icon-expanded">
-              {#if codeType === 'svelte'}
-                <SvelteWithColor />
-              {:else if codeType === 'md'}
-                <div class="flex items-center text-6 text-svp-primary">
-                  <Markdown />
-                </div>
-              {/if}
-            </slot>
+            {@render iconExpanded()}
           {:else}
-            <slot name="icon-fold">
-              {#if codeType === 'svelte'}
-                <Svelte />
-              {:else if codeType === 'md'}
-                <div class="flex items-center text-6">
-                  <Markdown />
-                </div>
-              {/if}
-            </slot>
+            {@render iconFold()}
           {/if}
         </div>
       {/if}
       <div class="c-expansion--title">
-        <!-- Customize the title content -->
-        <slot name="title">
-          {title}
-        </slot>
+        {@render customTitle()}
       </div>
     </div>
     <div
@@ -100,19 +104,11 @@
         expanded ? 'c-expansion--arrow-expanded' : ''
       }`}
     >
-      <!-- Customize the arrow dom -->
-      <slot name="arrow">
-        <ArrowDown />
-      </slot>
+      {@render arrow()}
     </div>
   </div>
   {#if !reverse}
-    <div use:slide={expanded} bind:this={bodyDom} class="c-expansion--body">
-      <!--
-        Expansion body content
-      -->
-      <slot />
-    </div>
+    {@render body()}
   {/if}
 </div>
 

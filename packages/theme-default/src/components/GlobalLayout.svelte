@@ -1,11 +1,13 @@
 <script>
-  import 'virtual:uno.css'
-  import '@docsearch/css/dist/style.css'
-  import '../style.css'
-  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { page } from '$app/stores'
   import { onMount, setContext } from 'svelte'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import { SVELTEPRESS_CONTEXT_KEY } from '../context'
   import AjaxBar from './AjaxBar.svelte'
+  import Backdrop from './Backdrop.svelte'
+  import Error from './Error.svelte'
+  import GoogleAnalytics from './GoogleAnalytics.svelte'
   import {
     anchors,
     isDark,
@@ -18,20 +20,25 @@
     sidebarCollapsed,
   } from './layout'
   import Navbar from './Navbar.svelte'
-  import Toc from './Toc.svelte'
   import Sidebar from './Sidebar.svelte'
-  import GoogleAnalytics from './GoogleAnalytics.svelte'
-  import Backdrop from './Backdrop.svelte'
-  import Error from './Error.svelte'
-  import { afterNavigate, beforeNavigate } from '$app/navigation'
-  import { page } from '$app/stores'
+  import Toc from './Toc.svelte'
+  import 'virtual:uno.css'
+  import '@docsearch/css/dist/style.css'
+  import '../style.css'
+  /**
+   * @typedef {object} Props
+   * @property {import('svelte').Snippet} [children] The content of the page
+   */
+
+  /** @type {Props & { [key: string]: any }} */
+  const { children, ...rest } = $props()
 
   setContext(SVELTEPRESS_CONTEXT_KEY, {
     isDark,
   })
 
   resolveSidebar($page.route.id)
-  let ajaxBar
+  let ajaxBar = $state()
 
   beforeNavigate(({ to }) => {
     ajaxBar?.start()
@@ -44,18 +51,19 @@
     $navCollapsed = true
   })
 
-  let pwaComponent
+  let pwaComponent = $state()
 
   onMount(async () => {
     if (themeOptions.pwa)
       pwaComponent = (await import('./pwa/Pwa.svelte')).default
   })
 
-  $$restProps
+  // eslint-disable-next-line no-unused-expressions
+  rest
 </script>
 
 <svelte:window
-  on:scroll={() => ($oldScrollY = $scrollY)}
+  onscroll={() => ($oldScrollY = $scrollY)}
   bind:scrollY={$scrollY}
 />
 
@@ -76,14 +84,15 @@
       top="56px"
       zIndex={887}
     />
-    <slot />
+    {@render children?.()}
 
     <Toc anchors={$anchors} />
 
     <GoogleAnalytics />
 
     {#if pwaComponent}
-      <svelte:component this={pwaComponent} />
+      {@const SvelteComponent = pwaComponent}
+      <SvelteComponent />
     {/if}
   </main>
 {/if}

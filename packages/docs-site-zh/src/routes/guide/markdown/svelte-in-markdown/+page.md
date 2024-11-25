@@ -3,8 +3,7 @@ title: 在 Markdown 中使用 Svelte
 ---
 
 借助这个特性，您可以在 md 文件中使用
-`<style>`，`<script>`， `<script context="module">`，`#if`, `#each`, `#await`, `@html`，`@const`，`<svelte:xxx>` 等 svelte 专属语法
-
+`<style>`，`<script>`， `<script module>`，`#if`, `#each`, `#await`, `@html`，`@const`，`<svelte:xxx>` 等 svelte 专属语法
 
 ## 基础使用
 
@@ -137,7 +136,7 @@ Toggle
 ```md
 > 一个计数器
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 
 <button on:click="{() => count++}">
@@ -150,7 +149,7 @@ Toggle
 
 <script>
   import Counter from './Counter.svelte'
-  let count = 0
+  let count = $state(0)
   const items = ['foo', 'bar', 'zoo']
   let boolVal = false
   const promisePass = () => new Promise(resolve => {
@@ -168,15 +167,14 @@ Toggle
   $: promise = boolVal ? promisePass() : promiseFail()
 </script>
 
-
 :::note[语法限制]{icon=solar:chat-square-code-outline}
 确保总是使用双引号包裹
 ```svelte
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 <button on:click={() => count++}></button> // [svp! --]
-<button on:click="{() => count++}"></button> // [svp! ++]
+<button on:click={() => count++}></button> // [svp! ++]
 ```
 :::
 
@@ -184,9 +182,9 @@ Toggle
 
 <Tabs activeName="输出">
   <TabPanel name="输出">
-  
+
 <Counter />
-  
+
   </TabPanel>
   <TabPanel name="输入">
 
@@ -200,7 +198,7 @@ Toggle
   </TabPanel>
   <TabPanel name="Counter.svelte">
 
-@code(./Counter.svelte) 
+@code(./Counter.svelte)
 
   </TabPanel>
 </Tabs>

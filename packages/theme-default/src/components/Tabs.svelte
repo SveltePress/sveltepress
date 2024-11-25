@@ -1,22 +1,29 @@
-<script context="module">
+<script module>
   export const activeNameContextKey = Symbol('activeTab')
   export const itemsKey = Symbol('items')
 </script>
 
 <script>
-  import { writable } from 'svelte/store'
   import { setContext, tick } from 'svelte'
-  import { flip } from 'svelte/animate'
-  import { crossfade } from 'svelte/transition'
-  import { cubicInOut } from 'svelte/easing'
 
-  export let activeName
+  import { flip } from 'svelte/animate'
+  import { cubicInOut } from 'svelte/easing'
+  import { writable } from 'svelte/store'
+  import { crossfade } from 'svelte/transition'
 
   const items = writable([])
 
-  let tabContainer
-  let itemWidthArray = []
-  export let bodyPadding = true
+  let tabContainer = $state()
+  let itemWidthArray = $state([])
+  /**
+   * @typedef {object} Props
+   * @property {any} activeName - Active tab name
+   * @property {boolean} [bodyPadding] - Whether to add padding to the body
+   * @property {import('svelte').Snippet} [children] - Children content
+   */
+
+  /** @type {Props} */
+  const { activeName, bodyPadding = true, children } = $props()
 
   const current = writable(activeName)
 
@@ -44,7 +51,8 @@
   })
 
   function computedItems() {
-    if (!tabContainer) return
+    if (!tabContainer)
+      return
     itemWidthArray = [...tabContainer.querySelectorAll('.tab-header-item')].map(
       item => ({
         left: item.offsetLeft,
@@ -54,13 +62,12 @@
     )
   }
 
-  $: {
-    $items
-    tick().then(computedItems)
-  }
+  $effect(() => {
+    tick().then(() => computedItems($items))
+  })
 </script>
 
-<svelte:window on:resize={computedItems} />
+<svelte:window onresize={computedItems} />
 
 <div class="svp-tab" bind:this={tabContainer}>
   <div class="tab-header" style="--bar-op:0;">
@@ -70,17 +77,19 @@
         class="tab-header-item"
         class:active
         data-tab-name={name}
-        on:click={() => toggleTab(name)}
-        on:keypress={() => toggleTab(name)}
+        onclick={() => toggleTab(name)}
+        onkeypress={() => toggleTab(name)}
         role="tab"
         tabindex="0"
       >
         {#if active}
           {#if activeIcon}
-            <svelte:component this={activeIcon} />
+            {@const SvelteComponent = activeIcon}
+            <SvelteComponent />
           {/if}
         {:else if inactiveIcon}
-          <svelte:component this={inactiveIcon} />
+          {@const SvelteComponent_1 = inactiveIcon}
+          <SvelteComponent_1 />
         {/if}
         <div class:name={(active && activeIcon) || (!active && inactiveIcon)}>
           {name}
@@ -106,7 +115,7 @@
   </div>
   <div class:padding={bodyPadding}>
     <div class="tab-body">
-      <slot />
+      {@render children?.()}
     </div>
   </div>
 </div>

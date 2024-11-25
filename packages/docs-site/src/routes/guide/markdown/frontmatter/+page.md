@@ -18,10 +18,10 @@ description: some description
 Export a const variable name as `frontmatter` in [Svelte context module](https://svelte.dev/docs#component-format-script-context-module) would do
 
 ```svelte title="/src/routes/foo/+page.svelte"
-<script context="module">
+<script module>
   export const frontmatter = {
     title: 'Some title',
-    description: 'Some description'
+    description: 'Some description',
   }
 </script>
 ```
@@ -31,7 +31,7 @@ Export a const variable name as `frontmatter` in [Svelte context module](https:/
 Use `fm` variable:
 
 ```md live
-Frontmatter of this page is: 
+Frontmatter of this page is:
 <pre>
 {JSON.stringify(fm, null, 2)}
 </pre>

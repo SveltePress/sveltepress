@@ -4,7 +4,7 @@ title: Admonitions
 
 ## Grammar
 
-This feature integrated [remark-directive](https://github.com/remarkjs/remark-directive) 
+This feature integrated [remark-directive](https://github.com/remarkjs/remark-directive)
 
 :::important[Icon pre-build required]{icon=tabler:icons}
 The iconify icons should be in the [Pre-build iconify icons config](/reference/default-theme/#preBuildIconifyIcons)
@@ -20,7 +20,7 @@ Some admonition content
 
 ```md live
 :::tip[Tip title]
-Some tip content  
+Some tip content
 :::
 
 :::tip[Tip with custom icon]{icon=ph:smiley}

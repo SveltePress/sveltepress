@@ -4,9 +4,9 @@ title: থিম
 
 ## ভূমিকা
 
-থিম ব্যবহার করতে `theme` অপশন sveltepress এ পাঠিয়ে দিন। 
+থিম ব্যবহার করতে `theme` অপশন sveltepress এ পাঠিয়ে দিন।
 
-বিস্তারিত জানতে [ভিট প্লাগিন অপশন](/reference/vite-plugin/) এবং [ডিফল্ট থিম অপশন](/reference/default-theme/) পড়ুন। 
+বিস্তারিত জানতে [ভিট প্লাগিন অপশন](/reference/vite-plugin/) এবং [ডিফল্ট থিম অপশন](/reference/default-theme/) পড়ুন।
 
 ## ডিফল্ট থিম
 
@@ -17,10 +17,10 @@ title: থিম
 ### আপনার ভিট কনফিগে যুক্ত করুন
 
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 import { sveltepress } from '@sveltepress/vite'
 
-import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [

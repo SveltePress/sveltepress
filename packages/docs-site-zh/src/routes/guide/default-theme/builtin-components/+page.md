@@ -21,7 +21,7 @@ title: 内置组件
 ### Markdown 中使用
 
 ```md live
-* <Link to="https://github.com/" label="Github" />  
+* <Link to="https://github.com/" label="Github" />
 * <Link to="/" label="首页" />
 ```
 
@@ -50,7 +50,6 @@ title: 内置组件
 * `activeIcon` - 选中时展示的图标内容，是一个 svelte 组件
 * `inactiveIcon` - 未选中时展示的图标内容，是一个 svelte 组件
 
-
 ### Markdown 中使用
 
 ````md live
@@ -59,9 +58,9 @@ title: 内置组件
 
 ```svelte title="Counter.svelte"
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
-<button on:click={() => count++}>
+<button onclick={() => count++}>
   你点击了 {count} 次
 </button>
 ```

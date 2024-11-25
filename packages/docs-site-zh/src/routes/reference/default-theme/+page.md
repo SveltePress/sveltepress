@@ -9,10 +9,10 @@ title: Default theme
 ### 在 vite.config.(js|ts) 中配置
 
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 import { sveltepress } from '@sveltepress/vite'
 
-import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [
@@ -36,18 +36,17 @@ export default config
 
 </Expansion>
 
-
 ### `navbar`
 
-* `title`  
+* `title`
   标题
-* `to`  
+* `to`
   链接地址
 * `icon`
   自定义展示 HTML 内容，通常用于展示自定义图标内容
-* `external`  
+* `external`
   如果设置为 `true`，将会展示一个标记外部链接的图标
-* `items`  
+* `items`
   子项，如果配置会展示下拉导航
 
 ### `discord`
@@ -58,19 +57,19 @@ GitHub 仓库链接，如果提供将会展示一个 GitHub 图标
 
 ### `logo`
 
-Logo 图片 
+Logo 图片
 
 ### `sidebar`
 
 一个对象，键为分组路由前缀，值为包含如下属性的对象数组
 
-* `title`  
+* `title`
   组标题
-* `collapsible`  
+* `collapsible`
   组是否可折叠
-* `to`  
+* `to`
   链接地址
-* `items`  
+* `items`
   子链接，若配置该属性，则 `to` 将会失效，展示一个分组链接
 
 ### `highlighter`
@@ -136,7 +135,7 @@ const defaultGradient = {
 * `previousPage` - "Previous"
 * `nextPage` - "Next"
 * `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
-* `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本 
+* `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本
   * `tip`
   * `reload`
   * `close`
@@ -174,14 +173,14 @@ const defaultGradient = {
 
 ```svelte live
 <script lang="ts">
-  import { getContext } from 'svelte'
-  import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
   import type { SveltepressContext } from '@sveltepress/theme-default/context'
+  import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+  import { getContext } from 'svelte'
 
   const { isDark } = getContext<SveltepressContext>(SVELTEPRESS_CONTEXT_KEY)
 </script>
 
-<div class:dark-text="{$isDark}" class="text-10">
+<div class:dark-text={$isDark} class="text-10">
   isDark: {$isDark}
 </div>
 <style>

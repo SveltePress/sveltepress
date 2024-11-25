@@ -9,9 +9,9 @@ title: সাইডবার
 ## উদাহরণ
 
 ```ts
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -51,7 +51,7 @@ export default defineConfig({
 
 ### `to`
 
-লিংক অ্যাড্রেস 
+লিংক অ্যাড্রেস
 
 :::info[অটো এক্সটার্নাল]{icon=ic:sharp-rocket-launch}
 ন্যাভবার আইটেমের মত না, সাইডবার আইটেম `Link` কম্পোনেন্ট ব্যবহার করে। যার অর্থ হচ্ছে- `http(s)` দিয়ে শুরু হওয়া লিংক এক্সটার্নাল লিংক হিসেবে অটোমেটিক চিহ্নিত হবে।

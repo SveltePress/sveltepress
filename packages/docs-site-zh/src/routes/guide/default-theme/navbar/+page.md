@@ -24,15 +24,15 @@ title: 导航栏
 * `items` - 子链接
 
 :::note[仅一层链接]{icon=carbon:tree-view-alt}
-对于现在的 Sveltepress 来说，一个导航栏只能拥有一级子导航  
+对于现在的 Sveltepress 来说，一个导航栏只能拥有一级子导航
 :::
 
 ## 配置示例
 
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [

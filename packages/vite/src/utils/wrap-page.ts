@@ -1,8 +1,8 @@
-import { LRUCache } from 'lru-cache'
 import type { ResolvedTheme } from '../types'
+import { LRUCache } from 'lru-cache'
 import mdToSvelte from '../markdown/md-to-svelte.js'
-import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
 import { getFileLastUpdateTime } from './get-file-last-update.js'
+import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
 
 const cache = new LRUCache<string, any>({ max: 100 })
 export const scriptRe = /<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/g
@@ -121,7 +121,6 @@ export function wrapSvelteCode({
     styleCode = styleMatches[0]
     svelteCode = svelteCode.replace(styleRe, '')
   }
-
   svelteCode = svelteCode.replace(scriptRe, '')
   return `${scripts.join('\n')}
 ${svelteBuiltinTags.join('\n')}

@@ -4,7 +4,8 @@ export default [
   {
     title: 'Guide',
     to: '/guide/introduction/',
-  }, {
+  },
+  {
     title: 'Reference',
     to: '/reference/vite-plugin/',
   },

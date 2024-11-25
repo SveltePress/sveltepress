@@ -2,13 +2,13 @@
 title: 介绍
 ---
 
-Sveltepress 是一个以内容（Markdown）为中心的站点构建工具  
-启发自 [Vitepress](https://vitepress.vuejs.org/).  
+Sveltepress 是一个以内容（Markdown）为中心的站点构建工具
+启发自 [Vitepress](https://vitepress.vuejs.org/).
 基于 [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss) 等构建
 
 ## 项目结构
 
-与 [项目结构 - SvelteKit](https://kit.svelte.dev/docs/project-structure) 完全一致  
+与 [项目结构 - SvelteKit](https://kit.svelte.dev/docs/project-structure) 完全一致
 除此外，您还可以使用 .md 文件作为页面（+page）或者布局（+layout）
 
 例如：
@@ -23,7 +23,7 @@ Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态
 ## 布局层级
 
 :::note[根布局文件是必须的]{icon=ph:layout-duotone}
-必须有一个 `src/routes/+layout.svelte` 或者 `src/routes/+layout.md` 作为根布局组件  
+必须有一个 `src/routes/+layout.svelte` 或者 `src/routes/+layout.md` 作为根布局组件
 **否则由主题提供的全局布局将不会工作！**
 :::
 
@@ -51,9 +51,8 @@ Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态
 
 ## 部署
 
-推荐先阅读 [适配器 - SvelteKit](https://kit.svelte.dev/docs/adapters) 章节    
+推荐先阅读 [适配器 - SvelteKit](https://kit.svelte.dev/docs/adapters) 章节
 如果您使用了 `npm/yarn/pnpm create @sveltepress` 来创建一个新的项目
 [静态适配器](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) 将会被默认使用
 
 您可以根据需要换成任何想要的适配器
-

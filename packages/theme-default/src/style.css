@@ -234,3 +234,7 @@ html.dark .twoslash-popup-container span {
   color: var(--admonition-color) !important;
   opacity: 0.8;
 }
+
+.i-logos-svelte-kit {
+  width: 4em;
+}

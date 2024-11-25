@@ -15,7 +15,7 @@ title: 代码相关
 <script>
   const msg = 'world!'
 </script>
-  
+
 <h1>
   Hello, {msg}
 </h1>
@@ -33,7 +33,7 @@ title: 代码相关
 <script>
   const msg = 'world!'
 </script>
-  
+
 <h1>
   Hello, {msg}
 </h1>
@@ -49,7 +49,7 @@ title: 代码相关
 <script>
   const msg = 'world!'
 </script>
-  
+
 <h1>
   Hello, {msg}
 </h1>
@@ -58,7 +58,7 @@ title: 代码相关
 
 ## 行高亮
 
-使用 `// [svp! hl]` `// [svp! ~~]` 注释指令来高亮某个行  
+使用 `// [svp! hl]` `// [svp! ~~]` 注释指令来高亮某个行
 使用 `// [svp! hl:num]` or `// [svp! ~~:num]` 注释指令来高亮从当前行开始的总共 num 行
 
 ````md live
@@ -73,7 +73,7 @@ title: 代码相关
     return foo
   }
 </script>
-  
+
 <h1>
   Hello, {msg}  // [svp! ~~]
 </h1>
@@ -82,7 +82,7 @@ title: 代码相关
 
 ## 代码对比
 
-使用 `// [svp! df:+]` or `// [svp! ++]` 来标记行对比减  
+使用 `// [svp! df:+]` or `// [svp! ++]` 来标记行对比减
 使用 `// [svp! df:-]` or `// [svp! --]` 来标记行对比加
 
 ````md live
@@ -99,7 +99,7 @@ function hello() {
 
 ## 聚焦
 
-使用 `// [svp! fc]` or `// [svp! !!]` 来聚焦当前行  
+使用 `// [svp! fc]` or `// [svp! !!]` 来聚焦当前行
 使用 `// [svp! fc:num]` or `// [svp! !!:num]` 来聚焦从当前行开始的总共 num 行
 
 :::warning[Not Supported]
@@ -162,13 +162,13 @@ const foo = 'bar'
 ````md
 ```svelte live ln title=Counter.svelte
 <script>
-  let count = 0
+  let count = $state(0)
 
   const handleClick = () => {
     count++
   }
 </script>
-<button on:click={handleClick}>
+<button onclick={handleClick}>
   您点击了 {count} 次
 </button>
 <style>
@@ -189,13 +189,13 @@ const foo = 'bar'
 
 ```svelte live ln title=Counter.svelte
 <script>
-  let count = 0
+  let count = $state(0)
 
   const handleClick = () => {
     count++
   }
 </script>
-<button on:click={handleClick}>
+<button onclick={handleClick}>
   您点击了 {count} 次
 </button>
 <style>
@@ -228,7 +228,6 @@ const foo = 'bar'
 ```svelte live async
 <h1 class="text-rose">这是一个异步的 Svelte 可折叠代码块</h1>
 ```
-
 
 :::warning[不支持嵌套]
 可折叠代码块中的可折叠代码块不予支持，将会作为普通的代码块渲染
@@ -277,8 +276,8 @@ function hello() {
 
 * `@code(./Foo.svelte)` - 导入 Foo.svelte 的所有代码
 * `@code(/src/routes/foo/Foo.svelte)` - 导入 Foo.svelte 的所有代码
-* `@code(./Foo.svelte,5,10)` - 导入 Foo.svelte 的第 5 至 第 10 行代码 
-* `@code(/src/routes/foo/Foo.svelte,10,20)` - 导入 Foo.svelte 的第 10 至 第 20 行代码 
+* `@code(./Foo.svelte,5,10)` - 导入 Foo.svelte 的第 5 至 第 10 行代码
+* `@code(/src/routes/foo/Foo.svelte,10,20)` - 导入 Foo.svelte 的第 10 至 第 20 行代码
 
 :::tip[提示]{icon=solar:chat-square-code-outline}
 开始与结束行都会被包含在结果中

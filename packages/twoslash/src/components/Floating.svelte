@@ -1,15 +1,12 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import type { Placement } from '@floating-ui/dom'
+  import type { PropType as Props } from './PropType.js'
+  import type { EDirection } from './types.js'
   import { arrow, autoUpdate, computePosition, offset } from '@floating-ui/dom'
+  import { onMount } from 'svelte'
   import teleport from '../actions/teleport.js'
   import '@shikijs/twoslash/style-rich.css'
-  import type { EDirection } from './types.js'
 
-  export let show = false
-  export let alwaysShow = false
-  export let placement: Placement = 'bottom-start'
-  export let floatingClass: string | undefined = undefined
+  let { children, show = false, alwaysShow = false, placement = 'bottom-start', floatingClass, content, ...rest }: Props = $props()
 
   let container: HTMLSpanElement
   let floatingContent: HTMLDivElement
@@ -61,30 +58,32 @@
     return autoUpdate(container, floatingContent, recomputePosition)
   })
 
-  $: recomputePosition(show)
+  $effect(() => {
+    recomputePosition(show)
+  })
 </script>
 
 <span
   bind:this={container}
   class="container"
-  on:mouseenter={() => (show = true)}
-  on:mouseleave={() => (show = false)}
+  onmouseenter={() => (show = true)}
+  onmouseleave={() => (show = false)}
   role="tooltip"
-  {...$$restProps}
+  {...rest}
 >
-  <slot />
+  {@render children?.()}
   <div
     use:teleport
     class="floating-content-wrapper {floatingClass ? ` ${floatingClass}` : ''}"
     class:always-show={alwaysShow}
     class:show={alwaysShow || show}
     bind:this={floatingContent}
-    on:mouseenter={() => (show = true)}
-    on:mouseleave={() => (show = false)}
+    onmouseenter={() => (show = true)}
+    onmouseleave={() => (show = false)}
     role="tooltip"
   >
     <div bind:this={arrowEl} class="arrow"></div>
-    <slot name="content" />
+    {@render content?.()}
   </div>
 </span>
 

@@ -14,9 +14,9 @@ title: Twoslash
 
 * 将默认主题 `highlighter.twoslash` 选项设置为 `true`
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -105,7 +105,6 @@ console.log(level)
 ```
 ````
 
-
 ### 向后裁剪
 
 使用 `// ---cut-after---` 注释可以将该行之后的所有代码从结果中裁剪调
@@ -140,13 +139,13 @@ console.log('This is shown')
 <script>
   import { onMount } from 'svelte'
 
-  let count = 0
+  let count = $state(0)
 
   onMount(() => {
-    console.log('mount')
+  // mounted
   })
 </script>
-<button on:click="{count++}">
-  您点击了: { count } 次
+<button onclick={count++}>
+  您点击了: {count} 次
 </button>
 ```

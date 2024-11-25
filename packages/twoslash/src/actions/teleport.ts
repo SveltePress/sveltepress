@@ -1,6 +1,6 @@
 import type { Action } from 'svelte/action'
 
-const teleport: Action<HTMLDivElement> = node => {
+const teleport: Action<HTMLDivElement> = (node) => {
   document.body.append(node)
 
   return {

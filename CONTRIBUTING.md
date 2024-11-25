@@ -39,9 +39,9 @@ Small pull requests are much easier to review and more likely to get merged.
 
 ### Testing
 
-Use [Vitest](https://vitest.dev/) for testing.  
+Use [Vitest](https://vitest.dev/) for testing.
 
-All tests are located in `packages/[package name]/__test__` folder.  
+All tests are located in `packages/[package name]/__test__` folder.
 
 To run test, run `pnpm test` in the package root.
 
@@ -71,7 +71,7 @@ If you've changed UI components. Provide screenshots about before and after chan
 
 Use [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) to restrict the format of codes.
 
-* If a js or a ts file changed, use eslint to check it. 
+* If a js or a ts file changed, use eslint to check it.
 * If a svelte file changed, use eslint and prettier to check it.
 
 ### Naming convention

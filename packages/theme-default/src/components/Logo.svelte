@@ -1,8 +1,8 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
-  import siteConfig from 'virtual:sveltepress/site'
-  import NavItem from './NavItem.svelte'
   import { base } from '$app/paths'
+  import siteConfig from 'virtual:sveltepress/site'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+  import NavItem from './NavItem.svelte'
 </script>
 
 <NavItem to={base === '' ? '/' : base} title={siteConfig.title}>

@@ -9,9 +9,9 @@ Pass `sidebar` option to theme default to configure sidebar
 ## Example
 
 ```ts
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -54,7 +54,7 @@ The sidebar item title
 The link address
 
 :::info[Auto external]{icon=ic:sharp-rocket-launch}
-Unlike the navbar item, sidebar item use the `Link` component.  
+Unlike the navbar item, sidebar item use the `Link` component.
 Which means link starts with `http(s)` would be auto recognized as external links.
 :::
 

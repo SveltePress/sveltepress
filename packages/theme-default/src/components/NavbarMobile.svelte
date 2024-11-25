@@ -1,22 +1,21 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import { slide } from 'svelte/transition'
-  import { navCollapsed } from './layout'
-  import TocMenu from './icons/TocMenu.svelte'
-  import TocClose from './icons/TocClose.svelte'
-  import NavItem from './NavItem.svelte'
-  import Logo from './Logo.svelte'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import Expansion from './Expansion.svelte'
+  import TocClose from './icons/TocClose.svelte'
+  import TocMenu from './icons/TocMenu.svelte'
+  import { navCollapsed } from './layout'
+  import Logo from './Logo.svelte'
+  import NavItem from './NavItem.svelte'
 
   function toggleNav() {
     $navCollapsed = !$navCollapsed
   }
 </script>
-
 <div
   class="nav-trigger"
-  on:click={toggleNav}
-  on:keypress={toggleNav}
+  onclick={toggleNav}
+  onkeypress={toggleNav}
   role="menu"
   tabindex="0"
 >
@@ -33,15 +32,18 @@
     {#each themeOptions.navbar as navItem}
       {#if navItem.items}
         <Expansion title={navItem.title} showIcon={false}>
-          <div slot="title">
-            {#if navItem.icon}
-              <div class="text-6">
-                {@html navItem.icon}
-              </div>
-            {:else}
-              {navItem.title}
-            {/if}
-          </div>
+          {#snippet customTitle()}
+            <div>
+              {#if navItem.icon}
+                <div class="text-6">
+                  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                  {@html navItem.icon}
+                </div>
+              {:else}
+                {navItem.title}
+              {/if}
+            </div>
+          {/snippet}
           {#each navItem.items as subItem}
             <NavItem {...subItem} />
           {/each}

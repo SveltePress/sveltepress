@@ -202,7 +202,6 @@ exports[`anchors > simple 1`] = `
         {
           "type": "text",
           "name": "b-c",
-          "attributes": {},
           "position": {
             "start": {
               "line": 7,
@@ -300,7 +299,6 @@ exports[`anchors > simple 1`] = `
         {
           "type": "text",
           "name": "b-c",
-          "attributes": {},
           "position": {
             "start": {
               "line": 8,

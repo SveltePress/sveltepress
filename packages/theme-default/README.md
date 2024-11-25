@@ -1,2 +1,1 @@
 # Default Theme for Sveltepress
-

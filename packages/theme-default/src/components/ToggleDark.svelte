@@ -16,7 +16,8 @@
           .getElementById('theme-color')
           .setAttribute('content', themeColor.dark)
       }
-    } else {
+    }
+    else {
       document.querySelector('html').classList.remove('dark')
       if (themeColor) {
         document
@@ -28,9 +29,8 @@
 
   function toggle(evt) {
     localStorage.setItem(key, $isDark ? 'off' : 'on')
-    const isAppearanceTransition =
-      document.startViewTransition &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isAppearanceTransition
+      = document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition) {
       $isDark = !$isDark
@@ -82,23 +82,25 @@
     name="theme-color"
     content={themeColor.light || '#fff'}
   />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html `
-<script>
+<${'script'}>
   const themeColor = JSON.parse('${JSON.stringify(themeColor)}')
   if (window.localStorage.getItem('${key}') === 'on') {
     document.querySelector('html').classList.add('dark')
     document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
-  } else {
+  }
+ else {
     document.querySelector('html').classList.remove('dark')
     document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.light : '#ffffff')
   }
-</script>`}
+</${'script'}>`}
 </svelte:head>
 
 <div
   class="toggle"
-  on:click={toggle}
-  on:keyup={toggle}
+  onclick={toggle}
+  onkeyup={toggle}
   aria-label="Toggle dark mode"
   role="button"
   tabindex="0"
