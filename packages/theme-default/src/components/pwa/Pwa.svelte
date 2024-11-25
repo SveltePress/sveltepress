@@ -9,7 +9,8 @@
     if (themeOptions.pwa) {
       const { pwaInfo } = await import('virtual:pwa-info')
       webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
-      pwaInfo && (ReloadPrompt = (await import('./ReloadPrompt.svelte')).default)
+      pwaInfo &&
+        (ReloadPrompt = (await import('./ReloadPrompt.svelte')).default)
     }
   })
 </script>

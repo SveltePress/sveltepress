@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "scripts": {
-    "lint": "eslint -c ./.eslintrc.cjs --ext .js,.ts,.svelte ./packages",
+    "lint": "eslint",
     "format": "prettier \"./**/*.svelte\" --check",
     "release": "changeset publish",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",

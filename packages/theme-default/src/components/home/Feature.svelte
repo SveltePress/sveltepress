@@ -35,10 +35,8 @@
   const iconsArray = Object.values(icons)
 
   function handleFeatureCardClick() {
-    if (!link)
-      return
-    if (external)
-      window.open(link, '_blank')
+    if (!link) return
+    if (external) window.open(link, '_blank')
     else goto(link)
   }
 </script>

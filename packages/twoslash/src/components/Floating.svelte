@@ -6,7 +6,15 @@
   import teleport from '../actions/teleport.js'
   import '@shikijs/twoslash/style-rich.css'
 
-  let { children, show = false, alwaysShow = false, placement = 'bottom-start', floatingClass, content, ...rest }: Props = $props()
+  let {
+    children,
+    show = false,
+    alwaysShow = false,
+    placement = 'bottom-start',
+    floatingClass,
+    content,
+    ...rest
+  }: Props = $props()
 
   let container: HTMLSpanElement
   let floatingContent: HTMLDivElement

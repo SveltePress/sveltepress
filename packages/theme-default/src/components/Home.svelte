@@ -2,7 +2,13 @@
   import ActionButton from './ActionButton.svelte'
   import Feature from './home/Feature.svelte'
 
-  const { features = [], actions = [], tagline = '', siteConfig, heroImage } = $props()
+  const {
+    features = [],
+    actions = [],
+    tagline = '',
+    siteConfig,
+    heroImage,
+  } = $props()
 </script>
 
 <div class="home-page">

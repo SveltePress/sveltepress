@@ -8,16 +8,14 @@
   let interval = 200
 
   onDestroy(() => {
-    if (startedFlag)
-      clearTimeout(startedFlag)
+    if (startedFlag) clearTimeout(startedFlag)
   })
 
   /**
    * Start the ajax bar
    */
   export function start() {
-    if (startedFlag)
-      clearTimeout(startedFlag)
+    if (startedFlag) clearTimeout(startedFlag)
     barWidth = 0
     interval = 200
     const next = () => {
@@ -32,11 +30,9 @@
    * End the ajax bar
    */
   export function end() {
-    if (barWidth > 0)
-      barWidth = 100
+    if (barWidth > 0) barWidth = 100
 
-    if (startedFlag)
-      clearInterval(startedFlag)
+    if (startedFlag) clearInterval(startedFlag)
 
     setTimeout(() => {
       barWidth = 0

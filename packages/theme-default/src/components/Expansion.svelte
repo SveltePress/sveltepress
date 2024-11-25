@@ -15,7 +15,16 @@
    */
 
   /** @type {Props} */
-  let { title, expanded = false, reverse = false, headerStyle = '', codeType = 'svelte', showIcon = true, bodyDom, children } = $props()
+  let {
+    title,
+    expanded = false,
+    reverse = false,
+    headerStyle = '',
+    codeType = 'svelte',
+    showIcon = true,
+    bodyDom,
+    children,
+  } = $props()
 
   /**
    *

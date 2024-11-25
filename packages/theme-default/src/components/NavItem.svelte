@@ -28,8 +28,7 @@
   } = $props()
 
   function handleClick() {
-    if (external)
-      window.open(to, '_blank')
+    if (external) window.open(to, '_blank')
   }
 
   // eslint-disable-next-line no-unused-expressions

@@ -2,13 +2,10 @@
   import type { PropType } from './PropType.js'
 
   const { children, floatingContent, ...rest }: PropType = $props()
-
 </script>
 
 {#await import('./Floating.svelte') then { default: Comp }}
-  <Comp
-    {...rest}
-  >
+  <Comp {...rest}>
     {@render children?.()}
     {#snippet content()}
       {@render floatingContent?.()}

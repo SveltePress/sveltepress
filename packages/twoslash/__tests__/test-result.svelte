@@ -1,37 +1,613 @@
-<pre class="shiki shiki-themes github-light vitesse-dark twoslash lsp" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span style="color:#24292E;--shiki-dark:#666666"> &#123;</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>onMount</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> onMount</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#6F42C1;--shiki-dark:#80A665">fn</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> () </span><span style="color:#D73A49;--shiki-dark:#666666">=></span><span style="color:#6F42C1;--shiki-dark:#5DA994"> NotFunction</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">> </span><span style="color:#D73A49;--shiki-dark:#666666">|</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Promise</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">NotFunction</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span style="color:#24292E;--shiki-dark:#666666">>> </span><span style="color:#D73A49;--shiki-dark:#666666">|</span><span style="color:#24292E;--shiki-dark:#666666"> (() </span><span style="color:#D73A49;--shiki-dark:#666666">=></span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span><span style="color:#24292E;--shiki-dark:#666666">))</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> void</span></code><div class="twoslash-popup-docs"><p>The <code>onMount</code> function schedules a callback to run as soon as the component has been mounted to the DOM.
-It must be called during the component's initialisation (but doesn't need to live <em>inside</em> the component;
+<pre
+  class="shiki shiki-themes github-light vitesse-dark twoslash lsp"
+  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+  tabindex="0"><code
+    ><span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span
+        style="color:#22863A;--shiki-dark:#4D9375">script</span
+      ><span style="color:#24292E;--shiki-dark:#666666">></span></span
+    >
+<span class="line"
+      ><span style="color:#D73A49;--shiki-dark:#4D9375">  import</span><span
+        style="color:#24292E;--shiki-dark:#666666"> &#123;</span
+      ><span style="color:#24292E;--shiki-dark:#BD976A"></span><span
+        style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>onMount</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">function</span
+                ><span style="color:#6F42C1;--shiki-dark:#80A665"> onMount</span
+                ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span
+                ><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span
+                  style="color:#24292E;--shiki-dark:#666666">>(</span
+                ><span style="color:#6F42C1;--shiki-dark:#80A665">fn</span><span
+                  style="color:#D73A49;--shiki-dark:#666666">:</span
+                ><span
+                  style="color:#24292E;--shiki-dark:#666666"> () </span><span
+                  style="color:#D73A49;--shiki-dark:#666666">=></span
+                ><span
+                  style="color:#6F42C1;--shiki-dark:#5DA994"> NotFunction</span
+                ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span
+                ><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span
+                  style="color:#24292E;--shiki-dark:#666666"
+                  >> </span><span style="color:#D73A49;--shiki-dark:#666666"
+                  >|</span
+                ><span style="color:#6F42C1;--shiki-dark:#5DA994"> Promise</span
+                ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span
+                ><span style="color:#6F42C1;--shiki-dark:#5DA994"
+                  >NotFunction</span
+                ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span
+                ><span style="color:#6F42C1;--shiki-dark:#5DA994">T</span><span
+                  style="color:#24292E;--shiki-dark:#666666"
+                  >>> </span><span style="color:#D73A49;--shiki-dark:#666666"
+                  >|</span
+                ><span
+                  style="color:#24292E;--shiki-dark:#666666"> (() </span><span
+                  style="color:#D73A49;--shiki-dark:#666666">=></span
+                ><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span
+                ><span style="color:#24292E;--shiki-dark:#666666">))</span><span
+                  style="color:#D73A49;--shiki-dark:#666666">:</span
+                ><span style="color:#005CC5;--shiki-dark:#5DA994"> void</span
+                ></code
+              ><div class="twoslash-popup-docs"><p>The <code>onMount</code
+                  > function schedules a callback to run as soon as the component has been mounted to the DOM.
+It must be called during the component's initialisation (but doesn't need to live <em
+                    >inside</em
+                  > the component;
 it can be called from an external module).</p>
-<p>If a function is returned <em>synchronously</em> from <code>onMount</code>, it will be called when the component is unmounted.</p>
-<p><code>onMount</code> does not run inside <a href="https://svelte.dev/docs/svelte/svelte-server#render">server-side components</a>.</p></div></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666"> &#125;</span><span style="color:#D73A49;--shiki-dark:#4D9375"> from</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">svelte</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span></span>
+<p>If a function is returned <em>synchronously</em> from <code>onMount</code
+                  >, it will be called when the component is unmounted.</p>
+<p><code>onMount</code> does not run inside <a
+                    href="https://svelte.dev/docs/svelte/svelte-server#render"
+                    >server-side components</a
+                  >.</p></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666"> &#125;</span><span
+        style="color:#D73A49;--shiki-dark:#4D9375"> from</span
+      ><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span
+        style="color:#032F62;--shiki-dark:#C98A7D">svelte</span
+      ><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span></span
+    >
 <span class="line"></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">  let</span><span style="color:#24292E;--shiki-dark:#666666"> &#123;</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>message</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> message</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span></code></span>{/snippet}</Floating></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#032F62;--shiki-dark:#C98A7D77"> '</span><span style="color:#032F62;--shiki-dark:#C98A7D">World</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#24292E;--shiki-dark:#666666"> &#125;</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#24292E;--shiki-dark:#666666"> </span><span style="color:#24292E;--shiki-dark:#666666"><Floating class="twoslash-hover"><span>$</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $props</span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span></code><div class="twoslash-popup-docs"><p>Declares the props that a component accepts. Example:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#666666"> &#123;</span><span style="color:#24292E;--shiki-dark:#BD976A"> optionalProp</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 42</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#24292E;--shiki-dark:#BD976A"> requiredProp</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#24292E;--shiki-dark:#BD976A"> bindableProp</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $bindable</span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#24292E;--shiki-dark:#666666"> &#125;</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> &#123; </span><span style="color:#E36209;--shiki-dark:#BD976A">optionalProp</span><span style="color:#D73A49;--shiki-dark:#CB7676">?</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span><span style="color:#24292E;--shiki-dark:#666666">; </span><span style="color:#E36209;--shiki-dark:#BD976A">requiredProps</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">; </span><span style="color:#E36209;--shiki-dark:#BD976A">bindableProp</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> boolean</span><span style="color:#24292E;--shiki-dark:#666666"> &#125; </span><span style="color:#D73A49;--shiki-dark:#666666">=</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $props</span><span style="color:#24292E;--shiki-dark:#666666">();</span></span></code></pre>
-<p><a href="https://svelte.dev/docs/svelte/$props">https://svelte.dev/docs/svelte/$props</a></p></div></span>{/snippet}</Floating></span><span style="color:#6F42C1;--shiki-dark:#80A665"><Floating class="twoslash-hover"><span>props</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $props</span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span></code><div class="twoslash-popup-docs"><p>Declares the props that a component accepts. Example:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#666666"> &#123;</span><span style="color:#24292E;--shiki-dark:#BD976A"> optionalProp</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 42</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#24292E;--shiki-dark:#BD976A"> requiredProp</span><span style="color:#24292E;--shiki-dark:#666666">,</span><span style="color:#24292E;--shiki-dark:#BD976A"> bindableProp</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $bindable</span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#24292E;--shiki-dark:#666666"> &#125;</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#24292E;--shiki-dark:#666666"> &#123; </span><span style="color:#E36209;--shiki-dark:#BD976A">optionalProp</span><span style="color:#D73A49;--shiki-dark:#CB7676">?</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span><span style="color:#24292E;--shiki-dark:#666666">; </span><span style="color:#E36209;--shiki-dark:#BD976A">requiredProps</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> string</span><span style="color:#24292E;--shiki-dark:#666666">; </span><span style="color:#E36209;--shiki-dark:#BD976A">bindableProp</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> boolean</span><span style="color:#24292E;--shiki-dark:#666666"> &#125; </span><span style="color:#D73A49;--shiki-dark:#666666">=</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $props</span><span style="color:#24292E;--shiki-dark:#666666">();</span></span></code></pre>
-<p><a href="https://svelte.dev/docs/svelte/$props">https://svelte.dev/docs/svelte/$props</a></p></div></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">()</span></span>
+<span class="line"
+      ><span style="color:#D73A49;--shiki-dark:#CB7676">  let</span><span
+        style="color:#24292E;--shiki-dark:#666666"> &#123;</span
+      ><span style="color:#24292E;--shiki-dark:#BD976A"></span><span
+        style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>message</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">let</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> message</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">:</span><span
+                  style="color:#005CC5;--shiki-dark:#5DA994"> any</span
+                ></code
+              ></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span
+        style="color:#032F62;--shiki-dark:#C98A7D77"> '</span
+      ><span style="color:#032F62;--shiki-dark:#C98A7D">World</span><span
+        style="color:#032F62;--shiki-dark:#C98A7D77">'</span
+      ><span style="color:#24292E;--shiki-dark:#666666"> &#125;</span><span
+        style="color:#D73A49;--shiki-dark:#666666"> =</span
+      ><span style="color:#24292E;--shiki-dark:#666666"></span><span
+        style="color:#24292E;--shiki-dark:#666666"
+        ><Floating class="twoslash-hover"
+          ><span>$</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">function</span
+                ><span style="color:#6F42C1;--shiki-dark:#80A665"> $props</span
+                ><span style="color:#24292E;--shiki-dark:#666666">()</span><span
+                  style="color:#D73A49;--shiki-dark:#666666">:</span
+                ><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span
+                ></code
+              ><div
+                class="twoslash-popup-docs"><p>Declares the props that a component accepts. Example:</p>
+<pre
+                  class="shiki shiki-themes github-light vitesse-dark"
+                  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+                  tabindex="0"><code
+                    ><span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >let</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#123;</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> optionalProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#4C9A91"> 42</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">,</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> requiredProp</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">,</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> bindableProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $bindable</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">()</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#125;</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#123; </span><span
+                        style="color:#E36209;--shiki-dark:#BD976A"
+                        >optionalProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676">?</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#5DA994"> number</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >; </span><span
+                        style="color:#E36209;--shiki-dark:#BD976A"
+                        >requiredProps</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#5DA994"> string</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >; </span><span
+                        style="color:#E36209;--shiki-dark:#BD976A"
+                        >bindableProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#5DA994"> boolean</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#125; </span><span
+                        style="color:#D73A49;--shiki-dark:#666666">=</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $props</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >();</span
+                      ></span
+                    ></code
+                  ></pre>
+<p><a href="https://svelte.dev/docs/svelte/$props"
+                    >https://svelte.dev/docs/svelte/$props</a
+                  ></p></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#6F42C1;--shiki-dark:#80A665"
+        ><Floating class="twoslash-hover"
+          ><span>props</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">function</span
+                ><span style="color:#6F42C1;--shiki-dark:#80A665"> $props</span
+                ><span style="color:#24292E;--shiki-dark:#666666">()</span><span
+                  style="color:#D73A49;--shiki-dark:#666666">:</span
+                ><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span
+                ></code
+              ><div
+                class="twoslash-popup-docs"><p>Declares the props that a component accepts. Example:</p>
+<pre
+                  class="shiki shiki-themes github-light vitesse-dark"
+                  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+                  tabindex="0"><code
+                    ><span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >let</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#123;</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> optionalProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#4C9A91"> 42</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">,</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> requiredProp</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">,</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> bindableProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $bindable</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">()</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#125;</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#123; </span><span
+                        style="color:#E36209;--shiki-dark:#BD976A"
+                        >optionalProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676">?</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#5DA994"> number</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >; </span><span
+                        style="color:#E36209;--shiki-dark:#BD976A"
+                        >requiredProps</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#5DA994"> string</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >; </span><span
+                        style="color:#E36209;--shiki-dark:#BD976A"
+                        >bindableProp</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span
+                        style="color:#005CC5;--shiki-dark:#5DA994"> boolean</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#666666"> &#125; </span><span
+                        style="color:#D73A49;--shiki-dark:#666666">=</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $props</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >();</span
+                      ></span
+                    ></code
+                  ></pre>
+<p><a href="https://svelte.dev/docs/svelte/$props"
+                    >https://svelte.dev/docs/svelte/$props</a
+                  ></p></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">()</span></span
+    >
 <span class="line"></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">  let</span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span>{/snippet}</Floating></span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#24292E;--shiki-dark:#666666"> </span><span style="color:#24292E;--shiki-dark:#666666"><Floating class="twoslash-hover"><span>$</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $state</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#E36209;--shiki-dark:#BD976A">initial</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span><span style="color:#24292E;--shiki-dark:#666666">)</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span><span style="color:#24292E;--shiki-dark:#666666"> (</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">+</span><span style="color:#005CC5;--shiki-dark:#4C9A91">1</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> overload</span><span style="color:#24292E;--shiki-dark:#666666">)</span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">namespace</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> $state</span></span></code></pre></code><div class="twoslash-popup-docs"><p>Declares reactive state.</p>
+<span class="line"
+      ><span style="color:#D73A49;--shiki-dark:#CB7676">  let</span><span
+        style="color:#24292E;--shiki-dark:#BD976A"></span><span
+        style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>count</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">let</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> count</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">:</span><span
+                  style="color:#005CC5;--shiki-dark:#5DA994"> number</span
+                ></code
+              ></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span
+        style="color:#24292E;--shiki-dark:#666666"></span><span
+        style="color:#24292E;--shiki-dark:#666666"
+        ><Floating class="twoslash-hover"
+          ><span>$</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><pre
+                  class="shiki shiki-themes github-light vitesse-dark"
+                  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+                  tabindex="0"><code
+                    ><span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >function</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $state</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >&#x3C;</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">>(</span
+                      ><span style="color:#E36209;--shiki-dark:#BD976A"
+                        >initial</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">)</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"> (</span
+                      ><span style="color:#24292E;--shiki-dark:#DBD7CAEE"
+                        >+</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91">1</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#5DA994"> overload</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">)</span
+                      ></span
+                    >
+<span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >namespace</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#5DA994"> $state</span
+                      ></span
+                    ></code
+                  ></pre></code
+              ><div class="twoslash-popup-docs"><p>Declares reactive state.</p>
 <p>Example:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $state</span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span><span style="color:#24292E;--shiki-dark:#666666">);</span></span></code></pre>
-<p><a href="https://svelte.dev/docs/svelte/$state">https://svelte.dev/docs/svelte/$state</a></p></div><div class="twoslash-popup-docs twoslash-popup-docs-tags"><span class="twoslash-popup-docs-tag"><span class="twoslash-popup-docs-tag-name">@param</span><span class="twoslash-popup-docs-tag-value"><code>initial</code>  The initial value</span></span></div></span>{/snippet}</Floating></span><span style="color:#6F42C1;--shiki-dark:#80A665"><Floating class="twoslash-hover"><span>state</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">function</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $state</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#E36209;--shiki-dark:#BD976A">initial</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span><span style="color:#24292E;--shiki-dark:#666666">)</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span><span style="color:#24292E;--shiki-dark:#666666"> (</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">+</span><span style="color:#005CC5;--shiki-dark:#4C9A91">1</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> overload</span><span style="color:#24292E;--shiki-dark:#666666">)</span></span>
-<span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">namespace</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> $state</span></span></code></pre></code><div class="twoslash-popup-docs"><p>Declares reactive state.</p>
+<pre
+                  class="shiki shiki-themes github-light vitesse-dark"
+                  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+                  tabindex="0"><code
+                    ><span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >let</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> count</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $state</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">(</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">);</span
+                      ></span
+                    ></code
+                  ></pre>
+<p><a href="https://svelte.dev/docs/svelte/$state"
+                    >https://svelte.dev/docs/svelte/$state</a
+                  ></p></div><div
+                class="twoslash-popup-docs twoslash-popup-docs-tags"><span
+                  class="twoslash-popup-docs-tag"
+                  ><span class="twoslash-popup-docs-tag-name">@param</span><span
+                    class="twoslash-popup-docs-tag-value"
+                    ><code>initial</code>  The initial value</span
+                  ></span
+                ></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#6F42C1;--shiki-dark:#80A665"
+        ><Floating class="twoslash-hover"
+          ><span>state</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><pre
+                  class="shiki shiki-themes github-light vitesse-dark"
+                  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+                  tabindex="0"><code
+                    ><span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >function</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $state</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"
+                        >&#x3C;</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">>(</span
+                      ><span style="color:#E36209;--shiki-dark:#BD976A"
+                        >initial</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">)</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666">:</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91"> 0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666"> (</span
+                      ><span style="color:#24292E;--shiki-dark:#DBD7CAEE"
+                        >+</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91">1</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#5DA994"> overload</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">)</span
+                      ></span
+                    >
+<span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >namespace</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#5DA994"> $state</span
+                      ></span
+                    ></code
+                  ></pre></code
+              ><div class="twoslash-popup-docs"><p>Declares reactive state.</p>
 <p>Example:</p>
-<pre class="shiki shiki-themes github-light vitesse-dark" style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee" tabindex="0"><code><span class="line"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666"> =</span><span style="color:#6F42C1;--shiki-dark:#80A665"> $state</span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span><span style="color:#24292E;--shiki-dark:#666666">);</span></span></code></pre>
-<p><a href="https://svelte.dev/docs/svelte/$state">https://svelte.dev/docs/svelte/$state</a></p></div><div class="twoslash-popup-docs twoslash-popup-docs-tags"><span class="twoslash-popup-docs-tag"><span class="twoslash-popup-docs-tag-name">@param</span><span class="twoslash-popup-docs-tag-value"><code>initial</code>  The initial value</span></span></div></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span><span style="color:#24292E;--shiki-dark:#666666">)</span></span>
+<pre
+                  class="shiki shiki-themes github-light vitesse-dark"
+                  style="background-color:#fff;--shiki-dark-bg:#121212;color:#24292e;--shiki-dark:#dbd7caee"
+                  tabindex="0"><code
+                    ><span class="line"
+                      ><span style="color:#D73A49;--shiki-dark:#CB7676"
+                        >let</span
+                      ><span
+                        style="color:#24292E;--shiki-dark:#BD976A"> count</span
+                      ><span style="color:#D73A49;--shiki-dark:#666666"> =</span
+                      ><span
+                        style="color:#6F42C1;--shiki-dark:#80A665"> $state</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">(</span
+                      ><span style="color:#005CC5;--shiki-dark:#4C9A91">0</span
+                      ><span style="color:#24292E;--shiki-dark:#666666">);</span
+                      ></span
+                    ></code
+                  ></pre>
+<p><a href="https://svelte.dev/docs/svelte/$state"
+                    >https://svelte.dev/docs/svelte/$state</a
+                  ></p></div><div
+                class="twoslash-popup-docs twoslash-popup-docs-tags"><span
+                  class="twoslash-popup-docs-tag"
+                  ><span class="twoslash-popup-docs-tag-name">@param</span><span
+                    class="twoslash-popup-docs-tag-value"
+                    ><code>initial</code>  The initial value</span
+                  ></span
+                ></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">(</span><span
+        style="color:#005CC5;--shiki-dark:#4C9A91">0</span
+      ><span style="color:#24292E;--shiki-dark:#666666">)</span></span
+    >
 <span class="line"></span>
-<span class="line"><span style="color:#6F42C1;--shiki-dark:#80A665">  </span><span style="color:#6F42C1;--shiki-dark:#80A665"><Floating class="twoslash-hover"><span>onMount</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#6F42C1;--shiki-dark:#80A665">onMount</span><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#005CC5;--shiki-dark:#5DA994">void</span><span style="color:#24292E;--shiki-dark:#666666">>(</span><span style="color:#24292E;--shiki-dark:#BD976A">fn</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#24292E;--shiki-dark:#666666">()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#D73A49;--shiki-dark:#CB7676"> void</span><span style="color:#D73A49;--shiki-dark:#CB7676"> |</span><span style="color:#24292E;--shiki-dark:#666666"> (()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#BD976A"> any</span><span style="color:#24292E;--shiki-dark:#666666">)</span><span style="color:#D73A49;--shiki-dark:#CB7676"> |</span><span style="color:#005CC5;--shiki-dark:#B8A965"> Promise</span><span style="color:#D73A49;--shiki-dark:#666666">&#x3C;</span><span style="color:#D73A49;--shiki-dark:#CB7676">void</span><span style="color:#D73A49;--shiki-dark:#666666">></span><span style="color:#24292E;--shiki-dark:#666666">)</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#D73A49;--shiki-dark:#CB7676">void</span></code><div class="twoslash-popup-docs"><p>The <code>onMount</code> function schedules a callback to run as soon as the component has been mounted to the DOM.
-It must be called during the component's initialisation (but doesn't need to live <em>inside</em> the component;
+<span class="line"
+      ><span style="color:#6F42C1;--shiki-dark:#80A665"></span><span
+        style="color:#6F42C1;--shiki-dark:#80A665"
+        ><Floating class="twoslash-hover"
+          ><span>onMount</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#6F42C1;--shiki-dark:#80A665">onMount</span
+                ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span
+                ><span style="color:#005CC5;--shiki-dark:#5DA994">void</span
+                ><span style="color:#24292E;--shiki-dark:#666666">>(</span><span
+                  style="color:#24292E;--shiki-dark:#BD976A">fn</span
+                ><span style="color:#24292E;--shiki-dark:#DBD7CAEE"
+                  >: </span><span style="color:#24292E;--shiki-dark:#666666"
+                  >()</span
+                ><span style="color:#D73A49;--shiki-dark:#666666"> =></span
+                ><span style="color:#D73A49;--shiki-dark:#CB7676"> void</span
+                ><span style="color:#D73A49;--shiki-dark:#CB7676"> |</span><span
+                  style="color:#24292E;--shiki-dark:#666666"> (()</span
+                ><span style="color:#D73A49;--shiki-dark:#666666"> =></span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> any</span
+                ><span style="color:#24292E;--shiki-dark:#666666">)</span><span
+                  style="color:#D73A49;--shiki-dark:#CB7676"> |</span
+                ><span style="color:#005CC5;--shiki-dark:#B8A965"> Promise</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">&#x3C;</span
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">void</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">></span><span
+                  style="color:#24292E;--shiki-dark:#666666">)</span
+                ><span style="color:#24292E;--shiki-dark:#DBD7CAEE"
+                  >: </span><span style="color:#D73A49;--shiki-dark:#CB7676"
+                  >void</span
+                ></code
+              ><div class="twoslash-popup-docs"><p>The <code>onMount</code
+                  > function schedules a callback to run as soon as the component has been mounted to the DOM.
+It must be called during the component's initialisation (but doesn't need to live <em
+                    >inside</em
+                  > the component;
 it can be called from an external module).</p>
-<p>If a function is returned <em>synchronously</em> from <code>onMount</code>, it will be called when the component is unmounted.</p>
-<p><code>onMount</code> does not run inside <a href="https://svelte.dev/docs/svelte/svelte-server#render">server-side components</a>.</p></div></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">(()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#666666"> &#123;</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#BD976A">    </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>console</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">var</span><span style="color:#24292E;--shiki-dark:#BD976A"> console</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#6F42C1;--shiki-dark:#5DA994"> Console</span></code></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">.</span><span style="color:#6F42C1;--shiki-dark:#80A665"><Floating class="twoslash-hover"><span>log</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#24292E;--shiki-dark:#BD976A">Console</span><span style="color:#24292E;--shiki-dark:#666666">.</span><span style="color:#6F42C1;--shiki-dark:#80A665">log</span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#D73A49;--shiki-dark:#666666">...</span><span style="color:#24292E;--shiki-dark:#BD976A">data</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#24292E;--shiki-dark:#BD976A">any</span><span style="color:#24292E;--shiki-dark:#666666">[])</span><span style="color:#24292E;--shiki-dark:#DBD7CAEE">: </span><span style="color:#D73A49;--shiki-dark:#CB7676">void</span></code><div class="twoslash-popup-docs"><p><a href="https://developer.mozilla.org/docs/Web/API/console/log_static">MDN Reference</a></p></div></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">(</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#032F62;--shiki-dark:#C98A7D">mount</span><span style="color:#032F62;--shiki-dark:#C98A7D77">'</span><span style="color:#24292E;--shiki-dark:#666666">)</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">  &#125;)</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">script</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> onclick</span><span style="color:#24292E;--shiki-dark:#666666">=&#123;()</span><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span style="color:#24292E;--shiki-dark:#BD976A"> </span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span>{/snippet}</Floating></span><span style="color:#D73A49;--shiki-dark:#CB7676">++</span><span style="color:#24292E;--shiki-dark:#666666">&#125;></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  Count is: </span><span style="color:#24292E;--shiki-dark:#666666">&#123;</span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>count</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> count</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> number</span></code></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">&#125;</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">button</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span style="color:#22863A;--shiki-dark:#4D9375">div</span><span style="color:#6F42C1;--shiki-dark:#BD976A"> class</span><span style="color:#24292E;--shiki-dark:#666666">=</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#032F62;--shiki-dark:#C98A7D">text-6</span><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span style="color:#24292E;--shiki-dark:#666666">></span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  Hello, </span><span style="color:#24292E;--shiki-dark:#666666">&#123;</span><span style="color:#24292E;--shiki-dark:#BD976A"><Floating class="twoslash-hover"><span>message</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#D73A49;--shiki-dark:#CB7676">let</span><span style="color:#24292E;--shiki-dark:#BD976A"> message</span><span style="color:#D73A49;--shiki-dark:#666666">:</span><span style="color:#005CC5;--shiki-dark:#5DA994"> any</span></code></span>{/snippet}</Floating></span><span style="color:#24292E;--shiki-dark:#666666">&#125;</span></span>
-<span class="line"><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span style="color:#22863A;--shiki-dark:#4D9375">div</span><span style="color:#24292E;--shiki-dark:#666666">></span></span></code></pre>
+<p>If a function is returned <em>synchronously</em> from <code>onMount</code
+                  >, it will be called when the component is unmounted.</p>
+<p><code>onMount</code> does not run inside <a
+                    href="https://svelte.dev/docs/svelte/svelte-server#render"
+                    >server-side components</a
+                  >.</p></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">(()</span><span
+        style="color:#D73A49;--shiki-dark:#666666"> =></span
+      ><span style="color:#24292E;--shiki-dark:#666666"> &#123;</span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#BD976A"></span><span
+        style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>console</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">var</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> console</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">:</span><span
+                  style="color:#6F42C1;--shiki-dark:#5DA994"> Console</span
+                ></code
+              ></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">.</span><span
+        style="color:#6F42C1;--shiki-dark:#80A665"
+        ><Floating class="twoslash-hover"
+          ><span>log</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#24292E;--shiki-dark:#BD976A">Console</span
+                ><span style="color:#24292E;--shiki-dark:#666666">.</span><span
+                  style="color:#6F42C1;--shiki-dark:#80A665">log</span
+                ><span style="color:#24292E;--shiki-dark:#666666">(</span><span
+                  style="color:#D73A49;--shiki-dark:#666666">...</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A">data</span
+                ><span style="color:#24292E;--shiki-dark:#DBD7CAEE"
+                  >: </span><span style="color:#24292E;--shiki-dark:#BD976A"
+                  >any</span
+                ><span style="color:#24292E;--shiki-dark:#666666">[])</span
+                ><span style="color:#24292E;--shiki-dark:#DBD7CAEE"
+                  >: </span><span style="color:#D73A49;--shiki-dark:#CB7676"
+                  >void</span
+                ></code
+              ><div class="twoslash-popup-docs"><p><a
+                    href="https://developer.mozilla.org/docs/Web/API/console/log_static"
+                    >MDN Reference</a
+                  ></p></div></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">(</span><span
+        style="color:#032F62;--shiki-dark:#C98A7D77">'</span
+      ><span style="color:#032F62;--shiki-dark:#C98A7D">mount</span><span
+        style="color:#032F62;--shiki-dark:#C98A7D77">'</span
+      ><span style="color:#24292E;--shiki-dark:#666666">)</span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">  &#125;)</span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span
+        style="color:#22863A;--shiki-dark:#4D9375">script</span
+      ><span style="color:#24292E;--shiki-dark:#666666">></span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span
+        style="color:#22863A;--shiki-dark:#4D9375">button</span
+      ><span style="color:#6F42C1;--shiki-dark:#BD976A"> onclick</span><span
+        style="color:#24292E;--shiki-dark:#666666">=&#123;()</span
+      ><span style="color:#D73A49;--shiki-dark:#666666"> =></span><span
+        style="color:#24292E;--shiki-dark:#BD976A"></span><span
+        style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>count</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">let</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> count</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">:</span><span
+                  style="color:#005CC5;--shiki-dark:#5DA994"> number</span
+                ></code
+              ></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#D73A49;--shiki-dark:#CB7676">++</span><span
+        style="color:#24292E;--shiki-dark:#666666">&#125;></span
+      ></span
+    >
+<span class="line"
+      ><span
+        style="color:#24292E;--shiki-dark:#DBD7CAEE">  Count is: </span><span
+        style="color:#24292E;--shiki-dark:#666666">&#123;</span
+      ><span style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>count</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">let</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> count</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">:</span><span
+                  style="color:#005CC5;--shiki-dark:#5DA994"> number</span
+                ></code
+              ></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">&#125;</span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span
+        style="color:#22863A;--shiki-dark:#4D9375">button</span
+      ><span style="color:#24292E;--shiki-dark:#666666">></span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;</span><span
+        style="color:#22863A;--shiki-dark:#4D9375">div</span
+      ><span style="color:#6F42C1;--shiki-dark:#BD976A"> class</span><span
+        style="color:#24292E;--shiki-dark:#666666">=</span
+      ><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span
+        style="color:#032F62;--shiki-dark:#C98A7D">text-6</span
+      ><span style="color:#032F62;--shiki-dark:#C98A7D77">"</span><span
+        style="color:#24292E;--shiki-dark:#666666">></span
+      ></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#DBD7CAEE">  Hello, </span><span
+        style="color:#24292E;--shiki-dark:#666666">&#123;</span
+      ><span style="color:#24292E;--shiki-dark:#BD976A"
+        ><Floating class="twoslash-hover"
+          ><span>message</span>{#snippet floatingContent()}<span
+              class="twoslash-popup-container"
+              ><code class="twoslash-popup-code"
+                ><span style="color:#D73A49;--shiki-dark:#CB7676">let</span
+                ><span style="color:#24292E;--shiki-dark:#BD976A"> message</span
+                ><span style="color:#D73A49;--shiki-dark:#666666">:</span><span
+                  style="color:#005CC5;--shiki-dark:#5DA994"> any</span
+                ></code
+              ></span
+            >{/snippet}</Floating
+        ></span
+      ><span style="color:#24292E;--shiki-dark:#666666">&#125;</span></span
+    >
+<span class="line"
+      ><span style="color:#24292E;--shiki-dark:#666666">&#x3C;/</span><span
+        style="color:#22863A;--shiki-dark:#4D9375">div</span
+      ><span style="color:#24292E;--shiki-dark:#666666">></span></span
+    ></code
+  ></pre>

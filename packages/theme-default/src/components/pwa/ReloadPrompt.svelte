@@ -6,8 +6,8 @@
   import Prompt from './Prompt.svelte'
 
   const DEFAULT_WORK_OFFLINE = 'App ready to work offline'
-  const DEFAULT_NEW_CONTENT_AVAILABLE
-    = 'New content available, click on reload button to update'
+  const DEFAULT_NEW_CONTENT_AVAILABLE =
+    'New content available, click on reload button to update'
   const DEFAULT_RELOAD = 'Reload'
 
   const { needRefresh, updateServiceWorker, offlineReady } = useRegisterSW({
@@ -18,12 +18,15 @@
     offlineReady.set(false)
     needRefresh.set(false)
   }
-  const appReadyToWorkOffline
-    = themeOptions?.i18n?.pwa?.appReadyToWorkOffline || DEFAULT_WORK_OFFLINE
-  const newContentAvailable
-    = themeOptions?.i18n?.pwa?.newContentAvailable || DEFAULT_NEW_CONTENT_AVAILABLE
+  const appReadyToWorkOffline =
+    themeOptions?.i18n?.pwa?.appReadyToWorkOffline || DEFAULT_WORK_OFFLINE
+  const newContentAvailable =
+    themeOptions?.i18n?.pwa?.newContentAvailable ||
+    DEFAULT_NEW_CONTENT_AVAILABLE
   const toast = $derived($offlineReady || $needRefresh)
-  const message = $derived($offlineReady ? appReadyToWorkOffline : newContentAvailable)
+  const message = $derived(
+    $offlineReady ? appReadyToWorkOffline : newContentAvailable,
+  )
 </script>
 
 {#if toast}

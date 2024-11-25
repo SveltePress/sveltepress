@@ -29,16 +29,15 @@
   let mounted = false
 
   function computeActiveIdx() {
-    if (!mounted)
-      return
+    if (!mounted) return
     const positions = anchors.map(
       ({ slugId }) => document.getElementById(slugId).offsetTop,
     )
     for (let i = 0; i < positions.length; i++) {
       const pos = positions[i]
       if (
-        scrollY >= pos
-        && (scrollY < positions[i + 1] || i === positions.length - 1)
+        scrollY >= pos &&
+        (scrollY < positions[i + 1] || i === positions.length - 1)
       ) {
         activeIdx = i
         return
@@ -53,11 +52,9 @@
   onMount(() => {
     mounted = true
     const anchorTarget = decodeURI($page.url.hash)
-    if (!anchorTarget)
-      return
+    if (!anchorTarget) return
     const ele = document.querySelector(anchorTarget)
-    if (ele)
-      scrollY = ele.offsetTop
+    if (ele) scrollY = ele.offsetTop
     tick().then(computeActiveIdx)
   })
 

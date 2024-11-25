@@ -11,12 +11,7 @@
    */
 
   /** @type {Props} */
-  let {
-    label,
-    type = '',
-    to,
-    external = false,
-  } = $props()
+  let { label, type = '', to, external = false } = $props()
 
   const toWithBase = base + to
 </script>

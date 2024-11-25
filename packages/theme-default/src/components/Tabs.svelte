@@ -51,8 +51,7 @@
   })
 
   function computedItems() {
-    if (!tabContainer)
-      return
+    if (!tabContainer) return
     itemWidthArray = [...tabContainer.querySelectorAll('.tab-header-item')].map(
       item => ({
         left: item.offsetLeft,

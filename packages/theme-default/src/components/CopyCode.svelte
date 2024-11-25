@@ -7,8 +7,8 @@
   let copied = $state(false)
 
   function handleClick() {
-    const content
-      = container?.parentElement?.querySelector('.shiki')?.textContent || ''
+    const content =
+      container?.parentElement?.querySelector('.shiki')?.textContent || ''
     navigator.clipboard.writeText(content)
     copied = true
     setTimeout(() => {

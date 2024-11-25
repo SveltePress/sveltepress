@@ -34,6 +34,7 @@ export default antfu({
     '**/__tests__/**/*.svelte',
     '**/__tests__/**/*.json',
     '**/__tests__/**/*.tsx',
+    '**/.sveltepress/**/*',
   ],
 }, {
   files: ['**/*.svelte'],

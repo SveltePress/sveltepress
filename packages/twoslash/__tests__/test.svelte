@@ -9,6 +9,7 @@
     console.log('mount')
   })
 </script>
+
 <button onclick={() => count++}>
   Count is: {count}
 </button>

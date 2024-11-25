@@ -7,7 +7,7 @@ describe('line highlight', () => {
   let count = $state(0) // [svp! hl]
 </script>
 
-<button on:click="{() => count++}">
+<button onclick="{() => count++}">
   You've clicked {count} times.
 </button>
 `

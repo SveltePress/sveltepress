@@ -8,7 +8,7 @@
   let count = $state(0)
 
   onMount(() => {
-  // mounted
+    // mounted
   })
 </script>
 

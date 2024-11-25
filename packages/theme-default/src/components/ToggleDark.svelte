@@ -16,8 +16,7 @@
           .getElementById('theme-color')
           .setAttribute('content', themeColor.dark)
       }
-    }
-    else {
+    } else {
       document.querySelector('html').classList.remove('dark')
       if (themeColor) {
         document
@@ -29,8 +28,9 @@
 
   function toggle(evt) {
     localStorage.setItem(key, $isDark ? 'off' : 'on')
-    const isAppearanceTransition
-      = document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isAppearanceTransition =
+      document.startViewTransition &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition) {
       $isDark = !$isDark

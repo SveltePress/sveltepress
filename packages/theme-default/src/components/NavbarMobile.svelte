@@ -12,6 +12,7 @@
     $navCollapsed = !$navCollapsed
   }
 </script>
+
 <div
   class="nav-trigger"
   onclick={toggleNav}

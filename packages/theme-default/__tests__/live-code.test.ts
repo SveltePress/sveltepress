@@ -17,10 +17,10 @@ const md = `
 
 \`\`\`svelte live
 <script>
-  let count = 1
+  let count = $state(0)
 </script>
 
-<button on:click={() => count++}>
+<button onclick={() => count++}>
   You've clicked {count} times
 </button>
 \`\`\`
