@@ -159,7 +159,7 @@ async function init() {
     const fullCustomCommand = customCommand
       .replace('TARGET_DIR', targetDir)
       .replace(/^npm create/, `${pkgManager} create`)
-      // Only Yarn 1.x doesn't support `@version` in the `create` command
+    // Only Yarn 1.x doesn't support `@version` in the `create` command
       .replace('@latest', () => (isYarn1 ? '' : '@latest'))
       .replace(/^npm exec/, () => {
         // Prefer `pnpm dlx` or `yarn dlx`

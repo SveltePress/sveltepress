@@ -28,7 +28,6 @@ export default antfu({
     'yarn.lock',
     'types-template.ts',
     'packages/twoslash/__tests__/test.svelte',
-    'packages/create',
     'packages/twoslash/src/twoslash-svelte/types-template.d.ts',
     '*.md',
     '**/__tests__/**/*.svelte',
@@ -44,5 +43,11 @@ export default antfu({
     'style/operator-linebreak': 'off',
     'style/brace-style': 'off',
     'svelte/indent': 'off',
+  },
+}, {
+  files: ['packages/create/template-*/**/*'],
+  rules: {
+    'style/indent': ['error', 'tab'],
+    'style/no-tabs': 'off',
   },
 })
