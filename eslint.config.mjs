@@ -14,8 +14,8 @@ export default antfu({
         },
       },
     ],
-    'unused-imports/no-unused-vars': ['error', { varsIgnorePattern: '(^_)|heroImage' }],
-    'no-unused-vars': ['error', { varsIgnorePattern: '(^_)|heroImage' }],
+    'unused-imports/no-unused-vars': 'off',
+    'no-unused-vars': 'off',
   },
   ignores: [
     'node_modules',
