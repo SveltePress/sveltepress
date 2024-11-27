@@ -11,6 +11,9 @@
    * @property {boolean} expanded Determine whether the expansion is expanded or not. It is recomended to use `bind:expanded`
    * @property {boolean} reverse Determine the expand direction, `false` means down, `true` means up
    * @property {string} headerStyle Custom header style
+   * @property {import('svelte').Snippet} iconFold custom fold icon
+   * @property {import('svelte').Snippet} iconExpanded custom expand icon
+   * @property {import('svelte').Snippet} customTitle custom title content
    * @property {'svelte' | 'md'} codeType The code type of the icon, `svelte` or `md`
    */
 
@@ -24,6 +27,9 @@
     showIcon = true,
     bodyDom,
     children,
+    iconFold,
+    iconExpanded,
+    customTitle,
   } = $props()
 
   /**
@@ -50,7 +56,7 @@
 {/snippet}
 
 <!-- Customize icon display in expanded status -->
-{#snippet iconExpanded()}
+{#snippet defaultIconExpanded()}
   {#if codeType === 'svelte'}
     <SvelteWithColor />
   {:else if codeType === 'md'}
@@ -61,7 +67,7 @@
 {/snippet}
 
 <!-- Customize icon display in folded status -->
-{#snippet iconFold()}
+{#snippet defaultIconFold()}
   {#if codeType === 'svelte'}
     <Svelte />
   {:else if codeType === 'md'}
@@ -72,7 +78,7 @@
 {/snippet}
 
 <!-- Customize the title content -->
-{#snippet customTitle()}
+{#snippet defaultCustomTitle()}
   {title}
 {/snippet}
 
@@ -98,14 +104,24 @@
         <div class="c-expansion--icon">
           <!-- The content before title -->
           {#if expanded}
-            {@render iconExpanded()}
-          {:else}
+            {#if iconExpanded}
+              {@render iconExpanded()}
+            {:else}
+              {@render defaultIconExpanded()}
+            {/if}
+          {:else if iconFold}
             {@render iconFold()}
+          {:else}
+            {@render defaultIconFold()}
           {/if}
         </div>
       {/if}
       <div class="c-expansion--title">
-        {@render customTitle()}
+        {#if customTitle}
+          {@render customTitle()}
+        {:else}
+          {@render defaultCustomTitle()}
+        {/if}
       </div>
     </div>
     <div

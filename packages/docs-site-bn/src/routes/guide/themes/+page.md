@@ -19,7 +19,6 @@ title: থিম
 ```ts title="vite.config.(js|ts)"
 import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 import { sveltepress } from '@sveltepress/vite'
-
 import { defineConfig } from 'vite'
 
 const config = defineConfig({

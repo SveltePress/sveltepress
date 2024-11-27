@@ -39,7 +39,7 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
         module: 199,
       },
       shouldGetHoverInfo(identifier) {
-        return !['svelteHTML', 'render', 'createElement'].some(id => identifier.startsWith(id))
+        return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component'].some(id => identifier.startsWith(id))
       },
     })
 

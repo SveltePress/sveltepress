@@ -134,9 +134,15 @@ title: বিল্ট-ইন কম্পোনেন্ট
   <div class="p-4 text-[24px]">
     Look at the icon left. It gets colored when expanded!
   </div>
-  <div slot="icon-fold" class="i-bxs-wink-smile"></div>
-  <div slot="icon-expanded" class="i-fxemoji-smiletongue"></div>
-  <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
+  {#snippet iconFold()}
+    <div class="i-bxs-wink-smile"></div>
+  {/snippet}
+  {#snippet iconExpanded()}
+    <div class="i-fxemoji-smiletongue"></div>
+  {/snippet}
+  {#snippet arrow()}
+    <div class="i-material-symbols-thumbs-up-down"></div>
+  {/snippet}
 </Expansion>
 ```
 
@@ -175,9 +181,11 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
     এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
 
-  <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
-    হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4">
+      হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ
+    </div>
+  {/snippet}
 </Floating>
 ```
 
@@ -191,10 +199,11 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
     এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
-
-  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
-    হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4">
+      হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ
+    </div>
+  {/snippet}
 </Floating>
 ```
 

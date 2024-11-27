@@ -139,13 +139,18 @@ console.log('This is shown')
 <script>
   import { onMount } from 'svelte'
 
+  let { message = '世界' } = $props()
+
   let count = $state(0)
 
   onMount(() => {
-  // mounted
   })
 </script>
-<button onclick={count++}>
-  您点击了: {count} 次
+
+<button onclick={() => count++}>
+  你点击了 {count} 次
 </button>
+<div class="text-6">
+  你好, {message}
+</div>
 ```

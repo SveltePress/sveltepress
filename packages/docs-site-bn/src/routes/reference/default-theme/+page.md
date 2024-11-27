@@ -8,10 +8,9 @@ title: ডিফল্ট থিম
 
 ## আপনার vite config এ যুক্ত করুন
 
-```js title="vite.config.(js|ts)"
+```ts title="vite.config.(js|ts)"
 import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 import { sveltepress } from '@sveltepress/vite'
-
 import { defineConfig } from 'vite'
 
 const config = defineConfig({

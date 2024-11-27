@@ -21,7 +21,7 @@ title: Markdown এ Svelte
 {/each}
 </ul>
 
-<button on:click="{() => boolVal = !boolVal}">
+<button onclick="{() => boolVal = !boolVal}">
 Toggle
 </button>
 
@@ -58,7 +58,7 @@ Toggle
 ```md
 <script>
   const items = ['foo', 'bar', 'zoo']
-  let boolVal = false
+  let boolVal = $state(false)
 
   const promisePass = () => new Promise(resolve => {
     setTimeout(() => {
@@ -72,7 +72,7 @@ Toggle
     }, 2000)
   })
 
-  $: promise = boolVal ? promisePass() : promiseFail()
+  let promise = $derived(boolVal ? promisePass() : promiseFail())
 </script>
 
 <ul>
@@ -84,7 +84,7 @@ Toggle
 {/each}
 </ul>
 
-<button on:click="{() => boolVal = !boolVal}">
+<button onclick="{() => boolVal = !boolVal}">
 Toggle
 </button>
 
@@ -140,7 +140,7 @@ Toggle
 
 > একটি কাউন্টার
 
-<button on:click="{() => count++}" style="margin-bottom: 12px;">
+<button onclick="{() => count++}" style="margin-bottom: 12px;">
  আপনি {count} বার ক্লিক করেছেন
 </button>
 

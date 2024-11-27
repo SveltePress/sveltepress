@@ -64,8 +64,10 @@ Config to `false` to remove all home page content that mentioned above.
 
 Use custom hero image content. Example:
 
-```html title="/src/routes/+page.(md|svelte)"
-<div slot="hero-image">
-Custom hero image content
-</div>
+```svelte title="/src/routes/+page.(md|svelte)"
+{#snippet heroImage()}
+  <div>
+    Custom hero image content
+  </div>
+{/snippet}
 ```

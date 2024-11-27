@@ -72,7 +72,7 @@
     "@types/estree": "^1.0.5",
     "@types/fs-extra": "^11.0.4",
     "@types/mdast": "^4.0.3",
-    "@types/node": "^20.11.20",
+    "@types/node": "catalog:",
     "dayjs": "^1.11.10",
     "svelte": "catalog:",
     "unbuild": "^2.0.0",

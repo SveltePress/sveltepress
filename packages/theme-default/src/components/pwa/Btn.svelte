@@ -1,18 +1,11 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte'
-
   interface Props {
     flat?: boolean
     children?: import('svelte').Snippet
+    onclick?: () => void
   }
 
-  const { flat = false, children }: Props = $props()
-
-  const dispatcher = createEventDispatcher()
-
-  function handleClick() {
-    dispatcher('click')
-  }
+  const { flat = false, children, onclick }: Props = $props()
 </script>
 
 <div
@@ -20,8 +13,8 @@
   class="btn"
   class:primary={!flat}
   class:flat
-  onclick={handleClick}
-  onkeyup={handleClick}
+  {onclick}
+  onkeyup={onclick}
   tabindex="0"
 >
   {@render children?.()}

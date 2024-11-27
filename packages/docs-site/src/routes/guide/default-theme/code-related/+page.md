@@ -194,7 +194,7 @@ Use svelte lang and live prop would render the result and the source codes under
     count++
   }
 </script>
-<button on:click={handleClick}>
+<button onclick={handleClick}>
   You've clicked {count} times
 </button>
 <style>

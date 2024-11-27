@@ -3,5 +3,5 @@
 </script>
 
 <button onclick={() => count++}>
-  You've clicked {count} times
+  আপনি {count} বার ক্লিক করেছেন
 </button>

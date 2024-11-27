@@ -63,8 +63,10 @@ title: 主页
 
 设置一个自定义的首页大 Logo 内容，比如：
 
-```html title="/src/routes/+page.(md|svelte)"
-<div slot="hero-image">
-Custom hero image content
-</div>
+```svelte title="/src/routes/+page.(md|svelte)"
+{#snippet heroImage()}
+  <div>
+    自定义 Logo 内容
+  </div>
+{/snippet}
 ```

@@ -32,7 +32,7 @@
 {#if toast}
   <Prompt {message} on:close={close}>
     {#if $needRefresh}
-      <Btn on:click={() => updateServiceWorker(true)}>
+      <Btn onclick={() => updateServiceWorker(true)}>
         {themeOptions?.i18n?.pwa?.reload || DEFAULT_RELOAD}
         <Refresh />
       </Btn>

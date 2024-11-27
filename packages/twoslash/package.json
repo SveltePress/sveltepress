@@ -50,7 +50,7 @@
     "@sveltejs/package": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@types/hast": "^3.0.4",
-    "@types/node": "^20.11.20",
+    "@types/node": "catalog:",
     "svelte": "catalog:",
     "svelte2tsx": "^0.7.28",
     "typescript": "catalog:",

@@ -12,6 +12,7 @@ catalog:
   shiki: ^1.23.1
   eslint: ^9
   lru-cache: ^10.2.0
+  '@types/node': ^20.11.20
   '@shikijs/twoslash': ^1.23.1
   '@unocss/extractor-svelte': ^0.61.5
   '@sveltejs/package': ^2.3.7

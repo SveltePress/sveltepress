@@ -24,7 +24,7 @@
   </div>
   <div class="actions">
     {@render children?.()}
-    <Btn on:click={handleClose} flat>
+    <Btn onclick={handleClose} flat>
       {themeOptions?.i18n?.pwa?.close || DEFAULT_CLOSE}
       <Close />
     </Btn>

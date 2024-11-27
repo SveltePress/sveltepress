@@ -87,7 +87,7 @@
     "@sveltejs/kit": "catalog:",
     "@sveltejs/package": "catalog:",
     "@sveltepress/vite": "workspace:*",
-    "@types/node": "^20.11.20",
+    "@types/node": "catalog:",
     "svelte": "catalog:",
     "unified": "^11.0.4",
     "vite": "catalog:",

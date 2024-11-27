@@ -14,7 +14,7 @@
   const routeId = $page.route.id
 
   // The frontmatter info. This would be injected by sveltepress
-  const { fm, children } = $props()
+  const { fm, children, heroImage } = $props()
 
   const {
     title,
@@ -52,6 +52,10 @@
   <meta name="description" content={description || siteConfig.description} />
 </svelte:head>
 
+{#snippet defaultHeroImage()}
+  <HeroImage heroImage={fm.heroImage} />
+{/snippet}
+
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
     <div class="content">
@@ -74,11 +78,7 @@
   </div>
 {:else}
   {#if home !== false}
-    <Home {...fm} {siteConfig}>
-      {#snippet heroImage()}
-        <HeroImage heroImage={fm.heroImage} />
-      {/snippet}
-    </Home>
+    <Home {...fm} {siteConfig} heroImage={heroImage ?? defaultHeroImage}></Home>
   {/if}
   {@render children?.()}
 {/if}

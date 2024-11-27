@@ -134,9 +134,15 @@ Would auto add a external icon when link address starts with http or https
   <div class="p-4 text-[24px]">
     Look at the icon left. It gets colored when expanded!
   </div>
-  <div slot="icon-fold" class="i-bxs-wink-smile"></div>
-  <div slot="icon-expanded" class="i-fxemoji-smiletongue"></div>
-  <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
+  {#snippet iconFold()}
+    <div class="i-bxs-wink-smile"></div>
+  {/snippet}
+  {#snippet iconExpanded()}
+    <div class="i-fxemoji-smiletongue"></div>
+  {/snippet}
+  {#snippet arrow()}
+    <div class="i-material-symbols-thumbs-up-down"></div>
+  {/snippet}
 </Expansion>
 ```
 

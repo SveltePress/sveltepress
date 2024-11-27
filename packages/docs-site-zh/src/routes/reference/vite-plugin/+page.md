@@ -87,7 +87,7 @@ export default defineConfig({
   ]
 })
 ```
-yourRemarkPlugin 将会在默认主题中的 remark plugins 之后调用
+“你的 remark 插件”将会在默认主题中的 remark plugins 之后调用
 :::
 
 ### `footnoteLabel`
