@@ -1,5 +1,11 @@
 # @sveltepress/twoslash
 
+## 1.0.0
+
+### Major Changes
+
+- [#292](https://github.com/SveltePress/sveltepress/pull/292) [`4727cc5`](https://github.com/SveltePress/sveltepress/commit/4727cc54d85623783e3c4a8c23a797473b504d02) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: migrate svelte to v5
+
 ## 0.4.0
 
 ### Minor Changes
