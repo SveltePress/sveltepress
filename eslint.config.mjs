@@ -51,5 +51,6 @@ export default antfu({
   rules: {
     'style/indent': ['error', 'tab'],
     'style/no-tabs': 'off',
+    'style/eol-last': 'off',
   },
 })
