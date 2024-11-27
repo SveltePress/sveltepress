@@ -1,17 +1,17 @@
+import type { Plugin } from 'unified'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import { visit } from 'unist-util-visit'
-import { uid } from 'uid'
-import type { Plugin } from 'unified'
 import { mdToSvelte } from '@sveltepress/vite'
+import { uid } from 'uid'
+import { visit } from 'unist-util-visit'
 import { themeOptionsRef } from '../index.js'
-import highlighter from './highlighter.js'
 import admonitions from './admonitions.js'
 import anchors from './anchors.js'
-import links from './links.js'
 import codeImport from './code-import.js'
+import highlighter from './highlighter.js'
 import installPkg from './install-pkg.js'
+import links from './links.js'
 
 const BASE_PATH = resolve(process.cwd(), '.sveltepress/live-code')
 const LIVE_CODE_MAP = resolve(BASE_PATH, 'live-code-map.json')
@@ -69,9 +69,9 @@ const liveCode: Plugin<[], any> = function () {
         const metaArray = meta?.split(' ') || []
         const isAsync = metaArray.includes('async')
         if (type === 'code'
-            && SUPPORTED_LIVE_LANGS.includes(lang)
-            && metaArray.includes('live')
-            && idx !== null && !data?.liveCodeResolved
+          && SUPPORTED_LIVE_LANGS.includes(lang)
+          && metaArray.includes('live')
+          && idx !== null && !data?.liveCodeResolved
         ) {
           const codeHighlightNode = {
             ...node,
@@ -114,7 +114,8 @@ const liveCode: Plugin<[], any> = function () {
 `,
               }
               return svelteComponent
-            } else if (lang === 'md') {
+            }
+            else if (lang === 'md') {
               const renderedHTML = (await mdToSvelte({
                 footnoteLabel: themeOptionsRef?.value?.i18n?.footnoteLabel,
                 mdContent: node.value,
@@ -163,7 +164,8 @@ const liveCode: Plugin<[], any> = function () {
 
           asyncNodeOperations.push(asyncAdd())
         }
-      })
+      },
+    )
 
     // wait for all promise add done
     await Promise.all(asyncNodeOperations)
@@ -173,7 +175,7 @@ const liveCode: Plugin<[], any> = function () {
     visit(tree, (node, idx, parent) => {
       if (node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
         hasScript = true
-        const value = node.value.replace(/^<script[ \w+="\w+"]*>/, (m: string) =>
+        const value = node.value.replace(/^<script[ \w+="]*>/, (m: string) =>
           [m, ...globalComponentsImporters, ...(themeOptionsRef.value?.highlighter?.twoslash ? [twoslashImporter] : []), ...liveCodeImports].join('\n'))
         parent.children.splice(idx, 1, {
           type: 'html',

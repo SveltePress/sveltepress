@@ -23,14 +23,16 @@
   const newContentAvailable =
     themeOptions?.i18n?.pwa?.newContentAvailable ||
     DEFAULT_NEW_CONTENT_AVAILABLE
-  $: toast = $offlineReady || $needRefresh
-  $: message = $offlineReady ? appReadyToWorkOffline : newContentAvailable
+  const toast = $derived($offlineReady || $needRefresh)
+  const message = $derived(
+    $offlineReady ? appReadyToWorkOffline : newContentAvailable,
+  )
 </script>
 
 {#if toast}
   <Prompt {message} on:close={close}>
     {#if $needRefresh}
-      <Btn on:click={() => updateServiceWorker(true)}>
+      <Btn onclick={() => updateServiceWorker(true)}>
         {themeOptions?.i18n?.pwa?.reload || DEFAULT_RELOAD}
         <Refresh />
       </Btn>

@@ -3,8 +3,8 @@ title: বিল্ট-ইন কম্পোনেন্ট
 ---
 
 :::note[ম্যানুয়ালি ইমপোর্ট]{icon=carbon:import-export}
-বিল্ট-ইন কম্পোনেন্টগুলো মার্কডাউন ফাইলে সরাসরি ব্যবহার করা যাবে। 
-কিন্তু svelte ফাইলে ম্যানুয়ালি ইমপোর্ট করতে হবে।  
+বিল্ট-ইন কম্পোনেন্টগুলো মার্কডাউন ফাইলে সরাসরি ব্যবহার করা যাবে।
+কিন্তু svelte ফাইলে ম্যানুয়ালি ইমপোর্ট করতে হবে।
 :::
 
 ## Links
@@ -19,14 +19,14 @@ title: বিল্ট-ইন কম্পোনেন্ট
 লিংক অ্যাড্রেস http বা https দিয়ে শুরু হলে একটি অটো এক্সটার্নাল আইকন যুক্ত করবে।
 :::
 
-### Markdown এ 
+### Markdown এ
 
 ```md live
-* <Link to="https://github.com/" label="Github" />  
+* <Link to="https://github.com/" label="Github" />
 * <Link to="/" label="Home page" />
 ```
 
-### Svelte এ 
+### Svelte এ
 
 ```svelte live
 <script>
@@ -47,12 +47,11 @@ title: বিল্ট-ইন কম্পোনেন্ট
 
 ### TabPanel Props
 
-* `name` - প্যানেলের নাম। 
-* `activeIcon` - ট্যাব অ্যাক্টিভ থাকাকালীন যে আইকন কম্পোনেন্ট ব্যবহার হবে। 
-* `inactiveIcon` - ট্যাব ইন্যাক্টিভ থাকাকালীন যে আইকন কম্পোনেন্ট ব্যবহার হবে। 
+* `name` - প্যানেলের নাম।
+* `activeIcon` - ট্যাব অ্যাক্টিভ থাকাকালীন যে আইকন কম্পোনেন্ট ব্যবহার হবে।
+* `inactiveIcon` - ট্যাব ইন্যাক্টিভ থাকাকালীন যে আইকন কম্পোনেন্ট ব্যবহার হবে।
 
-
-### Markdown এ 
+### Markdown এ
 
 ````md live
 <Tabs activeName="Svelte">
@@ -60,7 +59,7 @@ title: বিল্ট-ইন কম্পোনেন্ট
 
 ```svelte title="Counter.svelte"
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 <button on:click={() => count++}>
   You've clicked {count} times
@@ -86,7 +85,7 @@ title: বিল্ট-ইন কম্পোনেন্ট
 </Tabs>
 ````
 
-### Svelte এ 
+### Svelte এ
 
 ```svelte live
 <script>
@@ -116,16 +115,16 @@ title: বিল্ট-ইন কম্পোনেন্ট
 * `default` - এক্সপ্যানসন এর কন্টেন্ট
 * `icon-fold` - ফোল্ড করা অবস্থার আইকন
 * `icon-expanded` - এক্সপ্যান্ড করা অবস্থার আইকন
-* `arrow` - এক্সপ্যানসন এর তীর নির্দেশক কাস্টমাইজ করা 
+* `arrow` - এক্সপ্যানসন এর তীর নির্দেশক কাস্টমাইজ করা
 
-### Markdown এ 
+### Markdown এ
 
 ```md live
 <Expansion title="Click to expand/fold panel">
   <div class="text-[24px]">Some content</div>
 </Expansion>
 ```
-### Svelte এ 
+### Svelte এ
 
 ```svelte live
 <script>
@@ -135,19 +134,25 @@ title: বিল্ট-ইন কম্পোনেন্ট
   <div class="p-4 text-[24px]">
     Look at the icon left. It gets colored when expanded!
   </div>
-  <div slot="icon-fold" class="i-bxs-wink-smile"></div>
-  <div slot="icon-expanded" class="i-fxemoji-smiletongue"></div>
-  <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
+  {#snippet iconFold()}
+    <div class="i-bxs-wink-smile"></div>
+  {/snippet}
+  {#snippet iconExpanded()}
+    <div class="i-fxemoji-smiletongue"></div>
+  {/snippet}
+  {#snippet arrow()}
+    <div class="i-material-symbols-thumbs-up-down"></div>
+  {/snippet}
 </Expansion>
 ```
 
 ## Icons (Pre-build iconify icons)
 
 :::important[আইকন প্রিবিল্ড আবশ্যক]{icon=tabler:icons}
-Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে 
+Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে
 :::
 
-### Markdown এ 
+### Markdown এ
 
 ```md live
 <div style="font-size: 28px;">
@@ -155,7 +160,7 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
 </div>
 ```
 
-### Svelte এ 
+### Svelte এ
 
 ```svelte live
 <script>
@@ -168,7 +173,7 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
 
 ## Floating
 
-### Markdown এ 
+### Markdown এ
 
 ```md live
 <Floating placement="top">
@@ -176,14 +181,15 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
     এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
 
-  <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
-    হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ 
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4">
+      হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ
+    </div>
+  {/snippet}
 </Floating>
 ```
 
-### Svelte এ 
-
+### Svelte এ
 
 ```svelte live
 <script>
@@ -193,10 +199,11 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
     এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
-
-  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
-    হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ 
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4">
+      হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ
+    </div>
+  {/snippet}
 </Floating>
 ```
 

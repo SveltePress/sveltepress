@@ -21,7 +21,7 @@ title: 内置组件
 ### Markdown 中使用
 
 ```md live
-* <Link to="https://github.com/" label="Github" />  
+* <Link to="https://github.com/" label="Github" />
 * <Link to="/" label="首页" />
 ```
 
@@ -50,7 +50,6 @@ title: 内置组件
 * `activeIcon` - 选中时展示的图标内容，是一个 svelte 组件
 * `inactiveIcon` - 未选中时展示的图标内容，是一个 svelte 组件
 
-
 ### Markdown 中使用
 
 ````md live
@@ -59,9 +58,9 @@ title: 内置组件
 
 ```svelte title="Counter.svelte"
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
-<button on:click={() => count++}>
+<button onclick={() => count++}>
   你点击了 {count} 次
 </button>
 ```
@@ -134,9 +133,15 @@ title: 内置组件
   <div class="p-4 text-[24px]">
     看看左边，展开时会变色哦！
   </div>
-  <div slot="icon-fold" class="i-bxs-wink-smile"></div>
-  <div slot="icon-expanded" class="i-fxemoji-smiletongue"></div>
-  <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
+  {#snippet iconFold()}
+    <div class="i-bxs-wink-smile"></div>
+  {/snippet}
+  {#snippet iconExpanded()}
+    <div class="i-fxemoji-smiletongue"></div>
+  {/snippet}
+  {#snippet arrow()}
+    <div class="i-material-symbols-thumbs-up-down"></div>
+  {/snippet}
 </Expansion>
 ```
 
@@ -175,9 +180,11 @@ title: 内置组件
     将鼠标放置在这里
   </div>
 
-  <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
-    漂浮内容
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4">
+      漂浮内容
+    </div>
+  {/snippet}
 </Floating>
 ```
 
@@ -191,10 +198,11 @@ title: 内置组件
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
     将鼠标放置在这里
   </div>
-
-  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
-    漂浮内容
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4">
+      漂浮内容
+    </div>
+  {/snippet}
 </Floating>
 ```
 

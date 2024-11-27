@@ -10,8 +10,8 @@ Let's have some examples to see the benefits:
 
 ## Easily dark mode
 
-The following content would show 3 red cards per line in light mode.  
-And 2 blue cards per line in dark mode.   
+The following content would show 3 red cards per line in light mode.
+And 2 blue cards per line in dark mode.
 Isn't this great with few codes?
 
 ```svelte live

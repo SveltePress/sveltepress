@@ -1,10 +1,10 @@
+import type { CreateTwoslashOptions, TwoslashExecuteOptions, TwoslashInstance, TwoslashNode } from 'twoslash'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { SourceMapConsumer } from 'source-map-js'
-import type { CreateTwoslashOptions, TwoslashExecuteOptions, TwoslashInstance, TwoslashNode } from 'twoslash'
-import { createTwoslasher as createTwoslasherBase } from 'twoslash'
 import { svelte2tsx } from 'svelte2tsx'
+import { createTwoslasher as createTwoslasherBase } from 'twoslash'
 
 const dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -27,11 +27,11 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
     const codeLines = code.split('\n')
     const tsxDoc = svelte2tsx(code, {
       filename: 'source.svelte',
-      isTsFile: true,
+      version: '5.2.7',
     })
 
     const consumer = new SourceMapConsumer(tsxDoc.map as any)
-    const twoslashReturn = base([tsxDoc.code.replace(/const {\/\*Ωignore_startΩ\*\/\$\$_\$\$\/\*Ωignore_endΩ\*\/,} = /g, '').replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
+    const twoslashReturn = base([tsxDoc.code.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
       compilerOptions: {
         jsx: 1,
         types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types', '@sveltepress/theme-default/components'],
@@ -39,7 +39,7 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
         module: 199,
       },
       shouldGetHoverInfo(identifier) {
-        return !['__sveltets', 'Index__', 'svelteHTML', '$$', 'target', 'createElement', 'props', '{}'].some(id => identifier.startsWith(id))
+        return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component'].some(id => identifier.startsWith(id))
       },
     })
 

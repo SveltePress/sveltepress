@@ -1,17 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 /* eslint-disable no-restricted-globals */
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 
-self.addEventListener('message', event => {
+self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
     self.skipWaiting()
 })
 
 const entries = self.__WB_MANIFEST
 
-const entriesAfterProcessed = entries.map(entry => {
+const entriesAfterProcessed = entries.map((entry) => {
   if (typeof entry === 'object')
     entry.url = entry.url.replace(/(\.\/(\.\.\/)*\.sveltepress\/prerendered)|(index\/?$)/g, '')
   return entry

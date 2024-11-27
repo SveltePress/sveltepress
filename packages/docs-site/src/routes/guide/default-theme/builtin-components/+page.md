@@ -3,8 +3,8 @@ title: Built-in Components
 ---
 
 :::note[Manually import]{icon=carbon:import-export}
-All built-in Components can directly use in markdown files.  
-But should be imported manually in svelte files. 
+All built-in Components can directly use in markdown files.
+But should be imported manually in svelte files.
 :::
 
 ## Links
@@ -22,7 +22,7 @@ Would auto add a external icon when link address starts with http or https
 ### In markdown
 
 ```md live
-* <Link to="https://github.com/" label="Github" />  
+* <Link to="https://github.com/" label="Github" />
 * <Link to="/" label="Home page" />
 ```
 
@@ -51,7 +51,6 @@ Would auto add a external icon when link address starts with http or https
 * `activeIcon` - The icon component used when tab is active
 * `inactiveIcon` - The icon component used when tab is inactive
 
-
 ### In Markdown
 
 ````md live
@@ -60,9 +59,9 @@ Would auto add a external icon when link address starts with http or https
 
 ```svelte title="Counter.svelte"
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
-<button on:click={() => count++}>
+<button onclick={() => count++}>
   You've clicked {count} times
 </button>
 ```
@@ -135,9 +134,15 @@ Would auto add a external icon when link address starts with http or https
   <div class="p-4 text-[24px]">
     Look at the icon left. It gets colored when expanded!
   </div>
-  <div slot="icon-fold" class="i-bxs-wink-smile"></div>
-  <div slot="icon-expanded" class="i-fxemoji-smiletongue"></div>
-  <div slot="arrow" class="i-material-symbols-thumbs-up-down"></div>
+  {#snippet iconFold()}
+    <div class="i-bxs-wink-smile"></div>
+  {/snippet}
+  {#snippet iconExpanded()}
+    <div class="i-fxemoji-smiletongue"></div>
+  {/snippet}
+  {#snippet arrow()}
+    <div class="i-material-symbols-thumbs-up-down"></div>
+  {/snippet}
 </Expansion>
 ```
 
@@ -176,14 +181,15 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
     Trigger
   </div>
 
-  <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4" slot="floating-content">
-    Floating content
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4">
+      Floating content
+    </div>
+  {/snippet}
 </Floating>
 ```
 
 ### In svelte
-
 
 ```svelte live
 <script>
@@ -194,9 +200,11 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
     Trigger
   </div>
 
-  <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4" slot="floating-content">
-    Floating content
-  </div>
+  {#snippet floatingContent()}
+    <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4">
+      Floating content
+    </div>
+  {/snippet}
 </Floating>
 ```
 

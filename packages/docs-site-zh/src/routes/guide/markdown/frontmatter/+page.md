@@ -18,10 +18,10 @@ description: 页面描述
 在 `+page.svelte` 的[Svelte context module](https://svelte.dev/docs#component-format-script-context-module)中导出一个名为 `frontmatter` 的变量即可
 
 ```svelte title="/src/routes/foo/+page.svelte"
-<script context="module">
+<script module>
   export const frontmatter = {
     title: '页面标题',
-    description: '页面描述'
+    description: '页面描述',
   }
 </script>
 ```

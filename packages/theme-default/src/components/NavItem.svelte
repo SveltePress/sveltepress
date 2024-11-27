@@ -1,20 +1,38 @@
 <script>
   import External from './icons/External.svelte'
   import NavArrowDown from './icons/NavArrowDown.svelte'
+  // eslint-disable-next-line import/no-self-import
+  import Self from './NavItem.svelte'
 
-  export let title = ''
-  export let to = '/'
-  export let items = []
-  /** @type {string | boolean} */
-  export let icon = false
-  export let external = false
-  export let builtInIcon = false
+  /**
+   * @typedef {object} Props
+   * @property {string} [title] - Link title
+   * @property {string} [to] - Link URL
+   * @property {any} [items] - Submenu items
+   * @property {string | boolean} [icon] - Icon
+   * @property {boolean} [external] - Whether the link is external
+   * @property {boolean} [builtInIcon] - Whether the icon is built-in
+   * @property {import('svelte').Snippet} [children] - Children content
+   */
+
+  /** @type {Props & { [key: string]: any }} */
+  const {
+    title = '',
+    to = '/',
+    items = [],
+    icon = false,
+    external = false,
+    builtInIcon = false,
+    children,
+    ...rest
+  } = $props()
 
   function handleClick() {
     if (external) window.open(to, '_blank')
   }
 
-  $$restProps
+  // eslint-disable-next-line no-unused-expressions
+  rest
 </script>
 
 {#if items && items.length}
@@ -27,6 +45,7 @@
     aria-label={title}
   >
     {#if typeof icon === 'string'}
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
       {@html icon}
     {:else}
       {title}
@@ -36,7 +55,7 @@
     {/if}
     <div class="dropdown">
       {#each items as subItem}
-        <svelte:self {...subItem} />
+        <Self {...subItem} />
       {/each}
     </div>
   </div>
@@ -47,14 +66,15 @@
     class:nav-item--icon={icon}
     class="nav-item"
     {...external ? { target: '_blank' } : {}}
-    on:click={handleClick}
-    on:keypress={handleClick}
+    onclick={handleClick}
+    onkeypress={handleClick}
     role="link"
     tabindex="0"
     aria-label={title}
   >
-    <slot>
+    {#if children}{@render children()}{:else}
       {#if typeof icon === 'string'}
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html icon}
       {:else}
         {title}
@@ -62,7 +82,7 @@
       {#if external}
         <External />
       {/if}
-    </slot>
+    {/if}
   </svelte:element>
 {/if}
 

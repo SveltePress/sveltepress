@@ -23,30 +23,30 @@ title: 主页
 ### `actions`
 
 动作按钮，每个按钮包含如下几个属性：
-* `label`  
+* `label`
   按钮里的文案
-* `to`  
+* `to`
   按钮的链接
-* `external`  
+* `external`
   是否展示外部链接的图标
 
 ### `features`
 
 特性卡片
 
-* `title`  
+* `title`
   标题
-* `description`  
+* `description`
   描述
-* `icon`  
+* `icon`
 自定义卡片图标
   * `type` - `'svg' 或者 'iconify'`
   * `value` - svg 的 DOM 内容
   * `collection` - Iconfiy 分类名称
   * `name` - Iconfiy 分类下的图标名称
-* `link`  
-  点击特性卡片跳转的链接地址   
-  当提供此项时特性卡片将会具有一个可点击的交互样式  
+* `link`
+  点击特性卡片跳转的链接地址
+  当提供此项时特性卡片将会具有一个可点击的交互样式
   以 http(s) 开头的链接将会被自动识别为外部链接，将会在卡片右上角出现一个外部图标
 
 :::important[图标需要预构建]{icon=tabler:icons}
@@ -61,10 +61,12 @@ title: 主页
 
 ### `hero-image`
 
-设置一个自定义的首页大 Logo 内容，比如： 
+设置一个自定义的首页大 Logo 内容，比如：
 
-```html title="/src/routes/+page.(md|svelte)"
-<div slot="hero-image">
-Custom hero image content
-</div>
+```svelte title="/src/routes/+page.(md|svelte)"
+{#snippet heroImage()}
+  <div>
+    自定义 Logo 内容
+  </div>
+{/snippet}
 ```

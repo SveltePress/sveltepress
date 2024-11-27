@@ -17,10 +17,10 @@ Read [Vite plugin options](/reference/vite-plugin/) and [Default theme options](
 ### Add in your vite config
 
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
 import { sveltepress } from '@sveltepress/vite'
 
-import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [

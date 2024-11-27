@@ -3,14 +3,15 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { isDark } from '../layout'
 
-  let ReloadPrompt
-  let webManifest
+  let ReloadPrompt = $state()
+  let webManifest = $state()
   onMount(async () => {
     if (themeOptions.pwa) {
       const { pwaInfo } = await import('virtual:pwa-info')
       webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
-      pwaInfo &&
-        (ReloadPrompt = (await import('./ReloadPrompt.svelte')).default)
+      if (pwaInfo) {
+        ReloadPrompt = (await import('./ReloadPrompt.svelte')).default
+      }
     }
   })
 </script>
@@ -19,10 +20,11 @@
   {#if themeOptions?.pwa?.darkManifest && $isDark}
     <meta rel="manifest" href={themeOptions.pwa.darkManifest} />
   {:else}
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html webManifest}
   {/if}
 </svelte:head>
 
 {#if ReloadPrompt}
-  <svelte:component this={ReloadPrompt} />
+  <ReloadPrompt />
 {/if}

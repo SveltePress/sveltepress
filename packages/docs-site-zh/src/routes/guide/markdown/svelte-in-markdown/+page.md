@@ -3,8 +3,7 @@ title: 在 Markdown 中使用 Svelte
 ---
 
 借助这个特性，您可以在 md 文件中使用
-`<style>`，`<script>`， `<script context="module">`，`#if`, `#each`, `#await`, `@html`，`@const`，`<svelte:xxx>` 等 svelte 专属语法
-
+`<style>`，`<script>`， `<script module>`，`#if`, `#each`, `#await`, `#snippet`, `@render` `@html`，`@const`，`<svelte:xxx>` 等 svelte 专属语法
 
 ## 基础使用
 
@@ -22,8 +21,8 @@ title: 在 Markdown 中使用 Svelte
 {/each}
 </ul>
 
-<button on:click="{() => boolVal = !boolVal}">
-Toggle
+<button onclick="{() => boolVal = !boolVal}">
+  Toggle
 </button>
 
 {#if boolVal}
@@ -58,7 +57,7 @@ Toggle
 ```md
 <script>
   const items = ['foo', 'bar', 'zoo']
-  let boolVal = false
+  let boolVal = $state(false)
 
   const promisePass = () => new Promise(resolve => {
     setTimeout(() => {
@@ -72,7 +71,7 @@ Toggle
     }, 2000)
   })
 
-  $: promise = boolVal ? promisePass() : promiseFail()
+  let promise = $derived(boolVal ? promisePass() : promiseFail())
 </script>
 
 <ul>
@@ -84,23 +83,23 @@ Toggle
 {/each}
 </ul>
 
-<button on:click="{() => boolVal = !boolVal}">
-Toggle
+<button onclick="{() => boolVal = !boolVal}">
+  切换
 </button>
 
 {#if boolVal}
   <h3 class="text-green">
-    Pass
+    通过
   </h3>
 {:else}
   <h3 class="text-red">
-    Fail
+    失败
   </h3>
 {/if}
 
 {#await promise}
   <h3 class="text-orange">
-    Loading
+    加载中
   </h3>
 {:then res}
   <h3 class="text-green">
@@ -126,7 +125,7 @@ Toggle
 
 > 一个计数器
 
-<button on:click="{() => count++}" style="margin-bottom: 12px;">
+<button onclick="{() => count++}" style="margin-bottom: 12px;">
   您点击了 {count} 次
 </button>
 
@@ -137,10 +136,10 @@ Toggle
 ```md
 > 一个计数器
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 
-<button on:click="{() => count++}">
+<button onclick="{() => count++}">
  您点击了 {count} 次
 </button>
 ```
@@ -150,9 +149,9 @@ Toggle
 
 <script>
   import Counter from './Counter.svelte'
-  let count = 0
+  let count = $state(0)
+  let boolVal = $state(false)
   const items = ['foo', 'bar', 'zoo']
-  let boolVal = false
   const promisePass = () => new Promise(resolve => {
     setTimeout(() => {
       resolve('Promise Passed!')
@@ -165,18 +164,17 @@ Toggle
     }, 2000)
   })
 
-  $: promise = boolVal ? promisePass() : promiseFail()
+  let promise = $derived(boolVal ? promisePass() : promiseFail())
 </script>
-
 
 :::note[语法限制]{icon=solar:chat-square-code-outline}
 确保总是使用双引号包裹
 ```svelte
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
-<button on:click={() => count++}></button> // [svp! --]
-<button on:click="{() => count++}"></button> // [svp! ++]
+<button onclick={() => count++}></button> // [svp! --]
+<button onclick={() => count++}></button> // [svp! ++]
 ```
 :::
 
@@ -184,9 +182,9 @@ Toggle
 
 <Tabs activeName="输出">
   <TabPanel name="输出">
-  
+
 <Counter />
-  
+
   </TabPanel>
   <TabPanel name="输入">
 
@@ -200,7 +198,7 @@ Toggle
   </TabPanel>
   <TabPanel name="Counter.svelte">
 
-@code(./Counter.svelte) 
+@code(./Counter.svelte)
 
   </TabPanel>
 </Tabs>

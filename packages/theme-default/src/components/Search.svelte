@@ -1,10 +1,8 @@
 <script>
-  import { onMount } from 'svelte'
   import docsearch from '@docsearch/js'
+  import { onMount } from 'svelte'
 
-  export let appId
-  export let apiKey
-  export let indexName
+  const { appId, apiKey, indexName, ...rest } = $props()
 
   onMount(() => {
     docsearch({
@@ -12,7 +10,7 @@
       appId,
       apiKey,
       indexName,
-      ...$$restProps,
+      ...rest,
     })
   })
 </script>

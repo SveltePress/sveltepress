@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "allowJs": true,
     "checkJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
     "strict": true,
     "declaration": true,
     "outDir": "dist",
-    "moduleResolution": "NodeNext",
     "removeComments": false,
-    "module": "NodeNext"
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["src/twoslash-svelte/types.ts"]

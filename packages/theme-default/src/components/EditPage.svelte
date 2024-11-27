@@ -1,11 +1,17 @@
 <script>
+  import { page } from '$app/stores'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Edit from './icons/Edit.svelte'
-  import { page } from '$app/stores'
 
   const routeId = $page.route.id
 
-  export let pageType = 'md'
+  /**
+   * @typedef {object} Props
+   * @property {'md' | 'svelte'} [pageType] - The type of the page
+   */
+
+  /** @type {Props} */
+  const { pageType = 'md' } = $props()
 
   const DEFAULT_TEXT = 'Suggest changes to this page'
 
@@ -21,8 +27,8 @@
 
 <div
   class="edit-link"
-  on:click={handleEditLinkClick}
-  on:keyup={handleEditLinkClick}
+  onclick={handleEditLinkClick}
+  onkeyup={handleEditLinkClick}
   role="link"
   tabindex="0"
 >

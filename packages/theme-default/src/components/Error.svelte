@@ -2,7 +2,7 @@
   import Home from './icons/Home.svelte'
   import Link from './Link.svelte'
 
-  export let error = {}
+  const { error = {} } = $props()
 </script>
 
 <div class="error">
@@ -11,9 +11,11 @@
     {error.message || 'Not Found'}
   </div>
   <Link label="Take me home" to="/">
-    <div class="home-icon" slot="pre">
-      <Home />
-    </div>
+    {#snippet pre()}
+      <div class="home-icon">
+        <Home />
+      </div>
+    {/snippet}
   </Link>
 </div>
 

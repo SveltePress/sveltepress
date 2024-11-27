@@ -1,18 +1,31 @@
 <script>
+  import { page } from '$app/stores'
   import { scale, slide } from 'svelte/transition'
-  import Link from './Link.svelte'
   import ArrowDown from './icons/ArrowDown.svelte'
   import PointLeft from './icons/PointLeft.svelte'
-  import { page } from '$app/stores'
+  import Link from './Link.svelte'
+  // eslint-disable-next-line import/no-self-import
+  import SidebarGroup from './SidebarGroup.svelte'
 
-  $: routeId = $page.route.id
+  const routeId = $derived($page.route.id)
 
-  export let items = []
-  export let title = ''
-  export let collapsible = false
-  export let nested = false
+  /**
+   * @typedef {object} Props
+   * @property {any} [items] - Sidebar items
+   * @property {string} [title] - Sidebar title
+   * @property {boolean} [collapsible] - Whether the sidebar is collapsible
+   * @property {boolean} [nested] - Whether the sidebar is nested
+   */
 
-  let collapsed = false
+  /** @type {Props} */
+  const {
+    items = [],
+    title = '',
+    collapsible = false,
+    nested = false,
+  } = $props()
+
+  let collapsed = $state(false)
 
   function handleToggle() {
     collapsed = !collapsed
@@ -27,8 +40,8 @@
     {#if collapsible}
       <div
         class="collapse-control"
-        on:click={handleToggle}
-        on:keypress={handleToggle}
+        onclick={handleToggle}
+        onkeypress={handleToggle}
         role="button"
         tabindex="0"
         aria-label="Collapsable button"
@@ -46,7 +59,7 @@
           ? item.to === routeId
           : item.to === `${routeId}/`}
         {#if Array.isArray(item.items) && item.items.length}
-          <svelte:self {...item} nested />
+          <SidebarGroup {...item} nested />
         {:else}
           <Link
             to={item.to}

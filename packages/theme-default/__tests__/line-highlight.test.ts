@@ -4,10 +4,10 @@ import highlighter from '../src/markdown/highlighter'
 describe('line highlight', () => {
   it('single line', async () => {
     const source = `<script>
-  let count = 0 // [svp! hl]
+  let count = $state(0) // [svp! hl]
 </script>
 
-<button on:click="{() => count++}">
+<button onclick="{() => count++}">
   You've clicked {count} times.
 </button>
 `

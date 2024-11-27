@@ -11,8 +11,8 @@ Pass `pwa` option to theme default to use pwa. The options are exactly the same 
 And the svelte.config.js need to config `files.serviceWorker`, use the `SERVICE_WORKER_PATH` exported from `@sveltepress/theme-default`
 
 ```ts title="svelte.config.js"
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import adapter from '@sveltejs/adapter-static'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default' // [svp! ++]
 
@@ -32,10 +32,9 @@ export default config
 ```
 
 :::note[package required]{icon=noto:package}
-If you want to enable pwa.  
+If you want to enable pwa.
 You will need to add `workbox-window` as a dev dependency to your Vite project.
 :::
-
 
 ## Example config
 

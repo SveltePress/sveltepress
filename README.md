@@ -25,13 +25,12 @@ A content centered site build tool
 
 ## :pizza: Introduction
 
-Inspired by [Vitepress](https://vitepress.vuejs.org/)  
-Build with [SvelteKit](https://kit.svelte.dev/) 
+Inspired by [Vitepress](https://vitepress.vuejs.org/)
+Build with [SvelteKit](https://kit.svelte.dev/)
 
 ## :bookmark_tabs: Online docs and demos
 
 [Sveltepress](https://sveltepress.site/)
-
 
 ## :pray: Contributing
 
@@ -39,12 +38,12 @@ First of all, all kinds of contributions are welcomed!
 
 For contributing details, see [Contributing](./CONTRIBUTING.md)
 
-## :heart: Thanks 
+## :heart: Thanks
 
 This project can not be done without these projects
 
 * [Vitepress](https://vitepress.vuejs.org/)
-* [SvelteKit](https://kit.svelte.dev/) 
+* [SvelteKit](https://kit.svelte.dev/)
 * [Svelte](https://svelte.dev/)
 * [Vitest](https://vitest.dev/)
 * [Vite](https://vitejs.dev/)

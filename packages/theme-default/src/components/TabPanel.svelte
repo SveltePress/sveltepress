@@ -2,9 +2,12 @@
   import { getContext } from 'svelte'
   import { activeNameContextKey, itemsKey } from './Tabs.svelte'
 
-  export let name
-  export let activeIcon = undefined
-  export let inactiveIcon = undefined
+  const {
+    name,
+    activeIcon = undefined,
+    inactiveIcon = undefined,
+    children,
+  } = $props()
 
   const current = getContext(activeNameContextKey)
   const items = getContext(itemsKey)
@@ -14,12 +17,13 @@
     activeIcon,
     inactiveIcon,
   })
+  // eslint-disable-next-line no-self-assign
   $items = $items
 </script>
 
 {#if name === $current}
   <div class="tab-panel">
-    <slot />
+    {@render children?.()}
   </div>
 {/if}
 

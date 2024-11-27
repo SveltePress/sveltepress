@@ -15,7 +15,7 @@ title: Vite 插件
 
 ### `addInspect`
 
-如果设置为 `true`，将会添加 [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect)  
+如果设置为 `true`，将会添加 [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect)
 
 ### `theme`
 
@@ -25,7 +25,7 @@ title: Vite 插件
 
 阅读 [Remark plugins](https://github.com/remarkjs/remark#plugins) 来获得更多信息
 
-### `rehypePlugins`  
+### `rehypePlugins`
 
 阅读 [Rehype plugins](https://github.com/rehypejs/rehype#plugins) 来获得更多信息
 
@@ -33,21 +33,21 @@ title: Vite 插件
 
 @code(/../vite/src/types.ts,13,25)
 
-### `name`   
+### `name`
 
 主题名称
 
-### `globalLayout`  
+### `globalLayout`
 
-全局布局文件的绝对路径， **应当为一个 svelte 文件**  
+全局布局文件的绝对路径， **应当为一个 svelte 文件**
 例如：`path.resolve(process.cwd(), 'ThemeGlobalLayout.svelte')`
 
-### `pageLayout`  
+### `pageLayout`
 
-页面布局文件的绝对路径， **应当为一个 svelte 文件**  
+页面布局文件的绝对路径， **应当为一个 svelte 文件**
 例如：`path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
-  
-### `vitePlugins`  
+
+### `vitePlugins`
 
 * 如果传递了一个单一插件或者一组插件，这些插件将会在 `sveltepress` 核心插件之前被注册
 * 如果传递了一个函数，将会接受 `sveltepress` 插件作为入参，并且该函数需要返回插件组，您可以通过此方式来自定义插件顺序
@@ -56,27 +56,27 @@ title: Vite 插件
   也许这种行为显得比较奇怪，但是当主题需要添加一些自定义[虚拟模块](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention)时会很有用
 :::
 
-### `highlighter`  
+### `highlighter`
 
 代码高亮渲染函数
-例如，默认主题使用了 [shiki](https://github.com/shikijs/shiki).  
+例如，默认主题使用了 [shiki](https://github.com/shikijs/shiki).
 阅读 [默认主题源代码](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) 来查看具体用法
 
-### `remarkPlugins`  
+### `remarkPlugins`
 
 阅读 [Remark plugins](https://github.com/remarkjs/remark#plugins) 来获得更多信息
 
-### `rehypePlugins`  
+### `rehypePlugins`
 
 阅读 [Rehype plugins](https://github.com/rehypejs/rehype#plugins) 来获得更多信息
 
 :::important[插件顺序]{icon=solar:reorder-outline}
-主题提供的 remark 以及 rehype 插件将会在 vite 插件提供的之前调用  
+主题提供的 remark 以及 rehype 插件将会在 vite 插件提供的之前调用
 例如：
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -87,7 +87,7 @@ export default defineConfig({
   ]
 })
 ```
-yourRemarkPlugin 将会在默认主题中的 remark plugins 之后调用
+“你的 remark 插件”将会在默认主题中的 remark plugins 之后调用
 :::
 
 ### `footnoteLabel`
@@ -120,7 +120,7 @@ import { mdToSvelte } from '@sveltepress/vite'
 
 const mdSource = `
 ---
-title: Foo 
+title: Foo
 ---
 <script>
   const foo = 'bar'

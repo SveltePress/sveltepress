@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { wrapSvelteCode } from '../src/utils/wrap-page'
 
 const source = `
-<script context="module">
+<script module>
   export const someVar = 'some value'
 </script>
 <script>

@@ -1,5 +1,5 @@
-import { get, writable } from 'svelte/store'
 import type { LinkItem } from 'virtual:sveltepress/theme-default'
+import { get, writable } from 'svelte/store'
 import themeOptions from 'virtual:sveltepress/theme-default'
 
 export const MOBILE_EDGE_WIDTH = 950
@@ -27,13 +27,13 @@ export const showHeader = writable(true)
 
 export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
 
-scrollY.subscribe(sy => {
+scrollY.subscribe((sy) => {
   const nextDirection = sy - get(oldScrollY) > 0 ? 'down' : 'up'
   if (nextDirection !== get(scrollDirection))
     scrollDirection.set(nextDirection)
 })
 
-resolvedSidebar.subscribe(sidebar => {
+resolvedSidebar.subscribe((sidebar) => {
   pages.set(sidebar.reduce<LinkItem[]>(
     (allPages, item) =>
       Array.isArray(item.items)
@@ -43,12 +43,12 @@ resolvedSidebar.subscribe(sidebar => {
   ))
 })
 
-sidebarCollapsed.subscribe(v => {
+sidebarCollapsed.subscribe((v) => {
   if (!v)
     tocCollapsed.set(true)
 })
 
-tocCollapsed.subscribe(v => {
+tocCollapsed.subscribe((v) => {
   if (!v)
     sidebarCollapsed.set(true)
 })

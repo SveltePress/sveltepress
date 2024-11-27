@@ -1,0 +1,1491 @@
+[
+  [
+    {
+      "content": "<",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 0
+    },
+    {
+      "content": "script",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0
+        }
+      },
+      "offset": 1
+    },
+    {
+      "content": ">",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 7
+    }
+  ],
+  [
+    {
+      "content": "  ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 9
+    },
+    {
+      "content": "import",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 11
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 17
+    },
+    {
+      "content": "{",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 18
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 19
+    },
+    {
+      "content": "onMount",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 20
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 27
+    },
+    {
+      "content": "}",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 28
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 29
+    },
+    {
+      "content": "from",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 30
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 34
+    },
+    {
+      "content": "'",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 35
+    },
+    {
+      "content": "svelte",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 36
+    },
+    {
+      "content": "'",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 42
+    }
+  ],
+  [],
+  [
+    {
+      "content": "  ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 45
+    },
+    {
+      "content": "let",
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 47
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 50
+    },
+    {
+      "content": "{",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 51
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 52
+    },
+    {
+      "content": "message",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 53
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 60
+    },
+    {
+      "content": "=",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 61
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 62
+    },
+    {
+      "content": "'",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 63
+    },
+    {
+      "content": "World",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 64
+    },
+    {
+      "content": "'",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 69
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 70
+    },
+    {
+      "content": "}",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 71
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 72
+    },
+    {
+      "content": "=",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 73
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 74
+    },
+    {
+      "content": "$",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 75
+    },
+    {
+      "content": "props",
+      "variants": {
+        "dark": {
+          "color": "#80A665",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0
+        }
+      },
+      "offset": 76
+    },
+    {
+      "content": "()",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 81
+    }
+  ],
+  [],
+  [
+    {
+      "content": "  ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 85
+    },
+    {
+      "content": "let",
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 87
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 90
+    },
+    {
+      "content": "count",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 91
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 96
+    },
+    {
+      "content": "=",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 97
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 98
+    },
+    {
+      "content": "$",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 99
+    },
+    {
+      "content": "state",
+      "variants": {
+        "dark": {
+          "color": "#80A665",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0
+        }
+      },
+      "offset": 100
+    },
+    {
+      "content": "(",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 105
+    },
+    {
+      "content": "0",
+      "variants": {
+        "dark": {
+          "color": "#4C9A91",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#005CC5",
+          "fontStyle": 0
+        }
+      },
+      "offset": 106
+    },
+    {
+      "content": ")",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 107
+    }
+  ],
+  [],
+  [
+    {
+      "content": "  ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 110
+    },
+    {
+      "content": "onMount",
+      "variants": {
+        "dark": {
+          "color": "#80A665",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0
+        }
+      },
+      "offset": 112
+    },
+    {
+      "content": "(()",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 119
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 122
+    },
+    {
+      "content": "=>",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 123
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 125
+    },
+    {
+      "content": "{",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 126
+    }
+  ],
+  [
+    {
+      "content": "    ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 128
+    },
+    {
+      "content": "console",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 132
+    },
+    {
+      "content": ".",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 139
+    },
+    {
+      "content": "log",
+      "variants": {
+        "dark": {
+          "color": "#80A665",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0
+        }
+      },
+      "offset": 140
+    },
+    {
+      "content": "(",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 143
+    },
+    {
+      "content": "'",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 144
+    },
+    {
+      "content": "mount",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 145
+    },
+    {
+      "content": "'",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 150
+    },
+    {
+      "content": ")",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 151
+    }
+  ],
+  [
+    {
+      "content": "  ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 153
+    },
+    {
+      "content": "})",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 155
+    }
+  ],
+  [
+    {
+      "content": "</",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 158
+    },
+    {
+      "content": "script",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0
+        }
+      },
+      "offset": 160
+    },
+    {
+      "content": ">",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 166
+    }
+  ],
+  [],
+  [
+    {
+      "content": "<",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 169
+    },
+    {
+      "content": "button",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0
+        }
+      },
+      "offset": 170
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 176
+    },
+    {
+      "content": "onclick",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0
+        }
+      },
+      "offset": 177
+    },
+    {
+      "content": "={()",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 184
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 188
+    },
+    {
+      "content": "=>",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 189
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 191
+    },
+    {
+      "content": "count",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 192
+    },
+    {
+      "content": "++",
+      "variants": {
+        "dark": {
+          "color": "#CB7676",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#D73A49",
+          "fontStyle": 0
+        }
+      },
+      "offset": 197
+    },
+    {
+      "content": "}>",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 199
+    }
+  ],
+  [
+    {
+      "content": "  Count is: ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 202
+    },
+    {
+      "content": "{",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 214
+    },
+    {
+      "content": "count",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 215
+    },
+    {
+      "content": "}",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 220
+    }
+  ],
+  [
+    {
+      "content": "</",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 222
+    },
+    {
+      "content": "button",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0
+        }
+      },
+      "offset": 224
+    },
+    {
+      "content": ">",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 230
+    }
+  ],
+  [
+    {
+      "content": "<",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 232
+    },
+    {
+      "content": "div",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0
+        }
+      },
+      "offset": 233
+    },
+    {
+      "content": " ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 236
+    },
+    {
+      "content": "class",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#6F42C1",
+          "fontStyle": 0
+        }
+      },
+      "offset": 237
+    },
+    {
+      "content": "=",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 242
+    },
+    {
+      "content": "\"",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 243
+    },
+    {
+      "content": "text-6",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 244
+    },
+    {
+      "content": "\"",
+      "variants": {
+        "dark": {
+          "color": "#C98A7D77",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#032F62",
+          "fontStyle": 0
+        }
+      },
+      "offset": 250
+    },
+    {
+      "content": ">",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 251
+    }
+  ],
+  [
+    {
+      "content": "  Hello, ",
+      "variants": {
+        "dark": {
+          "color": "#DBD7CAEE",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 253
+    },
+    {
+      "content": "{",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 262
+    },
+    {
+      "content": "message",
+      "variants": {
+        "dark": {
+          "color": "#BD976A",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 263
+    },
+    {
+      "content": "}",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 270
+    }
+  ],
+  [
+    {
+      "content": "</",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 272
+    },
+    {
+      "content": "div",
+      "variants": {
+        "dark": {
+          "color": "#4D9375",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#22863A",
+          "fontStyle": 0
+        }
+      },
+      "offset": 274
+    },
+    {
+      "content": ">",
+      "variants": {
+        "dark": {
+          "color": "#666666",
+          "fontStyle": 0
+        },
+        "light": {
+          "color": "#24292E",
+          "fontStyle": 0
+        }
+      },
+      "offset": 277
+    }
+  ],
+  []
+]

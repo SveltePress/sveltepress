@@ -26,7 +26,7 @@ import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } fr
 <div class="svp-code-block-wrapper">
   <div class="svp-code-block">
     
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">h1</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span><span style="color:#393A34;--shiki-dark:#D6DEEB">This is a async svelte live code</span><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#1E754F;--shiki-dark:#CAECE6">h1</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span></code></pre>
     <div class="svp-code-block--lang">
       svelte
@@ -39,7 +39,7 @@ import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } fr
 
 exports[`live code > simple parse 1`] = `
 "<h3>title level 3</h3>
-<script context="module">
+<script module>
 import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon } from '@sveltepress/theme-default/components'
 import LiveCode5666bdf98c2 from '/.sveltepress/live-code/LiveCode5666bdf98c2.svelte'
   const a = 'a'
@@ -57,12 +57,12 @@ import LiveCode5666bdf98c2 from '/.sveltepress/live-code/LiveCode5666bdf98c2.sve
 <div class="svp-code-block-wrapper">
   <div class="svp-code-block">
     
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">script</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span>
-<span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">  let</span><span style="color:#B07D48;--shiki-dark:#D7DBE0"> count</span><span style="color:#999999;--shiki-dark:#C792EA"> =</span><span style="color:#2F798A;--shiki-dark:#F78C6C"> 1</span></span>
+<span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">  let</span><span style="color:#B07D48;--shiki-dark:#D7DBE0"> count</span><span style="color:#999999;--shiki-dark:#C792EA"> =</span><span style="color:#999999;--shiki-dark:#C792EA"> $</span><span style="color:#59873A;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">state</span><span style="color:#999999;--shiki-dark:#D6DEEB">(</span><span style="color:#2F798A;--shiki-dark:#F78C6C">0</span><span style="color:#999999;--shiki-dark:#D6DEEB">)</span></span>
 <span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#1E754F;--shiki-dark:#CAECE6">script</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">button</span><span style="color:#1E754F;--shiki-dark:#C792EA;font-style:inherit;--shiki-dark-font-style:italic"> on</span><span style="color:#999999;--shiki-dark:#7FDBCA">:</span><span style="color:#2E8F82;--shiki-dark:#7FDBCA">click</span><span style="color:#999999;--shiki-dark:#7FDBCA">=</span><span style="color:#999999;--shiki-dark:#D3423E">&#123;</span><span style="color:#999999;--shiki-dark:#D9F5DD">()</span><span style="color:#999999;--shiki-dark:#C792EA"> =></span><span style="color:#B07D48;--shiki-dark:#D6DEEB"> count</span><span style="color:#AB5959;--shiki-dark:#C792EA">++</span><span style="color:#999999;--shiki-dark:#D3423E">&#125;</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span>
+<span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">button</span><span style="color:#B07D48;font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic"> onclick</span><span style="color:#999999;--shiki-dark:#7FDBCA">=</span><span style="color:#999999;--shiki-dark:#D3423E">&#123;</span><span style="color:#999999;--shiki-dark:#D9F5DD">()</span><span style="color:#999999;--shiki-dark:#C792EA"> =></span><span style="color:#B07D48;--shiki-dark:#D6DEEB"> count</span><span style="color:#AB5959;--shiki-dark:#C792EA">++</span><span style="color:#999999;--shiki-dark:#D3423E">&#125;</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span>
 <span class="line"><span style="color:#393A34;--shiki-dark:#D6DEEB">  You've clicked </span><span style="color:#999999;--shiki-dark:#D3423E">&#123;</span><span style="color:#B07D48;--shiki-dark:#D6DEEB">count</span><span style="color:#999999;--shiki-dark:#D3423E">&#125;</span><span style="color:#393A34;--shiki-dark:#D6DEEB"> times</span></span>
 <span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#1E754F;--shiki-dark:#CAECE6">button</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span></code></pre>
     <div class="svp-code-block--lang">
@@ -82,12 +82,12 @@ import LiveCode5666bdf98c2 from '/.sveltepress/live-code/LiveCode5666bdf98c2.sve
 <div class="svp-code-block-wrapper">
   <div class="svp-code-block">
     
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-dark:#82B1FF;font-weight:bold;--shiki-dark-font-weight:inherit">###</span><span style="color:#1C6B48;--shiki-dark:#82B1FF;font-weight:bold;--shiki-dark-font-weight:inherit"> title</span></span>
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;font-weight:bold;--shiki-dark:#82B1FF;--shiki-dark-font-weight:inherit">###</span><span style="color:#1C6B48;font-weight:bold;--shiki-dark:#82B1FF;--shiki-dark-font-weight:inherit"> title</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#A65E2B;--shiki-dark:#D9F5DD">*</span><span style="color:#393A34;--shiki-dark:#D6DEEB"> list item1</span></span>
 <span class="line"><span style="color:#A65E2B;--shiki-dark:#D9F5DD">*</span><span style="color:#393A34;--shiki-dark:#D6DEEB"> list item2</span></span>
-<span class="line"><span style="color:#999999;--shiki-dark:#D6DEEB">[</span><span style="color:#B56959;--shiki-dark:#D6DEEB">Google</span><span style="color:#999999;--shiki-dark:#D6DEEB">]</span><span style="color:#999999;--shiki-dark:#7FDBCA">(</span><span style="color:#393A3490;--shiki-dark:#FF869A;text-decoration:underline;--shiki-dark-text-decoration:inherit">https://google.com</span><span style="color:#999999;--shiki-dark:#7FDBCA">)</span></span></code></pre>
+<span class="line"><span style="color:#999999;--shiki-dark:#D6DEEB">[</span><span style="color:#B56959;--shiki-dark:#D6DEEB">Google</span><span style="color:#999999;--shiki-dark:#D6DEEB">]</span><span style="color:#999999;--shiki-dark:#7FDBCA">(</span><span style="color:#393A3490;text-decoration:underline;--shiki-dark:#FF869A;--shiki-dark-text-decoration:inherit">https://google.com</span><span style="color:#999999;--shiki-dark:#7FDBCA">)</span></span></code></pre>
     <div class="svp-code-block--lang">
       md
     </div>

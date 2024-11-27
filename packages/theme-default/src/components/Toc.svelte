@@ -1,23 +1,26 @@
-<script context="module">
+<script module>
   export const DEFAULT_ON_THIS_PAGE = 'On this page'
 </script>
 
 <script>
-  import { onMount, tick } from 'svelte'
-  import themeOptions from 'virtual:sveltepress/theme-default'
-  import { tocCollapsed } from './layout'
-  import Backdrop from './Backdrop.svelte'
   import { afterNavigate } from '$app/navigation'
   import { page } from '$app/stores'
+  import { onMount, tick } from 'svelte'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+  import Backdrop from './Backdrop.svelte'
+  import { tocCollapsed } from './layout'
 
   /**
-   * @type {Array<import('../markdown/anchors').Anchor>}
+   * @typedef {object} Props
+   * @property {Array<import('../markdown/anchors').Anchor>} [anchors] - The anchors to display in the TOC.
    */
-  export let anchors = []
 
-  let scrollY
+  /** @type {Props} */
+  const { anchors = [] } = $props()
 
-  let activeIdx = 0
+  let scrollY = $state()
+
+  let activeIdx = $state(0)
 
   afterNavigate(() => {
     activeIdx = 0
@@ -42,10 +45,9 @@
     }
   }
 
-  $: {
-    scrollY
-    computeActiveIdx()
-  }
+  $effect(() => {
+    computeActiveIdx(scrollY)
+  })
 
   onMount(() => {
     mounted = true

@@ -1,9 +1,9 @@
-import process from 'node:process'
-import Unocss from 'unocss/vite'
-import { presetIcons, presetUno, transformerDirectives } from 'unocss'
-import type { PluginOption } from 'vite'
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
+import type { PluginOption } from 'vite'
+import process from 'node:process'
 import extractorSvelte from '@unocss/extractor-svelte'
+import { presetIcons, presetUno, transformerDirectives } from 'unocss'
+import Unocss from 'unocss/vite'
 import { SERVICE_WORKER_PATH } from '../constants.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
@@ -23,7 +23,7 @@ function getIconSafelist(themeOptions?: DefaultThemeOptions): string[] {
     return []
   const iconSafelist: string[] = []
   for (const prefix in icons) {
-    icons[prefix].forEach(name => {
+    icons[prefix].forEach((name) => {
       iconSafelist.push(`i-${prefix}-${name}`)
     })
   }
@@ -98,7 +98,8 @@ export default (options?: DefaultThemeOptions) => {
           },
         }
       },
-    }]
+    },
+  ]
 
   return vitePluginsPre
 }

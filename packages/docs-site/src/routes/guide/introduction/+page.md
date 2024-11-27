@@ -2,16 +2,15 @@
 title: Introduction
 ---
 
-Sveltepress is a site build tool.  
-Inspired by [Vitepress](https://vitepress.vuejs.org/).  
+Sveltepress is a site build tool.
+Inspired by [Vitepress](https://vitepress.vuejs.org/).
 Build on top of [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss).
-
 
 ## Project structure
 
 Exactly the same as [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure)
 
-Except for that you can use .md files for pages or layouts.  
+Except for that you can use .md files for pages or layouts.
 For example:
 * `src/routes/+page.md` is recognized as home page
 * `src/routes/+layout.md` is used for root custom layout
@@ -24,7 +23,7 @@ For example use +page.server.js, +layout.server.js, hooks.server.js to do some s
 ## Layout hierarchy
 
 :::note[Root layout is required]{icon=ph:layout-duotone}
-There must be a `src/routes/+layout.svelte` or `src/routes/+layout.md` as root layout file.  
+There must be a `src/routes/+layout.svelte` or `src/routes/+layout.md` as root layout file.
 **Otherwise the global layout provided by theme would not working!**
 :::
 
@@ -48,14 +47,14 @@ Here's a graph to help you understand
 
 ## Configuration
 
-Sveltepress's config is passed to `@sveltepress/vite` vite plugin, all options are fully typed. 
+Sveltepress's config is passed to `@sveltepress/vite` vite plugin, all options are fully typed.
 
 Read [Vite plugins options](/reference/vite-plugin/) for more details.
 
 ## Deployment
 
-It is recommended to read [Adapters - SvelteKit](https://kit.svelte.dev/docs/adapters) first.  
-If you use `npm/yarn/pnpm create @sveltepress` to create a new project.  
+It is recommended to read [Adapters - SvelteKit](https://kit.svelte.dev/docs/adapters) first.
+If you use `npm/yarn/pnpm create @sveltepress` to create a new project.
 The [Adapter Static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) would be used as default.
 
 But feel free to change to any adapters you want.

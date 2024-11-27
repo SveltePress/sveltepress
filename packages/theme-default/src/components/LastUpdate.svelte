@@ -1,7 +1,13 @@
 <script>
   import themeOptions from 'virtual:sveltepress/theme-default'
 
-  export let lastUpdate = ''
+  /**
+   * @typedef {object} Props
+   * @property {string} [lastUpdate] - Last update time
+   */
+
+  /** @type {Props} */
+  const { lastUpdate = '' } = $props()
 
   const DEFAULT_TEXT = 'Last update at:'
 </script>

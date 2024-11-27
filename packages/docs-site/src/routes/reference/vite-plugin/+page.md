@@ -15,7 +15,7 @@ title: Vite plugin
 
 ### `addInspect`
 
-If set to `true`, will add [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect).   
+If set to `true`, will add [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect).
 It is useful to inspect or observe the vite pipeline.
 
 ### `theme`
@@ -24,10 +24,10 @@ See [ResolvedTheme](#ResolvedTheme) below
 
 ### `remarkPlugins`
 
-The remark plugins used for markdown parse.  
-Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details. 
+The remark plugins used for markdown parse.
+Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details.
 
-### `rehypePlugins`  
+### `rehypePlugins`
 
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
@@ -36,43 +36,43 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 
 <!-- @code(/../vite/src/types.ts,13,25) -->
 
-### `name`   
+### `name`
 
 The name of theme
 
-### `globalLayout`  
+### `globalLayout`
 
-The absolute path of global layout. **Should be a svelte file**  
+The absolute path of global layout. **Should be a svelte file**
 For example: `path.resolve(process.cwd(), 'ThemeGlobalLayout.svelte')`
 
-### `pageLayout`  
+### `pageLayout`
 
-The absolute path of page layout. **Should be a svelte file**  
+The absolute path of page layout. **Should be a svelte file**
 For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
-  
-### `vitePlugins`  
+
+### `vitePlugins`
 
 * If passed a plugin or a group of plugins. These plugins would applied in front of `sveltepress`
-* If passed a function. It will accept the `sveltepress` plugin and need to return a group of plugins.  
-  You can customize the `sveltepress` plugin order in your returned plugin chain.  
+* If passed a function. It will accept the `sveltepress` plugin and need to return a group of plugins.
+  You can customize the `sveltepress` plugin order in your returned plugin chain.
 
 :::info[About theme vite plugins]{icon=vscode-icons:file-type-vite}
-  It maybe a little strange that theme has vite plugins.  
-  But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp files. 
+  It maybe a little strange that theme has vite plugins.
+  But it is useful when the theme want's to add some [virtual modules](https://vitejs.dev/guide/api-plugin.html#virtual-modules-convention) or write some temp files.
 :::
 
-### `highlighter`  
+### `highlighter`
 
-Used for code highlighting.  
-For example, the default theme use [shiki](https://github.com/shikijs/shiki).  
+Used for code highlighting.
+For example, the default theme use [shiki](https://github.com/shikijs/shiki).
 You can check the [Default theme highlighter source code](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) for detail usage.
 
-### `remarkPlugins`  
+### `remarkPlugins`
 
-The remark plugins used for markdown parse.  
-Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details. 
+The remark plugins used for markdown parse.
+Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details.
 
-### `rehypePlugins`  
+### `rehypePlugins`
 
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
@@ -81,9 +81,9 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 The remark and rehype plugins that theme provide would be called before the plugins provide by vite plugin.
 For example:
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -120,7 +120,7 @@ This module hold the siteConfig. Here's an example
 
 The @sveltepress/vite package has a low level api function `mdToSvelte`
 
-It is used for all the major markdown render in Sveltepress.  
+It is used for all the major markdown render in Sveltepress.
 
 It can be used for a more basic markdown render engine involved with Svelte.
 

@@ -3,16 +3,15 @@
 /// <reference types="vite/client" />
 /// <reference types="@sveltepress/vite/types" />
 
-
 declare module 'virtual:sveltepress/theme-default' {
-  import type { BundledLanguage } from 'shiki/langs'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
-  
+  import type { BundledLanguage } from 'shiki/langs'
+
   export interface WithTitle {
     title?: string
   }
-  
+
   export interface LinkItem extends WithTitle {
     icon?: string
     to?: string
@@ -80,9 +79,10 @@ declare module 'virtual:sveltepress/theme-default' {
 }
 
 declare module '@sveltepress/theme-default/context' {
-  import { Writable } from 'svelte/store'
+  import type { Writable } from 'svelte/store'
+
   export interface SveltepressContext {
     isDark: Writable<boolean>
   }
-  export const SVELTEPRESS_CONTEXT_KEY: Symbol
+  export const SVELTEPRESS_CONTEXT_KEY: symbol
 }

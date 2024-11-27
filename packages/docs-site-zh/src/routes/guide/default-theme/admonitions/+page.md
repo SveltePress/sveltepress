@@ -8,7 +8,7 @@ title: 高亮块
 用到的图标需要加入 [iconify 预构建配置](/reference/default-theme/#preBuildIconifyIcons) 中
 :::
 
-这个特性集成了 [remark-directive](https://github.com/remarkjs/remark-directive) 
+这个特性集成了 [remark-directive](https://github.com/remarkjs/remark-directive)
 
 ```md
 :::tip|info|note|warning|important|caution[标题]

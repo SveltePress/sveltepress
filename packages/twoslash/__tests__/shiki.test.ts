@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { describe, expect, it } from 'vitest'
-import { codeToHtml, codeToTokensWithThemes } from 'shiki'
 import { createTransformerFactory } from '@shikijs/twoslash'
+import { codeToHtml, codeToTokensWithThemes } from 'shiki'
+import { describe, expect, it } from 'vitest'
 import { createTwoslasher, rendererFloatingSvelte } from '../src'
 
 const svelteCode = readFileSync(resolve(import.meta.dirname, 'test.svelte'), 'utf-8')
@@ -10,7 +10,7 @@ const langs = ['ts', 'tsx', 'svelte']
 
 describe('shiki', () => {
   it('twoslash svelte', async () => {
-    const html = await codeToHtml(svelteCode, {
+    const html = (await codeToHtml(svelteCode, {
       lang: 'svelte',
       themes: {
         dark: 'vitesse-dark',
@@ -22,8 +22,12 @@ describe('shiki', () => {
           renderer: rendererFloatingSvelte(),
         }),
       ],
-    })
-    expect(html).toMatchSnapshot()
+    }))
+      .replace(/\{/g, '&#123;')
+      .replace(/\}/g, '&#125;')
+      .replace(/<!--svp-snippet-start-->/g, '{#snippet floatingContent()}')
+      .replace(/<!--svp-snippet-end-->/g, '{/snippet}')
+    expect(html).toMatchFileSnapshot('test-result.svelte')
   })
 
   it('tokens', async () => {
@@ -34,6 +38,6 @@ describe('shiki', () => {
       },
       lang: 'svelte',
     })
-    expect(tokens).toMatchSnapshot()
+    expect(JSON.stringify(tokens, null, 2)).toMatchFileSnapshot('test-tokens.json')
   })
 })

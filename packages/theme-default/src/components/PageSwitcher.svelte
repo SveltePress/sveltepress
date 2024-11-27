@@ -1,10 +1,10 @@
 <script>
-  import themOptions from 'virtual:sveltepress/theme-default'
-  import Prev from './icons/Prev.svelte'
-  import Next from './icons/Next.svelte'
-  import { pages } from './layout'
-  import { page } from '$app/stores'
   import { base } from '$app/paths'
+  import { page } from '$app/stores'
+  import themOptions from 'virtual:sveltepress/theme-default'
+  import Next from './icons/Next.svelte'
+  import Prev from './icons/Prev.svelte'
+  import { pages } from './layout'
 
   const routeId = $page.route.id
 

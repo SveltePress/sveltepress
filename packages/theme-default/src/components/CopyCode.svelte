@@ -2,9 +2,9 @@
   import Copy from './icons/Copy.svelte'
   import CopyDone from './icons/CopyDone.svelte'
 
-  let container
+  let container = $state()
 
-  let copied = false
+  let copied = $state(false)
 
   function handleClick() {
     const content =
@@ -25,8 +25,8 @@
   <div
     bind:this={container}
     class="svp-code-bock--copy-code"
-    on:click={handleClick}
-    on:keyup={handleClick}
+    onclick={handleClick}
+    onkeyup={handleClick}
     role="button"
     tabindex="0"
     aria-label="Copy code"

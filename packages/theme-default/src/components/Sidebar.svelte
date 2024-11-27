@@ -1,13 +1,13 @@
 <script>
+  import { page } from '$app/stores'
+  import Backdrop from './Backdrop.svelte'
+  import Close from './icons/Close.svelte'
+  import { resolvedSidebar, sidebarCollapsed } from './layout'
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
-  import { resolvedSidebar, sidebarCollapsed } from './layout'
-  import Close from './icons/Close.svelte'
-  import Backdrop from './Backdrop.svelte'
-  import { page } from '$app/stores'
 
-  $: routeId = $page.route.id
-  $: isHome = routeId === '/'
+  const routeId = $derived($page.route.id)
+  const isHome = $derived(routeId === '/')
 
   function handleClose() {
     $sidebarCollapsed = true
@@ -23,8 +23,8 @@
     <Logo />
     <div
       class="close"
-      on:click={handleClose}
-      on:keyup={handleClose}
+      onclick={handleClose}
+      onkeyup={handleClose}
       role="button"
       tabindex="0"
     >

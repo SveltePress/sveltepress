@@ -1,6 +1,6 @@
-name: "💡 Feature request"
+name: Feature request
 description: Create a feature request to help us improve
-title: 'feature brief description'
+title: feature brief description
 labels: enhancement
 body:
   - type: markdown

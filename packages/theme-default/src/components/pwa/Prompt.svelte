@@ -5,7 +5,7 @@
   import Close from '../icons/Close.svelte'
   import Btn from './Btn.svelte'
 
-  export let message
+  const { message, children } = $props()
 
   const dispatcher = createEventDispatcher()
 
@@ -23,8 +23,8 @@
     <span> {message} </span>
   </div>
   <div class="actions">
-    <slot />
-    <Btn on:click={handleClose} flat>
+    {@render children?.()}
+    <Btn onclick={handleClose} flat>
       {themeOptions?.i18n?.pwa?.close || DEFAULT_CLOSE}
       <Close />
     </Btn>

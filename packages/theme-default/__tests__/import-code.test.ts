@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, expect, it } from 'vitest'
 import { mdToSvelte } from '@sveltepress/vite'
+import { describe, expect, it } from 'vitest'
 import codeImport, { importRe } from '../src/markdown/code-import'
 import highlighter from '../src/markdown/highlighter'
 
@@ -17,7 +17,8 @@ describe('code import', async () => {
 
       @code(./fake-file.ts)
 
-      @code(/src/index.ts,20,37)"
+      @code(/src/index.ts,20,37)
+      "
     `)
 
     const { code } = await mdToSvelte({

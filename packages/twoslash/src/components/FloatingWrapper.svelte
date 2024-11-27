@@ -1,23 +1,14 @@
 <script lang="ts">
-  import type { Placement } from '@floating-ui/dom'
+  import type { PropType } from './PropType.js'
 
-  export let show = false
-  export let alwaysShow = false
-  export let placement: Placement = 'bottom-start'
-  export let floatingClass: string | undefined = undefined
+  const { children, floatingContent, ...rest }: PropType = $props()
 </script>
 
-{#await import('./Floating.svelte') then floatingComponent}
-  <svelte:component
-    this={floatingComponent.default}
-    {show}
-    {alwaysShow}
-    {placement}
-    {floatingClass}
-    {...$$restProps}
-  >
-    <slot />
-    <!-- apply content -->
-    <slot slot="content" name="floating-content" />
-  </svelte:component>
+{#await import('./Floating.svelte') then { default: Comp }}
+  <Comp {...rest}>
+    {@render children?.()}
+    {#snippet content()}
+      {@render floatingContent?.()}
+    {/snippet}
+  </Comp>
 {/await}

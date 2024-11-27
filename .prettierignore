@@ -7,3 +7,14 @@
 **/.svelte-kit
 **/.sveltepress
 packages/theme-default/src/components/icons
+**/__tests__/**/*
+*.md
+*.yml
+*.yaml
+*.html
+*.ts
+*.js
+*.json
+*.mjs
+*.webmanifest
+*.css 

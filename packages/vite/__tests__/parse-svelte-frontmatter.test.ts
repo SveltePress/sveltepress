@@ -3,7 +3,7 @@ import { parseSvelteFrontmatter } from '../src/utils/parse-svelte-frontmatter'
 
 function wrapFrontmatter(obj: Record<string, any>) {
   return `
-<script context="module" lang="ts">
+<script module lang="ts">
   export const frontmatter: any = ${JSON.stringify(obj)}
 </script>
 <script lang="ts">

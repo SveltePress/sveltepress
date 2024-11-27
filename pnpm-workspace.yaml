@@ -2,3 +2,34 @@ packages:
   - 'packages/**'
   - '!packages/create/template-js'
   - '!packages/create/template-ts'
+
+catalog:
+  svelte: ^5.0.0
+  vite: ^5.1.4
+  vitest: ^1.3.1
+  typescript: ^5.5.0
+  unocss: ^0.61.5
+  shiki: ^1.23.1
+  eslint: ^9
+  lru-cache: ^10.2.0
+  '@types/node': ^20.11.20
+  '@shikijs/twoslash': ^1.23.1
+  '@unocss/extractor-svelte': ^0.61.5
+  '@sveltejs/package': ^2.3.7
+  '@sveltejs/kit': ^2.8.1
+  '@sveltejs/vite-plugin-svelte': ^4.0.1
+  '@sveltejs/adapter-static': ^3.0.1
+  '@iconify-json/bi': ^1.1.23
+  '@iconify-json/bxs': ^1.1.10
+  '@iconify-json/carbon': ^1.1.36
+  '@iconify-json/emojione': ^1.1.10
+  '@iconify-json/fxemoji': ^1.1.8
+  '@iconify-json/logos': ^1.1.43
+  '@iconify-json/material-symbols': ^1.1.85
+  '@iconify-json/mdi': ^1.1.67
+  '@iconify-json/noto': ^1.1.18
+  '@iconify-json/openmoji': ^1.1.52
+  '@iconify-json/ph': ^1.1.13
+  '@iconify-json/solar': ^1.1.9
+  '@iconify-json/tabler': ^1.1.118
+  '@iconify-json/vscode-icons': ^1.1.36

@@ -104,7 +104,8 @@ export default {
       {
         title: 'Vite plugin',
         to: '/reference/vite-plugin/',
-      }, {
+      },
+      {
         title: 'Default theme',
         to: '/reference/default-theme/',
       },

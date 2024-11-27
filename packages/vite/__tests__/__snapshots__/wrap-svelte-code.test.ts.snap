@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`wrap svelte code > with script, style and context script 1`] = `
-"<script context="module">
+"<script module>
 import PageLayout from '/path/to/PageLayout.svelte'
 const fm = {"title":"title"}
   export const someVar = 'some value'

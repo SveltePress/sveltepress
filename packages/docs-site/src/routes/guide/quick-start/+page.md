@@ -4,14 +4,14 @@ title: Quick Start
 
 ## Creating a project
 
-Run one of the following command  
+Run one of the following command
 Depend on what package manager you are using
-
-@install-pkg(@sveltepress,create)
 
 :::tip[PNPM first]
 Use pnpm as much as possible. It respects package version more than npm.
 :::
+
+@install-pkg(@sveltepress,create)
 
 ## Adding to an existing sveltekit project
 
@@ -22,12 +22,12 @@ Use pnpm as much as possible. It respects package version more than npm.
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
 
 ```ts title="vite.config.(js|ts)"
-// @noErrors
-import { defineConfig } from 'vite'
-
 import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
+
+// @noErrors
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [

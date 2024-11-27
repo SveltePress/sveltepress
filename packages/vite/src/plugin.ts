@@ -1,10 +1,10 @@
-import { resolve } from 'node:path'
-import { existsSync, mkdirSync } from 'node:fs'
-import process from 'node:process'
-import type { PluginOption } from 'vite'
-
 import type { Plugin } from 'unified'
-import type { SveltepressVitePluginOptions } from './types'
+import type { PluginOption } from 'vite'
+import type { SveltepressVitePluginOptions } from './types.js'
+import { existsSync, mkdirSync } from 'node:fs'
+
+import { resolve } from 'node:path'
+import process from 'node:process'
 import { wrapPage } from './utils/wrap-page.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -13,7 +13,8 @@ export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 
 // only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by theme.pageLayout
-export const PAGE_OR_LAYOUT_RE = /\/src\/routes(\/[\(\)\[\]\w- ]+)*\/\+(?:page|layout)(@[\w-]*)?\.(?:svelte|md)$/
+// eslint-disable-next-line regexp/strict
+export const PAGE_OR_LAYOUT_RE = /\/src\/routes(\/[()[\]\w- ]+)*\/\+(?:page|layout)(@[\w-]*)?\.(?:svelte|md)$/
 
 if (!existsSync(BASE_PATH))
   mkdirSync(BASE_PATH, { recursive: true })

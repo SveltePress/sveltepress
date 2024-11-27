@@ -4,10 +4,10 @@ title: অ্যাডমনিশন
 
 ## গ্রামার
 
-এই ফিচারটি [remark-directive](https://github.com/remarkjs/remark-directive) সমন্বয় করেছে। 
+এই ফিচারটি [remark-directive](https://github.com/remarkjs/remark-directive) সমন্বয় করেছে।
 
 :::important[Icon pre-build required]{icon=tabler:icons}
-এই iconify আইকনটি [প্রি-বিল্ড iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে। 
+এই iconify আইকনটি [প্রি-বিল্ড iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে।
 :::
 
 ```md
@@ -20,11 +20,11 @@ Some admonition content
 
 ```md live
 :::tip[টিপ টাইটেল]
-টিপের বর্ণনা  
+টিপের বর্ণনা
 :::
 
 :::tip[কাস্টম আইকনযুক্ত টিপ]{icon=ph:smiley}
-টিপের বর্ণনা  
+টিপের বর্ণনা
 :::
 ```
 
@@ -40,7 +40,7 @@ Some admonition content
 :::
 ```
 
-## নোট 
+## নোট
 
 ```md live
 :::note[নোট টাইটেল]

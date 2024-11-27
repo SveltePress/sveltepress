@@ -4,7 +4,8 @@ export default [
   {
     title: 'নির্দেশনা',
     to: '/guide/introduction/',
-  }, {
+  },
+  {
     title: 'রেফারেন্স',
     to: '/reference/vite-plugin/',
   },

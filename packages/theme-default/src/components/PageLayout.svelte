@@ -1,20 +1,20 @@
 <script>
+  import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { page } from '$app/stores'
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'
-  import Home from './Home.svelte'
-  import PageSwitcher from './PageSwitcher.svelte'
   import EditPage from './EditPage.svelte'
+  import Home from './Home.svelte'
+  import HeroImage from './home/HeroImage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages, showHeader, sidebar } from './layout'
-  import HeroImage from './home/HeroImage.svelte'
-  import { page } from '$app/stores'
-  import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import PageSwitcher from './PageSwitcher.svelte'
 
   const routeId = $page.route.id
 
   // The frontmatter info. This would be injected by sveltepress
-  export let fm = {}
+  const { fm, children, heroImage } = $props()
 
   const {
     title,
@@ -34,7 +34,7 @@
 
   anchors.set(fmAnchors)
 
-  let ready = false
+  let ready = $state(false)
 
   beforeNavigate(() => {
     ready = false
@@ -52,6 +52,10 @@
   <meta name="description" content={description || siteConfig.description} />
 </svelte:head>
 
+{#snippet defaultHeroImage()}
+  <HeroImage heroImage={fm.heroImage} />
+{/snippet}
+
 {#if !isHome}
   <div pb-4 class="theme-default--page-layout">
     <div class="content">
@@ -60,7 +64,7 @@
           {title}
         </h1>
       {/if}
-      <slot />
+      {@render children?.()}
       <div class="meta" class:without-edit-link={!themeOptions.editLink}>
         {#if themeOptions.editLink}
           <EditPage {pageType} />
@@ -74,13 +78,9 @@
   </div>
 {:else}
   {#if home !== false}
-    <Home {...fm} {siteConfig}>
-      <slot name="hero-image" slot="hero-image">
-        <HeroImage heroImage={fm.heroImage} />
-      </slot>
-    </Home>
+    <Home {...fm} {siteConfig} heroImage={heroImage ?? defaultHeroImage}></Home>
   {/if}
-  <slot />
+  {@render children?.()}
 {/if}
 
 <style>

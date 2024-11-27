@@ -18,9 +18,9 @@ title: Basic writing
 ```md live
 This is paragraph
 
-This is another paragraph  
+This is another paragraph
 
-Lines end with more than one space would be  
+Lines end with more than one space would be
 soft wrap
 ```
 
@@ -45,20 +45,19 @@ soft wrap
 ## Links
 
 ```md live
-Normal links  
-[Home page](/)  
+Normal links
+[Home page](/)
 [Google](https://google.com/)
 
-Auto links  
-www.example.com  
-https://example.com  
+Auto links
+www.example.com
+https://example.com
 contact@example.com
 ```
 
 ## List
 
 ```md live
-
 - item1
 - item2
 - item3
@@ -87,10 +86,10 @@ Big footnote[^bigfootnote]
 
 [^1]: Footnote item
 
-[^bigfootnote]: bigfootnote  
-  
+[^bigfootnote]: bigfootnote
+
     Indent paragraphs
-    
+
     ```js
     const foo = 'bar'
     ```

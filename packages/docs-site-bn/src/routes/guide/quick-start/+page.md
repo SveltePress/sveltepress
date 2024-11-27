@@ -19,15 +19,15 @@ title: দ্রুত শুরু
 
 @install-pkg(@sveltepress/vite)
 
-### vite.config.(js|ts) এ `sveltekit` plugin পরিবর্তন করুন 
+### vite.config.(js|ts) এ `sveltekit` plugin পরিবর্তন করুন
 
 ```ts title="vite.config.(js|ts)"
-// @noErrors
-import { defineConfig } from 'vite'
-
 import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
+
+// @noErrors
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [

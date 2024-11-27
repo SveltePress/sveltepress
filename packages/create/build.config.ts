@@ -21,7 +21,7 @@ interface Dependency {
 }
 
 function writeDevDependencies(dependencies: Dependency[], pkgDirs: string[]) {
-  pkgDirs.forEach(pkgDir => {
+  pkgDirs.forEach((pkgDir) => {
     const pkgObj = getPkg(pkgDir)
     if (!('devDependencies' in pkgObj))
       pkgObj.devDependencies = {}
@@ -35,7 +35,7 @@ function writeDevDependencies(dependencies: Dependency[], pkgDirs: string[]) {
 }
 
 function padStartWithVersion(dependencies: Dependency[]) {
-  dependencies.forEach(dep => {
+  dependencies.forEach((dep) => {
     dep.version = `^${dep.version}`
   })
 }

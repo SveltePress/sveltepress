@@ -1,17 +1,27 @@
+import type { Root } from 'mdast'
 import type { Transformer } from 'unified'
 import { visit } from 'unist-util-visit'
-import type { Root } from 'mdast'
 
 type ReserveSvelteCommandsPlugin = () => void | Transformer<Root, Root>
 
 const commands = [
-  '#each', '/each}',
-  '#if', ':else', ':else if', '/if}',
-  '#await', ':then', ':catch', '/await}',
+  '#snippet',
+  '/snippet}',
+  '#each',
+  '/each}',
+  '#if',
+  ':else',
+  ':else if',
+  '/if}',
+  '#await',
+  ':then',
+  ':catch',
+  '/await}',
   '#key',
   '@html',
   '@debug',
   '@const',
+  '@render',
 ]
 
 function isCommand(textContent: string) {
@@ -34,8 +44,9 @@ const reserveSvelteCommands: ReserveSvelteCommandsPlugin = () => {
                 value += node.value
             }
             node.children.forEach(getValue)
-            if (node.value?.trim().startsWith('{@html'))
+            if (node.value?.trim().startsWith('{@html')) {
               value = value.replace(/&#x3C;/g, '<')
+            }
             parent.children.splice(idx, 1, {
               type: 'html',
               value,

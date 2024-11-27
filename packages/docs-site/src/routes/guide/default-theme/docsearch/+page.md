@@ -8,12 +8,12 @@ Pass `docsearch` to theme default to add a [Docsearch](https://docsearch.algolia
 
 Complete options can be found [here](https://docsearch.algolia.com/docs/api)
 
-All provided by Docsearch. 
+All provided by Docsearch.
 
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
 import { mdToSvelte } from '@sveltepress/vite'
+import { describe, expect, it } from 'vitest'
 import anchors from '../src/markdown/anchors'
 
 const md = `
@@ -20,7 +20,7 @@ describe('anchors', () => {
     const r = await mdToSvelte({
       mdContent: md,
       filename: 'demo.md',
-      remarkPlugins: [anchors, () => tree => {
+      remarkPlugins: [anchors, () => (tree) => {
         expect(JSON.stringify(tree, null, 2)).toMatchSnapshot()
       }],
     })

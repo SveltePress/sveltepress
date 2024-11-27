@@ -1,10 +1,10 @@
-import type { BundledLanguage } from 'shiki/langs'
-import type { BundledTheme, CodeToHastOptions } from 'shiki'
-import { codeToHtml } from 'shiki'
 import type { Highlighter } from '@sveltepress/vite'
-import { LRUCache } from 'lru-cache'
+import type { BundledTheme, CodeToHastOptions } from 'shiki'
+import type { BundledLanguage } from 'shiki/langs'
 import { createTransformerFactory } from '@shikijs/twoslash'
 import { createTwoslasher, rendererFloatingSvelte } from '@sveltepress/twoslash'
+import { LRUCache } from 'lru-cache'
+import { codeToHtml } from 'shiki'
 import { themeOptionsRef } from '../index.js'
 import { processCommands } from './commands.js'
 
@@ -13,7 +13,7 @@ const DEFAULT_SUPPORT_LANGUAGES: any[] = ['svelte', 'sh', 'js', 'html', 'ts', 'm
 const cache = new LRUCache<string, any>({ max: 1024 })
 async function createHighlighterWithThemeAndLangs() {
   const highlighterConfig = themeOptionsRef.value?.highlighter
-  const langs = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
+  const _langs = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
   const darkTheme = highlighterConfig?.themeDark ?? 'night-owl'
   const lightTheme = highlighterConfig?.themeLight ?? 'vitesse-light'
 
@@ -29,17 +29,22 @@ async function createHighlighterWithThemeAndLangs() {
     if (themeOptionsRef.value?.highlighter?.twoslash) {
       shikiOptions.transformers?.push(
         createTransformerFactory(
-          await createTwoslasher())(
+          await createTwoslasher(),
+        )(
           {
             langs: ['ts', 'tsx', 'svelte'],
             renderer: rendererFloatingSvelte({
               lang: 'ts',
             }),
-          }))
+          },
+        ),
+      )
     }
     return (await codeToHtml(code, shikiOptions))
       .replace(/\{/g, '&#123;')
       .replace(/\}/g, '&#125;')
+      .replace(/<!--svp-snippet-start-->/g, '{#snippet floatingContent()}')
+      .replace(/<!--svp-snippet-end-->/g, '{/snippet}')
   }
 
   return _highlighter
@@ -83,12 +88,12 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 
   cached = `
 <div class="svp-code-block-wrapper">${title
-? `<div class="svp-code-block--title">${title}</div>
+  ? `<div class="svp-code-block--title">${title}</div>
 `
-: ''}
+  : ''}
   <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
-    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     ${await highlighterRef.value?.(code, lang, meta)}
     <div class="svp-code-block--lang">
       ${lang}

@@ -21,12 +21,12 @@ title: 快速开始
 ### 在 vite.config.(js|ts) 中替换 `sveltekit` 插件
 
 ```ts title="vite.config.(js|ts)"
-// @noErrors
-import { defineConfig } from 'vite'
-
 import { sveltekit } from '@sveltejs/kit' // [svp! --]
 
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
+
+// @noErrors
+import { defineConfig } from 'vite'
 
 const config = defineConfig({
   plugins: [

@@ -1,14 +1,12 @@
-import { resolve } from 'node:path'
-import { cwd } from 'node:process'
-import { parse, preprocess } from 'svelte/compiler'
-import sveltePreproces from 'svelte-preprocess'
 import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estree'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { parse, preprocess } from 'svelte/compiler'
 
 /**
  * Parse the svelte source and get the frontmatter
  * For example
  * ```svelte
- * <script context="module">
+ * <script module>
  *   export const frontmatter = {
  *     title: 'some title',
  *     foo: 'bar'
@@ -25,9 +23,7 @@ import type { Expression, Pattern, PrivateIdentifier, SpreadElement } from 'estr
  * @param svelteCode the svelte source code
  */
 export async function parseSvelteFrontmatter(svelteCode: string) {
-  const preprocessedResult = await preprocess(svelteCode, sveltePreproces({
-    tsconfigDirectory: resolve(cwd(), 'tsconfig.json'),
-  }), {
+  const preprocessedResult = await preprocess(svelteCode, vitePreprocess(), {
     filename: 'App.svelte',
   })
 
@@ -35,7 +31,7 @@ export async function parseSvelteFrontmatter(svelteCode: string) {
   const ast = parse(preprocessedResult.code)
   if (!ast.module)
     return fm
-  ast.module.content.body.forEach(line => {
+  ast.module.content.body.forEach((line: any) => {
     if (line.type !== 'ExportNamedDeclaration')
       return
     if (line.declaration?.type !== 'VariableDeclaration')
@@ -53,7 +49,7 @@ export async function parseSvelteFrontmatter(svelteCode: string) {
       return
     if (variable.init.type !== 'ObjectExpression')
       return
-    variable.init.properties.forEach(prop => {
+    variable.init.properties.forEach((prop: any) => {
       if (prop.type !== 'Property')
         return
       recursivelySetValue(fm, prop.key, prop.value)
@@ -83,7 +79,7 @@ function recursivelySetValue(
       break
     case 'ObjectExpression':
       fm[keyName] = {}
-      value.properties.forEach(prop => {
+      value.properties.forEach((prop) => {
         if (prop.type === 'Property')
           recursivelySetValue(fm[keyName], prop.key, prop.value)
       })

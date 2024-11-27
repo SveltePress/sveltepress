@@ -1,16 +1,33 @@
 <script>
-  import External from './icons/External.svelte'
   import { base } from '$app/paths'
+  import External from './icons/External.svelte'
 
-  export let label = ''
-  export let to = ''
-  export let inline = true
-  export let active = false
-  export let highlight = true
-  export let withBase = true
+  /**
+   * @typedef {object} Props
+   * @property {string} [label] - Link label
+   * @property {string} [to] - Link URL
+   * @property {boolean} [inline] - Whether the link is inline
+   * @property {boolean} [active] - Whether the link is active
+   * @property {boolean} [highlight] - Whether the link should be highlighted
+   * @property {boolean} [withBase] - Whether the link should have the base URL
+   * @property {import('svelte').Snippet} [pre] - Prepend content
+   * @property {import('svelte').Snippet} [children] - Children content
+   */
 
-  $: isExternal = /^(https?)|(mailto:)/.test(to)
-  $: toWithBase = isExternal ? to : `${base}${to}`
+  /** @type {Props} */
+  const {
+    label = '',
+    to = '',
+    inline = true,
+    active = false,
+    highlight = true,
+    withBase = false,
+    pre,
+    children,
+  } = $props()
+
+  const isExternal = $derived(/^https?|mailto:/.test(to))
+  const toWithBase = $derived(isExternal ? to : `${base}${to}`)
 </script>
 
 <a
@@ -22,14 +39,14 @@
   {...isExternal ? { target: '_blank' } : {}}
   aria-label={label}
 >
-  <slot name="pre" />
-  <div>
+  {@render pre?.()}
+  <span>
     {label}
-  </div>
+  </span>
   {#if isExternal}
     <External />
   {/if}
-  <slot />
+  {@render children?.()}
 </a>
 
 <style>

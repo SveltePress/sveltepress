@@ -2,8 +2,8 @@
 title: Svelte in markdown
 ---
 
-This feature allows you to write 
-`<style>`, `<script>`, `<script context="module">`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` in .md files
+This feature allows you to write
+`<style>`, `<script>`, `<script module>`, `#if`, `#each`, `#await`, `#snippet`, `@render` `@html`, `@const`, `<svelte:xxx>`' in .md files
 
 ## Basic
 
@@ -22,7 +22,7 @@ Here's a basic example with `#if`, `#each`, `#await`, `@html`, `@const`
 {/each}
 </ul>
 
-<button on:click="{() => boolVal = !boolVal}">
+<button onclick="{() => boolVal = !boolVal}">
 Toggle
 </button>
 
@@ -59,7 +59,7 @@ Toggle
 ```md
 <script>
   const items = ['foo', 'bar', 'zoo']
-  let boolVal = false
+  let boolVal = $state(false)
 
   const promisePass = () => new Promise(resolve => {
     setTimeout(() => {
@@ -73,7 +73,7 @@ Toggle
     }, 2000)
   })
 
-  $: promise = boolVal ? promisePass() : promiseFail()
+  let promise = $derived(boolVal ? promisePass() : promiseFail())
 </script>
 
 <ul>
@@ -85,7 +85,7 @@ Toggle
 {/each}
 </ul>
 
-<button on:click="{() => boolVal = !boolVal}">
+<button onclick="{() => boolVal = !boolVal}">
 Toggle
 </button>
 
@@ -126,13 +126,12 @@ Toggle
 Always use quotes in markdown files.
 ```svelte
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
-<button on:click={() => count++}></button> // [svp! --]
-<button on:click="{() => count++}"></button> // [svp! ++]
+<button onclick={() => count++}></button> // [svp! --]
+<button onclick={() => count++}></button> // [svp! ++]
 ```
 :::
-
 
 ## A Counter
 
@@ -142,7 +141,7 @@ Always use quotes in markdown files.
 
 > A counter
 
-<button on:click="{() => count++}" style="margin-bottom: 12px;">
+<button onclick="{() => count++}" style="margin-bottom: 12px;">
   You've clicked {count} times
 </button>
 
@@ -153,10 +152,10 @@ Always use quotes in markdown files.
 ```md
 > A counter
 <script>
-  let count = 0
+  let count = $state(0)
 </script>
 
-<button on:click="{() => count++}">
+<button onclick="{() => count++}">
   You've clicked {count} times
 </button>
 ```
@@ -167,9 +166,9 @@ Always use quotes in markdown files.
 
 <script>
   import Counter from './Counter.svelte'
-  let count = 0
+  let count = $state(0)
+  let boolVal = $state(false)
   const items = ['foo', 'bar', 'zoo']
-  let boolVal = false
   const promisePass = () => new Promise(resolve => {
     setTimeout(() => {
       resolve('Promise Passed!')
@@ -180,7 +179,7 @@ Always use quotes in markdown files.
       reject('Promise Failed!')
     }, 2000)
   })
-  $: promise = boolVal ? promisePass() : promiseFail()
+  let promise = $derived(boolVal ? promisePass() : promiseFail())
 </script>
 
 ## Import svelte in md
@@ -211,4 +210,3 @@ Always use quotes in markdown files.
 </TabPanel>
 
 </Tabs>
-

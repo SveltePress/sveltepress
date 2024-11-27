@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 import navbar from './config/navbar'
-import sidebar from './config/sidebar'
 import pwa from './config/pwa'
+import sidebar from './config/sidebar'
 
 const config = defineConfig({
   plugins: [

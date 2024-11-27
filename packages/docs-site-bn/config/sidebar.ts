@@ -104,7 +104,8 @@ export default {
       {
         title: 'Vite প্লাগিন',
         to: '/reference/vite-plugin/',
-      }, {
+      },
+      {
         title: 'ডিফল্ট থিম',
         to: '/reference/default-theme/',
       },

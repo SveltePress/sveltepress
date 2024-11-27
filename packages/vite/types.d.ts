@@ -1,4 +1,4 @@
-declare module "virtual:sveltepress/site" {
+declare module 'virtual:sveltepress/site' {
   const siteConfig: {
     title: string
     description: string
@@ -8,7 +8,8 @@ declare module "virtual:sveltepress/site" {
 }
 
 declare module '*.md' {
-	import { SvelteComponentTyped } from "svelte"
-	const comp: SvelteComponentTyped
-	export default comp
+  import type { SvelteComponentTyped } from 'svelte'
+
+  const comp: SvelteComponentTyped
+  export default comp
 }

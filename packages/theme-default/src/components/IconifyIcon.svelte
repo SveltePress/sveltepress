@@ -1,8 +1,8 @@
 <script>
-  export let collection
-  export let name
+  const { collection, name, ...rest } = $props()
 
-  $$restProps
+  // eslint-disable-next-line no-unused-expressions
+  rest
 </script>
 
 <div class="i-{collection}-{name}"></div>

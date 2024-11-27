@@ -3,7 +3,7 @@ title:  Code related
 ---
 
 :::tip[Dark Mode Compatible]{icon=mdi:theme-light-dark}
-All the code block features are fully compatible with dark mode.  
+All the code block features are fully compatible with dark mode.
 Toggle dark mode to see the styles.
 :::
 
@@ -57,7 +57,7 @@ Add `ln` in code block meta field would add line numbers in the rendered result.
 
 ## Line highlight
 
-Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want  
+Use `// [svp! hl]` `// [svp! ~~]`  to highlight the line you want
 Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the current line you want
 
 ````md live
@@ -81,7 +81,7 @@ Use `// [svp! hl:num]` or `// [svp! ~~:num]` to highlight the num lines from the
 
 ## Diff
 
-Use `// [svp! df:+]` or `// [svp! ++]` for diff add  
+Use `// [svp! df:+]` or `// [svp! ++]` for diff add
 Use `// [svp! df:-]` or `// [svp! --]` for diff subtract
 
 ````md live
@@ -98,7 +98,7 @@ function hello() {
 
 ## Focus
 
-Use `// [svp! fc]` or `// [svp! !!]` to focus line  
+Use `// [svp! fc]` or `// [svp! !!]` to focus line
 Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current line
 
 :::warning[Not Supported]
@@ -161,13 +161,13 @@ Use svelte lang and live prop would render the result and the source codes under
 ````md
 ```svelte live ln title=Counter.svelte
 <script>
-  let count = 0
+  let count = $state(0)
 
   const handleClick = () => {
     count++
   }
 </script>
-<button on:click={handleClick}>
+<button onclick={handleClick}>
   You've clicked {count} times
 </button>
 <style>
@@ -188,13 +188,13 @@ Use svelte lang and live prop would render the result and the source codes under
 
 ```svelte live ln title=Counter.svelte
 <script>
-  let count = 0
+  let count = $state(0)
 
   const handleClick = () => {
     count++
   }
 </script>
-<button on:click={handleClick}>
+<button onclick={handleClick}>
   You've clicked {count} times
 </button>
 <style>
@@ -241,7 +241,7 @@ The nested live code block below would be rendered as normal highlight code bloc
 
 ## Combine features
 
-You can use more than one features mentioned above: 
+You can use more than one features mentioned above:
 
 ````md live
 ```js ln title="complex-example.js"
@@ -255,7 +255,7 @@ function hello() {
 
 ## Import code
 
-This feature can allow you to import some code directly from a file.  
+This feature can allow you to import some code directly from a file.
 And use the file extension name as `lang` to highlight the code.
 And you can specify the startLine and endLine to intercept the code you want.
 

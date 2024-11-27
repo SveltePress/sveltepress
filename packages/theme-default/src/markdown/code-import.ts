@@ -1,10 +1,11 @@
+import type { Plugin } from 'unified'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import type { Plugin } from 'unified'
 import { visit } from 'unist-util-visit'
 
-export const importRe = /^@code\(([\.*\/\S*]+)(,\d+(,\d+)?)?\)/
+// eslint-disable-next-line regexp/optimal-quantifier-concatenation
+export const importRe = /^@code\((\S+)(,\d+(,\d+)?)?\)/
 
 const codeImport: Plugin<any[], any> = () => {
   return async (tree, vFile) => {

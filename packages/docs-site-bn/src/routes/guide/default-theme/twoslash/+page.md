@@ -2,9 +2,9 @@
 title: Twoslash
 ---
 
-এই ফিচারটি [Twoslash](https://github.com/twoslashes/twoslash) থেকে নেয়া। 
+এই ফিচারটি [Twoslash](https://github.com/twoslashes/twoslash) থেকে নেয়া।
 
-সব টাইপস্ক্রিপ্ট কোড ব্লক inline type hover প্রোভাইড করে। 
+সব টাইপস্ক্রিপ্ট কোড ব্লক inline type hover প্রোভাইড করে।
 
 ## twoslash চালু করা
 
@@ -14,9 +14,9 @@ title: Twoslash
 
 * `highlighter.twoslash` কনফিগ করে `true` করে দিন
 ```ts title="vite.config.(js|ts)"
-import { defineConfig } from 'vite'
-import { sveltepress } from '@sveltepress/vite'
 import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -95,7 +95,7 @@ const c = 1
 
 ### আগে কাট
 
-`// ---cut---` বা `// ---cut-before---` ব্যবহার করে এই লাইনের পূর্বের সকল কোড কাট করা যাবে। 
+`// ---cut---` বা `// ---cut-before---` ব্যবহার করে এই লাইনের পূর্বের সকল কোড কাট করা যাবে।
 
 ````md live
 ```ts
@@ -107,7 +107,7 @@ console.log(level)
 
 ### পরে কাট
 
-`// ---cut-after---` বহার করে এই লাইনের পরের সকল কোড কাট করা যাবে। 
+`// ---cut-after---` বহার করে এই লাইনের পরের সকল কোড কাট করা যাবে।
 
 ````md live
 ```ts
@@ -121,7 +121,7 @@ console.log('This is not shown')
 
 ### কাট শুরু/শেষ
 
-আইটেমের মাঝের কন্টেন্ট কাট করতে `// ---cut-start---` বা `// ---cut-end---`  ব্যবহার করুন 
+আইটেমের মাঝের কন্টেন্ট কাট করতে `// ---cut-start---` বা `// ---cut-end---`  ব্যবহার করুন
 
 ````md live
 ```ts
@@ -133,19 +133,19 @@ console.log('This is shown')
 ```
 ````
 
-## svelte এর জন্য Twoslash 
+## svelte এর জন্য Twoslash
 
 ```svelte
 <script>
   import { onMount } from 'svelte'
 
-  let count = 0
+  let count = $state(0)
 
   onMount(() => {
-    console.log('mount')
+  // mounted
   })
 </script>
-<button on:click="{count++}">
-  Count is: { count }
+<button onclick={count++}>
+  Count is: {count}
 </button>
 ```

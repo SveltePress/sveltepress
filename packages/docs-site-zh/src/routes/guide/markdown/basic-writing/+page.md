@@ -20,7 +20,7 @@ title: 写作基础
 
 这是另一个段落
 
-以两个及以上空格结尾的行将会  
+以两个及以上空格结尾的行将会
 自动换行
 ```
 
@@ -46,19 +46,18 @@ title: 写作基础
 
 ```md live
 普通链接
-[Home page](/)  
+[Home page](/)
 [Google](https://google.com/)
 
 自动识别文字链接
-www.example.com  
-https://example.com  
+www.example.com
+https://example.com
 contact@example.com
 ```
 
 ## 列表
 
 ```md live
-
 - 列表项1
 - 列表项2
 - 列表项3
@@ -87,10 +86,10 @@ contact@example.com
 
 [^1]: 普通的脚注
 
-[^bigfootnote]: 复杂的脚注  
-  
+[^bigfootnote]: 复杂的脚注
+
     可以包括段落，以及下方的代码块
-    
+
     ```js
     const foo = 'bar'
     ```
@@ -112,7 +111,7 @@ contact@example.com
 ```md live
 我 :heart: :pizza:
 
-这是一只狗头 :dog: 
+这是一只狗头 :dog:
 
 这是一个 +1 :+1:
 ```
