@@ -74,7 +74,7 @@
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@sveltepress/twoslash": "workspace:*",
     "@unocss/extractor-svelte": "catalog:",
-    "@vite-pwa/sveltekit": "^0.4.0",
+    "@vite-pwa/sveltekit": "^0.6.6",
     "lru-cache": "catalog:",
     "shiki": "catalog:",
     "uid": "^2.0.2",
