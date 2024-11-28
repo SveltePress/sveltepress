@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.0.1
+
+### Patch Changes
+
+- [`06a39b9`](https://github.com/SveltePress/sveltepress/commit/06a39b94fe0f0eaf4163d279bbba2bb052e79fa3) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: deps verison
+
 ## 1.0.0
 
 ### Major Changes
