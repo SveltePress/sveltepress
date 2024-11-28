@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 4.0.1
+
+### Patch Changes
+
+- [`dd8385a`](https://github.com/SveltePress/sveltepress/commit/dd8385a7ef4f69d7dba0f6456310988a21c3c6da) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: service worker
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.0.0
+
 ## 4.0.0
 
 ### Major Changes
