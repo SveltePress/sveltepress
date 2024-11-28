@@ -14,8 +14,6 @@ export default antfu({
         },
       },
     ],
-    'unused-imports/no-unused-vars': 'off',
-    'no-unused-vars': 'off',
   },
   ignores: [
     'node_modules',
@@ -52,5 +50,11 @@ export default antfu({
     'style/indent': ['error', 'tab'],
     'style/no-tabs': 'off',
     'style/eol-last': 'off',
+  },
+}, {
+  files: ['packages/docs-site*/**/*'],
+  rules: {
+    'unused-imports/no-unused-vars': 'off',
+    'no-unused-vars': 'off',
   },
 })

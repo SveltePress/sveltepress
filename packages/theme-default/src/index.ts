@@ -1,8 +1,7 @@
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
-import { resolve } from 'node:path'
 
-import { fileURLToPath } from 'node:url'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
+import { SERVICE_WORKER_PATH } from './constants.js'
 import admonitions from './markdown/admonitions.js'
 import anchors from './markdown/anchors.js'
 import codeImport from './markdown/code-import.js'
@@ -13,8 +12,6 @@ import liveCode from './markdown/live-code.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
 export { SERVICE_WORKER_PATH } from './constants.js'
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const VIRTUAL_PWA = 'virtual:pwa-info'
 const VIRTUAL_PWA_SVELTE_REGISTER = 'virtual:pwa-register/svelte'
@@ -40,7 +37,7 @@ const defaultTheme: ThemeDefault = (options) => {
       if (options?.pwa) {
         plugins.push(SvelteKitPWA({
           strategies: 'injectManifest',
-          srcDir: resolve(__dirname, './components/pwa'),
+          srcDir: SERVICE_WORKER_PATH.replace(/sw\.js$/, ''),
           filename: 'sw.js',
           injectManifest: {
             globDirectory: '.svelte-kit/output',

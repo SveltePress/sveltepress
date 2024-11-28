@@ -80,7 +80,6 @@
     "uid": "^2.0.2",
     "unist-util-visit": "^5.0.0",
     "unocss": "catalog:",
-    "vite-plugin-pwa": "^0.19.0",
     "workbox-precaching": "^7.0.0",
     "workbox-routing": "^7.0.0"
   },

@@ -16,7 +16,7 @@ catalog:
   '@shikijs/twoslash': ^1.23.1
   '@unocss/extractor-svelte': ^0.61.5
   '@sveltejs/package': ^2.3.7
-  '@sveltejs/kit': ^2.8.1
+  '@sveltejs/kit': ^2.8.5
   '@sveltejs/vite-plugin-svelte': ^4.0.1
   '@sveltejs/adapter-static': ^3.0.1
   '@iconify-json/bi': ^1.1.23
