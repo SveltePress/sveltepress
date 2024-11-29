@@ -39,8 +39,8 @@
   "dependencies": {
     "@floating-ui/dom": "^1.6.3",
     "@shikijs/twoslash": "catalog:",
-    "mdast-util-from-markdown": "^2.0.0",
-    "mdast-util-gfm": "^3.0.0",
+    "mdast-util-from-markdown": "catalog:",
+    "mdast-util-gfm": "catalog:",
     "mdast-util-to-hast": "^13.1.0",
     "shiki": "catalog:",
     "source-map-js": "^1.2.0",

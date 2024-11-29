@@ -5,6 +5,7 @@ import extractorSvelte from '@unocss/extractor-svelte'
 import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import Unocss from 'unocss/vite'
 import { SERVICE_WORKER_PATH } from '../constants.js'
+import { initHighlighter } from '../markdown/highlighter.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -30,7 +31,8 @@ function getIconSafelist(themeOptions?: DefaultThemeOptions): string[] {
   return iconSafelist
 }
 
-export default (options?: DefaultThemeOptions) => {
+export default async (options?: DefaultThemeOptions) => {
+  await initHighlighter(options?.highlighter)
   const { gradient = DEFAULT_GRADIENT, primary = DEFAULT_PRIMARY, hover = DEFAULT_HOVER } = options?.themeColor || {
     gradient: DEFAULT_GRADIENT,
     primary: DEFAULT_PRIMARY,
@@ -81,7 +83,7 @@ export default (options?: DefaultThemeOptions) => {
         if (id === THEME_OPTIONS_MODULE)
           return `export default ${JSON.stringify(options || {})}`
       },
-      config() {
+      async config() {
         return {
           define: {
             'process.env.NODE_ENV': process.env.NODE_ENV === 'production'

@@ -1,0 +1,35 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "code",
+      "lang": "md",
+      "meta": "live no-ast",
+      "value": "<Floating placement=\"top\">\n  <div class=\"text-xl b-1 b-solid b-blue rounded py-10 px-4\">\n    Trigger\n  </div>\n\n  {#snippet floatingContent()}\n    <div class=\"bg-white dark:bg-dark b-solid b-1 b-red rounded p-4\">\n      Floating content\n    </div>\n  {/snippet}\n</Floating>",
+      "position": {
+        "start": {
+          "line": 2,
+          "column": 1,
+          "offset": 1
+        },
+        "end": {
+          "line": 14,
+          "column": 4,
+          "offset": 293
+        }
+      }
+    }
+  ],
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 15,
+      "column": 1,
+      "offset": 294
+    }
+  }
+}

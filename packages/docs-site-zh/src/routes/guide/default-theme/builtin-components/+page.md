@@ -179,7 +179,6 @@ title: 内置组件
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
     将鼠标放置在这里
   </div>
-
   {#snippet floatingContent()}
     <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4">
       漂浮内容

@@ -18,7 +18,7 @@ Some admonition content
 
 ## Tip
 
-```md live
+```md live no-ast
 :::tip[Tip title]
 Some tip content
 :::
@@ -30,7 +30,7 @@ Some tip content
 
 ## Info
 
-```md live
+```md live no-ast
 :::info[Info title]
 Some info content
 :::
@@ -42,7 +42,7 @@ Some info content
 
 ## Note
 
-```md live
+```md live no-ast
 :::note[Note title]
 Some note content
 :::
@@ -54,7 +54,7 @@ Some note content
 
 ## Warning
 
-```md live
+```md live no-ast
 :::warning[Warning title]
 Some warning content
 :::
@@ -63,9 +63,10 @@ Some warning content
 Some warning content
 :::
 ```
+
 ## Important
 
-```md live
+```md live no-ast
 :::important[Important title]
 Some important content
 :::
@@ -76,7 +77,8 @@ Some important content
 ```
 
 ## Caution
-```md live
+
+```md live no-ast
 :::caution[Caution title]
 Some caution content
 :::

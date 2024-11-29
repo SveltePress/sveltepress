@@ -180,7 +180,6 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
     এখানে-মাউস-আনুন-বা-টাচ-করুন
   </div>
-
   {#snippet floatingContent()}
     <div class="bg-white dark:bg-dark b-1 b-solid b-blue rounded p-4">
       হাই, নির্দেশনা অনুযায়ী কাজ করার জন্য ধন্যবাদ

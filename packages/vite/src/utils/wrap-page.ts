@@ -1,4 +1,5 @@
-import type { ResolvedTheme } from '../types'
+import type { ResolvedTheme } from '../types.js'
+import { env } from 'node:process'
 import { LRUCache } from 'lru-cache'
 import mdToSvelte from '../markdown/md-to-svelte.js'
 import { getFileLastUpdateTime } from './get-file-last-update.js'
@@ -25,10 +26,12 @@ export async function wrapPage({
   layout?: string
 } & Partial<Omit<ResolvedTheme, 'name' | 'vitePlugins' | 'pageLayout' | 'globalLayout'>>) {
   const cacheKey = JSON.stringify({ id, mdOrSvelteCode })
-  let cached = cache.get(cacheKey)
-  if (cached)
-    return cached
-
+  let cached
+  if (env.NODE_ENV === 'development') {
+    cached = cache.get(cacheKey)
+    if (cached)
+      return cached
+  }
   let fm: Record<string, any> = {}
   let svelteCode = ''
 
@@ -76,7 +79,8 @@ export async function wrapPage({
     wrappedCode,
     fm,
   }
-  cache.set(cacheKey, cached)
+  if (env.NODE_ENV === 'development')
+    cache.set(cacheKey, cached)
   return cached
 }
 

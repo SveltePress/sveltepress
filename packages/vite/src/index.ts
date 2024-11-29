@@ -7,7 +7,7 @@ import SveltepressVitePlugin from './plugin.js'
 
 export * as log from './utils/log.js'
 
-const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
+const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = async ({
   theme,
   addInspect,
   siteConfig,
@@ -31,7 +31,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   ]
 
   const plugins = typeof theme?.vitePlugins === 'function'
-    ? theme.vitePlugins(corePlugin)
+    ? await theme.vitePlugins(corePlugin)
     : [
         theme?.vitePlugins,
         ...corePlugin,

@@ -1,1 +1,3 @@
-<h3>Async svelte live code</h3>
+<script>
+  let count = $state()
+</script>

@@ -18,7 +18,7 @@ export interface TwoslashSvelteExecuteOptions extends TwoslashExecuteOptions {
 }
 
 export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwoslashSvelteOptions = {}): Promise<TwoslashInstance> {
-  const base = await createTwoslasherBase({
+  const base = createTwoslasherBase({
     ...createTwoslashSvelteOptions,
   })
   function twoslasher(code: string, extension?: string, options: TwoslashSvelteExecuteOptions = {}) {
@@ -27,7 +27,6 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
     const codeLines = code.split('\n')
     const tsxDoc = svelte2tsx(code, {
       filename: 'source.svelte',
-      version: '5.2.7',
     })
 
     const consumer = new SourceMapConsumer(tsxDoc.map as any)

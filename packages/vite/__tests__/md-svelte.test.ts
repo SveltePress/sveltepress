@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { cwd } from 'node:process'
-import { highlighter } from '@sveltepress/theme-default'
+import { highlighter, initHighlighter } from '@sveltepress/theme-default'
 import { describe, expect, it } from 'vitest'
 import mdToSvelte from '../src/markdown/md-to-svelte'
 import { wrapPage } from '../src/utils/wrap-page'
@@ -144,6 +144,9 @@ describe('md to svelte', () => {
   })
 
   it('real world', async () => {
+    await initHighlighter({
+      twoslash: true,
+    })
     const mdContent = readFileSync(resolve(cwd(), '../docs-site/src/routes/guide/default-theme/twoslash/+page.md'), 'utf-8')
     const { code } = await mdToSvelte({
       mdContent,

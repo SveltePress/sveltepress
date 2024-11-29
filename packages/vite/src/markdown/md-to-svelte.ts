@@ -16,7 +16,7 @@ import reserveSvelteCommands from './reserve-svelte-commands.js'
 interface CompileOptions {
   mdContent: string
   highlighter?: Highlighter
-  remarkPlugins?: Array<Plugin | [Plugin, any]>
+  remarkPlugins?: Array<Plugin<any[], any> | [Plugin<any[], any>, any]>
   rehypePlugins?: Plugin[]
   filename: string
   footnoteLabel?: string
@@ -33,53 +33,37 @@ export default async function ({
     data: Record<string, any>
     code: string
   }> {
-  let processorBeforeRehype = unified()
-    .use(remarkParse as any)
-    .use(emoji)
-    .use(remarkDirective as any)
-    .use(disableLeafTextDirective)
-    .use(reserveSvelteCommands)
-    .use(remarkFrontmatter as any)
-    .use(remarkExtractFrontmatter, { yaml: parse })
-    .use(remarkGfm as any)
-
-  remarkPlugins?.forEach((plugin) => {
-    if (Array.isArray(plugin)) {
-      const [p, options] = plugin
-      processorBeforeRehype = processorBeforeRehype.use(p, options) as any
-    }
-    else {
-      processorBeforeRehype = processorBeforeRehype.use(plugin) as any
-    }
-  })
+  let processorAfterRemarkParse = applyRemarkPluginsBeforeRehype(remarkPlugins)
+  const highlightAsyncTasks: (PromiseSettledResult<any>[])[] = []
 
   if (highlighter) {
-    processorBeforeRehype = processorBeforeRehype.use(
+    processorAfterRemarkParse = processorAfterRemarkParse.use(
       () => {
         return async (tree: any) => {
-          const codeNodes: any[] = []
+          const asyncTasks: any[] = []
           visit(tree, (node, idx, parent) => {
             if (node.type === 'code') {
-              codeNodes.push({
-                node,
-                idx,
-                parent,
-              })
+              const asyncTask = async () => {
+                if (idx) {
+                  const highlightedCode = await highlighter?.(node.value, node.lang, node.meta)
+                  parent.children[idx] = {
+                    type: 'html',
+                    value: highlightedCode,
+                  }
+                }
+              }
+              asyncTasks.push(asyncTask())
             }
           })
-          await Promise.all(codeNodes.map(async ({ node, idx, parent }) => {
-            const highlightedCode = await highlighter?.(node.value, node.lang, node.meta)
-            parent.children[idx] = {
-              type: 'html',
-              value: highlightedCode,
-            }
-          }))
+          highlightAsyncTasks.push(await Promise.allSettled(asyncTasks))
         }
       },
     )
   }
 
-  let processorAfterRehype = processorBeforeRehype = processorBeforeRehype
+  await Promise.allSettled(highlightAsyncTasks)
+
+  let processorAfterRehype = processorAfterRemarkParse
     .use(remarkRehype as any, {
       allowDangerousHtml: true,
       footnoteLabel,
@@ -107,4 +91,34 @@ export default async function ({
     code,
     data,
   }
+}
+
+export function applyRemarkPluginsBeforeRehype(remarkPlugins?: Array<Plugin<any[], any> | [Plugin<any[], any>, any]>) {
+  let processorAfterRemarkParse = unified()
+    .use(remarkParse as any)
+
+  remarkPlugins?.forEach((plugin) => {
+    if (Array.isArray(plugin)) {
+      const [p, options] = plugin
+      processorAfterRemarkParse = processorAfterRemarkParse.use(p, options) as any
+    }
+    else {
+      processorAfterRemarkParse = processorAfterRemarkParse.use(plugin) as any
+    }
+  })
+
+  processorAfterRemarkParse
+    .use(emoji)
+    .use(remarkDirective as any)
+    .use(disableLeafTextDirective)
+    .use(reserveSvelteCommands)
+    .use(remarkFrontmatter as any)
+    .use(remarkExtractFrontmatter, { yaml: parse })
+    .use(remarkGfm as any)
+
+  return processorAfterRemarkParse
+}
+
+export function getBuiltinRemarkExtensions() {
+
 }

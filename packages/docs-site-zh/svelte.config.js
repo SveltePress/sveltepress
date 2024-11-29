@@ -21,6 +21,9 @@ const config = {
       handleMissingId: 'ignore',
     },
   },
+  compilerOptions: {
+    runes: true,
+  },
 }
 
 export default config

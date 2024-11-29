@@ -36,7 +36,7 @@ function rendererFloatingSvelte(options: RendererFloatingSvelteOptions = {}): Tw
               cursor,
               {
                 type: 'comment',
-                value: 'svp-snippet-start',
+                value: 'svp-floating-snippet-start',
                 data: {
                   svpFloatingSnippet: true,
                 },
@@ -44,7 +44,7 @@ function rendererFloatingSvelte(options: RendererFloatingSvelteOptions = {}): Tw
               popup,
               {
                 type: 'comment',
-                value: 'svp-snippet-end',
+                value: 'svp-floating-snippet-end',
                 data: {
                   svpFloatingSnippet: true,
                 },
@@ -68,7 +68,7 @@ function compose(parts: { token: Element | Text, popup: Element }): ElementConte
     },
     {
       type: 'comment',
-      value: 'svp-snippet-start',
+      value: 'svp-floating-snippet-start',
       data: {
         svpFloatingSnippet: true,
       },
@@ -76,7 +76,7 @@ function compose(parts: { token: Element | Text, popup: Element }): ElementConte
     parts.popup,
     {
       type: 'comment',
-      value: 'svp-snippet-end',
+      value: 'svp-floating-snippet-end',
       data: {
         svpFloatingSnippet: true,
       },
@@ -86,25 +86,28 @@ function compose(parts: { token: Element | Text, popup: Element }): ElementConte
 
 function renderMarkdown(this: ShikiTransformerContextCommon, md: string): ElementContent[] {
   const mdast = fromMarkdown(
-    md.replace(/\{@link ([^}]*)\}/g, '$1'), // replace jsdoc links
+    md.replace(/\{@link ([^}]*)\}/g, '$1').replace(/```ts(.*)```/gs, (_match, p1) => {
+      return `\`\`\`js${p1}\`\`\``
+    }),
     { mdastExtensions: [gfmFromMarkdown()] },
   )
-
   return (toHast(
     mdast,
     {
       handlers: {
         code: (state, node) => {
-          const lang = node.lang || ''
+          const lang = node.lang
           if (lang) {
-            return this.codeToHast(
+            const options = {
+              ...this.options,
+              lang,
+              transformers: [],
+            }
+            const res = this.codeToHast(
               node.value,
-              {
-                ...this.options,
-                transformers: [],
-                lang,
-              },
-            ).children[0] as Element
+              options,
+            ).children[0]
+            return res as Element
           }
           return defaultHandlers.code(state, node)
         },

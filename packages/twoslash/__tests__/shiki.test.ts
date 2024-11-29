@@ -25,9 +25,30 @@ describe('shiki', () => {
     }))
       .replace(/\{/g, '&#123;')
       .replace(/\}/g, '&#125;')
-      .replace(/<!--svp-snippet-start-->/g, '{#snippet floatingContent()}')
-      .replace(/<!--svp-snippet-end-->/g, '{/snippet}')
+      .replace(/<!--svp-floating-snippet-start-->/g, '{#snippet floatingContent()}')
+      .replace(/<!--svp-floating-snippet-end-->/g, '{/snippet}')
     expect(html).toMatchFileSnapshot('test-result.svelte')
+  })
+
+  it('twoslash ts', async () => {
+    const html = (await codeToHtml(`const count = 1`, {
+      lang: 'ts',
+      themes: {
+        dark: 'vitesse-dark',
+        light: 'github-light',
+      },
+      transformers: [
+        createTransformerFactory(await createTwoslasher())({
+          langs,
+          renderer: rendererFloatingSvelte(),
+        }),
+      ],
+    }))
+      .replace(/\{/g, '&#123;')
+      .replace(/\}/g, '&#125;')
+      .replace(/<!--svp-floating-snippet-start-->/g, '{#snippet floatingContent()}')
+      .replace(/<!--svp-floating-snippet-end-->/g, '{/snippet}')
+    expect(html).toMatchFileSnapshot('test-ts.svelte')
   })
 
   it('tokens', async () => {

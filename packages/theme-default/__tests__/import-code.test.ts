@@ -4,13 +4,15 @@ import { fileURLToPath } from 'node:url'
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
 import codeImport, { importRe } from '../src/markdown/code-import'
-import highlighter from '../src/markdown/highlighter'
+import highlighter, { initHighlighter } from '../src/markdown/highlighter'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const mdPath = resolve(__dirname, 'code-import.md')
 const mdContent = readFileSync(mdPath, 'utf-8')
 
 describe('code import', async () => {
+  await initHighlighter()
+
   it('existing and non-existing file', async () => {
     expect(mdContent).toMatchInlineSnapshot(`
       "## Title

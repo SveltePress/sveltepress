@@ -18,7 +18,7 @@ title: 高亮块
 
 ## 提示
 
-```md live
+```md live no-ast
 :::tip[提示标题]
 一些提示内容
 :::
@@ -30,7 +30,7 @@ title: 高亮块
 
 ## 信息
 
-```md live
+```md live no-ast
 :::info[信息标题]
 一些信息内容
 :::
@@ -42,7 +42,7 @@ title: 高亮块
 
 ## 注意
 
-```md live
+```md live no-ast
 :::note[注意标题]
 一些注意内容
 :::
@@ -54,7 +54,7 @@ title: 高亮块
 
 ## 警告
 
-```md live
+```md live no-ast
 :::warning[警告标题]
 一些警告内容
 :::
@@ -65,7 +65,7 @@ title: 高亮块
 ```
 ## 重要
 
-```md live
+```md live no-ast
 :::important[重要标题]
 一些重要的内容
 :::
@@ -76,7 +76,7 @@ title: 高亮块
 ```
 
 ## 当心
-```md live
+```md live no-ast
 :::caution[当心标题]
 一些当心内容
 :::

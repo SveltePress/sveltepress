@@ -4,7 +4,7 @@ title: 写作基础
 
 ## 标题
 
-```md live
+```md live no-ast
 # 一级标题
 ## 二级标题
 ### 三级标题
@@ -15,7 +15,7 @@ title: 写作基础
 
 ## 段落
 
-```md live
+```md live no-ast
 这是一个段落
 
 这是另一个段落
@@ -26,25 +26,25 @@ title: 写作基础
 
 ## 粗体
 
-```md live
+```md live no-ast
 **这是一些加粗文字**
 ```
 
 ## 删除线
 
-```md live
+```md live no-ast
 ~一个~ 或者 ~~两个~~ 波浪号
 ```
 
 ## 行内代码
 
-```md live
+```md live no-ast
 `const foo = 'bar'`
 ```
 
 ## 链接
 
-```md live
+```md live no-ast
 普通链接
 [Home page](/)
 [Google](https://google.com/)
@@ -57,7 +57,7 @@ contact@example.com
 
 ## 列表
 
-```md live
+```md live no-ast
 - 列表项1
 - 列表项2
 - 列表项3
@@ -69,7 +69,7 @@ contact@example.com
 
 ## 表格
 
-```md live
+```md live no-ast
 | 名称 | 颜色 | 数量 |
 | --- | --- | --- |
 | 苹果 | 红色 | 1 |
@@ -79,7 +79,7 @@ contact@example.com
 
 ## 脚注
 
-````md live
+````md live no-ast
 脚注1[^1]
 
 复杂的脚注[^bigfootnote]
@@ -101,14 +101,14 @@ contact@example.com
 
 ## 任务列表
 
-```md live
+```md live no-ast
 * [ ] 未完成任务
 * [x] 已完成任务
 ```
 
 ## Emojis
 
-```md live
+```md live no-ast
 我 :heart: :pizza:
 
 这是一只狗头 :dog:

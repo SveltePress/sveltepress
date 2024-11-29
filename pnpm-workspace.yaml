@@ -9,11 +9,13 @@ catalog:
   vitest: ^1.3.1
   typescript: ^5.5.0
   unocss: ^0.61.5
-  shiki: ^1.23.1
+  shiki: ^1.24.0
   eslint: ^9
   lru-cache: ^10.2.0
+  mdast-util-from-markdown: ^2.0.0
+  mdast-util-gfm: ^3.0.0
   '@types/node': ^20.11.20
-  '@shikijs/twoslash': ^1.23.1
+  '@shikijs/twoslash': ^1.24.0
   '@unocss/extractor-svelte': ^0.61.5
   '@sveltejs/package': ^2.3.7
   '@sveltejs/kit': ^2.8.5

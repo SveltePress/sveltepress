@@ -3,13 +3,14 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { mdToSvelte } from '@sveltepress/vite'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { uid } from 'uid'
 import { visit } from 'unist-util-visit'
-import { themeOptionsRef } from '../index.js'
+import { highlighter, themeOptionsRef } from '../index.js'
 import admonitions from './admonitions.js'
 import anchors from './anchors.js'
 import codeImport from './code-import.js'
-import highlighter from './highlighter.js'
 import installPkg from './install-pkg.js'
 import links from './links.js'
 
@@ -48,7 +49,7 @@ function createAsyncImportCode(componentPath: string) {
 `
 }
 
-const liveCode: Plugin<[], any> = function () {
+const liveCode: Plugin<any[], any> = function () {
   if (!existsSync(BASE_PATH)) {
     mkdirSync(BASE_PATH, {
       recursive: true,
@@ -58,9 +59,9 @@ const liveCode: Plugin<[], any> = function () {
   if (!existsSync(LIVE_CODE_MAP))
     writeFileSync(LIVE_CODE_MAP, '{}')
 
-  let hasScript = false
-  const liveCodePaths: LiveCodePathItem[] = []
   return async (tree, vFile) => {
+    let hasScript = false
+    const liveCodePaths: LiveCodePathItem[] = []
     const asyncNodeOperations: Promise<any>[] = []
     visit(
       tree,
@@ -71,16 +72,8 @@ const liveCode: Plugin<[], any> = function () {
         if (type === 'code'
           && SUPPORTED_LIVE_LANGS.includes(lang)
           && metaArray.includes('live')
-          && idx !== null && !data?.liveCodeResolved
+          && idx !== null
         ) {
-          const codeHighlightNode = {
-            ...node,
-            data: {
-              ...node.data,
-              liveCodeResolved: true, // mark this node as resolved
-            },
-          }
-
           const getLiveNodeFromLang = async (lang: SupportedLiveLang) => {
             if (lang === 'svelte') {
               const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
@@ -113,30 +106,49 @@ const liveCode: Plugin<[], any> = function () {
 </div>
 `,
               }
-              return svelteComponent
+              return [svelteComponent]
             }
             else if (lang === 'md') {
-              const renderedHTML = (await mdToSvelte({
-                footnoteLabel: themeOptionsRef?.value?.i18n?.footnoteLabel,
-                mdContent: node.value,
-                filename: vFile.path,
-                highlighter,
-                remarkPlugins: [
-                  admonitions,
-                  links,
-                  anchors,
-                  codeImport,
-                  installPkg,
-                ],
-              })).code
-              return {
-                type: 'html',
-                value: `<div class="svp-live-code--demo">${renderedHTML}</div>`,
-              }
+              const noAst = meta.split(' ').includes('no-ast')
+              return [
+                {
+                  type: 'html',
+                  value: '<div class="p-4">',
+                },
+                ...(noAst
+                  ? [
+                      {
+                        type: 'html',
+                        value: (await mdToSvelte({
+                          mdContent: node.value,
+                          filename: 'live-code.md',
+                          remarkPlugins: [
+                            admonitions,
+                            links,
+                            anchors,
+                            codeImport,
+                            installPkg,
+                          ],
+                          highlighter,
+                        })).code,
+                      },
+                    ]
+                  : fromMarkdown(`\n${node.value}\n`, { mdastExtensions: [gfmFromMarkdown()] }).children),
+                {
+                  type: 'html',
+                  value: '</div>',
+                },
+              ]
             }
           }
-
           const asyncAdd = async () => {
+            const codeHighlightNode = {
+              type: 'code',
+              lang,
+              value: node.value,
+              data,
+              meta,
+            }
             const liveCodeNode = {
               type: 'liveCode',
               data: {
@@ -146,7 +158,11 @@ const liveCode: Plugin<[], any> = function () {
                 },
               },
               children: [
-                await getLiveNodeFromLang(lang),
+                {
+                  type: 'html',
+                  value: '<div></div>',
+                },
+                ...await getLiveNodeFromLang(lang) as any[],
                 {
                   type: 'html',
                   value: `<Expansion codeType="${lang}" title="${themeOptionsRef.value?.i18n?.expansionTitle || 'Click fold/expand code'}" reverse={true}>`,
@@ -167,8 +183,7 @@ const liveCode: Plugin<[], any> = function () {
       },
     )
 
-    // wait for all promise add done
-    await Promise.all(asyncNodeOperations)
+    await Promise.allSettled(asyncNodeOperations)
 
     const liveCodeImports = liveCodePaths.map(({ componentName, path }) => `import ${componentName} from '${path}'`)
 

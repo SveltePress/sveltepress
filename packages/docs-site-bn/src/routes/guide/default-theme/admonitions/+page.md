@@ -18,7 +18,7 @@ Some admonition content
 
 ## টিপ
 
-```md live
+```md live no-ast
 :::tip[টিপ টাইটেল]
 টিপের বর্ণনা
 :::
@@ -30,7 +30,7 @@ Some admonition content
 
 ## ইনফো
 
-```md live
+```md live no-ast
 :::info[ইনফোর শিরোনাম]
 বিস্তারিত বর্ণনা
 :::
@@ -42,7 +42,7 @@ Some admonition content
 
 ## নোট
 
-```md live
+```md live no-ast
 :::note[নোট টাইটেল]
 নোটের বিস্তারিত
 :::
@@ -54,7 +54,7 @@ Some admonition content
 
 ## ওয়ার্নিং
 
-```md live
+```md live no-ast
 :::warning[ওয়ার্নিং শিরোনাম]
 সতর্কতার বর্ণনা
 :::
@@ -65,7 +65,7 @@ Some admonition content
 ```
 ## ইমপর্ট্যান্ট
 
-```md live
+```md live no-ast
 :::important[ইমপর্ট্যান্ট শিরোনাম]
 কিছু গুরুত্বপূর্ণ তথ্য
 :::
@@ -76,7 +76,7 @@ Some admonition content
 ```
 
 ## সতর্কতা
-```md live
+```md live no-ast
 :::caution[সতর্কতার শিরোনাম]
 সতর্কতার বিষয়বস্তু
 :::

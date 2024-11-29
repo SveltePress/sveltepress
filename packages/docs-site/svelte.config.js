@@ -2,8 +2,6 @@ import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import { SERVICE_WORKER_PATH } from '@sveltepress/theme-default'
 
-console.log('SERVICE_WORKER_PATH: ', SERVICE_WORKER_PATH)
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: ['.svelte', '.md'],

@@ -1,6 +1,6 @@
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
-import highlighter from '../src/markdown/highlighter'
+import highlighter, { initHighlighter } from '../src/markdown/highlighter'
 import liveCode from '../src/markdown/live-code'
 
 const md = `
@@ -25,6 +25,16 @@ const md = `
 </button>
 \`\`\`
 
+\`\`\`svelte live
+<script>
+  let count = $state(0)
+</script>
+
+<button onclick={() => count++}>
+  You've clicked {count} times
+</button>
+\`\`\`
+
 \`\`\`md live
 ### title
 
@@ -32,9 +42,30 @@ const md = `
 * list item2
 [Google](https://google.com)
 \`\`\`
+
+\`\`\`\`md live no-ast
+### title
+
+:::tip[Tip title]{icon=custom:icon}
+This is a tip
+:::
+
+\`\`\`svelte
+<script>
+  let count = $state(0)
+</script>
+
+<button onclick={() => count++}>
+  You've clicked {count} times
+</button>
+\`\`\`
+\`\`\`\`
 `
 
-describe('live code', () => {
+describe('live code', async () => {
+  await initHighlighter({
+    twoslash: true,
+  })
   it('simple parse', async () => {
     const { code } = await mdToSvelte({
       filename: 'demo.md',

@@ -124,6 +124,7 @@ Would auto add a external icon when link address starts with http or https
   <div class="text-[24px]">Some content</div>
 </Expansion>
 ```
+
 ### In svelte
 
 ```svelte live
@@ -155,7 +156,7 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 ### In markdown
 
 ```md live
-<div style="font-size: 28px;">
+<div class="text-8 p-4">
   <IconifyIcon collection="vscode-icons" name="file-type-svelte" />
 </div>
 ```
@@ -180,7 +181,6 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
   <div class="text-xl b-1 b-solid b-blue rounded py-10 px-4">
     Trigger
   </div>
-
   {#snippet floatingContent()}
     <div class="bg-white dark:bg-dark b-solid b-1 b-red rounded p-4">
       Floating content

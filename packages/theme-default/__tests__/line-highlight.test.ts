@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import highlighter from '../src/markdown/highlighter'
+import highlighter, { initHighlighter } from '../src/markdown/highlighter'
 
-describe('line highlight', () => {
+describe('line highlight', async () => {
+  await initHighlighter()
+
   it('single line', async () => {
     const source = `<script>
   let count = $state(0) // [svp! hl]

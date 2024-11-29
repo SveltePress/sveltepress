@@ -4,7 +4,7 @@ title: হাতেখড়ি
 
 ## হেডিং
 
-```md live
+```md live no-ast
 # হেডিং লেভেল ১
 ## হেডিং লেভেল ২
 ### হেডিং লেভেল ৩
@@ -15,7 +15,7 @@ title: হাতেখড়ি
 
 ## প্যারাগ্রাফ
 
-```md live
+```md live no-ast
 এটি একটি প্যারাগ্রাফ
 
 এটি আরেকটি প্যারাগ্রাফ
@@ -26,25 +26,25 @@ soft wrap হবে।
 
 ## বোল্ড
 
-```md live
+```md live no-ast
 **বোল্ড লেখা**
 ```
 
 ## স্ট্রাইক থ্রু
 
-```md live
+```md live no-ast
 ~এক~ অথবা ~~দুই~~ tildes `~`
 ```
 
 ## ইনলাইন কোড
 
-```md live
+```md live no-ast
 `const foo = 'bar'`
 ```
 
 ## লিংক
 
-```md live
+```md live no-ast
 সাধারণ লিংক
 [হোম পেজ](/)
 [গুগল](https://google.com/)
@@ -57,7 +57,7 @@ contact@example.com
 
 ## লিস্ট
 
-```md live
+```md live no-ast
 - আইটেম১
 - আইটেম২
 - আইটেম৩
@@ -69,7 +69,7 @@ contact@example.com
 
 ## টেবিল
 
-```md live
+```md live no-ast
 | নাম | রঙ | সংখ্যা |
 | --- | --- | --- |
 | আপেল | লাল | ১ |
@@ -79,7 +79,7 @@ contact@example.com
 
 ## ফুটনোট
 
-````md live
+````md live no-ast
 কিছু লেখা[^1]
 
 বড় ফুটনোট[^bigfootnote]
@@ -101,14 +101,14 @@ contact@example.com
 
 ## টাস্ক লিস্ট
 
-```md live
+```md live no-ast
 * [ ] করতে হবে
 * [x] করা হয়েছে
 ```
 
 ## ইমোজি
 
-```md live
+```md live no-ast
 আমি :pizza: :heart:
 
 এই লেখার মধ্যে থাকা ইমোজির শব্দগুলো পরিবর্তন হয়ে যাবে: :dog: :+1:

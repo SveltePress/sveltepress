@@ -4,7 +4,7 @@ title: Basic writing
 
 ## Heading
 
-```md live
+```md live no-ast
 # Heading level1
 ## Heading level2
 ### Heading level3
@@ -32,7 +32,7 @@ soft wrap
 
 ## Strike through
 
-```md live
+```md live no-ast
 ~one~ or ~~two~~ tildes.
 ```
 
@@ -69,7 +69,7 @@ contact@example.com
 
 ## Table
 
-```md live
+```md live no-ast
 | Name | Color | Count |
 | --- | --- | --- |
 | Apple | Red | 1 |
@@ -79,7 +79,7 @@ contact@example.com
 
 ## Footnote
 
-````md live
+````md live no-ast
 Something[^1]
 
 Big footnote[^bigfootnote]
@@ -95,13 +95,14 @@ Big footnote[^bigfootnote]
     ```
 ````
 
+<!--  -->
 :::info[Label customization]
 You can use [`theme.footnoteLabel`](/reference/vite-plugin/#footnoteLabel) to display your custom auto generated footnotes title
 :::
 
 ## Task list
 
-```md live
+```md live no-ast
 * [ ] to do
 * [x] done
 ```

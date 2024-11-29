@@ -165,7 +165,10 @@
     --at-apply: 'mx-[-5vw] sm:mx-none';
   }
   :global(.svp-live-code--container .svp-code-block-wrapper) {
-    --at-apply: 'mx-none';
+    --at-apply: 'mx-none mb-none rounded-b-0 b-b b-b-solid b-b-gray-2 dark:b-b-gray-8';
+  }
+  :global(.svp-live-code--container .c-expansion .svp-code-block-wrapper) {
+    --at-apply: 'rounded-0 b-none';
   }
   :global(.svp-code-block) {
     --at-apply: 'relative px-[18px] py-[12px] overflow-auto';

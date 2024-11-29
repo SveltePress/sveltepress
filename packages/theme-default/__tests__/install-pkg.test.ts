@@ -1,9 +1,11 @@
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
-import highlighter from '../src/markdown/highlighter'
+import highlighter, { initHighlighter } from '../src/markdown/highlighter'
 import installPkg, { pkgRe } from '../src/markdown/install-pkg'
 
-describe('install-pkg', () => {
+describe('install-pkg', async () => {
+  await initHighlighter()
+
   it('re', () => {
     expect(pkgRe.exec('@install-pkg(foo-bar)')).toMatchInlineSnapshot(`
       [

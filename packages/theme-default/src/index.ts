@@ -5,7 +5,7 @@ import { SERVICE_WORKER_PATH } from './constants.js'
 import admonitions from './markdown/admonitions.js'
 import anchors from './markdown/anchors.js'
 import codeImport from './markdown/code-import.js'
-import highlighter from './markdown/highlighter.js'
+import highlighter, { initHighlighter } from './markdown/highlighter.js'
 import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
@@ -29,9 +29,9 @@ const defaultTheme: ThemeDefault = (options) => {
     name: '@sveltepress/theme-default',
     globalLayout: '@sveltepress/theme-default/GlobalLayout.svelte',
     pageLayout: '@sveltepress/theme-default/PageLayout.svelte',
-    vitePlugins: (corePlugin) => {
+    vitePlugins: async (corePlugin) => {
       const plugins = [
-        ...createPreCorePlugins(options),
+        ...await createPreCorePlugins(options),
         corePlugin,
       ]
       if (options?.pwa) {
@@ -85,4 +85,5 @@ const defaultTheme: ThemeDefault = (options) => {
 export {
   defaultTheme,
   highlighter,
+  initHighlighter,
 }
