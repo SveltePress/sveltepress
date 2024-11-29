@@ -1,5 +1,19 @@
 # @sveltepress/theme-default
 
+## 5.0.0
+
+### Minor Changes
+
+- [`bbb3e4f`](https://github.com/SveltePress/sveltepress/commit/bbb3e4fa857f2d0c9e8b03828f1313b1dda66cb3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: refactor
+
+### Patch Changes
+
+- [`40c5f90`](https://github.com/SveltePress/sveltepress/commit/40c5f903e08779d5edaaabc3bc4fa101f12e320d) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: service worker
+
+- Updated dependencies [[`bbb3e4f`](https://github.com/SveltePress/sveltepress/commit/bbb3e4fa857f2d0c9e8b03828f1313b1dda66cb3)]:
+  - @sveltepress/twoslash@1.1.0
+  - @sveltepress/vite@1.1.0
+
 ## 4.0.1
 
 ### Patch Changes

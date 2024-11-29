@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 1.1.0
+
+### Minor Changes
+
+- [`bbb3e4f`](https://github.com/SveltePress/sveltepress/commit/bbb3e4fa857f2d0c9e8b03828f1313b1dda66cb3) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: refactor
+
 ## 1.0.0
 
 ### Major Changes
