@@ -506,6 +506,9 @@ importers:
       source-map-js:
         specifier: ^1.2.0
         version: 1.2.0
+      svelte2tsx:
+        specifier: ^0.7.28
+        version: 0.7.28(svelte@5.2.7)(typescript@5.5.4)
       twoslash:
         specifier: ^0.2.12
         version: 0.2.12(typescript@5.5.4)
@@ -528,9 +531,6 @@ importers:
       svelte:
         specifier: 'catalog:'
         version: 5.2.7
-      svelte2tsx:
-        specifier: ^0.7.28
-        version: 0.7.28(svelte@5.2.7)(typescript@5.5.4)
       typescript:
         specifier: 'catalog:'
         version: 5.5.4
