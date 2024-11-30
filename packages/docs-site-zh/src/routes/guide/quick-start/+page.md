@@ -6,7 +6,7 @@ title: 快速开始
 
 根据您所使用的包管理工具选择运行以下命令：
 
-@install-pkg(@sveltepress,create)
+@install-pkg(@sveltepress@latest,create)
 
 :::tip[pnpm 优先]
 如果可能的话请尽可能使用 pnpm. Pnpm 更加尊重您项目所使用的依赖版本

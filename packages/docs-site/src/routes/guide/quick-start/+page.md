@@ -11,7 +11,7 @@ Depend on what package manager you are using
 Use pnpm as much as possible. It respects package version more than npm.
 :::
 
-@install-pkg(@sveltepress,create)
+@install-pkg(@sveltepress@latest,create)
 
 ## Adding to an existing sveltekit project
 
