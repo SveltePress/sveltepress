@@ -15,7 +15,7 @@ description: some description
 
 ## Svelte এ Frontmatter
 
-[Svelte context module](https://svelte.dev/docs#component-format-script-context-module) এ`frontmatter` নামক একটি const variable এক্সপোর্ট করুন
+[Svelte script module](https://svelte.dev/docs/svelte/svelte-files#script-module) এ`frontmatter` নামক একটি const variable এক্সপোর্ট করুন
 
 ```svelte title="/src/routes/foo/+page.svelte"
 <script module>

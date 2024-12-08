@@ -34,9 +34,11 @@ function hello(msg) {
   something
 {/snippet}
 
-<button onclick="{() => count++}">
-  You've clicked {count} times
-</button>
+<div>
+  <button onclick={() => count++}>
+    You've clicked {count} times
+  </button>
+</div>
 
 {@render someSnippet()}
 
@@ -73,9 +75,11 @@ describe('md to svelte', () => {
       {#snippet someSnippet()}
       something
       {/snippet}
-      <button onclick="{() => count++}">
-        You've clicked {count} times
-      </button>
+      <div>
+        <button onclick={() => count++}>
+          You've clicked {count} times
+        </button>
+      </div>
       {@render someSnippet()}
       <style>
         .foo {
@@ -128,9 +132,11 @@ describe('md to svelte', () => {
       {#snippet someSnippet()}
       something
       {/snippet}
-      <button onclick="{() => count++}">
-        You've clicked {count} times
-      </button>
+      <div>
+        <button onclick={() => count++}>
+          You've clicked {count} times
+        </button>
+      </div>
       {@render someSnippet()}
       </PageLayout>
       <style>

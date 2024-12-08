@@ -15,7 +15,7 @@ description: some description
 
 ## Frontmatter in svelte
 
-Export a const variable name as `frontmatter` in [Svelte context module](https://svelte.dev/docs#component-format-script-context-module) would do
+Export a const variable name as `frontmatter` in [Svelte script module](https://svelte.dev/docs/svelte/svelte-files#script-module) would do
 
 ```svelte title="/src/routes/foo/+page.svelte"
 <script module>

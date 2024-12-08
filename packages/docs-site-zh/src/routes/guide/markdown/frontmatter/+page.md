@@ -15,7 +15,7 @@ description: 页面描述
 
 ## Svelte 中的 frontmatter
 
-在 `+page.svelte` 的[Svelte context module](https://svelte.dev/docs#component-format-script-context-module)中导出一个名为 `frontmatter` 的变量即可
+在 `+page.svelte` 的 [Svelte script module](https://svelte.dev/docs/svelte/svelte-files#script-module) 中导出一个名为 `frontmatter` 的变量即可
 
 ```svelte title="/src/routes/foo/+page.svelte"
 <script module>

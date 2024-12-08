@@ -63,13 +63,11 @@ const highlighter: Highlighter = async (code, lang, meta) => {
   let noErrorsFirstLine: string | undefined
   if (lines[0] === '// @noErrors')
     noErrorsFirstLine = lines.shift()
-  if (lang !== 'md') {
-    code = lines.map((line, i) => {
-      const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length)
-      commandDoms.push(...commandDomsInOneLine)
-      return newLine
-    }).join('\n')
-  }
+  code = lines.map((line, i) => {
+    const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length)
+    commandDoms.push(...commandDomsInOneLine)
+    return newLine
+  }).join('\n')
   let title: string | undefined
   if (titleMeta)
     title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')

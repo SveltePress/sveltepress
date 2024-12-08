@@ -118,7 +118,3 @@ export function applyRemarkPluginsBeforeRehype(remarkPlugins?: Array<Plugin<any[
 
   return processorAfterRemarkParse
 }
-
-export function getBuiltinRemarkExtensions() {
-
-}

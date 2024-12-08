@@ -7,7 +7,7 @@ function wrapFrontmatter(obj: Record<string, any>) {
   export const frontmatter: any = ${JSON.stringify(obj)}
 </script>
 <script lang="ts">
-  export let propName: string
+  let { propName } = $props()
 
   const someVariable = 'some value'
 </script>

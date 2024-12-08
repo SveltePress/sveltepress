@@ -124,12 +124,22 @@ Toggle
 
 :::note[Syntax Restrictions]{icon=solar:chat-square-code-outline}
 Always use quotes in markdown files.
-```svelte
+```md
 <script>
   let count = $state(0)
 </script>
 <button onclick={() => count++}></button> // [svp! --]
-<button onclick={() => count++}></button> // [svp! ++]
+<button onclick="{() => count++}"></button> // [svp! ++]
+```
+Or you can wrap it with a `div`
+```md
+<script>
+  let count = $state(0)
+</script>
+<button onclick={() => count++}></button> // [svp! --]
+<div> // [svp! ++]
+  <button onclick={() => count++}></button> // [svp! ++]
+</div> // [svp! ++]
 ```
 :::
 
@@ -141,9 +151,11 @@ Always use quotes in markdown files.
 
 > A counter
 
-<button onclick="{() => count++}" style="margin-bottom: 12px;">
-  You've clicked {count} times
-</button>
+<div>
+  <button onclick={() => count++} style="margin-bottom: 12px;">
+    You've clicked {count} times
+  </button>
+</div>
 
 </TabPanel>
 
@@ -155,9 +167,11 @@ Always use quotes in markdown files.
   let count = $state(0)
 </script>
 
-<button onclick="{() => count++}">
-  You've clicked {count} times
-</button>
+<div>
+  <button onclick={() => count++} style="margin-bottom: 12px;">
+    You've clicked {count} times
+  </button>
+</div>
 ```
 
 </TabPanel>
