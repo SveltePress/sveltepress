@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 5.0.4
+
+### Patch Changes
+
+- [`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: command in md
+
+- [`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58) Thanks [@Blackman99](https://github.com/Blackman99)! - docs: update links"
+
+- Updated dependencies [[`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58), [`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58), [`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58)]:
+  - @sveltepress/vite@1.1.1
+  - @sveltepress/twoslash@1.1.3
+
 ## 5.0.0
 
 ### Minor Changes

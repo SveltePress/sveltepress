@@ -1,5 +1,13 @@
 # @sveltepress/twoslash
 
+## 1.1.3
+
+### Patch Changes
+
+- [`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: command in md
+
+- [`eb98ca7`](https://github.com/SveltePress/sveltepress/commit/eb98ca7d5da326f1487d4354729fd21e5cf12b58) Thanks [@Blackman99](https://github.com/Blackman99)! - docs: update links"
+
 ## 1.1.0
 
 ### Minor Changes
