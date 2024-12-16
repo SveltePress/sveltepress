@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 5.0.5
+
+### Patch Changes
+
+- [`7108bb7`](https://github.com/SveltePress/sveltepress/commit/7108bb79384823a95b93139ca1d0485f6c9d71eb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: publish script
+
+- Updated dependencies [[`7108bb7`](https://github.com/SveltePress/sveltepress/commit/7108bb79384823a95b93139ca1d0485f6c9d71eb)]:
+  - @sveltepress/twoslash@1.1.5
+  - @sveltepress/vite@1.1.2
+
 ## 5.0.4
 
 ### Patch Changes

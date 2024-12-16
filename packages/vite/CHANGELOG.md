@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 1.1.2
+
+### Patch Changes
+
+- [`7108bb7`](https://github.com/SveltePress/sveltepress/commit/7108bb79384823a95b93139ca1d0485f6c9d71eb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: publish script
+
 ## 1.1.1
 
 ### Patch Changes
