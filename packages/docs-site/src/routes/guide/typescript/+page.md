@@ -1,8 +1,8 @@
 ---
-title: Working with Typescript
+title: Working with TypeScript
 ---
 
-See
+See:
 
-* [Vite plugin typescript support](/reference/vite-plugin/#Working-with-typescript)
-* [Default theme typescript support](/reference/default-theme/#Working-with-typescript)
+* [Vite plugin TypeScript support](/reference/vite-plugin/#Working-with-typescript)
+* [Default theme TypeScript support](/reference/default-theme/#Working-with-typescript)

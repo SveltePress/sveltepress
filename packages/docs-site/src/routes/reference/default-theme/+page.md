@@ -6,7 +6,7 @@ title: Default theme
 
 @install-pkg(@sveltepress/theme-default)
 
-## Add in your vite config
+## Add in your Vite config
 
 ```js title="vite.config.(js|ts)"
 import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
@@ -25,7 +25,7 @@ const config = defineConfig({
 export default config
 ```
 
-## Types overview
+## Types Overview
 
 @code(/../theme-default/types.d.ts)
 
@@ -34,29 +34,31 @@ export default config
 ### `navbar`
 
 * `title`
-  The label text of the navbar item
+  The label text of the item in the navigation bar.
 * `to`
   The link address
 * `icon`
-  An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar
+  An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar.
 * `external`
   Determine whether the link is external or not.
   Would render an external icon if set to `true`
 * `items`
-  Children links. If this prop is provided would render a dropdown instead of a single nav link
+  Children links.
+  If this prop is provided it would render a dropdown instead of a single link.
 
 ### `discord`
-The discord chat channel link
-Would show a discord icon on the navbar when provided
+
+The web invite address to the project's Discord server.
+Would show a discord icon on the navigation bar when provided.
 
 ### `github`
-The github repo link
-Would show a github icon on the navbar when provided
+
+The web address of the project's GitHub repository.
+Would show a GitHub icon on the navigation bar when provided
 
 ### `logo`
 
-The logo image
-Would show on the navbar
+The address of the site's logo, to be shown on the navigation bar.
 
 ### `sidebar`
 
@@ -87,10 +89,10 @@ You can get all the supported languages and themes in [Shiki Repo](https://githu
 
 ### `editLink`
 
-The link used for bottom edit this page on github button
+The link used for bottom edit this page on GitHub button
 For example this site use `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
 
-`:route` represent the route path, for example: /foo/bar/+page.md
+`:route` represent the route path, for example: `/foo/bar/+page.md`
 
 ### `ga`
 
@@ -101,11 +103,11 @@ Would add gtag script in site head if provided.
 
 ### `docsearch`
 
-* appId
-* apiKey
-* indexName
+* `appId`
+* `apiKey`
+* `indexName`
 
-All these values are provided by the docsearch.
+All these values are provided by Algolia.
 Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 
 ### `pwa`
@@ -114,7 +116,7 @@ See [PWA](/guide/default-theme/pwa/) for details.
 
 ### `themeColor`
 
-The color of window bar when opened as a local pwa application.
+The color of window bar when opened as a local PWA application.
 
 * `light` - the color that applied on light theme
 * `dark` - the color that applied on dark theme
@@ -138,7 +140,7 @@ The fixed text contents that can be replaced by your config.
 * `previousPage` - The text for "Previous"
 * `nextPage` - The text for "Next"
 * `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
-* `pwa` - The pwa prompt relative text contents. All of the following fields correspond to the same text in pwa prompt
+* `pwa` - The PWA prompt relative text contents. All of the following fields correspond to the same text in PWA prompt
   * `tip`
   * `reload`
   * `close`
@@ -225,9 +227,9 @@ Here's an example for showing the theme options of this site:
 </style>
 ```
 
-## Working with typescript
+## Working with TypeScript
 
-You need to include `@sveltepress/theme-default/types` in your src/app.d.ts to get theme options and virtual modules type tips
+You need to include `@sveltepress/theme-default/types` in your `src/app.d.ts` to get theme options and virtual modules type tips
 
 ```ts title="/src/app.d.ts"
 /// <reference types="@sveltepress/theme-default/types" />

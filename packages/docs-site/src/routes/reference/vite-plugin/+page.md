@@ -10,17 +10,17 @@ title: Vite plugin
 
 ### `siteConfig`
 
-* `title`: The site title. Would be `'Untitled site'` if not provided.
-* `description`: The site description. Would be `'Build by sveltepress'` if not provided.
+* `title`: The site's title. Would be `'Untitled site'` if not provided.
+* `description`: The site's description. Would be `'Build by sveltepress'` if not provided.
 
 ### `addInspect`
 
 If set to `true`, will add [Vite plugin inspect](https://github.com/antfu/vite-plugin-inspect).
-It is useful to inspect or observe the vite pipeline.
+It is useful to inspect or observe the Vite pipeline.
 
 ### `theme`
 
-See [ResolvedTheme](#ResolvedTheme) below
+See [`ResolvedTheme`](#ResolvedTheme) below
 
 ### `remarkPlugins`
 
@@ -38,22 +38,22 @@ Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more detai
 
 ### `name`
 
-The name of theme
+The name of the theme.
 
 ### `globalLayout`
 
-The absolute path of global layout. **Should be a svelte file**
+The absolute path of the global layout. **Should be a svelte file**
 For example: `path.resolve(process.cwd(), 'ThemeGlobalLayout.svelte')`
 
 ### `pageLayout`
 
-The absolute path of page layout. **Should be a svelte file**
+The absolute path of the page layout. **Should be a svelte file**
 For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
 
 ### `vitePlugins`
 
-* If passed a plugin or a group of plugins. These plugins would applied in front of `sveltepress`
-* If passed a function. It will accept the `sveltepress` plugin and need to return a group of plugins.
+* If passed a plugin or a group of plugins, these plugins would applied in before `sveltepress`
+* If passed a function, it will accept the `sveltepress` plugin and need to return a group of plugins.
   You can customize the `sveltepress` plugin order in your returned plugin chain.
 
 :::info[About theme vite plugins]{icon=vscode-icons:file-type-vite}
@@ -64,17 +64,17 @@ For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
 ### `highlighter`
 
 Used for code highlighting.
-For example, the default theme use [shiki](https://github.com/shikijs/shiki).
+For example, the default theme use [Shiki](https://github.com/shikijs/shiki).
 You can check the [Default theme highlighter source code](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) for detail usage.
 
 ### `remarkPlugins`
 
-The remark plugins used for markdown parse.
+The remark plugins used for Markdown parsing.
 Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details.
 
 ### `rehypePlugins`
 
-The rehype plugins used for html generator.
+The rehype plugins used for HTML generation.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
 
 :::important[Plugins order]{icon=solar:reorder-outline}
@@ -105,7 +105,7 @@ Customize the footnotes title, default is: `"Footnotes"`
 
 ### `virtual:sveltepress/site`
 
-This module hold the siteConfig. Here's an example
+This module holds the `siteConfig`. For example:
 
 ```svelte live
 <script>
@@ -118,11 +118,11 @@ This module hold the siteConfig. Here's an example
 
 ## Low level API
 
-The @sveltepress/vite package has a low level api function `mdToSvelte`
+The `@sveltepress/vite` package has a low level function `mdToSvelte`.
 
-It is used for all the major markdown render in Sveltepress.
+It is used for all the major Markdown rendering in Sveltepress.
 
-It can be used for a more basic markdown render engine involved with Svelte.
+It can be used for a more basic Markdown render engine involved with Svelte.
 
 Here's usage example:
 
@@ -158,9 +158,9 @@ code
 data
 ```
 
-## Working with typescript
+## Working with TypeScript
 
-You need to include `@sveltepress/vite/types` in your src/app.d.ts to get plugin options and virtual modules type tips
+You need to include `@sveltepress/vite/types` in your `src/app.d.ts` to get plugin options and virtual module's type tips
 
 ```ts title="/src/app.d.ts"
 /// <reference types="@sveltepress/vite/types" />

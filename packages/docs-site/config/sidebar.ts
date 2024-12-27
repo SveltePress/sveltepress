@@ -5,11 +5,11 @@ export default {
       collapsible: true,
       items: [
         {
-          title: 'What is sveltepress',
+          title: 'What is Sveltepress',
           to: '/guide/introduction/',
         },
         {
-          title: 'Quick start',
+          title: 'Quick Start',
           to: '/guide/quick-start/',
         },
         {
@@ -17,7 +17,7 @@ export default {
           to: '/guide/themes/',
         },
         {
-          title: 'Working with Typescript',
+          title: 'Working with TypeScript',
           to: '/guide/typescript/',
         },
       ],
@@ -26,7 +26,7 @@ export default {
       title: 'Markdown features',
       items: [
         {
-          title: 'Basic writing',
+          title: 'Basic Writing',
           to: '/guide/markdown/basic-writing/',
         },
         {
@@ -34,7 +34,7 @@ export default {
           to: '/guide/markdown/frontmatter/',
         },
         {
-          title: 'Svelte in markdown',
+          title: 'Svelte in Markdown',
           to: '/guide/markdown/svelte-in-markdown/',
         },
       ],
