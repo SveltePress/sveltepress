@@ -105,7 +105,16 @@ export async function initHighlighter(highlighterConfig: DefaultThemeOptions['hi
   })
   if (highlighterConfig.twoslash) {
     shikiHighlighterInstance.twoslashTransformer = createTransformerFactory(
-      await createTwoslasher(),
+      await createTwoslasher(highlighterConfig.twoslash === true
+        ? {
+            compilerOptions: {
+              module: 199,
+              moduleResolution: 99,
+              jsx: 1,
+              types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types', '@sveltepress/theme-default/components', '@sveltejs/kit'],
+            },
+          }
+        : highlighterConfig.twoslash),
     )(
       {
         langs: ['ts', 'tsx', 'svelte'],

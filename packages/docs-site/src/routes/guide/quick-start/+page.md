@@ -23,10 +23,7 @@ Use pnpm as much as possible. It respects package version more than npm.
 
 ```ts title="vite.config.(js|ts)"
 import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
-
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
-
-// @noErrors
 import { defineConfig } from 'vite'
 
 const config = defineConfig({

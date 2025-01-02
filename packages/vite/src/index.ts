@@ -7,7 +7,7 @@ import SveltepressVitePlugin from './plugin.js'
 
 export * as log from './utils/log.js'
 
-const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = async ({
+const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = async ({
   theme,
   addInspect,
   siteConfig,

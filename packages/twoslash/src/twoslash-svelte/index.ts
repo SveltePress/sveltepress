@@ -22,8 +22,20 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
     ...createTwoslashSvelteOptions,
   })
   function twoslasher(code: string, extension?: string, options: TwoslashSvelteExecuteOptions = {}) {
-    if (extension !== 'svelte')
-      return base(code, extension, options)
+    const baseConfig = {
+      compilerOptions: {
+        jsx: 1,
+        types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types', '@sveltepress/theme-default/components', '@sveltejs/kit'],
+        moduleResolution: 99,
+        module: 199,
+      },
+    }
+    if (extension !== 'svelte') {
+      return base(code, extension, {
+        ...baseConfig,
+        ...options,
+      })
+    }
     const codeLines = code.split('\n')
     const tsxDoc = svelte2tsx(code, {
       filename: 'source.svelte',
@@ -31,12 +43,7 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
 
     const consumer = new SourceMapConsumer(tsxDoc.map as any)
     const twoslashReturn = base([tsxDoc.code.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
-      compilerOptions: {
-        jsx: 1,
-        types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types', '@sveltepress/theme-default/components'],
-        moduleResolution: 99,
-        module: 199,
-      },
+      ...baseConfig,
       shouldGetHoverInfo(identifier) {
         return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component'].some(id => identifier.startsWith(id))
       },

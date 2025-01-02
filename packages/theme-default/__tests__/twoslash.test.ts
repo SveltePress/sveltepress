@@ -12,10 +12,18 @@ describe('twoslash', async () => {
   })
   it('renderer floating svelte', async () => {
     const code = `
-const num = 1
+import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
+import { sveltepress } from '@sveltepress/vite' // [svp! ++]
+import { defineConfig } from 'vite'
 
-const foo = 'bar'
+const config = defineConfig({
+  plugins: [
+    sveltepress({}), // [svp! ++]
+    sveltekit(), // [svp! --]
+  ],
+})
 
+export default config
 `
 
     expect(await highlighter(code, 'ts')).toMatchSnapshot()

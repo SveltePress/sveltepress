@@ -103,24 +103,102 @@ import onMount",
   },
   {
     "character": 4,
-    "docs": undefined,
+    "docs": "The \`console\` module provides a simple debugging console that is similar to the
+JavaScript console mechanism provided by web browsers.
+
+The module exports two specific components:
+
+* A \`Console\` class with methods such as \`console.log()\`, \`console.error()\` and \`console.warn()\` that can be used to write to any Node.js stream.
+* A global \`console\` instance configured to write to [\`process.stdout\`](https://nodejs.org/docs/latest-v20.x/api/process.html#processstdout) and
+[\`process.stderr\`](https://nodejs.org/docs/latest-v20.x/api/process.html#processstderr). The global \`console\` can be used without calling \`require('console')\`.
+
+_**Warning**_: The global console object's methods are neither consistently
+synchronous like the browser APIs they resemble, nor are they consistently
+asynchronous like all other Node.js streams. See the [\`note on process I/O\`](https://nodejs.org/docs/latest-v20.x/api/process.html#a-note-on-process-io) for
+more information.
+
+Example using the global \`console\`:
+
+\`\`\`js
+console.log('hello world');
+// Prints: hello world, to stdout
+console.log('hello %s', 'world');
+// Prints: hello world, to stdout
+console.error(new Error('Whoops, something bad happened'));
+// Prints error message and stack trace to stderr:
+//   Error: Whoops, something bad happened
+//     at [eval]:5:15
+//     at Script.runInThisContext (node:vm:132:18)
+//     at Object.runInThisContext (node:vm:309:38)
+//     at node:internal/process/execution:77:19
+//     at [eval]-wrapper:6:22
+//     at evalScript (node:internal/process/execution:76:60)
+//     at node:internal/main/eval_string:23:3
+
+const name = 'Will Robinson';
+console.warn(\`Danger \${name}! Danger!\`);
+// Prints: Danger Will Robinson! Danger!, to stderr
+\`\`\`
+
+Example using the \`Console\` class:
+
+\`\`\`js
+const out = getStreamSomehow();
+const err = getStreamSomehow();
+const myConsole = new console.Console(out, err);
+
+myConsole.log('hello world');
+// Prints: hello world, to out
+myConsole.log('hello %s', 'world');
+// Prints: hello world, to out
+myConsole.error(new Error('Whoops, something bad happened'));
+// Prints: [Error: Whoops, something bad happened], to err
+
+const name = 'Will Robinson';
+myConsole.warn(\`Danger \${name}! Danger!\`);
+// Prints: Danger Will Robinson! Danger!, to err
+\`\`\`",
     "length": 7,
     "line": 8,
     "start": 132,
-    "tags": undefined,
+    "tags": [
+      [
+        "see",
+        "[source](https://github.com/nodejs/node/blob/v20.11.1/lib/console.js)",
+      ],
+    ],
     "target": "console",
-    "text": "var console: Console",
+    "text": "namespace console
+var console: Console",
     "type": "hover",
   },
   {
     "character": 12,
-    "docs": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/console/log_static)",
+    "docs": "Prints to \`stdout\` with newline. Multiple arguments can be passed, with the
+first used as the primary message and all additional used as substitution
+values similar to [\`printf(3)\`](http://man7.org/linux/man-pages/man3/printf.3.html)
+(the arguments are all passed to [\`util.format()\`](https://nodejs.org/docs/latest-v20.x/api/util.html#utilformatformat-args)).
+
+\`\`\`js
+const count = 5;
+console.log('count: %d', count);
+// Prints: count: 5, to stdout
+console.log('count:', count);
+// Prints: count: 5, to stdout
+\`\`\`
+
+See [\`util.format()\`](https://nodejs.org/docs/latest-v20.x/api/util.html#utilformatformat-args) for more information.",
     "length": 3,
     "line": 8,
     "start": 140,
-    "tags": undefined,
+    "tags": [
+      [
+        "since",
+        "v0.1.100",
+      ],
+    ],
     "target": "log",
-    "text": "(method) Console.log(...data: any[]): void",
+    "text": "(method) Console.log(message?: any, ...optionalParams: any[]): void (+1 overload)",
     "type": "hover",
   },
   {

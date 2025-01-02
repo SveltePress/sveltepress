@@ -1,9 +1,9 @@
-// @noErrors
-
 /// <reference types="vite/client" />
 /// <reference types="@sveltepress/vite/types" />
+/// <reference types="@sveltejs/kit/vite" />
 
 declare module 'virtual:sveltepress/theme-default' {
+  import type { CreateTwoslashSvelteOptions } from '@sveltepress/twoslash'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
   import type { BundledLanguage } from 'shiki/langs'
@@ -50,7 +50,7 @@ declare module 'virtual:sveltepress/theme-default' {
       languages?: BundledLanguage[]
       themeLight?: string
       themeDark?: string
-      twoslash?: boolean
+      twoslash?: boolean | CreateTwoslashSvelteOptions
     }
     i18n?: {
       onThisPage?: string

@@ -2,4 +2,5 @@ export { default as rendererFloatingSvelte } from './renderer-floating-svelte/in
 
 export { createTwoslasher } from './twoslash-svelte/index.js'
 
+export type { CreateTwoslashSvelteOptions } from './twoslash-svelte/index.js'
 export type { TwoslashInstance } from 'twoslash'

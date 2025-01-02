@@ -1,9 +1,9 @@
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
-import navbar from './config/navbar'
-import pwa from './config/pwa'
-import sidebar from './config/sidebar'
+import navbar from './config/navbar.ts'
+import pwa from './config/pwa.ts'
+import sidebar from './config/sidebar.ts'
 
 const config = defineConfig({
   plugins: [

@@ -1,6 +1,7 @@
 /// <reference types="@sveltepress/theme-default/types" />
 /// <reference types="@sveltepress/vite/types" />
 /// <reference types="vite-plugin-pwa/client" />
+/// <reference types="@sveltejs/kit" />
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
