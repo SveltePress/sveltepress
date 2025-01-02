@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 5.0.6
+
+### Patch Changes
+
+- [`39d725f`](https://github.com/SveltePress/sveltepress/commit/39d725ff281a9b6ea4c7a61ec9254309cba4eb7f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: vite package type
+
+- Updated dependencies [[`39d725f`](https://github.com/SveltePress/sveltepress/commit/39d725ff281a9b6ea4c7a61ec9254309cba4eb7f)]:
+  - @sveltepress/twoslash@1.1.6
+  - @sveltepress/vite@1.1.3
+
 ## 5.0.5
 
 ### Patch Changes
