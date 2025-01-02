@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          cache: pnpm
       - name: Install Dependencies
         run: pnpm i
       - name: Lint check

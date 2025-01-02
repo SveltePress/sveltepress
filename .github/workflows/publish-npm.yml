@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'pnpm'
+          cache: pnpm
       - name: Install packages
         run: pnpm i
       - name: Create release and publish to npm
