@@ -21,7 +21,7 @@ declare module 'virtual:sveltepress/theme-default' {
   }
 
   export interface DefaultThemeOptions {
-    navbar: Array<LinkItem>
+    navbar?: Array<LinkItem>
     github?: string
     logo?: string
     sidebar?: Record<string, LinkItem[]>
