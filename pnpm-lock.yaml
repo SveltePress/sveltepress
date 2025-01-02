@@ -516,9 +516,6 @@ importers:
         specifier: ^0.2.12
         version: 0.2.12
     devDependencies:
-      '@sveltejs/kit':
-        specifier: 'catalog:'
-        version: 2.8.5(@sveltejs/vite-plugin-svelte@4.0.1(svelte@5.2.7)(vite@5.3.4(@types/node@20.14.13)(terser@5.31.3)))(svelte@5.2.7)(vite@5.3.4(@types/node@20.14.13)(terser@5.31.3))
       '@sveltejs/package':
         specifier: 'catalog:'
         version: 2.3.7(svelte@5.2.7)(typescript@5.5.4)
