@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.1.8
+
+### Patch Changes
+
+- [`39d725f`](https://github.com/SveltePress/sveltepress/commit/39d725ff281a9b6ea4c7a61ec9254309cba4eb7f) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: vite package type
+
 ## 1.1.7
 
 ### Patch Changes
