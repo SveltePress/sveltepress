@@ -9,6 +9,9 @@ const anchors: Plugin<any[], any> = () => {
         parent.children.splice(idx, 1, {
           type: 'html',
           value: `<Link to="${node.url}" label="${node.children[0].value}" />`,
+        }, {
+          type: 'SvpHeading',
+          value: node.children[0].value,
         })
       }
     })

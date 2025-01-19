@@ -46,6 +46,10 @@ exports[`links > simple 1`] = `
           "value": "<Link to=\\"https://www.google.com/\\" label=\\"foo\\" />"
         },
         {
+          "type": "SvpHeading",
+          "value": "foo"
+        },
+        {
           "type": "text",
           "value": "\\n",
           "position": {
@@ -64,6 +68,10 @@ exports[`links > simple 1`] = `
         {
           "type": "html",
           "value": "<Link to=\\"/foo/bar\\" label=\\"bar\\" />"
+        },
+        {
+          "type": "SvpHeading",
+          "value": "bar"
         }
       ],
       "position": {
