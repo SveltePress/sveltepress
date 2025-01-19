@@ -64,9 +64,24 @@ export default async function ({
   await Promise.allSettled(highlightAsyncTasks)
 
   let processorAfterRehype = processorAfterRemarkParse
-    .use(remarkRehype as any, {
+    .use(remarkRehype, {
       allowDangerousHtml: true,
       footnoteLabel,
+      handlers: {
+        inlineCode(state, node) {
+          return {
+            type: 'element',
+            tagName: 'code',
+            properties: {},
+            children: [
+              {
+                type: 'text',
+                value: `{\`${node.value}\`}`,
+              },
+            ],
+          }
+        },
+      },
     })
 
   rehypePlugins?.forEach((plugin) => {

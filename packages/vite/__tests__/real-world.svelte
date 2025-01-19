@@ -6,7 +6,7 @@
 </ul>
 <p>@install-pkg(@sveltepress/twoslash)</p>
 <ul>
-<li>Config <code>highlighter.twoslash</code> to <code>true</code></li>
+<li>Config <code>{`highlighter.twoslash`}</code> to <code>{`true`}</code></li>
 </ul>
 
 <div class="svp-code-block-wrapper"><div class="svp-code-block--title">vite.config.(js|ts)</div>
@@ -117,7 +117,7 @@ The function receives a</p>
 </div>
 <h2>Cut codes</h2>
 <h3>Cut before</h3>
-<p>use <code>// ---cut---</code> or <code>// ---cut-before---</code> can cut all codes before this line</p>
+<p>use <code>{`// ---cut---`}</code> or <code>{`// ---cut-before---`}</code> can cut all codes before this line</p>
 
 <div class="svp-code-block-wrapper">
   <div class="svp-code-block">
@@ -136,7 +136,7 @@ The function receives a</p>
   </div>
 </div>
 <h3>Cut after</h3>
-<p>use <code>// ---cut-after---</code> can cut all codes after this line</p>
+<p>use <code>{`// ---cut-after---`}</code> can cut all codes after this line</p>
 
 <div class="svp-code-block-wrapper">
   <div class="svp-code-block">
@@ -157,7 +157,7 @@ The function receives a</p>
   </div>
 </div>
 <h3>Cut start/end</h3>
-<p>use <code>// ---cut-start---</code> and <code>// ---cut-end---</code> to cut contents between them</p>
+<p>use <code>{`// ---cut-start---`}</code> and <code>{`// ---cut-end---`}</code> to cut contents between them</p>
 
 <div class="svp-code-block-wrapper">
   <div class="svp-code-block">

@@ -23,7 +23,7 @@ This feature integrate [Shiki](https://github.com/shikijs/shiki)
 ```
 ````
 
-You can customize the supported languages and theme in light/dark mode. More info reference to [Default theme reference - highlight option](/reference/default-theme/#highlight)
+You can customize the supported languages and theme in light/dark mode. More info reference to [Default theme reference - highlight option](/reference/default-theme/#highlighter)
 
 ## Code title
 
