@@ -1,5 +1,16 @@
 # @sveltepress/theme-default
 
+## 5.0.7
+
+### Patch Changes
+
+- [`598a9d3`](https://github.com/SveltePress/sveltepress/commit/598a9d3d34195731381b1e094dbf713eb6d91c31) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #313
+
+- [`0e742d9`](https://github.com/SveltePress/sveltepress/commit/0e742d9d264ce7560e281d0006cf8643db8c61da) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #314
+
+- Updated dependencies [[`5a9c33d`](https://github.com/SveltePress/sveltepress/commit/5a9c33dfae7e1bd0122049a2555c3f5d171dfe54)]:
+  - @sveltepress/vite@1.1.4
+
 ## 5.0.6
 
 ### Patch Changes
