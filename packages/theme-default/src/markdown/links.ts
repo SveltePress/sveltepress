@@ -8,11 +8,17 @@ const anchors: Plugin<any[], any> = () => {
       if (node.type === 'link') {
         parent.children.splice(idx, 1, {
           type: 'html',
-          value: `<Link to="${node.url}" label="${node.children[0].value}" />`,
+          value: `<Link to="${node.url}">{#snippet labelRenderer()}`,
+        }, ...node.children, {
+          type: 'html',
+          value: '{/snippet}</Link>',
         }, {
           type: 'SvpHeading',
           value: node.children[0].value,
         })
+      }
+      if (node.type === 'SvpHeading') {
+        parent.children.splice(idx, 1)
       }
     })
   }

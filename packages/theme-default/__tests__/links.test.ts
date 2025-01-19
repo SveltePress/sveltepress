@@ -7,6 +7,7 @@ const md = `
 
 [foo](https://www.google.com/)
 [bar](/foo/bar)
+[\`with inline code\`](/foo/bar)
 
 `
 
@@ -22,8 +23,9 @@ describe('links', () => {
     expect(r).toMatchInlineSnapshot(`
       {
         "code": "<h2>Foo</h2>
-      <p><Link to="https://www.google.com/" label="foo" />foo
-      <Link to="/foo/bar" label="bar" />bar</p>",
+      <p><Link to="https://www.google.com/">{#snippet labelRenderer()}foo{/snippet}</Link>
+      <Link to="/foo/bar">{#snippet labelRenderer()}bar{/snippet}</Link>
+      <Link to="/foo/bar">{#snippet labelRenderer()}<code>{\`with inline code\`}</code>{/snippet}</Link></p>",
         "data": {},
       }
     `)

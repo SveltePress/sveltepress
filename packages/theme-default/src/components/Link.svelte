@@ -10,6 +10,7 @@
    * @property {boolean} [active] - Whether the link is active
    * @property {boolean} [highlight] - Whether the link should be highlighted
    * @property {boolean} [withBase] - Whether the link should have the base URL
+   * @property {import('svelte').Snippet} [labelRenderer] - Prepend content
    * @property {import('svelte').Snippet} [pre] - Prepend content
    * @property {import('svelte').Snippet} [children] - Children content
    */
@@ -23,6 +24,7 @@
     highlight = true,
     withBase = false,
     pre,
+    labelRenderer,
     children,
   } = $props()
 
@@ -40,9 +42,13 @@
   aria-label={label}
 >
   {@render pre?.()}
-  <span>
-    {label}
-  </span>
+  {#if labelRenderer}
+    {@render labelRenderer?.()}
+  {:else}
+    <span>
+      {label}
+    </span>
+  {/if}
   {#if isExternal}
     <External />
   {/if}

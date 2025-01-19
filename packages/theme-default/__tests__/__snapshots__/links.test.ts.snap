@@ -43,11 +43,27 @@ exports[`links > simple 1`] = `
       "children": [
         {
           "type": "html",
-          "value": "<Link to=\\"https://www.google.com/\\" label=\\"foo\\" />"
+          "value": "<Link to=\\"https://www.google.com/\\">{#snippet labelRenderer()}"
         },
         {
-          "type": "SvpHeading",
-          "value": "foo"
+          "type": "text",
+          "value": "foo",
+          "position": {
+            "start": {
+              "line": 4,
+              "column": 2,
+              "offset": 10
+            },
+            "end": {
+              "line": 4,
+              "column": 5,
+              "offset": 13
+            }
+          }
+        },
+        {
+          "type": "html",
+          "value": "{/snippet}</Link>"
         },
         {
           "type": "text",
@@ -67,11 +83,67 @@ exports[`links > simple 1`] = `
         },
         {
           "type": "html",
-          "value": "<Link to=\\"/foo/bar\\" label=\\"bar\\" />"
+          "value": "<Link to=\\"/foo/bar\\">{#snippet labelRenderer()}"
         },
         {
-          "type": "SvpHeading",
-          "value": "bar"
+          "type": "text",
+          "value": "bar",
+          "position": {
+            "start": {
+              "line": 5,
+              "column": 2,
+              "offset": 41
+            },
+            "end": {
+              "line": 5,
+              "column": 5,
+              "offset": 44
+            }
+          }
+        },
+        {
+          "type": "html",
+          "value": "{/snippet}</Link>"
+        },
+        {
+          "type": "text",
+          "value": "\\n",
+          "position": {
+            "start": {
+              "line": 5,
+              "column": 16,
+              "offset": 55
+            },
+            "end": {
+              "line": 6,
+              "column": 1,
+              "offset": 56
+            }
+          }
+        },
+        {
+          "type": "html",
+          "value": "<Link to=\\"/foo/bar\\">{#snippet labelRenderer()}"
+        },
+        {
+          "type": "inlineCode",
+          "value": "with inline code",
+          "position": {
+            "start": {
+              "line": 6,
+              "column": 2,
+              "offset": 57
+            },
+            "end": {
+              "line": 6,
+              "column": 20,
+              "offset": 75
+            }
+          }
+        },
+        {
+          "type": "html",
+          "value": "{/snippet}</Link>"
         }
       ],
       "position": {
@@ -81,9 +153,9 @@ exports[`links > simple 1`] = `
           "offset": 9
         },
         "end": {
-          "line": 5,
-          "column": 16,
-          "offset": 55
+          "line": 6,
+          "column": 31,
+          "offset": 86
         }
       }
     }
@@ -95,9 +167,9 @@ exports[`links > simple 1`] = `
       "offset": 0
     },
     "end": {
-      "line": 7,
+      "line": 8,
       "column": 1,
-      "offset": 57
+      "offset": 88
     }
   }
 }"
