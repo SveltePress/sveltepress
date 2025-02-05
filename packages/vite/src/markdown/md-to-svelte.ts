@@ -70,15 +70,8 @@ export default async function ({
       handlers: {
         inlineCode(state, node) {
           return {
-            type: 'element',
-            tagName: 'code',
-            properties: {},
-            children: [
-              {
-                type: 'text',
-                value: `{\`${node.value}\`}`,
-              },
-            ],
+            type: 'raw',
+            value: `<code>{\`${node.value}\`}</code>`,
           }
         },
       },
