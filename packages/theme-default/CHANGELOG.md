@@ -1,5 +1,12 @@
 # @sveltepress/theme-default
 
+## 5.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`089273f`](https://github.com/SveltePress/sveltepress/commit/089273f5239e1b5a31240fdbc09c8b7a36b059cd)]:
+  - @sveltepress/vite@1.1.5
+
 ## 5.0.7
 
 ### Patch Changes
