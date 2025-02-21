@@ -9,7 +9,7 @@
   const routeId = $page.route.id
 
   const activeIdx = $pages.findIndex(p =>
-    routeId.endsWith('/') ? p.to === routeId : p.to.startsWith(routeId),
+    routeId.endsWith('/') ? p.to === routeId : p.to?.startsWith(routeId),
   )
   const hasActivePage = activeIdx !== -1
   const hasPrevPage = hasActivePage && activeIdx > 0
