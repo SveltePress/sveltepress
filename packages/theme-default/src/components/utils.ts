@@ -8,4 +8,12 @@ function getPathFromBase(path: string) {
   return `${base}${path}`
 }
 
-export { getPathFromBase }
+function parseImageSrc(src: string) {
+  if (src.startsWith('data:'))
+    return src
+  if (src.startsWith('http://') || src.startsWith('https://'))
+    return src
+  return getPathFromBase(src)
+}
+
+export { getPathFromBase, parseImageSrc }

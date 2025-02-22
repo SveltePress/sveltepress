@@ -2,7 +2,7 @@
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import NavItem from './NavItem.svelte'
-  import { getPathFromBase } from './utils'
+  import { getPathFromBase, parseImageSrc } from './utils'
 </script>
 
 <NavItem to={getPathFromBase('/')} title={siteConfig.title}>
@@ -10,7 +10,7 @@
     <img
       class="logo"
       height="32"
-      src={themeOptions.logo}
+      src={parseImageSrc(themeOptions.logo)}
       alt={siteConfig.title}
     />
     <span class="title">
