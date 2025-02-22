@@ -1,11 +1,11 @@
 <script>
-  import { base } from '$app/paths'
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import NavItem from './NavItem.svelte'
+  import { getPathFromBase } from './utils'
 </script>
 
-<NavItem to={base === '' ? '/' : base} title={siteConfig.title}>
+<NavItem to={getPathFromBase('/')} title={siteConfig.title}>
   {#if themeOptions.logo}
     <img
       class="logo"

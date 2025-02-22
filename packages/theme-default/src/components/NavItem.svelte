@@ -3,6 +3,7 @@
   import NavArrowDown from './icons/NavArrowDown.svelte'
   // eslint-disable-next-line import/no-self-import
   import Self from './NavItem.svelte'
+  import { getPathFromBase } from './utils'
 
   /**
    * @typedef {object} Props
@@ -62,7 +63,7 @@
 {:else}
   <svelte:element
     this={external ? 'div' : 'a'}
-    href={to}
+    href={external ? to : getPathFromBase(to)}
     class:nav-item--icon={icon}
     class="nav-item"
     {...external ? { target: '_blank' } : {}}

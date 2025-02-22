@@ -1,6 +1,6 @@
 <script>
-  import { base } from '$app/paths'
   import External from './icons/External.svelte'
+  import { getPathFromBase } from './utils'
 
   /**
    * @typedef {object} Props
@@ -22,14 +22,14 @@
     inline = true,
     active = false,
     highlight = true,
-    withBase = false,
+    withBase = true,
     pre,
     labelRenderer,
     children,
   } = $props()
 
   const isExternal = $derived(/^https?|mailto:/.test(to))
-  const toWithBase = $derived(isExternal ? to : `${base}${to}`)
+  const toWithBase = $derived(isExternal ? to : getPathFromBase(to))
 </script>
 
 <a
