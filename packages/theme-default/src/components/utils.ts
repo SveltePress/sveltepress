@@ -9,11 +9,15 @@ function getPathFromBase(path: string) {
 }
 
 function parseImageSrc(src: string) {
-  if (src.startsWith('data:'))
-    return src
-  if (src.startsWith('http://') || src.startsWith('https://'))
-    return src
-  return getPathFromBase(src)
+  if (src.startsWith('/')) {
+    if (src.startsWith('//'))
+      return src
+    if (src.startsWith(base)) {
+      return src
+    }
+    return getPathFromBase(src)
+  }
+  return src
 }
 
 export { getPathFromBase, parseImageSrc }
