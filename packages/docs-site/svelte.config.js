@@ -20,6 +20,9 @@ const config = {
     prerender: {
       handleMissingId: 'ignore',
     },
+    paths: {
+      relative: false,
+    },
   },
   compilerOptions: {
     runes: true,

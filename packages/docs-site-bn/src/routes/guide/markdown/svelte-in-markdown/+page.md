@@ -2,7 +2,7 @@
 title: Markdown এ Svelte
 ---
 
-এই ফিচারটি আপনাকে .md ফাইলে `<style>`, `<script>`, `<script module>`, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` লিখতে দেয়।
+এই ফিচারটি আপনাকে .md ফাইলে `<style>`, <code>&lt;script&gt;</code>, <code>&lt;script module&gt;</code>, `#if`, `#each`, `#await`, `@html`, `@const`, `<svelte:xxx>` লিখতে দেয়।
 
 ## প্রাথমিক
 

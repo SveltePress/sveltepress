@@ -28,10 +28,6 @@
     ...rest
   } = $props()
 
-  function handleClick() {
-    if (external) window.open(to, '_blank')
-  }
-
   // eslint-disable-next-line no-unused-expressions
   rest
 </script>
@@ -61,16 +57,11 @@
     </div>
   </div>
 {:else}
-  <svelte:element
-    this={external ? 'div' : 'a'}
+  <a
     href={external ? to : getPathFromBase(to)}
     class:nav-item--icon={icon}
     class="nav-item"
     {...external ? { target: '_blank' } : {}}
-    onclick={handleClick}
-    onkeypress={handleClick}
-    role="link"
-    tabindex="0"
     aria-label={title}
   >
     {#if children}{@render children()}{:else}
@@ -84,13 +75,12 @@
         <External />
       {/if}
     {/if}
-  </svelte:element>
+  </a>
 {/if}
 
 <style>
   .nav-item {
-    --at-apply: flex items-center cursor-pointer position-relative z-1
-      cursor-pointer decoration-none px-3;
+    --at-apply: 'flex items-center cursor-pointer position-relative z-1 cursor-pointer decoration-none px-3';
   }
   .nav-item--icon {
     --at-apply: text-6;

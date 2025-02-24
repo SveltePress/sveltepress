@@ -2,7 +2,7 @@ import { base } from '$app/paths'
 
 function getPathFromBase(path: string) {
   if (path === '/')
-    return ''
+    return base || '/'
   if (!base || !path.startsWith('/') || path.startsWith(base))
     return path
   return `${base}${path}`

@@ -8,12 +8,15 @@
 
   const routeId = $page.route.id
 
-  const activeIdx = $pages.findIndex(p =>
-    routeId.endsWith('/') ? p.to === routeId : p.to?.startsWith(routeId),
+  const activeIdx = $derived(
+    $pages.findIndex(p =>
+      routeId.endsWith('/') ? p.to === routeId : p.to?.startsWith(routeId),
+    ),
   )
-  const hasActivePage = activeIdx !== -1
-  const hasPrevPage = hasActivePage && activeIdx > 0
-  const hasNextPage = hasActivePage && activeIdx < $pages.length - 1
+
+  const hasActivePage = $derived(activeIdx !== -1)
+  const hasPrevPage = $derived(hasActivePage && activeIdx > 0)
+  const hasNextPage = $derived(hasActivePage && activeIdx < $pages.length - 1)
 
   const DEFAULT_PREVIOUS_TEXT = 'Previous'
   const DEFAULT_NEXT_TEXT = 'Next'
@@ -41,7 +44,7 @@
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
-      <a href={getPathFromBase(prevPage.to)} class="trigger">
+      <a href={getPathFromBase(nextPage.to)} class="trigger">
         <div class="hint">
           {themOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
         </div>

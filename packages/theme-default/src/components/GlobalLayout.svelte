@@ -38,11 +38,11 @@
   })
 
   resolveSidebar($page.route.id)
+
   let ajaxBar = $state()
 
-  beforeNavigate(({ to }) => {
+  beforeNavigate(() => {
     ajaxBar?.start()
-    resolveSidebar(to.route.id)
   })
 
   afterNavigate(() => {

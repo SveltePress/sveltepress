@@ -2,6 +2,29 @@
 title: 侧边栏
 ---
 
+:::tip[自动添加站点前缀]
+所有的链接都会自动添加 [`base`](https://svelte.dev/docs/kit/$app-paths#base)
+:::
+
+:::important[使用绝对路径模式]
+请将 [`paths.relative`](https://svelte.dev/docs/kit/configuration#paths) 设置为 `false`
+
+```js title="svelte.config.js"
+import adapter from '@sveltejs/adapter-static'
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    paths: {
+      relative: false, // [svp! ++]
+    },
+  },
+}
+
+export default config
+```
+:::
+
 ## 使用方式
 
 传递 `sidebar` 选项给默认主题来配置侧边栏

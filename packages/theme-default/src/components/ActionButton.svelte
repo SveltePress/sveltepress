@@ -15,7 +15,6 @@
 </script>
 
 <a
-  role="button"
   href={external ? to : getPathFromBase(to)}
   class={`svp-action ${type ? `svp-action--${type}` : ''}`}
   target={external ? '_blank' : ''}

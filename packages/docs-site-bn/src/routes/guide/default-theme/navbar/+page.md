@@ -2,6 +2,29 @@
 title: ন্যাভবার
 ---
 
+:::tip[স্বয়ংক্রিয়ভাবে সাইট প্রিফিক্স যোগ করুন]
+সমস্ত লিঙ্ক স্বয়ংক্রিয়ভাবে যোগ করা হবে [`base`](https://svelte.dev/docs/kit/$app-paths#base)
+:::
+
+:::important[পরম পাথ মোড ব্যবহার করুন]
+অনুগ্রহ করে [`paths.relative`](https://svelte.dev/docs/kit/configuration#paths) `false` তে সেট করুন
+
+```js title="svelte.config.js"
+import adapter from '@sveltejs/adapter-static'
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    paths: {
+      relative: false, // [svp! ++]
+    },
+  },
+}
+
+export default config
+```
+:::
+
 ## পরিচিতি
 
 ন্যাভবার কনফিগ করতে থিম ডিফল্টে `navbar` অপশন প্রোভাইড করুন

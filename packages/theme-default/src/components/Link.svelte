@@ -28,8 +28,8 @@
     children,
   } = $props()
 
-  const isExternal = $derived(/^https?|mailto:/.test(to))
-  const toWithBase = $derived(isExternal ? to : getPathFromBase(to))
+  let isExternal = $derived(/^https?|mailto:/.test(to))
+  let toWithBase = $derived(isExternal ? to : getPathFromBase(to))
 </script>
 
 <a
