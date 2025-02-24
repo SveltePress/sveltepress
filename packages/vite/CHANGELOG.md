@@ -1,5 +1,17 @@
 # @sveltepress/vite
 
+## 1.2.0
+
+### Minor Changes
+
+- [#319](https://github.com/SveltePress/sveltepress/pull/319) [`b77bb66`](https://github.com/SveltePress/sveltepress/commit/b77bb66b74ba73d2419231e1075e9b6a7988f532) Thanks [@Hejtmus](https://github.com/Hejtmus)! - feat: auto add base path for links and logo image sources (#159)
+
+- [`f101555`](https://github.com/SveltePress/sveltepress/commit/f101555922d9dc7515ea3e5ad10bdadf139125bf) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add runtime CodeBlock component
+
+### Patch Changes
+
+- [`6ce80a6`](https://github.com/SveltePress/sveltepress/commit/6ce80a66ac84eff6cbba1bc46dcdabe04ffb75d7) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: link resolve
+
 ## 1.1.5
 
 ### Patch Changes
