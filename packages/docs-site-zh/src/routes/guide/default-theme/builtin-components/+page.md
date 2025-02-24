@@ -210,3 +210,25 @@ title: 内置组件
 * `alwaysShow` - 是否始终展示浮动内容，默认为 `false`
 * `placement` - 指定浮动弹出层相对于触发内容的位置，完整取值参考：[placement - floating-ui](https://floating-ui.com/docs/computePosition#placement)，默认为：`bottom`.
 * `floatingClass` - 加到弹出层容器上的额外自定义样式类名
+
+## CodeBlock
+
+### Markdown 中使用
+
+```md live
+<CodeBlock lang="ts" code="const foo = 'bar'" />
+```
+
+### Svelte 中使用
+
+```svelte live
+<script>
+  import { CodeBlock } from '@sveltepress/theme-default/components'
+</script>
+<CodeBlock lang="ts" code="const foo = 'bar'" />
+```
+
+### Props
+
+* `lang` - 语言名称，例如： `'svelte'`, `'md'`, `'js'`
+* `code` - 代码内容

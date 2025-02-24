@@ -211,3 +211,25 @@ Iconify আইকন  [পূর্ব প্রস্তুতকৃত Iconify
 * `alwaysShow` - ফ্লোটিং কন্টেন্ট সর্বদা দেখাবে কিনা- তা নির্ধারণ করে। ডিফল্ট হচ্ছে `false`
 * `placement` - ফ্লোটিং কন্টেন্টের পজিশন নির্ধারণ করে। দেখুন- [placement - floating-ui](https://floating-ui.com/docs/computePosition#placement) । ডিফল্ট হচ্ছে `bottom`.
 * `floatingClass` - ফ্লোটিং কন্টেন্ট কন্টেইনারে যোগ করার জন্য অতিরিক্তি ক্লাস।
+
+## CodeBlock
+
+### Markdown এ
+
+```md live
+<CodeBlock lang="ts" code="const foo = 'bar'" />
+```
+
+### Svelte এ
+
+```svelte live
+<script>
+  import { CodeBlock } from '@sveltepress/theme-default/components'
+</script>
+<CodeBlock lang="ts" code="const foo = 'bar'" />
+```
+
+### Props
+
+* `lang` - ভাষার নাম, যেমন: `'svelte'`, `'md'`, `'js'`
+* `code` - কোড বিষয়বস্তু

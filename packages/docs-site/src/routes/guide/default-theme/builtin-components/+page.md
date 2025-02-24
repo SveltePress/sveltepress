@@ -213,3 +213,25 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 * `alwaysShow` - Determine whether to always show the floating content. Default is `false`
 * `placement` - Determine the floating content position. See [placement - floating-ui](https://floating-ui.com/docs/computePosition#placement). Default is `bottom`.
 * `floatingClass` - The addition classes that will be added to the floating content container.
+
+## CodeBlock
+
+### In markdown
+
+```md live
+<CodeBlock lang="ts" code="const foo = 'bar'" />
+```
+
+### In markdown
+
+```svelte live
+<script>
+  import { CodeBlock } from '@sveltepress/theme-default/components'
+</script>
+<CodeBlock lang="ts" code="const foo = 'bar'" />
+```
+
+### Props
+
+* `lang` - The language name. `'svelte'`, `'md'`, `'js'`, ...etc
+* `code` - The code content
