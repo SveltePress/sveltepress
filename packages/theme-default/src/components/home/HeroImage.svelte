@@ -1,11 +1,12 @@
 <script>
   import siteConfig from 'virtual:sveltepress/site'
+  import { parseImageSrc } from '../utils'
 
   const { heroImage } = $props()
 </script>
 
 <div class="hero-image">
-  <img src={heroImage} alt={siteConfig.title} width="192" />
+  <img src={parseImageSrc(heroImage)} alt={siteConfig.title} width="192" />
 </div>
 
 <style>

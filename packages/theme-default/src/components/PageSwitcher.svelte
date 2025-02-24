@@ -1,10 +1,10 @@
 <script>
-  import { base } from '$app/paths'
   import { page } from '$app/stores'
   import themOptions from 'virtual:sveltepress/theme-default'
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'
   import { pages } from './layout'
+  import { getPathFromBase } from './utils'
 
   const routeId = $page.route.id
 
@@ -23,7 +23,7 @@
   <div class:switcher={hasPrevPage}>
     {#if hasPrevPage}
       {@const prevPage = $pages[activeIdx - 1]}
-      <a href={base + prevPage.to} class="trigger">
+      <a href={getPathFromBase(prevPage.to)} class="trigger">
         <div class="hint">
           {themOptions.i18n?.previousPage || DEFAULT_PREVIOUS_TEXT}
         </div>
@@ -41,7 +41,7 @@
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
-      <a href={base + nextPage.to} class="trigger">
+      <a href={getPathFromBase(prevPage.to)} class="trigger">
         <div class="hint">
           {themOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
         </div>

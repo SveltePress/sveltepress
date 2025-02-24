@@ -1,6 +1,6 @@
 <script>
-  import { base } from '$app/paths'
   import External from './icons/External.svelte'
+  import { getPathFromBase } from './utils'
 
   /**
    * @typedef {object} Props
@@ -12,13 +12,11 @@
 
   /** @type {Props} */
   let { label, type = '', to, external = false } = $props()
-
-  const toWithBase = base + to
 </script>
 
 <a
   role="button"
-  href={external ? to : toWithBase}
+  href={external ? to : getPathFromBase(to)}
   class={`svp-action ${type ? `svp-action--${type}` : ''}`}
   target={external ? '_blank' : ''}
 >
