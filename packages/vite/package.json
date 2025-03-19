@@ -1,7 +1,7 @@
 {
   "name": "@sveltepress/vite",
   "type": "module",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "packageManager": "pnpm@9.15.0",
   "description": "Sveltepress plugin for vite",
   "author": {
