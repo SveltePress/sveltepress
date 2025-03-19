@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.2.1
+
+### Patch Changes
+
+- [#322](https://github.com/SveltePress/sveltepress/pull/322) [`d34eb65`](https://github.com/SveltePress/sveltepress/commit/d34eb65fbdcbd7c6308461fe0f2534dd8bb4f4d8) Thanks [@baokeyu123](https://github.com/baokeyu123)! - fix: with base logic
+
 ## 1.2.0
 
 ### Minor Changes
