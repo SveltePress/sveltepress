@@ -28,12 +28,12 @@ interface FrameworkVariant {
 const FRAMEWORKS: FrameworkVariant[] = [
   {
     name: 'js',
-    display: 'Typescript',
+    display: 'JavaScript',
     color: yellow,
   },
   {
     name: 'ts',
-    display: 'Javascript',
+    display: 'TypeScript',
     color: blue,
   },
 ]
