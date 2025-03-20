@@ -12,9 +12,6 @@ const config = {
 			pages: 'dist',
 		}),
 	},
-	compilerOptions: {
-		runes: true,
-	},
 }
 
 export default config
