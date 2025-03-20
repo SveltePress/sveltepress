@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.2.2
+
+### Patch Changes
+
+- [#326](https://github.com/SveltePress/sveltepress/pull/326) [`4566c64`](https://github.com/SveltePress/sveltepress/commit/4566c641a5672788ff2d5fd9bb0b736cb09c78c8) Thanks [@garikAsplund](https://github.com/garikAsplund)! - feat: cancel force runes config
+
 ## 1.2.1
 
 ### Patch Changes
