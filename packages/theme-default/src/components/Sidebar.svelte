@@ -1,13 +1,18 @@
 <script>
+  import { afterNavigate } from '$app/navigation'
   import { page } from '$app/stores'
   import Backdrop from './Backdrop.svelte'
   import Close from './icons/Close.svelte'
-  import { resolvedSidebar, sidebarCollapsed } from './layout'
+  import { resolvedSidebar, resolveSidebar, sidebarCollapsed } from './layout'
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
 
   const routeId = $derived($page.route.id)
   const isHome = $derived(routeId === '/')
+
+  afterNavigate(() => {
+    resolveSidebar(routeId)
+  })
 
   function handleClose() {
     $sidebarCollapsed = true
