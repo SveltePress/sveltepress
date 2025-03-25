@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 6.0.2
+
+### Patch Changes
+
+- [#329](https://github.com/SveltePress/sveltepress/pull/329) [`58bc3fd`](https://github.com/SveltePress/sveltepress/commit/58bc3fda5e246885fdb946349cb268d292b83297) Thanks [@garikAsplund](https://github.com/garikAsplund)! - fix: #328
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.2.1
+
 ## 6.0.1
 
 ### Patch Changes
