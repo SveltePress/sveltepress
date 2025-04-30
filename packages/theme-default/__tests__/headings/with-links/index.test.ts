@@ -8,7 +8,7 @@ const source = `---
 `
 
 describe('admonitions', () => {
-  it('tip', async () => {
+  it('with link', async () => {
     const { code, data } = await mdToSvelte({
       filename: 'demo.md',
       mdContent: source,
@@ -28,6 +28,60 @@ describe('admonitions', () => {
             "depth": 2,
             "slugId": "Adapters---SvelteKit-Some-other-text",
             "title": "Adapters - SvelteKit Some other text",
+          },
+        ],
+      }
+    `)
+  })
+
+  it('different level with same name', async () => {
+    const { data } = await mdToSvelte({
+      filename: 'demo.md',
+      mdContent: `## Heading1
+### Nested1
+
+## Heading2
+
+### Nested1
+
+## Heading3
+
+### Nested1`,
+      remarkPlugins: [links, anchors],
+    })
+
+    expect(data).toMatchInlineSnapshot(`
+      {
+        "anchors": [
+          {
+            "depth": 2,
+            "slugId": "Heading1",
+            "title": "Heading1",
+          },
+          {
+            "depth": 3,
+            "slugId": "Nested1",
+            "title": "Nested1",
+          },
+          {
+            "depth": 2,
+            "slugId": "Heading2",
+            "title": "Heading2",
+          },
+          {
+            "depth": 3,
+            "slugId": "Nested1_",
+            "title": "Nested1",
+          },
+          {
+            "depth": 2,
+            "slugId": "Heading3",
+            "title": "Heading3",
+          },
+          {
+            "depth": 3,
+            "slugId": "Nested1__",
+            "title": "Nested1",
           },
         ],
       }

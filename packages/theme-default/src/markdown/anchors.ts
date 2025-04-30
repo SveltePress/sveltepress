@@ -22,7 +22,7 @@ const anchors: Plugin<any[], any> = () => {
         }
         const title = (node.children as any[]).filter(c => ['text', 'inlineCode', 'SvpHeading'].includes(c.type)).map(c => c.value).join('')
         let slugId = title.replace(/[&#$?* :/]/g, '-')
-        if (anchors.some(an => an.slugId === slugId))
+        while (anchors.some(an => an.slugId === slugId))
           slugId += '_'
 
         node.children.unshift({
