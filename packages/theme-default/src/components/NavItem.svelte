@@ -1,4 +1,5 @@
 <script>
+  import { page } from '$app/stores'
   import External from './icons/External.svelte'
   import NavArrowDown from './icons/NavArrowDown.svelte'
   // eslint-disable-next-line import/no-self-import
@@ -28,6 +29,9 @@
     ...rest
   } = $props()
 
+  let active = $derived(
+    $page.url.pathname.startsWith(`${to.endsWith('/') ? to : `${to}/`}`),
+  )
   // eslint-disable-next-line no-unused-expressions
   rest
 </script>
@@ -61,6 +65,7 @@
     href={external ? to : getPathFromBase(to)}
     class:nav-item--icon={icon}
     class="nav-item"
+    class:active
     {...external ? { target: '_blank' } : {}}
     aria-label={title}
   >
@@ -123,5 +128,8 @@
   }
   .nav-item:hover .arrow {
     transform: rotate(180deg);
+  }
+  .active {
+    --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';
   }
 </style>
