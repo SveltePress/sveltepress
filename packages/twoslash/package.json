@@ -1,7 +1,7 @@
 {
   "name": "@sveltepress/twoslash",
   "type": "module",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "packageManager": "pnpm@9.15.0",
   "description": "Twoslash for sveltepress",
   "author": "Dongsheng Zhao",
