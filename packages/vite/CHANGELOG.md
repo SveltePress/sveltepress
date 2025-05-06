@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 1.2.2
+
+### Patch Changes
+
+- [`6ff577f`](https://github.com/SveltePress/sveltepress/commit/6ff577f905e145b84c9a24e07946038d724035f5) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: #331
+
 ## 1.2.1
 
 ### Patch Changes
