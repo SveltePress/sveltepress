@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.2.4
+
+### Patch Changes
+
+- [`469f56a`](https://github.com/SveltePress/sveltepress/commit/469f56a0a87edbadba246af6db817ed730bf371e) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: feature icon and hero image null condition"
+
 ## 1.2.3
 
 ### Patch Changes
