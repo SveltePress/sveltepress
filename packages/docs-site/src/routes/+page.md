@@ -1,7 +1,7 @@
 ---
 title: A content centered site build tool
 description: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
-heroImage: /android-chrome-192x192.png
+heroImage: null
 tagline: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
 actions:
   - label: Read the docs
@@ -40,8 +40,6 @@ features:
       name: typescript-icon
   - title: Theme Customizable
     description: Feel free to use default theme, community themes or write your own.
-    icon:
-      type: iconify
-      collection: emojione
-      name: artist-palette
+    icon: null
+    noRandomIcon: true
 ---
