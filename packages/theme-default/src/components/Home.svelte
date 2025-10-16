@@ -26,7 +26,9 @@
         </div>
       {/if}
     </div>
-    {@render heroImage()}
+    {#if heroImage}
+      {@render heroImage()}
+    {/if}
   </div>
 
   <div class="actions">

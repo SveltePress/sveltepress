@@ -27,6 +27,7 @@
     description,
     link = undefined,
     icon = undefined,
+    noRandomIcon = false,
   } = $props()
 
   const external = $derived(/^https?/.test(link))
@@ -51,9 +52,11 @@
 >
   <div class="flex justify-between items-start">
     <div class="icon">
-      {#if icon === undefined}
-        {@const SvelteComponent = iconsArray[i % iconsArray.length]}
-        <SvelteComponent />
+      {#if !icon?.type}
+        {#if !noRandomIcon}
+          {@const SvelteComponent = iconsArray[i % iconsArray.length]}
+          <SvelteComponent />
+        {/if}
       {:else if icon.type === 'svg'}
         <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html icon.value}

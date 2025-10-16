@@ -53,7 +53,9 @@
 </svelte:head>
 
 {#snippet defaultHeroImage()}
-  <HeroImage heroImage={fm.heroImage} />
+  {#if fm.heroImage}
+    <HeroImage heroImage={fm.heroImage} />
+  {/if}
 {/snippet}
 
 {#if !isHome}
