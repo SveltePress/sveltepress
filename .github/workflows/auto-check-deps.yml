@@ -1,0 +1,32 @@
+name: Auto check all latest packages
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Run release checking
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token:  ${{ secrets.G_TOKEN }}
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.10.0"
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with: 
+          version: 9.15.9
+      - name: Run taze
+        run: npx --yes taze -r -w latest
+      - name: Install packages
+        run: pnpm i --no-frozen-lockfile
+      - name: Check changes then create changesets and sync repo
+        run: node check.mjs
