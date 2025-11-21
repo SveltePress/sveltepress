@@ -1,5 +1,15 @@
 # @sveltepress/theme-default
 
+## 7.0.1
+
+### Patch Changes
+
+- [`f7b051f`](https://github.com/SveltePress/sveltepress/commit/f7b051f93638c8f1eab2d327efb10e3859569474) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: history dark mode error"
+
+- Updated dependencies [[`f7b051f`](https://github.com/SveltePress/sveltepress/commit/f7b051f93638c8f1eab2d327efb10e3859569474)]:
+  - @sveltepress/twoslash@1.3.1
+  - @sveltepress/vite@1.3.1
+
 ## 7.0.0
 
 ### Minor Changes
