@@ -2,7 +2,7 @@
   "name": "@sveltepress/twoslash",
   "type": "module",
   "version": "1.2.2",
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@9.15.9",
   "description": "Twoslash for sveltepress",
   "author": "Dongsheng Zhao",
   "license": "MIT",
@@ -37,14 +37,14 @@
     "svelte": "^5.0.0"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.3",
+    "@floating-ui/dom": "^1.7.4",
     "@shikijs/twoslash": "catalog:",
     "mdast-util-from-markdown": "catalog:",
     "mdast-util-gfm": "catalog:",
-    "mdast-util-to-hast": "^13.1.0",
+    "mdast-util-to-hast": "^13.2.0",
     "shiki": "catalog:",
-    "source-map-js": "^1.2.0",
-    "svelte2tsx": "^0.7.28",
+    "source-map-js": "^1.2.1",
+    "svelte2tsx": "^0.7.45",
     "twoslash": "^0.2.12",
     "twoslash-protocol": "^0.2.12"
   },

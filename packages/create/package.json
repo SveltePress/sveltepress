@@ -39,15 +39,15 @@
   "dependencies": {
     "cross-spawn": "^7.0.6",
     "minimist": "^1.2.8",
-    "picocolors": "^1.0.0",
+    "picocolors": "^1.1.1",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.6",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.19.25",
     "@types/prompts": "^2.4.9",
-    "typescript": "^5.3.3",
+    "typescript": "^5.9.3",
     "unbuild": "^2.0.0"
   }
 }
