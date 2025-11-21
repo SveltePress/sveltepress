@@ -1,5 +1,5 @@
 <script>
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Edit from './icons/Edit.svelte'
 

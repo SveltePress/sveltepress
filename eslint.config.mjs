@@ -2,6 +2,7 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   svelte: true,
+  yaml: true,
   typescript: true,
   rules: {
     'svelte/html-quotes': [
@@ -34,6 +35,7 @@ export default antfu({
     '**/__tests__/**/*.json',
     '**/__tests__/**/*.tsx',
     '**/.sveltepress/**/*',
+    'packages/create/template-*/**/*',
   ],
 }, {
   files: ['**/*.svelte'],
@@ -43,13 +45,6 @@ export default antfu({
     'style/operator-linebreak': 'off',
     'style/brace-style': 'off',
     'svelte/indent': 'off',
-  },
-}, {
-  files: ['packages/create/template-*/**/*'],
-  rules: {
-    'style/indent': ['error', 'tab'],
-    'style/no-tabs': 'off',
-    'style/eol-last': 'off',
   },
 }, {
   files: ['packages/docs-site*/**/*'],

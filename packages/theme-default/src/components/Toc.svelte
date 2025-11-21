@@ -4,7 +4,7 @@
 
 <script>
   import { afterNavigate } from '$app/navigation'
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import { onMount, tick } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Backdrop from './Backdrop.svelte'

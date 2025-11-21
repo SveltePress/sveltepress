@@ -106,8 +106,8 @@ async function init() {
           message:
             typeof argTemplate === 'string' && !TEMPLATES.includes(argTemplate)
               ? reset(
-                `"${argTemplate}" isn't a valid template. Please choose from below: `,
-              )
+                  `"${argTemplate}" isn't a valid template. Please choose from below: `,
+                )
               : reset('Use Javascript or Typescript for your new project?'),
           initial: 0,
           choices: [{

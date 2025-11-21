@@ -1,6 +1,6 @@
 <script>
   import { afterNavigate, beforeNavigate } from '$app/navigation'
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import { onMount, setContext } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import { SVELTEPRESS_CONTEXT_KEY } from '../context'

@@ -1,6 +1,6 @@
 <script>
   import { afterNavigate, beforeNavigate } from '$app/navigation'
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'

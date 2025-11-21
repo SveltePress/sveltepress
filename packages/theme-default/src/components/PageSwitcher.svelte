@@ -1,5 +1,5 @@
 <script>
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import themOptions from 'virtual:sveltepress/theme-default'
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'

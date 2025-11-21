@@ -1,10 +1,9 @@
 <script>
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import { scale, slide } from 'svelte/transition'
   import ArrowDown from './icons/ArrowDown.svelte'
   import PointLeft from './icons/PointLeft.svelte'
   import Link from './Link.svelte'
-  // eslint-disable-next-line import/no-self-import
   import SidebarGroup from './SidebarGroup.svelte'
 
   const routeId = $derived($page.route.id)

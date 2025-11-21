@@ -1,8 +1,7 @@
 <script>
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import External from './icons/External.svelte'
   import NavArrowDown from './icons/NavArrowDown.svelte'
-  // eslint-disable-next-line import/no-self-import
   import Self from './NavItem.svelte'
   import { getPathFromBase } from './utils'
 

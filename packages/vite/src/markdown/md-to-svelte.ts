@@ -1,3 +1,4 @@
+import type { Plugin } from 'unified'
 import type { Highlighter } from '../types.js'
 import rehypeStringify from 'rehype-stringify'
 import remarkDirective from 'remark-directive'
@@ -7,7 +8,7 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
-import { type Plugin, unified } from 'unified'
+import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import { parse } from 'yaml'
 import disableLeafTextDirective from './disable-leaft-text-directive.js'
@@ -29,10 +30,10 @@ export default async function ({
   highlighter,
   filename,
   footnoteLabel,
-}: CompileOptions): Promise< {
-    data: Record<string, any>
-    code: string
-  }> {
+}: CompileOptions): Promise<{
+  data: Record<string, any>
+  code: string
+}> {
   let processorAfterRemarkParse = applyRemarkPluginsBeforeRehype(remarkPlugins)
   const highlightAsyncTasks: (PromiseSettledResult<any>[])[] = []
 

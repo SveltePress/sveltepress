@@ -1,6 +1,6 @@
 <script>
   import { afterNavigate } from '$app/navigation'
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import Backdrop from './Backdrop.svelte'
   import Close from './icons/Close.svelte'
   import { resolvedSidebar, resolveSidebar, sidebarCollapsed } from './layout'
