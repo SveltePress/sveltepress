@@ -15,7 +15,7 @@
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@sveltepress/theme-default": "^6.0.4",
     "@sveltepress/vite": "^1.2.2",
-    "@types/node": "^22.19.1",
+    "@types/node": "^20.16.3",
     "svelte": "^5.43.14",
     "vite": "^7.2.4"
   }
