@@ -1,5 +1,5 @@
 import type { PluginOption } from 'vite'
-import type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions } from './types.js'
+import type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import mdToSvelte from './markdown/md-to-svelte.js'
@@ -43,4 +43,4 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
 }
 
 export { mdToSvelte, sveltepress }
-export type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions }
+export type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }

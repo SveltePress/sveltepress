@@ -159,6 +159,6 @@ describe('md to svelte', () => {
       filename: 'real-world.md',
       highlighter,
     })
-    expect(code).toMatchFileSnapshot('real-world.svelte')
+    await expect(code).toMatchFileSnapshot('real-world.svelte')
   })
 })

@@ -21,9 +21,9 @@ const md = `
 describe('md', async () => {
   it('base code block', async () => {
     const mdast = fromMarkdown(md)
-    expect(JSON.stringify(mdast, null, 2)).toMatchFileSnapshot('code-block-mdast.snap.json')
+    await expect(JSON.stringify(mdast, null, 2)).toMatchFileSnapshot('code-block-mdast.snap.json')
     const hast = toHast(mdast, {
     })
-    expect(JSON.stringify(hast, null, 2)).toMatchFileSnapshot('code-block-hast.json')
+    await expect(JSON.stringify(hast, null, 2)).toMatchFileSnapshot('code-block-hast.json')
   })
 })

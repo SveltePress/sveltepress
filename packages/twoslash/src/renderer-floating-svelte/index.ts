@@ -10,8 +10,8 @@ interface RendererFloatingSvelteOptions extends RendererRichOptions {}
 function rendererFloatingSvelte(options: RendererFloatingSvelteOptions = {}): TwoslashRenderer {
   const rich = rendererRich({
     ...options,
-    renderMarkdown,
-    renderMarkdownInline,
+    renderMarkdown: renderMarkdown as any,
+    renderMarkdownInline: renderMarkdownInline as any,
     hast: {
       hoverToken: {
         tagName: 'Floating',

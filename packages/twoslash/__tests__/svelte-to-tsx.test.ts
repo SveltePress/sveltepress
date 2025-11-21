@@ -8,6 +8,6 @@ const svelteCode = readFileSync(svelteFilePath, 'utf-8')
 
 describe('svelte to tsx', () => {
   it('tsx code', async () => {
-    expect(svelte2tsx(svelteCode).code).toMatchFileSnapshot('test-tsx.tsx')
+    await expect(svelte2tsx(svelteCode).code).toMatchFileSnapshot('test-tsx.tsx')
   })
 })

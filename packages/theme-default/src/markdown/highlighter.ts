@@ -1,5 +1,5 @@
 import type { Highlighter } from '@sveltepress/vite'
-import type { BundledTheme, CodeToHastOptions, HighlighterGeneric, ShikiTransformer } from 'shiki'
+import type { BundledTheme, CodeToHastOptions, HighlighterGeneric } from 'shiki'
 import type { BundledLanguage } from 'shiki/langs'
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import { env } from 'node:process'
@@ -16,7 +16,7 @@ const cache = new LRUCache<string, any>({ max: 200 })
 
 const shikiHighlighterInstance: {
   value: null | HighlighterGeneric<BundledLanguage, BundledTheme>
-  twoslashTransformer?: ShikiTransformer
+  twoslashTransformer?: any
 } = {
   value: null,
 }

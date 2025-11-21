@@ -121,7 +121,7 @@ export function applyRemarkPluginsBeforeRehype(remarkPlugins?: Array<Plugin<any[
     .use(disableLeafTextDirective)
     .use(reserveSvelteCommands)
     .use(remarkFrontmatter as any)
-    .use(remarkExtractFrontmatter, { yaml: parse })
+    .use(remarkExtractFrontmatter as any, { yaml: parse })
     .use(remarkGfm as any)
 
   return processorAfterRemarkParse

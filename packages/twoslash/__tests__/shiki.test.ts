@@ -17,17 +17,17 @@ describe('shiki', () => {
         light: 'github-light',
       },
       transformers: [
-        createTransformerFactory(await createTwoslasher())({
+        (createTransformerFactory(await createTwoslasher())({
           langs,
           renderer: rendererFloatingSvelte(),
-        }),
+        }) as unknown) as any,
       ],
     }))
       .replace(/\{/g, '&#123;')
       .replace(/\}/g, '&#125;')
       .replace(/<!--svp-floating-snippet-start-->/g, '{#snippet floatingContent()}')
       .replace(/<!--svp-floating-snippet-end-->/g, '{/snippet}')
-    expect(html).toMatchFileSnapshot('test-result.svelte')
+    await expect(html).toMatchFileSnapshot('test-result.svelte')
   })
 
   it('twoslash ts', async () => {
@@ -38,17 +38,17 @@ describe('shiki', () => {
         light: 'github-light',
       },
       transformers: [
-        createTransformerFactory(await createTwoslasher())({
+        (createTransformerFactory(await createTwoslasher())({
           langs,
           renderer: rendererFloatingSvelte(),
-        }),
+        }) as unknown) as any,
       ],
     }))
       .replace(/\{/g, '&#123;')
       .replace(/\}/g, '&#125;')
       .replace(/<!--svp-floating-snippet-start-->/g, '{#snippet floatingContent()}')
       .replace(/<!--svp-floating-snippet-end-->/g, '{/snippet}')
-    expect(html).toMatchFileSnapshot('test-ts.svelte')
+    await expect(html).toMatchFileSnapshot('test-ts.svelte')
   })
 
   it('tokens', async () => {
@@ -59,6 +59,6 @@ describe('shiki', () => {
       },
       lang: 'svelte',
     })
-    expect(JSON.stringify(tokens, null, 2)).toMatchFileSnapshot('test-tokens.json')
+    await expect(JSON.stringify(tokens, null, 2)).toMatchFileSnapshot('test-tokens.json')
   })
 })

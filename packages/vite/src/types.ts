@@ -6,6 +6,8 @@ export type RemarkLiveCode = Plugin<[], any>
 
 export type Highlighter = (code: string, lang: BundledLanguage, meta?: string) => string | Promise<string>
 
+export type ThemeVitePlugins = PluginOption[] | ((corePlugin: PluginOption) => Promise<PluginOption[]>) | ((corePlugin: PluginOption) => PluginOption[])
+
 export interface SiteConfig {
   title?: string
   description?: string
@@ -14,7 +16,7 @@ export interface ResolvedTheme {
   name: string
   globalLayout: string
   pageLayout: string
-  vitePlugins: PluginOption | ((corePlugin: PluginOption) => PluginOption[] | Promise<PluginOption[]>)
+  vitePlugins: ThemeVitePlugins
   highlighter: Highlighter
   remarkPlugins?: Plugin[]
   rehypePlugins?: Plugin[]
