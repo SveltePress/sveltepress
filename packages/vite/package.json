@@ -68,6 +68,7 @@
   },
   "devDependencies": {
     "@sveltejs/kit": "catalog:",
+    "@sveltepress/theme-default": "workspace:*",
     "@types/cross-spawn": "^6.0.6",
     "@types/estree": "^1.0.5",
     "@types/fs-extra": "^11.0.4",
