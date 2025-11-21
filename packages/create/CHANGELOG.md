@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 1.3.0
+
+### Minor Changes
+
+- [`a357204`](https://github.com/SveltePress/sveltepress/commit/a35720449761c51ef714268f8a37eaeaf19819f2) Thanks [@Blackman99](https://github.com/Blackman99)! - #341
+
+- [`aa05217`](https://github.com/SveltePress/sveltepress/commit/aa0521737a40f5bbd4caa102bd60bffdcfdb6a18) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: sync deps
+
 ## 1.2.4
 
 ### Patch Changes

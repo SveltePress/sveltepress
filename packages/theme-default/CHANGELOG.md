@@ -1,5 +1,19 @@
 # @sveltepress/theme-default
 
+## 7.0.0
+
+### Minor Changes
+
+- [`a357204`](https://github.com/SveltePress/sveltepress/commit/a35720449761c51ef714268f8a37eaeaf19819f2) Thanks [@Blackman99](https://github.com/Blackman99)! - #341
+
+- [`aa05217`](https://github.com/SveltePress/sveltepress/commit/aa0521737a40f5bbd4caa102bd60bffdcfdb6a18) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: sync deps
+
+### Patch Changes
+
+- Updated dependencies [[`78cfd36`](https://github.com/SveltePress/sveltepress/commit/78cfd36e8dbc1fe76213c1a75035ba84a9f1e2d9), [`a357204`](https://github.com/SveltePress/sveltepress/commit/a35720449761c51ef714268f8a37eaeaf19819f2), [`aa05217`](https://github.com/SveltePress/sveltepress/commit/aa0521737a40f5bbd4caa102bd60bffdcfdb6a18)]:
+  - @sveltepress/twoslash@1.3.0
+  - @sveltepress/vite@1.3.0
+
 ## 6.0.4
 
 ### Patch Changes
