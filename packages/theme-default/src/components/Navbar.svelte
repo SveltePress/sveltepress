@@ -11,9 +11,9 @@
   import Search from './Search.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
-  const routeId = $derived($page.route.id)
+  const routeId = $derived(page.route.id)
   const isHome = $derived(routeId === '/')
-  const hasError = $derived($page.error)
+  const hasError = $derived(page.error)
 </script>
 
 <header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>

@@ -11,7 +11,7 @@
   import { anchors, pages, showHeader, sidebar } from './layout'
   import PageSwitcher from './PageSwitcher.svelte'
 
-  const routeId = $derived($page.route.id)
+  const routeId = $derived(page.route.id)
 
   // The frontmatter info. This would be injected by sveltepress
   const { fm, children, heroImage } = $props()

@@ -6,7 +6,7 @@
   import Link from './Link.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
 
-  const routeId = $derived($page.route.id)
+  const routeId = $derived(page.route.id)
 
   /**
    * @typedef {object} Props

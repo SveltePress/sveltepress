@@ -3,7 +3,7 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Edit from './icons/Edit.svelte'
 
-  const routeId = $page.route.id
+  const routeId = page.route.id
 
   /**
    * @typedef {object} Props

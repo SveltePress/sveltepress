@@ -37,7 +37,7 @@
     isDark,
   })
 
-  resolveSidebar($page.route.id)
+  resolveSidebar(page.route.id)
 
   let ajaxBar = $state()
 
@@ -70,8 +70,8 @@
 {#if $showHeader}
   <Navbar />
 {/if}
-{#if $page.error}
-  <Error error={$page.error} />
+{#if page.error}
+  <Error error={page.error} />
 {:else}
   <main class:without-header={$showHeader === false}>
     <AjaxBar bind:this={ajaxBar} />

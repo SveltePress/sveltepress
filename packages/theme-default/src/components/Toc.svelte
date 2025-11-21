@@ -51,7 +51,7 @@
 
   onMount(() => {
     mounted = true
-    const anchorTarget = decodeURI($page.url.hash)
+    const anchorTarget = decodeURI(page.url.hash)
     if (!anchorTarget) return
     const ele = document.querySelector(anchorTarget)
     if (ele) scrollY = ele.offsetTop

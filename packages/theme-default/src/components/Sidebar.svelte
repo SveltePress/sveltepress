@@ -7,7 +7,7 @@
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
 
-  const routeId = $derived($page.route.id)
+  const routeId = $derived(page.route.id)
   const isHome = $derived(routeId === '/')
 
   afterNavigate(() => {

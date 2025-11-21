@@ -6,7 +6,7 @@
   import { pages } from './layout'
   import { getPathFromBase } from './utils'
 
-  const routeId = $page.route.id
+  const routeId = page.route.id
 
   const activeIdx = $derived(
     $pages.findIndex(p =>
