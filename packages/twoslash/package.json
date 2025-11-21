@@ -45,8 +45,8 @@
     "shiki": "catalog:",
     "source-map-js": "^1.2.1",
     "svelte2tsx": "^0.7.45",
-    "twoslash": "^0.2.12",
-    "twoslash-protocol": "^0.2.12"
+    "twoslash": "^0.3.4",
+    "twoslash-protocol": "^0.3.4"
   },
   "devDependencies": {
     "@sveltejs/package": "catalog:",
