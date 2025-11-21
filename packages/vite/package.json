@@ -64,11 +64,10 @@
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.1",
     "vite-plugin-inspect": "^11.3.3",
-    "yaml": "^2.5.1"
+    "yaml": "catalog:"
   },
   "devDependencies": {
     "@sveltejs/kit": "catalog:",
-    "@sveltepress/theme-default": "workspace:*",
     "@types/cross-spawn": "^6.0.6",
     "@types/estree": "^1.0.5",
     "@types/fs-extra": "^11.0.4",
