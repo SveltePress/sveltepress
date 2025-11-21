@@ -40,6 +40,9 @@ features:
       name: typescript-icon
   - title: Theme Customizable
     description: Feel free to use default theme, community themes or write your own.
-    icon: null
+    icon:
+      type: iconify
+      collection: emojione
+      name: artist-palette
     noRandomIcon: true
 ---
