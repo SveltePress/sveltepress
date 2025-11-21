@@ -112,7 +112,16 @@
   let mediaQuery
 
   if (browser) {
-    $darkMode = window.localStorage.getItem(key) || 'auto'
+    let storedMode = window.localStorage.getItem(key)
+    if (
+      storedMode !== 'light' &&
+      storedMode !== 'dark' &&
+      storedMode !== 'auto'
+    ) {
+      storedMode = 'auto'
+      window.localStorage.setItem(key, storedMode)
+    }
+    $darkMode = storedMode
     mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     handleColorSchemeChange(mediaQuery)
   }
