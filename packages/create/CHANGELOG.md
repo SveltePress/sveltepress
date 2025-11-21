@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.3.1
+
+### Patch Changes
+
+- [`f7b051f`](https://github.com/SveltePress/sveltepress/commit/f7b051f93638c8f1eab2d327efb10e3859569474) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: history dark mode error"
+
 ## 1.3.0
 
 ### Minor Changes
