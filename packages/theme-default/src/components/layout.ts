@@ -20,6 +20,7 @@ export const oldScrollY = writable(0)
 
 export const scrollDirection = writable('up')
 
+export const darkMode = writable('auto')
 export const isDark = writable(false)
 
 export const sidebar = writable(true)

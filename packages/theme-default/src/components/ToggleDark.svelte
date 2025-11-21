@@ -1,14 +1,17 @@
 <script>
+  import { browser } from '$app/environment'
   import { onMount, tick } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Moon from './icons/Moon.svelte'
   import Sun from './icons/Sun.svelte'
-  import { isDark } from './layout'
+  import SystemDefault from './icons/SystemDefault.svelte'
+  import { darkMode, isDark } from './layout'
 
   const key = 'SVELTEPRESS_DARK_MODE'
 
   const themeColor = themeOptions.themeColor || { light: '#fff', dark: '#000' }
   function addOrRemoveClass() {
+    localStorage.setItem(key, $darkMode)
     if ($isDark) {
       document.querySelector('html').classList.add('dark')
       if (themeColor) {
@@ -27,13 +30,21 @@
   }
 
   function toggle(evt) {
-    localStorage.setItem(key, $isDark ? 'off' : 'on')
     const isAppearanceTransition =
       document.startViewTransition &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition) {
-      $isDark = !$isDark
+      if (darkMode === 'light') {
+        $darkMode = 'dark'
+        $isDark = true
+      } else if (darkMode === 'dark') {
+        $darkMode = 'auto'
+        $isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      } else if (darkMode === 'auto') {
+        $darkMode = 'light'
+        $isDark = false
+      }
       addOrRemoveClass()
       return
     }
@@ -44,8 +55,26 @@
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y),
     )
+    let needTransition = false
+    if ($darkMode === 'light') {
+      $darkMode = 'dark'
+      $isDark = true
+      needTransition = true
+    } else if ($darkMode === 'dark') {
+      $darkMode = 'auto'
+      $isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      needTransition = !$isDark
+    } else if ($darkMode === 'auto') {
+      $darkMode = 'light'
+      $isDark = false
+      needTransition = window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    if (!needTransition) {
+      tick().then(addOrRemoveClass)
+      return
+    }
     const transition = document.startViewTransition(async () => {
-      $isDark = !$isDark
       await tick()
       addOrRemoveClass()
     })
@@ -68,9 +97,31 @@
       )
     })
   }
+
+  function handleColorSchemeChange(e) {
+    if ($darkMode === 'auto') {
+      if (e.matches) {
+        $isDark = true
+      } else {
+        $isDark = false
+      }
+      addOrRemoveClass()
+    }
+  }
+
+  let mediaQuery
+
+  if (browser) {
+    $darkMode = window.localStorage.getItem(key) || 'auto'
+    mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    handleColorSchemeChange(mediaQuery)
+  }
   onMount(() => {
-    $isDark = localStorage.getItem(key) === 'on'
-    addOrRemoveClass()
+    mediaQuery?.addEventListener('change', handleColorSchemeChange)
+
+    return () => {
+      mediaQuery?.removeEventListener('change', handleColorSchemeChange)
+    }
   })
 </script>
 
@@ -86,11 +137,12 @@
   {@html `
 <${'script'}>
   const themeColor = JSON.parse('${JSON.stringify(themeColor)}')
-  if (window.localStorage.getItem('${key}') === 'on') {
+  const storedMode = window.localStorage.getItem('${key}')
+  if (storedMode === 'dark' || (storedMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.querySelector('html').classList.add('dark')
     document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
   }
- else {
+  else {
     document.querySelector('html').classList.remove('dark')
     document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.light : '#ffffff')
   }
@@ -100,14 +152,16 @@
 <div
   class="toggle"
   onclick={toggle}
-  onkeyup={toggle}
+  onkeyup={() => {}}
   aria-label="Toggle dark mode"
   role="button"
   tabindex="0"
 >
-  {#if $isDark}
+  {#if $darkMode === 'auto'}
+    <SystemDefault />
+  {:else if $darkMode === 'dark'}
     <Moon />
-  {:else}
+  {:else if $darkMode === 'light'}
     <Sun />
   {/if}
 </div>
