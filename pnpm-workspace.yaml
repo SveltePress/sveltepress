@@ -4,34 +4,35 @@ packages:
   - '!packages/create/template-ts'
 
 catalog:
-  svelte: ^5.0.0
-  vite: ^5.1.4
-  vitest: ^3.0.2
-  typescript: ^5.5.0
-  unocss: ^0.61.5
-  shiki: ^1.24.0
-  eslint: ^9
+  svelte: ^5.43.14
+  vite: ^7.2.4
+  vitest: ^4.0.12
+  typescript: ^5.9.3
+  unocss: ^66.5.9
+  shiki: ^3.15.0
+  eslint: ^9.39.1
   lru-cache: ^10.2.0
   mdast-util-from-markdown: ^2.0.0
   mdast-util-gfm: ^3.0.0
-  '@types/node': ^20.11.20
+  vite-plugin-pwa: ^1.1.0
+  '@types/node': ^22.12.0
   '@shikijs/twoslash': ^1.24.0
-  '@unocss/extractor-svelte': ^0.61.5
-  '@sveltejs/package': ^2.3.7
-  '@sveltejs/kit': ^2.8.5
-  '@sveltejs/vite-plugin-svelte': ^4.0.1
-  '@sveltejs/adapter-static': ^3.0.1
-  '@iconify-json/bi': ^1.1.23
-  '@iconify-json/bxs': ^1.1.10
-  '@iconify-json/carbon': ^1.1.36
-  '@iconify-json/emojione': ^1.1.10
-  '@iconify-json/fxemoji': ^1.1.8
-  '@iconify-json/logos': ^1.1.43
-  '@iconify-json/material-symbols': ^1.1.85
-  '@iconify-json/mdi': ^1.1.67
-  '@iconify-json/noto': ^1.1.18
-  '@iconify-json/openmoji': ^1.1.52
-  '@iconify-json/ph': ^1.1.13
-  '@iconify-json/solar': ^1.1.9
-  '@iconify-json/tabler': ^1.1.118
-  '@iconify-json/vscode-icons': ^1.1.36
+  '@unocss/extractor-svelte': ^66.5.9
+  '@sveltejs/package': ^2.5.6
+  '@sveltejs/kit': ^2.49.0
+  '@sveltejs/vite-plugin-svelte': ^6.2.1
+  '@sveltejs/adapter-static': ^3.0.10
+  '@iconify-json/bi': ^1.2.6
+  '@iconify-json/bxs': ^1.2.2
+  '@iconify-json/carbon': ^1.2.14
+  '@iconify-json/emojione': ^1.2.3
+  '@iconify-json/fxemoji': ^1.2.2
+  '@iconify-json/logos': ^1.2.10
+  '@iconify-json/material-symbols': ^1.2.47
+  '@iconify-json/mdi': ^1.2.3
+  '@iconify-json/noto': ^1.2.7
+  '@iconify-json/openmoji': ^1.2.17
+  '@iconify-json/ph': ^1.2.2
+  '@iconify-json/solar': ^1.2.5
+  '@iconify-json/tabler': ^1.2.23
+  '@iconify-json/vscode-icons': ^1.2.36
