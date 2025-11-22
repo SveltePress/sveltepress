@@ -24,6 +24,8 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9.15.9
+      - name: Install taze
+        run: pnpm i -g taze
       - name: Run taze
         run: npx --yes taze -r -w latest
       - name: Install packages
