@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { cwd } from 'node:process'
 import { $ } from 'zx'
 
