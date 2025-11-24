@@ -4,7 +4,7 @@ export default defineConfig({
   recursive: true,
   force: true,
   write: true,
-  install: true,
+  install: false,
   depFields: {
     overrides: false,
   },
