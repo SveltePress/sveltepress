@@ -30,7 +30,7 @@ jobs:
       - name: Install packages
         run: pnpm i --no-frozen-lockfile
       - name: Run taze
-        run: npx --yes taze -r -w latest
+        run: npx --yes taze
       - name: Reinstall packages
         run: pnpm i --no-frozen-lockfile
       - name: Check changes then create changesets and sync repo
