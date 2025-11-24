@@ -6,7 +6,7 @@ $.cwd = cwd()
 
 async function createChangeset() {
   const changesetRes = $`npx changeset`
-  changesetRes.stdin.write('\b')
+  changesetRes.stdin.write(' ')
   changesetRes.stdin.write('\n')
   changesetRes.stdin.write('\n')
   changesetRes.stdin.write('\n')
