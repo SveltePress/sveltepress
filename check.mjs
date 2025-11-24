@@ -6,14 +6,29 @@ $.cwd = cwd()
 
 async function createChangeset() {
   const changesetRes = $`npx changeset`
-  console.log(changesetRes)
+  let checked = false
+  changesetRes.stdout.on('data', (e) => {
+    const output = e.toString()
 
-  // changesetRes.stdin.write(' ')
-
-  // changesetRes.stdin.write('\n')
-  // changesetRes.stdin.write('\n')
-  // changesetRes.stdin.write('\n')
-  // changesetRes.stdin.write('chore: update deps \n')
+    if (output.includes('Summary')) {
+      changesetRes.stdin.write('chore: update deps \n')
+      return
+    }
+    if (output.includes('Which packages should have a major bump?')) {
+      changesetRes.stdin.write('\n')
+      return
+    }
+    if (output.includes('Which packages would you like to include?')) {
+      if (!checked) {
+        checked = true
+        changesetRes.stdin.write(' ')
+      }
+      else {
+        changesetRes.stdin.write('\n')
+      }
+    }
+  })
+  return await changesetRes
 }
 
 async function createGitCommit() {
