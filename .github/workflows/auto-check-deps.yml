@@ -3,6 +3,9 @@ name: Auto check all latest packages
 on:
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
