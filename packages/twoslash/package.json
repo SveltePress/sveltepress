@@ -41,7 +41,7 @@
     "@shikijs/twoslash": "catalog:",
     "mdast-util-from-markdown": "catalog:",
     "mdast-util-gfm": "catalog:",
-    "mdast-util-to-hast": "^13.2.0",
+    "mdast-util-to-hast": "^13.2.1",
     "shiki": "catalog:",
     "source-map-js": "^1.2.1",
     "svelte2tsx": "^0.7.45",

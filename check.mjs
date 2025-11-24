@@ -6,19 +6,17 @@ $.cwd = cwd()
 
 async function createChangeset() {
   const changesetRes = $`npx changeset`
-  changesetRes.stdin.write(' ')
-  changesetRes.stdin.write('\n')
-  changesetRes.stdin.write('\n')
-  changesetRes.stdin.write('\n')
-  const listener = () => {
-    changesetRes.stdin.write('chore: update deps\n')
-  }
-  changesetRes.stdout.on('data', listener)
-  await changesetRes
+  console.log(changesetRes)
+
+  // changesetRes.stdin.write(' ')
+
+  // changesetRes.stdin.write('\n')
+  // changesetRes.stdin.write('\n')
+  // changesetRes.stdin.write('\n')
+  // changesetRes.stdin.write('chore: update deps \n')
 }
 
-async function reinstallPackageAndCreateGitCommit() {
-  await $`pnpm i`
+async function createGitCommit() {
   await $`git config user.name "Dongsheng Zhao"`
   await $`git config user.email "1197160272@qq.com"`
   await $`git add -A`
@@ -28,14 +26,14 @@ async function reinstallPackageAndCreateGitCommit() {
 
 async function main() {
   const gitStatusLines = (await $`git status`).toString().split('\n')
-
   if (
     gitStatusLines.some(line => line.startsWith('Untracked files:')
       || line.startsWith('Changes not staged for commit:'
-        || line.startsWith('Changes to be committed:')))
+        || line.startsWith('Changes to be committed:'))
+      || line.includes('modified:'))
   ) {
     await createChangeset()
-    await reinstallPackageAndCreateGitCommit()
+    await createGitCommit()
   }
 }
 
