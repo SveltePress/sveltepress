@@ -1,7 +1,7 @@
 ///<reference types="svelte" />
 ;
-import { onMount } from 'svelte'
-function render() {
+import { onMount } from 'svelte';
+function $$render() {
 
   
 
@@ -23,6 +23,6 @@ async () => {
  }
 };
 return { props: /** @type {$$ComponentProps} */({}), exports: {}, bindings: __sveltets_$$bindings(''), slots: {}, events: {} }}
-const $$Component = __sveltets_2_fn_component(render());
-type $$Component = ReturnType<typeof $$Component>;
-export default $$Component;
+const $$Component = __sveltets_2_fn_component($$render());
+/*Ωignore_startΩ*/type $$Component = ReturnType<typeof $$Component>;
+/*Ωignore_endΩ*/export default $$Component;

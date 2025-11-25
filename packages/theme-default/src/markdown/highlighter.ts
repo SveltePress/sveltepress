@@ -108,8 +108,6 @@ export async function initHighlighter(highlighterConfig: DefaultThemeOptions['hi
       await createTwoslasher(highlighterConfig.twoslash === true
         ? {
             compilerOptions: {
-              module: 199,
-              moduleResolution: 99,
               jsx: 1,
               types: ['@sveltepress/vite/types', '@sveltepress/theme-default/types', '@sveltepress/theme-default/components', '@sveltejs/kit'],
             },
