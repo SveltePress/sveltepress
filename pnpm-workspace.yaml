@@ -18,19 +18,19 @@ catalog:
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.23
   '@iconify-json/vscode-icons': ^1.2.36
-  '@shikijs/twoslash': ^1.29.2
+  '@shikijs/twoslash': ^3.15.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/kit': ^2.49.0
   '@sveltejs/package': ^2.5.6
   '@sveltejs/vite-plugin-svelte': ^6.2.1
-  '@types/node': ^22.19.1
+  '@types/node': ^24.10.1
   '@unocss/extractor-svelte': ^66.5.9
   eslint: ^9.39.1
-  lru-cache: ^10.4.3
+  lru-cache: ^11.2.2
   mdast-util-from-markdown: ^2.0.2
   mdast-util-gfm: ^3.1.0
   shiki: ^3.15.0
-  svelte: ^5.43.14
+  svelte: ^5.44.0
   typescript: ^5.9.3
   unocss: ^66.5.9
   vite: ^7.2.4

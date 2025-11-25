@@ -45,9 +45,9 @@
   "devDependencies": {
     "@types/cross-spawn": "^6.0.6",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^20.19.25",
+    "@types/node": "^24.10.1",
     "@types/prompts": "^2.4.9",
     "typescript": "^5.9.3",
-    "unbuild": "^2.0.0"
+    "unbuild": "^3.6.1"
   }
 }

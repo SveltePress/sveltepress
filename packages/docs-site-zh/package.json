@@ -2,7 +2,7 @@
   "name": "@sveltepress/docs-site-zh",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.23.0",
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",
@@ -34,7 +34,7 @@
     "@sveltepress/vite": "workspace:*",
     "@types/node": "catalog:",
     "svelte": "catalog:",
-    "svelte-check": "^3.8.6",
+    "svelte-check": "^4.3.4",
     "vite": "catalog:",
     "workbox-window": "^7.4.0"
   }
