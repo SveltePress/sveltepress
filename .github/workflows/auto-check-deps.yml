@@ -23,7 +23,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9.15.9
+          version: 10.23.0
       - name: Install packages
         run: pnpm i --no-frozen-lockfile
       - name: Run taze
