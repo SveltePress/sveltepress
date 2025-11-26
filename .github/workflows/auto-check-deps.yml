@@ -1,6 +1,9 @@
 name: Auto check all latest packages
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '0 0 * * *'
 

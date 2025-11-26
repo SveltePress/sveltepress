@@ -1,34 +1,34 @@
 // @ts-nocheck
+import { writeFileSync } from 'node:fs'
 import { cwd } from 'node:process'
 import { $ } from 'zx'
 
 $.cwd = cwd()
 
 async function createChangeset() {
-  const changesetRes = $`npx changeset`
-  let checked = false
-  changesetRes.stdout.on('data', (e) => {
-    const output = e.toString()
+  const mdContent = `---
+'@sveltepress/create': patch
+'@sveltepress/theme-default': patch
+'@sveltepress/twoslash': patch
+'@sveltepress/vite': patch
+---
 
-    if (output.includes('Summary')) {
-      changesetRes.stdin.write('chore: update deps \n')
-      return
+chore: update deps
+`
+  writeFileSync(`.changeset/${generateRandomWords(3)}.md`, mdContent)
+}
+
+function generateRandomWords(num, wordLength = 5, separator = '-') {
+  const words = []
+  const possible = 'abcdefghijklmnopqrstuvwxyz'
+  for (let i = 0; i < num; i++) {
+    let word = ''
+    for (let j = 0; j < wordLength; j++) {
+      word += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    if (output.includes('Which packages should have a major bump?')) {
-      changesetRes.stdin.write('\n')
-      return
-    }
-    if (output.includes('Which packages would you like to include?')) {
-      if (!checked) {
-        checked = true
-        changesetRes.stdin.write(' ')
-      }
-      else {
-        changesetRes.stdin.write('\n')
-      }
-    }
-  })
-  return await changesetRes
+    words.push(word)
+  }
+  return words.join(separator)
 }
 
 async function createGitCommit() {
