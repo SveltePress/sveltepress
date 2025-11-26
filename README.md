@@ -58,6 +58,8 @@ This project can not be done without these projects
 [<img src="https://avatars.githubusercontent.com/u/49562229?s=200&v=4" style="width:100px;" />](https://github.com/kryptokrona/kryptokrona-kotlin-sdk)
 [<img src="https://svelte.casual-ui.site/logo@3x.png" style="width:100px;" />](https://svelte.casual-ui.site/)
 [<img src="https://svelte-u.vercel.app/logo.png" style="width:100px;" />](https://svelte-u.vercel.app/)
+[<img src="https://writewithharper.com/circle-logo.png" style="width:100px;" />](https://writewithharper.com/)
+
 
 ## LICENSE
 
