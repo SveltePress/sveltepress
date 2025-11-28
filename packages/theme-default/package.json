@@ -2,7 +2,7 @@
   "name": "@sveltepress/theme-default",
   "type": "module",
   "version": "7.0.1",
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.24.0",
   "description": "The default theme for sveltepress",
   "author": {
     "name": "Dongsheng Zhao",
@@ -74,7 +74,7 @@
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "@sveltepress/twoslash": "workspace:*",
     "@unocss/extractor-svelte": "catalog:",
-    "@vite-pwa/sveltekit": "^1.0.1",
+    "@vite-pwa/sveltekit": "^1.1.0",
     "lru-cache": "catalog:",
     "mdast-util-from-markdown": "catalog:",
     "mdast-util-gfm": "catalog:",

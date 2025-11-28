@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.24.0",
   "scripts": {
     "lint": "eslint",
     "format": "prettier \"./**/*.svelte\" --check",
@@ -11,7 +11,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@changesets/changelog-github": "^0.5.1"
+    "@changesets/changelog-github": "^0.5.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.2.0",
@@ -23,7 +23,7 @@
     "prettier": "~3.6.2",
     "prettier-plugin-svelte": "^3.4.0",
     "svelte": "catalog:",
-    "taze": "^19.9.0",
+    "taze": "^19.9.2",
     "typescript": "catalog:",
     "zx": "^8.8.5"
   }
