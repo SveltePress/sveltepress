@@ -1,5 +1,31 @@
 # @sveltepress/theme-default
 
+## 7.0.2
+
+### Patch Changes
+
+- [`4a00ad6`](https://github.com/SveltePress/sveltepress/commit/4a00ad6e43db0a67b29f2b6ef06158c5a3f3b6aa) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`06aec66`](https://github.com/SveltePress/sveltepress/commit/06aec66d5c3bc61ea845c8654dc6fa91bacc138e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`7c55f3d`](https://github.com/SveltePress/sveltepress/commit/7c55f3dd6e1a1d7bf4713aeb103e43109001fe3b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`7e35631`](https://github.com/SveltePress/sveltepress/commit/7e35631555a6e67270dae5f0c71612068be97b55) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b65ec6d`](https://github.com/SveltePress/sveltepress/commit/b65ec6d7111417a8d1a59e2a090b4e787a2ea330) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`7adf3b6`](https://github.com/SveltePress/sveltepress/commit/7adf3b6e192b8d6e0915c86dea45e7cdc6ab2180) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: unexpected first child interception
+
+- [`6ce1f64`](https://github.com/SveltePress/sveltepress/commit/6ce1f64c1179644e49b741bd83d8d0548d8a774d) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add support for controling the final order of all remark/rehype plugins
+
+- [`87172c6`](https://github.com/SveltePress/sveltepress/commit/87172c6ca712df9807e2f91fe9492b838b59089b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`f3e0bde`](https://github.com/SveltePress/sveltepress/commit/f3e0bde453cf293d30dd8f63b140481ac1b19de8) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: add frontmatter control for disable page layout content
+
+- Updated dependencies [[`4a00ad6`](https://github.com/SveltePress/sveltepress/commit/4a00ad6e43db0a67b29f2b6ef06158c5a3f3b6aa), [`06aec66`](https://github.com/SveltePress/sveltepress/commit/06aec66d5c3bc61ea845c8654dc6fa91bacc138e), [`7c55f3d`](https://github.com/SveltePress/sveltepress/commit/7c55f3dd6e1a1d7bf4713aeb103e43109001fe3b), [`7e35631`](https://github.com/SveltePress/sveltepress/commit/7e35631555a6e67270dae5f0c71612068be97b55), [`b65ec6d`](https://github.com/SveltePress/sveltepress/commit/b65ec6d7111417a8d1a59e2a090b4e787a2ea330), [`7adf3b6`](https://github.com/SveltePress/sveltepress/commit/7adf3b6e192b8d6e0915c86dea45e7cdc6ab2180), [`6ce1f64`](https://github.com/SveltePress/sveltepress/commit/6ce1f64c1179644e49b741bd83d8d0548d8a774d), [`87172c6`](https://github.com/SveltePress/sveltepress/commit/87172c6ca712df9807e2f91fe9492b838b59089b), [`f3e0bde`](https://github.com/SveltePress/sveltepress/commit/f3e0bde453cf293d30dd8f63b140481ac1b19de8)]:
+  - @sveltepress/twoslash@1.3.2
+  - @sveltepress/vite@1.3.2
+
 ## 7.0.1
 
 ### Patch Changes
@@ -1366,17 +1392,14 @@
 ### Patch Changes
 
 - de34acc: ## Fixes
-
   - default theme page layout routeId undefine
   - page layout not working with +page.svelte routes
 
   ## Features
-
   - Expansion and live code import sync instead of async
   - Auto title and description feature move to default theme default layout
 
   ## Dev
-
   - Add vitest for vite package
   - Add vitest for default theme package
 
@@ -1391,7 +1414,6 @@
 ### Minor Changes
 
 - a6c3a8c: - create tempalte updates
-
   - theme api refactor
   - default theme navbar
   - default theme home page
