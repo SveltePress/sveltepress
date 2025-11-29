@@ -26,12 +26,20 @@ export interface ResolvedTheme {
   footnoteLabel?: string
 }
 
+export type RemarkPluginsOrderer = ((themeRemarkPlugins: Plugin[]) => Plugin[])
+
+export type RehypePluginsOrderer = ((themeRehypePlugins: Plugin[]) => Plugin[])
+
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
   siteConfig?: SiteConfig
   addInspect?: boolean
-  remarkPlugins?: Plugin[]
-  rehypePlugins?: Plugin[]
+  remarkPlugins?: Plugin[] | RemarkPluginsOrderer
+  rehypePlugins?: Plugin[] | RehypePluginsOrderer
 }
 
 export type LoadTheme<ThemeOptions = any> = (themeOptions?: ThemeOptions) => ResolvedTheme
+
+export type RawRemarkPlugin = Plugin<any[], any> | [Plugin<any[], any>, any]
+
+export type AcceptableRemarkPlugin = Array<RawRemarkPlugin>

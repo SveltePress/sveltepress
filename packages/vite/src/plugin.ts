@@ -1,6 +1,6 @@
 import type { Plugin } from 'unified'
 import type { PluginOption } from 'vite'
-import type { SveltepressVitePluginOptions } from './types.js'
+import type { RehypePluginsOrderer, RemarkPluginsOrderer, SveltepressVitePluginOptions } from './types.js'
 import { existsSync, mkdirSync } from 'node:fs'
 
 import { resolve } from 'node:path'
@@ -28,14 +28,34 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
 
-  if (theme?.remarkPlugins)
-    allRemarkPlugins.push(...theme.remarkPlugins)
-  if (remarkPlugins)
+  if (Array.isArray(remarkPlugins)) {
+    if (theme?.remarkPlugins) {
+      allRemarkPlugins.push(...theme.remarkPlugins)
+    }
     allRemarkPlugins.push(...remarkPlugins)
-  if (theme?.rehypePlugins)
-    allRehypePlugins.push(...theme.rehypePlugins)
-  if (rehypePlugins)
-    allRehypePlugins.push(...rehypePlugins)
+  }
+  else if (isRemarkPluginsOrderer(remarkPlugins)) {
+    allRemarkPlugins.push(...remarkPlugins?.(theme?.remarkPlugins || []) ?? [])
+  }
+  else {
+    if (theme?.remarkPlugins) {
+      allRemarkPlugins.push(...theme.remarkPlugins)
+    }
+  }
+
+  if (Array.isArray(rehypePlugins)) {
+    if (theme?.rehypePlugins)
+      allRehypePlugins.push(...theme.rehypePlugins)
+    if (rehypePlugins)
+      allRehypePlugins.push(...rehypePlugins)
+  }
+  else if (isRehypePluginsOrderer(rehypePlugins)) {
+    allRehypePlugins.push(...rehypePlugins?.(theme?.rehypePlugins || []) ?? [])
+  }
+  else {
+    if (theme?.rehypePlugins)
+      allRehypePlugins.push(...theme.rehypePlugins)
+  }
 
   function getLayout(path: string) {
     let layout: string | undefined
@@ -105,6 +125,14 @@ function isPage(path: string) {
 
 function isRootLayout(path: string) {
   return path.endsWith('src/routes/+layout.svelte') || path.endsWith('src/routes/+layout.md')
+}
+
+function isRemarkPluginsOrderer(value: any): value is RemarkPluginsOrderer {
+  return typeof value === 'function'
+}
+
+function isRehypePluginsOrderer(value: any): value is RehypePluginsOrderer {
+  return typeof value === 'function'
 }
 
 export default sveltepress

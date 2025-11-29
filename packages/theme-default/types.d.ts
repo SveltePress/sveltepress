@@ -6,6 +6,7 @@ declare module 'virtual:sveltepress/theme-default' {
   import type { CreateTwoslashSvelteOptions } from '@sveltepress/twoslash'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
+  import type { BundledTheme } from 'shiki'
   import type { BundledLanguage } from 'shiki/langs'
 
   export interface WithTitle {
@@ -48,8 +49,8 @@ declare module 'virtual:sveltepress/theme-default' {
     }
     highlighter?: {
       languages?: BundledLanguage[]
-      themeLight?: string
-      themeDark?: string
+      themeLight?: BundledTheme
+      themeDark?: BundledTheme
       twoslash?: boolean | CreateTwoslashSvelteOptions
     }
     i18n?: {

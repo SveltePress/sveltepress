@@ -29,6 +29,33 @@ title: Vite 插件
 
 阅读 [Rehype plugins](https://github.com/rehypejs/rehype#plugins) 来获得更多信息
 
+:::important[自定义 remark 与 rehype 插件顺序]
+
+`remarkPlugins` 与 `rehypePlugins` 可以是以下两种形式：
+1. 一个 `Plugins` 数组. 这里提供的插件将会自动在主题提供的插件之后运行
+2. 一个函数，接受 `themeRemarkPlugins` 作为参数，然后返回一个 `Plugins` 数组，例如：
+
+```ts title="vite.config.ts"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme(/* 主题选项 */),
+      remarkPlugins: (themeRemarkPlugins) => {
+        // 添加你的自定义插件，并且可以控制最终的调用顺序
+        return [
+          ...themeRemarkPlugins
+        ]
+      }
+    })
+  ]
+})
+```
+:::
+
 ## `ResolvedTheme`
 
 @code(/../vite/src/types.ts,13,25)

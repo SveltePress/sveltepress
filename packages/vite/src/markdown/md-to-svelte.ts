@@ -1,5 +1,5 @@
 import type { Plugin } from 'unified'
-import type { Highlighter } from '../types.js'
+import type { AcceptableRemarkPlugin, Highlighter } from '../types.js'
 import rehypeStringify from 'rehype-stringify'
 import remarkDirective from 'remark-directive'
 import emoji from 'remark-emoji'
@@ -102,7 +102,7 @@ export default async function ({
   }
 }
 
-export function applyRemarkPluginsBeforeRehype(remarkPlugins?: Array<Plugin<any[], any> | [Plugin<any[], any>, any]>) {
+export function applyRemarkPluginsBeforeRehype(remarkPlugins?: AcceptableRemarkPlugin) {
   let processorAfterRemarkParse = unified()
     .use(remarkParse as any)
 

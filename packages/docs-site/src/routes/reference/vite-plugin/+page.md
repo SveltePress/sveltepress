@@ -27,14 +27,39 @@ See [`ResolvedTheme`](#ResolvedTheme) below
 The remark plugins used for markdown parse.
 Read [Remark plugins](https://github.com/remarkjs/remark#plugins) for more details.
 
+:::important[Customize remark/rehype plugins order]
+
+The `remarkPlugins` and `rehypePlugins` can be one of these two format:
+1. An array of `Plugins`. The plugins provided here will run after theme provide remark plugins.
+2. A function that accept the `themeRemarkPlugins` then return an array of `Plugins`, for example:
+
+```ts title="vite.config.ts"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme(/* theme options */),
+      remarkPlugins: (themeRemarkPlugins) => {
+        // Add your custom plugin. Feel free to control the final order to apply all the plugins
+        return [
+          ...themeRemarkPlugins
+        ]
+      }
+    })
+  ]
+})
+```
+:::
+
 ### `rehypePlugins`
 
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
 
 ## ResolvedTheme
-
-<!-- @code(/../vite/src/types.ts,13,25) -->
 
 ### `name`
 
