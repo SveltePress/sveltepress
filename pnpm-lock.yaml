@@ -97,7 +97,7 @@ catalogs:
       specifier: ^7.2.4
       version: 7.2.4
     vitest:
-      specifier: ^4.0.14
+      specifier: 4.0.14
       version: 4.0.14
     yaml:
       specifier: ^2.8.1
@@ -144,6 +144,9 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
+      vitest:
+        specifier: 'catalog:'
+        version: 4.0.14(@types/node@24.10.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)
       zx:
         specifier: ^8.8.5
         version: 8.8.5

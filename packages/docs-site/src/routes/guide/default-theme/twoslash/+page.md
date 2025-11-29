@@ -13,6 +13,7 @@ All of the Typescript code blocks would provide inline type hover.
 @install-pkg(@sveltepress/twoslash)
 
 * Config `highlighter.twoslash` to `true`
+
 ```ts title="vite.config.(js|ts)"
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'

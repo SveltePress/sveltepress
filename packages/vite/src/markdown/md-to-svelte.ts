@@ -34,35 +34,29 @@ export default async function ({
   data: Record<string, any>
   code: string
 }> {
-  let processorAfterRemarkParse = applyRemarkPluginsBeforeRehype(remarkPlugins)
-  const highlightAsyncTasks: (PromiseSettledResult<any>[])[] = []
+  const processorAfterRemarkParse = applyRemarkPluginsBeforeRehype(remarkPlugins)
 
   if (highlighter) {
-    processorAfterRemarkParse = processorAfterRemarkParse.use(
-      () => {
-        return async (tree: any) => {
-          const asyncTasks: any[] = []
-          visit(tree, (node, idx, parent) => {
-            if (node.type === 'code') {
-              const asyncTask = async () => {
-                if (idx) {
-                  const highlightedCode = await highlighter?.(node.value, node.lang, node.meta)
-                  parent.children[idx] = {
-                    type: 'html',
-                    value: highlightedCode,
-                  }
-                }
+    const highlighterPlugin: Plugin<any[], any> = () => {
+      return async (tree: any) => {
+        const highlightAsyncTasks: Array<() => Promise<any>> = []
+        visit(tree, (node, idx, parent) => {
+          if (node.type === 'code') {
+            highlightAsyncTasks.push(async () => {
+              const highlightedCode = await highlighter?.(node.value, node.lang, node.meta)
+              const newNode = {
+                type: 'html',
+                value: highlightedCode || `<pre><code class="language-${node.lang}">${node.value}</code></pre>`,
               }
-              asyncTasks.push(asyncTask())
-            }
-          })
-          highlightAsyncTasks.push(await Promise.allSettled(asyncTasks))
-        }
-      },
-    )
+              parent.children.splice(idx, 1, newNode)
+            })
+          }
+        })
+        await Promise.all(highlightAsyncTasks.map(task => task()))
+      }
+    }
+    processorAfterRemarkParse.use(highlighterPlugin)
   }
-
-  await Promise.allSettled(highlightAsyncTasks)
 
   let processorAfterRehype = processorAfterRemarkParse
     .use(remarkRehype, {

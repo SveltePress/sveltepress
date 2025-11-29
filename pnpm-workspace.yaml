@@ -1,5 +1,5 @@
 packages:
-  - 'packages/**'
+  - packages/**
   - '!packages/create/template-js'
   - '!packages/create/template-ts'
 
@@ -35,5 +35,5 @@ catalog:
   unocss: ^66.5.9
   vite: ^7.2.4
   vite-plugin-pwa: ^1.2.0
-  vitest: ^4.0.14
+  vitest: 4.0.14
   yaml: ^2.8.1

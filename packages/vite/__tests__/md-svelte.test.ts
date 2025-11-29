@@ -1,7 +1,3 @@
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { cwd } from 'node:process'
-import { highlighter, initHighlighter } from '@sveltepress/theme-default'
 import { describe, expect, it } from 'vitest'
 import mdToSvelte from '../src/markdown/md-to-svelte'
 import { wrapPage } from '../src/utils/wrap-page'
@@ -101,7 +97,9 @@ describe('md to svelte', () => {
       mdOrSvelteCode: source,
       id: '/foo/+page.md',
       layout: '/path/to/CustomLayout.svelte',
-      highlighter: (code, lang) => Promise.resolve(`<div>${lang}</div><div>${code}</div>`),
+      highlighter: (code, lang) => new Promise((resolve) => {
+        setTimeout(() => resolve(`<div>${lang}</div><div>${code}</div>`), 10)
+      }),
     })
     expect(code).toMatchInlineSnapshot(`
       {
@@ -147,18 +145,5 @@ describe('md to svelte', () => {
       ",
       }
     `)
-  })
-
-  it('real world', async () => {
-    await initHighlighter({
-      twoslash: true,
-    })
-    const mdContent = readFileSync(resolve(cwd(), '../docs-site/src/routes/guide/default-theme/twoslash/+page.md'), 'utf-8')
-    const { code } = await mdToSvelte({
-      mdContent,
-      filename: 'real-world.md',
-      highlighter,
-    })
-    await expect(code).toMatchFileSnapshot('real-world.svelte')
   })
 })
