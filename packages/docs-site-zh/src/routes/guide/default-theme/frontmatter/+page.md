@@ -23,6 +23,8 @@ interface CommonFrontmatter {
 将会影响页面底部的 "last update at: " 内容，默认将会读取 +page.(md|svelte) 文件的最后 git 提交时间
 您可以通过该项配置来覆盖这个默认行为，展示您所需要的文案
 
+## 主题特定的 frontmatter
+
 ### `sidebar`
 
 控制侧边导航栏的显示/隐藏，默认为 `true`，设置为 `false` 隐藏侧边导航栏
@@ -30,6 +32,10 @@ interface CommonFrontmatter {
 ### `header`
 
 控制顶部导航栏的显示/隐藏，默认为 `true`，设置为 `false` 隐藏顶部导航栏
+
+### `layout`
+
+控制是否使用主题提供的页面布局，默认为 `true`，设置为 `false` 则禁用该页面的主题页面布局。
 
 ## 特殊 frontmatter
 

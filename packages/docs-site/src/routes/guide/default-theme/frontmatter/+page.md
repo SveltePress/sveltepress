@@ -24,6 +24,8 @@ It will affect the "last update at: " content at the end of the page.
 Default it would read the git commit time of the +page file.
 You can override it by config this field.
 
+# Theme specific frontmatter
+
 ### `sidebar`
 
 Determine to show the sidebar or not. Default is `true`, change to `false` to hide the sidebar
@@ -31,6 +33,10 @@ Determine to show the sidebar or not. Default is `true`, change to `false` to hi
 ### `header`
 
 Determine to show the header or not. Default is `true`, change to `false` to hide the header
+
+### `layout`
+
+Determine to use the theme page layout or not. Default is `true`, change to `false` to disable the theme page layout for this page.
 
 ## Special frontmatter
 
