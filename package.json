@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.2.0",
-    "@changesets/cli": "^2.29.7",
+    "@changesets/cli": "^2.29.8",
     "eslint": "catalog:",
     "eslint-plugin-svelte": "^3.13.0",
     "husky": "^9.1.7",
