@@ -25,6 +25,7 @@
     home,
     sidebar: fmSidebar = true,
     header = true,
+    layout = true,
   } = fm
 
   $sidebar = fmSidebar
@@ -52,37 +53,37 @@
   <meta name="description" content={description || siteConfig.description} />
 </svelte:head>
 
-{#snippet defaultHeroImage()}
-  {#if fm.heroImage}
-    <HeroImage heroImage={fm.heroImage} />
-  {/if}
-{/snippet}
-
-{#if !isHome}
-  <div pb-4 class="theme-default--page-layout">
-    <div class="content">
-      {#if title}
-        <h1 class="page-title">
-          {title}
-        </h1>
-      {/if}
-      {@render children?.()}
-      <div class="meta" class:without-edit-link={!themeOptions.editLink}>
-        {#if themeOptions.editLink}
-          <EditPage {pageType} />
-        {/if}
-        <LastUpdate {lastUpdate} />
-      </div>
-      {#if ready && $pages.length}
-        <PageSwitcher />
-      {/if}
-    </div>
-  </div>
+{#if layout === false}
+  {@render children?.()}
 {:else}
-  {#if home !== false}
+  {#snippet defaultHeroImage()}
+    {#if fm.heroImage}
+      <HeroImage heroImage={fm.heroImage} />
+    {/if}
+  {/snippet}
+  {#if !isHome}
+    <div pb-4 class="theme-default--page-layout">
+      <div class="content">
+        {#if title}
+          <h1 class="page-title">
+            {title}
+          </h1>
+        {/if}
+        {@render children?.()}
+        <div class="meta" class:without-edit-link={!themeOptions.editLink}>
+          {#if themeOptions.editLink}
+            <EditPage {pageType} />
+          {/if}
+          <LastUpdate {lastUpdate} />
+        </div>
+        {#if ready && $pages.length}
+          <PageSwitcher />
+        {/if}
+      </div>
+    </div>
+  {:else if home !== false}
     <Home {...fm} {siteConfig} heroImage={heroImage ?? defaultHeroImage}></Home>
   {/if}
-  {@render children?.()}
 {/if}
 
 <style>
