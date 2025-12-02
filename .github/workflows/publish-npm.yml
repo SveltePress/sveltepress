@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 jobs:

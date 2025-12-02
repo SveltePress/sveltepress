@@ -6,8 +6,6 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, ready_for_review]
-    branches-ignore:
-      - changeset-release/main
 
 jobs:
   vitest:
