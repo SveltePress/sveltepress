@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - main
+      - changeset-release/main
   pull_request:
-    types: [opened, synchronize, ready_for_review]
+    types: [opened, synchronize, ready_for_review, auto_merge_enabled]
 
 jobs:
   vitest:
