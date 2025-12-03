@@ -64,9 +64,11 @@ export default async function ({
       footnoteLabel,
       handlers: {
         inlineCode(state, node) {
+          // Escape backticks and backslashes in the code content
+          const escapedValue = node.value.replace(/\\/g, '\\\\').replace(/`/g, '\\`')
           return {
             type: 'raw',
-            value: `<code>{\`${node.value}\`}</code>`,
+            value: `<code>{\`${escapedValue}\`}</code>`,
           }
         },
       },

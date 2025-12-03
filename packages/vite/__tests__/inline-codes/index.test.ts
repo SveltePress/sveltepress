@@ -21,4 +21,20 @@ describe('inline-codes', () => {
     })
     expect(code).toMatchInlineSnapshot(`"<p><code>{\`you know 1 < 2 ? >\`}</code></p>"`)
   })
+
+  it('with backticks', async () => {
+    const { code } = await mdToSvelte({
+      mdContent: 'To create a string in JS, write something like: `` `red` ``.',
+      filename: 'inline-code-with-backticks.md',
+    })
+    expect(code).toMatchInlineSnapshot(`"<p>To create a string in JS, write something like: <code>{\`\\\`red\\\`\`}</code>.</p>"`)
+  })
+
+  it('with backslashes', async () => {
+    const { code } = await mdToSvelte({
+      mdContent: '`C:\\Users\\test\\path`',
+      filename: 'inline-code-with-backslashes.md',
+    })
+    expect(code).toMatchInlineSnapshot(`"<p><code>{\`C:\\\\Users\\\\test\\\\path\`}</code></p>"`)
+  })
 })
