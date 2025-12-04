@@ -14,7 +14,7 @@
     "@changesets/changelog-github": "^0.5.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
+    "@antfu/eslint-config": "^6.3.0",
     "@changesets/cli": "^2.29.8",
     "eslint": "catalog:",
     "eslint-plugin-svelte": "^3.13.0",
