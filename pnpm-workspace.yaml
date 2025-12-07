@@ -4,6 +4,12 @@ packages:
   - '!packages/create/template-ts'
 
 catalog:
+  '@antfu/eslint-config': ^6.4.2
+  '@changesets/changelog-github': ^0.5.2
+  '@changesets/cli': ^2.29.8
+  '@docsearch/css': ^4.3.2
+  '@docsearch/js': ^4.3.2
+  '@floating-ui/dom': ^1.7.4
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.2
   '@iconify-json/carbon': ^1.2.15
@@ -23,17 +29,62 @@ catalog:
   '@sveltejs/kit': ^2.49.1
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.1
+  '@types/cross-spawn': ^6.0.6
+  '@types/estree': ^1.0.8
+  '@types/fs-extra': ^11.0.4
+  '@types/hast': ^3.0.4
+  '@types/mdast': ^4.0.4
+  '@types/minimist': ^1.2.5
   '@types/node': ^24.10.1
+  '@types/prompts': ^2.4.9
   '@unocss/extractor-svelte': ^66.5.10
+  '@vite-pwa/sveltekit': ^1.1.0
+  cross-spawn: ^7.0.6
+  dayjs: ^1.11.19
   eslint: ^9.39.1
+  eslint-plugin-svelte: ^3.13.1
+  fs-extra: ^11.3.2
+  husky: ^9.1.7
+  lint-staged: ^16.2.7
   lru-cache: ^11.2.4
   mdast-util-from-markdown: ^2.0.2
   mdast-util-gfm: ^3.1.0
+  mdast-util-to-hast: ^13.2.1
+  minimist: ^1.2.8
+  picocolors: ^1.1.1
+  prettier: ~3.6.2
+  prettier-plugin-svelte: ^3.4.0
+  prompts: ^2.4.2
+  rehype-stringify: ^10.0.1
+  remark-directive: ^4.0.0
+  remark-emoji: ^5.0.2
+  remark-extract-frontmatter: ^3.2.0
+  remark-frontmatter: ^5.0.0
+  remark-gfm: ^4.0.1
+  remark-parse: ^11.0.0
+  remark-rehype: ^11.1.2
+  remark-stringify: ^11.0.0
   shiki: ^3.19.0
+  source-map-js: ^1.2.1
   svelte: ^5.45.6
+  svelte-check: ^4.3.4
+  svelte2tsx: ^0.7.45
+  taze: ^19.9.2
+  twoslash: ^0.3.4
+  twoslash-protocol: ^0.3.4
   typescript: ^5.9.3
+  uid: ^2.0.2
+  unbuild: ^3.6.1
+  unified: ^11.0.5
+  unist-util-visit: ^5.0.0
   unocss: ^66.5.10
+  vfile: ^6.0.3
   vite: ^7.2.6
+  vite-plugin-inspect: ^11.3.3
   vite-plugin-pwa: ^1.2.0
   vitest: 4.0.14
+  workbox-precaching: ^7.4.0
+  workbox-routing: ^7.4.0
+  workbox-window: ^7.4.0
   yaml: ^2.8.2
+  zx: ^8.8.5

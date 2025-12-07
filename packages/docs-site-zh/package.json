@@ -34,8 +34,8 @@
     "@sveltepress/vite": "workspace:*",
     "@types/node": "catalog:",
     "svelte": "catalog:",
-    "svelte-check": "^4.3.4",
+    "svelte-check": "catalog:",
     "vite": "catalog:",
-    "workbox-window": "^7.4.0"
+    "workbox-window": "catalog:"
   }
 }
