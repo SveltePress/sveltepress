@@ -4,9 +4,9 @@ packages:
   - '!packages/create/template-ts'
 
 catalog:
-  '@iconify-json/bi': ^1.2.6
+  '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.2
-  '@iconify-json/carbon': ^1.2.14
+  '@iconify-json/carbon': ^1.2.15
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
@@ -30,7 +30,7 @@ catalog:
   mdast-util-from-markdown: ^2.0.2
   mdast-util-gfm: ^3.1.0
   shiki: ^3.19.0
-  svelte: ^5.45.5
+  svelte: ^5.45.6
   typescript: ^5.9.3
   unocss: ^66.5.10
   vite: ^7.2.6
