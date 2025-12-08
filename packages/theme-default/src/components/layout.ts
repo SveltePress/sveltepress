@@ -28,6 +28,17 @@ export const showHeader = writable(true)
 
 export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
 
+function flattenPages(items: LinkItem[]): LinkItem[] {
+  const result: LinkItem[] = []
+  for (const item of items) {
+    if (item.to)
+      result.push(item)
+    if (Array.isArray(item.items))
+      result.push(...flattenPages(item.items))
+  }
+  return result
+}
+
 scrollY.subscribe((sy) => {
   const nextDirection = sy - get(oldScrollY) > 0 ? 'down' : 'up'
   if (nextDirection !== get(scrollDirection))
@@ -35,13 +46,7 @@ scrollY.subscribe((sy) => {
 })
 
 resolvedSidebar.subscribe((sidebar) => {
-  pages.set(sidebar.reduce<LinkItem[]>(
-    (allPages, item) =>
-      Array.isArray(item.items)
-        ? [...allPages, ...item.items]
-        : [...allPages, item],
-    [],
-  ))
+  pages.set(flattenPages(sidebar))
 })
 
 sidebarCollapsed.subscribe((v) => {
