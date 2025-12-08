@@ -1,3 +1,9 @@
+catalogMode: prefer
+cleanupUnusedCatalogs: true
+
+shellEmulator: true
+trustPolicy: no-downgrade
+
 packages:
   - packages/**
   - '!packages/create/template-js'
@@ -81,8 +87,7 @@ catalog:
   vfile: ^6.0.3
   vite: ^7.2.6
   vite-plugin-inspect: ^11.3.3
-  vite-plugin-pwa: ^1.2.0
-  vitest: 4.0.14
+  vitest: ^4.0.14
   workbox-precaching: ^7.4.0
   workbox-routing: ^7.4.0
   workbox-window: ^7.4.0
