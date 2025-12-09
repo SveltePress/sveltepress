@@ -3,6 +3,8 @@ cleanupUnusedCatalogs: true
 
 shellEmulator: true
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - semver@6.3.1
 
 packages:
   - packages/**
@@ -10,7 +12,7 @@ packages:
   - '!packages/create/template-ts'
 
 catalog:
-  '@antfu/eslint-config': ^6.4.2
+  '@antfu/eslint-config': ^6.5.1
   '@changesets/changelog-github': ^0.5.2
   '@changesets/cli': ^2.29.8
   '@docsearch/css': ^4.3.2
@@ -32,7 +34,7 @@ catalog:
   '@iconify-json/vscode-icons': ^1.2.37
   '@shikijs/twoslash': ^3.19.0
   '@sveltejs/adapter-static': ^3.0.10
-  '@sveltejs/kit': ^2.49.1
+  '@sveltejs/kit': ^2.49.2
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.1
   '@types/cross-spawn': ^6.0.6
@@ -41,7 +43,7 @@ catalog:
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.10.1
+  '@types/node': ^24.10.2
   '@types/prompts': ^2.4.9
   '@unocss/extractor-svelte': ^66.5.10
   '@vite-pwa/sveltekit': ^1.1.0
@@ -72,7 +74,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.19.0
   source-map-js: ^1.2.1
-  svelte: ^5.45.6
+  svelte: ^5.45.8
   svelte-check: ^4.3.4
   svelte2tsx: ^0.7.45
   taze: ^19.9.2
@@ -85,7 +87,7 @@ catalog:
   unist-util-visit: ^5.0.0
   unocss: ^66.5.10
   vfile: ^6.0.3
-  vite: ^7.2.6
+  vite: ^7.2.7
   vite-plugin-inspect: ^11.3.3
   vitest: 4.0.14
   workbox-precaching: ^7.4.0
