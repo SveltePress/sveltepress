@@ -81,7 +81,7 @@
 
 <style>
   .nested {
-    --at-apply: 'pl-4';
+    --at-apply: 'pl-4 mt-2';
   }
   .with-mb {
     --at-apply: 'mb-2 sm:mb-4';

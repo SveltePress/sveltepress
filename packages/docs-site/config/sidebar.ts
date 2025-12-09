@@ -20,6 +20,40 @@ export default {
           title: 'Working with TypeScript',
           to: '/guide/typescript/',
         },
+        {
+          title: 'Nested',
+          items: [
+            {
+              title: 'Basic Writing',
+              to: '/guide/markdown/basic-writing/',
+            },
+            {
+              title: 'Frontmatter',
+              to: '/guide/markdown/frontmatter/',
+            },
+            {
+              title: 'Svelte in Markdown',
+              to: '/guide/markdown/svelte-in-markdown/',
+            },
+            {
+              title: 'Nested',
+              items: [
+                {
+                  title: 'Basic Writing',
+                  to: '/guide/markdown/basic-writing/',
+                },
+                {
+                  title: 'Frontmatter',
+                  to: '/guide/markdown/frontmatter/',
+                },
+                {
+                  title: 'Svelte in Markdown',
+                  to: '/guide/markdown/svelte-in-markdown/',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
