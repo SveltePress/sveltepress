@@ -22,8 +22,6 @@ jobs:
           node-version: lts/*
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10.24.0
       - name: Install packages
         run: pnpm i --no-frozen-lockfile
       - name: Run taze
