@@ -17,14 +17,14 @@
       if (themeColor) {
         document
           .getElementById('theme-color')
-          .setAttribute('content', themeColor.dark)
+          ?.setAttribute('content', themeColor.dark)
       }
     } else {
       document.querySelector('html').classList.remove('dark')
       if (themeColor) {
         document
           .getElementById('theme-color')
-          .setAttribute('content', themeColor.light)
+          ?.setAttribute('content', themeColor.light)
       }
     }
   }
@@ -149,11 +149,11 @@
   const storedMode = window.localStorage.getItem('${key}')
   if (storedMode === 'dark' || (storedMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.querySelector('html').classList.add('dark')
-    document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
+    document.getElementById('theme-color')?.setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
   }
   else {
     document.querySelector('html').classList.remove('dark')
-    document.getElementById('theme-color').setAttribute('content', themeColor ? themeColor.light : '#ffffff')
+    document.getElementById('theme-color')?.setAttribute('content', themeColor ? themeColor.light : '#ffffff')
   }
 </${'script'}>`}
 </svelte:head>
