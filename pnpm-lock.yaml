@@ -61,8 +61,8 @@ catalogs:
       specifier: ^1.2.5
       version: 1.2.5
     '@iconify-json/tabler':
-      specifier: ^1.2.23
-      version: 1.2.23
+      specifier: ^1.2.24
+      version: 1.2.24
     '@iconify-json/vscode-icons':
       specifier: ^1.2.37
       version: 1.2.37
@@ -378,7 +378,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.23
+        version: 1.2.24
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.37
@@ -456,7 +456,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.23
+        version: 1.2.24
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.37
@@ -534,7 +534,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.23
+        version: 1.2.24
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.37
@@ -1904,8 +1904,8 @@ packages:
   '@iconify-json/solar@1.2.5':
     resolution: {integrity: sha512-WMAiNwchU8zhfrySww6KQBRIBbsQ6SvgIu2yA+CHGyMima/0KQwT5MXogrZPJGoQF+1Ye3Qj6K+1CiyNn3YkoA==}
 
-  '@iconify-json/tabler@1.2.23':
-    resolution: {integrity: sha512-Knb8ykgMwB5uSoqrDv1xIdJYM03OP06OXjN6QvGXaTNtdHkW9ciKA+aftz6lwM2jwJA+bsUWeDzLBlPt2uJm4w==}
+  '@iconify-json/tabler@1.2.24':
+    resolution: {integrity: sha512-W1GIC36ckaQvr0fpQeyqC62HWyF3/r0yjJHtCByZmxA3qTMqLv0wJDdz/BffnmoCMulaBbxgjbTptFfKyn5e/g==}
 
   '@iconify-json/vscode-icons@1.2.37':
     resolution: {integrity: sha512-HLRdU6nZks4N8x3JYz6j+b3+hcUCvYvlTLwGzM3xyXfTJyDSA2cAdWcEXfoA4hQMJGA+zCDSPAWFelFptH5Kbw==}
@@ -6950,7 +6950,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/tabler@1.2.23':
+  '@iconify-json/tabler@1.2.24':
     dependencies:
       '@iconify/types': 2.0.0
 

@@ -30,7 +30,7 @@ catalog:
   '@iconify-json/openmoji': ^1.2.19
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
-  '@iconify-json/tabler': ^1.2.23
+  '@iconify-json/tabler': ^1.2.24
   '@iconify-json/vscode-icons': ^1.2.37
   '@shikijs/twoslash': ^3.20.0
   '@sveltejs/adapter-static': ^3.0.10
