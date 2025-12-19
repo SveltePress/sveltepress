@@ -95,6 +95,3 @@ catalog:
   workbox-window: ^7.4.0
   yaml: ^2.8.2
   zx: ^8.8.5
-
-overrides:
-  chokidar: 4.0.1
