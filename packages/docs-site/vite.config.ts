@@ -41,7 +41,7 @@ const config = defineConfig({
         },
         highlighter: {
           twoslash: true,
-          languages: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss', 'json'],
+          languages: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss', 'json', 'go'],
         },
       }),
       siteConfig: {
