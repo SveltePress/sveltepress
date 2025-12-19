@@ -13,10 +13,6 @@ async function testWrapPage() {
 <p>This is a test page with local images.</p>
 <p><img src="\${__img_0}" alt="Test Image"></p>
 <p><img src="\${__img_1}" alt="Another Image"></p>`,
-      imageImports: [
-        { importName: '__img_0', relativePath: 'test-image.jpg' },
-        { importName: '__img_1', relativePath: 'test-image.png' },
-      ],
     })
 
     console.log('SUCCESS - Wrapped page:')
