@@ -90,7 +90,8 @@ export default async function ({
     })
 
   const code = String(vFile)
-  const data = vFile?.data ?? {}
+
+  const data = vFile?.data || {}
 
   return {
     code,

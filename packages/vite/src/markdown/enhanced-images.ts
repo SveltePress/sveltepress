@@ -5,24 +5,24 @@ import { visit } from 'unist-util-visit'
 const enhancedImagesPlugin: Plugin = () => {
   return (tree: any) => {
     visit(tree, (node: any) => {
-      if (node.type === 'image') {
-        const attributes = []
+      if (node.type !== 'image')
+        return
+      const attributes = []
 
-        if (node.url) {
-          attributes.push(`src="${node.url}"`)
-        }
-
-        if (node.alt) {
-          attributes.push(`alt="${node.alt}"`)
-        }
-
-        if (node.title) {
-          attributes.push(`title="${node.title}"`)
-        }
-
-        node.type = 'html'
-        node.value = `<enhanced:img ${attributes.join(' ')} />`
+      if (node.url) {
+        attributes.push(`src="${node.url}"`)
       }
+
+      if (node.alt) {
+        attributes.push(`alt="${node.alt}"`)
+      }
+
+      if (node.title) {
+        attributes.push(`title="${node.title}"`)
+      }
+
+      node.type = 'html'
+      node.value = `<enhanced:img ${attributes.join(' ')} />`
     })
   }
 }
