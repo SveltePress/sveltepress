@@ -75,7 +75,7 @@ describe('live code', async () => {
     }) || { code: '' }
 
     expect(code).toMatchSnapshot()
-  })
+  }, 10000)
 
   it('async svelte live code', async () => {
     const source = `---

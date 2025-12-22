@@ -12,7 +12,7 @@ import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import { parse } from 'yaml'
 import disableLeafTextDirective from './disable-leaft-text-directive.js'
-import markdownImagesPlugin from './parse-image.js'
+import enhancedImagesPlugin from './enhanced-images.js'
 import reserveSvelteCommands from './reserve-svelte-commands.js'
 
 interface CompileOptions {
@@ -89,15 +89,8 @@ export default async function ({
       path: filename,
     })
 
-  let code = String(vFile)
-
+  const code = String(vFile)
   const data = vFile?.data ?? {}
-  const images = (data as any).images ?? []
-
-  // Add braces around import names for Svelte template variables
-  images.forEach(({ importName }: any) => {
-    code = code.replace(importName, `{${importName}}`)
-  })
 
   return {
     code,
@@ -124,7 +117,7 @@ export function applyRemarkPluginsBeforeRehype(remarkPlugins?: AcceptableRemarkP
     .use(remarkDirective as any)
     .use(disableLeafTextDirective)
     .use(reserveSvelteCommands)
-    .use(markdownImagesPlugin as any)
+    .use(enhancedImagesPlugin as any)
     .use(remarkFrontmatter as any)
     .use(remarkExtractFrontmatter as any, { yaml: parse })
     .use(remarkGfm as any)

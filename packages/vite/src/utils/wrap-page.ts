@@ -34,7 +34,6 @@ export async function wrapPage({
   }
   let fm: Record<string, any> = {}
   let svelteCode = ''
-  let images: Array<{ importName: string, importPath: string }> | undefined
 
   const lastUpdate = await getFileLastUpdateTime(id)
 
@@ -47,7 +46,7 @@ export async function wrapPage({
       filename: id,
       footnoteLabel,
     }) || { code: '', data: {} }
-    const { fm: dataFm = {}, images: imgData, ...others } = data || { fm: {} }
+    const { fm: dataFm = {}, ...others } = data || { fm: {} }
     fm = {
       pageType: 'md',
       lastUpdate,
@@ -55,7 +54,6 @@ export async function wrapPage({
       ...others,
     }
     svelteCode = code
-    images = imgData
   }
   else if (id.endsWith('page.svelte')) {
     fm = {
@@ -75,7 +73,6 @@ export async function wrapPage({
       svelteCode,
       fm,
       pageLayout: layout,
-      imageImports: images,
     })
   }
   cached = {
@@ -91,24 +88,15 @@ export function wrapSvelteCode({
   pageLayout,
   svelteCode,
   fm,
-  imageImports: images,
 }: {
   svelteCode: string
   pageLayout: string
   fm: Record<string, any>
-  imageImports?: Array<{ importName: string, importPath: string }>
 }) {
-  // Generate image import statements if they exist
-  const imageImportStatements = images
-    ? images.map((img: { importName: string, importPath: string }) => `import ${img.importName} from '${img.importPath}'`).join('\n')
-
-    : ''
-
   const imports = [
     `import PageLayout from '${pageLayout}'`,
-    imageImportStatements,
     `const fm = ${JSON.stringify(fm)}`,
-  ].filter(Boolean).join('\n')
+  ].join('\n')
 
   const svelteTagReArr = [svelteHeadRe, svelteBodyRe, svelteWindowRe]
   const svelteBuiltinTags = svelteTagReArr.reduce<string[]>((res, re) => {
