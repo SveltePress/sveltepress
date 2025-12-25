@@ -1,3 +1,15 @@
+catalogMode: prefer
+
+cleanupUnusedCatalogs: true
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
+trustPolicyExclude:
+  - semver@6.3.1
+  - chokidar@4.0.3
+
 packages:
   - packages/**
   - '!packages/create/template-js'
@@ -89,15 +101,3 @@ catalog:
   workbox-window: ^7.4.0
   yaml: ^2.8.2
   zx: ^8.8.5
-
-catalogMode: prefer
-
-cleanupUnusedCatalogs: true
-
-shellEmulator: true
-
-trustPolicy: no-downgrade
-
-trustPolicyExclude:
-  - semver@6.3.1
-  - chokidar@4.0.3

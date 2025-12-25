@@ -39,10 +39,10 @@ jobs:
           github-token: ${{ secrets.G_TOKEN }}
           script: |
             const publishedPackages = JSON.parse('${{ steps.changesets.outputs.publishedPackages }}');
-            
+
             for (const pkg of publishedPackages) {
               const tagName = `${pkg.name}@${pkg.version}`;
-              
+
               try {
                 await github.rest.repos.createRelease({
                   owner: context.repo.owner,
