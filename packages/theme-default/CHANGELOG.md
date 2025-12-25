@@ -1,5 +1,37 @@
 # @sveltepress/theme-default
 
+## 7.1.0
+
+### Minor Changes
+
+- [`593a89c`](https://github.com/SveltePress/sveltepress/commit/593a89cc856af3cfaa0de3432cca1e1c249d6d91) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #361
+
+### Patch Changes
+
+- [`2ac67be`](https://github.com/SveltePress/sveltepress/commit/2ac67be47020afff456db18b1e94c50b9f4f6e73) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [#366](https://github.com/SveltePress/sveltepress/pull/366) [`28b385f`](https://github.com/SveltePress/sveltepress/commit/28b385fcb0934a5b1023b3eddc6676e0ba548080) Thanks [@sacrosanctic](https://github.com/sacrosanctic)! - feat: support markdown image syntax #363
+
+- [`fae6f9b`](https://github.com/SveltePress/sveltepress/commit/fae6f9bcc3cc417d8dd78a6a81d3795b74157986) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8649ccc`](https://github.com/SveltePress/sveltepress/commit/8649cccbbc664cf3bffb32afda273b27c1797d68) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #367
+
+- [`78b82c5`](https://github.com/SveltePress/sveltepress/commit/78b82c5cca44fc1c2bd9f55d08bb9d267c5a2370) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`635ef67`](https://github.com/SveltePress/sveltepress/commit/635ef676824a0e4e1f5504d54952620ca795ff45) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`4f0176b`](https://github.com/SveltePress/sveltepress/commit/4f0176be6d18b7b2319e9a2666b37eecd2f2c087) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #358
+
+- [`5eb9661`](https://github.com/SveltePress/sveltepress/commit/5eb9661c7c50af9efaa1ea1aab79e808d3dcf469) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #368
+
+- [`3c12521`](https://github.com/SveltePress/sveltepress/commit/3c125213678caa5f7692fb003a6d8f57dcf3e851) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #364
+
+- [`fa075ff`](https://github.com/SveltePress/sveltepress/commit/fa075ff94e5a7ee1fa41eca859e88f28e9a89acb) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: #365
+
+- Updated dependencies [[`2ac67be`](https://github.com/SveltePress/sveltepress/commit/2ac67be47020afff456db18b1e94c50b9f4f6e73), [`28b385f`](https://github.com/SveltePress/sveltepress/commit/28b385fcb0934a5b1023b3eddc6676e0ba548080), [`fae6f9b`](https://github.com/SveltePress/sveltepress/commit/fae6f9bcc3cc417d8dd78a6a81d3795b74157986), [`78b82c5`](https://github.com/SveltePress/sveltepress/commit/78b82c5cca44fc1c2bd9f55d08bb9d267c5a2370), [`635ef67`](https://github.com/SveltePress/sveltepress/commit/635ef676824a0e4e1f5504d54952620ca795ff45)]:
+  - @sveltepress/twoslash@1.3.4
+  - @sveltepress/vite@1.3.4
+
 ## 7.0.3
 
 ### Patch Changes

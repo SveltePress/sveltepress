@@ -1,7 +1,7 @@
 {
   "name": "@sveltepress/theme-default",
   "type": "module",
-  "version": "7.0.3",
+  "version": "7.1.0",
   "packageManager": "pnpm@10.26.1",
   "description": "The default theme for sveltepress",
   "author": {

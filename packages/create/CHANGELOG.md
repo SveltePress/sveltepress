@@ -1,5 +1,17 @@
 # @sveltepress/create
 
+## 1.3.4
+
+### Patch Changes
+
+- [`2ac67be`](https://github.com/SveltePress/sveltepress/commit/2ac67be47020afff456db18b1e94c50b9f4f6e73) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`fae6f9b`](https://github.com/SveltePress/sveltepress/commit/fae6f9bcc3cc417d8dd78a6a81d3795b74157986) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`78b82c5`](https://github.com/SveltePress/sveltepress/commit/78b82c5cca44fc1c2bd9f55d08bb9d267c5a2370) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`635ef67`](https://github.com/SveltePress/sveltepress/commit/635ef676824a0e4e1f5504d54952620ca795ff45) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.3
 
 ### Patch Changes
