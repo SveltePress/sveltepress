@@ -149,6 +149,8 @@ html[data-theme='dark'] {
   border-radius: unset;
 }
 
+
+
 @font-face {
   font-family: Dank Mono;
   src: url('./fonts/Dank Mono Regular.otf');
@@ -237,4 +239,14 @@ html.dark .twoslash-popup-container span {
 
 .i-logos-svelte-kit {
   width: 4em;
+}
+
+.admonition code {
+  color: var(--admonition-color);
+  background-color: #313136;
+}
+
+.dark .admonition code {
+  color: var(--admonition-color);
+  background-color: #010106;
 }

@@ -155,7 +155,7 @@
     color-scheme: dark;
   }
   :global(code) {
-    --at-apply: 'bg-[#e9e9e9] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded break-all';
+    --at-apply: 'bg-[#e3e4e6] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded break-all';
   }
   :global(pre.shiki code) {
     --at-apply: 'bg-transparent dark:bg-transparent p-unset block';
