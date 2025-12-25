@@ -8,7 +8,7 @@
   import Home from './Home.svelte'
   import HeroImage from './home/HeroImage.svelte'
   import LastUpdate from './LastUpdate.svelte'
-  import { anchors, pages, showHeader, sidebar } from './layout'
+  import { anchors, pages, showHeader, showLayout, sidebar } from './layout'
   import PageSwitcher from './PageSwitcher.svelte'
 
   const routeId = $derived(page.route.id)
@@ -30,6 +30,7 @@
 
   $sidebar = fmSidebar
   $showHeader = header
+  $showLayout = layout
 
   const isHome = $derived(routeId === '/')
 

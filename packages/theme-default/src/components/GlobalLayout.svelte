@@ -16,6 +16,7 @@
     resolveSidebar,
     scrollY,
     showHeader,
+    showLayout,
     sidebar,
     sidebarCollapsed,
   } from './layout'
@@ -72,6 +73,8 @@
 {/if}
 {#if page.error}
   <Error error={page.error} />
+{:else if $showLayout === false}
+  {@render children?.()}
 {:else}
   <main class:without-header={$showHeader === false}>
     <AjaxBar bind:this={ajaxBar} />
@@ -102,7 +105,7 @@
     --at-apply: 'pt-[76px] sm:pt-[73px]';
   }
   main.without-header {
-    --at-apply: 'pt-4';
+    --at-apply: 'pt-0';
   }
   :global(html) {
     --at-apply: 'scroll-smooth';

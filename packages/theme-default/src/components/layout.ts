@@ -25,6 +25,7 @@ export const isDark = writable(false)
 
 export const sidebar = writable(true)
 export const showHeader = writable(true)
+export const showLayout = writable(true)
 
 export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
 
