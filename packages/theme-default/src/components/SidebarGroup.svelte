@@ -5,6 +5,7 @@
   import PointLeft from './icons/PointLeft.svelte'
   import Link from './Link.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
+  import { isLinkActive } from './utils'
 
   const routeId = $derived(page.route.id)
 
@@ -54,9 +55,7 @@
   {#if !collapsed}
     <div class="links" transition:slide>
       {#each items as item}
-        {@const active = routeId.endsWith('/')
-          ? item.to === routeId
-          : item.to === `${routeId}/`}
+        {@const active = isLinkActive(item.to, routeId)}
         {#if Array.isArray(item.items) && item.items.length}
           <SidebarGroup {...item} nested />
         {:else}

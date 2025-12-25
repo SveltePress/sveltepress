@@ -1,6 +1,6 @@
 import { base } from '$app/paths'
 
-function getPathFromBase(path: string) {
+export function getPathFromBase(path: string) {
   if (path === '/')
     return base || '/'
   if (!base || !path.startsWith('/') || (path === base || path.startsWith(`${base}/`)))
@@ -8,10 +8,12 @@ function getPathFromBase(path: string) {
   return `${base}${path}`
 }
 
-function parseImageSrc(src: string) {
+export function parseImageSrc(src: string) {
   if (src.startsWith('//'))
     return src
   return getPathFromBase(src)
 }
 
-export { getPathFromBase, parseImageSrc }
+export function isLinkActive(link: string, routeId: string) {
+  return link === routeId || link.startsWith(`${routeId}/`)
+}

@@ -4,15 +4,11 @@
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'
   import { pages } from './layout'
-  import { getPathFromBase } from './utils'
+  import { getPathFromBase, isLinkActive } from './utils'
 
   const routeId = page.route.id
 
-  const activeIdx = $derived(
-    $pages.findIndex(p =>
-      routeId.endsWith('/') ? p.to === routeId : p.to?.startsWith(routeId),
-    ),
-  )
+  const activeIdx = $derived($pages.findIndex(p => isLinkActive(p.to, routeId)))
 
   const hasActivePage = $derived(activeIdx !== -1)
   const hasPrevPage = $derived(hasActivePage && activeIdx > 0)
