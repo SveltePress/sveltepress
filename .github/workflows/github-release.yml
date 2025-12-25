@@ -1,4 +1,4 @@
-name: Release
+name: Github Release
 
 permissions:
   contents: write
@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     tags:
-      - 'v*'
+      - '@sveltepress/*'
 
 jobs:
   release:
