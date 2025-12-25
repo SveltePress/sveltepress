@@ -12,6 +12,7 @@ title: 内置组件
 
 * `label` - 链接文案
 * `to` - 链接地址
+* `target` - 链接的 target 属性（例如：`_blank` 在新标签页打开，`_self` 在当前标签页打开）。默认行为：外部链接会自动在新标签页打开
 * `withBase` - 是否用 [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base) 属性作为前缀，默认为 `true`
 
 :::info[自动外部化图标]{icon=ic:sharp-rocket-launch}

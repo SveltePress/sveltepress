@@ -10,6 +10,7 @@
    * @property {boolean} [active] - Whether the link is active
    * @property {boolean} [highlight] - Whether the link should be highlighted
    * @property {boolean} [withBase] - Whether the link should have the base URL
+   * @property {string} [target] - Link target attribute (e.g., '_blank', '_self')
    * @property {import('svelte').Snippet} [labelRenderer] - Prepend content
    * @property {import('svelte').Snippet} [pre] - Prepend content
    * @property {import('svelte').Snippet} [children] - Children content
@@ -23,6 +24,7 @@
     active = false,
     highlight = true,
     withBase = true,
+    target,
     pre,
     labelRenderer,
     children,
@@ -38,7 +40,7 @@
   class:no-inline={!inline}
   class:active
   class:highlight
-  {...isExternal ? { target: '_blank' } : {}}
+  {...target ? { target } : isExternal ? { target: '_blank' } : {}}
   aria-label={label}
 >
   {@render pre?.()}

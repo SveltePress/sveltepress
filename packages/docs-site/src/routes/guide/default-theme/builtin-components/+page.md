@@ -13,6 +13,7 @@ But should be imported manually in svelte files.
 
 * `label` - The link label text
 * `to` - The link address
+* `target` - The link target attribute (e.g., `_blank` to open in new tab, `_self` to open in same tab). Default behavior: external links open in new tab automatically
 * `withBase` - Determine whether to with [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base). Default is `true`
 
 :::info[Auto external icon]{icon=ic:sharp-rocket-launch}

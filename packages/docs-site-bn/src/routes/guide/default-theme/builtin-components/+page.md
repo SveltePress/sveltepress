@@ -12,8 +12,7 @@ title: বিল্ট-ইন কম্পোনেন্ট
 ### Props
 
 * `label` - লিংকের লেবেলের লেখা
-* `to` - লিংকের ঠিকানা
-* `withBase` - [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base) সঙ্গে কিনা তা নির্ধারণ করে। ডিফল্ট হচ্ছে `true`
+* `to` - লিংকের ঠিকানা* `target` - লিংকের target অ্যাট্রিবিউট (যেমন: নতুন ট্যাবে খুলতে `_blank`, একই ট্যাবে খুলতে `_self`)। ডিফল্ট আচরণ: এক্সটার্নাল লিংক স্বয়ংক্রিয়ভাবে নতুন ট্যাবে খোলে* `withBase` - [sveltekit config.kit.paths.base](https://kit.svelte.dev/docs/modules#$app-paths-base) সঙ্গে কিনা তা নির্ধারণ করে। ডিফল্ট হচ্ছে `true`
 
 :::info[অটো এক্সটার্নাল আইকন]{icon=ic:sharp-rocket-launch}
 লিংক অ্যাড্রেস http বা https দিয়ে শুরু হলে একটি অটো এক্সটার্নাল আইকন যুক্ত করবে।
