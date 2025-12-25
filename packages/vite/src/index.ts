@@ -1,5 +1,6 @@
 import type { PluginOption } from 'vite'
 import type { Highlighter, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
+import { enhancedImages } from '@sveltejs/enhanced-img'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import mdToSvelte from './markdown/md-to-svelte.js'
@@ -27,6 +28,8 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
       remarkPlugins,
       rehypePlugins,
     }),
+    // must come before sveltekit, and after sveltepress
+    enhancedImages(),
     sveltekit(),
   ]
 

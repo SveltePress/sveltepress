@@ -12,6 +12,7 @@ import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
 import { parse } from 'yaml'
 import disableLeafTextDirective from './disable-leaft-text-directive.js'
+import enhancedImagesPlugin from './enhanced-images.js'
 import reserveSvelteCommands from './reserve-svelte-commands.js'
 
 interface CompileOptions {
@@ -117,6 +118,7 @@ export function applyRemarkPluginsBeforeRehype(remarkPlugins?: AcceptableRemarkP
     .use(remarkDirective as any)
     .use(disableLeafTextDirective)
     .use(reserveSvelteCommands)
+    .use(enhancedImagesPlugin as any)
     .use(remarkFrontmatter as any)
     .use(remarkExtractFrontmatter as any, { yaml: parse })
     .use(remarkGfm as any)

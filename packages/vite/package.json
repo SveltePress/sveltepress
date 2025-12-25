@@ -45,6 +45,7 @@
     "vite": "^7.0.0"
   },
   "dependencies": {
+    "@sveltejs/enhanced-img": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "cross-spawn": "catalog:",
     "fs-extra": "catalog:",
