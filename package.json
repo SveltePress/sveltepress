@@ -16,6 +16,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
     "@changesets/cli": "catalog:",
+    "changelogithub": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-svelte": "catalog:",
     "husky": "catalog:",

@@ -32,3 +32,29 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
           NPM_TOKEN: ${{ secrets.N_TOKEN }}
+      - name: Create GitHub Release
+        if: steps.changesets.outputs.published == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.G_TOKEN }}
+          script: |
+            const publishedPackages = JSON.parse('${{ steps.changesets.outputs.publishedPackages }}');
+            
+            for (const pkg of publishedPackages) {
+              const tagName = `${pkg.name}@${pkg.version}`;
+              
+              try {
+                await github.rest.repos.createRelease({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  tag_name: tagName,
+                  name: `${pkg.name} v${pkg.version}`,
+                  generate_release_notes: true,
+                  draft: false,
+                  prerelease: false
+                });
+                console.log(`Created release for ${tagName}`);
+              } catch (error) {
+                console.error(`Failed to create release for ${tagName}:`, error.message);
+              }
+            }
