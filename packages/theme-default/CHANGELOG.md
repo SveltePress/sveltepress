@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 7.1.1
+
+### Patch Changes
+
+- [`9e53738`](https://github.com/SveltePress/sveltepress/commit/9e5373849405d44baf8b3a68b34f25636f98db07) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: link
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.3.4
+
 ## 7.1.0
 
 ### Minor Changes
