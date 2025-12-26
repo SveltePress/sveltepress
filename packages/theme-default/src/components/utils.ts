@@ -15,5 +15,5 @@ export function parseImageSrc(src: string) {
 }
 
 export function isLinkActive(link: string, routeId: string) {
-  return link === routeId || link.startsWith(`${routeId}/`)
+  return link === routeId || link?.startsWith(`${routeId}/`)
 }
