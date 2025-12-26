@@ -2,7 +2,7 @@
   "name": "@sveltepress/docs-site",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.26.1",
+  "packageManager": "pnpm@10.26.2",
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",

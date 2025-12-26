@@ -16,11 +16,11 @@ packages:
   - '!packages/create/template-ts'
 
 catalog:
-  '@antfu/eslint-config': ^6.7.1
+  '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
   '@changesets/cli': ^2.29.8
-  '@docsearch/css': ^4.3.2
-  '@docsearch/js': ^4.3.2
+  '@docsearch/css': ^4.4.0
+  '@docsearch/js': ^4.4.0
   '@floating-ui/dom': ^1.7.4
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.2
@@ -34,7 +34,7 @@ catalog:
   '@iconify-json/openmoji': ^1.2.19
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
-  '@iconify-json/tabler': ^1.2.24
+  '@iconify-json/tabler': ^1.2.25
   '@iconify-json/vscode-icons': ^1.2.37
   '@shikijs/twoslash': ^3.20.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -80,12 +80,12 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.20.0
   source-map-js: ^1.2.1
-  svelte: ^5.46.0
-  svelte-check: ^4.3.4
-  svelte2tsx: ^0.7.45
+  svelte: ^5.46.1
+  svelte-check: ^4.3.5
+  svelte2tsx: ^0.7.46
   taze: ^19.9.2
-  twoslash: ^0.3.4
-  twoslash-protocol: ^0.3.4
+  twoslash: ^0.3.6
+  twoslash-protocol: ^0.3.6
   typescript: ^5.9.3
   uid: ^2.0.2
   unbuild: ^3.6.1
