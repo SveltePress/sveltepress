@@ -50,7 +50,7 @@ catalog:
   '@types/minimist': ^1.2.5
   '@types/node': ^24.10.4
   '@types/prompts': ^2.4.9
-  '@unocss/extractor-svelte': ^66.5.10
+  '@unocss/extractor-svelte': ^66.5.11
   '@vite-pwa/sveltekit': ^1.1.0
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
@@ -91,7 +91,7 @@ catalog:
   unbuild: ^3.6.1
   unified: ^11.0.5
   unist-util-visit: ^5.0.0
-  unocss: ^66.5.10
+  unocss: ^66.5.11
   vfile: ^6.0.3
   vite: ^7.3.0
   vite-plugin-inspect: ^11.3.3
