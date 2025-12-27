@@ -76,7 +76,7 @@ Use [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) to restri
 
 ### Naming convention
 
-* Svelte component filename in `CamelCase`
+* Svelte component filename in `PascalCase`
 * js and ts filename in `kebab-case`
 * function and variable name in `camelCase`
 

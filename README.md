@@ -59,7 +59,7 @@ This project can not be done without these projects
 [<img src="https://svelte.casual-ui.site/logo@3x.png" style="width:100px;" />](https://svelte.casual-ui.site/)
 [<img src="https://svelte-u.vercel.app/logo.png" style="width:100px;" />](https://svelte-u.vercel.app/)
 [<img src="https://writewithharper.com/circle-logo.png" style="width:100px;" />](https://writewithharper.com/)
-
+[<img src="https://svelte-router.dev/logo-64.svg" style="width: 100px;" />](https://svelte-router.dev)
 
 ## LICENSE
 
