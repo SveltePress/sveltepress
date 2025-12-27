@@ -1,5 +1,13 @@
 # @sveltepress/vite
 
+## 1.3.5
+
+### Patch Changes
+
+- [`cb9b237`](https://github.com/SveltePress/sveltepress/commit/cb9b237841281d4b59ffcf760693989511d2934d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`3ef3447`](https://github.com/SveltePress/sveltepress/commit/3ef3447ae1bae82e7551a994deb9752fd9fc0616) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.4
 
 ### Patch Changes
