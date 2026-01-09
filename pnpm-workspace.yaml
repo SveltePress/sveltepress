@@ -28,7 +28,7 @@ catalog:
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
-  '@iconify-json/material-symbols': ^1.2.50
+  '@iconify-json/material-symbols': ^1.2.51
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.19
@@ -39,7 +39,7 @@ catalog:
   '@shikijs/twoslash': ^3.21.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.2
-  '@sveltejs/kit': ^2.49.3
+  '@sveltejs/kit': ^2.49.4
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.3
   '@types/cross-spawn': ^6.0.6
