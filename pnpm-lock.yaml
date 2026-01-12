@@ -31,8 +31,8 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     '@iconify-json/carbon':
-      specifier: ^1.2.15
-      version: 1.2.15
+      specifier: ^1.2.16
+      version: 1.2.16
     '@iconify-json/emojione':
       specifier: ^1.2.3
       version: 1.2.3
@@ -52,8 +52,8 @@ catalogs:
       specifier: ^1.2.7
       version: 1.2.7
     '@iconify-json/openmoji':
-      specifier: ^1.2.19
-      version: 1.2.19
+      specifier: ^1.2.20
+      version: 1.2.20
     '@iconify-json/ph':
       specifier: ^1.2.2
       version: 1.2.2
@@ -64,8 +64,8 @@ catalogs:
       specifier: ^1.2.26
       version: 1.2.26
     '@iconify-json/vscode-icons':
-      specifier: ^1.2.37
-      version: 1.2.37
+      specifier: ^1.2.38
+      version: 1.2.38
     '@shikijs/twoslash':
       specifier: ^3.21.0
       version: 3.21.0
@@ -357,7 +357,7 @@ importers:
         version: 1.2.2
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.15
+        version: 1.2.16
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -378,7 +378,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.19
+        version: 1.2.20
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -390,7 +390,7 @@ importers:
         version: 1.2.26
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.37
+        version: 1.2.38
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.49.4(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.46.1)(vite@7.3.1(@types/node@24.10.7)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(svelte@5.46.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.7)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))
@@ -435,7 +435,7 @@ importers:
         version: 1.2.2
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.15
+        version: 1.2.16
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -456,7 +456,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.19
+        version: 1.2.20
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -468,7 +468,7 @@ importers:
         version: 1.2.26
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.37
+        version: 1.2.38
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.49.4(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.46.1)(vite@7.3.1(@types/node@24.10.7)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(svelte@5.46.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.7)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))
@@ -513,7 +513,7 @@ importers:
         version: 1.2.2
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.15
+        version: 1.2.16
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -534,7 +534,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.19
+        version: 1.2.20
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -546,7 +546,7 @@ importers:
         version: 1.2.26
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.37
+        version: 1.2.38
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.49.4(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.46.1)(vite@7.3.1(@types/node@24.10.7)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(svelte@5.46.1)(typescript@5.9.3)(vite@7.3.1(@types/node@24.10.7)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))
@@ -2013,8 +2013,8 @@ packages:
   '@iconify-json/bxs@1.2.2':
     resolution: {integrity: sha512-uqQsDJDi9h+kjtKmx8IHZCO9tbLR3ff3GN+T5fTaNfxU4EnNX07iWF3kZfzyDZtrVgZNjR0ZIkdj3NfYf5rS4A==}
 
-  '@iconify-json/carbon@1.2.15':
-    resolution: {integrity: sha512-9tW0nZY5QtKkMhuYzW09BM1345SyXNuA+gx2ub0j/fnfHOD5XVimMJ/D76H3tTez25NJbPYCLIQoFhvJc1HVBQ==}
+  '@iconify-json/carbon@1.2.16':
+    resolution: {integrity: sha512-R50UiC4NgPdnoSI3OzaZ/PzKYFVHAsAi3tENWgxvTxjYND3WHiUiG0qfJ0dPuaxwIW/l/2TnZwMPbbedd/+qIQ==}
 
   '@iconify-json/emojione@1.2.3':
     resolution: {integrity: sha512-T9+T3HIbJNLKKsmxYKlaYhvnHYkz/HNYTV7SHCXVZPfeUi4FqskY70YeN8yYAZT8cCv7w5vJxS4Q1m8zb9CMMg==}
@@ -2034,8 +2034,8 @@ packages:
   '@iconify-json/noto@1.2.7':
     resolution: {integrity: sha512-2pNHliXnMLpnepNTZwR9hPBSl6GmhIfXPnudFCHY5v9pJhmA7LoVb/pFY0qLDY/k+3ikET8RXRf7XFxc/pHObA==}
 
-  '@iconify-json/openmoji@1.2.19':
-    resolution: {integrity: sha512-G/3BeW4K+NORDvrV/5gHpPNd0J/shGUfDW0lr7hk6VF8PWKSBYHXXpqgkH758OUf9oJI6mrPsa7MNgQFgrx/MQ==}
+  '@iconify-json/openmoji@1.2.20':
+    resolution: {integrity: sha512-KbAkhs2pei3bFBtbetxaUd6pji5Vh9qBLW+sahH3QTTPiy6Ji/hgeZjO9erf1t1f4ZuYn6vBH66MM8dirjgPMA==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -2046,8 +2046,8 @@ packages:
   '@iconify-json/tabler@1.2.26':
     resolution: {integrity: sha512-92G+ZD70AZgeJf07JfQzH+isnai6DwPcMBuF/qL1F+xAxdXCJzGd3w2RmsRvOmB+w1ImmWEEDms50QivQIjd6g==}
 
-  '@iconify-json/vscode-icons@1.2.37':
-    resolution: {integrity: sha512-HLRdU6nZks4N8x3JYz6j+b3+hcUCvYvlTLwGzM3xyXfTJyDSA2cAdWcEXfoA4hQMJGA+zCDSPAWFelFptH5Kbw==}
+  '@iconify-json/vscode-icons@1.2.38':
+    resolution: {integrity: sha512-GzfsGvZGiPmdtrSOC/37gtVpZrE4NTKsVy4/sePglzueqYv+AQbwd43OpyeZYiQEAez1UCCWmgTJbJLfBgNypw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2626,9 +2626,6 @@ packages:
 
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
-
-  '@types/node@24.10.6':
-    resolution: {integrity: sha512-B8h60xgJMR/xmgyX9fncRzEW9gCxoJjdenUhke2v1JGOd/V66KopmWrLPXi5oUI4VuiGK+d+HlXJjDRZMj21EQ==}
 
   '@types/node@24.10.7':
     resolution: {integrity: sha512-+054pVMzVTmRQV8BhpGv3UyfZ2Llgl8rdpDTon+cUH9+na0ncBVXj3wTUKh14+Kiz18ziM3b4ikpP5/Pc0rQEQ==}
@@ -7586,7 +7583,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/carbon@1.2.15':
+  '@iconify-json/carbon@1.2.16':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7614,7 +7611,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/openmoji@1.2.19':
+  '@iconify-json/openmoji@1.2.20':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7630,7 +7627,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.37':
+  '@iconify-json/vscode-icons@1.2.38':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8146,10 +8143,6 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@24.10.6':
-    dependencies:
-      undici-types: 7.16.0
-
   '@types/node@24.10.7':
     dependencies:
       undici-types: 7.16.0
@@ -8161,7 +8154,7 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.7
 
   '@types/resolve@1.20.2': {}
 
@@ -10135,7 +10128,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 24.10.6
+      '@types/node': 24.10.7
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
