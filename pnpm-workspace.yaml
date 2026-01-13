@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.21.0
   source-map-js: ^1.2.1
-  svelte: ^5.46.1
+  svelte: ^5.46.3
   svelte-check: ^4.3.5
   svelte2tsx: ^0.7.46
   taze: ^19.9.2
