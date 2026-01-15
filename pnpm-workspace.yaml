@@ -24,18 +24,18 @@ catalog:
   '@floating-ui/dom': ^1.7.4
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.2
-  '@iconify-json/carbon': ^1.2.16
+  '@iconify-json/carbon': ^1.2.18
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
   '@iconify-json/material-symbols': ^1.2.51
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
-  '@iconify-json/openmoji': ^1.2.20
+  '@iconify-json/openmoji': ^1.2.21
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.26
-  '@iconify-json/vscode-icons': ^1.2.38
+  '@iconify-json/vscode-icons': ^1.2.39
   '@shikijs/twoslash': ^3.21.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.2
@@ -50,7 +50,7 @@ catalog:
   '@types/minimist': ^1.2.5
   '@types/node': ^24.10.8
   '@types/prompts': ^2.4.9
-  '@unocss/extractor-svelte': ^66.5.12
+  '@unocss/extractor-svelte': ^66.6.0
   '@vite-pwa/sveltekit': ^1.1.0
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
@@ -91,7 +91,7 @@ catalog:
   unbuild: ^3.6.1
   unified: ^11.0.5
   unist-util-visit: ^5.0.0
-  unocss: ^66.5.12
+  unocss: ^66.6.0
   vfile: ^6.0.3
   vite: ^7.3.1
   vite-plugin-inspect: ^11.3.3
