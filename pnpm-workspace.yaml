@@ -39,7 +39,7 @@ catalog:
   '@shikijs/twoslash': ^3.21.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.2
-  '@sveltejs/kit': ^2.49.4
+  '@sveltejs/kit': ^2.49.5
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.4
   '@types/cross-spawn': ^6.0.6
@@ -48,7 +48,7 @@ catalog:
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.10.8
+  '@types/node': ^24.10.9
   '@types/prompts': ^2.4.9
   '@unocss/extractor-svelte': ^66.6.0
   '@vite-pwa/sveltekit': ^1.1.0
@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.21.0
   source-map-js: ^1.2.1
-  svelte: ^5.46.3
+  svelte: ^5.46.4
   svelte-check: ^4.3.5
   svelte2tsx: ^0.7.46
   taze: ^19.9.2
