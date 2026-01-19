@@ -5,7 +5,7 @@ import highlighter from './highlighter.js'
 // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/optimal-quantifier-concatenation, regexp/no-misleading-capturing-group
 export const pkgRe = /^@install-pkg\((\S+)(,\S+)?\)/
 
-type PackageManager = 'npm' | 'yarn' | 'pnpm'
+type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
 const installPkg: Plugin<any[], any> = () => {
   return async (tree) => {
@@ -30,6 +30,7 @@ const installPkg: Plugin<any[], any> = () => {
                 const npmNode = await wrapWithSnippet('npm', 'install --save')
                 const yarnNode = await wrapWithSnippet('yarn', 'add')
                 const pnpmNode = await wrapWithSnippet('pnpm', 'install')
+                const bunNode = await wrapWithSnippet('bun', 'add')
                 parent.children.splice(idx, 1, {
                   type: 'InstallPkg',
                   data: {
@@ -39,6 +40,7 @@ const installPkg: Plugin<any[], any> = () => {
                     npmNode,
                     yarnNode,
                     pnpmNode,
+                    bunNode,
                   ],
                 })
               }

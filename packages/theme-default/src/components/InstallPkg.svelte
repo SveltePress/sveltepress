@@ -1,4 +1,6 @@
 <script>
+  import Bun from './icons/logos/Bun.svelte'
+  import BunWithColor from './icons/logos/BunWithColor.svelte'
   import Npm from './icons/logos/Npm.svelte'
   import NpmWithColor from './icons/logos/NpmWithColor.svelte'
   import Pnpm from './icons/logos/Pnpm.svelte'
@@ -12,10 +14,11 @@
    * @property {import('svelte').Snippet} [npm] - NPM snippet
    * @property {import('svelte').Snippet} [yarn] - Yarn snippet
    * @property {import('svelte').Snippet} [pnpm] - PNPM snippet
+   * @property {import('svelte').Snippet} [bun] - Bun snippet
    */
 
   /** @type {Props} */
-  const { npm, yarn, pnpm } = $props()
+  const { npm, yarn, pnpm, bun } = $props()
 </script>
 
 <Tabs activeName="NPM" bodyPadding={false}>
@@ -27,5 +30,8 @@
   </TabPanel>
   <TabPanel name="PNPM" activeIcon={PnpmWithColor} inactiveIcon={Pnpm}>
     {@render pnpm?.()}
+  </TabPanel>
+  <TabPanel name="BUN" activeIcon={BunWithColor} inactiveIcon={Bun}>
+    {@render bun?.()}
   </TabPanel>
 </Tabs>

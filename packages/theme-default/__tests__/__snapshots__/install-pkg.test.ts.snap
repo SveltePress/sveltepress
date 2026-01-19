@@ -37,5 +37,17 @@ exports[`install-pkg > md 1`] = `
     <CopyCode />
     
   </div>
+</div>{/snippet}{#snippet bun()}
+<div class="svp-code-block-wrapper">
+  <div class="svp-code-block">
+    
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#59873A;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">bun</span><span style="color:#B56959;--shiki-dark:#ECC48D"> create</span><span style="color:#B56959;--shiki-dark:#ECC48D"> @sveltepress/vite</span></span></code></pre>
+    <div class="svp-code-block--lang">
+      sh
+    </div>
+    <CopyCode />
+    
+  </div>
 </div>{/snippet}</InstallPkg>"
 `;
