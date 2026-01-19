@@ -45,6 +45,7 @@ export default antfu({
     'style/operator-linebreak': 'off',
     'style/brace-style': 'off',
     'svelte/indent': 'off',
+    'style/arrow-parens': 'off',
   },
 }, {
   files: ['packages/docs-site*/**/*'],
