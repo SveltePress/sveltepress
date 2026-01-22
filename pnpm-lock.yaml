@@ -16,11 +16,11 @@ catalogs:
       specifier: ^2.29.8
       version: 2.29.8
     '@docsearch/css':
-      specifier: ^4.5.0
-      version: 4.5.0
+      specifier: ^4.5.3
+      version: 4.5.3
     '@docsearch/js':
-      specifier: ^4.5.0
-      version: 4.5.0
+      specifier: ^4.5.3
+      version: 4.5.3
     '@floating-ui/dom':
       specifier: ^1.7.4
       version: 1.7.4
@@ -585,10 +585,10 @@ importers:
     dependencies:
       '@docsearch/css':
         specifier: 'catalog:'
-        version: 4.5.0
+        version: 4.5.3
       '@docsearch/js':
         specifier: 'catalog:'
-        version: 4.5.0
+        version: 4.5.3
       '@shikijs/twoslash':
         specifier: 'catalog:'
         version: 3.21.0(typescript@5.9.3)
@@ -1461,11 +1461,11 @@ packages:
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
 
-  '@docsearch/css@4.5.0':
-    resolution: {integrity: sha512-RgGlYf1WsYf3bmZ1Zmc7YzthUwmnYhtQgdLWp5A7xIs6KwwAxDPkmxYbLW/uYIv/8/Dq/pU3azNzKP6/fSjQfQ==}
+  '@docsearch/css@4.5.3':
+    resolution: {integrity: sha512-kUpHaxn0AgI3LQfyzTYkNUuaFY4uEz/Ym9/N/FvyDE+PzSgZsCyDH9jE49B6N6f1eLCm9Yp64J9wENd6vypdxA==}
 
-  '@docsearch/js@4.5.0':
-    resolution: {integrity: sha512-lVYWoqcnAzfeinc3sz6+uhmF6fFYTQy3EcVylD9lIVBqo7UA+c+xjgBaxhj1akcUtTTNsUM6dApAaOcn7y5UDQ==}
+  '@docsearch/js@4.5.3':
+    resolution: {integrity: sha512-rcBiUMCXbZLqrLIT6F6FDcrG/tyvM2WM0zum6NPbIiQNDQxbSgmNc+/bToS0rxBsXaxiU64esiWoS02WqrWLsg==}
 
   '@emnapi/runtime@1.7.1':
     resolution: {integrity: sha512-PVtJr5CmLwYAU9PZDMITZoR5iAOShYREoR45EyyLrbntV50mdePTgUn4AmOw90Ifcj+x2kRjdzr1HP3RrNiHGA==}
@@ -6956,9 +6956,9 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@docsearch/css@4.5.0': {}
+  '@docsearch/css@4.5.3': {}
 
-  '@docsearch/js@4.5.0': {}
+  '@docsearch/js@4.5.3': {}
 
   '@emnapi/runtime@1.7.1':
     dependencies:
