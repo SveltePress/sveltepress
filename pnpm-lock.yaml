@@ -43,8 +43,8 @@ catalogs:
       specifier: ^1.2.10
       version: 1.2.10
     '@iconify-json/material-symbols':
-      specifier: ^1.2.52
-      version: 1.2.52
+      specifier: ^1.2.53
+      version: 1.2.53
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -369,7 +369,7 @@ importers:
         version: 1.2.10
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.52
+        version: 1.2.53
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -447,7 +447,7 @@ importers:
         version: 1.2.10
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.52
+        version: 1.2.53
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -525,7 +525,7 @@ importers:
         version: 1.2.10
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.52
+        version: 1.2.53
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -1898,8 +1898,8 @@ packages:
   '@iconify-json/logos@1.2.10':
     resolution: {integrity: sha512-qxaXKJ6fu8jzTMPQdHtNxlfx6tBQ0jXRbHZIYy5Ilh8Lx9US9FsAdzZWUR8MXV8PnWTKGDFO4ZZee9VwerCyMA==}
 
-  '@iconify-json/material-symbols@1.2.52':
-    resolution: {integrity: sha512-vOBmoF2J5GeKgaTqOcdIHjuPXcGVvjRMlviGgE1jKAh85iXSsFmLVxiJKMXvijrGVLmcqrkEmkMiSem7uWfGpA==}
+  '@iconify-json/material-symbols@1.2.53':
+    resolution: {integrity: sha512-2jXBKFdNzL9zy6chnJqubykL9WZno7rEP6/isSzpp6fKJJMXXhRtVkaGw1Clle0RlXGWzVkd/eiYUH8f9/ILrQ==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -7262,7 +7262,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.52':
+  '@iconify-json/material-symbols@1.2.53':
     dependencies:
       '@iconify/types': 2.0.0
 
