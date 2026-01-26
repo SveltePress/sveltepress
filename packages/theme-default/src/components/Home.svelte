@@ -8,6 +8,7 @@
     tagline = '',
     siteConfig,
     heroImage,
+    children,
   } = $props()
 </script>
 
@@ -43,6 +44,8 @@
     {/each}
   </div>
 </div>
+
+{@render children?.()}
 
 <style>
   .home-page {

@@ -17,12 +17,9 @@
   const { fm, children, heroImage } = $props()
 
   const {
-    title,
-    description,
     pageType,
     lastUpdate,
     anchors: fmAnchors = [],
-    home,
     sidebar: fmSidebar = true,
     header = true,
     layout = true,
@@ -32,7 +29,7 @@
   $showHeader = header
   $showLayout = layout
 
-  const isHome = $derived(routeId === '/')
+  const isHome = $derived(routeId === '/' && fm.home !== false)
 
   anchors.set(fmAnchors)
 
@@ -50,8 +47,10 @@
 </script>
 
 <svelte:head>
-  <title>{title ? `${title} - ${siteConfig.title}` : siteConfig.title}</title>
-  <meta name="description" content={description || siteConfig.description} />
+  <title
+    >{fm.title ? `${fm.title} - ${siteConfig.title}` : siteConfig.title}</title
+  >
+  <meta name="description" content={fm.description || siteConfig.description} />
 </svelte:head>
 
 {#if layout === false}
@@ -65,9 +64,9 @@
   {#if !isHome}
     <div pb-4 class="theme-default--page-layout">
       <div class="content">
-        {#if title}
+        {#if fm.title}
           <h1 class="page-title">
-            {title}
+            {fm.title}
           </h1>
         {/if}
         {@render children?.()}
@@ -82,8 +81,13 @@
         {/if}
       </div>
     </div>
-  {:else if home !== false}
-    <Home {...fm} {siteConfig} heroImage={heroImage ?? defaultHeroImage}></Home>
+  {:else if fm.home !== false}
+    <Home
+      {...fm}
+      {siteConfig}
+      heroImage={heroImage ?? defaultHeroImage}
+      {children}
+    ></Home>
   {/if}
 {/if}
 
