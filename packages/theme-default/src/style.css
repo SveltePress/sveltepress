@@ -243,7 +243,8 @@ html.dark .twoslash-popup-container span {
 
 .admonition code {
   color: var(--admonition-color);
-  background-color: #313136;
+  background-color: #f1f1f1;
+  /* background-color: #313136; */
 }
 
 .dark .admonition code {
