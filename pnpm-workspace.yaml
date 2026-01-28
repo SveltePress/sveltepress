@@ -21,7 +21,7 @@ catalog:
   '@changesets/cli': ^2.29.8
   '@docsearch/css': ^4.5.3
   '@docsearch/js': ^4.5.3
-  '@floating-ui/dom': ^1.7.4
+  '@floating-ui/dom': ^1.7.5
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.2
   '@iconify-json/carbon': ^1.2.18
@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.21.0
   source-map-js: ^1.2.1
-  svelte: ^5.48.3
+  svelte: ^5.48.5
   svelte-check: ^4.3.5
   svelte2tsx: ^0.7.46
   taze: ^19.9.2
