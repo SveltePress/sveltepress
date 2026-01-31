@@ -36,7 +36,7 @@ catalog:
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.26
   '@iconify-json/vscode-icons': ^1.2.40
-  '@shikijs/twoslash': ^3.21.0
+  '@shikijs/twoslash': ^3.22.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.3
   '@sveltejs/kit': ^2.50.1
@@ -78,9 +78,9 @@ catalog:
   remark-parse: ^11.0.0
   remark-rehype: ^11.1.2
   remark-stringify: ^11.0.0
-  shiki: ^3.21.0
+  shiki: ^3.22.0
   source-map-js: ^1.2.1
-  svelte: ^5.49.0
+  svelte: ^5.49.1
   svelte-check: ^4.3.5
   svelte2tsx: ^0.7.46
   taze: ^19.9.2
