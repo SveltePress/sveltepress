@@ -39,7 +39,7 @@ catalog:
   '@shikijs/twoslash': ^3.22.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.3
-  '@sveltejs/kit': ^2.50.1
+  '@sveltejs/kit': ^2.50.2
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.4
   '@types/cross-spawn': ^6.0.6
