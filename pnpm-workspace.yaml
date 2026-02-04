@@ -48,7 +48,7 @@ catalog:
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.10.9
+  '@types/node': ^24.10.10
   '@types/prompts': ^2.4.9
   '@unocss/extractor-svelte': ^66.6.0
   '@vite-pwa/sveltekit': ^1.1.0
