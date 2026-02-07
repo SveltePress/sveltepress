@@ -19,7 +19,7 @@ catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
   '@changesets/cli': ^2.29.8
-  '@docsearch/css': ^4.5.3
+  '@docsearch/css': ^4.5.4
   '@docsearch/js': ^4.5.4
   '@floating-ui/dom': ^1.7.5
   '@iconify-json/bi': ^1.2.7
@@ -28,7 +28,7 @@ catalog:
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
-  '@iconify-json/material-symbols': ^1.2.53
+  '@iconify-json/material-symbols': ^1.2.54
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.21
@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.22.0
   source-map-js: ^1.2.1
-  svelte: ^5.49.2
+  svelte: ^5.50.0
   svelte-check: ^4.3.6
   svelte2tsx: ^0.7.47
   taze: ^19.9.2
