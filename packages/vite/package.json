@@ -2,7 +2,7 @@
   "name": "@sveltepress/vite",
   "type": "module",
   "version": "1.3.6",
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.29.1",
   "description": "Sveltepress plugin for vite",
   "author": {
     "name": "Dongsheng Zhao",
