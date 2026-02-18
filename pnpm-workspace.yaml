@@ -19,8 +19,8 @@ catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
   '@changesets/cli': ^2.29.8
-  '@docsearch/css': ^4.5.4
-  '@docsearch/js': ^4.5.4
+  '@docsearch/css': ^4.6.0
+  '@docsearch/js': ^4.6.0
   '@floating-ui/dom': ^1.7.5
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.2
@@ -31,11 +31,11 @@ catalog:
   '@iconify-json/material-symbols': ^1.2.55
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
-  '@iconify-json/openmoji': ^1.2.21
+  '@iconify-json/openmoji': ^1.2.22
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.26
-  '@iconify-json/vscode-icons': ^1.2.42
+  '@iconify-json/vscode-icons': ^1.2.43
   '@shikijs/twoslash': ^3.22.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.3
@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.22.0
   source-map-js: ^1.2.1
-  svelte: ^5.51.2
+  svelte: ^5.51.3
   svelte-check: ^4.4.0
   svelte2tsx: ^0.7.48
   taze: ^19.9.2
