@@ -23,12 +23,12 @@ catalog:
   '@docsearch/js': ^4.6.0
   '@floating-ui/dom': ^1.7.5
   '@iconify-json/bi': ^1.2.7
-  '@iconify-json/bxs': ^1.2.2
+  '@iconify-json/bxs': ^1.2.3
   '@iconify-json/carbon': ^1.2.18
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
-  '@iconify-json/material-symbols': ^1.2.55
+  '@iconify-json/material-symbols': ^1.2.56
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.22
