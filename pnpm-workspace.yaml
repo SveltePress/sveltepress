@@ -61,7 +61,7 @@ catalog:
   husky: ^9.1.7
   lint-staged: ^16.2.7
   lru-cache: ^11.2.6
-  mdast-util-from-markdown: ^2.0.2
+  mdast-util-from-markdown: ^2.0.3
   mdast-util-gfm: ^3.1.0
   mdast-util-to-hast: ^13.2.1
   minimist: ^1.2.8
@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.22.0
   source-map-js: ^1.2.1
-  svelte: ^5.53.0
+  svelte: ^5.53.2
   svelte-check: ^4.4.3
   svelte2tsx: ^0.7.51
   taze: ^19.9.2
