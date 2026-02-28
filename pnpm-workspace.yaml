@@ -39,7 +39,7 @@ catalog:
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.3
-  '@sveltejs/kit': ^2.53.3
+  '@sveltejs/kit': ^2.53.4
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.4
   '@types/cross-spawn': ^6.0.6
@@ -80,7 +80,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.53.5
+  svelte: ^5.53.6
   svelte-check: ^4.4.4
   svelte2tsx: ^0.7.51
   taze: ^19.9.2
