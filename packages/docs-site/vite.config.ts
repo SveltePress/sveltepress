@@ -49,6 +49,10 @@ const config = defineConfig({
         description: 'A content centered site build tool',
       },
       addInspect: true,
+      llms: {
+        enabled: true,
+        baseUrl: 'https://sveltepress.site',
+      },
     }),
   ],
   server: {

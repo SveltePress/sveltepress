@@ -30,12 +30,29 @@ export type RemarkPluginsOrderer = ((themeRemarkPlugins: Plugin[]) => Plugin[])
 
 export type RehypePluginsOrderer = ((themeRehypePlugins: Plugin[]) => Plugin[])
 
+export interface PageInfo {
+  title: string
+  routePath: string
+  content: string
+  frontmatter: Record<string, any>
+}
+
+export interface LlmsConfig {
+  enabled?: boolean
+  title?: string
+  description?: string
+  baseUrl?: string
+  filter?: (filePath: string, frontmatter: Record<string, any>) => boolean
+  sort?: (a: PageInfo, b: PageInfo) => number
+}
+
 export interface SveltepressVitePluginOptions {
   theme?: ResolvedTheme
   siteConfig?: SiteConfig
   addInspect?: boolean
   remarkPlugins?: Plugin[] | RemarkPluginsOrderer
   rehypePlugins?: Plugin[] | RehypePluginsOrderer
+  llms?: LlmsConfig
 }
 
 export type LoadTheme<ThemeOptions = any> = (themeOptions?: ThemeOptions) => ResolvedTheme

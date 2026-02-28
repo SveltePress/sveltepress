@@ -5,6 +5,7 @@ import { existsSync, mkdirSync } from 'node:fs'
 
 import { resolve } from 'node:path'
 import process from 'node:process'
+import { generateLlmsTxt } from './llms.js'
 import { wrapPage } from './utils/wrap-page.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -24,6 +25,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   siteConfig,
   rehypePlugins,
   remarkPlugins,
+  llms,
 }) => {
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
@@ -114,6 +116,11 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         const src = await ctx.read()
         // overwrite read() to return content parsed by md-to-svelte so that sveltekit can handle the HMR
         ctx.read = async () => await getWrappedCode(file, src)
+      }
+    },
+    async closeBundle() {
+      if (llms?.enabled) {
+        await generateLlmsTxt(llms, siteConfig ?? {})
       }
     },
   }
