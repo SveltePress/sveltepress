@@ -1,9 +1,11 @@
 import type { LlmsConfig, PageInfo } from './types.js'
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
-import { join, relative, resolve, sep } from 'node:path'
+import { join, relative, resolve } from 'node:path'
 import process from 'node:process'
+import yaml from 'yaml'
 
-function parseFrontmatter(content: string): { frontmatter: Record<string, any>, body: string } {
+function parseFrontmatter(content: string): { frontmatter: Record<string, unknown>, body: string } {
+  content = content.replace(/\r\n/g, '\n')
   if (!content.startsWith('---')) {
     return { frontmatter: {}, body: content }
   }
@@ -13,15 +15,14 @@ function parseFrontmatter(content: string): { frontmatter: Record<string, any>, 
   }
   const yamlStr = content.slice(4, end)
   const body = content.slice(end + 4).trimStart()
-  const frontmatter: Record<string, any> = {}
-  for (const line of yamlStr.split('\n')) {
-    const colonIdx = line.indexOf(':')
-    if (colonIdx === -1)
-      continue
-    const key = line.slice(0, colonIdx).trim()
-    const val = line.slice(colonIdx + 1).trim()
-    if (key)
-      frontmatter[key] = val.replace(/^['"]|['"]$/g, '')
+  let frontmatter: Record<string, unknown> = {}
+  try {
+    const parsed = yaml.parse(yamlStr)
+    if (parsed && typeof parsed === 'object')
+      frontmatter = parsed as Record<string, unknown>
+  }
+  catch {
+    // fallback: ignore parse errors
   }
   return { frontmatter, body }
 }
@@ -33,7 +34,7 @@ function deriveRoutePath(filePath: string, routesDir: string): string {
   if (!dir)
     return '/'
   // Split and filter out route groups like (group)
-  const parts = dir.split(sep).filter(p => !/^\(.*\)$/.test(p))
+  const parts = dir.split(/[/\\]/).filter(p => !/^\(.*\)$/.test(p))
   return `/${parts.join('/')}`
 }
 
@@ -61,9 +62,9 @@ function sectionOf(routePath: string): string {
   return parts[0] || ''
 }
 
-export async function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: string, description?: string }) {
+export function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: string, description?: string }) {
   const cwd = process.cwd()
-  const routesDir = resolve(cwd, 'src/routes')
+  const routesDir = resolve(cwd, config.routesDir ?? 'src/routes')
   const staticDir = resolve(cwd, 'static')
 
   const files = collectPages(routesDir)
@@ -73,13 +74,20 @@ export async function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: 
 
   const pages: PageInfo[] = []
   for (const filePath of files) {
-    const raw = readFileSync(filePath, 'utf-8')
+    let raw: string
+    try {
+      raw = readFileSync(filePath, 'utf-8')
+    }
+    catch (err) {
+      console.warn(`[sveltepress] Failed to read ${filePath}:`, err)
+      continue
+    }
     const { frontmatter, body } = parseFrontmatter(raw)
     const routePath = deriveRoutePath(filePath, routesDir)
     if (config.filter && !config.filter(filePath, frontmatter))
       continue
     pages.push({
-      title: frontmatter.title || routePath,
+      title: (frontmatter.title as string) || routePath,
       routePath,
       content: body,
       frontmatter,
@@ -129,24 +137,28 @@ export async function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: 
     fullLines.push(`\n> ${description}`)
   fullLines.push('')
 
-  let isFirstPage = true
+  let isFirstSection = true
   for (const [sec, secPages] of sections) {
+    if (!isFirstSection)
+      fullLines.push('---')
     if (sec) {
       fullLines.push(`## ${sec}`)
       fullLines.push('')
     }
+    let isFirstPageInSection = true
     for (const page of secPages) {
       const url = `${baseUrl}${page.routePath}`
-      if (!isFirstPage)
-        fullLines.push('---\n')
+      if (!isFirstPageInSection)
+        fullLines.push('---')
       fullLines.push(`# [${page.title}](${url})`)
       fullLines.push('')
       if (page.content.trim()) {
         fullLines.push(page.content.trim())
         fullLines.push('')
       }
-      isFirstPage = false
+      isFirstPageInSection = false
     }
+    isFirstSection = false
   }
 
   writeFileSync(join(staticDir, 'llms-full.txt'), fullLines.join('\n'), 'utf-8')

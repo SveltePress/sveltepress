@@ -77,6 +77,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     layout: getLayout(id),
   })).wrappedCode
 
+  let isBuild = false
+
   return {
     name: '@sveltepress/vite',
     /**
@@ -84,6 +86,9 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
      * @see https://github.com/sveltejs/vite-plugin-svelte/blob/1cef575c8f9188456934e38dad7a869b43fe7d46/packages/vite-plugin-svelte/src/index.ts#L58
      */
     enforce: 'pre',
+    configResolved(config) {
+      isBuild = config.command === 'build'
+    },
     config: () => ({
       server: {
         fs: {
@@ -118,9 +123,9 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         ctx.read = async () => await getWrappedCode(file, src)
       }
     },
-    async closeBundle() {
-      if (llms?.enabled) {
-        await generateLlmsTxt(llms, siteConfig ?? {})
+    writeBundle() {
+      if (isBuild && llms?.enabled) {
+        generateLlmsTxt(llms, siteConfig ?? {})
       }
     },
   }

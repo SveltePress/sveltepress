@@ -34,7 +34,7 @@ export interface PageInfo {
   title: string
   routePath: string
   content: string
-  frontmatter: Record<string, any>
+  frontmatter: Record<string, unknown>
 }
 
 export interface LlmsConfig {
@@ -42,7 +42,8 @@ export interface LlmsConfig {
   title?: string
   description?: string
   baseUrl?: string
-  filter?: (filePath: string, frontmatter: Record<string, any>) => boolean
+  routesDir?: string
+  filter?: (filePath: string, frontmatter: Record<string, unknown>) => boolean
   sort?: (a: PageInfo, b: PageInfo) => number
 }
 
