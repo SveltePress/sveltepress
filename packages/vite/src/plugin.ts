@@ -87,7 +87,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
      */
     enforce: 'pre',
     configResolved(config) {
-      isBuild = config.command === 'build'
+      isBuild = config.command === 'build' && !config.build.ssr
     },
     config: () => ({
       server: {
