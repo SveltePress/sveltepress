@@ -5,6 +5,7 @@ import { existsSync, mkdirSync } from 'node:fs'
 
 import { resolve } from 'node:path'
 import process from 'node:process'
+import { generateLlmsTxt } from './llms.js'
 import { wrapPage } from './utils/wrap-page.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -24,6 +25,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   siteConfig,
   rehypePlugins,
   remarkPlugins,
+  llms,
 }) => {
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
@@ -75,6 +77,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     layout: getLayout(id),
   })).wrappedCode
 
+  let isBuild = false
+
   return {
     name: '@sveltepress/vite',
     /**
@@ -82,6 +86,9 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
      * @see https://github.com/sveltejs/vite-plugin-svelte/blob/1cef575c8f9188456934e38dad7a869b43fe7d46/packages/vite-plugin-svelte/src/index.ts#L58
      */
     enforce: 'pre',
+    configResolved(config) {
+      isBuild = config.command === 'build' && !config.build.ssr
+    },
     config: () => ({
       server: {
         fs: {
@@ -114,6 +121,11 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         const src = await ctx.read()
         // overwrite read() to return content parsed by md-to-svelte so that sveltekit can handle the HMR
         ctx.read = async () => await getWrappedCode(file, src)
+      }
+    },
+    writeBundle() {
+      if (isBuild && llms?.enabled) {
+        generateLlmsTxt(llms, siteConfig ?? {})
       }
     },
   }

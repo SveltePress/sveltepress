@@ -10,6 +10,9 @@ vite.config.ts.timestamp-*
 .sveltepress
 !packages/theme-default/.sveltepress
 dist
+# Generated llms.txt files
+**/static/llms.txt
+**/static/llms-full.txt
 .vscode
 .history
 node-jiti

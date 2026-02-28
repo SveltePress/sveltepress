@@ -138,7 +138,7 @@ Don't create changesets for:
    ---
    '@sveltepress/theme-default': minor
    ---
-   
+
    Add support for code block titles using ```js title="filename"
    ```
 
@@ -148,7 +148,7 @@ Don't create changesets for:
    '@sveltepress/vite': minor
    '@sveltepress/theme-default': minor
    ---
-   
+
    Add plugin API for custom markdown processors
    ```
 
