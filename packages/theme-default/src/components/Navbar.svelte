@@ -1,4 +1,5 @@
 <script>
+  import type { Component } from 'svelte'
   import { page } from '$app/state'
   import { onMount } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
@@ -15,13 +16,17 @@
   const isHome = $derived(routeId === '/')
   const hasError = $derived(page.error)
 
-  let docsearchComponent = $state()
+  let docsearchComponent = $state<Component | undefined>()
 
   onMount(async () => {
     if (themeOptions.docsearch && !themeOptions.search) {
-      docsearchComponent = (
-        await import('@sveltepress/docsearch/Search.svelte')
-      ).default
+      try {
+        docsearchComponent = (
+          await import('@sveltepress/docsearch/Search.svelte')
+        ).default
+      } catch (e) {
+        console.error('[sveltepress] Failed to load docsearch component:', e)
+      }
     }
   })
 </script>

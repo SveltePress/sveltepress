@@ -40,5 +40,6 @@
     "@types/node": "catalog:",
     "svelte": "catalog:",
     "typescript": "catalog:"
-  }
+  },
+  "svelte": "./dist/Search.svelte"
 }

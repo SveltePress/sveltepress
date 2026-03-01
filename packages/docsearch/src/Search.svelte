@@ -1,18 +1,27 @@
-<script>
+<script lang="ts">
+  import type { DocSearchProps } from '@docsearch/js'
   import docsearch from '@docsearch/js'
   import { onMount } from 'svelte'
   import '@docsearch/css/dist/style.css'
 
-  const { appId, apiKey, indexName, ...rest } = $props()
+  const {
+    appId,
+    apiKey,
+    indexName,
+    ...rest
+  }: Omit<DocSearchProps, 'container' | 'theme'> = $props()
 
-  let lastIsDark
+  let containerEl = $state<HTMLDivElement | undefined>()
+  let lastIsDark: boolean | undefined
 
   function initDocsearch() {
+    if (!containerEl) return
     const isDark = document.documentElement.classList.contains('dark')
     if (isDark === lastIsDark && lastIsDark !== undefined) return
     lastIsDark = isDark
+    containerEl.innerHTML = ''
     docsearch({
-      container: '#docsearch',
+      container: containerEl,
       appId,
       apiKey,
       indexName,
@@ -37,4 +46,4 @@
   })
 </script>
 
-<div id="docsearch" class="ml-4"></div>
+<div bind:this={containerEl} class="ml-4"></div>
