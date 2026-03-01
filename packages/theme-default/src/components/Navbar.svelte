@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/state'
+  import { onMount } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
@@ -8,12 +9,21 @@
   import MobileSubNav from './MobileSubNav.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
   import NavItem from './NavItem.svelte'
-  import Search from './Search.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
   const routeId = $derived(page.route.id)
   const isHome = $derived(routeId === '/')
   const hasError = $derived(page.error)
+
+  let docsearchComponent = $state()
+
+  onMount(async () => {
+    if (themeOptions.docsearch && !themeOptions.search) {
+      docsearchComponent = (
+        await import('@sveltepress/docsearch/Search.svelte')
+      ).default
+    }
+  })
 </script>
 
 <header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>
@@ -26,13 +36,23 @@
         </div>
       {/if}
     </div>
-    {#if themeOptions.docsearch}
+    {#if themeOptions.search}
       <div
         class:is-home={isHome}
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        <Search {...themeOptions.docsearch} />
+        {@const SearchComponent = themeOptions.search}
+        <SearchComponent />
+      </div>
+    {:else if themeOptions.docsearch && docsearchComponent}
+      <div
+        class:is-home={isHome}
+        class:move={!isHome && !hasError}
+        class="doc-search"
+      >
+        {@const DocsearchComponent = docsearchComponent}
+        <DocsearchComponent {...themeOptions.docsearch} />
       </div>
     {/if}
 

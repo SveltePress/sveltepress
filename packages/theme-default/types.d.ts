@@ -9,6 +9,7 @@ declare module 'virtual:sveltepress/theme-default' {
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
   import type { BundledTheme } from 'shiki'
   import type { BundledLanguage } from 'shiki/langs'
+  import type { Component } from 'svelte'
 
   export interface WithTitle {
     title?: string
@@ -34,6 +35,7 @@ declare module 'virtual:sveltepress/theme-default' {
       darkManifest?: string
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
+    search?: Component
     themeColor?: {
       light: string
       dark: string

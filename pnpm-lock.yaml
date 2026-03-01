@@ -581,7 +581,7 @@ importers:
         specifier: 'catalog:'
         version: 7.4.0
 
-  packages/theme-default:
+  packages/docsearch:
     dependencies:
       '@docsearch/css':
         specifier: 'catalog:'
@@ -589,12 +589,34 @@ importers:
       '@docsearch/js':
         specifier: 'catalog:'
         version: 4.6.0
+    devDependencies:
+      '@sveltejs/package':
+        specifier: 'catalog:'
+        version: 2.5.7(svelte@5.53.6)(typescript@5.9.3)
+      '@sveltejs/vite-plugin-svelte':
+        specifier: 'catalog:'
+        version: 6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@24.10.15)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.10.15
+      svelte:
+        specifier: 'catalog:'
+        version: 5.53.6
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  packages/theme-default:
+    dependencies:
       '@shikijs/twoslash':
         specifier: 'catalog:'
         version: 3.23.0(typescript@5.9.3)
       '@sveltejs/vite-plugin-svelte':
         specifier: 'catalog:'
         version: 6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@24.10.15)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))
+      '@sveltepress/docsearch':
+        specifier: workspace:*
+        version: link:../docsearch
       '@sveltepress/twoslash':
         specifier: workspace:*
         version: link:../twoslash
