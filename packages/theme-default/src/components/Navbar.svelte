@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
+  import type { Component } from 'svelte'
   import { page } from '$app/state'
+  import { onMount } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
@@ -8,12 +10,40 @@
   import MobileSubNav from './MobileSubNav.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
   import NavItem from './NavItem.svelte'
-  import Search from './Search.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
   const routeId = $derived(page.route.id)
   const isHome = $derived(routeId === '/')
   const hasError = $derived(page.error)
+
+  let docsearchComponent = $state<Component | undefined>()
+  let searchComponent = $state<Component | undefined>()
+
+  onMount(async () => {
+    // Load custom search component if it's a string path
+    if (themeOptions.search && typeof themeOptions.search === 'string') {
+      try {
+        searchComponent = (await import(/* @vite-ignore */ themeOptions.search))
+          .default
+      } catch (e) {
+        console.error(
+          '[sveltepress] Failed to load custom search component:',
+          e,
+        )
+      }
+    }
+
+    // Load docsearch if no custom search is provided
+    if (themeOptions.docsearch && !themeOptions.search) {
+      try {
+        docsearchComponent = (
+          await import('@sveltepress/docsearch/Search.svelte')
+        ).default
+      } catch (e) {
+        console.error('[sveltepress] Failed to load docsearch component:', e)
+      }
+    }
+  })
 </script>
 
 <header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>
@@ -26,13 +56,24 @@
         </div>
       {/if}
     </div>
-    {#if themeOptions.docsearch}
+    {#if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
       <div
         class:is-home={isHome}
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        <Search {...themeOptions.docsearch} />
+        <svelte:component this={searchComponent || themeOptions.search} />
+      </div>
+    {:else if themeOptions.docsearch && docsearchComponent}
+      <div
+        class:is-home={isHome}
+        class:move={!isHome && !hasError}
+        class="doc-search"
+      >
+        <svelte:component
+          this={docsearchComponent}
+          {...themeOptions.docsearch}
+        />
       </div>
     {/if}
 
