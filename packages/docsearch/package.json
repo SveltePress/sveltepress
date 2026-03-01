@@ -2,7 +2,7 @@
   "name": "@sveltepress/docsearch",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.30.2",
   "description": "Docsearch component for sveltepress",
   "author": "Dongsheng Zhao",
   "license": "MIT",
@@ -13,11 +13,10 @@
       "default": "./dist/Search.svelte",
       "svelte": "./dist/Search.svelte"
     },
-    ".": {
-      "types": "./dist/Search.svelte.d.ts",
-      "import": "./dist/Search.svelte",
-      "default": "./dist/Search.svelte",
-      "svelte": "./dist/Search.svelte"
+    "./types": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
   "files": [
@@ -40,6 +39,5 @@
     "@types/node": "catalog:",
     "svelte": "catalog:",
     "typescript": "catalog:"
-  },
-  "svelte": "./dist/Search.svelte"
+  }
 }

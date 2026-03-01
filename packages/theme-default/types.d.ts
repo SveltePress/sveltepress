@@ -3,7 +3,7 @@
 /// <reference types="@sveltejs/kit/vite" />
 
 declare module 'virtual:sveltepress/theme-default' {
-  import type { DocSearchProps } from '@docsearch/js'
+  import type { DocSearchProps } from '@sveltepress/docsearch/types'
   import type { CreateTwoslashSvelteOptions } from '@sveltepress/twoslash'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'

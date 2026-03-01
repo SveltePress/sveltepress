@@ -15,6 +15,7 @@
   let lastIsDark: boolean | undefined
 
   function initDocsearch() {
+    if (typeof document === 'undefined') return
     if (!containerEl) return
     const isDark = document.documentElement.classList.contains('dark')
     if (isDark === lastIsDark && lastIsDark !== undefined) return
