@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import type { Component } from 'svelte'
   import { page } from '$app/state'
   import { onMount } from 'svelte'
@@ -47,8 +47,7 @@
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        {@const SvelteComponent = themeOptions.search}
-        <SvelteComponent />
+        <svelte:component this={themeOptions.search} />
       </div>
     {:else if themeOptions.docsearch && docsearchComponent}
       <div
@@ -56,8 +55,10 @@
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        {@const SvelteComponent = docsearchComponent}
-        <SvelteComponent {...themeOptions.docsearch} />
+        <svelte:component
+          this={docsearchComponent}
+          {...themeOptions.docsearch}
+        />
       </div>
     {/if}
 
