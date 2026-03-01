@@ -17,8 +17,23 @@
   const hasError = $derived(page.error)
 
   let docsearchComponent = $state<Component | undefined>()
+  let searchComponent = $state<Component | undefined>()
 
   onMount(async () => {
+    // Load custom search component if it's a string path
+    if (themeOptions.search && typeof themeOptions.search === 'string') {
+      try {
+        searchComponent = (await import(/* @vite-ignore */ themeOptions.search))
+          .default
+      } catch (e) {
+        console.error(
+          '[sveltepress] Failed to load custom search component:',
+          e,
+        )
+      }
+    }
+
+    // Load docsearch if no custom search is provided
     if (themeOptions.docsearch && !themeOptions.search) {
       try {
         docsearchComponent = (
@@ -41,13 +56,13 @@
         </div>
       {/if}
     </div>
-    {#if themeOptions.search}
+    {#if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
       <div
         class:is-home={isHome}
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        <svelte:component this={themeOptions.search} />
+        <svelte:component this={searchComponent || themeOptions.search} />
       </div>
     {:else if themeOptions.docsearch && docsearchComponent}
       <div
