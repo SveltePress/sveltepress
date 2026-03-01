@@ -101,6 +101,20 @@ Something like `G-XXXXXXX`.
 
 Would add gtag script in site head if provided.
 
+### `search`
+
+Custom search component for the navbar.
+
+- Type: `Component | string`
+- If a `Component` is provided, it is rendered directly.
+- If a `string` is provided, it is treated as a component path and loaded via dynamic `import()`.
+
+Example:
+
+```ts
+search: '/src/lib/MySearch.svelte'
+```
+
 ### `docsearch`
 
 * `appId`
@@ -109,6 +123,8 @@ Would add gtag script in site head if provided.
 
 All these values are provided by Algolia.
 Visit [Docsearch](https://docsearch.algolia.com/) for more details.
+
+> `docsearch` is used only when `search` is not provided.
 
 ### `pwa`
 

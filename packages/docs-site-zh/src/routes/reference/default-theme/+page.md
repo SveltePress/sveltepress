@@ -97,6 +97,20 @@ Logo 图片
 
 配置该项将会自动添加 gtag 相关脚本
 
+### `search`
+
+导航栏自定义搜索组件。
+
+- 类型：`Component | string`
+- 传入 `Component` 时将直接渲染。
+- 传入 `string` 时会被当作组件路径，并通过动态 `import()` 加载。
+
+示例：
+
+```ts
+search: '/src/lib/MySearch.svelte'
+```
+
 ### `docsearch`
 
 * appId
@@ -104,6 +118,8 @@ Logo 图片
 * indexName
 
 阅读 [Docsearch](https://docsearch.algolia.com/) 来获得更多信息
+
+> 仅当未提供 `search` 时，才会使用 `docsearch`。
 
 ### `pwa`
 

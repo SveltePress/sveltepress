@@ -1,0 +1,50 @@
+{
+  "name": "@sveltepress/meilisearch",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.30.2",
+  "description": "Meilisearch integration for SveltePress",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SveltePress/sveltepress",
+    "directory": "packages/meilisearch"
+  },
+  "keywords": [
+    "sveltepress",
+    "meilisearch",
+    "search",
+    "svelte"
+  ],
+  "exports": {
+    "./Search.svelte": {
+      "types": "./dist/Search.svelte.d.ts",
+      "svelte": "./dist/Search.svelte",
+      "default": "./dist/Search.svelte"
+    },
+    "./types": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "svelte-package -i src -o dist",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "dependencies": {
+    "meilisearch": "catalog:"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "catalog:",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "svelte": "catalog:",
+    "typescript": "catalog:"
+  }
+}
