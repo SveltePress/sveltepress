@@ -5,8 +5,12 @@
 
   const { appId, apiKey, indexName, ...rest } = $props()
 
+  let lastIsDark
+
   function initDocsearch() {
     const isDark = document.documentElement.classList.contains('dark')
+    if (isDark === lastIsDark && lastIsDark !== undefined) return
+    lastIsDark = isDark
     docsearch({
       container: '#docsearch',
       appId,

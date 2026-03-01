@@ -42,8 +42,8 @@
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        {@const SearchComponent = themeOptions.search}
-        <SearchComponent />
+        {@const SvelteComponent = themeOptions.search}
+        <SvelteComponent />
       </div>
     {:else if themeOptions.docsearch && docsearchComponent}
       <div
@@ -51,8 +51,8 @@
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        {@const DocsearchComponent = docsearchComponent}
-        <DocsearchComponent {...themeOptions.docsearch} />
+        {@const SvelteComponent = docsearchComponent}
+        <SvelteComponent {...themeOptions.docsearch} />
       </div>
     {/if}
 

@@ -12,6 +12,12 @@
       "import": "./dist/Search.svelte",
       "default": "./dist/Search.svelte",
       "svelte": "./dist/Search.svelte"
+    },
+    ".": {
+      "types": "./dist/Search.svelte.d.ts",
+      "import": "./dist/Search.svelte",
+      "default": "./dist/Search.svelte",
+      "svelte": "./dist/Search.svelte"
     }
   },
   "files": [
