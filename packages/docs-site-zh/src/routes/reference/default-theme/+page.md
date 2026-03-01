@@ -108,8 +108,16 @@ Logo 图片
 示例：
 
 ```ts
+// 使用 Meilisearch
+search: '@sveltepress/meilisearch/Search.svelte'
+
+// 或自定义组件
 search: '/src/lib/MySearch.svelte'
 ```
+
+:::note[search 与 docsearch 的优先级]
+当 `search` 和 `docsearch` 同时配置时，`search` 优先，`docsearch` 将被忽略。
+:::
 
 ### `docsearch`
 

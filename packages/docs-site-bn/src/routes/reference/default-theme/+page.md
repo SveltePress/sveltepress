@@ -109,8 +109,16 @@ Navbar-এর জন্য custom search component।
 Example:
 
 ```ts
+// Meilisearch ব্যবহার
+search: '@sveltepress/meilisearch/Search.svelte'
+
+// অথবা custom component
 search: '/src/lib/MySearch.svelte'
 ```
+
+:::note[search ও docsearch-এর অগ্রাধিকার]
+`search` এবং `docsearch` একসাথে দেওয়া থাকলে `search`-ই কার্যকর হবে এবং `docsearch` উপেক্ষা করা হবে।
+:::
 
 ### `docsearch`
 

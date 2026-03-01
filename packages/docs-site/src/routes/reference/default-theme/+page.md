@@ -109,11 +109,19 @@ Custom search component for the navbar.
 - If a `Component` is provided, it is rendered directly.
 - If a `string` is provided, it is treated as a component path and loaded via dynamic `import()`.
 
-Example:
+Examples:
 
 ```ts
+// Use Meilisearch
+search: '@sveltepress/meilisearch/Search.svelte'
+
+// Or a custom component
 search: '/src/lib/MySearch.svelte'
 ```
+
+:::note[search vs docsearch priority]
+When both `search` and `docsearch` are provided, `search` takes priority and `docsearch` is ignored.
+:::
 
 ### `docsearch`
 
