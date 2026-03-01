@@ -150,6 +150,9 @@ catalogs:
     mdast-util-to-hast:
       specifier: ^13.2.1
       version: 13.2.1
+    meilisearch:
+      specifier: ^0.48.0
+      version: 0.48.2
     minimist:
       specifier: ^1.2.8
       version: 1.2.8
@@ -609,7 +612,7 @@ importers:
   packages/meilisearch:
     dependencies:
       meilisearch:
-        specifier: ^0.48.0
+        specifier: 'catalog:'
         version: 0.48.2
     devDependencies:
       '@sveltejs/package':
