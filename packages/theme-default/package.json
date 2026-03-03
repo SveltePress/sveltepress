@@ -68,10 +68,9 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
-    "@docsearch/css": "catalog:",
-    "@docsearch/js": "catalog:",
     "@shikijs/twoslash": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@sveltepress/docsearch": "workspace:*",
     "@sveltepress/twoslash": "workspace:*",
     "@unocss/extractor-svelte": "catalog:",
     "@vite-pwa/sveltekit": "catalog:",

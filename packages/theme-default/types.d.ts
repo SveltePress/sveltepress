@@ -3,12 +3,13 @@
 /// <reference types="@sveltejs/kit/vite" />
 
 declare module 'virtual:sveltepress/theme-default' {
-  import type { DocSearchProps } from '@docsearch/js'
+  import type { DocSearchProps } from '@sveltepress/docsearch/types'
   import type { CreateTwoslashSvelteOptions } from '@sveltepress/twoslash'
   import type { LoadTheme } from '@sveltepress/vite'
   import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
   import type { BundledTheme } from 'shiki'
   import type { BundledLanguage } from 'shiki/langs'
+  import type { Component } from 'svelte'
 
   export interface WithTitle {
     title?: string
@@ -34,6 +35,7 @@ declare module 'virtual:sveltepress/theme-default' {
       darkManifest?: string
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
+    search?: Component | string
     themeColor?: {
       light: string
       dark: string
