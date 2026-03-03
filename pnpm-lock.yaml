@@ -52,8 +52,8 @@ catalogs:
       specifier: ^1.2.7
       version: 1.2.7
     '@iconify-json/openmoji':
-      specifier: ^1.2.22
-      version: 1.2.22
+      specifier: ^1.2.23
+      version: 1.2.23
     '@iconify-json/ph':
       specifier: ^1.2.2
       version: 1.2.2
@@ -109,8 +109,8 @@ catalogs:
       specifier: ^2.4.9
       version: 2.4.9
     '@unocss/extractor-svelte':
-      specifier: ^66.6.2
-      version: 66.6.2
+      specifier: ^66.6.3
+      version: 66.6.3
     '@vite-pwa/sveltekit':
       specifier: ^1.1.0
       version: 1.1.0
@@ -378,7 +378,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.22
+        version: 1.2.23
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -456,7 +456,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.22
+        version: 1.2.23
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -534,7 +534,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.22
+        version: 1.2.23
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -600,7 +600,7 @@ importers:
         version: link:../twoslash
       '@unocss/extractor-svelte':
         specifier: 'catalog:'
-        version: 66.6.2
+        version: 66.6.3
       '@vite-pwa/sveltekit':
         specifier: 'catalog:'
         version: 1.1.0(@sveltejs/kit@2.53.4(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.6)(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(svelte@5.53.6)(typescript@5.9.3)(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))(workbox-build@7.0.0)(workbox-window@7.4.0)
@@ -1907,8 +1907,8 @@ packages:
   '@iconify-json/noto@1.2.7':
     resolution: {integrity: sha512-2pNHliXnMLpnepNTZwR9hPBSl6GmhIfXPnudFCHY5v9pJhmA7LoVb/pFY0qLDY/k+3ikET8RXRf7XFxc/pHObA==}
 
-  '@iconify-json/openmoji@1.2.22':
-    resolution: {integrity: sha512-+Tv/hG7inR/jwWO583D3VKCP1mW0NZA4zKttu336kW14VT/0k1l/m1AmCT3XrMia+/iQYObekadnXlTp2Q1WSQ==}
+  '@iconify-json/openmoji@1.2.23':
+    resolution: {integrity: sha512-ppgoydoehDJ08pEtuyYF+X1FXvbvAvOcFDI+Gtb+7o1SVxP7EbO2xMCDjY8aNW98a5PBs57PJuv1iopdV+75oA==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -2606,8 +2606,8 @@ packages:
   '@unocss/extractor-arbitrary-variants@66.6.2':
     resolution: {integrity: sha512-D2tK/8QClrVViSuoH5eLjXwlVOK1UgXx7ukz/D260+R6vhCmjv97RXPouZkq40sxGzfxzaQZUyPEjXLjtnO3bw==}
 
-  '@unocss/extractor-svelte@66.6.2':
-    resolution: {integrity: sha512-YLR3IqBzTDyNn6BEOe+1ZjEK/dmxBPD/RHLkwjpOYWmXlhPT9+h+uZ5weSnWHc0bl6hys3OAA95bsebIfNRAqA==}
+  '@unocss/extractor-svelte@66.6.3':
+    resolution: {integrity: sha512-eFr6IVBH3xO7ztwmFrBFkVTUezfqX5PYiMSi+keflSs0PP/YOolaXeJx315b4eqkg3ot+lZUtvCv/6VV3k3zQg==}
 
   '@unocss/inspector@66.6.2':
     resolution: {integrity: sha512-q0kktb01dXeeXyNnNwYM1SkSHxrEOQhCZ/YQ5aCdC7BWNGF4yZMK0YrJXmGUTEHN4RhEPLN/rAIsDBsKcoFaAQ==}
@@ -7257,7 +7257,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/openmoji@1.2.22':
+  '@iconify-json/openmoji@1.2.23':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7943,7 +7943,7 @@ snapshots:
     dependencies:
       '@unocss/core': 66.6.2
 
-  '@unocss/extractor-svelte@66.6.2': {}
+  '@unocss/extractor-svelte@66.6.3': {}
 
   '@unocss/inspector@66.6.2':
     dependencies:
