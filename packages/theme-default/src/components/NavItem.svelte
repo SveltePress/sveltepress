@@ -29,8 +29,8 @@
   } = $props()
 
   const normalizedTo = to.endsWith('/') ? to.slice(0, -1) : to
-  const isExactMatch = (p: string) => p === to
-  const isChildMatch = (p: string) => p.startsWith(`${normalizedTo}/`)
+  const isExactMatch = p => p === to
+  const isChildMatch = p => p.startsWith(`${normalizedTo}/`)
   let active = $derived(
     isExactMatch(page.url.pathname) || isChildMatch(page.url.pathname),
   )
