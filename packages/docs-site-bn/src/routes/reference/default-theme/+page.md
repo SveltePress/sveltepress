@@ -98,6 +98,28 @@ export default config
 
 সাইট-হেডে gtag স্ক্রিপ্ট যুক্ত করে।
 
+### `search`
+
+Navbar-এর জন্য custom search component।
+
+- Type: `Component | string`
+- `Component` দিলে সরাসরি render হবে।
+- `string` দিলে এটাকে component path হিসেবে dynamic `import()` দিয়ে load করা হবে।
+
+Example:
+
+```ts
+// Meilisearch ব্যবহার
+search: '@sveltepress/meilisearch/Search.svelte'
+
+// অথবা custom component
+search: '/src/lib/MySearch.svelte'
+```
+
+:::note[search ও docsearch-এর অগ্রাধিকার]
+`search` এবং `docsearch` একসাথে দেওয়া থাকলে `search`-ই কার্যকর হবে এবং `docsearch` উপেক্ষা করা হবে।
+:::
+
 ### `docsearch`
 
 * appId
@@ -106,6 +128,8 @@ export default config
 
 এই সব ভ্যলু docsearch প্রোভাইড করে।
 আরো বিস্তারিত জানতে [Docsearch](https://docsearch.algolia.com/) ভিজিট করুন।
+
+> `search` না দিলে তবেই `docsearch` ব্যবহার হবে।
 
 ### `pwa`
 

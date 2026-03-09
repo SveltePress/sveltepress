@@ -24,7 +24,6 @@
   import Sidebar from './Sidebar.svelte'
   import Toc from './Toc.svelte'
   import 'virtual:uno.css'
-  import '@docsearch/css/dist/style.css'
   import '../style.css'
   /**
    * @typedef {object} Props

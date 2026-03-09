@@ -84,8 +84,8 @@ export default {
           to: '/guide/default-theme/unocss/',
         },
         {
-          title: 'Docsearch',
-          to: '/guide/default-theme/docsearch/',
+          title: 'সার্চ',
+          to: '/guide/default-theme/search/',
         },
         {
           title: 'PWA',
