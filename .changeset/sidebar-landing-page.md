@@ -1,5 +1,5 @@
 ---
-"@sveltepress/theme-default": patch
+'@sveltepress/theme-default': patch
 ---
 
-fix sidebar and navbar active state for landing pages (#379)
+fix: sidebar and navbar active state for landing pages
