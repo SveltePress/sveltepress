@@ -18,23 +18,23 @@ packages:
 catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
-  '@changesets/cli': ^2.29.8
+  '@changesets/cli': ^2.30.0
   '@docsearch/css': ^4.6.0
   '@docsearch/js': ^4.6.0
-  '@floating-ui/dom': ^1.7.5
+  '@floating-ui/dom': ^1.7.6
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
   '@iconify-json/carbon': ^1.2.19
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
-  '@iconify-json/material-symbols': ^1.2.59
+  '@iconify-json/material-symbols': ^1.2.60
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
-  '@iconify-json/openmoji': ^1.2.22
+  '@iconify-json/openmoji': ^1.2.23
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
-  '@iconify-json/tabler': ^1.2.28
+  '@iconify-json/tabler': ^1.2.30
   '@iconify-json/vscode-icons': ^1.2.44
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -48,18 +48,18 @@ catalog:
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.11.0
+  '@types/node': ^24.12.0
   '@types/prompts': ^2.4.9
-  '@unocss/extractor-svelte': ^66.6.2
+  '@unocss/extractor-svelte': ^66.6.6
   '@vite-pwa/sveltekit': ^1.1.0
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
   dayjs: ^1.11.19
-  eslint: ^9.39.3
+  eslint: ^9.39.4
   eslint-plugin-svelte: ^3.15.0
-  fs-extra: ^11.3.3
+  fs-extra: ^11.3.4
   husky: ^9.1.7
-  lint-staged: ^16.3.0
+  lint-staged: ^16.3.2
   lru-cache: ^11.2.6
   mdast-util-from-markdown: ^2.0.3
   mdast-util-gfm: ^3.1.0
@@ -68,7 +68,7 @@ catalog:
   minimist: ^1.2.8
   picocolors: ^1.1.1
   prettier: ~3.6.2
-  prettier-plugin-svelte: ^3.5.0
+  prettier-plugin-svelte: ^3.5.1
   prompts: ^2.4.2
   rehype-stringify: ^10.0.1
   remark-directive: ^4.0.0
@@ -81,10 +81,10 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.53.6
-  svelte-check: ^4.4.4
-  svelte2tsx: ^0.7.51
-  taze: ^19.9.2
+  svelte: ^5.53.7
+  svelte-check: ^4.4.5
+  svelte2tsx: ^0.7.52
+  taze: ^19.10.0
   twoslash: ^0.3.6
   twoslash-protocol: ^0.3.6
   typescript: ^5.9.3
@@ -92,7 +92,7 @@ catalog:
   unbuild: ^3.6.1
   unified: ^11.0.5
   unist-util-visit: ^5.1.0
-  unocss: ^66.6.2
+  unocss: ^66.6.6
   vfile: ^6.0.3
   vite: ^7.3.1
   vite-plugin-inspect: ^11.3.3

@@ -15,5 +15,8 @@ export function parseImageSrc(src: string) {
 }
 
 export function isLinkActive(link: string, routeId: string) {
-  return link === routeId || link?.startsWith(`${routeId}/`)
+  // Normalize both by removing trailing slashes for comparison
+  const normalizedLink = link?.replace(/\/$/, '') || ''
+  const normalizedRouteId = routeId?.replace(/\/$/, '') || ''
+  return normalizedLink === normalizedRouteId || link?.startsWith(`${normalizedRouteId}/`)
 }
