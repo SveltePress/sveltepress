@@ -28,11 +28,11 @@
     ...rest
   } = $props()
 
+  const normalizedTo = to.endsWith('/') ? to.slice(0, -1) : to
+  const isExactMatch = (p: string) => p === to
+  const isChildMatch = (p: string) => p.startsWith(`${normalizedTo}/`)
   let active = $derived(
-    page.url.pathname === to ||
-      page.url.pathname.startsWith(
-        to.endsWith('/') ? to.slice(0, -1) : `${to}/`,
-      ),
+    isExactMatch(page.url.pathname) || isChildMatch(page.url.pathname),
   )
   // eslint-disable-next-line no-unused-expressions
   rest
