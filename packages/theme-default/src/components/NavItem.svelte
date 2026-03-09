@@ -30,7 +30,7 @@
 
   let active = $derived(
     page.url.pathname === to ||
-      page.url.pathname.startsWith(
+    page.url.pathname.startsWith(
         to.endsWith('/') ? to.slice(0, -1) : `${to}/`,
       ),
   )
