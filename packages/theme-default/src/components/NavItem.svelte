@@ -29,7 +29,10 @@
   } = $props()
 
   let active = $derived(
-    page.url.pathname === to || page.url.pathname.startsWith(to.endsWith('/') ? to.slice(0, -1) : to + '/'),
+    page.url.pathname === to ||
+      page.url.pathname.startsWith(
+        to.endsWith('/') ? to.slice(0, -1) : `${to}/`,
+      ),
   )
   // eslint-disable-next-line no-unused-expressions
   rest
