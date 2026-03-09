@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 7.2.1
+
+### Patch Changes
+
+- [`6338c13`](https://github.com/Blackman99/sveltepress/commit/6338c132dc441e5b0d259b657f610f88e9fb9354) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: NavItem syntax
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.3.7
+
 ## 7.2.0
 
 ### Minor Changes
