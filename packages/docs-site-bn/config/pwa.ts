@@ -1,7 +1,7 @@
 export default {
   scope: '/',
   base: '/',
-  strategies: 'injectManifest',
+  strategies: 'generateSW',
   kit: {
     trailingSlash: 'always',
   },
