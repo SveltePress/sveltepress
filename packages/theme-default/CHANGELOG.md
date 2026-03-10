@@ -1,5 +1,17 @@
 # @sveltepress/theme-default
 
+## 7.2.2
+
+### Patch Changes
+
+- [`63b6e0f`](https://github.com/Blackman99/sveltepress/commit/63b6e0f69aef95ac1e268d608e59d0eea6720150) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [#389](https://github.com/SveltePress/sveltepress/pull/389) [`6c65d7a`](https://github.com/Blackman99/sveltepress/commit/6c65d7ad3f046583bd96cb7f9d9aebbb11e9ab95) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: normalize sidebar key matching and clear sidebar when no match
+
+- Updated dependencies [[`63b6e0f`](https://github.com/Blackman99/sveltepress/commit/63b6e0f69aef95ac1e268d608e59d0eea6720150)]:
+  - @sveltepress/twoslash@1.3.8
+  - @sveltepress/vite@1.3.8
+
 ## 7.2.1
 
 ### Patch Changes
