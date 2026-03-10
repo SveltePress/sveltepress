@@ -63,9 +63,14 @@ tocCollapsed.subscribe((v) => {
 export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
+  const normalizedRouteId = routeId.replace(/\/$/, '')
   const key = Object.keys(themeOptions.sidebar || {}).find(key =>
-    routeId.startsWith(key),
+    normalizedRouteId.startsWith(key.replace(/\/$/, '')),
   )
-  if (key)
-    resolvedSidebar.set(themeOptions.sidebar?.[key] || [])
+  // If no matching key found, clear the sidebar
+  if (!key) {
+    resolvedSidebar.set([])
+    return
+  }
+  resolvedSidebar.set(themeOptions.sidebar?.[key] || [])
 }
