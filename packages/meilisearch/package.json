@@ -2,7 +2,7 @@
   "name": "@sveltepress/meilisearch",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.30.2",
+  "packageManager": "pnpm@10.32.0",
   "description": "Meilisearch integration for SveltePress",
   "license": "MIT",
   "publishConfig": {
