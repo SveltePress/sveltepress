@@ -1,5 +1,15 @@
 # @sveltepress/twoslash
 
+## 1.3.9
+
+### Patch Changes
+
+- [`f914314`](https://github.com/Blackman99/sveltepress/commit/f914314dc9aa018af4342bba3f6cbd26f3d3b778) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`560d345`](https://github.com/Blackman99/sveltepress/commit/560d345adab971af0180c2ea5058f5ecc41a25b5) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`3bcdedd`](https://github.com/Blackman99/sveltepress/commit/3bcdedd88f062b3def62521624ffabef956a1842) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.8
 
 ### Patch Changes
