@@ -139,8 +139,8 @@ catalogs:
       specifier: ^16.3.3
       version: 16.3.3
     lru-cache:
-      specifier: ^11.2.6
-      version: 11.2.6
+      specifier: ^11.2.7
+      version: 11.2.7
     mdast-util-from-markdown:
       specifier: ^2.0.3
       version: 2.0.3
@@ -650,7 +650,7 @@ importers:
         version: 1.1.0(@sveltejs/kit@2.55.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.53.11)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(svelte@5.53.11)(typescript@5.9.3)(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)))(vite@7.3.1(@types/node@24.12.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))(workbox-build@7.0.0)(workbox-window@7.4.0)
       lru-cache:
         specifier: 'catalog:'
-        version: 11.2.6
+        version: 11.2.7
       mdast-util-from-markdown:
         specifier: 'catalog:'
         version: 2.0.3
@@ -772,7 +772,7 @@ importers:
         version: 11.3.4
       lru-cache:
         specifier: 'catalog:'
-        version: 11.2.6
+        version: 11.2.7
       picocolors:
         specifier: 'catalog:'
         version: 1.1.1
@@ -4458,8 +4458,8 @@ packages:
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
 
-  lru-cache@11.2.6:
-    resolution: {integrity: sha512-ESL2CrkS/2wTPfuend7Zhkzo2u0daGJ/A2VucJOgQ/C48S/zB8MMeMHSGKYpXhIjbPxfuezITkaBH1wqv00DDQ==}
+  lru-cache@11.2.7:
+    resolution: {integrity: sha512-aY/R+aEsRelme17KGQa/1ZSIpLpNYYrhcrepKTZgE+W3WM16YMCaPwOHLHsmopZHELU0Ojin1lPVxKR0MihncA==}
     engines: {node: 20 || >=22}
 
   lru-cache@5.1.1:
@@ -10129,7 +10129,7 @@ snapshots:
 
   longest-streak@3.1.0: {}
 
-  lru-cache@11.2.6: {}
+  lru-cache@11.2.7: {}
 
   lru-cache@5.1.1:
     dependencies:
