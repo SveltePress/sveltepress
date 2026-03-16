@@ -11,6 +11,8 @@ import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
+export { generateSidebar, isAutoSidebarOptions } from './auto-sidebar.js'
+export type { AutoSidebarOptions } from './auto-sidebar.js'
 export { SERVICE_WORKER_PATH } from './constants.js'
 
 const VIRTUAL_PWA = 'virtual:pwa-info'
