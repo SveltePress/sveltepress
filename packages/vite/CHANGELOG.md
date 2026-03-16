@@ -1,5 +1,19 @@
 # @sveltepress/vite
 
+## 1.3.9
+
+### Patch Changes
+
+- [`f914314`](https://github.com/Blackman99/sveltepress/commit/f914314dc9aa018af4342bba3f6cbd26f3d3b778) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`560d345`](https://github.com/Blackman99/sveltepress/commit/560d345adab971af0180c2ea5058f5ecc41a25b5) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e12d382`](https://github.com/Blackman99/sveltepress/commit/e12d382c2d387b9549dce8d1aac267fd8a815127) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`3bcdedd`](https://github.com/Blackman99/sveltepress/commit/3bcdedd88f062b3def62521624ffabef956a1842) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d8d4ea0`](https://github.com/Blackman99/sveltepress/commit/d8d4ea02e014c23dde0cf5c90c0ba72dbebcc6f6) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.8
 
 ### Patch Changes

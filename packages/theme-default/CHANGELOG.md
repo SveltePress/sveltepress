@@ -1,5 +1,45 @@
 # @sveltepress/theme-default
 
+## 7.3.0
+
+### Minor Changes
+
+- [#391](https://github.com/SveltePress/sveltepress/pull/391) [`12fbbf7`](https://github.com/Blackman99/sveltepress/commit/12fbbf7af6ac9db400972dac84d0a5d8c299f1b8) Thanks [@Blackman99](https://github.com/Blackman99)! - feat: auto-generated sidebar from routes directory
+
+  Added support for automatically generating sidebar configuration by scanning the `src/routes/` directory. This eliminates the need for manual sidebar configuration in large documentation projects.
+
+  Usage:
+
+  ```js
+  sidebar: {
+    enabled: true
+  }
+  ```
+
+  Supports frontmatter fields for fine-grained control:
+  - `title` / `sidebarTitle` — display title
+  - `order` — numeric sort order
+  - `sidebar: false` — exclude from sidebar
+  - `collapsible` — collapsible group
+
+  Fully backward compatible with existing manual sidebar configuration.
+
+### Patch Changes
+
+- [`f914314`](https://github.com/Blackman99/sveltepress/commit/f914314dc9aa018af4342bba3f6cbd26f3d3b778) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`560d345`](https://github.com/Blackman99/sveltepress/commit/560d345adab971af0180c2ea5058f5ecc41a25b5) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e12d382`](https://github.com/Blackman99/sveltepress/commit/e12d382c2d387b9549dce8d1aac267fd8a815127) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`3bcdedd`](https://github.com/Blackman99/sveltepress/commit/3bcdedd88f062b3def62521624ffabef956a1842) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d8d4ea0`](https://github.com/Blackman99/sveltepress/commit/d8d4ea02e014c23dde0cf5c90c0ba72dbebcc6f6) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- Updated dependencies [[`f914314`](https://github.com/Blackman99/sveltepress/commit/f914314dc9aa018af4342bba3f6cbd26f3d3b778), [`560d345`](https://github.com/Blackman99/sveltepress/commit/560d345adab971af0180c2ea5058f5ecc41a25b5), [`e12d382`](https://github.com/Blackman99/sveltepress/commit/e12d382c2d387b9549dce8d1aac267fd8a815127), [`3bcdedd`](https://github.com/Blackman99/sveltepress/commit/3bcdedd88f062b3def62521624ffabef956a1842), [`d8d4ea0`](https://github.com/Blackman99/sveltepress/commit/d8d4ea02e014c23dde0cf5c90c0ba72dbebcc6f6)]:
+  - @sveltepress/twoslash@1.3.9
+  - @sveltepress/vite@1.3.9
+
 ## 7.2.2
 
 ### Patch Changes
