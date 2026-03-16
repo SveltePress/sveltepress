@@ -1,9 +1,11 @@
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import type { PluginOption } from 'vite'
+import { resolve } from 'node:path'
 import process from 'node:process'
 import extractorSvelte from '@unocss/extractor-svelte'
 import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import Unocss from 'unocss/vite'
+import { generateSidebar, isAutoSidebarOptions } from '../auto-sidebar.js'
 import { SERVICE_WORKER_PATH } from '../constants.js'
 import { initHighlighter } from '../markdown/highlighter.js'
 
@@ -37,6 +39,14 @@ export default async (options?: DefaultThemeOptions) => {
     gradient: DEFAULT_GRADIENT,
     primary: DEFAULT_PRIMARY,
     hover: DEFAULT_HOVER,
+  }
+
+  // Resolve auto-sidebar if configured
+  const resolvedOptions = { ...options }
+  let autoSidebarRoutesDir: string | undefined
+  if (isAutoSidebarOptions(resolvedOptions.sidebar)) {
+    autoSidebarRoutesDir = resolve(resolvedOptions.sidebar.routesDir || 'src/routes')
+    resolvedOptions.sidebar = generateSidebar(resolvedOptions.sidebar)
   }
 
   const iconSafelist = getIconSafelist(options)
@@ -81,7 +91,7 @@ export default async (options?: DefaultThemeOptions) => {
       },
       load(id) {
         if (id === THEME_OPTIONS_MODULE)
-          return `export default ${JSON.stringify(options || {})}`
+          return `export default ${JSON.stringify(resolvedOptions || {})}`
       },
       async config() {
         return {
@@ -99,6 +109,30 @@ export default async (options?: DefaultThemeOptions) => {
             },
           },
         }
+      },
+      configureServer(server) {
+        if (!autoSidebarRoutesDir || !isAutoSidebarOptions(options?.sidebar))
+          return
+
+        const autoOpts = options.sidebar
+        // Watch routes directory for file additions/deletions to regenerate sidebar
+        server.watcher.add(autoSidebarRoutesDir)
+        const regenerate = () => {
+          resolvedOptions.sidebar = generateSidebar(autoOpts)
+          const mod = server.moduleGraph.getModuleById(THEME_OPTIONS_MODULE)
+          if (mod) {
+            server.moduleGraph.invalidateModule(mod)
+            server.ws.send({ type: 'full-reload' })
+          }
+        }
+        server.watcher.on('add', (path) => {
+          if (path.includes('+page.'))
+            regenerate()
+        })
+        server.watcher.on('unlink', (path) => {
+          if (path.includes('+page.'))
+            regenerate()
+        })
       },
     },
   ]

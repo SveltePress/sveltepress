@@ -23,11 +23,27 @@ declare module 'virtual:sveltepress/theme-default' {
     items?: LinkItem[]
   }
 
+  export interface AutoSidebarOptions {
+    /**
+     * Enable auto-generated sidebar
+     */
+    enabled: boolean
+    /**
+     * Routes directory, default 'src/routes'
+     */
+    routesDir?: string
+    /**
+     * Root paths to generate sidebar for, e.g. ['/guide/', '/reference/']
+     * If not specified, auto-detect from top-level route directories
+     */
+    roots?: string[]
+  }
+
   export interface DefaultThemeOptions {
     navbar?: Array<LinkItem>
     github?: string
     logo?: string
-    sidebar?: Record<string, LinkItem[]>
+    sidebar?: Record<string, LinkItem[]> | AutoSidebarOptions
     editLink?: string
     discord?: string
     ga?: string
