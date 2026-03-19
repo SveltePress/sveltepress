@@ -41,8 +41,7 @@ SveltePress will detect top-level route directories (e.g. `/guide/`, `/reference
 | `routesDir` | `string` | `'src/routes'` | Custom routes directory path |
 | `roots` | `string[]` | auto-detected | Root paths to generate sidebar for, e.g. `['/guide/', '/reference/']`. If not specified, auto-detect from top-level route directories |
 
-```js
-// inside defaultTheme options
+```txt
 sidebar: {
   enabled: true,
   routesDir: 'src/routes',
