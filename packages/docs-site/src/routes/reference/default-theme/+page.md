@@ -62,12 +62,32 @@ The address of the site's logo, to be shown on the navigation bar.
 
 ### `sidebar`
 
-An object, key is the group route prefix, value is an array of object with following fields:
+The sidebar can be configured in two ways:
+
+#### Auto-generated sidebar
+
+Pass an object with `enabled: true` to automatically generate the sidebar from your routes directory.
+
+* `enabled` - Set to `true` to enable auto sidebar generation
+* `routesDir` - Custom routes directory path. Default is `'src/routes'`
+* `roots` - Root paths to generate sidebar for, e.g. `['/guide/', '/reference/']`. If not specified, auto-detected from top-level route directories
+
+Pages can control their sidebar appearance via frontmatter:
+
+* `title` - Page title, also used as sidebar label
+* `sidebarTitle` - Override the sidebar label (takes precedence over `title`)
+* `order` - Sort order within the same level. Lower numbers appear first. Default is `100`
+* `sidebar` - Set to `false` to exclude this page from the sidebar
+* `collapsible` - Whether the sidebar group is collapsible
+
+#### Manual sidebar
+
+Pass an object where each key is a group route prefix and each value is an array of sidebar items:
 
 * `title`
   The label text of the sidebar item
 * `collapsible`
-  Determine whtheme-default/+paether the sidebar group is collapsible or not.
+  Determine whether the sidebar group is collapsible or not.
 * `to`
   The link address
 * `items`
