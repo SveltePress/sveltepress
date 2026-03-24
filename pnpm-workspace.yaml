@@ -34,7 +34,7 @@ catalog:
   '@iconify-json/openmoji': ^1.2.24
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
-  '@iconify-json/tabler': ^1.2.31
+  '@iconify-json/tabler': ^1.2.32
   '@iconify-json/vscode-icons': ^1.2.45
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -81,7 +81,7 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.54.1
+  svelte: ^5.55.0
   svelte-check: ^4.4.5
   svelte2tsx: ^0.7.52
   taze: ^19.10.0
