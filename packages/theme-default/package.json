@@ -76,6 +76,7 @@
     "@vite-pwa/sveltekit": "catalog:",
     "lru-cache": "catalog:",
     "mdast-util-from-markdown": "catalog:",
+    "minisearch": "^7.1.1",
     "mdast-util-gfm": "catalog:",
     "shiki": "catalog:",
     "uid": "catalog:",
