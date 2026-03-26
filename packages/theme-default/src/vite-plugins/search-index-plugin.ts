@@ -1,7 +1,7 @@
 import type { Plugin } from 'vite'
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+
+import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
-import process from 'node:process'
 
 const VIRTUAL_MODULE_ID = 'virtual:sveltepress/search-index'
 const RESOLVED_VIRTUAL_MODULE_ID = `\0${VIRTUAL_MODULE_ID}`
@@ -118,14 +118,18 @@ function scanPages(routesDir: string): SearchDocument[] {
 }
 
 export function searchIndexPlugin(enabled = true): Plugin {
+  // eslint-disable-next-line node/prefer-global/process
   const routesDir = resolve(process.cwd(), 'src/routes')
 
   return {
-    name: 'sveltepress-search-index',
-
-    resolveId(id) {
-      if (id === VIRTUAL_MODULE_ID)
-        return RESOLVED_VIRTUAL_MODULE_ID
+    handleHotUpdate({ file, server }) {
+      if (file.endsWith('+page.md')) {
+        const mod = server.moduleGraph.getModuleById(RESOLVED_VIRTUAL_MODULE_ID)
+        if (mod) {
+          server.moduleGraph.invalidateModule(mod)
+          server.ws.send({ type: 'full-reload' })
+        }
+      }
     },
 
     load(id) {
@@ -140,14 +144,11 @@ export function searchIndexPlugin(enabled = true): Plugin {
       return `export const searchDocuments = ${JSON.stringify(documents)}`
     },
 
-    handleHotUpdate({ file, server }) {
-      if (file.endsWith('+page.md')) {
-        const mod = server.moduleGraph.getModuleById(RESOLVED_VIRTUAL_MODULE_ID)
-        if (mod) {
-          server.moduleGraph.invalidateModule(mod)
-          server.ws.send({ type: 'full-reload' })
-        }
-      }
+    name: 'sveltepress-search-index',
+
+    resolveId(id) {
+      if (id === VIRTUAL_MODULE_ID)
+        return RESOLVED_VIRTUAL_MODULE_ID
     },
   }
 }
