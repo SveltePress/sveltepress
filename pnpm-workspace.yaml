@@ -19,19 +19,19 @@ catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
   '@changesets/cli': ^2.30.0
-  '@docsearch/css': ^4.6.1
-  '@docsearch/js': ^4.6.1
+  '@docsearch/css': ^4.6.2
+  '@docsearch/js': ^4.6.2
   '@floating-ui/dom': ^1.7.6
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
-  '@iconify-json/carbon': ^1.2.19
+  '@iconify-json/carbon': ^1.2.20
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.10
   '@iconify-json/material-symbols': ^1.2.63
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
-  '@iconify-json/openmoji': ^1.2.24
+  '@iconify-json/openmoji': ^1.2.25
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.32

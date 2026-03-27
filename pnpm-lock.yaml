@@ -16,11 +16,11 @@ catalogs:
       specifier: ^2.30.0
       version: 2.30.0
     '@docsearch/css':
-      specifier: ^4.6.1
-      version: 4.6.1
+      specifier: ^4.6.2
+      version: 4.6.2
     '@docsearch/js':
-      specifier: ^4.6.1
-      version: 4.6.1
+      specifier: ^4.6.2
+      version: 4.6.2
     '@floating-ui/dom':
       specifier: ^1.7.6
       version: 1.7.6
@@ -31,8 +31,8 @@ catalogs:
       specifier: ^1.2.3
       version: 1.2.3
     '@iconify-json/carbon':
-      specifier: ^1.2.19
-      version: 1.2.19
+      specifier: ^1.2.20
+      version: 1.2.20
     '@iconify-json/emojione':
       specifier: ^1.2.3
       version: 1.2.3
@@ -52,8 +52,8 @@ catalogs:
       specifier: ^1.2.7
       version: 1.2.7
     '@iconify-json/openmoji':
-      specifier: ^1.2.24
-      version: 1.2.24
+      specifier: ^1.2.25
+      version: 1.2.25
     '@iconify-json/ph':
       specifier: ^1.2.2
       version: 1.2.2
@@ -360,7 +360,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.19
+        version: 1.2.20
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -381,7 +381,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.24
+        version: 1.2.25
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -438,7 +438,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.19
+        version: 1.2.20
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -459,7 +459,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.24
+        version: 1.2.25
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -516,7 +516,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.19
+        version: 1.2.20
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -537,7 +537,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.24
+        version: 1.2.25
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -588,10 +588,10 @@ importers:
     dependencies:
       '@docsearch/css':
         specifier: 'catalog:'
-        version: 4.6.1
+        version: 4.6.2
       '@docsearch/js':
         specifier: 'catalog:'
-        version: 4.6.1
+        version: 4.6.2
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
@@ -1496,11 +1496,11 @@ packages:
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
 
-  '@docsearch/css@4.6.1':
-    resolution: {integrity: sha512-rA+ql4MLDgUpPs3YlVuqJt8GtujXzOFdYSV/OzCO4NxXKwLgASR+/nX7qFmnJCy3g0MVthEZS2IeZzJjYzWuGg==}
+  '@docsearch/css@4.6.2':
+    resolution: {integrity: sha512-fH/cn8BjEEdM2nJdjNMHIvOVYupG6AIDtFVDgIZrNzdCSj4KXr9kd+hsehqsNGYjpUjObeKYKvgy/IwCb1jZYQ==}
 
-  '@docsearch/js@4.6.1':
-    resolution: {integrity: sha512-6EB/xuM7Nz5yi9yPcdv6aYtGbyOA54+WfVnBWKsb7Ms7XmLOiNgVCCDbKPt5iyS1Q9ityCyskbfl94Ty56Dwrw==}
+  '@docsearch/js@4.6.2':
+    resolution: {integrity: sha512-qj1yoxl3y4GKoK7+VM6fq/rQqPnvUmg3IKzJ9x0VzN14QVzdB/SG/J6VfV1BWT5RcPUFxIcVwoY1fwHM2fSRRw==}
 
   '@emnapi/core@1.8.1':
     resolution: {integrity: sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg==}
@@ -1930,8 +1930,8 @@ packages:
   '@iconify-json/bxs@1.2.3':
     resolution: {integrity: sha512-SxRzB4e0zrWq1duwDUmuT5t5gaDjwN2nMu1yoO2mP2tNaiciylx33+hKxEz3ykxIGKPi3/ItX0V6Sfdju1FrZA==}
 
-  '@iconify-json/carbon@1.2.19':
-    resolution: {integrity: sha512-l89XjtEeSA5fxlxPTNSU9AA+rxaz/Dn0X/ux0/3awR+tAayY8iJqWQu3AKxhchfx3LB/fX1Nv3ZppZzrBAt7aA==}
+  '@iconify-json/carbon@1.2.20':
+    resolution: {integrity: sha512-wqyxKEbIRdzGdfCAwQqn8iSfO6jx0m1toZAAQdx1NFjxd6iFl1YY4eKI1woWt7XOxs7s7phMW530kDD867JZGw==}
 
   '@iconify-json/emojione@1.2.3':
     resolution: {integrity: sha512-T9+T3HIbJNLKKsmxYKlaYhvnHYkz/HNYTV7SHCXVZPfeUi4FqskY70YeN8yYAZT8cCv7w5vJxS4Q1m8zb9CMMg==}
@@ -1951,8 +1951,8 @@ packages:
   '@iconify-json/noto@1.2.7':
     resolution: {integrity: sha512-2pNHliXnMLpnepNTZwR9hPBSl6GmhIfXPnudFCHY5v9pJhmA7LoVb/pFY0qLDY/k+3ikET8RXRf7XFxc/pHObA==}
 
-  '@iconify-json/openmoji@1.2.24':
-    resolution: {integrity: sha512-uZUOHrjcbW2RTJ3rZe/5wrP8I1Hr5fGpO5Z+VWBJDoVT1ynq7AfmcuXD56/nXqslZu8HsqPsrF6nvwWZc35Dtw==}
+  '@iconify-json/openmoji@1.2.25':
+    resolution: {integrity: sha512-237rhutJfO7vGX56bfgNWJ2aVBOGyAzLQr8HIisWZBDHbsQ5MUWt9+YgGe+aNjBMCLynBjOSzmrUqV9bCU53Rw==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -7129,9 +7129,9 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@docsearch/css@4.6.1': {}
+  '@docsearch/css@4.6.2': {}
 
-  '@docsearch/js@4.6.1': {}
+  '@docsearch/js@4.6.2': {}
 
   '@emnapi/core@1.8.1':
     dependencies:
@@ -7429,7 +7429,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/carbon@1.2.19':
+  '@iconify-json/carbon@1.2.20':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7457,7 +7457,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/openmoji@1.2.24':
+  '@iconify-json/openmoji@1.2.25':
     dependencies:
       '@iconify/types': 2.0.0
 
