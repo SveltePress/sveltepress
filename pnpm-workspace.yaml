@@ -27,14 +27,14 @@ catalog:
   '@iconify-json/carbon': ^1.2.20
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
-  '@iconify-json/logos': ^1.2.10
-  '@iconify-json/material-symbols': ^1.2.63
+  '@iconify-json/logos': ^1.2.11
+  '@iconify-json/material-symbols': ^1.2.64
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.25
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
-  '@iconify-json/tabler': ^1.2.32
+  '@iconify-json/tabler': ^1.2.33
   '@iconify-json/vscode-icons': ^1.2.45
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10

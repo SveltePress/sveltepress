@@ -40,11 +40,11 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     '@iconify-json/logos':
-      specifier: ^1.2.10
-      version: 1.2.10
+      specifier: ^1.2.11
+      version: 1.2.11
     '@iconify-json/material-symbols':
-      specifier: ^1.2.63
-      version: 1.2.63
+      specifier: ^1.2.64
+      version: 1.2.64
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -61,8 +61,8 @@ catalogs:
       specifier: ^1.2.5
       version: 1.2.5
     '@iconify-json/tabler':
-      specifier: ^1.2.32
-      version: 1.2.32
+      specifier: ^1.2.33
+      version: 1.2.33
     '@iconify-json/vscode-icons':
       specifier: ^1.2.45
       version: 1.2.45
@@ -369,10 +369,10 @@ importers:
         version: 1.2.2
       '@iconify-json/logos':
         specifier: 'catalog:'
-        version: 1.2.10
+        version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.63
+        version: 1.2.64
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -390,7 +390,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.32
+        version: 1.2.33
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.45
@@ -447,10 +447,10 @@ importers:
         version: 1.2.2
       '@iconify-json/logos':
         specifier: 'catalog:'
-        version: 1.2.10
+        version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.63
+        version: 1.2.64
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -468,7 +468,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.32
+        version: 1.2.33
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.45
@@ -525,10 +525,10 @@ importers:
         version: 1.2.2
       '@iconify-json/logos':
         specifier: 'catalog:'
-        version: 1.2.10
+        version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.63
+        version: 1.2.64
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -546,7 +546,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.32
+        version: 1.2.33
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.45
@@ -1939,11 +1939,11 @@ packages:
   '@iconify-json/fxemoji@1.2.2':
     resolution: {integrity: sha512-UAasRaxzFUKfIGSmLwnoarsssA4LX0VLLuEmplIqM6ZNQqIQRtav8tZ4H1neTlBreXuMQyAifr5jP4kn78DpiQ==}
 
-  '@iconify-json/logos@1.2.10':
-    resolution: {integrity: sha512-qxaXKJ6fu8jzTMPQdHtNxlfx6tBQ0jXRbHZIYy5Ilh8Lx9US9FsAdzZWUR8MXV8PnWTKGDFO4ZZee9VwerCyMA==}
+  '@iconify-json/logos@1.2.11':
+    resolution: {integrity: sha512-fOo4pGEatuyuCFNL+cwquYMa2Im0oJHRHV7lt/Qqs5Ode/lPImHCQcfTtPzZj7qYMPb/h8YHN3TG54uEowrjNQ==}
 
-  '@iconify-json/material-symbols@1.2.63':
-    resolution: {integrity: sha512-R4PS/l8K6j+dk2P2MoYFLJgfbZ4YDo6XjCOpX6b1tvX+BhiSpSOjc1b6cnb/mvWe+JWBKlt4pcvPNiAijFLPnA==}
+  '@iconify-json/material-symbols@1.2.64':
+    resolution: {integrity: sha512-80iGXJ/rsCE2zbEBWrLeOcyBNRD7v15EyaflUolgiAtaevSpTLBXlz+M53Bs2K/RkV/I4tOMMxyXVjQwKhTA9w==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -1960,8 +1960,8 @@ packages:
   '@iconify-json/solar@1.2.5':
     resolution: {integrity: sha512-WMAiNwchU8zhfrySww6KQBRIBbsQ6SvgIu2yA+CHGyMima/0KQwT5MXogrZPJGoQF+1Ye3Qj6K+1CiyNn3YkoA==}
 
-  '@iconify-json/tabler@1.2.32':
-    resolution: {integrity: sha512-0UlpROc9X0VrqJLeE87o3JLsQauHMhj82GnH9TkPaymhBeS9wPB3NOqxQyzw+MHgPL08uVSggwfkTaoRfhQ+RQ==}
+  '@iconify-json/tabler@1.2.33':
+    resolution: {integrity: sha512-q9nUQfE/cjIrGh5bAKHTphitAZpT0kX9SxDgZo3Sx8ofeDTsaHVdRwrn+CfKiJ5vQ1b1btqVwizXzIgz9KEPjA==}
 
   '@iconify-json/vscode-icons@1.2.45':
     resolution: {integrity: sha512-ow+ueibMIq79ueM1kv6cOWgHx8jfh1XJQi2RrqMHb4HLbvIBlxpy5PCMvOJXlA68R6fBAHpWQeh6uWx7VKEVsA==}
@@ -7441,11 +7441,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/logos@1.2.10':
+  '@iconify-json/logos@1.2.11':
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.63':
+  '@iconify-json/material-symbols@1.2.64':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7469,7 +7469,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/tabler@1.2.32':
+  '@iconify-json/tabler@1.2.33':
     dependencies:
       '@iconify/types': 2.0.0
 
