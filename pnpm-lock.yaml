@@ -205,11 +205,11 @@ catalogs:
       specifier: ^5.55.1
       version: 5.55.1
     svelte-check:
-      specifier: ^4.4.5
-      version: 4.4.5
+      specifier: ^4.4.6
+      version: 4.4.6
     svelte2tsx:
-      specifier: ^0.7.52
-      version: 0.7.52
+      specifier: ^0.7.53
+      version: 0.7.53
     taze:
       specifier: ^19.10.0
       version: 19.10.0
@@ -420,7 +420,7 @@ importers:
         version: 5.55.1
       svelte-check:
         specifier: 'catalog:'
-        version: 4.4.5(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3)
+        version: 4.4.6(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 7.3.1(@types/node@24.12.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.3)
@@ -498,7 +498,7 @@ importers:
         version: 5.55.1
       svelte-check:
         specifier: 'catalog:'
-        version: 4.4.5(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3)
+        version: 4.4.6(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 7.3.1(@types/node@24.12.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.3)
@@ -576,7 +576,7 @@ importers:
         version: 5.55.1
       svelte-check:
         specifier: 'catalog:'
-        version: 4.4.5(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3)
+        version: 4.4.6(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 7.3.1(@types/node@24.12.0)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.3)
@@ -726,7 +726,7 @@ importers:
         version: 1.2.1
       svelte2tsx:
         specifier: 'catalog:'
-        version: 0.7.52(svelte@5.55.1)(typescript@5.9.3)
+        version: 0.7.53(svelte@5.55.1)(typescript@5.9.3)
       twoslash:
         specifier: 'catalog:'
         version: 0.3.6(typescript@5.9.3)
@@ -5625,8 +5625,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svelte-check@4.4.5:
-    resolution: {integrity: sha512-1bSwIRCvvmSHrlK52fOlZmVtUZgil43jNL/2H18pRpa+eQjzGt6e3zayxhp1S7GajPFKNM/2PMCG+DZFHlG9fw==}
+  svelte-check@4.4.6:
+    resolution: {integrity: sha512-kP1zG81EWaFe9ZyTv4ZXv44Csi6Pkdpb7S3oj6m+K2ec/IcDg/a8LsFsnVLqm2nxtkSwsd5xPj/qFkTBgXHXjg==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
@@ -5653,8 +5653,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
 
-  svelte2tsx@0.7.52:
-    resolution: {integrity: sha512-svdT1FTrCLpvlU62evO5YdJt/kQ7nxgQxII/9BpQUvKr+GJRVdAXNVw8UWOt0fhoe5uWKyU0WsUTMRVAtRbMQg==}
+  svelte2tsx@0.7.53:
+    resolution: {integrity: sha512-ljVSwmnYRDHRm8+7ICP6QoAN7U7vgOFfPBLN6T745YWNYqRRSzHxlrzUVqMjYls2Un8MzJissfziy/38e6Deeg==}
     peerDependencies:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0
@@ -11630,7 +11630,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.4.5(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3):
+  svelte-check@4.4.6(picomatch@4.0.3)(svelte@5.55.1)(typescript@5.9.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       chokidar: 4.0.1
@@ -11664,7 +11664,7 @@ snapshots:
       svelte: 5.55.1
       typescript: 5.9.3
 
-  svelte2tsx@0.7.52(svelte@5.55.1)(typescript@5.9.3):
+  svelte2tsx@0.7.53(svelte@5.55.1)(typescript@5.9.3):
     dependencies:
       dedent-js: 1.0.1
       scule: 1.3.0
