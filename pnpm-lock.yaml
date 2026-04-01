@@ -52,8 +52,8 @@ catalogs:
       specifier: ^1.2.7
       version: 1.2.7
     '@iconify-json/openmoji':
-      specifier: ^1.2.25
-      version: 1.2.25
+      specifier: ^1.2.26
+      version: 1.2.26
     '@iconify-json/ph':
       specifier: ^1.2.2
       version: 1.2.2
@@ -381,7 +381,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.25
+        version: 1.2.26
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -459,7 +459,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.25
+        version: 1.2.26
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -537,7 +537,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.25
+        version: 1.2.26
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -1951,8 +1951,8 @@ packages:
   '@iconify-json/noto@1.2.7':
     resolution: {integrity: sha512-2pNHliXnMLpnepNTZwR9hPBSl6GmhIfXPnudFCHY5v9pJhmA7LoVb/pFY0qLDY/k+3ikET8RXRf7XFxc/pHObA==}
 
-  '@iconify-json/openmoji@1.2.25':
-    resolution: {integrity: sha512-237rhutJfO7vGX56bfgNWJ2aVBOGyAzLQr8HIisWZBDHbsQ5MUWt9+YgGe+aNjBMCLynBjOSzmrUqV9bCU53Rw==}
+  '@iconify-json/openmoji@1.2.26':
+    resolution: {integrity: sha512-wyU2+m4fD9IojxOhioaH59yLDF2F5JkKBpUKzGXURpD78JCjkDqoHE3TQHT4rClkE5hHTrN7G37+JbJrut2kYw==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -7457,7 +7457,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/openmoji@1.2.25':
+  '@iconify-json/openmoji@1.2.26':
     dependencies:
       '@iconify/types': 2.0.0
 
