@@ -84,7 +84,7 @@ catalog:
   svelte: ^5.55.1
   svelte-check: ^4.4.6
   svelte2tsx: ^0.7.53
-  taze: ^19.10.0
+  taze: ^19.11.0
   twoslash: ^0.3.6
   twoslash-protocol: ^0.3.6
   typescript: ^5.9.3
