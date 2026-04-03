@@ -77,6 +77,7 @@
     "lru-cache": "catalog:",
     "mdast-util-from-markdown": "catalog:",
     "mdast-util-gfm": "catalog:",
+    "minisearch": "catalog:",
     "shiki": "catalog:",
     "uid": "catalog:",
     "unist-util-visit": "catalog:",
