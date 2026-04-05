@@ -43,8 +43,8 @@ catalogs:
       specifier: ^1.2.11
       version: 1.2.11
     '@iconify-json/material-symbols':
-      specifier: ^1.2.64
-      version: 1.2.64
+      specifier: ^1.2.65
+      version: 1.2.65
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -372,7 +372,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.64
+        version: 1.2.65
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -450,7 +450,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.64
+        version: 1.2.65
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -528,7 +528,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.64
+        version: 1.2.65
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -1942,8 +1942,8 @@ packages:
   '@iconify-json/logos@1.2.11':
     resolution: {integrity: sha512-fOo4pGEatuyuCFNL+cwquYMa2Im0oJHRHV7lt/Qqs5Ode/lPImHCQcfTtPzZj7qYMPb/h8YHN3TG54uEowrjNQ==}
 
-  '@iconify-json/material-symbols@1.2.64':
-    resolution: {integrity: sha512-80iGXJ/rsCE2zbEBWrLeOcyBNRD7v15EyaflUolgiAtaevSpTLBXlz+M53Bs2K/RkV/I4tOMMxyXVjQwKhTA9w==}
+  '@iconify-json/material-symbols@1.2.65':
+    resolution: {integrity: sha512-0kGO7z+yuWjn4de2gAz1hrOpDHN1rvnb1Lr3YnkmZr/pJ9bfLSv2bRXQo/nKx6oODXKcoYuFLcLvg2xPxMq5Pg==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -2676,9 +2676,6 @@ packages:
 
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
-
-  '@types/node@24.12.0':
-    resolution: {integrity: sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ==}
 
   '@types/node@24.12.2':
     resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
@@ -7447,7 +7444,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.64':
+  '@iconify-json/material-symbols@1.2.65':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8063,10 +8060,6 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@24.12.0':
-    dependencies:
-      undici-types: 7.16.0
-
   '@types/node@24.12.2':
     dependencies:
       undici-types: 7.16.0
@@ -8078,7 +8071,7 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
 
   '@types/resolve@1.20.2': {}
 
@@ -10004,7 +9997,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
