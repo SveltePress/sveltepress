@@ -38,13 +38,16 @@ import onMount",
 
 \`\`\`ts
 let { optionalProp = 42, requiredProp, bindableProp = $bindable() }: { optionalProp?: number; requiredProps: string; bindableProp: boolean } = $props();
-\`\`\`
-
-https://svelte.dev/docs/svelte/$props",
+\`\`\`",
     "length": 6,
     "line": 3,
     "start": 75,
-    "tags": undefined,
+    "tags": [
+      [
+        "see",
+        "{@link https://svelte.dev/docs/svelte/$props Documentation}",
+      ],
+    ],
     "target": "$props",
     "text": "function $props(): any
 namespace $props",
@@ -68,13 +71,15 @@ namespace $props",
 Example:
 \`\`\`ts
 let count = $state(0);
-\`\`\`
-
-https://svelte.dev/docs/svelte/$state",
+\`\`\`",
     "length": 6,
     "line": 5,
     "start": 99,
     "tags": [
+      [
+        "see",
+        "{@link https://svelte.dev/docs/svelte/$state Documentation}",
+      ],
       [
         "param",
         "initial The initial value",

@@ -51,6 +51,29 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
 
     twoslashReturn.meta.extension = 'svelte'
 
+    // Filter out hovers containing internal svelte2tsx type references
+    const internalTypePatterns = [
+      'ComponentConstructorOptions',
+      '__sveltets_',
+      'ConstructorOfATypedSvelteComponent',
+      'ATypedSvelteComponent',
+    ]
+
+    function isInternalHover(text: string) {
+      return internalTypePatterns.some(pattern => text.includes(pattern))
+    }
+
+    // Use splice to mutate in-place since hovers/nodes are getter-based
+    for (let i = twoslashReturn.hovers.length - 1; i >= 0; i--) {
+      if (isInternalHover(twoslashReturn.hovers[i].text))
+        twoslashReturn.hovers.splice(i, 1)
+    }
+    for (let i = twoslashReturn.nodes.length - 1; i >= 0; i--) {
+      const n = twoslashReturn.nodes[i]
+      if (n.type === 'hover' && isInternalHover(n.text))
+        twoslashReturn.nodes.splice(i, 1)
+    }
+
     function mapNode<T extends TwoslashNode>(node: T) {
       const { line, column } = consumer.originalPositionFor({
         line: node.line + 1,
