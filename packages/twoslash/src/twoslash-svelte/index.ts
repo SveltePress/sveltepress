@@ -49,7 +49,7 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
     const twoslashReturn = base([tsxCode.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
       ...baseConfig,
       shouldGetHoverInfo(identifier) {
-        return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component'].some(id => identifier.startsWith(id))
+        return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component', 'children'].some(id => identifier.startsWith(id))
       },
     })
 
@@ -61,7 +61,6 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
       '__sveltets_',
       'ConstructorOfATypedSvelteComponent',
       'ATypedSvelteComponent',
-      'PropType.',
     ]
 
     function isInternalHover(text: string) {

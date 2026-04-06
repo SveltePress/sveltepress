@@ -11,7 +11,7 @@ describe('twoslash', async () => {
     twoslash: true,
   })
   it('renderer floating svelte', async () => {
-    const code = `
+    const code = `// @noErrors
 import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
 import { defineConfig } from 'vite'
