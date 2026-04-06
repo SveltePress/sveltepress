@@ -57,6 +57,7 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
       '__sveltets_',
       'ConstructorOfATypedSvelteComponent',
       'ATypedSvelteComponent',
+      'PropType.',
     ]
 
     function isInternalHover(text: string) {
