@@ -41,8 +41,12 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
       filename: 'source.svelte',
     })
 
+    // Replace quoted prop keys with unquoted identifiers (same char length, space-padded)
+    // so twoslash can generate hover info for component attributes
+    const tsxCode = tsxDoc.code.replace(/"([a-z_$][\w$]*)"(?=\s*:)/gi, (_match, name) => ` ${name} `)
+
     const consumer = new SourceMapConsumer(tsxDoc.map as any)
-    const twoslashReturn = base([tsxDoc.code.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
+    const twoslashReturn = base([tsxCode.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
       ...baseConfig,
       shouldGetHoverInfo(identifier) {
         return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component'].some(id => identifier.startsWith(id))
