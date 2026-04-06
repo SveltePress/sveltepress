@@ -41,15 +41,42 @@ export async function createTwoslasher(createTwoslashSvelteOptions: CreateTwosla
       filename: 'source.svelte',
     })
 
+    // Replace quoted prop keys with unquoted identifiers (same char length, space-padded)
+    // so twoslash can generate hover info for component attributes
+    const tsxCode = tsxDoc.code.replace(/"([a-z_$][\w$]*)"(?=\s*:)/gi, (_match, name) => ` ${name} `)
+
     const consumer = new SourceMapConsumer(tsxDoc.map as any)
-    const twoslashReturn = base([tsxDoc.code.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
+    const twoslashReturn = base([tsxCode.replace(/\$\$_\$\$;/g, ''), additionalTypes].join('\n'), 'tsx', {
       ...baseConfig,
       shouldGetHoverInfo(identifier) {
-        return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component'].some(id => identifier.startsWith(id))
+        return !['svelteHTML', 'render', 'createElement', '__svelte', '$$', 'Component', 'children'].some(id => identifier.startsWith(id))
       },
     })
 
     twoslashReturn.meta.extension = 'svelte'
+
+    // Filter out hovers containing internal svelte2tsx type references
+    const internalTypePatterns = [
+      'ComponentConstructorOptions',
+      '__sveltets_',
+      'ConstructorOfATypedSvelteComponent',
+      'ATypedSvelteComponent',
+    ]
+
+    function isInternalHover(text: string) {
+      return internalTypePatterns.some(pattern => text.includes(pattern))
+    }
+
+    // Use splice to mutate in-place since hovers/nodes are getter-based
+    for (let i = twoslashReturn.hovers.length - 1; i >= 0; i--) {
+      if (isInternalHover(twoslashReturn.hovers[i].text))
+        twoslashReturn.hovers.splice(i, 1)
+    }
+    for (let i = twoslashReturn.nodes.length - 1; i >= 0; i--) {
+      const n = twoslashReturn.nodes[i]
+      if (n.type === 'hover' && isInternalHover(n.text))
+        twoslashReturn.nodes.splice(i, 1)
+    }
 
     function mapNode<T extends TwoslashNode>(node: T) {
       const { line, column } = consumer.originalPositionFor({

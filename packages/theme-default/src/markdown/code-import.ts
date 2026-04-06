@@ -42,7 +42,7 @@ const codeImport: Plugin<any[], any> = () => {
                   if (initialBlankNumbers > 0)
                     valueArr = valueArr.map(line => line.replace(new RegExp(`^ {${initialBlankNumbers}}`), ''))
                 }
-                if (!valueArr[0].startsWith('// @noErrors') && lang === 'ts')
+                if (valueArr[0] && !valueArr[0].startsWith('// @noErrors') && lang === 'ts')
                   valueArr.unshift('// @noErrors')
 
                 const codeStr = valueArr.join('\n')
