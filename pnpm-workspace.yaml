@@ -60,7 +60,7 @@ catalog:
   fs-extra: ^11.3.4
   husky: ^9.1.7
   lint-staged: ^16.4.0
-  lru-cache: ^11.3.0
+  lru-cache: ^11.3.2
   mdast-util-from-markdown: ^2.0.3
   mdast-util-gfm: ^3.1.0
   mdast-util-to-hast: ^13.2.1
@@ -94,7 +94,7 @@ catalog:
   unist-util-visit: ^5.1.0
   unocss: ^66.6.7
   vfile: ^6.0.3
-  vite: ^7.3.1
+  vite: ^7.3.2
   vite-plugin-inspect: ^11.3.3
   vitest: 4.0.14
   workbox-precaching: ^7.4.0
