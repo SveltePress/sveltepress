@@ -70,4 +70,7 @@
   .active {
     --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';
   }
+  .no-inline.active {
+    --at-apply: 'bg-rose-1 dark:bg-rose-9/20 rounded-md px-2 mx-[-0.5rem]';
+  }
 </style>
