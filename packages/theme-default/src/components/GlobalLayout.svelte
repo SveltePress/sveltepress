@@ -8,6 +8,7 @@
   import Backdrop from './Backdrop.svelte'
   import Error from './Error.svelte'
   import GoogleAnalytics from './GoogleAnalytics.svelte'
+  import SearchPanel from './SearchPanel.svelte'
   import {
     anchors,
     isDark,

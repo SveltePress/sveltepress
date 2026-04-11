@@ -156,6 +156,9 @@ catalogs:
     minimist:
       specifier: ^1.2.8
       version: 1.2.8
+    minisearch:
+      specifier: ^7.1.1
+      version: 7.2.0
     picocolors:
       specifier: ^1.1.1
       version: 1.1.1
@@ -657,6 +660,9 @@ importers:
       mdast-util-gfm:
         specifier: 'catalog:'
         version: 3.1.0
+      minisearch:
+        specifier: 'catalog:'
+        version: 7.2.0
       shiki:
         specifier: 'catalog:'
         version: 3.23.0
@@ -4682,6 +4688,9 @@ packages:
   minipass@5.0.0:
     resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
+
+  minisearch@7.2.0:
+    resolution: {integrity: sha512-dqT2XBYUOZOiC5t2HRnwADjhNS2cecp9u+TJRiJ1Qp/f5qjkeT5APcGPjHw+bz89Ms8Jp+cG4AlE+QZ/QnDglg==}
 
   minizlib@2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
@@ -10630,6 +10639,8 @@ snapshots:
       yallist: 4.0.0
 
   minipass@5.0.0: {}
+
+  minisearch@7.2.0: {}
 
   minizlib@2.1.2:
     dependencies:
