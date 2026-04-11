@@ -68,8 +68,8 @@ html[data-theme='dark'] {
 
 .admonition {
   margin-bottom: 1em;
-  padding: 15px 30px 15px 15px;
-  border-radius: 4px;
+  padding: 16px 24px 16px 16px;
+  border-radius: 12px;
 }
 
 .admonition h5 {
@@ -103,7 +103,7 @@ html[data-theme='dark'] {
   --admonition-bg: rgb(118 51 219 / 10%);
   --admonition-color: #7633db;
   background-color: var(--admonition-bg);
-  border-left: 8px solid var(--admonition-color);
+  border-left: 3px solid var(--admonition-color);
 }
 
 .admonition .admonition-heading {
@@ -163,7 +163,7 @@ html[data-theme='dark'] {
 }
 
 .shiki {
-  border-radius: 4px;
+  border-radius: 0;
   margin: 0;
   overflow-x: auto;
   line-height: 1.5em;
@@ -250,4 +250,104 @@ html.dark .twoslash-popup-container span {
 .dark .admonition code {
   color: var(--admonition-color);
   background-color: #010106;
+}
+
+/* Table styles */
+.content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5em 0;
+}
+
+html.dark .content table {
+  border-color: #374151;
+}
+
+.content table thead th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f8fafc;
+}
+
+html.dark .content table thead th {
+  background-color: #1e1e22;
+  border-bottom-color: #374151;
+  color: #94a3b8;
+}
+
+.content table tbody td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+html.dark .content table tbody td {
+  border-bottom-color: #27272a;
+}
+
+.content table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+html.dark .content table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.content table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+html.dark .content table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.content table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.content table code {
+  white-space: nowrap;
+}
+
+
+/* Heading spacing */
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+
+.content h1:first-child,
+.content h2:first-child {
+  margin-top: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 3px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
 }

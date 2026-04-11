@@ -19,6 +19,19 @@
   let container: HTMLSpanElement
   let floatingContent: HTMLDivElement
   let arrowEl: HTMLDivElement
+  let hideTimeout: ReturnType<typeof setTimeout> | undefined
+
+  function showPopup() {
+    clearTimeout(hideTimeout)
+    show = true
+  }
+
+  function hidePopup() {
+    clearTimeout(hideTimeout)
+    hideTimeout = setTimeout(() => {
+      show = false
+    }, 150)
+  }
 
   const recomputePosition = (nextShow = show) => {
     if (alwaysShow || nextShow) {
@@ -74,8 +87,8 @@
 <span
   bind:this={container}
   class="container"
-  onmouseenter={() => (show = true)}
-  onmouseleave={() => (show = false)}
+  onmouseenter={showPopup}
+  onmouseleave={hidePopup}
   role="tooltip"
   {...rest}
 >
@@ -86,8 +99,8 @@
     class:always-show={alwaysShow}
     class:show={alwaysShow || show}
     bind:this={floatingContent}
-    onmouseenter={() => (show = true)}
-    onmouseleave={() => (show = false)}
+    onmouseenter={showPopup}
+    onmouseleave={hidePopup}
     role="tooltip"
   >
     <div bind:this={arrowEl} class="arrow"></div>
@@ -104,6 +117,8 @@
     position: fixed;
     display: none;
     max-width: 60vw;
+    max-height: 50vh;
+    overflow-y: auto;
     font-size: 14px;
     border: 1px solid #d6d3d1;
     padding: 0.5rem;

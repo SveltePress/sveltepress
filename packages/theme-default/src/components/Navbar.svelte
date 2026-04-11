@@ -118,7 +118,7 @@
 
 <style>
   .header {
-    --at-apply: 'transition-transform fixed top-0 left-0 right-0 sm:h-[73px] z-888 dark:bg-opacity-40';
+    --at-apply: 'transition-transform fixed top-0 left-0 right-0 sm:h-[73px] z-888 dark:bg-opacity-40 border-b border-b-solid border-b-gray-2 dark:border-b-gray-8';
     backdrop-filter: blur(5px);
   }
   .hidden-in-mobile {

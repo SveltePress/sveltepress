@@ -154,14 +154,20 @@
     color-scheme: dark;
   }
   :global(code) {
-    --at-apply: 'bg-[#e3e4e6] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded break-all';
+    --at-apply: 'bg-[#e3e4e6] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded break-words';
   }
   :global(pre.shiki code) {
     --at-apply: 'bg-transparent dark:bg-transparent p-unset block';
   }
 
   :global(.svp-code-block-wrapper) {
-    --at-apply: 'bg-white dark:bg-[#011627] sm:rounded-lg text-[14px] mb-8 mx-[-5vw] sm:mx-none';
+    --at-apply: 'bg-white dark:bg-[#011627] sm:rounded-xl text-[14px] mb-8 mx-[-5vw] sm:mx-none overflow-x-hidden';
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  :global(html.dark .svp-code-block-wrapper) {
+    border-color: #374151;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
   :global(.svp-live-code--container) {
     --at-apply: 'mx-[-5vw] sm:mx-none';
@@ -239,16 +245,18 @@
   }
 
   :global(table) {
-    --at-apply: 'border-collapse w-full';
+    --at-apply: 'w-full';
   }
   :global(table th) {
     --at-apply: text-left p-2;
   }
-  :global(table tbody tr) {
-    --at-apply: 'border-t-1 border-t-solid border-gray-2 dark:border-gray-7';
-  }
   :global(table tbody tr td) {
     --at-apply: p-2;
+  }
+  :global(table td code),
+  :global(table th code) {
+    white-space: nowrap !important;
+    word-break: normal !important;
   }
   :global(.svp-anchor-item) {
     --at-apply: 'relative bottom-[100px]';
