@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "types": ["svelte"],
@@ -7,7 +9,8 @@
     "declaration": true,
     "outDir": "dist",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["dist"]
