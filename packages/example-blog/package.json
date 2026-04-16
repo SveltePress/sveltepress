@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && pagefind --site dist",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -16,6 +16,7 @@
     "@sveltepress/theme-blog": "workspace:*",
     "@sveltepress/vite": "workspace:*",
     "@types/node": "catalog:",
+    "pagefind": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
     "vite": "catalog:"
