@@ -1,5 +1,6 @@
 import type { ParsedPost } from './parse-post.js'
 import type { BlogPost, BlogPostMeta, PostIndex } from './types.js'
+import { computeRelated } from './related.js'
 
 function toMeta(p: BlogPost): BlogPostMeta {
   return {
@@ -49,6 +50,13 @@ export function buildIndex(parsedPosts: ParsedPost[]): PostIndex {
   const categoryCounts = Object.entries(categoryPosts)
     .map(([name, ms]) => ({ name, count: ms.length }))
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+
+  // Attach related meta to each full post. Meta entries stay slim — related
+  // only ships in the per-slug post record, not in list/tag/category bundles.
+  for (const p of posts) {
+    const self = metaBySlug[p.slug]
+    p.related = computeRelated(meta, self)
+  }
 
   return { posts, meta, metaBySlug, tagCounts, tagPosts, categoryCounts, categoryPosts }
 }

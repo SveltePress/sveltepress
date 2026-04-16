@@ -74,4 +74,18 @@ describe('buildIndex', () => {
     const index = buildIndex(posts)
     expect(index.categoryCounts[0]).toEqual({ name: 'Eng', count: 2 })
   })
+
+  it('attaches computed related meta to each post (but not to meta entries)', () => {
+    const posts = [
+      makePost({ slug: 'a', tags: ['x'] }),
+      makePost({ slug: 'b', tags: ['x'] }),
+      makePost({ slug: 'c', tags: ['y'] }),
+    ]
+    const index = buildIndex(posts)
+    const a = index.posts.find(p => p.slug === 'a')!
+    // b scores tag(+3) + year(+1) = 4; c scores year(+1) = 1. Both are related.
+    expect(a.related?.map(r => r.slug)).toEqual(['b', 'c'])
+    // Meta entries must not carry related (keeps list bundles small).
+    expect('related' in index.meta[0]).toBe(false)
+  })
 })
