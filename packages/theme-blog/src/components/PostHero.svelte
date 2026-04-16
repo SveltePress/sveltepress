@@ -25,7 +25,7 @@
   .sp-post-hero {
     position: relative;
     aspect-ratio: 16 / 7;
-    min-height: 0;
+    min-height: clamp(200px, 45vw, 280px);
     display: flex;
     align-items: flex-end;
     background-image: var(--hero-bg, linear-gradient(135deg, #ea580c, #9a3412));
