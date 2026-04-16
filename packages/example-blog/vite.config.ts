@@ -21,11 +21,10 @@ const config = defineConfig({
           },
         },
         about: {
-          html: '<p>This is the demo About page for <code>@sveltepress/theme-blog</code>.</p>',
+          html: '<p>Short note: the demo content is rendered by <code>@sveltepress/theme-blog</code>.</p>',
         },
         navbar: [
           { title: 'Home', to: '/' },
-          { title: 'About', to: '/about/' },
           { title: 'Timeline', to: '/timeline/' },
           { title: 'Tags', to: '/tags/' },
         ],

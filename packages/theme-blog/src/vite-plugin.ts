@@ -119,7 +119,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
 
     async buildStart() {
       await initHighlighter(options.highlighter)
-      await scaffoldRoutes(config.root, { scaffoldAbout: !!options.about })
+      await scaffoldRoutes(config.root)
       cache = await loadCache(config.root)
 
       // Inject anti-FOWT theme-init script into app.html.

@@ -2,7 +2,6 @@ import { existsSync } from 'node:fs'
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import {
-  ABOUT_PAGE,
   CAT_PAGE,
   CAT_PAGE_SERVER_LOAD,
   LIST_PAGE,
@@ -54,9 +53,9 @@ const LEGACY_PATHS = [
 const DEAD_VIRTUAL_IMPORT
   = /from\s+['"]virtual:sveltepress\/blog-(?:posts|tags|categories)['"]|import\s*\(\s*[`'"]virtual:/
 
-function scaffoldFiles(root: string, scaffoldAbout: boolean): ScaffoldFile[] {
+function scaffoldFiles(root: string): ScaffoldFile[] {
   const r = (p: string) => join(root, 'src', 'routes', p)
-  const files: ScaffoldFile[] = [
+  return [
     { path: r('+layout.ts'), content: ROOT_LAYOUT_TS },
     { path: r('+layout.svelte'), content: ROOT_LAYOUT },
     { path: r('+page.server.ts'), content: LIST_PAGE_SERVER_LOAD },
@@ -72,9 +71,6 @@ function scaffoldFiles(root: string, scaffoldAbout: boolean): ScaffoldFile[] {
     { path: r('categories/[cat]/+page.svelte'), content: CAT_PAGE },
     { path: r('timeline/+page.svelte'), content: TIMELINE_PAGE },
   ]
-  if (scaffoldAbout)
-    files.push({ path: r('about/+page.svelte'), content: ABOUT_PAGE })
-  return files
 }
 
 /**
@@ -83,7 +79,7 @@ function scaffoldFiles(root: string, scaffoldAbout: boolean): ScaffoldFile[] {
  * content still imports a dead virtual module, so user customizations are
  * preserved.
  */
-export async function scaffoldRoutes(root: string, options: { scaffoldAbout: boolean }): Promise<void> {
+export async function scaffoldRoutes(root: string): Promise<void> {
   for (const legacy of LEGACY_PATHS) {
     const p = join(root, legacy)
     if (!existsSync(p))
@@ -97,7 +93,7 @@ export async function scaffoldRoutes(root: string, options: { scaffoldAbout: boo
       console.warn(`[theme-blog] skipped ${legacy}: file exists but does not import a dead virtual module — remove manually if you want it re-scaffolded`)
     }
   }
-  for (const file of scaffoldFiles(root, options.scaffoldAbout)) {
+  for (const file of scaffoldFiles(root)) {
     if (existsSync(file.path))
       continue
     await mkdir(join(file.path, '..'), { recursive: true })

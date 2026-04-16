@@ -2,8 +2,8 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
-  import Navbar from './Navbar.svelte'
   import SearchModal from './SearchModal.svelte'
+  import Sidebar from './Sidebar.svelte'
   import ThemeToggle from './ThemeToggle.svelte'
 
   interface Props {
@@ -94,13 +94,13 @@
 </svelte:head>
 
 <div class="sp-blog-root">
-  <Navbar
+  <Sidebar
     title={blogConfig.title ?? 'Blog'}
     links={blogConfig.navbar ?? []}
     {search}
   >
     {#snippet toggle()}<ThemeToggle />{/snippet}
-  </Navbar>
+  </Sidebar>
   <main class="sp-blog-main">
     {@render children?.()}
   </main>
@@ -139,6 +139,20 @@
     font-family: Inter, system-ui, sans-serif;
     line-height: 1.6;
     min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    .sp-blog-root {
+      grid-template-columns: 280px 1fr;
+    }
+    .sp-blog-root :global(.sp-sidebar) {
+      position: sticky;
+      top: 0;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
   }
 
   :global(*),
@@ -168,9 +182,11 @@
   }
 
   .sp-blog-main {
-    max-width: 1200px;
+    max-width: 960px;
+    width: 100%;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1.25rem;
+    min-width: 0;
   }
 
   /* ── Shiki dual-theme switching ─────────────────────────── */

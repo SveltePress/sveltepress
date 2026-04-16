@@ -74,6 +74,16 @@
       "import": "./dist/components/GiscusComments.svelte",
       "svelte": "./dist/components/GiscusComments.svelte"
     },
+    "./components/ReadingProgress.svelte": {
+      "types": "./dist/components/ReadingProgress.svelte.d.ts",
+      "import": "./dist/components/ReadingProgress.svelte",
+      "svelte": "./dist/components/ReadingProgress.svelte"
+    },
+    "./components/Sidebar.svelte": {
+      "types": "./dist/components/Sidebar.svelte.d.ts",
+      "import": "./dist/components/Sidebar.svelte",
+      "svelte": "./dist/components/Sidebar.svelte"
+    },
     "./components/AuthorProfile.svelte": {
       "types": "./dist/components/AuthorProfile.svelte.d.ts",
       "import": "./dist/components/AuthorProfile.svelte",

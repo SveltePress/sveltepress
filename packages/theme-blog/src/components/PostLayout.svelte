@@ -3,11 +3,11 @@
   import type { BlogPost, BlogPostMeta } from '../types.js'
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
-  import AuthorCard from './AuthorCard.svelte'
   import GiscusComments from './GiscusComments.svelte'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
   import PostNav from './PostNav.svelte'
+  import ReadingProgress from './ReadingProgress.svelte'
   import RelatedPosts from './RelatedPosts.svelte'
   import TableOfContents from './TableOfContents.svelte'
 
@@ -76,6 +76,8 @@
   {@html `<${'script'} type="application/ld+json">${jsonLd}</${'script'}>`}
 </svelte:head>
 
+<ReadingProgress target=".sp-post" />
+
 <article class="sp-post">
   <PostHero {post} />
   <div class="sp-post__body">
@@ -90,7 +92,6 @@
         <RelatedPosts posts={post.related} />
       {/if}
       <GiscusComments />
-      <AuthorCard />
     </div>
     <aside class="sp-post__toc">
       <TableOfContents />
