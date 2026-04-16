@@ -8,10 +8,12 @@ import { createReadStream } from 'node:fs'
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
+import { renderOgImage } from './og-image.js'
 import { hashContent, loadCache, saveCache } from './parse-cache.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
 import { scaffoldRoutes } from './scaffold.js'
+import { DEFAULT_THEME_COLOR } from './types.js'
 import { buildVirtualModules } from './virtual-modules.js'
 
 const V_META = 'virtual:sveltepress/blog-posts-meta'
@@ -166,6 +168,57 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         catch {
           // static/ may not exist in all project setups
         }
+      }
+
+      if (options.ogImage?.enabled !== false) {
+        const ogDir = resolve(config.root, 'static/og')
+        await mkdir(ogDir, { recursive: true })
+        const ogTheme = {
+          primary: options.themeColor?.primary ?? DEFAULT_THEME_COLOR.primary,
+          bg: options.themeColor?.bg ?? DEFAULT_THEME_COLOR.bg,
+          text: '#fff7ed',
+        }
+        const fontPath = options.ogImage?.fontPath
+        const wanted = new Set<string>()
+        const tagline = options.ogImage?.tagline ?? options.description ?? ''
+
+        for (const p of parsed.filter(x => !x.draft)) {
+          wanted.add(`${p.slug}.png`)
+          const out = join(ogDir, `${p.slug}.png`)
+          try {
+            const png = await renderOgImage({
+              title: p.title,
+              subtitle: (p.category ?? p.tags[0] ?? tagline).toUpperCase(),
+              theme: ogTheme,
+              fontPath,
+            })
+            await writeFile(out, png)
+          }
+          catch (err) {
+            console.warn(`[theme-blog] OG image failed for ${p.slug}:`, err)
+          }
+        }
+
+        wanted.add('__home.png')
+        try {
+          const png = await renderOgImage({
+            title: options.title,
+            subtitle: tagline,
+            theme: ogTheme,
+            fontPath,
+          })
+          await writeFile(join(ogDir, '__home.png'), png)
+        }
+        catch (err) {
+          console.warn('[theme-blog] site OG image failed:', err)
+        }
+
+        const existing = await readdir(ogDir).catch(() => [] as string[])
+        await Promise.all(
+          existing
+            .filter(f => f.endsWith('.png') && !wanted.has(f))
+            .map(f => rm(join(ogDir, f))),
+        )
       }
     },
 
