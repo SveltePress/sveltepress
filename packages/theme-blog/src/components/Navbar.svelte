@@ -1,6 +1,7 @@
 <!-- src/components/Navbar.svelte -->
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { blogConfig } from 'virtual:sveltepress/blog-config'
 
   interface NavLink {
     title: string
@@ -15,6 +16,7 @@
   }
 
   const { title, links = [], search, toggle }: Props = $props()
+  const author = $derived(blogConfig.author)
 
   function openSearch() {
     dispatchEvent(new CustomEvent('sp-search-open'))
@@ -22,6 +24,15 @@
 </script>
 
 <nav class="sp-blog-nav">
+  {#if author?.avatar}
+    <a
+      href="/about/"
+      class="sp-blog-nav__avatar"
+      aria-label={author.name ?? 'About'}
+    >
+      <img src={author.avatar} alt={author.name ?? ''} />
+    </a>
+  {/if}
   <a href="/" class="sp-blog-nav__logo">{title}</a>
   <div class="sp-blog-nav__links">
     {#each links as link}
@@ -79,6 +90,25 @@
     color: var(--sp-blog-primary);
     letter-spacing: -0.02em;
     text-decoration: none;
+  }
+  .sp-blog-nav__avatar {
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--sp-blog-border);
+    flex-shrink: 0;
+    transition: border-color 0.15s;
+  }
+  .sp-blog-nav__avatar:hover {
+    border-color: var(--sp-blog-primary);
+  }
+  .sp-blog-nav__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .sp-blog-nav__links {
     display: flex;
