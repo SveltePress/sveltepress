@@ -3,6 +3,7 @@
   import type { Snippet } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import Navbar from './Navbar.svelte'
+  import SearchModal from './SearchModal.svelte'
   import ThemeToggle from './ThemeToggle.svelte'
 
   interface Props {
@@ -11,6 +12,16 @@
   }
 
   const { children, search }: Props = $props()
+
+  let searchOpen = $state(false)
+
+  $effect(() => {
+    const onOpen = () => {
+      searchOpen = true
+    }
+    window.addEventListener('sp-search-open', onOpen)
+    return () => window.removeEventListener('sp-search-open', onOpen)
+  })
 
   // Inject user-customised CSS variable overrides at runtime.
   // We use a <style> element (not {@html} in <svelte:head>) to avoid
@@ -68,6 +79,7 @@
   <main class="sp-blog-main">
     {@render children?.()}
   </main>
+  <SearchModal open={searchOpen} onClose={() => (searchOpen = false)} />
 </div>
 
 <style>

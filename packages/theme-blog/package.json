@@ -58,6 +58,11 @@
       "types": "./dist/components/Pagination.svelte.d.ts",
       "import": "./dist/components/Pagination.svelte",
       "svelte": "./dist/components/Pagination.svelte"
+    },
+    "./components/SearchModal.svelte": {
+      "types": "./dist/components/SearchModal.svelte.d.ts",
+      "import": "./dist/components/SearchModal.svelte",
+      "svelte": "./dist/components/SearchModal.svelte"
     }
   },
   "types": "./dist/index.d.ts",
