@@ -35,6 +35,7 @@ Add `navbar` entries like `{ title: 'Tags', to: '/tags/' }` to link them from th
 `rss.xml` is written to `static/rss.xml` on each build. Configure:
 
 ```ts
+// @noErrors
 blogTheme({
   base: 'https://example.com',
   rss: {
@@ -52,6 +53,7 @@ Disable with `rss: { enabled: false }`.
 Per-post Open Graph images are rendered with Satori + resvg at build time and written to `static/og/<slug>.png`. A site-wide image is written to `static/og/__home.png`.
 
 ```ts
+// @noErrors
 blogTheme({
   ogImage: {
     enabled: true, // default
@@ -84,6 +86,7 @@ Set `giscus` in your config with values from [giscus.app](https://giscus.app/) a
 Code blocks are highlighted with Shiki. Dual themes switch based on `data-theme`. Turn on Twoslash for TypeScript hover info:
 
 ```ts
+// @noErrors
 blogTheme({
   highlighter: {
     themeDark: 'night-owl',

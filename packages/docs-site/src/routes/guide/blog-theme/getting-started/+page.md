@@ -15,6 +15,7 @@ The theme requires `@sveltejs/adapter-static` because it generates a fully stati
 ## Configure Vite
 
 ```ts title="vite.config.ts"
+// @noErrors
 import { blogTheme } from '@sveltepress/theme-blog'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'

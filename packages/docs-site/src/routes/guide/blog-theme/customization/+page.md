@@ -7,6 +7,7 @@ title: Customisation
 Override the dark or light palette via `themeColor` / `themeColorLight`:
 
 ```ts
+// @noErrors
 blogTheme({
   themeColor: {
     primary: '#fb923c',
@@ -82,6 +83,7 @@ export default {
 ```
 
 ```ts title="vite.config.ts"
+// @noErrors
 blogTheme({
   base: process.env.SITE_URL ?? 'http://localhost:4173',
   // ...
