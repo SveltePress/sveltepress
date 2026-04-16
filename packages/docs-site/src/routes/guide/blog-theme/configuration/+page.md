@@ -29,16 +29,16 @@ All options are passed to `blogTheme()` in `vite.config.ts`.
 ```ts
 interface AuthorProfile {
   name: string
-  avatar?: string    // absolute URL or /-prefixed static/ path
+  avatar?: string // absolute URL or /-prefixed static/ path
   bio?: string
   socials?: {
-    github?: string    // username, not URL
-    twitter?: string   // username, not URL
-    mastodon?: string  // full profile URL
-    bluesky?: string   // handle like 'name.bsky.social'
+    github?: string // username, not URL
+    twitter?: string // username, not URL
+    mastodon?: string // full profile URL
+    bluesky?: string // handle like 'name.bsky.social'
     email?: string
-    website?: string   // full URL
-    rss?: string       // full URL or /-prefixed path
+    website?: string // full URL
+    rss?: string // full URL or /-prefixed path
   }
 }
 ```
@@ -47,10 +47,10 @@ interface AuthorProfile {
 
 ```ts
 interface ThemeColor {
-  primary?: string   // default '#fb923c'
+  primary?: string // default '#fb923c'
   secondary?: string // default '#dc2626'
-  bg?: string        // default '#1a0a00'
-  surface?: string   // default '#2d1200'
+  bg?: string // default '#1a0a00'
+  surface?: string // default '#2d1200'
 }
 ```
 
@@ -58,10 +58,10 @@ interface ThemeColor {
 
 ```ts
 interface HighlighterOptions {
-  themeDark?: string   // Shiki theme, default 'night-owl'
-  themeLight?: string  // Shiki theme, default 'vitesse-light'
+  themeDark?: string // Shiki theme, default 'night-owl'
+  themeLight?: string // Shiki theme, default 'vitesse-light'
   languages?: string[] // extra languages merged with defaults
-  twoslash?: boolean   // enable Twoslash TypeScript hover info
+  twoslash?: boolean // enable Twoslash TypeScript hover info
 }
 ```
 

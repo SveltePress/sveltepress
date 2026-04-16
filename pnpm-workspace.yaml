@@ -1,8 +1,18 @@
+catalogMode: prefer
+
+cleanupUnusedCatalogs: true
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
+trustPolicyExclude:
+  - semver@6.3.1
+  - chokidar@4.0.3
 packages:
   - packages/**
   - '!packages/create/template-js'
   - '!packages/create/template-ts'
-
 catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
@@ -94,14 +104,3 @@ catalog:
   workbox-window: ^7.4.0
   yaml: ^2.8.3
   zx: ^8.8.5
-catalogMode: prefer
-
-cleanupUnusedCatalogs: true
-
-shellEmulator: true
-
-trustPolicy: no-downgrade
-
-trustPolicyExclude:
-  - semver@6.3.1
-  - chokidar@4.0.3

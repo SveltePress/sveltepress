@@ -7,7 +7,7 @@ on:
       - 'packages/theme-blog/**'
       - 'packages/example-blog/**'
       - 'packages/vite/**'
-      - '.github/workflows/example-blog-pages.yml'
+      - .github/workflows/example-blog-pages.yml
   workflow_dispatch:
 
 permissions:

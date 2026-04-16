@@ -38,8 +38,8 @@ Add `navbar` entries like `{ title: 'Tags', to: '/tags/' }` to link them from th
 blogTheme({
   base: 'https://example.com',
   rss: {
-    enabled: true,      // default
-    limit: 20,          // default
+    enabled: true, // default
+    limit: 20, // default
     copyright: `© ${new Date().getFullYear()} My Blog`,
   },
 })
@@ -54,8 +54,8 @@ Per-post Open Graph images are rendered with Satori + resvg at build time and wr
 ```ts
 blogTheme({
   ogImage: {
-    enabled: true,                   // default
-    fontPath: '/abs/path/font.ttf',  // defaults to Inter Bold 700
+    enabled: true, // default
+    fontPath: '/abs/path/font.ttf', // defaults to Inter Bold 700
     tagline: 'Subhead under the title',
   },
 })

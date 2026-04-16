@@ -21,8 +21,8 @@ console.log(greeting)
 ## Code Block with Title
 
 ```ts title="vite.config.ts"
-import { defineConfig } from 'vite'
 import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [sveltepress()],

@@ -30,7 +30,7 @@ import _ from 'lodash'
 import debounce from 'lodash/debounce'
 
 // Better — drop lodash entirely
-const debounce = (fn, ms) => {
+function debounce(fn, ms) {
   let t
   return (...args) => {
     clearTimeout(t)

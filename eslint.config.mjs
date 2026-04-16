@@ -36,6 +36,7 @@ export default antfu({
     '**/__tests__/**/*.tsx',
     '**/.sveltepress/**/*',
     'packages/create/template-*/**/*',
+    'docs/superpowers/**/*',
   ],
 }, {
   files: ['**/*.svelte'],

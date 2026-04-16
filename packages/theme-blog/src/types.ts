@@ -90,8 +90,10 @@ export interface BlogThemeOptions {
   title: string
   description?: string
   base?: string
-  /** Site-wide author identity. Rendered as AuthorCard at the bottom of posts
-   *  and AuthorProfile on the About page. */
+  /**
+   * Site-wide author identity. Rendered as AuthorCard at the bottom of posts
+   *  and AuthorProfile on the About page.
+   */
   author?: AuthorProfile
   themeColor?: ThemeColor
   themeColorLight?: ThemeColor // custom light mode overrides
@@ -107,8 +109,10 @@ export interface BlogThemeOptions {
   }
   search?: 'docsearch' | 'meilisearch' | false
   navbar?: Array<{ title: string, to: string }>
-  /** Giscus comments configuration. If set, `/about/+page.svelte` is
-   *  scaffolded and GiscusComments is rendered below each post. */
+  /**
+   * Giscus comments configuration. If set, `/about/+page.svelte` is
+   *  scaffolded and GiscusComments is rendered below each post.
+   */
   giscus?: GiscusConfig
   /** About page content. If set, `/about/+page.svelte` is scaffolded. */
   about?: AboutConfig

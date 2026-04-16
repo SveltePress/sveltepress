@@ -46,6 +46,7 @@ The scaffolded files under `src/routes/` import components from `@sveltepress/th
 ```svelte title="src/routes/+page.svelte"
 <script lang="ts">
   import MyGrid from '$lib/MyGrid.svelte'
+
   const { data } = $props()
 </script>
 
@@ -70,10 +71,14 @@ The theme re-exports these building blocks:
 Read `BASE_PATH` in `svelte.config.js` and `SITE_URL` in `vite.config.ts`:
 
 ```js title="svelte.config.js"
-paths: {
-  base: process.env.BASE_PATH ?? '',
-  relative: false,
-},
+export default {
+  kit: {
+    paths: {
+      base: process.env.BASE_PATH ?? '',
+      relative: false,
+    },
+  },
+}
 ```
 
 ```ts title="vite.config.ts"
