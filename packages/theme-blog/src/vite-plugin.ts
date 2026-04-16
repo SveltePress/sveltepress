@@ -4,6 +4,7 @@ import type { BlogThemeOptions } from './types.js'
 import { readdir, readFile, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { buildIndex, toVirtualModuleCode } from './build-index.js'
+import { initHighlighter } from './highlighter.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
 import { scaffoldRoutes } from './scaffold.js'
@@ -61,6 +62,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     },
 
     async buildStart() {
+      await initHighlighter(options.highlighter)
       await scaffoldRoutes(config.root)
 
       // Inject anti-FOWT theme-init script into app.html.
