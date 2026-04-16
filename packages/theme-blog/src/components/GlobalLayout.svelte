@@ -135,4 +135,202 @@
     margin: 0 auto;
     padding: 2rem 1rem;
   }
+
+  /* ── Shiki dual-theme switching ─────────────────────────── */
+  :global([data-theme='dark']) .sp-blog-root :global(.shiki),
+  :global([data-theme='dark']) .sp-blog-root :global(.shiki span) {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+
+  /* ── Code block wrapper ─────────────────────────────────── */
+  .sp-blog-root :global(.svp-code-block-wrapper) {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .sp-blog-root :global(.svp-code-block) {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--sp-blog-border);
+    border-radius: 8px;
+  }
+
+  .sp-blog-root :global(.svp-code-block pre.shiki) {
+    margin: 0;
+    padding: 12px 16px;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .sp-blog-root :global(.svp-code-block pre.shiki code) {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    border-radius: 0;
+  }
+
+  /* ── Title bar ──────────────────────────────────────────── */
+  .sp-blog-root :global(.svp-code-block--title) {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--sp-blog-muted);
+    background: var(--sp-blog-surface);
+    border: 1px solid var(--sp-blog-border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .sp-blog-root :global(.svp-code-block--title + .svp-code-block) {
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* ── Language label ─────────────────────────────────────── */
+  .sp-blog-root :global(.svp-code-block--lang) {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    font-size: 0.75rem;
+    color: var(--sp-blog-muted);
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.2s;
+  }
+
+  .sp-blog-root :global(.svp-code-block:hover .svp-code-block--lang) {
+    opacity: 0;
+  }
+
+  /* ── Copy button ────────────────────────────────────────── */
+  .sp-blog-root :global(.svp-code-block--copy-btn) {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--sp-blog-border);
+    border-radius: 6px;
+    background: var(--sp-blog-surface);
+    color: var(--sp-blog-muted);
+    cursor: pointer;
+    opacity: 0;
+    transition:
+      opacity 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+    z-index: 10;
+  }
+
+  .sp-blog-root :global(.svp-code-block:hover .svp-code-block--copy-btn) {
+    opacity: 1;
+  }
+
+  .sp-blog-root :global(.svp-code-block--copy-btn:hover) {
+    border-color: var(--sp-blog-primary);
+    color: var(--sp-blog-primary);
+  }
+
+  .sp-blog-root :global(.svp-code-block--copy-btn .svp-code-block--check-icon) {
+    display: none;
+  }
+
+  .sp-blog-root
+    :global(.svp-code-block--copy-btn.copied .svp-code-block--copy-icon) {
+    display: none;
+  }
+
+  .sp-blog-root
+    :global(.svp-code-block--copy-btn.copied .svp-code-block--check-icon) {
+    display: flex;
+    color: #22c55e;
+  }
+
+  /* ── Command overlays ───────────────────────────────────── */
+  .sp-blog-root :global(.svp-code-block--command-line) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1.5em;
+    pointer-events: none;
+  }
+
+  /* Highlight */
+  .sp-blog-root :global(.svp-code-block--hl) {
+    background: rgba(251, 146, 60, 0.15);
+    border-left: 3px solid var(--sp-blog-primary);
+  }
+
+  /* Diff add */
+  .sp-blog-root :global(.svp-code-block--diff-bg-add) {
+    background: rgba(34, 197, 94, 0.15);
+    border-left: 3px solid #22c55e;
+  }
+
+  .sp-blog-root :global(.svp-code-block--diff-add) {
+    position: absolute;
+    left: 6px;
+    color: #22c55e;
+    font-size: 0.75rem;
+    font-weight: 700;
+    user-select: none;
+  }
+
+  /* Diff remove */
+  .sp-blog-root :global(.svp-code-block--diff-bg-sub) {
+    background: rgba(239, 68, 68, 0.15);
+    border-left: 3px solid #ef4444;
+  }
+
+  .sp-blog-root :global(.svp-code-block--diff-sub) {
+    position: absolute;
+    left: 6px;
+    color: #ef4444;
+    font-size: 0.75rem;
+    font-weight: 700;
+    user-select: none;
+  }
+
+  /* Focus */
+  .sp-blog-root :global(.svp-code-block--focus) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+  }
+
+  /* ── Line numbers ───────────────────────────────────────── */
+  .sp-blog-root :global(.svp-code-block--with-line-numbers pre.shiki) {
+    padding-left: 3.5rem;
+  }
+
+  .sp-blog-root :global(.svp-code-block--line-numbers) {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 3rem;
+    text-align: right;
+    padding-right: 12px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .sp-blog-root :global(.svp-code-block--line-number-item) {
+    height: 1.5em;
+    line-height: 1.5;
+    font-size: 0.875rem;
+    color: var(--sp-blog-muted);
+    opacity: 0.5;
+  }
 </style>
