@@ -8,7 +8,8 @@ export interface BlogPost {
   excerpt: string // first 120 chars of body text if not in frontmatter
   author?: string
   readingTime: number // minutes, rounded up
-  contentHtml: string // pre-rendered HTML of the markdown body
+  /** Pre-rendered HTML from the markdown body. Must be from a trusted source — rendered via {@html} in templates. */
+  contentHtml: string
 }
 
 export interface ThemeColor {
