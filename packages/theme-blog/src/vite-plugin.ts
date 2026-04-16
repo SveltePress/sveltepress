@@ -4,7 +4,8 @@ import type { Cache } from './parse-cache.js'
 import type { ParsedPost } from './parse-post.js'
 import type { BlogThemeOptions } from './types.js'
 import type { VirtualModules } from './virtual-modules.js'
-import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { createReadStream } from 'node:fs'
+import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
 import { hashContent, loadCache, saveCache } from './parse-cache.js'
@@ -206,6 +207,38 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     },
 
     configureServer(server) {
+      // Serve the Pagefind index from dist/pagefind/ in dev so the SearchModal
+      // can load /pagefind/pagefind.js after the user has built at least once.
+      // Pagefind is a post-build step, so there's no live index in dev —
+      // this just reuses the last built one.
+      const pagefindDir = resolve(config.root, 'dist/pagefind')
+      const MIME: Record<string, string> = {
+        '.js': 'application/javascript',
+        '.css': 'text/css',
+        '.json': 'application/json',
+        '.wasm': 'application/wasm',
+      }
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url?.startsWith('/pagefind/'))
+          return next()
+        const rel = req.url.slice('/pagefind/'.length).split('?')[0]
+        const file = resolve(pagefindDir, rel)
+        if (!file.startsWith(pagefindDir + sep))
+          return next()
+        try {
+          const s = await stat(file)
+          if (!s.isFile())
+            return next()
+          const ext = file.slice(file.lastIndexOf('.'))
+          if (MIME[ext])
+            res.setHeader('Content-Type', MIME[ext])
+          createReadStream(file).pipe(res)
+        }
+        catch {
+          next()
+        }
+      })
+
       const postsDir = resolve(config.root, options.postsDir ?? 'src/posts')
       server.watcher.add(postsDir)
 
