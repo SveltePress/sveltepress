@@ -18,7 +18,6 @@
     "svelte",
     "sveltepress"
   ],
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -36,6 +35,7 @@
       "svelte": "./dist/components/PageLayout.svelte"
     }
   },
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -53,15 +53,15 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
+    "@unocss/extractor-svelte": "catalog:",
     "fs-extra": "catalog:",
     "rehype-stringify": "catalog:",
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
     "remark-rehype": "catalog:",
     "shiki": "catalog:",
-    "unocss": "catalog:",
-    "@unocss/extractor-svelte": "catalog:",
     "unified": "catalog:",
+    "unocss": "catalog:",
     "yaml": "catalog:"
   },
   "devDependencies": {
