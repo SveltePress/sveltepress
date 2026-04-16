@@ -12,6 +12,7 @@ import {
   TAG_PAGE,
   TAG_PAGE_LOAD,
   TAGS_INDEX_PAGE,
+  TIMELINE_PAGE,
 } from './route-templates.js'
 
 interface ScaffoldFile {
@@ -28,6 +29,7 @@ function scaffoldFiles(root: string): ScaffoldFile[] {
     { path: r('posts/[slug]/+page.ts'), content: POST_PAGE_LOAD },
     { path: r('posts/[slug]/+page.svelte'), content: POST_PAGE },
     { path: r('tags/+page.svelte'), content: TAGS_INDEX_PAGE },
+    { path: r('timeline/+page.svelte'), content: TIMELINE_PAGE },
     { path: r('tags/[tag]/+page.ts'), content: TAG_PAGE_LOAD },
     { path: r('tags/[tag]/+page.svelte'), content: TAG_PAGE },
     { path: r('categories/[cat]/+page.ts'), content: CAT_PAGE_LOAD },

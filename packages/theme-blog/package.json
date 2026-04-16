@@ -44,6 +44,11 @@
       "import": "./dist/components/MasonryGrid.svelte",
       "svelte": "./dist/components/MasonryGrid.svelte"
     },
+    "./components/Timeline.svelte": {
+      "types": "./dist/components/Timeline.svelte.d.ts",
+      "import": "./dist/components/Timeline.svelte",
+      "svelte": "./dist/components/Timeline.svelte"
+    },
     "./components/TaxonomyHeader.svelte": {
       "types": "./dist/components/TaxonomyHeader.svelte.d.ts",
       "import": "./dist/components/TaxonomyHeader.svelte",
@@ -58,7 +63,8 @@
     "test": "vitest",
     "build:comps": "svelte-package -i src",
     "build": "pnpm build:comps",
-    "prepare": "pnpm build"
+    "prepare": "pnpm build",
+    "dev": "vite dev"
   },
   "peerDependencies": {
     "@sveltejs/kit": "^2.0.0",

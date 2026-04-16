@@ -87,6 +87,14 @@ export const CAT_PAGE = `<script lang="ts">
 `
 
 // Core plugin wraps this with PageLayout.svelte.
+export const TIMELINE_PAGE = `<script lang="ts">
+  import Timeline from '@sveltepress/theme-blog/components/Timeline.svelte'
+  import { posts } from 'virtual:sveltepress/blog-posts'
+</script>
+<Timeline {posts} />
+`
+
+// Core plugin wraps this with PageLayout.svelte.
 export const TAGS_INDEX_PAGE = `<script lang="ts">
   import { tags } from 'virtual:sveltepress/blog-tags'
   const tagList = Object.entries(tags).map(([name, posts]) => ({ name, count: posts.length }))
