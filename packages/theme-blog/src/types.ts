@@ -15,6 +15,8 @@ export interface BlogPostMeta {
 export interface BlogPost extends BlogPostMeta {
   /** Pre-rendered HTML from the markdown body. Rendered via {@html} in templates. */
   contentHtml: string
+  /** Up to N meta entries sharing tags/category/year with this post. */
+  related?: BlogPostMeta[]
 }
 
 export interface ThemeColor {
@@ -22,6 +24,55 @@ export interface ThemeColor {
   secondary?: string // default '#dc2626'
   bg?: string // default '#1a0a00'
   surface?: string // default '#2d1200'
+}
+
+export interface AuthorSocials {
+  /** GitHub username (no @). */
+  github?: string
+  /** Twitter/X username (no @). */
+  twitter?: string
+  /** Full Mastodon profile URL. */
+  mastodon?: string
+  /** Bluesky handle, e.g. 'name.bsky.social'. */
+  bluesky?: string
+  email?: string
+  /** Full URL. */
+  website?: string
+  /** Full URL; defaults to `/rss.xml` if omitted. */
+  rss?: string
+}
+
+export interface AuthorProfile {
+  name: string
+  /** Absolute URL or `/`-prefixed path to an image in `static/`. */
+  avatar?: string
+  bio?: string
+  socials?: AuthorSocials
+}
+
+export interface GiscusConfig {
+  repo: `${string}/${string}`
+  repoId: string
+  category: string
+  categoryId: string
+  mapping?: 'pathname' | 'url' | 'title' | 'og:title' | 'specific' | 'number'
+  reactionsEnabled?: boolean
+  inputPosition?: 'top' | 'bottom'
+  lang?: string
+}
+
+export interface AboutConfig {
+  /** Rendered below the AuthorProfile block. Accepts raw HTML. */
+  html?: string
+}
+
+export interface OgImageConfig {
+  /** Default true. Set false to skip generation entirely. */
+  enabled?: boolean
+  /** Absolute path to a TTF/OTF/WOFF font. Defaults to @fontsource/inter (Bold 700). */
+  fontPath?: string
+  /** Site-wide tagline below the title. Defaults to `description`. */
+  tagline?: string
 }
 
 export interface HighlighterOptions {
@@ -39,7 +90,9 @@ export interface BlogThemeOptions {
   title: string
   description?: string
   base?: string
-  author?: string
+  /** Site-wide author identity. Rendered as AuthorCard at the bottom of posts
+   *  and AuthorProfile on the About page. */
+  author?: AuthorProfile
   themeColor?: ThemeColor
   themeColorLight?: ThemeColor // custom light mode overrides
   postsDir?: string // default 'src/posts'
@@ -54,6 +107,13 @@ export interface BlogThemeOptions {
   }
   search?: 'docsearch' | 'meilisearch' | false
   navbar?: Array<{ title: string, to: string }>
+  /** Giscus comments configuration. If set, `/about/+page.svelte` is
+   *  scaffolded and GiscusComments is rendered below each post. */
+  giscus?: GiscusConfig
+  /** About page content. If set, `/about/+page.svelte` is scaffolded. */
+  about?: AboutConfig
+  /** Auto-generated Open Graph images. Defaults to enabled. */
+  ogImage?: OgImageConfig
 }
 
 export interface PostIndex {
