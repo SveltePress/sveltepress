@@ -1,31 +1,28 @@
 // src/vite-plugin.ts
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { BlogThemeOptions } from './types.js'
-import { readdir, readFile, writeFile } from 'node:fs/promises'
+import type { VirtualModules } from './virtual-modules.js'
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
-import { buildIndex, toVirtualModuleCode } from './build-index.js'
 import { initHighlighter } from './highlighter.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
 import { scaffoldRoutes } from './scaffold.js'
+import { buildVirtualModules } from './virtual-modules.js'
 
-const VIRTUAL_POSTS = 'virtual:sveltepress/blog-posts'
-const VIRTUAL_TAGS = 'virtual:sveltepress/blog-tags'
-const VIRTUAL_CATEGORIES = 'virtual:sveltepress/blog-categories'
-const VIRTUAL_CONFIG = 'virtual:sveltepress/blog-config'
+const V_META = 'virtual:sveltepress/blog-posts-meta'
+const V_POST_PREFIX = 'virtual:sveltepress/blog-post/'
+const V_TAGS_INDEX = 'virtual:sveltepress/blog-tags-index'
+const V_TAG_PREFIX = 'virtual:sveltepress/blog-tag/'
+const V_CATS_INDEX = 'virtual:sveltepress/blog-categories-index'
+const V_CAT_PREFIX = 'virtual:sveltepress/blog-category/'
+const V_CONFIG = 'virtual:sveltepress/blog-config'
 
-const RESOLVED = {
-  POSTS: `\0${VIRTUAL_POSTS}`,
-  TAGS: `\0${VIRTUAL_TAGS}`,
-  CATEGORIES: `\0${VIRTUAL_CATEGORIES}`,
-  CONFIG: `\0${VIRTUAL_CONFIG}`,
-}
+const VIRTUAL_PREFIX = '\0virtual:sveltepress/blog-'
 
 export function blogVitePlugin(options: BlogThemeOptions): Plugin {
   let config: ResolvedConfig
-  let postsModule = 'export const posts = []'
-  let tagsModule = 'export const tags = {}'
-  let categoriesModule = 'export const categories = {}'
+  let modules: VirtualModules | null = null
 
   async function rebuildIndex(root: string) {
     const postsDir = resolve(root, options.postsDir ?? 'src/posts')
@@ -45,12 +42,21 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       }),
     )
 
-    const index = buildIndex(parsed)
-    const modules = toVirtualModuleCode(index)
-    postsModule = modules.postsModule
-    tagsModule = modules.tagsModule
-    categoriesModule = modules.categoriesModule
-    return index
+    modules = buildVirtualModules(parsed)
+
+    // Write per-slug JSON files for +page.server.ts loads to read.
+    // SvelteKit's prerender can't reliably resolve virtual modules through
+    // dynamic import() expressions with template-string slugs, so posts go
+    // to disk.
+    const postsJsonDir = resolve(root, '.sveltepress/posts')
+    await mkdir(postsJsonDir, { recursive: true })
+    await Promise.all(
+      Object.entries(modules.postRecordBySlug).map(([slug, record]) =>
+        writeFile(join(postsJsonDir, `${slug}.json`), JSON.stringify(record), 'utf-8'),
+      ),
+    )
+
+    return parsed
   }
 
   return {
@@ -94,10 +100,10 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         // app.html doesn't exist yet — that's OK
       }
 
-      const index = await rebuildIndex(config.root)
+      const parsed = await rebuildIndex(config.root)
 
       if (options.rss?.enabled !== false) {
-        const xml = generateRss(index.posts, {
+        const xml = generateRss(parsed.filter(p => !p.draft), {
           title: options.title,
           base: options.base ?? 'http://localhost',
           description: options.description,
@@ -115,25 +121,32 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     },
 
     resolveId(id) {
-      if (id === VIRTUAL_POSTS)
-        return RESOLVED.POSTS
-      if (id === VIRTUAL_TAGS)
-        return RESOLVED.TAGS
-      if (id === VIRTUAL_CATEGORIES)
-        return RESOLVED.CATEGORIES
-      if (id === VIRTUAL_CONFIG)
-        return RESOLVED.CONFIG
+      if (id === V_META || id === V_TAGS_INDEX || id === V_CATS_INDEX || id === V_CONFIG)
+        return `\0${id}`
+      if (id.startsWith(V_POST_PREFIX) || id.startsWith(V_TAG_PREFIX) || id.startsWith(V_CAT_PREFIX))
+        return `\0${id}`
     },
 
     load(id) {
-      if (id === RESOLVED.POSTS)
-        return postsModule
-      if (id === RESOLVED.TAGS)
-        return tagsModule
-      if (id === RESOLVED.CATEGORIES)
-        return categoriesModule
-      if (id === RESOLVED.CONFIG)
+      if (!id.startsWith('\0'))
+        return
+      const key = id.slice(1)
+      if (key === V_CONFIG)
         return `export const blogConfig = ${JSON.stringify(options)}`
+      if (!modules)
+        return 'export {}'
+      if (key === V_META)
+        return modules.metaModule
+      if (key === V_TAGS_INDEX)
+        return modules.tagsIndexModule
+      if (key === V_CATS_INDEX)
+        return modules.categoriesIndexModule
+      if (key.startsWith(V_POST_PREFIX))
+        return modules.postModule(decodeURIComponent(key.slice(V_POST_PREFIX.length))) ?? 'export const post = null'
+      if (key.startsWith(V_TAG_PREFIX))
+        return modules.tagModule(decodeURIComponent(key.slice(V_TAG_PREFIX.length))) ?? 'export const posts = []'
+      if (key.startsWith(V_CAT_PREFIX))
+        return modules.categoryModule(decodeURIComponent(key.slice(V_CAT_PREFIX.length))) ?? 'export const posts = []'
     },
 
     configureServer(server) {
@@ -144,10 +157,13 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         if (!file.startsWith(postsDir + sep))
           return
         await rebuildIndex(config.root)
-        const mods = [RESOLVED.POSTS, RESOLVED.TAGS, RESOLVED.CATEGORIES]
-          .map(id => server.moduleGraph.getModuleById(id))
-          .filter(Boolean)
-        mods.forEach(mod => server.moduleGraph.invalidateModule(mod!))
+        const toInvalidate = Array.from(server.moduleGraph.idToModuleMap.keys())
+          .filter(id => id.startsWith(VIRTUAL_PREFIX))
+        toInvalidate.forEach((id) => {
+          const mod = server.moduleGraph.getModuleById(id)
+          if (mod)
+            server.moduleGraph.invalidateModule(mod)
+        })
         server.ws.send({ type: 'full-reload' })
       }
 

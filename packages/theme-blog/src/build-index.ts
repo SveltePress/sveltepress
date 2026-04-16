@@ -47,16 +47,3 @@ export function buildIndex(parsedPosts: ParsedPost[]): PostIndex {
 
   return { posts, meta, metaBySlug, tagCounts, tagPosts, categoryCounts, categoryPosts }
 }
-
-/** Temporary shim — T3 will rewrite vite-plugin to consume the split index directly. */
-export function toVirtualModuleCode(index: PostIndex): {
-  postsModule: string
-  tagsModule: string
-  categoriesModule: string
-} {
-  return {
-    postsModule: `export const posts = ${JSON.stringify(index.posts)}`,
-    tagsModule: `export const tags = ${JSON.stringify(index.tagPosts)}`,
-    categoriesModule: `export const categories = ${JSON.stringify(index.categoryPosts)}`,
-  }
-}
