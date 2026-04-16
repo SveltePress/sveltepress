@@ -123,5 +123,11 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       server.watcher.on('add', handlePostChange)
       server.watcher.on('unlink', handlePostChange)
     },
+
+    transformIndexHtml(html) {
+      const mode = options.defaultMode ?? 'system'
+      const script = `<script>(function(){var s=localStorage.getItem('sp-blog-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=s||(${JSON.stringify(mode)}==='system'?p:${JSON.stringify(mode)});})();<\/script>`
+      return html.replace('<head>', `<head>\n  ${script}`)
+    },
   }
 }
