@@ -44,4 +44,36 @@ describe('parse-cache', () => {
     const loaded = await loadCache(dir)
     expect(loaded).toEqual({})
   })
+
+  it('drops entries whose shape is invalid', async () => {
+    const { writeFile, mkdir } = await import('node:fs/promises')
+    await mkdir(join(dir, '.sveltepress/cache'), { recursive: true })
+    await writeFile(
+      join(dir, '.sveltepress/cache/blog-posts.json'),
+      JSON.stringify({
+        ok: { hash: 'h', parsed: { slug: 'ok' } },
+        badHash: { hash: 123, parsed: { slug: 'x' } },
+        missingParsed: { hash: 'h' },
+        nullish: null,
+        arrayed: [],
+      }),
+    )
+    const loaded = await loadCache(dir)
+    expect(Object.keys(loaded)).toEqual(['ok'])
+  })
+
+  it('rejects arrays at the top level', async () => {
+    const { writeFile, mkdir } = await import('node:fs/promises')
+    await mkdir(join(dir, '.sveltepress/cache'), { recursive: true })
+    await writeFile(join(dir, '.sveltepress/cache/blog-posts.json'), '[]')
+    const loaded = await loadCache(dir)
+    expect(loaded).toEqual({})
+  })
+
+  it('writes cache atomically (no stray tmp files remain)', async () => {
+    const { readdir } = await import('node:fs/promises')
+    await saveCache(dir, { a: { hash: 'h', parsed: { slug: 'a' } as any } })
+    const files = await readdir(join(dir, '.sveltepress/cache'))
+    expect(files).toEqual(['blog-posts.json'])
+  })
 })

@@ -1,6 +1,7 @@
 // src/vite-plugin.ts
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { Cache } from './parse-cache.js'
+import type { ParsedPost } from './parse-post.js'
 import type { BlogThemeOptions } from './types.js'
 import type { VirtualModules } from './virtual-modules.js'
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
@@ -27,8 +28,20 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
   let config: ResolvedConfig
   let modules: VirtualModules | null = null
   let cache: Cache = {}
+  // Coalesce overlapping rebuilds (e.g. burst of fs events in dev): a second
+  // caller reuses the in-flight promise instead of racing on the shared cache.
+  let rebuildPromise: Promise<ParsedPost[]> | null = null
 
-  async function rebuildIndex(root: string) {
+  async function rebuildIndex(root: string): Promise<ParsedPost[]> {
+    if (rebuildPromise)
+      return rebuildPromise
+    rebuildPromise = doRebuild(root).finally(() => {
+      rebuildPromise = null
+    })
+    return rebuildPromise
+  }
+
+  async function doRebuild(root: string): Promise<ParsedPost[]> {
     const postsDir = resolve(root, options.postsDir ?? 'src/posts')
     let files: string[] = []
     try {
