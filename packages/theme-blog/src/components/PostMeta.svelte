@@ -1,6 +1,7 @@
 <!-- src/components/PostMeta.svelte -->
 <script lang="ts">
   import type { BlogPost } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     post: BlogPost
@@ -21,7 +22,7 @@
     <span class="sp-post-meta__sep">·</span>
     <div class="sp-post-meta__tags">
       {#each post.tags as tag}
-        <a href={`/tags/${tag}`} class="sp-post-meta__tag">{tag}</a>
+        <a href={`${base}/tags/${tag}/`} class="sp-post-meta__tag">{tag}</a>
       {/each}
     </div>
   {/if}

@@ -1,6 +1,7 @@
 <!-- src/components/SearchModal.svelte -->
 <script lang="ts">
   import { goto } from '$app/navigation'
+  import { base } from '$app/paths'
 
   interface Props {
     open: boolean
@@ -41,9 +42,9 @@
     if (pagefind) return
     loading = true
     try {
-      // Path is site-absolute; Pagefind places its runtime at /pagefind/
-      // Build the URL at runtime so Rollup cannot try to resolve it at build time.
-      const url = `${window.location.origin}/pagefind/pagefind.js`
+      // Pagefind runtime sits at {base}/pagefind/ after build. Build the URL
+      // at runtime so Rollup cannot try to resolve it at build time.
+      const url = `${window.location.origin}${base}/pagefind/pagefind.js`
       // @ts-expect-error — runtime virtual import
       pagefind = (await import(/* @vite-ignore */ url)) as PagefindRuntime
       await pagefind.init()

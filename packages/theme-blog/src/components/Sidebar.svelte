@@ -2,6 +2,7 @@
      On mobile (<1024px) renders as a stacked top banner. -->
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
 
   interface NavLink {
@@ -19,6 +20,14 @@
   const { title, links = [], search, toggle }: Props = $props()
   const author = $derived(blogConfig.author)
   const about = $derived(blogConfig.about)
+
+  // User-configured nav links and asset paths use site-relative paths like
+  // "/avatar.png" or "/timeline/"; prepend SvelteKit's `base` so they resolve
+  // under a subpath deploy. Leaves protocol-qualified URLs alone.
+  function href(to: string) {
+    if (/^(?:[a-z]+:)?\/\//i.test(to)) return to
+    return to.startsWith('/') ? `${base}${to}` : to
+  }
 
   const socialDefs = [
     {
@@ -48,7 +57,7 @@
     if (s) {
       for (const d of socialDefs) {
         const v = s[d.key]
-        if (v) out.push({ label: d.label, href: d.href(v) })
+        if (v) out.push({ label: d.label, href: href(d.href(v)) })
       }
     }
     return out
@@ -60,14 +69,14 @@
 </script>
 
 <aside class="sp-sidebar">
-  <a href="/" class="sp-sidebar__brand">{title}</a>
+  <a href="{base}/" class="sp-sidebar__brand">{title}</a>
 
   {#if author}
     <section class="sp-sidebar__profile">
       {#if author.avatar}
         <img
           class="sp-sidebar__avatar"
-          src={author.avatar}
+          src={href(author.avatar)}
           alt=""
           width="80"
           height="80"
@@ -96,7 +105,7 @@
   {#if links.length}
     <nav class="sp-sidebar__nav" aria-label="Primary">
       {#each links as link (link.to)}
-        <a href={link.to}>{link.title}</a>
+        <a href={href(link.to)}>{link.title}</a>
       {/each}
     </nav>
   {/if}

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     posts: BlogPostMeta[]
@@ -14,7 +15,7 @@
     <ul class="sp-related__grid">
       {#each posts as p (p.slug)}
         <li>
-          <a class="sp-related__card" href={`/posts/${p.slug}/`}>
+          <a class="sp-related__card" href={`${base}/posts/${p.slug}/`}>
             <span class="sp-related__date">{p.date}</span>
             <span class="sp-related__heading">{p.title}</span>
             <span class="sp-related__excerpt">{p.excerpt}</span>

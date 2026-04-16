@@ -1,6 +1,7 @@
 <!-- src/components/Timeline.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
   import { onMount } from 'svelte'
 
   interface Props {
@@ -124,7 +125,7 @@
         {#each group.posts as post, i (post.slug)}
           <li class="sp-tl__item" data-reveal style="--i: {i}">
             <span class="sp-tl__dot" aria-hidden="true"></span>
-            <a href={`/posts/${post.slug}/`} class="sp-tl__card">
+            <a href={`${base}/posts/${post.slug}/`} class="sp-tl__card">
               <div class="sp-tl__meta">
                 <time class="sp-tl__date">{fmtDate(post.date)}</time>
                 {#if post.category}

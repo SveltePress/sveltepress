@@ -1,3 +1,4 @@
+import process from 'node:process'
 import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
@@ -16,6 +17,7 @@ const config = {
       handleUnseenRoutes: 'ignore',
     },
     paths: {
+      base: process.env.BASE_PATH ?? '',
       relative: false,
     },
   },

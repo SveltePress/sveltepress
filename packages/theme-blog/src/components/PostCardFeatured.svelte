@@ -1,20 +1,27 @@
 <!-- src/components/PostCardFeatured.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     post: BlogPostMeta
   }
 
   const { post }: Props = $props()
+
+  const coverSrc = $derived(
+    post.cover && post.cover.startsWith('/') && !post.cover.startsWith('//')
+      ? `${base}${post.cover}`
+      : post.cover,
+  )
 </script>
 
 <article class="sp-card-featured">
-  <a href={`/posts/${post.slug}`} class="sp-card-featured__link">
+  <a href={`${base}/posts/${post.slug}/`} class="sp-card-featured__link">
     <div
       class="sp-card-featured__bg"
-      style={post.cover
-        ? `background-image:url(${post.cover})`
+      style={coverSrc
+        ? `background-image:url(${coverSrc})`
         : 'background:linear-gradient(135deg,#ea580c 0%,#dc2626 50%,#9a3412 100%)'}
     >
       <div class="sp-card-featured__overlay">

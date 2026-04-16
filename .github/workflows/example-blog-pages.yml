@@ -1,0 +1,62 @@
+name: Deploy example-blog to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/theme-blog/**'
+      - 'packages/example-blog/**'
+      - 'packages/vite/**'
+      - '.github/workflows/example-blog-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: example-blog-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build example-blog
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /sveltepress/blog-demo
+      SITE_URL: https://sveltepress.github.io/sveltepress/blog-demo
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Build example-blog
+        run: pnpm --filter @sveltepress/example-blog build
+      - name: Nest under subpath
+        run: |
+          mkdir -p _site/sveltepress/blog-demo
+          cp -R packages/example-blog/dist/. _site/sveltepress/blog-demo/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,6 +1,7 @@
 <!-- src/components/PostNav.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     prev?: BlogPostMeta | null
@@ -13,7 +14,7 @@
 <nav class="sp-post-nav">
   {#if prev}
     <a
-      href={`/posts/${prev.slug}`}
+      href={`${base}/posts/${prev.slug}/`}
       class="sp-post-nav__item sp-post-nav__item--prev"
     >
       <span class="sp-post-nav__dir">← 上一篇</span>
@@ -24,7 +25,7 @@
   {/if}
   {#if next}
     <a
-      href={`/posts/${next.slug}`}
+      href={`${base}/posts/${next.slug}/`}
       class="sp-post-nav__item sp-post-nav__item--next"
     >
       <span class="sp-post-nav__dir">下一篇 →</span>

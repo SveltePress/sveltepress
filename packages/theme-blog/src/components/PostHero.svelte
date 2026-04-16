@@ -1,17 +1,24 @@
 <!-- src/components/PostHero.svelte -->
 <script lang="ts">
   import type { BlogPost } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     post: BlogPost
   }
 
   const { post }: Props = $props()
+
+  const coverSrc = $derived(
+    post.cover && post.cover.startsWith('/') && !post.cover.startsWith('//')
+      ? `${base}${post.cover}`
+      : post.cover,
+  )
 </script>
 
 <header
   class="sp-post-hero"
-  style={post.cover ? `--hero-bg: url(${post.cover})` : ''}
+  style={coverSrc ? `--hero-bg: url(${coverSrc})` : ''}
 >
   <div class="sp-post-hero__overlay">
     {#if post.category}

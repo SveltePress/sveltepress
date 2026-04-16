@@ -1,12 +1,21 @@
 <!-- src/components/PostCardLarge.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     post: BlogPostMeta
   }
 
   const { post }: Props = $props()
+
+  // Base-prefix site-absolute cover paths so they resolve under a subpath
+  // deploy. External URLs pass through unchanged.
+  const coverSrc = $derived(
+    post.cover && post.cover.startsWith('/') && !post.cover.startsWith('//')
+      ? `${base}${post.cover}`
+      : post.cover,
+  )
 
   // Hash tag name to one of the Ember gradients for cover fallback
   const GRADIENTS = [
@@ -27,10 +36,10 @@
 </script>
 
 <article class="sp-card-large">
-  <a href={`/posts/${post.slug}`} class="sp-card-large__link">
+  <a href={`${base}/posts/${post.slug}/`} class="sp-card-large__link">
     {#if post.cover}
       <img
-        src={post.cover}
+        src={coverSrc}
         alt={post.title}
         class="sp-card-large__cover"
         width="800"

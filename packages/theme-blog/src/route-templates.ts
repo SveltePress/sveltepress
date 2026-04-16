@@ -211,6 +211,7 @@ export const TIMELINE_PAGE = `<script lang="ts">
 
 // Tags index — uses the pre-computed count list (no posts needed here).
 export const TAGS_INDEX_PAGE = `<script lang="ts">
+  import { base } from '$app/paths'
   import { tags } from 'virtual:sveltepress/blog-tags-index'
 </script>
 
@@ -218,7 +219,7 @@ export const TAGS_INDEX_PAGE = `<script lang="ts">
   <h1 class="sp-tags-page__title">All Tags</h1>
   <div class="sp-tags-page__grid">
     {#each tags as { name, count }}
-      <a href="/tags/{name}/" class="sp-tag-pill">
+      <a href="{base}/tags/{name}/" class="sp-tag-pill">
         #{name} <span class="sp-tag-pill__count">{count}</span>
       </a>
     {/each}

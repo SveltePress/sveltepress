@@ -10,6 +10,7 @@ catalog:
   '@docsearch/css': ^4.6.2
   '@docsearch/js': ^4.6.2
   '@floating-ui/dom': ^1.7.6
+  '@fontsource/inter': ^5.2.0
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
   '@iconify-json/carbon': ^1.2.20
@@ -24,6 +25,7 @@ catalog:
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.33
   '@iconify-json/vscode-icons': ^1.2.45
+  '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.3
@@ -68,6 +70,7 @@ catalog:
   remark-parse: ^11.0.0
   remark-rehype: ^11.1.2
   remark-stringify: ^11.0.0
+  satori: ^0.12.0
   shiki: ^3.23.0
   source-map-js: ^1.2.1
   svelte: ^5.55.4

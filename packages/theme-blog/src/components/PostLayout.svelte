@@ -1,6 +1,7 @@
 <!-- src/components/PostLayout.svelte -->
 <script lang="ts">
   import type { BlogPost, BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import GiscusComments from './GiscusComments.svelte'
@@ -19,6 +20,8 @@
 
   const { post, prev, next }: Props = $props()
   const siteTitle = blogConfig.title ?? 'Blog'
+  const ogOrigin = blogConfig.base?.replace(/\/$/, '') ?? base
+  const ogImage = $derived(`${ogOrigin}/og/${post.slug}.png`)
   const jsonLd = $derived.by(() => {
     const authorName = post.author ?? blogConfig.author?.name
     const data: Record<string, unknown> = {}
@@ -26,7 +29,7 @@
     data['@type'] = 'BlogPosting'
     data.headline = post.title
     data.datePublished = post.date
-    data.image = `/og/${post.slug}.png`
+    data.image = ogImage
     data.description = post.excerpt
     data.keywords = post.tags.join(', ')
     if (authorName) {
@@ -64,7 +67,7 @@
   <meta property="og:title" content={post.title} />
   <meta name="description" content={post.excerpt} />
   <meta property="og:description" content={post.excerpt} />
-  <meta property="og:image" content={`/og/${post.slug}.png`} />
+  <meta property="og:image" content={ogImage} />
   <meta property="article:published_time" content={post.date} />
   {#if post.author}
     <meta property="article:author" content={post.author} />

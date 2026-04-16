@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { blogTheme } from '@sveltepress/theme-blog'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
@@ -8,7 +9,7 @@ const config = defineConfig({
       theme: blogTheme({
         title: 'Example Blog',
         description: 'A demo blog powered by @sveltepress/theme-blog',
-        base: 'http://localhost:4173',
+        base: process.env.SITE_URL ?? 'http://localhost:4173',
         author: {
           name: 'Demo Author',
           avatar: '/avatar.png',

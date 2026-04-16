@@ -1,6 +1,7 @@
 <!-- src/components/PostCardSmall.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
+  import { base } from '$app/paths'
 
   interface Props {
     post: BlogPostMeta
@@ -10,7 +11,7 @@
 </script>
 
 <article class="sp-card-small">
-  <a href={`/posts/${post.slug}`} class="sp-card-small__link">
+  <a href={`${base}/posts/${post.slug}/`} class="sp-card-small__link">
     {#if post.tags[0]}
       <span class="sp-card__tag">{post.tags[0]}</span>
     {/if}

@@ -1,6 +1,7 @@
 <!-- src/components/GlobalLayout.svelte -->
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import SearchModal from './SearchModal.svelte'
   import Sidebar from './Sidebar.svelte'
@@ -12,6 +13,11 @@
   }
 
   const { children, search }: Props = $props()
+
+  // OG crawlers require absolute URLs; prefer the fully-qualified
+  // `blogConfig.base` when set, else fall back to the subpath base.
+  const ogOrigin = blogConfig.base?.replace(/\/$/, '') ?? base
+  const ogHome = `${ogOrigin}/og/__home.png`
 
   let searchOpen = $state(false)
 
@@ -83,7 +89,7 @@
     <meta name="description" content={blogConfig.description} />
     <meta property="og:description" content={blogConfig.description} />
   {/if}
-  <meta property="og:image" content="/og/__home.png" />
+  <meta property="og:image" content={ogHome} />
   <meta name="twitter:card" content="summary_large_image" />
   {#if blogConfig.author?.socials?.twitter}
     <meta
