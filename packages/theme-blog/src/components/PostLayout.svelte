@@ -1,6 +1,7 @@
 <!-- src/components/PostLayout.svelte -->
 <script lang="ts">
   import type { BlogPost } from '../types.js'
+  import { blogConfig } from 'virtual:sveltepress/blog-config'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
   import PostNav from './PostNav.svelte'
@@ -13,7 +14,12 @@
   }
 
   const { post, prev, next }: Props = $props()
+  const siteTitle = blogConfig.title ?? 'Blog'
 </script>
+
+<svelte:head>
+  <title>{post.title} | {siteTitle}</title>
+</svelte:head>
 
 <article class="sp-post">
   <PostHero {post} />

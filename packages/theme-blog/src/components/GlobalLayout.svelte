@@ -20,6 +20,10 @@
   ].join(';')
 </script>
 
+<svelte:head>
+  <title>{blogConfig.title ?? 'Blog'}</title>
+</svelte:head>
+
 <div class="sp-blog-root" style={themeStyle}>
   <Navbar
     title={blogConfig.title ?? 'Blog'}
