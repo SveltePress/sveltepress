@@ -16,3 +16,4 @@ dist
 .vscode
 .history
 node-jiti
+.worktrees
