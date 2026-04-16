@@ -17,10 +17,14 @@ export function paginationWindow(current: number, total: number): Array<number |
   }
 
   const result: Array<number | '…'> = [1]
-  if (windowStart > 2)
+  if (windowStart === 3)
+    result.push(2)
+  else if (windowStart > 3)
     result.push('…')
   for (let i = windowStart; i <= windowEnd; i++) result.push(i)
-  if (windowEnd < total - 1)
+  if (windowEnd === total - 2)
+    result.push(total - 1)
+  else if (windowEnd < total - 2)
     result.push('…')
   result.push(total)
   return result

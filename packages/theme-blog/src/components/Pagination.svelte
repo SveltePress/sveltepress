@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import { paginationWindow } from '../pagination.js'
 
   interface Props {
@@ -12,7 +13,7 @@
   const items = $derived(paginationWindow(page, totalPages))
 
   function href(n: number) {
-    return n === 1 ? '/' : `/page/${n}/`
+    return n === 1 ? `${base}/` : `${base}/page/${n}/`
   }
 </script>
 
@@ -69,6 +70,11 @@
   .sp-pg__nav:hover {
     border-color: var(--sp-blog-primary);
     color: var(--sp-blog-primary);
+  }
+  .sp-pg__num:focus-visible,
+  .sp-pg__nav:focus-visible {
+    outline: 2px solid var(--sp-blog-primary);
+    outline-offset: 2px;
   }
   .sp-pg__num.is-active {
     background: var(--sp-blog-primary);
