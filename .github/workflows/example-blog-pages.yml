@@ -42,8 +42,8 @@ jobs:
         run: pnpm --filter @sveltepress/example-blog build
       - name: Nest under subpath
         run: |
-          mkdir -p _site/sveltepress/blog-demo
-          cp -R packages/example-blog/dist/. _site/sveltepress/blog-demo/
+          mkdir -p _site/blog-demo
+          cp -R packages/example-blog/dist/. _site/blog-demo/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
