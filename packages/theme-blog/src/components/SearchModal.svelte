@@ -112,6 +112,7 @@
       e.preventDefault()
     } else if (e.key === 'Enter' && results[selected]) {
       goto(results[selected].url)
+      onClose()
     } else if (e.key === 'Tab') {
       // Focus trap: the dialog has a single focusable control (the input).
       // Swallowing Tab keeps focus inside the aria-modal dialog.
@@ -139,8 +140,12 @@
     {#if results.length}
       <ul class="sp-search__results">
         {#each results as r, i}
-          <li class="sp-search__item" class:is-selected={i === selected}>
-            <a href={r.url}>
+          <li
+            class="sp-search__item"
+            class:is-selected={i === selected}
+            onmouseenter={() => (selected = i)}
+          >
+            <a href={r.url} onclick={onClose}>
               <strong>{r.meta?.title ?? r.url}</strong>
               <!-- Pagefind returns excerpt HTML with <mark> wrapping matches.
                    Trust model: site content is author-trusted. If you render
@@ -198,6 +203,24 @@
     margin: 0;
     padding: 0.5rem;
     overflow: auto;
+    scrollbar-color: var(--sp-blog-border) transparent;
+    scrollbar-width: thin;
+  }
+  .sp-search__results::-webkit-scrollbar {
+    width: 8px;
+  }
+  .sp-search__results::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .sp-search__results::-webkit-scrollbar-thumb {
+    background: var(--sp-blog-border);
+    border-radius: 4px;
+  }
+  .sp-search__results::-webkit-scrollbar-thumb:hover {
+    background: var(--sp-blog-primary);
+  }
+  .sp-search__item {
+    cursor: pointer;
   }
   .sp-search__item a {
     display: block;
@@ -205,9 +228,17 @@
     border-radius: 6px;
     color: var(--sp-blog-content);
     text-decoration: none;
+    transition:
+      background 0.12s,
+      color 0.12s;
   }
-  .sp-search__item.is-selected a {
+  .sp-search__item.is-selected a,
+  .sp-search__item a:hover {
     background: var(--sp-blog-border);
+    color: var(--sp-blog-primary);
+  }
+  .sp-search__item.is-selected a strong,
+  .sp-search__item a:hover strong {
     color: var(--sp-blog-primary);
   }
   .sp-search__item p {
