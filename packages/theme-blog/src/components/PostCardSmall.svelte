@@ -65,7 +65,7 @@
     display: flex;
     gap: 0.75rem;
     font-size: 0.75rem;
-    color: #78350f;
+    color: var(--sp-blog-muted);
     margin-top: 0.75rem;
   }
 </style>

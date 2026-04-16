@@ -21,7 +21,9 @@
     for (const ch of tag) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0
     return GRADIENTS[hash % GRADIENTS.length]
   }
-  const gradient = post.tags[0] ? tagGradient(post.tags[0]) : GRADIENTS[0]
+  const gradient = $derived(
+    post.tags[0] ? tagGradient(post.tags[0]) : GRADIENTS[0],
+  )
 </script>
 
 <article class="sp-card-large">
@@ -99,7 +101,7 @@
     display: flex;
     gap: 0.75rem;
     font-size: 0.75rem;
-    color: #78350f;
+    color: var(--sp-blog-muted);
     margin-top: 0.75rem;
   }
 </style>
