@@ -2,7 +2,7 @@
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { BlogThemeOptions } from './types.js'
 import { readdir, readFile, writeFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
+import { join, resolve, sep } from 'node:path'
 import { buildIndex, toVirtualModuleCode } from './build-index.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
@@ -101,8 +101,9 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     configureServer(server) {
       const postsDir = resolve(config.root, options.postsDir ?? 'src/posts')
       server.watcher.add(postsDir)
-      server.watcher.on('change', async (file) => {
-        if (!file.startsWith(postsDir))
+
+      const handlePostChange = async (file: string) => {
+        if (!file.startsWith(postsDir + sep))
           return
         await rebuildIndex(config.root)
         const mods = [RESOLVED.POSTS, RESOLVED.TAGS, RESOLVED.CATEGORIES]
@@ -110,7 +111,11 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
           .filter(Boolean)
         mods.forEach(mod => server.moduleGraph.invalidateModule(mod!))
         server.ws.send({ type: 'full-reload' })
-      })
+      }
+
+      server.watcher.on('change', handlePostChange)
+      server.watcher.on('add', handlePostChange)
+      server.watcher.on('unlink', handlePostChange)
     },
   }
 }
