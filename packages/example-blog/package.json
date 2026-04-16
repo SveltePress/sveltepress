@@ -1,0 +1,23 @@
+{
+  "name": "@sveltepress/example-blog",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "catalog:",
+    "@sveltejs/kit": "catalog:",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@sveltepress/theme-blog": "workspace:*",
+    "@sveltepress/vite": "workspace:*",
+    "@types/node": "catalog:",
+    "svelte": "catalog:",
+    "svelte-check": "catalog:",
+    "vite": "catalog:"
+  }
+}

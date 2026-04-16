@@ -8,6 +8,7 @@ import {
   POST_PAGE,
   POST_PAGE_LOAD,
   ROOT_LAYOUT,
+  ROOT_LAYOUT_TS,
   TAG_PAGE,
   TAG_PAGE_LOAD,
 } from './route-templates.js'
@@ -20,6 +21,7 @@ interface ScaffoldFile {
 function scaffoldFiles(root: string): ScaffoldFile[] {
   const r = (p: string) => join(root, 'src', 'routes', p)
   return [
+    { path: r('+layout.ts'), content: ROOT_LAYOUT_TS },
     { path: r('+layout.svelte'), content: ROOT_LAYOUT },
     { path: r('+page.svelte'), content: LIST_PAGE },
     { path: r('posts/[slug]/+page.ts'), content: POST_PAGE_LOAD },

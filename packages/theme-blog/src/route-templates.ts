@@ -1,21 +1,30 @@
 // src/route-templates.ts
+// IMPORTANT: @sveltepress/vite's core plugin automatically wraps:
+//   +layout.svelte  →  with globalLayout  (GlobalLayout.svelte) as <PageLayout {fm}>
+//   +page.svelte    →  with pageLayout    (PageLayout.svelte)   as <PageLayout {fm}>
+// The import `import PageLayout from '...'` is injected by the core plugin.
+// Templates must NOT manually import PageLayout or GlobalLayout to avoid
+// "Identifier already declared" errors.
 
-export const ROOT_LAYOUT = `<script>
-  import GlobalLayout from '@sveltepress/theme-blog/GlobalLayout.svelte'
-</script>
-<GlobalLayout>
-  <slot />
-</GlobalLayout>
+export const ROOT_LAYOUT_TS = `export const prerender = true
+export const trailingSlash = 'always'
 `
 
+// Core plugin wraps this with GlobalLayout.svelte (as <PageLayout {fm}>).
+// Just pass SvelteKit children through.
+export const ROOT_LAYOUT = `<script>
+  const { children } = $props()
+</script>
+{@render children?.()}
+`
+
+// Core plugin wraps this with PageLayout.svelte (as <PageLayout {fm}>...).
+// Only include the page body; PageLayout import is injected automatically.
 export const LIST_PAGE = `<script lang="ts">
   import { posts } from 'virtual:sveltepress/blog-posts'
   import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
-  import PageLayout from '@sveltepress/theme-blog/PageLayout.svelte'
 </script>
-<PageLayout>
-  <MasonryGrid {posts} />
-</PageLayout>
+<MasonryGrid {posts} />
 `
 
 export const POST_PAGE_LOAD = `import { posts } from 'virtual:sveltepress/blog-posts'
@@ -28,10 +37,13 @@ export function load({ params }) {
 }
 `
 
+// Core plugin wraps this with PageLayout.svelte.
 export const POST_PAGE = `<script lang="ts">
   import PostLayout from '@sveltepress/theme-blog/PostLayout.svelte'
   const { data } = $props()
-  const { post, prev, next } = data
+  const post = $derived(data.post)
+  const prev = $derived(data.prev)
+  const next = $derived(data.next)
 </script>
 <PostLayout {post} {prev} {next} />
 `
@@ -43,17 +55,16 @@ export function load({ params }) {
 }
 `
 
+// Core plugin wraps this with PageLayout.svelte.
 export const TAG_PAGE = `<script lang="ts">
-  import PageLayout from '@sveltepress/theme-blog/PageLayout.svelte'
   import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
   import TaxonomyHeader from '@sveltepress/theme-blog/components/TaxonomyHeader.svelte'
-  export let data
-  const { tag, posts } = data
+  const { data } = $props()
+  const tag = $derived(data.tag)
+  const posts = $derived(data.posts)
 </script>
-<PageLayout>
-  <TaxonomyHeader name={tag} count={posts.length} type="tag" />
-  <MasonryGrid {posts} />
-</PageLayout>
+<TaxonomyHeader name={tag} count={posts.length} type="tag" />
+<MasonryGrid {posts} />
 `
 
 export const CAT_PAGE_LOAD = `import { categories } from 'virtual:sveltepress/blog-categories'
@@ -63,15 +74,14 @@ export function load({ params }) {
 }
 `
 
+// Core plugin wraps this with PageLayout.svelte.
 export const CAT_PAGE = `<script lang="ts">
-  import PageLayout from '@sveltepress/theme-blog/PageLayout.svelte'
   import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
   import TaxonomyHeader from '@sveltepress/theme-blog/components/TaxonomyHeader.svelte'
-  export let data
-  const { category, posts } = data
+  const { data } = $props()
+  const category = $derived(data.category)
+  const posts = $derived(data.posts)
 </script>
-<PageLayout>
-  <TaxonomyHeader name={category} count={posts.length} type="category" />
-  <MasonryGrid {posts} />
-</PageLayout>
+<TaxonomyHeader name={category} count={posts.length} type="category" />
+<MasonryGrid posts={posts} />
 `

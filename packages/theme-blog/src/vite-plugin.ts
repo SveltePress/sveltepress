@@ -11,11 +11,13 @@ import { scaffoldRoutes } from './scaffold.js'
 const VIRTUAL_POSTS = 'virtual:sveltepress/blog-posts'
 const VIRTUAL_TAGS = 'virtual:sveltepress/blog-tags'
 const VIRTUAL_CATEGORIES = 'virtual:sveltepress/blog-categories'
+const VIRTUAL_CONFIG = 'virtual:sveltepress/blog-config'
 
 const RESOLVED = {
   POSTS: `\0${VIRTUAL_POSTS}`,
   TAGS: `\0${VIRTUAL_TAGS}`,
   CATEGORIES: `\0${VIRTUAL_CATEGORIES}`,
+  CONFIG: `\0${VIRTUAL_CONFIG}`,
 }
 
 export function blogVitePlugin(options: BlogThemeOptions): Plugin {
@@ -87,6 +89,8 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         return RESOLVED.TAGS
       if (id === VIRTUAL_CATEGORIES)
         return RESOLVED.CATEGORIES
+      if (id === VIRTUAL_CONFIG)
+        return RESOLVED.CONFIG
     },
 
     load(id) {
@@ -96,6 +100,8 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         return tagsModule
       if (id === RESOLVED.CATEGORIES)
         return categoriesModule
+      if (id === RESOLVED.CONFIG)
+        return `export const blogConfig = ${JSON.stringify(options)}`
     },
 
     configureServer(server) {
