@@ -1,6 +1,6 @@
 import type { BlogPost } from './types.js'
 
-interface RssOptions {
+export interface RssOptions {
   title: string
   base: string
   description?: string

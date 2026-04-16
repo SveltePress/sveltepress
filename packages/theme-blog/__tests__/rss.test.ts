@@ -50,4 +50,13 @@ describe('generateRss', () => {
     const xml = generateRss(posts, { title: 'Blog', base: 'https://example.com', limit: 10 })
     expect(xml.match(/<item>/g)).toHaveLength(10)
   })
+
+  it('escapes XML special characters in title and excerpt', () => {
+    const xml = generateRss(
+      [makePost({ slug: 'escape-test', title: 'A & B <Test>', excerpt: '"quoted" & <special>' })],
+      { title: 'Blog', base: 'https://example.com' },
+    )
+    expect(xml).toContain('<title>A &amp; B &lt;Test&gt;</title>')
+    expect(xml).toContain('<description>&quot;quoted&quot; &amp; &lt;special&gt;</description>')
+  })
 })
