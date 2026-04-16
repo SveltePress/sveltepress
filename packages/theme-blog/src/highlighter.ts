@@ -1,4 +1,3 @@
-import type { Root as HastRoot } from 'hast'
 import type { BundledLanguage, BundledTheme, CodeToHastOptions, HighlighterGeneric } from 'shiki'
 import type { HighlighterOptions } from './types.js'
 import { env } from 'node:process'
@@ -89,25 +88,4 @@ export function highlight(code: string, lang?: string): string {
     cache.set(cacheKey, result)
 
   return result
-}
-
-/**
- * Highlight a code string and return a hast (HTML AST) tree.
- * @deprecated Will be removed in a future task when rehype-shiki is replaced.
- */
-export function highlightToHast(code: string, lang?: string): HastRoot {
-  if (!instance)
-    throw new Error('[theme-blog] Shiki highlighter not initialised — call initHighlighter() first')
-
-  const language = (lang || 'text') as BundledLanguage
-  const loadedLangs = instance.getLoadedLanguages()
-  const resolvedLang = loadedLangs.includes(language) ? language : 'text'
-
-  return instance.codeToHast(code, {
-    lang: resolvedLang,
-    themes: {
-      dark: darkTheme,
-      light: lightTheme,
-    },
-  })
 }
