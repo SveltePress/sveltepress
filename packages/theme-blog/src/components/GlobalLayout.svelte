@@ -76,6 +76,21 @@
 
 <svelte:head>
   <title>{blogConfig.title ?? 'Blog'}</title>
+  <meta property="og:site_name" content={blogConfig.title ?? 'Blog'} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={blogConfig.title ?? 'Blog'} />
+  {#if blogConfig.description}
+    <meta name="description" content={blogConfig.description} />
+    <meta property="og:description" content={blogConfig.description} />
+  {/if}
+  <meta property="og:image" content="/og/__home.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  {#if blogConfig.author?.socials?.twitter}
+    <meta
+      name="twitter:creator"
+      content={`@${blogConfig.author.socials.twitter}`}
+    />
+  {/if}
 </svelte:head>
 
 <div class="sp-blog-root">

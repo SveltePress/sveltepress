@@ -18,6 +18,24 @@
 
   const { post, prev, next }: Props = $props()
   const siteTitle = blogConfig.title ?? 'Blog'
+  const jsonLd = $derived.by(() => {
+    const authorName = post.author ?? blogConfig.author?.name
+    const data: Record<string, unknown> = {}
+    data['@context'] = 'https://schema.org'
+    data['@type'] = 'BlogPosting'
+    data.headline = post.title
+    data.datePublished = post.date
+    data.image = `/og/${post.slug}.png`
+    data.description = post.excerpt
+    data.keywords = post.tags.join(', ')
+    if (authorName) {
+      const a: Record<string, unknown> = {}
+      a['@type'] = 'Person'
+      a.name = authorName
+      data.author = a
+    }
+    return JSON.stringify(data)
+  })
 
   onMount(() => {
     const container = document.querySelector('.sp-post-content')
@@ -41,6 +59,20 @@
 
 <svelte:head>
   <title>{post.title} | {siteTitle}</title>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={post.title} />
+  <meta name="description" content={post.excerpt} />
+  <meta property="og:description" content={post.excerpt} />
+  <meta property="og:image" content={`/og/${post.slug}.png`} />
+  <meta property="article:published_time" content={post.date} />
+  {#if post.author}
+    <meta property="article:author" content={post.author} />
+  {/if}
+  {#each post.tags as t (t)}
+    <meta property="article:tag" content={t} />
+  {/each}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<${'script'} type="application/ld+json">${jsonLd}</${'script'}>`}
 </svelte:head>
 
 <article class="sp-post">
