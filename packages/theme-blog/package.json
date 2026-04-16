@@ -1,0 +1,60 @@
+{
+  "name": "@sveltepress/theme-blog",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.33.0",
+  "description": "A magazine-style blog theme for Sveltepress",
+  "author": { "name": "Dongsheng Zhao", "email": "1197160272@qq.com" },
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "svelte": "./dist/index.js"
+    },
+    "./GlobalLayout.svelte": {
+      "types": "./dist/components/GlobalLayout.svelte.d.ts",
+      "import": "./dist/components/GlobalLayout.svelte",
+      "svelte": "./dist/components/GlobalLayout.svelte"
+    },
+    "./PageLayout.svelte": {
+      "types": "./dist/components/PageLayout.svelte.d.ts",
+      "import": "./dist/components/PageLayout.svelte",
+      "svelte": "./dist/components/PageLayout.svelte"
+    }
+  },
+  "scripts": {
+    "test": "vitest",
+    "build:comps": "svelte-package -i src",
+    "build": "pnpm build:comps",
+    "prepare": "pnpm build"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@sveltepress/vite": "workspace:*",
+    "svelte": "^5.0.0",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "fs-extra": "catalog:",
+    "rehype-stringify": "catalog:",
+    "remark-gfm": "catalog:",
+    "remark-parse": "catalog:",
+    "remark-rehype": "catalog:",
+    "shiki": "catalog:",
+    "unocss": "catalog:",
+    "@unocss/extractor-svelte": "catalog:",
+    "unified": "catalog:",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "catalog:",
+    "@sveltejs/package": "catalog:",
+    "@sveltepress/vite": "workspace:*",
+    "@types/node": "catalog:",
+    "svelte": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}
