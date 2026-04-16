@@ -2,7 +2,7 @@ import type { ResolvedTheme } from '@sveltepress/vite'
 import type { BlogThemeOptions } from './types.js'
 import { blogVitePlugin } from './vite-plugin.js'
 
-export type { BlogPost, BlogThemeOptions } from './types.js'
+export type { BlogPost, BlogPostMeta, BlogThemeOptions } from './types.js'
 
 export function blogTheme(options: BlogThemeOptions): ResolvedTheme {
   return {

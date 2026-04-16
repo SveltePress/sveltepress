@@ -16,7 +16,7 @@
 
   // Posts are already sorted desc by date. Group by year, preserving order.
   const groups = $derived.by<YearGroup[]>(() => {
-    const map = new Map<string, BlogPost[]>()
+    const map = new Map<string, BlogPostMeta[]>()
     for (const p of posts) {
       const y = p.date.slice(0, 4)
       if (!map.has(y)) map.set(y, [])

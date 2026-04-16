@@ -1,7 +1,7 @@
 import type { ParsedPost } from './parse-post.js'
-import type { BlogPostMeta, PostIndex } from './types.js'
+import type { BlogPost, BlogPostMeta, PostIndex } from './types.js'
 
-function toMeta(p: ParsedPost): BlogPostMeta {
+function toMeta(p: BlogPost): BlogPostMeta {
   return {
     slug: p.slug,
     title: p.title,
@@ -15,10 +15,15 @@ function toMeta(p: ParsedPost): BlogPostMeta {
   }
 }
 
+function stripDraft({ draft: _d, ...rest }: ParsedPost): BlogPost {
+  return rest
+}
+
 export function buildIndex(parsedPosts: ParsedPost[]): PostIndex {
   const posts = parsedPosts
     .filter(p => !p.draft)
     .sort((a, b) => b.date.localeCompare(a.date))
+    .map(stripDraft)
 
   const meta = posts.map(toMeta)
   const metaBySlug: Record<string, BlogPostMeta> = {}

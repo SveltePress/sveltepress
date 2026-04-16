@@ -1,12 +1,12 @@
 <!-- src/components/MasonryGrid.svelte -->
 <script lang="ts">
-  import type { BlogPost } from '../types.js'
+  import type { BlogPostMeta } from '../types.js'
   import PostCardFeatured from './PostCardFeatured.svelte'
   import PostCardLarge from './PostCardLarge.svelte'
   import PostCardSmall from './PostCardSmall.svelte'
 
   interface Props {
-    posts: BlogPost[]
+    posts: BlogPostMeta[]
   }
 
   const { posts }: Props = $props()

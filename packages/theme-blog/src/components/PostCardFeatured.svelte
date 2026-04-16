@@ -1,9 +1,9 @@
 <!-- src/components/PostCardFeatured.svelte -->
 <script lang="ts">
-  import type { BlogPost } from '../types.js'
+  import type { BlogPostMeta } from '../types.js'
 
   interface Props {
-    post: BlogPost
+    post: BlogPostMeta
   }
 
   const { post }: Props = $props()

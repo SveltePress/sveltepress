@@ -17,6 +17,7 @@ const V_TAG_PREFIX = 'virtual:sveltepress/blog-tag/'
 const V_CATS_INDEX = 'virtual:sveltepress/blog-categories-index'
 const V_CAT_PREFIX = 'virtual:sveltepress/blog-category/'
 const V_CONFIG = 'virtual:sveltepress/blog-config'
+const V_RUNTIME = 'virtual:sveltepress/blog-runtime'
 
 const VIRTUAL_PREFIX = '\0virtual:sveltepress/blog-'
 
@@ -126,7 +127,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     },
 
     resolveId(id) {
-      if (id === V_META || id === V_TAGS_INDEX || id === V_CATS_INDEX || id === V_CONFIG)
+      if (id === V_META || id === V_TAGS_INDEX || id === V_CATS_INDEX || id === V_CONFIG || id === V_RUNTIME)
         return `\0${id}`
       if (id.startsWith(V_POST_PREFIX) || id.startsWith(V_TAG_PREFIX) || id.startsWith(V_CAT_PREFIX))
         return `\0${id}`
@@ -138,6 +139,10 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       const key = id.slice(1)
       if (key === V_CONFIG)
         return `export const blogConfig = ${JSON.stringify(options)}`
+      if (key === V_RUNTIME) {
+        const postsJsonDir = resolve(config.root, '.sveltepress/posts')
+        return `export const postsJsonDir = ${JSON.stringify(postsJsonDir)}`
+      }
       if (key === V_META)
         return modules?.metaModule ?? 'export const posts = []'
       if (key === V_TAGS_INDEX)

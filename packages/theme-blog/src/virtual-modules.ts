@@ -16,10 +16,8 @@ export function buildVirtualModules(parsedPosts: ParsedPost[]): VirtualModules {
   const idx = buildIndex(parsedPosts)
 
   const postRecordBySlug: Record<string, unknown> = {}
-  for (const p of idx.posts) {
-    const { draft: _d, ...publicFields } = p
-    postRecordBySlug[p.slug] = publicFields
-  }
+  for (const p of idx.posts)
+    postRecordBySlug[p.slug] = p
 
   return {
     metaModule: `export const posts = ${JSON.stringify(idx.meta)}`,

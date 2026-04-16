@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs'
-import { mkdir, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import {
   CAT_PAGE,
@@ -23,9 +23,12 @@ interface ScaffoldFile {
   content: string
 }
 
-/** Files created by earlier versions of theme-blog that reference dead
- * virtual module IDs or use client-side loads. Remove before re-scaffolding
- * so the fresh templates get written. */
+/**
+ * Files created by earlier versions of theme-blog that reference dead
+ * virtual module IDs or use client-side loads. Removed before re-scaffolding,
+ * but only when their content still imports a dead virtual ID — user
+ * customizations that no longer match the legacy signature are kept.
+ */
 const LEGACY_PATHS = [
   // Client-side loads replaced by +page.server.ts
   'src/routes/posts/[slug]/+page.ts',
@@ -36,6 +39,14 @@ const LEGACY_PATHS = [
   'src/routes/timeline/+page.svelte',
   'src/routes/tags/+page.svelte',
 ]
+
+/**
+ * Matches imports from virtual IDs that were removed in the route rewrite:
+ * `blog-posts` (now `blog-posts-meta`), `blog-tags` (now `blog-tags-index`),
+ * `blog-categories` (now `blog-categories-index`). The trailing `['"]`
+ * already prevents matching the new IDs since their next char is `-`.
+ */
+const DEAD_VIRTUAL_IMPORT = /from\s+['"]virtual:sveltepress\/blog-(?:posts|tags|categories)['"]/
 
 function scaffoldFiles(root: string): ScaffoldFile[] {
   const r = (p: string) => join(root, 'src', 'routes', p)
@@ -57,14 +68,24 @@ function scaffoldFiles(root: string): ScaffoldFile[] {
   ]
 }
 
-/** Write route files that don't already exist. Removes known legacy files
- * so they get re-scaffolded with current templates. */
+/**
+ * Write route files that don't already exist. Removes known legacy files
+ * so they get re-scaffolded with current templates — but only when the
+ * content still imports a dead virtual module, so user customizations are
+ * preserved.
+ */
 export async function scaffoldRoutes(root: string): Promise<void> {
   for (const legacy of LEGACY_PATHS) {
     const p = join(root, legacy)
-    if (existsSync(p)) {
+    if (!existsSync(p))
+      continue
+    const content = await readFile(p, 'utf-8')
+    if (DEAD_VIRTUAL_IMPORT.test(content)) {
       await rm(p)
-      console.warn(`[theme-blog] removed legacy scaffold file ${legacy}`)
+      console.warn(`[theme-blog] removed legacy scaffold file ${legacy} (imported dead virtual module)`)
+    }
+    else {
+      console.warn(`[theme-blog] skipped ${legacy}: file exists but does not import a dead virtual module — remove manually if you want it re-scaffolded`)
     }
   }
   for (const file of scaffoldFiles(root)) {
