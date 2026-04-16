@@ -51,7 +51,8 @@
   .sp-card-featured__bg {
     background-size: cover;
     background-position: center;
-    min-height: 220px;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
     position: relative;
   }
   .sp-card-featured__overlay {

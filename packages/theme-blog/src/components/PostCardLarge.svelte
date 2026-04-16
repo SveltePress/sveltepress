@@ -29,7 +29,15 @@
 <article class="sp-card-large">
   <a href={`/posts/${post.slug}`} class="sp-card-large__link">
     {#if post.cover}
-      <img src={post.cover} alt={post.title} class="sp-card-large__cover" />
+      <img
+        src={post.cover}
+        alt={post.title}
+        class="sp-card-large__cover"
+        width="800"
+        height="400"
+        loading="lazy"
+        decoding="async"
+      />
     {:else}
       <div
         class="sp-card-large__cover sp-card-large__cover--gradient"
