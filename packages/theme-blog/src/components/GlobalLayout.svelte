@@ -157,14 +157,14 @@
     overflow: hidden;
     border: 1px solid var(--sp-blog-border);
     border-radius: 8px;
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 
   .sp-blog-root :global(.svp-code-block pre.shiki) {
     margin: 0;
     padding: 12px 16px;
     overflow-x: auto;
-    font-size: 0.875rem;
-    line-height: 1.5;
   }
 
   .sp-blog-root :global(.svp-code-block pre.shiki code) {
@@ -301,13 +301,20 @@
     user-select: none;
   }
 
-  /* Focus */
+  /* Focus — dim overlay for non-focused lines */
   .sp-blog-root :global(.svp-code-block--focus) {
     position: absolute;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.4);
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(1.5px);
     pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .sp-blog-root :global(.svp-code-block:hover .svp-code-block--focus) {
+    opacity: 0;
   }
 
   /* ── Line numbers ───────────────────────────────────────── */
