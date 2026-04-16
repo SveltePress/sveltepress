@@ -58,6 +58,8 @@
     break-inside: avoid;
     margin-bottom: 1rem;
     transition: transform 0.2s;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 340px;
   }
   .sp-card-large:hover {
     transform: translateY(-3px);

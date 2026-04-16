@@ -32,6 +32,8 @@
     margin-bottom: 1rem;
     border-left: 4px solid var(--sp-blog-primary);
     transition: transform 0.2s;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 150px;
   }
   .sp-card-small:hover {
     transform: translateY(-3px);

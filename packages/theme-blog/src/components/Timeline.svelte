@@ -259,6 +259,8 @@
       opacity 0.5s ease-out,
       transform 0.5s ease-out;
     transition-delay: calc(var(--i, 0) * 60ms);
+    content-visibility: auto;
+    contain-intrinsic-size: auto 180px;
   }
   .sp-tl__item:global(.is-visible) {
     opacity: 1;
