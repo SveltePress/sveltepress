@@ -53,6 +53,11 @@
       "types": "./dist/components/TaxonomyHeader.svelte.d.ts",
       "import": "./dist/components/TaxonomyHeader.svelte",
       "svelte": "./dist/components/TaxonomyHeader.svelte"
+    },
+    "./components/Pagination.svelte": {
+      "types": "./dist/components/Pagination.svelte.d.ts",
+      "import": "./dist/components/Pagination.svelte",
+      "svelte": "./dist/components/Pagination.svelte"
     }
   },
   "types": "./dist/index.d.ts",
