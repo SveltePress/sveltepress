@@ -24,6 +24,10 @@
   ],
   "exports": {
     ".": "./dist/index.mjs",
+    "./highlight": {
+      "types": "./dist/highlight/index.d.ts",
+      "import": "./dist/highlight/index.mjs"
+    },
     "./types": {
       "types": "./types.d.ts"
     }

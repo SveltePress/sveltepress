@@ -1,4 +1,4 @@
-type Command = (params: string, lineIndex: number, lines: number) => string
+type Command = (params: string, lineIndex: number, lines: number) => string | string[]
 
 export const COMMAND_RE = /\/\/ \[svp! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(!!))(:\S+)?\]/
 
@@ -10,8 +10,7 @@ export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
   return Array.from({ length: num > max ? max : num }).map((_, i) => {
     const highlightIndex = i + idx
     return warpLine('svp-code-block--hl', highlightIndex)
-  },
-  ).join('\n')
+  })
 }
 
 export const diff: Command = (addOrCut, idx) => {
@@ -33,7 +32,6 @@ export const focus: Command = (linesNumberToFocus, idx, lines) => {
     wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
   ]
   res.push(wrapFocus(`calc(12px + ${(start + 1) * 1.5}em)`, `calc(12px + ${(lines - start - 1) * 1.5}em)`))
-
   return res.join('\n')
 }
 
@@ -55,8 +53,8 @@ export const COMMAND_CHEAT_LIST: Record<string, Command> = {
 export const processCommands: (
   line: string,
   lineIndex: number,
-  lineLength: number)
-=> [string[], string] = (line: string, lineIndex, lineLength) => {
+  lineLength: number,
+) => [string[], string] = (line, lineIndex, lineLength) => {
   const commandDoms: string[] = []
   let newLine = line
   const re = /\/\/ \[svp! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(!!))(:\S+)?\]/g
@@ -64,12 +62,16 @@ export const processCommands: (
 
   while (matches && matches.length) {
     const [commandRaw] = matches
-    // [svp! command:param1,params2] => command:param1,params2
     const command = commandRaw.replace(/^\/\/ \[svp! /, '').replace(/\]$/, '')
     const [name, params] = command.split(':')
     const commandExecutor = COMMAND_CHEAT_LIST[name]
-    if (commandExecutor)
-      commandDoms.push(commandExecutor(params, lineIndex, lineLength))
+    if (commandExecutor) {
+      const result = commandExecutor(params, lineIndex, lineLength)
+      if (Array.isArray(result))
+        commandDoms.push(...result)
+      else
+        commandDoms.push(result)
+    }
 
     const idx = newLine.indexOf(commandRaw)
     newLine = `${newLine.slice(0, idx)}${newLine.slice(idx + commandRaw.length)}`

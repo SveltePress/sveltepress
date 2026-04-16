@@ -97,6 +97,32 @@ export default {
         },
       ],
     },
+    {
+      title: 'Blog theme features',
+      collapsible: true,
+      items: [
+        {
+          title: 'Getting started',
+          to: '/guide/blog-theme/getting-started/',
+        },
+        {
+          title: 'Configuration',
+          to: '/guide/blog-theme/configuration/',
+        },
+        {
+          title: 'Writing posts',
+          to: '/guide/blog-theme/writing-posts/',
+        },
+        {
+          title: 'Features',
+          to: '/guide/blog-theme/features/',
+        },
+        {
+          title: 'Customisation',
+          to: '/guide/blog-theme/customization/',
+        },
+      ],
+    },
   ],
   '/reference/': [{
     title: 'Reference',

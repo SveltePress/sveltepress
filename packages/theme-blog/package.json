@@ -1,0 +1,142 @@
+{
+  "name": "@sveltepress/theme-blog",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.33.0",
+  "description": "A magazine-style blog theme for Sveltepress",
+  "author": { "name": "Dongsheng Zhao", "email": "1197160272@qq.com" },
+  "license": "MIT",
+  "homepage": "https://sveltepress.site/",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/theme-blog"
+  },
+  "keywords": [
+    "Blog",
+    "Theme",
+    "svelte",
+    "sveltepress"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "svelte": "./dist/index.js"
+    },
+    "./GlobalLayout.svelte": {
+      "types": "./dist/components/GlobalLayout.svelte.d.ts",
+      "import": "./dist/components/GlobalLayout.svelte",
+      "svelte": "./dist/components/GlobalLayout.svelte"
+    },
+    "./PageLayout.svelte": {
+      "types": "./dist/components/PageLayout.svelte.d.ts",
+      "import": "./dist/components/PageLayout.svelte",
+      "svelte": "./dist/components/PageLayout.svelte"
+    },
+    "./PostLayout.svelte": {
+      "types": "./dist/components/PostLayout.svelte.d.ts",
+      "import": "./dist/components/PostLayout.svelte",
+      "svelte": "./dist/components/PostLayout.svelte"
+    },
+    "./components/MasonryGrid.svelte": {
+      "types": "./dist/components/MasonryGrid.svelte.d.ts",
+      "import": "./dist/components/MasonryGrid.svelte",
+      "svelte": "./dist/components/MasonryGrid.svelte"
+    },
+    "./components/Timeline.svelte": {
+      "types": "./dist/components/Timeline.svelte.d.ts",
+      "import": "./dist/components/Timeline.svelte",
+      "svelte": "./dist/components/Timeline.svelte"
+    },
+    "./components/TaxonomyHeader.svelte": {
+      "types": "./dist/components/TaxonomyHeader.svelte.d.ts",
+      "import": "./dist/components/TaxonomyHeader.svelte",
+      "svelte": "./dist/components/TaxonomyHeader.svelte"
+    },
+    "./components/Pagination.svelte": {
+      "types": "./dist/components/Pagination.svelte.d.ts",
+      "import": "./dist/components/Pagination.svelte",
+      "svelte": "./dist/components/Pagination.svelte"
+    },
+    "./components/SearchModal.svelte": {
+      "types": "./dist/components/SearchModal.svelte.d.ts",
+      "import": "./dist/components/SearchModal.svelte",
+      "svelte": "./dist/components/SearchModal.svelte"
+    },
+    "./components/AuthorCard.svelte": {
+      "types": "./dist/components/AuthorCard.svelte.d.ts",
+      "import": "./dist/components/AuthorCard.svelte",
+      "svelte": "./dist/components/AuthorCard.svelte"
+    },
+    "./components/GiscusComments.svelte": {
+      "types": "./dist/components/GiscusComments.svelte.d.ts",
+      "import": "./dist/components/GiscusComments.svelte",
+      "svelte": "./dist/components/GiscusComments.svelte"
+    },
+    "./components/ReadingProgress.svelte": {
+      "types": "./dist/components/ReadingProgress.svelte.d.ts",
+      "import": "./dist/components/ReadingProgress.svelte",
+      "svelte": "./dist/components/ReadingProgress.svelte"
+    },
+    "./components/Sidebar.svelte": {
+      "types": "./dist/components/Sidebar.svelte.d.ts",
+      "import": "./dist/components/Sidebar.svelte",
+      "svelte": "./dist/components/Sidebar.svelte"
+    },
+    "./components/AuthorProfile.svelte": {
+      "types": "./dist/components/AuthorProfile.svelte.d.ts",
+      "import": "./dist/components/AuthorProfile.svelte",
+      "svelte": "./dist/components/AuthorProfile.svelte"
+    },
+    "./components/RelatedPosts.svelte": {
+      "types": "./dist/components/RelatedPosts.svelte.d.ts",
+      "import": "./dist/components/RelatedPosts.svelte",
+      "svelte": "./dist/components/RelatedPosts.svelte"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build:comps": "svelte-package -i src",
+    "build": "pnpm build:comps",
+    "prepare": "pnpm build",
+    "dev": "vite dev"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "catalog:",
+    "@sveltepress/vite": "workspace:*",
+    "svelte": "^5.0.0",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@fontsource/inter": "catalog:",
+    "@resvg/resvg-js": "catalog:",
+    "@shikijs/twoslash": "catalog:",
+    "@unocss/extractor-svelte": "catalog:",
+    "lru-cache": "catalog:",
+    "rehype-stringify": "catalog:",
+    "remark-gfm": "catalog:",
+    "remark-parse": "catalog:",
+    "remark-rehype": "catalog:",
+    "satori": "catalog:",
+    "shiki": "catalog:",
+    "unified": "catalog:",
+    "unist-util-visit": "catalog:",
+    "unocss": "catalog:",
+    "yaml": "catalog:"
+  },
+  "devDependencies": {
+    "@sveltejs/kit": "catalog:",
+    "@sveltejs/package": "catalog:",
+    "@sveltepress/vite": "workspace:*",
+    "@types/node": "catalog:",
+    "svelte": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}
