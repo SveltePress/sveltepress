@@ -111,9 +111,13 @@ export const POST_PAGE = `<script lang="ts">
 <PostLayout {post} {prev} {next} />
 `
 
-// Tag page — server load uses dynamic import() of the per-tag virtual module.
-// Vite resolves this statically at build time since the prefix is literal.
-export const TAG_PAGE_SERVER_LOAD = `import { tags } from 'virtual:sveltepress/blog-tags-index'
+// Tag page — reads per-tag JSON from disk. Same reason as POST_PAGE: prerender
+// runs the server bundle via Node, which can't resolve virtual: URL schemes
+// that dynamic import() produces for template-string params.
+export const TAG_PAGE_SERVER_LOAD = `import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import { tags } from 'virtual:sveltepress/blog-tags-index'
+import { tagsJsonDir } from 'virtual:sveltepress/blog-runtime'
 import { error } from '@sveltejs/kit'
 
 export const prerender = true
@@ -123,9 +127,14 @@ export function entries() {
 }
 
 export async function load({ params }) {
-  const mod = await import(\`virtual:sveltepress/blog-tag/\${encodeURIComponent(params.tag)}\`)
-  if (!mod.posts.length) error(404, 'Tag not found')
-  return { tag: params.tag, posts: mod.posts }
+  try {
+    const file = join(tagsJsonDir, \`\${encodeURIComponent(params.tag)}.json\`)
+    const posts = JSON.parse(await readFile(file, 'utf-8'))
+    if (!posts.length) error(404, 'Tag not found')
+    return { tag: params.tag, posts }
+  } catch {
+    error(404, 'Tag not found')
+  }
 }
 `
 
@@ -141,7 +150,10 @@ export const TAG_PAGE = `<script lang="ts">
 `
 
 // Category page — mirrors tag page.
-export const CAT_PAGE_SERVER_LOAD = `import { categories } from 'virtual:sveltepress/blog-categories-index'
+export const CAT_PAGE_SERVER_LOAD = `import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import { categories } from 'virtual:sveltepress/blog-categories-index'
+import { categoriesJsonDir } from 'virtual:sveltepress/blog-runtime'
 import { error } from '@sveltejs/kit'
 
 export const prerender = true
@@ -151,9 +163,14 @@ export function entries() {
 }
 
 export async function load({ params }) {
-  const mod = await import(\`virtual:sveltepress/blog-category/\${encodeURIComponent(params.cat)}\`)
-  if (!mod.posts.length) error(404, 'Category not found')
-  return { category: params.cat, posts: mod.posts }
+  try {
+    const file = join(categoriesJsonDir, \`\${encodeURIComponent(params.cat)}.json\`)
+    const posts = JSON.parse(await readFile(file, 'utf-8'))
+    if (!posts.length) error(404, 'Category not found')
+    return { category: params.cat, posts }
+  } catch {
+    error(404, 'Category not found')
+  }
 }
 `
 

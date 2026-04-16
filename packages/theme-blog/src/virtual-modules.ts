@@ -10,6 +10,10 @@ export interface VirtualModules {
   categoryModule: (name: string) => string | null
   /** Per-slug records for writing JSON files to disk (consumed by +page.server.ts loads). */
   postRecordBySlug: Record<string, unknown>
+  /** Per-tag post lists, keyed by tag name. Written to disk for tag server loads. */
+  postsByTag: Record<string, unknown>
+  /** Per-category post lists, keyed by category name. Written to disk for category server loads. */
+  postsByCategory: Record<string, unknown>
 }
 
 export function buildVirtualModules(parsedPosts: ParsedPost[]): VirtualModules {
@@ -38,5 +42,7 @@ export function buildVirtualModules(parsedPosts: ParsedPost[]): VirtualModules {
       return posts ? `export const posts = ${JSON.stringify(posts)}` : null
     },
     postRecordBySlug,
+    postsByTag: idx.tagPosts,
+    postsByCategory: idx.categoryPosts,
   }
 }

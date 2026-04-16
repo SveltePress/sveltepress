@@ -38,9 +38,11 @@ declare module 'virtual:sveltepress/blog-config' {
 
 declare module 'virtual:sveltepress/blog-runtime' {
   /**
-   * Absolute path to the per-slug JSON cache directory, resolved from
-   * vite's config.root at build time. Import from server loads to avoid
-   * process.cwd() divergence.
+   * Absolute paths to per-slug/per-tag/per-category JSON cache dirs,
+   * resolved from vite's config.root at build time. Import from server
+   * loads to avoid process.cwd() divergence.
    */
   export const postsJsonDir: string
+  export const tagsJsonDir: string
+  export const categoriesJsonDir: string
 }

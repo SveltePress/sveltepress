@@ -72,24 +72,38 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     await saveCache(root, cache)
     modules = buildVirtualModules(parsed)
 
-    // Write per-slug JSON files for +page.server.ts loads to read.
-    // SvelteKit's prerender can't reliably resolve virtual modules through
-    // dynamic import() expressions with template-string slugs, so posts go
-    // to disk.
-    const postsJsonDir = resolve(root, '.sveltepress/posts')
-    await mkdir(postsJsonDir, { recursive: true })
-    const keep = new Set(Object.keys(modules.postRecordBySlug).map(s => `${s}.json`))
-    const existing = await readdir(postsJsonDir).catch(() => [] as string[])
+    // Write per-slug/per-tag/per-category JSON files for +page.server.ts loads
+    // to read. SvelteKit's prerender can't reliably resolve virtual modules
+    // through dynamic import() expressions with template-string params, so
+    // the data goes to disk and the loads use node:fs.readFile.
+    await writeJsonDir(
+      resolve(root, '.sveltepress/posts'),
+      modules.postRecordBySlug,
+    )
+    await writeJsonDir(
+      resolve(root, '.sveltepress/tags'),
+      modules.postsByTag,
+    )
+    await writeJsonDir(
+      resolve(root, '.sveltepress/categories'),
+      modules.postsByCategory,
+    )
+
+    return parsed
+  }
+
+  async function writeJsonDir(dir: string, records: Record<string, unknown>) {
+    await mkdir(dir, { recursive: true })
+    const keep = new Set(Object.keys(records).map(k => `${encodeURIComponent(k)}.json`))
+    const existing = await readdir(dir).catch(() => [] as string[])
     await Promise.all([
       ...existing
         .filter(f => f.endsWith('.json') && !keep.has(f))
-        .map(f => rm(join(postsJsonDir, f))),
-      ...Object.entries(modules.postRecordBySlug).map(([slug, record]) =>
-        writeFile(join(postsJsonDir, `${slug}.json`), JSON.stringify(record), 'utf-8'),
+        .map(f => rm(join(dir, f))),
+      ...Object.entries(records).map(([key, record]) =>
+        writeFile(join(dir, `${encodeURIComponent(key)}.json`), JSON.stringify(record), 'utf-8'),
       ),
     ])
-
-    return parsed
   }
 
   return {
@@ -169,7 +183,13 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         return `export const blogConfig = ${JSON.stringify(options)}`
       if (key === V_RUNTIME) {
         const postsJsonDir = resolve(config.root, '.sveltepress/posts')
-        return `export const postsJsonDir = ${JSON.stringify(postsJsonDir)}`
+        const tagsJsonDir = resolve(config.root, '.sveltepress/tags')
+        const categoriesJsonDir = resolve(config.root, '.sveltepress/categories')
+        return [
+          `export const postsJsonDir = ${JSON.stringify(postsJsonDir)}`,
+          `export const tagsJsonDir = ${JSON.stringify(tagsJsonDir)}`,
+          `export const categoriesJsonDir = ${JSON.stringify(categoriesJsonDir)}`,
+        ].join('\n')
       }
       if (key === V_META)
         return modules?.metaModule ?? 'export const posts = []'

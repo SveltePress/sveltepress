@@ -38,15 +38,20 @@ const LEGACY_PATHS = [
   'src/routes/+page.svelte',
   'src/routes/timeline/+page.svelte',
   'src/routes/tags/+page.svelte',
+  // .server.ts files that used dynamic import('virtual:...') — broken under
+  // SvelteKit prerender because Node's ESM loader can't resolve virtual:.
+  'src/routes/tags/[tag]/+page.server.ts',
+  'src/routes/categories/[cat]/+page.server.ts',
 ]
 
 /**
- * Matches imports from virtual IDs that were removed in the route rewrite:
- * `blog-posts` (now `blog-posts-meta`), `blog-tags` (now `blog-tags-index`),
- * `blog-categories` (now `blog-categories-index`). The trailing `['"]`
- * already prevents matching the new IDs since their next char is `-`.
+ * Matches content that can't survive in current templates:
+ *   - static imports from removed virtual IDs (blog-posts / blog-tags / blog-categories
+ *     without the trailing suffix)
+ *   - dynamic imports of virtual: schemes, which Node's prerender loader rejects
  */
-const DEAD_VIRTUAL_IMPORT = /from\s+['"]virtual:sveltepress\/blog-(?:posts|tags|categories)['"]/
+const DEAD_VIRTUAL_IMPORT
+  = /from\s+['"]virtual:sveltepress\/blog-(?:posts|tags|categories)['"]|import\s*\(\s*[`'"]virtual:/
 
 function scaffoldFiles(root: string): ScaffoldFile[] {
   const r = (p: string) => join(root, 'src', 'routes', p)
