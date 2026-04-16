@@ -2,7 +2,7 @@
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { BlogThemeOptions } from './types.js'
 import type { VirtualModules } from './virtual-modules.js'
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
 import { parsePost } from './parse-post.js'
@@ -50,11 +50,16 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     // to disk.
     const postsJsonDir = resolve(root, '.sveltepress/posts')
     await mkdir(postsJsonDir, { recursive: true })
-    await Promise.all(
-      Object.entries(modules.postRecordBySlug).map(([slug, record]) =>
+    const keep = new Set(Object.keys(modules.postRecordBySlug).map(s => `${s}.json`))
+    const existing = await readdir(postsJsonDir).catch(() => [] as string[])
+    await Promise.all([
+      ...existing
+        .filter(f => f.endsWith('.json') && !keep.has(f))
+        .map(f => rm(join(postsJsonDir, f))),
+      ...Object.entries(modules.postRecordBySlug).map(([slug, record]) =>
         writeFile(join(postsJsonDir, `${slug}.json`), JSON.stringify(record), 'utf-8'),
       ),
-    )
+    ])
 
     return parsed
   }
@@ -133,20 +138,18 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       const key = id.slice(1)
       if (key === V_CONFIG)
         return `export const blogConfig = ${JSON.stringify(options)}`
-      if (!modules)
-        return 'export {}'
       if (key === V_META)
-        return modules.metaModule
+        return modules?.metaModule ?? 'export const posts = []'
       if (key === V_TAGS_INDEX)
-        return modules.tagsIndexModule
+        return modules?.tagsIndexModule ?? 'export const tags = []'
       if (key === V_CATS_INDEX)
-        return modules.categoriesIndexModule
+        return modules?.categoriesIndexModule ?? 'export const categories = []'
       if (key.startsWith(V_POST_PREFIX))
-        return modules.postModule(decodeURIComponent(key.slice(V_POST_PREFIX.length))) ?? 'export const post = null'
+        return modules?.postModule(decodeURIComponent(key.slice(V_POST_PREFIX.length))) ?? 'export const post = null'
       if (key.startsWith(V_TAG_PREFIX))
-        return modules.tagModule(decodeURIComponent(key.slice(V_TAG_PREFIX.length))) ?? 'export const posts = []'
+        return modules?.tagModule(decodeURIComponent(key.slice(V_TAG_PREFIX.length))) ?? 'export const posts = []'
       if (key.startsWith(V_CAT_PREFIX))
-        return modules.categoryModule(decodeURIComponent(key.slice(V_CAT_PREFIX.length))) ?? 'export const posts = []'
+        return modules?.categoryModule(decodeURIComponent(key.slice(V_CAT_PREFIX.length))) ?? 'export const posts = []'
     },
 
     configureServer(server) {
