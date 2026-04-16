@@ -12,7 +12,8 @@ const config = defineConfig({
         author: 'Demo Author',
         navbar: [
           { title: 'Home', to: '/' },
-          { title: 'Tags', to: '/tags/svelte' },
+          { title: 'Timeline', to: '/timeline/' },
+          { title: 'Tags', to: '/tags/' },
         ],
         rss: {
           enabled: true,
@@ -27,7 +28,7 @@ const config = defineConfig({
     }),
   ],
   server: {
-    port: 5560,
+    port: 36739,
   },
 })
 
