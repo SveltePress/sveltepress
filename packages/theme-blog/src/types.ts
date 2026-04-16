@@ -25,8 +25,10 @@ export interface BlogThemeOptions {
   base?: string
   author?: string
   themeColor?: ThemeColor
+  themeColorLight?: ThemeColor // custom light mode overrides
   postsDir?: string // default 'src/posts'
   pageSize?: number // default 12
+  defaultMode?: 'system' | 'dark' | 'light' // default 'system'
   rss?: {
     enabled?: boolean
     limit?: number
