@@ -81,6 +81,7 @@
     "uid": "catalog:",
     "unist-util-visit": "catalog:",
     "unocss": "catalog:",
+    "workbox-build": "catalog:",
     "workbox-precaching": "catalog:",
     "workbox-routing": "catalog:"
   },

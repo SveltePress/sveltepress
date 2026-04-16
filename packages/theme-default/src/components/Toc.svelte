@@ -94,13 +94,16 @@
 
 <style>
   .toc {
-    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[70vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-988 sm:dark:bg-transparent';
+    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-3 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[70vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-988 sm:dark:bg-transparent';
   }
   .toc a {
-    --at-apply: 'text-[#213547] dark:text-gray-3';
+    --at-apply: 'text-slate-6 dark:text-gray-4 transition-200';
+  }
+  .toc a.active {
+    --at-apply: 'text-svp-primary font-500';
   }
   .title {
-    --at-apply: 'font-bold pl-4 text-gray-8 dark:text-gray-2';
+    --at-apply: 'font-600 pl-4 text-gray-5 dark:text-slate-4 uppercase text-xs tracking-wider';
   }
   .item {
     --at-apply: 'pl-4 relative z-3 block truncate cursor-default';
@@ -114,11 +117,11 @@
     --at-apply: 'relative z-3 sm:w-[15vw] max-h-[70vh] overflow-y-auto overflow-x-hidden';
   }
   .anchors::after {
-    --at-apply: 'absolute left-[1px] top-0 bottom-0 w-[1px] bg-light-7 dark:bg-gray-8 hidden sm:block';
+    --at-apply: 'absolute left-[1px] top-0 bottom-0 w-[1px] bg-gray-2 dark:bg-gray-7 hidden sm:block';
     content: ' ';
   }
   .active-bar {
-    --at-apply: 'absolute z-2 left-0 h-[2em] border-l-[3px] border-l-solid border-svp-primary border-opacity-80 w-full transition-transform transition-300 top-0';
+    --at-apply: 'absolute z-2 left-0 h-[2em] border-l-[2px] border-l-solid border-svp-primary w-full transition-transform transition-300 top-0';
     transform: translateY(var(--bar-top));
   }
   .collapsed {
