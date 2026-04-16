@@ -63,6 +63,21 @@
       "types": "./dist/components/SearchModal.svelte.d.ts",
       "import": "./dist/components/SearchModal.svelte",
       "svelte": "./dist/components/SearchModal.svelte"
+    },
+    "./components/AuthorCard.svelte": {
+      "types": "./dist/components/AuthorCard.svelte.d.ts",
+      "import": "./dist/components/AuthorCard.svelte",
+      "svelte": "./dist/components/AuthorCard.svelte"
+    },
+    "./components/AuthorProfile.svelte": {
+      "types": "./dist/components/AuthorProfile.svelte.d.ts",
+      "import": "./dist/components/AuthorProfile.svelte",
+      "svelte": "./dist/components/AuthorProfile.svelte"
+    },
+    "./components/RelatedPosts.svelte": {
+      "types": "./dist/components/RelatedPosts.svelte.d.ts",
+      "import": "./dist/components/RelatedPosts.svelte",
+      "svelte": "./dist/components/RelatedPosts.svelte"
     }
   },
   "types": "./dist/index.d.ts",
