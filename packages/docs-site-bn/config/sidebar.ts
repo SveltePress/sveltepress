@@ -97,6 +97,32 @@ export default {
         },
       ],
     },
+    {
+      title: 'ব্লগ থিমের ফিচারসমূহ',
+      collapsible: true,
+      items: [
+        {
+          title: 'শুরু করা',
+          to: '/guide/blog-theme/getting-started/',
+        },
+        {
+          title: 'কনফিগারেশন',
+          to: '/guide/blog-theme/configuration/',
+        },
+        {
+          title: 'পোস্ট লেখা',
+          to: '/guide/blog-theme/writing-posts/',
+        },
+        {
+          title: 'ফিচারসমূহ',
+          to: '/guide/blog-theme/features/',
+        },
+        {
+          title: 'কাস্টমাইজেশন',
+          to: '/guide/blog-theme/customization/',
+        },
+      ],
+    },
   ],
   '/reference/': [{
     title: 'রেফারেন্স',
