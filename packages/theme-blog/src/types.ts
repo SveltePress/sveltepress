@@ -19,6 +19,17 @@ export interface ThemeColor {
   surface?: string // default '#2d1200'
 }
 
+export interface HighlighterOptions {
+  /** Shiki dark theme name. Default: `'night-owl'` */
+  themeDark?: string
+  /** Shiki light theme name. Default: `'vitesse-light'` */
+  themeLight?: string
+  /** Extra languages to load (merged with defaults). */
+  languages?: string[]
+  /** Enable Twoslash TypeScript hover info. Uses plain HTML renderer (works in {@html}). Default: false */
+  twoslash?: boolean
+}
+
 export interface BlogThemeOptions {
   title: string
   description?: string
@@ -29,6 +40,8 @@ export interface BlogThemeOptions {
   postsDir?: string // default 'src/posts'
   pageSize?: number // default 12
   defaultMode?: 'system' | 'dark' | 'light' // default 'system'
+  /** Shiki syntax highlighter configuration. */
+  highlighter?: HighlighterOptions
   rss?: {
     enabled?: boolean
     limit?: number
