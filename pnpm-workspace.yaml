@@ -31,7 +31,7 @@ catalog:
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.11
-  '@iconify-json/material-symbols': ^1.2.65
+  '@iconify-json/material-symbols': ^1.2.66
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.26
@@ -42,7 +42,7 @@ catalog:
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.9.3
-  '@sveltejs/kit': ^2.56.1
+  '@sveltejs/kit': ^2.57.1
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.4
   '@types/cross-spawn': ^6.0.6
@@ -53,7 +53,7 @@ catalog:
   '@types/minimist': ^1.2.5
   '@types/node': ^24.12.2
   '@types/prompts': ^2.4.9
-  '@unocss/extractor-svelte': ^66.6.7
+  '@unocss/extractor-svelte': ^66.6.8
   '@vite-pwa/sveltekit': ^1.1.0
   baseline-browser-mapping: 2.10.19
   changelogithub: ^14.0.0
@@ -64,7 +64,7 @@ catalog:
   fs-extra: ^11.3.4
   husky: ^9.1.7
   lint-staged: ^16.4.0
-  lru-cache: ^11.3.0
+  lru-cache: ^11.3.5
   mdast-util-from-markdown: ^2.0.3
   mdast-util-gfm: ^3.1.0
   mdast-util-to-hast: ^13.2.1
@@ -85,20 +85,20 @@ catalog:
   remark-stringify: ^11.0.0
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.55.1
+  svelte: ^5.55.4
   svelte-check: ^4.4.6
   svelte2tsx: ^0.7.53
   taze: ^19.11.0
-  twoslash: ^0.3.6
-  twoslash-protocol: ^0.3.6
+  twoslash: ^0.3.7
+  twoslash-protocol: ^0.3.7
   typescript: ^5.9.3
   uid: ^2.0.2
   unbuild: ^3.6.1
   unified: ^11.0.5
   unist-util-visit: ^5.1.0
-  unocss: ^66.6.7
+  unocss: ^66.6.8
   vfile: ^6.0.3
-  vite: ^7.3.1
+  vite: ^7.3.2
   vite-plugin-inspect: ^11.3.3
   vitest: 4.0.14
   workbox-build: ^7.4.0
