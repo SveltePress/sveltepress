@@ -62,6 +62,36 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
 
     async buildStart() {
       await scaffoldRoutes(config.root)
+
+      // Inject anti-FOWT theme-init script into app.html.
+      // SvelteKit doesn't call transformIndexHtml during prerender, so we
+      // must patch the template directly before SvelteKit reads it.
+      const THEME_MARKER = '<!-- sp-blog-theme-init -->'
+      const appHtmlPath = resolve(config.root, 'src/app.html')
+      try {
+        let html = await readFile(appHtmlPath, 'utf-8')
+        if (!html.includes(THEME_MARKER)) {
+          const mode = options.defaultMode ?? 'system'
+          const script = [
+            THEME_MARKER,
+            '<script>',
+            '(function(){',
+            `var s=localStorage.getItem('sp-blog-theme');`,
+            `var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';`,
+            `var m=${JSON.stringify(mode)};`,
+            `document.documentElement.dataset.theme=s||(m==='system'?p:m);`,
+            '})()',
+            '</script>',
+          ].join('')
+          html = html.replace('<head>', `<head>\n    ${script}`)
+          await writeFile(appHtmlPath, html, 'utf-8')
+          console.warn('[theme-blog] injected theme-init script into src/app.html')
+        }
+      }
+      catch {
+        // app.html doesn't exist yet — that's OK
+      }
+
       const index = await rebuildIndex(config.root)
 
       if (options.rss?.enabled !== false) {
@@ -124,10 +154,8 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       server.watcher.on('unlink', handlePostChange)
     },
 
-    transformIndexHtml(html) {
-      const mode = options.defaultMode ?? 'system'
-      const script = `<script>(function(){var s=localStorage.getItem('sp-blog-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=s||(${JSON.stringify(mode)}==='system'?p:${JSON.stringify(mode)});})();<\/script>`
-      return html.replace('<head>', `<head>\n  ${script}`)
-    },
+    // NOTE: transformIndexHtml is NOT used because SvelteKit's prerender
+    // pipeline doesn't call it. The anti-FOWT script is injected into
+    // app.html via buildStart instead.
   }
 }
