@@ -1,6 +1,7 @@
 <!-- src/components/PostLayout.svelte -->
 <script lang="ts">
   import type { BlogPost } from '../types.js'
+  import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
@@ -15,6 +16,25 @@
 
   const { post, prev, next }: Props = $props()
   const siteTitle = blogConfig.title ?? 'Blog'
+
+  onMount(() => {
+    const container = document.querySelector('.sp-post-content')
+    if (!container) return
+
+    const handler = (e: Event) => {
+      const btn = (e.target as Element).closest('.svp-code-block--copy-btn')
+      if (!btn) return
+      const code =
+        btn.closest('.svp-code-block')?.querySelector('.shiki')?.textContent ||
+        ''
+      navigator.clipboard.writeText(code)
+      btn.classList.add('copied')
+      setTimeout(() => btn.classList.remove('copied'), 2000)
+    }
+
+    container.addEventListener('click', handler)
+    return () => container.removeEventListener('click', handler)
+  })
 </script>
 
 <svelte:head>
@@ -71,25 +91,13 @@
   .sp-post-content :global(p) {
     margin-bottom: 1.15rem;
   }
-  .sp-post-content :global(code) {
+  /* Inline code only — Shiki <pre> blocks are styled in GlobalLayout */
+  .sp-post-content :global(code:not(pre code)) {
     background: var(--sp-blog-surface);
     color: var(--sp-blog-primary);
     padding: 1px 5px;
     border-radius: 3px;
     font-size: 0.875em;
-  }
-  .sp-post-content :global(pre) {
-    background: var(--sp-blog-surface);
-    border: 1px solid var(--sp-blog-border);
-    border-radius: 8px;
-    padding: 1rem;
-    overflow-x: auto;
-    margin-bottom: 1.25rem;
-  }
-  .sp-post-content :global(pre code) {
-    background: none;
-    padding: 0;
-    color: inherit;
   }
   .sp-post-content :global(blockquote) {
     border-left: 3px solid var(--sp-blog-primary);
