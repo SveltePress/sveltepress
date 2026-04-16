@@ -1,16 +1,11 @@
 <script lang="ts">
-  import { tags } from 'virtual:sveltepress/blog-tags'
-
-  const tagList = Object.entries(tags).map(([name, posts]) => ({
-    name,
-    count: posts.length,
-  }))
+  import { tags } from 'virtual:sveltepress/blog-tags-index'
 </script>
 
 <div class="sp-tags-page">
   <h1 class="sp-tags-page__title">All Tags</h1>
   <div class="sp-tags-page__grid">
-    {#each tagList as { name, count }}
+    {#each tags as { name, count }}
       <a href="/tags/{name}/" class="sp-tag-pill">
         #{name} <span class="sp-tag-pill__count">{count}</span>
       </a>

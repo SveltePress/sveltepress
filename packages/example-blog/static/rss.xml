@@ -4,15 +4,71 @@
     <title>Example Blog</title>
     <link>http://localhost:4173</link>
     <description>A demo blog powered by @sveltepress/theme-blog</description>
-    <lastBuildDate>Thu, 16 Apr 2026 17:16:31 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 19:05:12 GMT</lastBuildDate>
     <copyright>© 2026 Example Blog</copyright>
     
+    <item>
+      <title>Building Fast Sites with Vite</title>
+      <link>http://localhost:4173/posts/building-with-vite</link>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <description>Building Fast Sites with Vite Vite is a modern build tool designed for speed. With its native ES module support and ligh</description>
+      <category>Tutorials</category>
+    </item>
+    <item>
+      <title>Auditing JavaScript Bundle Size</title>
+      <link>http://localhost:4173/posts/bundle-size-audit</link>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Auditing JavaScript Bundle Size Bundle bloat creeps in one npm install at a time. A quarterly audit keeps your app fast.</description>
+      <category>Performance</category>
+    </item>
     <item>
       <title>Code Highlighting Features Demo</title>
       <link>http://localhost:4173/posts/code-highlight-demo</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <description>Code Highlighting Features This post demonstrates all code block features available in the blog theme. Basic Syntax High</description>
       <category>Features</category>
+    </item>
+    <item>
+      <title>Dark Mode Without Flash of Wrong Theme</title>
+      <link>http://localhost:4173/posts/dark-mode-anti-fowt</link>
+      <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Dark Mode Without Flash of Wrong Theme Flash of wrong theme (FOWT) happens when the page renders in the default palette</description>
+      <category>Web Design</category>
+    </item>
+    <item>
+      <title>Hello, Sveltepress Blog Theme!</title>
+      <link>http://localhost:4173/posts/hello-sveltepress</link>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Hello, Sveltepress Blog Theme! Welcome to the Example Blog powered by @sveltepress/theme-blog — a magazine-style Ember p</description>
+      <category>Announcements</category>
+    </item>
+    <item>
+      <title>Markdown Frontmatter Patterns</title>
+      <link>http://localhost:4173/posts/markdown-frontmatter-patterns</link>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Markdown Frontmatter Patterns Frontmatter is the YAML block at the top of a markdown file. It's where you encode everyth</description>
+      <category>Tutorials</category>
+    </item>
+    <item>
+      <title>CSS Masonry Layout Without JavaScript</title>
+      <link>http://localhost:4173/posts/masonry-layout</link>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 GMT</pubDate>
+      <description>CSS Masonry Layout Without JavaScript The Sveltepress Blog Theme uses CSS columns to achieve a masonry-style grid withou</description>
+      <category>Web Design</category>
+    </item>
+    <item>
+      <title>RSS Feeds in 2026 — Still Worth It</title>
+      <link>http://localhost:4173/posts/rss-feeds-explained</link>
+      <pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate>
+      <description>RSS Feeds in 2026 — Still Worth It Everyone said RSS was dead when Google Reader shut down in 2013. Thirteen years later</description>
+      <category>Opinion</category>
+    </item>
+    <item>
+      <title>Svelte 5 Runes — Reactivity Reimagined</title>
+      <link>http://localhost:4173/posts/svelte-5-runes</link>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Svelte 5 Runes — Reactivity Reimagined Svelte 5 introduces runes — a new approach to reactivity that makes your componen</description>
+      <category>Tutorials</category>
     </item>
     <item>
       <title>SvelteKit Routing Basics</title>
@@ -29,48 +85,6 @@
       <category>Tutorials</category>
     </item>
     <item>
-      <title>Dark Mode Without Flash of Wrong Theme</title>
-      <link>http://localhost:4173/posts/dark-mode-anti-fowt</link>
-      <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Dark Mode Without Flash of Wrong Theme Flash of wrong theme (FOWT) happens when the page renders in the default palette</description>
-      <category>Web Design</category>
-    </item>
-    <item>
-      <title>RSS Feeds in 2026 — Still Worth It</title>
-      <link>http://localhost:4173/posts/rss-feeds-explained</link>
-      <pubDate>Fri, 03 Apr 2026 00:00:00 GMT</pubDate>
-      <description>RSS Feeds in 2026 — Still Worth It Everyone said RSS was dead when Google Reader shut down in 2013. Thirteen years later</description>
-      <category>Opinion</category>
-    </item>
-    <item>
-      <title>Hello, Sveltepress Blog Theme!</title>
-      <link>http://localhost:4173/posts/hello-sveltepress</link>
-      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Hello, Sveltepress Blog Theme! Welcome to the Example Blog powered by @sveltepress/theme-blog — a magazine-style Ember p</description>
-      <category>Announcements</category>
-    </item>
-    <item>
-      <title>Vitest in Practice</title>
-      <link>http://localhost:4173/posts/vitest-in-practice</link>
-      <pubDate>Sat, 28 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Vitest in Practice Vitest is Vite's test runner — it reuses your Vite config, so ESM, TypeScript, and path aliases just</description>
-      <category>Tutorials</category>
-    </item>
-    <item>
-      <title>Auditing JavaScript Bundle Size</title>
-      <link>http://localhost:4173/posts/bundle-size-audit</link>
-      <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Auditing JavaScript Bundle Size Bundle bloat creeps in one npm install at a time. A quarterly audit keeps your app fast.</description>
-      <category>Performance</category>
-    </item>
-    <item>
-      <title>Svelte 5 Runes — Reactivity Reimagined</title>
-      <link>http://localhost:4173/posts/svelte-5-runes</link>
-      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Svelte 5 Runes — Reactivity Reimagined Svelte 5 introduces runes — a new approach to reactivity that makes your componen</description>
-      <category>Tutorials</category>
-    </item>
-    <item>
       <title>UnoCSS vs Tailwind — When to Pick Which</title>
       <link>http://localhost:4173/posts/unocss-vs-tailwind</link>
       <pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate>
@@ -78,25 +92,11 @@
       <category>Opinion</category>
     </item>
     <item>
-      <title>Markdown Frontmatter Patterns</title>
-      <link>http://localhost:4173/posts/markdown-frontmatter-patterns</link>
-      <pubDate>Sun, 08 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Markdown Frontmatter Patterns Frontmatter is the YAML block at the top of a markdown file. It's where you encode everyth</description>
+      <title>Vitest in Practice</title>
+      <link>http://localhost:4173/posts/vitest-in-practice</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Vitest in Practice Vitest is Vite's test runner — it reuses your Vite config, so ESM, TypeScript, and path aliases just</description>
       <category>Tutorials</category>
-    </item>
-    <item>
-      <title>Building Fast Sites with Vite</title>
-      <link>http://localhost:4173/posts/building-with-vite</link>
-      <pubDate>Sat, 14 Feb 2026 00:00:00 GMT</pubDate>
-      <description>Building Fast Sites with Vite Vite is a modern build tool designed for speed. With its native ES module support and ligh</description>
-      <category>Tutorials</category>
-    </item>
-    <item>
-      <title>CSS Masonry Layout Without JavaScript</title>
-      <link>http://localhost:4173/posts/masonry-layout</link>
-      <pubDate>Fri, 30 Jan 2026 00:00:00 GMT</pubDate>
-      <description>CSS Masonry Layout Without JavaScript The Sveltepress Blog Theme uses CSS columns to achieve a masonry-style grid withou</description>
-      <category>Web Design</category>
     </item>
   </channel>
 </rss>
