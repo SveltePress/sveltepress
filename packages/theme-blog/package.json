@@ -6,6 +6,19 @@
   "description": "A magazine-style blog theme for Sveltepress",
   "author": { "name": "Dongsheng Zhao", "email": "1197160272@qq.com" },
   "license": "MIT",
+  "homepage": "https://sveltepress.site/",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/Blackman99/sveltepress",
+    "directory": "packages/theme-blog"
+  },
+  "keywords": [
+    "Blog",
+    "Theme",
+    "svelte",
+    "sveltepress"
+  ],
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -23,6 +36,9 @@
       "svelte": "./dist/components/PageLayout.svelte"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "vitest",
     "build:comps": "svelte-package -i src",
@@ -46,7 +62,7 @@
     "unocss": "catalog:",
     "@unocss/extractor-svelte": "catalog:",
     "unified": "catalog:",
-    "yaml": "^2.7.0"
+    "yaml": "catalog:"
   },
   "devDependencies": {
     "@sveltejs/kit": "catalog:",
