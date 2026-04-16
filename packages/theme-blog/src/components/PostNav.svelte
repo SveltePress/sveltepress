@@ -62,7 +62,7 @@
     color: var(--sp-blog-primary);
     line-height: 1.4;
   }
-  .sp-post-nav__title:hover {
+  .sp-post-nav__item:hover .sp-post-nav__title {
     text-decoration: underline;
   }
 </style>
