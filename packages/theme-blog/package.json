@@ -69,11 +69,16 @@
   },
   "dependencies": {
     "@unocss/extractor-svelte": "catalog:",
+    "hast-util-to-string": "^3.0.1",
     "rehype-stringify": "catalog:",
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
     "remark-rehype": "catalog:",
+    "lru-cache": "catalog:",
+    "@shikijs/twoslash": "catalog:",
+    "shiki": "catalog:",
     "unified": "catalog:",
+    "unist-util-visit": "catalog:",
     "unocss": "catalog:",
     "yaml": "catalog:"
   },
