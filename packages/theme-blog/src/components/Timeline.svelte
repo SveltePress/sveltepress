@@ -1,17 +1,17 @@
 <!-- src/components/Timeline.svelte -->
 <script lang="ts">
-  import type { BlogPost } from '../types.js'
+  import type { BlogPostMeta } from '../types.js'
   import { onMount } from 'svelte'
 
   interface Props {
-    posts: BlogPost[]
+    posts: BlogPostMeta[]
   }
 
   const { posts }: Props = $props()
 
   interface YearGroup {
     year: string
-    posts: BlogPost[]
+    posts: BlogPostMeta[]
   }
 
   // Posts are already sorted desc by date. Group by year, preserving order.

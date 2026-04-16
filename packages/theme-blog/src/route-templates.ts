@@ -10,34 +10,96 @@ export const ROOT_LAYOUT_TS = `export const prerender = true
 export const trailingSlash = 'always'
 `
 
-// Core plugin wraps this with GlobalLayout.svelte (as <PageLayout {fm}>).
-// Just pass SvelteKit children through.
+// Core plugin wraps this with GlobalLayout.svelte.
 export const ROOT_LAYOUT = `<script>
   const { children } = $props()
 </script>
 {@render children?.()}
 `
 
-// Core plugin wraps this with PageLayout.svelte (as <PageLayout {fm}>...).
-// Only include the page body; PageLayout import is injected automatically.
-export const LIST_PAGE = `<script lang="ts">
-  import { posts } from 'virtual:sveltepress/blog-posts'
-  import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
-</script>
-<MasonryGrid {posts} />
-`
+// Home page — paginated list of post meta, server-loaded.
+export const LIST_PAGE_SERVER_LOAD = `import { posts } from 'virtual:sveltepress/blog-posts-meta'
+import { blogConfig } from 'virtual:sveltepress/blog-config'
 
-export const POST_PAGE_LOAD = `import { posts } from 'virtual:sveltepress/blog-posts'
-import { error } from '@sveltejs/kit'
+export const prerender = true
 
-export function load({ params }) {
-  const idx = posts.findIndex(p => p.slug === params.slug)
-  if (idx === -1) error(404, 'Post not found')
-  return { post: posts[idx], prev: posts[idx + 1], next: posts[idx - 1] }
+export function load() {
+  const pageSize = blogConfig.pageSize ?? 12
+  return {
+    posts: posts.slice(0, pageSize),
+    total: posts.length,
+    pageSize,
+    page: 1,
+  }
 }
 `
 
-// Core plugin wraps this with PageLayout.svelte.
+export const LIST_PAGE = `<script lang="ts">
+  import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
+  import Pagination from '@sveltepress/theme-blog/components/Pagination.svelte'
+  const { data } = $props()
+  const posts = $derived(data.posts)
+</script>
+<MasonryGrid {posts} />
+<Pagination page={data.page} total={data.total} pageSize={data.pageSize} />
+`
+
+// /page/[n]/ — Nth page of the paginated list.
+export const PAGE_N_SERVER_LOAD = `import { posts } from 'virtual:sveltepress/blog-posts-meta'
+import { blogConfig } from 'virtual:sveltepress/blog-config'
+import { error } from '@sveltejs/kit'
+
+export const prerender = true
+
+export function entries() {
+  const pageSize = blogConfig.pageSize ?? 12
+  const totalPages = Math.max(1, Math.ceil(posts.length / pageSize))
+  // Page 1 is served at /, not /page/1/. Start enumerating from 2.
+  const out = []
+  for (let i = 2; i <= totalPages; i++) out.push({ n: String(i) })
+  return out
+}
+
+export function load({ params }) {
+  const pageSize = blogConfig.pageSize ?? 12
+  const n = Number(params.n)
+  if (!Number.isInteger(n) || n < 1) error(404, 'Bad page number')
+  const start = (n - 1) * pageSize
+  const slice = posts.slice(start, start + pageSize)
+  if (slice.length === 0) error(404, 'Page out of range')
+  return { posts: slice, total: posts.length, pageSize, page: n }
+}
+`
+
+export const PAGE_N_PAGE = LIST_PAGE // same component, different load
+
+// Post page — reads per-slug JSON from disk. The vite plugin writes these
+// during buildStart to .sveltepress/posts/<slug>.json because SvelteKit's
+// prerender can't reliably resolve virtual modules through dynamic import()
+// with template-string slugs.
+export const POST_PAGE_SERVER_LOAD = `import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+import { posts } from 'virtual:sveltepress/blog-posts-meta'
+import { error } from '@sveltejs/kit'
+
+export const prerender = true
+
+export function entries() {
+  return posts.map(p => ({ slug: p.slug }))
+}
+
+export async function load({ params }) {
+  try {
+    const file = resolve(process.cwd(), '.sveltepress/posts', \`\${params.slug}.json\`)
+    const post = JSON.parse(await readFile(file, 'utf-8'))
+    const idx = posts.findIndex(p => p.slug === params.slug)
+    return { post, prev: posts[idx + 1] ?? null, next: posts[idx - 1] ?? null }
+  } catch {
+    error(404, 'Post not found')
+  }
+}
+`
+
 export const POST_PAGE = `<script lang="ts">
   import PostLayout from '@sveltepress/theme-blog/PostLayout.svelte'
   const { data } = $props()
@@ -48,14 +110,24 @@ export const POST_PAGE = `<script lang="ts">
 <PostLayout {post} {prev} {next} />
 `
 
-export const TAG_PAGE_LOAD = `import { tags } from 'virtual:sveltepress/blog-tags'
+// Tag page — server load uses dynamic import() of the per-tag virtual module.
+// Vite resolves this statically at build time since the prefix is literal.
+export const TAG_PAGE_SERVER_LOAD = `import { tags } from 'virtual:sveltepress/blog-tags-index'
+import { error } from '@sveltejs/kit'
 
-export function load({ params }) {
-  return { tag: params.tag, posts: tags[params.tag] ?? [] }
+export const prerender = true
+
+export function entries() {
+  return tags.map(t => ({ tag: t.name }))
+}
+
+export async function load({ params }) {
+  const mod = await import(\`virtual:sveltepress/blog-tag/\${encodeURIComponent(params.tag)}\`)
+  if (!mod.posts.length) error(404, 'Tag not found')
+  return { tag: params.tag, posts: mod.posts }
 }
 `
 
-// Core plugin wraps this with PageLayout.svelte.
 export const TAG_PAGE = `<script lang="ts">
   import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
   import TaxonomyHeader from '@sveltepress/theme-blog/components/TaxonomyHeader.svelte'
@@ -67,14 +139,23 @@ export const TAG_PAGE = `<script lang="ts">
 <MasonryGrid {posts} />
 `
 
-export const CAT_PAGE_LOAD = `import { categories } from 'virtual:sveltepress/blog-categories'
+// Category page — mirrors tag page.
+export const CAT_PAGE_SERVER_LOAD = `import { categories } from 'virtual:sveltepress/blog-categories-index'
+import { error } from '@sveltejs/kit'
 
-export function load({ params }) {
-  return { category: params.cat, posts: categories[params.cat] ?? [] }
+export const prerender = true
+
+export function entries() {
+  return categories.map(c => ({ cat: c.name }))
+}
+
+export async function load({ params }) {
+  const mod = await import(\`virtual:sveltepress/blog-category/\${encodeURIComponent(params.cat)}\`)
+  if (!mod.posts.length) error(404, 'Category not found')
+  return { category: params.cat, posts: mod.posts }
 }
 `
 
-// Core plugin wraps this with PageLayout.svelte.
 export const CAT_PAGE = `<script lang="ts">
   import MasonryGrid from '@sveltepress/theme-blog/components/MasonryGrid.svelte'
   import TaxonomyHeader from '@sveltepress/theme-blog/components/TaxonomyHeader.svelte'
@@ -86,23 +167,22 @@ export const CAT_PAGE = `<script lang="ts">
 <MasonryGrid posts={posts} />
 `
 
-// Core plugin wraps this with PageLayout.svelte.
+// Timeline — uses the meta list (no content needed for timeline rendering).
 export const TIMELINE_PAGE = `<script lang="ts">
   import Timeline from '@sveltepress/theme-blog/components/Timeline.svelte'
-  import { posts } from 'virtual:sveltepress/blog-posts'
+  import { posts } from 'virtual:sveltepress/blog-posts-meta'
 </script>
 <Timeline {posts} />
 `
 
-// Core plugin wraps this with PageLayout.svelte.
+// Tags index — uses the pre-computed count list (no posts needed here).
 export const TAGS_INDEX_PAGE = `<script lang="ts">
-  import { tags } from 'virtual:sveltepress/blog-tags'
-  const tagList = Object.entries(tags).map(([name, posts]) => ({ name, count: posts.length }))
+  import { tags } from 'virtual:sveltepress/blog-tags-index'
 </script>
 <div class="sp-tags-page">
   <h1 class="sp-tags-page__title">All Tags</h1>
   <div class="sp-tags-page__grid">
-    {#each tagList as { name, count }}
+    {#each tags as { name, count }}
       <a href="/tags/{name}/" class="sp-tag-pill">
         #{name} <span class="sp-tag-pill__count">{count}</span>
       </a>
