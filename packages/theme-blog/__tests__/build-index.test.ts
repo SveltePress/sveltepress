@@ -1,6 +1,6 @@
 import type { ParsedPost } from '../src/parse-post.js'
 import { describe, expect, it } from 'vitest'
-import { buildIndex, toVirtualModuleCode } from '../src/build-index.js'
+import { buildIndex } from '../src/build-index.js'
 
 function makePost(overrides: Partial<ParsedPost> = {}): ParsedPost {
   return {
@@ -21,46 +21,57 @@ describe('buildIndex', () => {
     const posts = [makePost({ draft: true }), makePost({ slug: 'pub', draft: false })]
     const index = buildIndex(posts)
     expect(index.posts).toHaveLength(1)
-    expect(index.posts[0].slug).toBe('pub')
+    expect(index.meta).toHaveLength(1)
+    expect(index.meta[0].slug).toBe('pub')
   })
 
-  it('sorts posts by date descending', () => {
+  it('sorts by date desc in both posts and meta', () => {
     const posts = [
       makePost({ slug: 'older', date: '2026-03-01' }),
       makePost({ slug: 'newer', date: '2026-04-10' }),
     ]
     const index = buildIndex(posts)
     expect(index.posts[0].slug).toBe('newer')
-    expect(index.posts[1].slug).toBe('older')
+    expect(index.meta[0].slug).toBe('newer')
   })
 
-  it('builds tag index', () => {
+  it('strips contentHtml from meta entries', () => {
+    const posts = [makePost({ slug: 'a', contentHtml: '<p>big html</p>' })]
+    const index = buildIndex(posts)
+    expect('contentHtml' in index.meta[0]).toBe(false)
+    expect(index.posts[0].contentHtml).toBe('<p>big html</p>')
+  })
+
+  it('builds metaBySlug for O(1) slug lookup', () => {
+    const posts = [makePost({ slug: 'a' }), makePost({ slug: 'b' })]
+    const index = buildIndex(posts)
+    expect(index.metaBySlug.a.slug).toBe('a')
+    expect(index.metaBySlug.b.slug).toBe('b')
+  })
+
+  it('builds tagCounts sorted desc by count', () => {
     const posts = [
-      makePost({ slug: 'a', tags: ['Svelte', 'Tools'] }),
-      makePost({ slug: 'b', tags: ['Svelte'] }),
+      makePost({ slug: 'a', tags: ['x', 'y'] }),
+      makePost({ slug: 'b', tags: ['x'] }),
+      makePost({ slug: 'c', tags: ['x'] }),
     ]
     const index = buildIndex(posts)
-    expect(index.tags.Svelte).toHaveLength(2)
-    expect(index.tags.Tools).toHaveLength(1)
+    expect(index.tagCounts[0]).toEqual({ name: 'x', count: 3 })
+    expect(index.tagCounts[1]).toEqual({ name: 'y', count: 1 })
   })
 
-  it('builds category index', () => {
+  it('tagPosts stores meta only (no contentHtml)', () => {
+    const posts = [makePost({ slug: 'a', tags: ['x'], contentHtml: '<p>big</p>' })]
+    const index = buildIndex(posts)
+    expect('contentHtml' in index.tagPosts.x[0]).toBe(false)
+  })
+
+  it('categoryCounts mirror tagCounts shape', () => {
     const posts = [
-      makePost({ slug: 'a', category: 'Engineering' }),
-      makePost({ slug: 'b', category: 'Engineering' }),
-      makePost({ slug: 'c', category: 'Design' }),
+      makePost({ slug: 'a', category: 'Eng' }),
+      makePost({ slug: 'b', category: 'Eng' }),
     ]
     const index = buildIndex(posts)
-    expect(index.categories.Engineering).toHaveLength(2)
-    expect(index.categories.Design).toHaveLength(1)
-  })
-
-  it('generates valid JS for virtual modules', () => {
-    const posts = [makePost({ slug: 'a', tags: ['Svelte'] })]
-    const index = buildIndex(posts)
-    const { postsModule, tagsModule, categoriesModule } = toVirtualModuleCode(index)
-    expect(postsModule).toContain('"slug":"a"')
-    expect(tagsModule).toContain('"Svelte"')
-    expect(categoriesModule).toBe('export const categories = {}')
+    expect(index.categoryCounts[0]).toEqual({ name: 'Eng', count: 2 })
   })
 })

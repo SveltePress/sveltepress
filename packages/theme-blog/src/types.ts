@@ -57,9 +57,20 @@ export interface BlogThemeOptions {
 }
 
 export interface PostIndex {
+  /** All non-draft posts, sorted desc by date. Keeps full content (for per-slug lookup). */
   posts: BlogPost[]
-  tags: Record<string, BlogPost[]>
-  categories: Record<string, BlogPost[]>
+  /** Meta-only list (no contentHtml) for list/timeline/pagination pages. */
+  meta: BlogPostMeta[]
+  /** Meta-only lookup by slug. */
+  metaBySlug: Record<string, BlogPostMeta>
+  /** Aggregate tag counts for tag index page. */
+  tagCounts: Array<{ name: string, count: number }>
+  /** Meta list for each tag, keyed by tag name. */
+  tagPosts: Record<string, BlogPostMeta[]>
+  /** Aggregate category counts. */
+  categoryCounts: Array<{ name: string, count: number }>
+  /** Meta list for each category, keyed by category name. */
+  categoryPosts: Record<string, BlogPostMeta[]>
 }
 
 export const DEFAULT_THEME_COLOR: Required<ThemeColor> = {
