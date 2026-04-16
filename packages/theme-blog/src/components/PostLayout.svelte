@@ -4,6 +4,7 @@
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import AuthorCard from './AuthorCard.svelte'
+  import GiscusComments from './GiscusComments.svelte'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
   import PostNav from './PostNav.svelte'
@@ -88,6 +89,7 @@
       {#if post.related?.length}
         <RelatedPosts posts={post.related} />
       {/if}
+      <GiscusComments />
       <AuthorCard />
     </div>
     <aside class="sp-post__toc">

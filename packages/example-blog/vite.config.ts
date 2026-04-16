@@ -34,6 +34,14 @@ const config = defineConfig({
           limit: 20,
           copyright: `© ${new Date().getFullYear()} Example Blog`,
         },
+        // Uncomment and fill with real values from https://giscus.app to enable comments.
+        // giscus: {
+        //   repo: 'you/your-repo',
+        //   repoId: 'R_xxxxxxxx',
+        //   category: 'Announcements',
+        //   categoryId: 'DIC_xxxxxxxx',
+        //   mapping: 'pathname',
+        // },
       }),
       siteConfig: {
         title: 'Example Blog',

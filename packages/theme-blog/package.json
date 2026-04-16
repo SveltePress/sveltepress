@@ -69,6 +69,11 @@
       "import": "./dist/components/AuthorCard.svelte",
       "svelte": "./dist/components/AuthorCard.svelte"
     },
+    "./components/GiscusComments.svelte": {
+      "types": "./dist/components/GiscusComments.svelte.d.ts",
+      "import": "./dist/components/GiscusComments.svelte",
+      "svelte": "./dist/components/GiscusComments.svelte"
+    },
     "./components/AuthorProfile.svelte": {
       "types": "./dist/components/AuthorProfile.svelte.d.ts",
       "import": "./dist/components/AuthorProfile.svelte",
