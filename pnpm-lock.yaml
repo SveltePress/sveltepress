@@ -24,6 +24,9 @@ catalogs:
     '@floating-ui/dom':
       specifier: ^1.7.6
       version: 1.7.6
+    '@fontsource/inter':
+      specifier: ^5.2.0
+      version: 5.2.8
     '@iconify-json/bi':
       specifier: ^1.2.7
       version: 1.2.7
@@ -66,6 +69,9 @@ catalogs:
     '@iconify-json/vscode-icons':
       specifier: ^1.2.45
       version: 1.2.45
+    '@resvg/resvg-js':
+      specifier: ^2.6.2
+      version: 2.6.2
     '@shikijs/twoslash':
       specifier: ^3.23.0
       version: 3.23.0
@@ -198,6 +204,9 @@ catalogs:
     remark-stringify:
       specifier: ^11.0.0
       version: 11.0.0
+    satori:
+      specifier: ^0.12.0
+      version: 0.12.2
     shiki:
       specifier: ^3.23.0
       version: 3.23.0
@@ -667,10 +676,10 @@ importers:
   packages/theme-blog:
     dependencies:
       '@fontsource/inter':
-        specifier: ^5.2.0
+        specifier: 'catalog:'
         version: 5.2.8
       '@resvg/resvg-js':
-        specifier: ^2.6.2
+        specifier: 'catalog:'
         version: 2.6.2
       '@shikijs/twoslash':
         specifier: 'catalog:'
@@ -697,7 +706,7 @@ importers:
         specifier: 'catalog:'
         version: 11.1.2
       satori:
-        specifier: ^0.12.0
+        specifier: 'catalog:'
         version: 0.12.2
       shiki:
         specifier: 'catalog:'
