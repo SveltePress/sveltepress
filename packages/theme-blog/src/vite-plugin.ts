@@ -1,10 +1,12 @@
 // src/vite-plugin.ts
 import type { Plugin, ResolvedConfig } from 'vite'
+import type { Cache } from './parse-cache.js'
 import type { BlogThemeOptions } from './types.js'
 import type { VirtualModules } from './virtual-modules.js'
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
+import { hashContent, loadCache, saveCache } from './parse-cache.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
 import { scaffoldRoutes } from './scaffold.js'
@@ -24,6 +26,7 @@ const VIRTUAL_PREFIX = '\0virtual:sveltepress/blog-'
 export function blogVitePlugin(options: BlogThemeOptions): Plugin {
   let config: ResolvedConfig
   let modules: VirtualModules | null = null
+  let cache: Cache = {}
 
   async function rebuildIndex(root: string) {
     const postsDir = resolve(root, options.postsDir ?? 'src/posts')
@@ -35,14 +38,25 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       // postsDir doesn't exist yet — that's OK
     }
 
+    const next: Cache = {}
     const parsed = await Promise.all(
       files.map(async (file) => {
         const raw = await readFile(join(postsDir, file), 'utf-8')
         const slug = file.replace(/\.md$/, '')
-        return parsePost(slug, raw)
+        const hash = hashContent(raw, options.highlighter)
+        const existing = cache[slug]
+        if (existing && existing.hash === hash) {
+          next[slug] = existing
+          return existing.parsed
+        }
+        const p = await parsePost(slug, raw)
+        next[slug] = { hash, parsed: p }
+        return p
       }),
     )
 
+    cache = next
+    await saveCache(root, cache)
     modules = buildVirtualModules(parsed)
 
     // Write per-slug JSON files for +page.server.ts loads to read.
@@ -76,6 +90,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     async buildStart() {
       await initHighlighter(options.highlighter)
       await scaffoldRoutes(config.root)
+      cache = await loadCache(config.root)
 
       // Inject anti-FOWT theme-init script into app.html.
       // SvelteKit doesn't call transformIndexHtml during prerender, so we
