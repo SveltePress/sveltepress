@@ -33,6 +33,21 @@
       "types": "./dist/components/PageLayout.svelte.d.ts",
       "import": "./dist/components/PageLayout.svelte",
       "svelte": "./dist/components/PageLayout.svelte"
+    },
+    "./PostLayout.svelte": {
+      "types": "./dist/components/PostLayout.svelte.d.ts",
+      "import": "./dist/components/PostLayout.svelte",
+      "svelte": "./dist/components/PostLayout.svelte"
+    },
+    "./components/MasonryGrid.svelte": {
+      "types": "./dist/components/MasonryGrid.svelte.d.ts",
+      "import": "./dist/components/MasonryGrid.svelte",
+      "svelte": "./dist/components/MasonryGrid.svelte"
+    },
+    "./components/TaxonomyHeader.svelte": {
+      "types": "./dist/components/TaxonomyHeader.svelte.d.ts",
+      "import": "./dist/components/TaxonomyHeader.svelte",
+      "svelte": "./dist/components/TaxonomyHeader.svelte"
     }
   },
   "types": "./dist/index.d.ts",
@@ -54,12 +69,10 @@
   },
   "dependencies": {
     "@unocss/extractor-svelte": "catalog:",
-    "fs-extra": "catalog:",
     "rehype-stringify": "catalog:",
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
     "remark-rehype": "catalog:",
-    "shiki": "catalog:",
     "unified": "catalog:",
     "unocss": "catalog:",
     "yaml": "catalog:"

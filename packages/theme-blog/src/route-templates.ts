@@ -22,18 +22,18 @@ export const POST_PAGE_LOAD = `import { posts } from 'virtual:sveltepress/blog-p
 import { error } from '@sveltejs/kit'
 
 export function load({ params }) {
-  const post = posts.find(p => p.slug === params.slug)
-  if (!post) error(404, 'Post not found')
-  return { post }
+  const idx = posts.findIndex(p => p.slug === params.slug)
+  if (idx === -1) error(404, 'Post not found')
+  return { post: posts[idx], prev: posts[idx + 1], next: posts[idx - 1] }
 }
 `
 
 export const POST_PAGE = `<script lang="ts">
   import PostLayout from '@sveltepress/theme-blog/PostLayout.svelte'
-  export let data
-  const { post } = data
+  const { data } = $props()
+  const { post, prev, next } = data
 </script>
-<PostLayout {post} />
+<PostLayout {post} {prev} {next} />
 `
 
 export const TAG_PAGE_LOAD = `import { tags } from 'virtual:sveltepress/blog-tags'
