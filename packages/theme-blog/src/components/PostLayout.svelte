@@ -54,11 +54,11 @@
   }
   .sp-post-content {
     line-height: 1.75;
-    color: #d6d3d1;
+    color: var(--sp-blog-content);
   }
   .sp-post-content :global(h2),
   .sp-post-content :global(h3) {
-    color: #fff7ed;
+    color: var(--sp-blog-text);
     font-weight: 700;
     margin: 2rem 0 0.75rem;
   }

@@ -42,7 +42,7 @@
   }
   .sp-post-meta__author {
     font-weight: 600;
-    color: #d6d3d1;
+    color: var(--sp-blog-content);
   }
   .sp-post-meta__tags {
     display: flex;
