@@ -9,23 +9,14 @@
 
   const { posts }: Props = $props()
 
-  interface YearGroup {
+  interface MonthGroup {
+    key: string
     year: string
+    month: string
     posts: BlogPostMeta[]
   }
 
-  // Posts are already sorted desc by date. Group by year, preserving order.
-  const groups = $derived.by<YearGroup[]>(() => {
-    const map = new Map<string, BlogPostMeta[]>()
-    for (const p of posts) {
-      const y = p.date.slice(0, 4)
-      if (!map.has(y)) map.set(y, [])
-      map.get(y)!.push(p)
-    }
-    return Array.from(map, ([year, posts]) => ({ year, posts }))
-  })
-
-  const MONTHS = [
+  const MONTHS_SHORT = [
     'Jan',
     'Feb',
     'Mar',
@@ -39,18 +30,47 @@
     'Nov',
     'Dec',
   ]
+  const MONTHS_LONG = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  // Posts are already sorted desc by date. Group by year+month, preserving order.
+  const groups = $derived.by<MonthGroup[]>(() => {
+    const map = new Map<string, BlogPostMeta[]>()
+    for (const p of posts) {
+      const key = p.date.slice(0, 7)
+      if (!map.has(key)) map.set(key, [])
+      map.get(key)!.push(p)
+    }
+    return Array.from(map, ([key, posts]) => {
+      const [year, m] = key.split('-')
+      return { key, year, month: MONTHS_LONG[Number(m) - 1], posts }
+    })
+  })
 
   function fmtDate(iso: string) {
     const [, m, d] = iso.split('-')
-    return `${MONTHS[Number(m) - 1]} ${Number(d)}`
+    return `${MONTHS_SHORT[Number(m) - 1]} ${Number(d)}`
   }
 
   const totalPosts = $derived(posts.length)
-  const yearSpan = $derived(
-    groups.length > 1
-      ? `${groups[groups.length - 1].year}–${groups[0].year}`
-      : (groups[0]?.year ?? ''),
-  )
+  const yearSpan = $derived.by(() => {
+    if (!posts.length) return ''
+    const newest = posts[0].date.slice(0, 4)
+    const oldest = posts[posts.length - 1].date.slice(0, 4)
+    return newest === oldest ? newest : `${oldest}–${newest}`
+  })
 
   let container: HTMLElement | undefined = $state()
 
@@ -87,11 +107,12 @@
     </p>
   </header>
 
-  {#each groups as group, gi (group.year)}
+  {#each groups as group, gi (group.key)}
     <section class="sp-tl__year-group" style="--gi: {gi}">
       <div class="sp-tl__year-col">
         <div class="sp-tl__year" data-reveal>
-          <span class="sp-tl__year-num">{group.year}</span>
+          <span class="sp-tl__year-num">{group.month}</span>
+          <span class="sp-tl__year-sub">{group.year}</span>
           <span class="sp-tl__year-count">
             {group.posts.length}
             {group.posts.length === 1 ? 'post' : 'posts'}
@@ -225,12 +246,20 @@
   }
   .sp-tl__year-num {
     display: block;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     line-height: 1;
     color: var(--sp-blog-text);
+  }
+  .sp-tl__year-sub {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--sp-blog-primary);
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
   }
   .sp-tl__year-count {
     display: block;
@@ -400,7 +429,10 @@
       gap: 0.75rem;
     }
     .sp-tl__year-num {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+    }
+    .sp-tl__year-sub {
+      margin-top: 0;
     }
     .sp-tl__year-count {
       margin-top: 0;
