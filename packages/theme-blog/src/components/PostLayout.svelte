@@ -1,6 +1,6 @@
 <!-- src/components/PostLayout.svelte -->
 <script lang="ts">
-  import type { BlogPost } from '../types.js'
+  import type { BlogPost, BlogPostMeta } from '../types.js'
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import PostHero from './PostHero.svelte'
@@ -10,8 +10,8 @@
 
   interface Props {
     post: BlogPost
-    prev?: BlogPost
-    next?: BlogPost
+    prev?: BlogPostMeta | null
+    next?: BlogPostMeta | null
   }
 
   const { post, prev, next }: Props = $props()

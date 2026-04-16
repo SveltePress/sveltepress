@@ -1,10 +1,10 @@
 <!-- src/components/PostNav.svelte -->
 <script lang="ts">
-  import type { BlogPost } from '../types.js'
+  import type { BlogPostMeta } from '../types.js'
 
   interface Props {
-    prev?: BlogPost
-    next?: BlogPost
+    prev?: BlogPostMeta | null
+    next?: BlogPostMeta | null
   }
 
   const { prev, next }: Props = $props()
