@@ -65,6 +65,7 @@ catalog:
   mdast-util-gfm: ^3.1.0
   mdast-util-to-hast: ^13.2.1
   meilisearch: ^0.48.2
+  minisearch: ^7.1.1
   minimist: ^1.2.8
   picocolors: ^1.1.1
   prettier: ~3.6.2

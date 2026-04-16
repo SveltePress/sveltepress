@@ -8,6 +8,7 @@ import Unocss from 'unocss/vite'
 import { generateSidebar, isAutoSidebarOptions } from '../auto-sidebar.js'
 import { SERVICE_WORKER_PATH } from '../constants.js'
 import { initHighlighter } from '../markdown/highlighter.js'
+import { searchIndexPlugin } from './search-index-plugin.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
@@ -136,6 +137,20 @@ export default async (options?: DefaultThemeOptions) => {
       },
     },
   ]
+
+  // Add built-in search plugin when enabled
+  // Built-in search is active when:
+  // 1. builtinSearch.enabled is explicitly true, OR
+  // 2. builtinSearch is not configured AND no custom search/docsearch is provided
+  const hasCustomSearch = !!(options?.search || options?.docsearch)
+  const builtinEnabled = options?.builtinSearch?.enabled ?? !hasCustomSearch
+  if (builtinEnabled) {
+    vitePluginsPre.push(searchIndexPlugin(true))
+  }
+  else {
+    // Always register the plugin (resolves the virtual module) but with empty data
+    vitePluginsPre.push(searchIndexPlugin(false))
+  }
 
   return vitePluginsPre
 }

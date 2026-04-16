@@ -39,6 +39,14 @@ declare module 'virtual:sveltepress/theme-default' {
     roots?: string[]
   }
 
+  export interface BuiltinSearchOptions {
+    /**
+     * Enable built-in full-text search powered by MiniSearch.
+     * @default true
+     */
+    enabled?: boolean
+  }
+
   export interface DefaultThemeOptions {
     navbar?: Array<LinkItem>
     github?: string
@@ -52,6 +60,7 @@ declare module 'virtual:sveltepress/theme-default' {
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
     search?: Component | string
+    builtinSearch?: BuiltinSearchOptions
     themeColor?: {
       light: string
       dark: string
@@ -92,6 +101,17 @@ declare module 'virtual:sveltepress/theme-default' {
 
   const options: DefaultThemeOptions
   export default options
+}
+
+declare module 'virtual:sveltepress/search-index' {
+  export interface SearchDocument {
+    id: string
+    title: string
+    href: string
+    content: string
+    headings: string[]
+  }
+  export const searchDocuments: SearchDocument[]
 }
 
 declare module '@sveltepress/theme-default/context' {
