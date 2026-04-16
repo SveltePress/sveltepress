@@ -19,8 +19,18 @@
     const onOpen = () => {
       searchOpen = true
     }
+    const onKeydown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        searchOpen = !searchOpen
+      }
+    }
     window.addEventListener('sp-search-open', onOpen)
-    return () => window.removeEventListener('sp-search-open', onOpen)
+    window.addEventListener('keydown', onKeydown)
+    return () => {
+      window.removeEventListener('sp-search-open', onOpen)
+      window.removeEventListener('keydown', onKeydown)
+    }
   })
 
   // Inject user-customised CSS variable overrides at runtime.

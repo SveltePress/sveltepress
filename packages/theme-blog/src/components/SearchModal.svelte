@@ -1,26 +1,41 @@
 <!-- src/components/SearchModal.svelte -->
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { goto } from '$app/navigation'
 
   interface Props {
     open: boolean
     onClose: () => void
   }
 
-  interface SearchResult {
+  interface PagefindMeta {
+    title?: string
+    [k: string]: unknown
+  }
+
+  interface PagefindResultData {
     url: string
-    meta: any
+    meta: PagefindMeta
     excerpt: string
+  }
+
+  interface PagefindRuntime {
+    init: () => Promise<void>
+    search: (q: string) => Promise<{
+      results: Array<{ data: () => Promise<PagefindResultData> }>
+    }>
   }
 
   const { open, onClose }: Props = $props()
 
   let query = $state('')
-  let results: SearchResult[] = $state([])
+  let results: PagefindResultData[] = $state([])
   let selected = $state(0)
-  let pagefind: any = $state(null)
+  let pagefind: PagefindRuntime | null = null
   let loading = $state(false)
+  let loadError = $state(false)
   let input: HTMLInputElement | undefined = $state()
+
+  let timer: ReturnType<typeof setTimeout> | undefined
 
   async function ensureLoaded() {
     if (pagefind) return
@@ -30,18 +45,41 @@
       // Build the URL at runtime so Rollup cannot try to resolve it at build time.
       const url = `${window.location.origin}/pagefind/pagefind.js`
       // @ts-expect-error — runtime virtual import
-      pagefind = await import(/* @vite-ignore */ url)
+      pagefind = (await import(/* @vite-ignore */ url)) as PagefindRuntime
       await pagefind.init()
+      loadError = false
+    } catch (err) {
+      console.warn('[sveltepress] Pagefind runtime failed to load:', err)
+      pagefind = null
+      loadError = true
     } finally {
       loading = false
     }
   }
 
-  let timer: any
+  // When the modal opens: load Pagefind, focus input, remember the opener
+  // so we can restore focus on close.
   $effect(() => {
     if (!open) return
     ensureLoaded()
-    input?.focus()
+    const opener = document.activeElement as HTMLElement | null
+    // Focus after mount
+    queueMicrotask(() => input?.focus())
+    return () => {
+      opener?.focus()
+    }
+  })
+
+  // Reset transient search state whenever the modal closes. Without this a
+  // fast-typed search followed by Esc would fire runSearch against a closed
+  // modal, and the next open would flash stale results.
+  $effect(() => {
+    if (open) return
+    clearTimeout(timer)
+    timer = undefined
+    query = ''
+    results = []
+    selected = 0
   })
 
   async function runSearch(q: string) {
@@ -51,13 +89,9 @@
     }
     const search = await pagefind.search(q)
     const top = await Promise.all(
-      search.results.slice(0, 10).map((r: any) => r.data()),
+      search.results.slice(0, 10).map(r => r.data()),
     )
-    results = top.map((r: any) => ({
-      url: r.url,
-      meta: r.meta,
-      excerpt: r.excerpt,
-    }))
+    results = top.map(({ url, meta, excerpt }) => ({ url, meta, excerpt }))
     selected = 0
   }
 
@@ -77,24 +111,22 @@
       selected = Math.max(0, selected - 1)
       e.preventDefault()
     } else if (e.key === 'Enter' && results[selected]) {
-      window.location.href = results[selected].url
+      goto(results[selected].url)
+    } else if (e.key === 'Tab') {
+      // Focus trap: the dialog has a single focusable control (the input).
+      // Swallowing Tab keeps focus inside the aria-modal dialog.
+      e.preventDefault()
     }
   }
-
-  onMount(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault()
-        if (!open) dispatchEvent(new CustomEvent('sp-search-open'))
-      }
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  })
 </script>
 
 {#if open}
-  <div class="sp-search-backdrop" onclick={onClose} role="presentation"></div>
+  <button
+    type="button"
+    class="sp-search-backdrop"
+    aria-label="Close search"
+    onclick={onClose}
+  ></button>
   <div class="sp-search" role="dialog" aria-modal="true" aria-label="Search">
     <input
       bind:this={input}
@@ -110,13 +142,17 @@
           <li class="sp-search__item" class:is-selected={i === selected}>
             <a href={r.url}>
               <strong>{r.meta?.title ?? r.url}</strong>
-              <!-- pagefind returns already-marked excerpt as HTML -->
+              <!-- Pagefind returns excerpt HTML with <mark> wrapping matches.
+                   Trust model: site content is author-trusted. If you render
+                   untrusted user-submitted content, sanitise before indexing. -->
               <!-- eslint-disable-next-line svelte/no-at-html-tags -->
               <p>{@html r.excerpt}</p>
             </a>
           </li>
         {/each}
       </ul>
+    {:else if loadError && !loading}
+      <p class="sp-search__empty">Search unavailable.</p>
     {:else if query && !loading}
       <p class="sp-search__empty">No results.</p>
     {/if}
@@ -129,6 +165,9 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 100;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
   .sp-search {
     position: fixed;
