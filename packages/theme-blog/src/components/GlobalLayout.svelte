@@ -7,9 +7,10 @@
   interface Props {
     themeOptions?: BlogThemeOptions
     children?: Snippet
+    search?: Snippet
   }
 
-  const { themeOptions, children }: Props = $props()
+  const { themeOptions, children, search }: Props = $props()
 
   const primary = themeOptions?.themeColor?.primary ?? '#fb923c'
   const secondary = themeOptions?.themeColor?.secondary ?? '#dc2626'
@@ -29,6 +30,7 @@
 <Navbar
   title={themeOptions?.title ?? 'Blog'}
   links={themeOptions?.navbar ?? []}
+  {search}
 />
 
 <main class="sp-blog-main">
