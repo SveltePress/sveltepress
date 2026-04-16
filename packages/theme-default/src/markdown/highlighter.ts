@@ -5,10 +5,10 @@ import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import { env } from 'node:process'
 import { createTransformerFactory } from '@shikijs/twoslash'
 import { createTwoslasher, rendererFloatingSvelte } from '@sveltepress/twoslash'
+import { prepareCodeBlock, wrapCodeBlock } from '@sveltepress/vite/highlight'
 import { LRUCache } from 'lru-cache'
 import { createHighlighter } from 'shiki'
 import { themeOptionsRef } from '../index.js'
-import { processCommands } from './commands.js'
 
 const DEFAULT_SUPPORT_LANGUAGES: any[] = ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']
 
@@ -55,41 +55,18 @@ const highlighter: Highlighter = async (code, lang, meta) => {
     if (cached)
       return cached
   }
-  const metaArray = (meta || '').split(' ')
-  const containLineNumbers = metaArray.some(item => item.trim() === 'ln')
-  const titleMeta = metaArray.find(item => item.startsWith('title='))
-  const commandDoms: string[] = []
-  const lines = code.split('\n')
-  let noErrorsFirstLine: string | undefined
-  if (lines[0] === '// @noErrors')
-    noErrorsFirstLine = lines.shift()
-  code = lines.map((line, i) => {
-    const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length)
-    commandDoms.push(...commandDomsInOneLine)
-    return newLine
-  }).join('\n')
-  let title: string | undefined
-  if (titleMeta)
-    title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')
-  if (noErrorsFirstLine)
-    code = `${noErrorsFirstLine}\n${code}`
 
-  cached = `
-<div class="svp-code-block-wrapper">${title
-  ? `<div class="svp-code-block--title">${title}</div>
-`
-  : ''}
-  <div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
-    ${commandDoms.join('\n')}
-    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-    ${await _highlighter(code, lang, meta)}
-    <div class="svp-code-block--lang">
-      ${lang}
-    </div>
-    <CopyCode />
-    ${containLineNumbers ? `<div class="svp-code-block--line-numbers">${lines.map((_, i) => `<div class="svp-code-block--line-number-item">${i + 1}</div>`).join('\n')}</div>` : ''}
-  </div>
-</div>`
+  const prepared = prepareCodeBlock(code, meta)
+
+  cached = wrapCodeBlock(
+    await _highlighter(prepared.processedCode, lang, meta),
+    lang,
+    prepared,
+    {
+      copyButtonHtml: `<!-- svelte-ignore a11y_no_noninteractive_tabindex -->\n    <CopyCode />`,
+    },
+  )
+
   if (env.NODE_ENV === 'development')
     cache.set(cacheKey, cached)
   return cached
