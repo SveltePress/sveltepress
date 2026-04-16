@@ -3,9 +3,11 @@
   import type { BlogPost, BlogPostMeta } from '../types.js'
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
+  import AuthorCard from './AuthorCard.svelte'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
   import PostNav from './PostNav.svelte'
+  import RelatedPosts from './RelatedPosts.svelte'
   import TableOfContents from './TableOfContents.svelte'
 
   interface Props {
@@ -51,6 +53,10 @@
         {@html post.contentHtml}
       </div>
       <PostNav {prev} {next} />
+      {#if post.related?.length}
+        <RelatedPosts posts={post.related} />
+      {/if}
+      <AuthorCard />
     </div>
     <aside class="sp-post__toc">
       <TableOfContents />

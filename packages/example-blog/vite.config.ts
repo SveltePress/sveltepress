@@ -9,9 +9,23 @@ const config = defineConfig({
         title: 'Example Blog',
         description: 'A demo blog powered by @sveltepress/theme-blog',
         base: 'http://localhost:4173',
-        author: 'Demo Author',
+        author: {
+          name: 'Demo Author',
+          avatar: '/avatar.png',
+          bio: 'Writes about Svelte, CSS, and keeping the web fast.',
+          socials: {
+            github: 'sveltepress',
+            twitter: 'sveltejs',
+            email: 'demo@example.com',
+            rss: '/rss.xml',
+          },
+        },
+        about: {
+          html: '<p>This is the demo About page for <code>@sveltepress/theme-blog</code>.</p>',
+        },
         navbar: [
           { title: 'Home', to: '/' },
+          { title: 'About', to: '/about/' },
           { title: 'Timeline', to: '/timeline/' },
           { title: 'Tags', to: '/tags/' },
         ],
