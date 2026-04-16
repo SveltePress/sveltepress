@@ -11,9 +11,10 @@
     title: string
     links?: NavLink[]
     search?: Snippet
+    toggle?: Snippet
   }
 
-  const { title, links = [], search }: Props = $props()
+  const { title, links = [], search, toggle }: Props = $props()
 </script>
 
 <nav class="sp-blog-nav">
@@ -23,6 +24,7 @@
       <a href={link.to}>{link.title}</a>
     {/each}
     {@render search?.()}
+    {@render toggle?.()}
   </div>
 </nav>
 
@@ -54,7 +56,7 @@
     font-size: 0.875rem;
   }
   .sp-blog-nav__links a {
-    color: #d6d3d1;
+    color: var(--sp-blog-content);
     text-decoration: none;
     transition: color 0.15s;
   }
