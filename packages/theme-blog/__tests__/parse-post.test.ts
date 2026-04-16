@@ -1,3 +1,5 @@
+import type { BlogPostMeta } from '../src/types.js'
+
 import { describe, expect, it } from 'vitest'
 import { parsePost } from '../src/parse-post.js'
 
@@ -67,5 +69,23 @@ describe('parsePost', () => {
   it('returns draft flag', async () => {
     const result = await parsePost('draft-post', DRAFT)
     expect(result.draft).toBe(true)
+  })
+
+  it('returns a post whose meta shape matches BlogPostMeta', async () => {
+    const post = await parsePost('x', '---\ntitle: T\ndate: 2026-04-10\n---\nbody')
+    const meta: BlogPostMeta = {
+      slug: post.slug,
+      title: post.title,
+      date: post.date,
+      cover: post.cover,
+      tags: post.tags,
+      category: post.category,
+      excerpt: post.excerpt,
+      author: post.author,
+      readingTime: post.readingTime,
+    }
+    expect(meta.slug).toBe('x')
+    // contentHtml must be present only on the full BlogPost, not the meta
+    expect('contentHtml' in meta).toBe(false)
   })
 })

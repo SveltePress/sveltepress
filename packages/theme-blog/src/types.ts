@@ -1,14 +1,19 @@
-export interface BlogPost {
+/** Lightweight metadata for listings. Ships in bundles; must stay small. */
+export interface BlogPostMeta {
   slug: string
   title: string
   date: string // ISO string, e.g. "2026-04-10"
   cover?: string
   tags: string[]
   category?: string
-  excerpt: string // first 120 chars of body text if not in frontmatter
+  excerpt: string
   author?: string
-  readingTime: number // minutes, rounded up
-  /** Pre-rendered HTML from the markdown body. Must be from a trusted source — rendered via {@html} in templates. */
+  readingTime: number
+}
+
+/** Full post including rendered HTML. Loaded per-slug, never bundled in lists. */
+export interface BlogPost extends BlogPostMeta {
+  /** Pre-rendered HTML from the markdown body. Rendered via {@html} in templates. */
   contentHtml: string
 }
 
