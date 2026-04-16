@@ -81,7 +81,7 @@
   .sp-card-large__title {
     font-size: 1.05rem;
     font-weight: 800;
-    color: #fff7ed;
+    color: var(--sp-blog-text);
     margin: 0.35rem 0 0.5rem;
     line-height: 1.3;
   }

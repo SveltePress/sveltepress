@@ -45,7 +45,7 @@
   .sp-card-small__title {
     font-size: 0.95rem;
     font-weight: 800;
-    color: #fff7ed;
+    color: var(--sp-blog-text);
     margin: 0.3rem 0 0.45rem;
     line-height: 1.35;
   }
