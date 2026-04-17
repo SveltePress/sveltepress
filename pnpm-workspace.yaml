@@ -20,6 +20,7 @@ catalog:
   '@docsearch/css': ^4.6.2
   '@docsearch/js': ^4.6.2
   '@floating-ui/dom': ^1.7.6
+  '@fontsource-variable/fraunces': ^5.2.8
   '@fontsource/inter': ^5.2.8
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3

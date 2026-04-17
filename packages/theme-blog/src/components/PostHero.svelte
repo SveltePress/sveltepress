@@ -67,27 +67,40 @@
     padding: 2rem;
   }
   .sp-post-hero__cat {
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-family: var(--sp-font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
     color: #fdba74;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.6rem;
+    letter-spacing: 0.22em;
+    margin-bottom: 0.625rem;
   }
   .sp-post-hero__title {
-    font-size: clamp(1.5rem, 4vw, 2.4rem);
-    font-weight: 900;
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 144,
+      'wght' 600,
+      'SOFT' 60,
+      'WONK' 1;
+    font-size: clamp(1.75rem, 4.5vw, 2.625rem);
+    font-weight: 600;
     color: #fff7ed;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.02;
+    letter-spacing: -0.018em;
   }
   .sp-post-hero__subtitle {
-    margin-top: 0.75rem;
+    margin-top: 0.625rem;
     max-width: 52ch;
-    font-size: clamp(0.9rem, 1.4vw, 1rem);
-    font-weight: 400;
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 36,
+      'wght' 400,
+      'SOFT' 100,
+      'WONK' 1;
+    font-style: italic;
+    font-size: clamp(0.95rem, 1.4vw, 1.0625rem);
     color: #fde8c8;
-    line-height: 1.55;
+    line-height: 1.4;
   }
   .sp-post-hero__subtitle:empty {
     display: none;

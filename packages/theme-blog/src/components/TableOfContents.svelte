@@ -1,6 +1,13 @@
 <!-- src/components/TableOfContents.svelte -->
 <script lang="ts">
   import { onMount, tick } from 'svelte'
+  import SideRail from './SideRail.svelte'
+
+  interface Props {
+    category?: string
+  }
+
+  const { category }: Props = $props()
 
   interface Heading {
     id: string
@@ -67,36 +74,44 @@
   })
 </script>
 
-{#if headings.length}
-  <nav class="sp-toc">
-    <p class="sp-toc__label">目录</p>
-    <ul>
-      {#each headings as h}
-        <li class="sp-toc__item" class:sp-toc__item--h3={h.level === 3}>
-          <a
-            href={`#${h.id}`}
-            class="sp-toc__link"
-            class:sp-toc__link--active={activeId === h.id}>{h.text}</a
-          >
-        </li>
-      {/each}
-    </ul>
-  </nav>
-{/if}
+<div class="sp-toc-wrap">
+  <SideRail {category} />
+  {#if headings.length}
+    <nav class="sp-toc">
+      <p class="sp-toc__label">On this page</p>
+      <ul>
+        {#each headings as h}
+          <li class="sp-toc__item" class:sp-toc__item--h3={h.level === 3}>
+            <a
+              href={`#${h.id}`}
+              class="sp-toc__link"
+              class:sp-toc__link--active={activeId === h.id}>{h.text}</a
+            >
+          </li>
+        {/each}
+      </ul>
+    </nav>
+  {/if}
+</div>
 
 <style>
-  .sp-toc {
+  .sp-toc-wrap {
     position: sticky;
     top: 80px;
+    min-height: 220px;
+    padding-right: 1rem; /* reserve room for the vertical rail */
+  }
+  .sp-toc {
+    font-family: var(--sp-font-sans);
     font-size: 0.8rem;
   }
   .sp-toc__label {
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-size: 0.625rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.25em;
     color: var(--sp-blog-muted);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.75rem;
     padding-left: 0.85rem;
   }
   .sp-toc ul {
@@ -117,6 +132,9 @@
     color: var(--sp-blog-muted);
     text-decoration: none;
     line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 400;
     transition:
       color 0.15s,
       border-color 0.15s;

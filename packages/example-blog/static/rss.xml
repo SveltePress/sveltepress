@@ -4,7 +4,7 @@
     <title>Example Blog</title>
     <link>http://localhost:4173</link>
     <description>A demo blog powered by @sveltepress/theme-blog</description>
-    <lastBuildDate>Fri, 17 Apr 2026 05:01:31 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2026 08:34:24 GMT</lastBuildDate>
     <copyright>© 2026 Example Blog</copyright>
     
     <item>
@@ -34,6 +34,13 @@
       <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
       <description>Dark Mode Without Flash of Wrong Theme Flash of wrong theme (FOWT) happens when the page renders in the default palette</description>
       <category>Web Design</category>
+    </item>
+    <item>
+      <title>Building ships in daylight</title>
+      <link>http://localhost:4173/posts/editorial-showcase</link>
+      <pubDate>Fri, 17 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Shipping without theatrics starts with how you frame the risk before the first commit.</description>
+      <category>Engineering</category>
     </item>
     <item>
       <title>Hello, Sveltepress Blog Theme!</title>

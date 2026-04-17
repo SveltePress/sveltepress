@@ -1,19 +1,25 @@
 import type { BlogPost } from './types.js'
 import rehypeStringify from 'rehype-stringify'
+import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 import { parse as parseYaml } from 'yaml'
 import { readingTime } from './reading-time.js'
+import { rehypeFigure } from './rehype-figure.js'
 import { rehypeHeadingIds } from './rehype-heading-ids.js'
 import { remarkCodeBlocks } from './remark-code-blocks.js'
+import { remarkPullQuote } from './remark-pull-quote.js'
 
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
+  .use(remarkDirective)
+  .use(remarkPullQuote)
   .use(remarkCodeBlocks)
   .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeFigure)
   .use(rehypeHeadingIds)
   .use(rehypeStringify, { allowDangerousHtml: true })
 

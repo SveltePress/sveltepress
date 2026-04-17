@@ -155,10 +155,17 @@
     min-height: 100vh;
   }
   .sp-sidebar__brand {
-    font-weight: 800;
-    font-size: 1.1rem;
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 144,
+      'wght' 700,
+      'SOFT' 80,
+      'WONK' 1;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1;
     color: var(--sp-blog-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     text-decoration: none;
   }
   .sp-sidebar__profile {

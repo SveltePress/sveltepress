@@ -24,6 +24,9 @@ catalogs:
     '@floating-ui/dom':
       specifier: ^1.7.6
       version: 1.7.6
+    '@fontsource-variable/fraunces':
+      specifier: ^5.2.8
+      version: 5.2.9
     '@fontsource/inter':
       specifier: ^5.2.8
       version: 5.2.8
@@ -675,6 +678,9 @@ importers:
 
   packages/theme-blog:
     dependencies:
+      '@fontsource-variable/fraunces':
+        specifier: 'catalog:'
+        version: 5.2.9
       '@fontsource/inter':
         specifier: 'catalog:'
         version: 5.2.8
@@ -696,6 +702,9 @@ importers:
       rehype-stringify:
         specifier: 'catalog:'
         version: 10.0.1
+      remark-directive:
+        specifier: 'catalog:'
+        version: 4.0.0
       remark-gfm:
         specifier: 'catalog:'
         version: 4.0.1
@@ -2018,6 +2027,9 @@ packages:
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
+
+  '@fontsource-variable/fraunces@5.2.9':
+    resolution: {integrity: sha512-Y6IjunlN9Ni723np+GIgAaKzCDBrPRrqNi01TZxHs5wtHYROWFM9W6yiT+/gGwSjWIRD18oX17kD/BRWekc/Lw==}
 
   '@fontsource/inter@5.2.8':
     resolution: {integrity: sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==}
@@ -7731,6 +7743,8 @@ snapshots:
       '@floating-ui/utils': 0.2.11
 
   '@floating-ui/utils@0.2.11': {}
+
+  '@fontsource-variable/fraunces@5.2.9': {}
 
   '@fontsource/inter@5.2.8': {}
 

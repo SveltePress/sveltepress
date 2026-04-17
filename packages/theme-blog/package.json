@@ -120,12 +120,14 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
+    "@fontsource-variable/fraunces": "catalog:",
     "@fontsource/inter": "catalog:",
     "@resvg/resvg-js": "catalog:",
     "@shikijs/twoslash": "catalog:",
     "@unocss/extractor-svelte": "catalog:",
     "lru-cache": "catalog:",
     "rehype-stringify": "catalog:",
+    "remark-directive": "catalog:",
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
     "remark-rehype": "catalog:",
