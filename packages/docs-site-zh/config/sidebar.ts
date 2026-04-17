@@ -97,6 +97,32 @@ export default {
         },
       ],
     },
+    {
+      title: '博客主题特性',
+      collapsible: true,
+      items: [
+        {
+          title: '快速上手',
+          to: '/guide/blog-theme/getting-started/',
+        },
+        {
+          title: '配置',
+          to: '/guide/blog-theme/configuration/',
+        },
+        {
+          title: '写文章',
+          to: '/guide/blog-theme/writing-posts/',
+        },
+        {
+          title: '特性',
+          to: '/guide/blog-theme/features/',
+        },
+        {
+          title: '自定义',
+          to: '/guide/blog-theme/customization/',
+        },
+      ],
+    },
   ],
   '/reference/': [{
     title: '参考',
