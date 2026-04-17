@@ -97,7 +97,7 @@
       <GiscusComments />
     </div>
     <aside class="sp-post__toc">
-      <TableOfContents />
+      <TableOfContents category={post.category} />
     </aside>
   </div>
 </article>
