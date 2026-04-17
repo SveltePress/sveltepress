@@ -37,31 +37,62 @@
 
 <article class="sp-card-large">
   <a href={`${base}/posts/${post.slug}/`} class="sp-card-large__link">
-    {#if post.cover}
-      <img
-        src={coverSrc}
-        alt={post.title}
-        class="sp-card-large__cover"
-        width="800"
-        height="400"
-        loading="lazy"
-        decoding="async"
-      />
-    {:else}
-      <div
-        class="sp-card-large__cover sp-card-large__cover--gradient"
-        style="background:{gradient}"
-      ></div>
-    {/if}
-    <div class="sp-card-large__body">
-      {#if post.tags[0]}
-        <span class="sp-card__tag">{post.tags[0]}</span>
+    <!--
+      view-transition-name goes on this frame, not the <img>: on back-nav
+      the freshly-rendered <img> reports a 0×0 rect at VT capture time, so
+      a name on the image falls back to crossfade instead of morphing.
+    -->
+    <div
+      class="sp-card-large__cover-frame"
+      style="view-transition-name: sp-cover-{post.slug}"
+    >
+      {#if post.cover}
+        <img
+          src={coverSrc}
+          alt={post.title}
+          class="sp-card-large__cover"
+          width="800"
+          height="400"
+          loading="lazy"
+          decoding="async"
+        />
+      {:else}
+        <div
+          class="sp-card-large__cover sp-card-large__cover--gradient"
+          style="background:{gradient}"
+        ></div>
       {/if}
-      <h2 class="sp-card-large__title">{post.title}</h2>
-      <p class="sp-card-large__excerpt">{post.excerpt}</p>
+    </div>
+    <div class="sp-card-large__body">
+      {#if post.tags.length}
+        <div class="sp-card__tags">
+          {#each post.tags as tag, i (tag)}
+            <span
+              class="sp-card__tag"
+              style="view-transition-name: sp-tag-{post.slug}-{i}">{tag}</span
+            >
+          {/each}
+        </div>
+      {/if}
+      <h2
+        class="sp-card-large__title"
+        style="view-transition-name: sp-title-{post.slug}"
+      >
+        {post.title}
+      </h2>
+      <p
+        class="sp-card-large__excerpt"
+        style="view-transition-name: sp-excerpt-{post.slug}"
+      >
+        {post.excerpt}
+      </p>
       <div class="sp-card__meta">
-        <time>{post.date}</time>
-        <span>{post.readingTime} min read</span>
+        <time style="view-transition-name: sp-date-{post.slug}"
+          >{post.date}</time
+        >
+        <span style="view-transition-name: sp-reading-{post.slug}"
+          >{post.readingTime} min read</span
+        >
       </div>
     </div>
   </a>
@@ -86,13 +117,20 @@
     text-decoration: none;
     color: inherit;
   }
-  .sp-card-large__cover {
+  .sp-card-large__cover-frame {
     width: 100%;
     height: 180px;
+    overflow: hidden;
+  }
+  .sp-card-large__cover {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
   }
   .sp-card-large__cover--gradient {
+    width: 100%;
+    height: 100%;
   }
   .sp-card-large__body {
     padding: 1rem;
@@ -108,6 +146,11 @@
     font-size: 0.825rem;
     color: var(--sp-blog-muted);
     line-height: 1.55;
+  }
+  .sp-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .sp-card__tag {
     font-size: 0.7rem;

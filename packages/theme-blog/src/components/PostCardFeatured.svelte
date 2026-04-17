@@ -20,19 +20,42 @@
   <a href={`${base}/posts/${post.slug}/`} class="sp-card-featured__link">
     <div
       class="sp-card-featured__bg"
-      style={coverSrc
-        ? `background-image:url(${coverSrc})`
-        : 'background:linear-gradient(135deg,#ea580c 0%,#dc2626 50%,#9a3412 100%)'}
+      style={`${
+        coverSrc
+          ? `background-image:url(${coverSrc})`
+          : 'background:linear-gradient(135deg,#ea580c 0%,#dc2626 50%,#9a3412 100%)'
+      }; view-transition-name: sp-cover-${post.slug}`}
     >
       <div class="sp-card-featured__overlay">
-        {#if post.tags[0]}
-          <span class="sp-card-featured__tag">{post.tags[0]}</span>
+        {#if post.tags.length}
+          <div class="sp-card-featured__tags">
+            {#each post.tags as tag, i (tag)}
+              <span
+                class="sp-card-featured__tag"
+                style="view-transition-name: sp-tag-{post.slug}-{i}">{tag}</span
+              >
+            {/each}
+          </div>
         {/if}
-        <h2 class="sp-card-featured__title">{post.title}</h2>
-        <p class="sp-card-featured__excerpt">{post.excerpt}</p>
+        <h2
+          class="sp-card-featured__title"
+          style="view-transition-name: sp-title-{post.slug}"
+        >
+          {post.title}
+        </h2>
+        <p
+          class="sp-card-featured__excerpt"
+          style="view-transition-name: sp-excerpt-{post.slug}"
+        >
+          {post.excerpt}
+        </p>
         <div class="sp-card__meta sp-card__meta--light">
-          <time>{post.date}</time>
-          <span>{post.readingTime} min read</span>
+          <time style="view-transition-name: sp-date-{post.slug}"
+            >{post.date}</time
+          >
+          <span style="view-transition-name: sp-reading-{post.slug}"
+            >{post.readingTime} min read</span
+          >
         </div>
       </div>
     </div>
@@ -71,6 +94,12 @@
     justify-content: flex-end;
     padding: 1.25rem;
   }
+  .sp-card-featured__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
   .sp-card-featured__tag {
     font-size: 0.7rem;
     font-weight: 700;
@@ -80,8 +109,6 @@
     background: rgba(234, 88, 12, 0.35);
     padding: 2px 8px;
     border-radius: 3px;
-    display: inline-block;
-    margin-bottom: 0.5rem;
     width: fit-content;
   }
   .sp-card-featured__title {

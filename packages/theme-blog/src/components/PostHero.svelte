@@ -18,13 +18,24 @@
 
 <header
   class="sp-post-hero"
-  style={coverSrc ? `--hero-bg: url(${coverSrc})` : ''}
+  style={`${coverSrc ? `--hero-bg: url(${coverSrc});` : ''} view-transition-name: sp-cover-${post.slug}`}
 >
   <div class="sp-post-hero__overlay">
     {#if post.category}
       <span class="sp-post-hero__cat">{post.category}</span>
     {/if}
-    <h1 class="sp-post-hero__title">{post.title}</h1>
+    <h1
+      class="sp-post-hero__title"
+      style="view-transition-name: sp-title-{post.slug}"
+    >
+      {post.title}
+    </h1>
+    <p
+      class="sp-post-hero__subtitle"
+      style="view-transition-name: sp-excerpt-{post.slug}"
+    >
+      {post.excerpt}
+    </p>
   </div>
 </header>
 
@@ -69,5 +80,16 @@
     color: #fff7ed;
     line-height: 1.2;
     letter-spacing: -0.02em;
+  }
+  .sp-post-hero__subtitle {
+    margin-top: 0.75rem;
+    max-width: 52ch;
+    font-size: clamp(0.9rem, 1.4vw, 1rem);
+    font-weight: 400;
+    color: #fde8c8;
+    line-height: 1.55;
+  }
+  .sp-post-hero__subtitle:empty {
+    display: none;
   }
 </style>

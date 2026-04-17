@@ -1,6 +1,7 @@
 <!-- src/components/GlobalLayout.svelte -->
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { onNavigate } from '$app/navigation'
   import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import SearchModal from './SearchModal.svelte'
@@ -18,6 +19,40 @@
   // `blogConfig.base` when set, else fall back to the subpath base.
   const ogOrigin = blogConfig.base?.replace(/\/$/, '') ?? base
   const ogHome = `${ogOrigin}/og/__home.png`
+
+  // Cross-document view transitions. When the browser supports it and the
+  // user hasn't opted out of motion, wrap each SvelteKit navigation in a
+  // `document.startViewTransition` so elements sharing a `view-transition-name`
+  // (card cover ↔ post hero, card title ↔ post title) morph between pages.
+  //
+  // We toggle `html.sp-vt-active` around the transition because the masonry
+  // cards use `content-visibility: auto`. On back-nav the "new" snapshot is
+  // captured before those off-viewport cards get promoted to rendered, so
+  // their `view-transition-name` elements are absent from the capture and
+  // the morph falls back to a root crossfade. The class lets a global CSS
+  // rule force `content-visibility: visible` for the window of the VT.
+  onNavigate(navigation => {
+    if (typeof document === 'undefined') return
+    const start = (
+      document as Document & {
+        startViewTransition?: (cb: () => void | Promise<void>) => {
+          finished: Promise<void>
+        }
+      }
+    ).startViewTransition
+    if (!start) return
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    const root = document.documentElement
+    root.classList.add('sp-vt-active')
+    const clear = () => root.classList.remove('sp-vt-active')
+    return new Promise<void>(resolve => {
+      const transition = start.call(document, async () => {
+        resolve()
+        await navigation.complete
+      })
+      transition.finished.then(clear, clear)
+    })
+  })
 
   let searchOpen = $state(false)
 
@@ -398,5 +433,29 @@
     font-size: 0.875rem;
     color: var(--sp-blog-muted);
     opacity: 0.5;
+  }
+
+  /* ── View Transitions — card ↔ post morph ───────────────── */
+  :global(::view-transition-group(*)) {
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  :global(::view-transition-old(root)),
+  :global(::view-transition-new(root)) {
+    animation-duration: 260ms;
+  }
+  /* Force the lazy-rendered cards to a rendered state while a cross-doc
+     VT is in flight so their `view-transition-name` elements participate
+     in the "new" snapshot on back-nav. See `onNavigate` above. */
+  :global(html.sp-vt-active .sp-card-large),
+  :global(html.sp-vt-active .sp-card-small) {
+    content-visibility: visible;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(::view-transition-group(*)),
+    :global(::view-transition-old(root)),
+    :global(::view-transition-new(root)) {
+      animation: none !important;
+    }
   }
 </style>

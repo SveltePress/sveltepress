@@ -12,14 +12,33 @@
 
 <article class="sp-card-small">
   <a href={`${base}/posts/${post.slug}/`} class="sp-card-small__link">
-    {#if post.tags[0]}
-      <span class="sp-card__tag">{post.tags[0]}</span>
+    {#if post.tags.length}
+      <div class="sp-card__tags">
+        {#each post.tags as tag, i (tag)}
+          <span
+            class="sp-card__tag"
+            style="view-transition-name: sp-tag-{post.slug}-{i}">{tag}</span
+          >
+        {/each}
+      </div>
     {/if}
-    <h2 class="sp-card-small__title">{post.title}</h2>
-    <p class="sp-card-small__quote">{post.excerpt}</p>
+    <h2
+      class="sp-card-small__title"
+      style="view-transition-name: sp-title-{post.slug}"
+    >
+      {post.title}
+    </h2>
+    <p
+      class="sp-card-small__quote"
+      style="view-transition-name: sp-excerpt-{post.slug}"
+    >
+      {post.excerpt}
+    </p>
     <div class="sp-card__meta">
-      <time>{post.date}</time>
-      <span>{post.readingTime} min read</span>
+      <time style="view-transition-name: sp-date-{post.slug}">{post.date}</time>
+      <span style="view-transition-name: sp-reading-{post.slug}"
+        >{post.readingTime} min read</span
+      >
     </div>
   </a>
 </article>
@@ -56,6 +75,11 @@
     font-size: 0.8rem;
     color: var(--sp-blog-muted);
     line-height: 1.5;
+  }
+  .sp-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .sp-card__tag {
     font-size: 0.7rem;
