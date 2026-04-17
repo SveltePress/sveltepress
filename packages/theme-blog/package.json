@@ -9,6 +9,9 @@
     "email": "1197160272@qq.com"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://sveltepress.site/",
   "repository": {
     "type": "github",
