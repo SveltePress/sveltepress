@@ -7,6 +7,11 @@
   import SearchModal from './SearchModal.svelte'
   import Sidebar from './Sidebar.svelte'
   import ThemeToggle from './ThemeToggle.svelte'
+  import '@fontsource-variable/fraunces'
+  import '@fontsource/inter/400.css'
+  import '@fontsource/inter/500.css'
+  import '@fontsource/inter/600.css'
+  import '@fontsource/inter/700.css'
 
   interface Props {
     children?: Snippet
@@ -159,6 +164,8 @@
     --sp-blog-content: #d6d3d1;
     --sp-blog-primary: #fb923c;
     --sp-blog-secondary: #dc2626;
+    --sp-font-serif: 'Fraunces Variable', Georgia, serif;
+    --sp-font-sans: Inter, system-ui, sans-serif;
   }
 
   /* ── Light palette (warm cream) ──────────────────────────── */
@@ -171,13 +178,15 @@
     --sp-blog-content: #44260a;
     --sp-blog-primary: #c2410c;
     --sp-blog-secondary: #dc2626;
+    --sp-font-serif: 'Fraunces Variable', Georgia, serif;
+    --sp-font-sans: Inter, system-ui, sans-serif;
   }
 
   /* ── Base layout ─────────────────────────────────────────── */
   .sp-blog-root {
     background: var(--sp-blog-bg, #1a0a00);
     color: var(--sp-blog-text, #fff7ed);
-    font-family: Inter, system-ui, sans-serif;
+    font-family: var(--sp-font-sans);
     line-height: 1.6;
     min-height: 100vh;
     display: grid;

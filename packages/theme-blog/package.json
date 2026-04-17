@@ -121,6 +121,7 @@
   },
   "dependencies": {
     "@fontsource/inter": "catalog:",
+    "@fontsource-variable/fraunces": "catalog:",
     "@resvg/resvg-js": "catalog:",
     "@shikijs/twoslash": "catalog:",
     "@unocss/extractor-svelte": "catalog:",
