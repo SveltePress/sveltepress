@@ -12,7 +12,7 @@ const config = defineConfig({
         navbar,
         sidebar,
         editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
-        github: 'https://github.com/Blackman99/sveltepress',
+        github: 'https://github.com/SveltePress/sveltepress',
         logo: '/sveltepress.svg',
         discord: 'https://discord.gg/MeYRrGGxbE',
         ga: 'G-J2W78BKCHB',
