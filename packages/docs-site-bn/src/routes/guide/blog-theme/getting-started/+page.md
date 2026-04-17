@@ -12,11 +12,11 @@ title: শুরু করা
 
 ## ইনস্টল
 
-```bash
-pnpm add -D @sveltepress/vite @sveltepress/theme-blog @sveltejs/kit @sveltejs/adapter-static svelte vite
-```
+@install-pkg(@sveltepress/theme-blog)
 
 এই থিমের জন্য `@sveltejs/adapter-static` দরকার, কারণ এটি সম্পূর্ণ স্ট্যাটিক সাইট (প্রি-রেন্ডার করা HTML, JSON, RSS, OG ইমেজ) তৈরি করে।
+
+@install-pkg(@sveltejs/adapter-static)
 
 ## Vite কনফিগার করুন
 

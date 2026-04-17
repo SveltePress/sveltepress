@@ -12,11 +12,11 @@ Source: [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tre
 
 ## Install
 
-```bash
-pnpm add -D @sveltepress/vite @sveltepress/theme-blog @sveltejs/kit @sveltejs/adapter-static svelte vite
-```
+@install-pkg(@sveltepress/theme-blog)
 
 The theme requires `@sveltejs/adapter-static` because it generates a fully static site (prerendered HTML, JSON, RSS, OG images).
+
+@install-pkg(@sveltejs/adapter-static)
 
 ## Configure Vite
 

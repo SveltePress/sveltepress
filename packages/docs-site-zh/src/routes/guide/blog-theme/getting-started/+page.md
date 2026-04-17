@@ -12,11 +12,11 @@ title: 快速上手
 
 ## 安装
 
-```bash
-pnpm add -D @sveltepress/vite @sveltepress/theme-blog @sveltejs/kit @sveltejs/adapter-static svelte vite
-```
+@install-pkg(@sveltepress/theme-blog)
 
 主题依赖 `@sveltejs/adapter-static`，因为它会生成完全静态的站点（预渲染 HTML、JSON、RSS 与 OG 图片）。
+
+@install-pkg(@sveltejs/adapter-static)
 
 ## 配置 Vite
 
