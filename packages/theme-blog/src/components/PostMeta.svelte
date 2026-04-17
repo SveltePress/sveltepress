@@ -26,13 +26,11 @@
   {#if post.tags.length}
     <span class="sp-post-meta__sep">·</span>
     <div class="sp-post-meta__tags">
-      {#each post.tags as tag, i}
+      {#each post.tags as tag, i (tag)}
         <a
           href={`${base}/tags/${tag}/`}
           class="sp-post-meta__tag"
-          style={i === 0
-            ? `view-transition-name: sp-tag-${post.slug}`
-            : undefined}>{tag}</a
+          style="view-transition-name: sp-tag-{post.slug}-{i}">{tag}</a
         >
       {/each}
     </div>
