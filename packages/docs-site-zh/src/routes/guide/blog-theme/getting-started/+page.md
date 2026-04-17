@@ -4,6 +4,11 @@ title: 快速上手
 
 `@sveltepress/theme-blog` 是一款杂志风格的博客主题，自带左侧边栏、瀑布流文章网格、自动生成的单篇 OG 图片、RSS、Pagefind 搜索和 Giscus 评论。本页演示如何从零搭建一个可运行的博客。
 
+## 在线示例
+
+- 部署站点：[sveltepress.github.io/sveltepress/blog-demo/](https://sveltepress.github.io/sveltepress/blog-demo/)
+- 源码：monorepo 中的 [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog) —— 一个可直接运行的参考项目，覆盖了本文档涉及的所有特性。
+
 ## 安装
 
 ```bash

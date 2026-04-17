@@ -10,6 +10,15 @@ export default [
     to: '/reference/vite-plugin/',
   },
   {
+    title: 'ব্লগ থিম',
+    to: '/guide/blog-theme/getting-started/',
+  },
+  {
+    title: 'ব্লগ ডেমো',
+    to: 'https://sveltepress.github.io/sveltepress/blog-demo/',
+    external: true,
+  },
+  {
     icon: languageIcon,
     items: [
       {

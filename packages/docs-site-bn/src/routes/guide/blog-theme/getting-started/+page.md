@@ -4,6 +4,11 @@ title: শুরু করা
 
 `@sveltepress/theme-blog` হলো ম্যাগাজিন-স্টাইলের একটি ব্লগ থিম — বাম পাশে সাইডবার, ম্যাসনরি পোস্ট গ্রিড, প্রতি পোস্টের জন্য OG ইমেজ, RSS, Pagefind সার্চ এবং Giscus কমেন্ট সাপোর্ট করে। এই পেজে একটি কাজ করা ব্লগ স্ক্যাফোল্ড করার ধাপগুলো দেখানো হয়েছে।
 
+## লাইভ ডেমো
+
+- ডিপ্লয়েড সাইট: [sveltepress.github.io/sveltepress/blog-demo/](https://sveltepress.github.io/sveltepress/blog-demo/)
+- সোর্স: monorepo-এর [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog) — একটি রান করার উপযোগী রেফারেন্স প্রজেক্ট, যেখানে এই ডকুমেন্টে আলোচিত সব ফিচার কাভার করা আছে।
+
 ## ইনস্টল
 
 ```bash

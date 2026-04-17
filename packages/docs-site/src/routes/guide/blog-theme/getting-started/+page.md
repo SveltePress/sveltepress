@@ -4,6 +4,11 @@ title: Getting started
 
 `@sveltepress/theme-blog` is a magazine-style blog theme with a left-rail sidebar, masonry post grid, per-post OG images, RSS, Pagefind search, and Giscus comments. This page walks you through scaffolding a working blog.
 
+## Live demo
+
+- Deployed site: [sveltepress.github.io/sveltepress/blog-demo/](https://sveltepress.github.io/sveltepress/blog-demo/)
+- Source: [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog) in the monorepo — a runnable reference that exercises every feature documented here.
+
 ## Install
 
 ```bash
