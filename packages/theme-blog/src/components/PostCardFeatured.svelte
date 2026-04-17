@@ -20,15 +20,22 @@
   <a href={`${base}/posts/${post.slug}/`} class="sp-card-featured__link">
     <div
       class="sp-card-featured__bg"
-      style={coverSrc
-        ? `background-image:url(${coverSrc})`
-        : 'background:linear-gradient(135deg,#ea580c 0%,#dc2626 50%,#9a3412 100%)'}
+      style={`${
+        coverSrc
+          ? `background-image:url(${coverSrc})`
+          : 'background:linear-gradient(135deg,#ea580c 0%,#dc2626 50%,#9a3412 100%)'
+      }; view-transition-name: sp-cover-${post.slug}`}
     >
       <div class="sp-card-featured__overlay">
         {#if post.tags[0]}
           <span class="sp-card-featured__tag">{post.tags[0]}</span>
         {/if}
-        <h2 class="sp-card-featured__title">{post.title}</h2>
+        <h2
+          class="sp-card-featured__title"
+          style="view-transition-name: sp-title-{post.slug}"
+        >
+          {post.title}
+        </h2>
         <p class="sp-card-featured__excerpt">{post.excerpt}</p>
         <div class="sp-card__meta sp-card__meta--light">
           <time>{post.date}</time>

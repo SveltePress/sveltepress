@@ -1,6 +1,7 @@
 <!-- src/components/GlobalLayout.svelte -->
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { onNavigate } from '$app/navigation'
   import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import SearchModal from './SearchModal.svelte'
@@ -18,6 +19,27 @@
   // `blogConfig.base` when set, else fall back to the subpath base.
   const ogOrigin = blogConfig.base?.replace(/\/$/, '') ?? base
   const ogHome = `${ogOrigin}/og/__home.png`
+
+  // Cross-document view transitions. When the browser supports it and the
+  // user hasn't opted out of motion, wrap each SvelteKit navigation in a
+  // `document.startViewTransition` so elements sharing a `view-transition-name`
+  // (card cover ↔ post hero, card title ↔ post title) morph between pages.
+  onNavigate(navigation => {
+    if (typeof document === 'undefined') return
+    const start = (
+      document as Document & {
+        startViewTransition?: (cb: () => void | Promise<void>) => unknown
+      }
+    ).startViewTransition
+    if (!start) return
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    return new Promise<void>(resolve => {
+      start.call(document, async () => {
+        resolve()
+        await navigation.complete
+      })
+    })
+  })
 
   let searchOpen = $state(false)
 
@@ -398,5 +420,22 @@
     font-size: 0.875rem;
     color: var(--sp-blog-muted);
     opacity: 0.5;
+  }
+
+  /* ── View Transitions — card ↔ post morph ───────────────── */
+  :global(::view-transition-group(*)) {
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  :global(::view-transition-old(root)),
+  :global(::view-transition-new(root)) {
+    animation-duration: 260ms;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(::view-transition-group(*)),
+    :global(::view-transition-old(root)),
+    :global(::view-transition-new(root)) {
+      animation: none !important;
+    }
   }
 </style>

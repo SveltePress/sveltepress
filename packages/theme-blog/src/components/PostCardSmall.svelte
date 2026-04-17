@@ -15,7 +15,12 @@
     {#if post.tags[0]}
       <span class="sp-card__tag">{post.tags[0]}</span>
     {/if}
-    <h2 class="sp-card-small__title">{post.title}</h2>
+    <h2
+      class="sp-card-small__title"
+      style="view-transition-name: sp-title-{post.slug}"
+    >
+      {post.title}
+    </h2>
     <p class="sp-card-small__quote">{post.excerpt}</p>
     <div class="sp-card__meta">
       <time>{post.date}</time>

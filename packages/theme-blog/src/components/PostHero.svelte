@@ -18,13 +18,18 @@
 
 <header
   class="sp-post-hero"
-  style={coverSrc ? `--hero-bg: url(${coverSrc})` : ''}
+  style={`${coverSrc ? `--hero-bg: url(${coverSrc});` : ''} view-transition-name: sp-cover-${post.slug}`}
 >
   <div class="sp-post-hero__overlay">
     {#if post.category}
       <span class="sp-post-hero__cat">{post.category}</span>
     {/if}
-    <h1 class="sp-post-hero__title">{post.title}</h1>
+    <h1
+      class="sp-post-hero__title"
+      style="view-transition-name: sp-title-{post.slug}"
+    >
+      {post.title}
+    </h1>
   </div>
 </header>
 

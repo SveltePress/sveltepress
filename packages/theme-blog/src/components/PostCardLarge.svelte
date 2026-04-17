@@ -46,18 +46,24 @@
         height="400"
         loading="lazy"
         decoding="async"
+        style="view-transition-name: sp-cover-{post.slug}"
       />
     {:else}
       <div
         class="sp-card-large__cover sp-card-large__cover--gradient"
-        style="background:{gradient}"
+        style="background:{gradient}; view-transition-name: sp-cover-{post.slug}"
       ></div>
     {/if}
     <div class="sp-card-large__body">
       {#if post.tags[0]}
         <span class="sp-card__tag">{post.tags[0]}</span>
       {/if}
-      <h2 class="sp-card-large__title">{post.title}</h2>
+      <h2
+        class="sp-card-large__title"
+        style="view-transition-name: sp-title-{post.slug}"
+      >
+        {post.title}
+      </h2>
       <p class="sp-card-large__excerpt">{post.excerpt}</p>
       <div class="sp-card__meta">
         <time>{post.date}</time>
