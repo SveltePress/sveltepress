@@ -1,5 +1,11 @@
 # @sveltepress/theme-blog
 
+## 0.2.0
+
+### Minor Changes
+
+- [`73c9c40`](https://github.com/Blackman99/sveltepress/commit/73c9c40af2c4f9e6b80b6445668bc5e8a86004b1) Thanks [@Blackman99](https://github.com/Blackman99)! - Editorial design system — Fraunces typography, drop cap, § divider, pull quote, figure captions, side-rail.
+
 ## 0.1.0
 
 ### Minor Changes
