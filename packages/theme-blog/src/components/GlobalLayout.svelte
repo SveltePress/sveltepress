@@ -231,6 +231,163 @@
     text-decoration: underline;
   }
 
+  /* ── Editorial post body (Fraunces) ─────────────────────── */
+  .sp-blog-root :global(.sp-post-content) {
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 14,
+      'wght' 400,
+      'SOFT' 30,
+      'WONK' 0;
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.62;
+    color: var(--sp-blog-content);
+    counter-reset: figure;
+  }
+
+  .sp-blog-root :global(.sp-post-content p) {
+    margin: 0 0 1.15rem;
+  }
+
+  /* Drop cap on the lead paragraph */
+  .sp-blog-root :global(.sp-post-content > p:first-of-type::first-letter) {
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 144,
+      'wght' 700,
+      'SOFT' 100,
+      'WONK' 1;
+    float: left;
+    font-size: 4.5rem;
+    line-height: 0.85;
+    padding: 0.25rem 0.6rem 0 0;
+    color: var(--sp-blog-primary);
+  }
+
+  /* Fraunces display headings — overrides the base PostLayout h2/h3 rules */
+  .sp-blog-root :global(.sp-post-content h2),
+  .sp-blog-root :global(.sp-post-content h3) {
+    font-family: var(--sp-font-serif);
+    color: var(--sp-blog-text);
+    letter-spacing: -0.01em;
+  }
+  .sp-blog-root :global(.sp-post-content h2) {
+    font-variation-settings:
+      'opsz' 72,
+      'wght' 600,
+      'SOFT' 70,
+      'WONK' 1;
+    font-size: 1.625rem;
+    line-height: 1.14;
+    margin: 2rem 0 0.875rem;
+  }
+  .sp-blog-root :global(.sp-post-content h3) {
+    font-variation-settings:
+      'opsz' 48,
+      'wght' 600,
+      'SOFT' 70,
+      'WONK' 1;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin: 1.75rem 0 0.75rem;
+  }
+
+  /* § section glyph divider — replaces the default <hr> */
+  .sp-blog-root :global(.sp-post-content hr) {
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin: 2rem 0;
+    color: var(--sp-blog-muted);
+    overflow: visible;
+  }
+  .sp-blog-root :global(.sp-post-content hr::before),
+  .sp-blog-root :global(.sp-post-content hr::after) {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--sp-blog-border);
+  }
+  .sp-blog-root :global(.sp-post-content hr::after) {
+    content: '';
+  }
+  .sp-blog-root :global(.sp-post-content hr::before) {
+    content: '§';
+    flex: 0 0 auto;
+    height: auto;
+    background: none;
+    order: 0;
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 48,
+      'wght' 600,
+      'SOFT' 100,
+      'WONK' 1;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--sp-blog-primary);
+    padding: 0 0.5rem;
+  }
+
+  /* Side-hanging pull quote (inside body column) */
+  .sp-blog-root :global(.sp-post-content blockquote.pull) {
+    margin: 1.75rem 0;
+    padding: 0.75rem 0 0.75rem 1.25rem;
+    border-left: 3px solid var(--sp-blog-primary);
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 60,
+      'wght' 500,
+      'SOFT' 90,
+      'WONK' 1;
+    font-style: italic;
+    font-size: 1.375rem;
+    line-height: 1.3;
+    color: var(--sp-blog-text);
+  }
+  .sp-blog-root :global(.sp-post-content blockquote.pull p) {
+    margin: 0 0 0.5rem;
+  }
+  .sp-blog-root :global(.sp-post-content blockquote.pull p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Figures with numbered captions */
+  .sp-blog-root :global(.sp-post-content figure) {
+    margin: 2rem 0;
+    counter-increment: figure;
+  }
+  .sp-blog-root :global(.sp-post-content figure img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+  .sp-blog-root :global(.sp-post-content figure figcaption) {
+    margin-top: 0.5rem;
+    font-family: var(--sp-font-serif);
+    font-variation-settings:
+      'opsz' 14,
+      'wght' 400,
+      'SOFT' 60,
+      'WONK' 1;
+    font-style: italic;
+    font-size: 0.8125rem;
+    color: var(--sp-blog-muted);
+    padding-left: 0.875rem;
+    text-indent: -0.875rem;
+  }
+  .sp-blog-root :global(.sp-post-content figure figcaption::before) {
+    content: 'Fig. ' counter(figure, decimal-leading-zero) ' · ';
+    font-family: var(--sp-font-sans);
+    font-style: normal;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sp-blog-primary);
+  }
+
   .sp-blog-main {
     max-width: 960px;
     width: 100%;
