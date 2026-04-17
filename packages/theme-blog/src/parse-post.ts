@@ -7,6 +7,7 @@ import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 import { parse as parseYaml } from 'yaml'
 import { readingTime } from './reading-time.js'
+import { rehypeFigure } from './rehype-figure.js'
 import { rehypeHeadingIds } from './rehype-heading-ids.js'
 import { remarkCodeBlocks } from './remark-code-blocks.js'
 import { remarkPullQuote } from './remark-pull-quote.js'
@@ -18,6 +19,7 @@ const processor = unified()
   .use(remarkPullQuote)
   .use(remarkCodeBlocks)
   .use(remarkRehype, { allowDangerousHtml: true })
+  .use(rehypeFigure)
   .use(rehypeHeadingIds)
   .use(rehypeStringify, { allowDangerousHtml: true })
 
