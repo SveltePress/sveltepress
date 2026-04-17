@@ -4,7 +4,10 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.33.0",
   "description": "A magazine-style blog theme for Sveltepress",
-  "author": { "name": "Dongsheng Zhao", "email": "1197160272@qq.com" },
+  "author": {
+    "name": "Dongsheng Zhao",
+    "email": "1197160272@qq.com"
+  },
   "license": "MIT",
   "homepage": "https://sveltepress.site/",
   "repository": {

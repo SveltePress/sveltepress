@@ -25,7 +25,7 @@ catalogs:
       specifier: ^1.7.6
       version: 1.7.6
     '@fontsource/inter':
-      specifier: ^5.2.0
+      specifier: ^5.2.8
       version: 5.2.8
     '@iconify-json/bi':
       specifier: ^1.2.7
@@ -46,8 +46,8 @@ catalogs:
       specifier: ^1.2.11
       version: 1.2.11
     '@iconify-json/material-symbols':
-      specifier: ^1.2.66
-      version: 1.2.66
+      specifier: ^1.2.67
+      version: 1.2.67
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -55,8 +55,8 @@ catalogs:
       specifier: ^1.2.7
       version: 1.2.7
     '@iconify-json/openmoji':
-      specifier: ^1.2.26
-      version: 1.2.26
+      specifier: ^1.2.27
+      version: 1.2.27
     '@iconify-json/ph':
       specifier: ^1.2.2
       version: 1.2.2
@@ -205,7 +205,7 @@ catalogs:
       specifier: ^11.0.0
       version: 11.0.0
     satori:
-      specifier: ^0.12.0
+      specifier: ^0.12.2
       version: 0.12.2
     shiki:
       specifier: ^3.23.0
@@ -226,11 +226,11 @@ catalogs:
       specifier: ^19.11.0
       version: 19.11.0
     twoslash:
-      specifier: ^0.3.7
-      version: 0.3.7
+      specifier: ^0.3.8
+      version: 0.3.8
     twoslash-protocol:
-      specifier: ^0.3.7
-      version: 0.3.7
+      specifier: ^0.3.8
+      version: 0.3.8
     typescript:
       specifier: ^5.9.3
       version: 5.9.3
@@ -384,7 +384,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.66
+        version: 1.2.67
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -393,7 +393,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.26
+        version: 1.2.27
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -462,7 +462,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.66
+        version: 1.2.67
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -471,7 +471,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.26
+        version: 1.2.27
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -540,7 +540,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.66
+        version: 1.2.67
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -549,7 +549,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.26
+        version: 1.2.27
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -847,10 +847,10 @@ importers:
         version: 0.7.53(svelte@5.55.4)(typescript@5.9.3)
       twoslash:
         specifier: 'catalog:'
-        version: 0.3.7(typescript@5.9.3)
+        version: 0.3.8(typescript@5.9.3)
       twoslash-protocol:
         specifier: 'catalog:'
-        version: 0.3.7
+        version: 0.3.8
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
@@ -2063,8 +2063,8 @@ packages:
   '@iconify-json/logos@1.2.11':
     resolution: {integrity: sha512-fOo4pGEatuyuCFNL+cwquYMa2Im0oJHRHV7lt/Qqs5Ode/lPImHCQcfTtPzZj7qYMPb/h8YHN3TG54uEowrjNQ==}
 
-  '@iconify-json/material-symbols@1.2.66':
-    resolution: {integrity: sha512-pgZmK8RBAaYjfHnR0DcUDraduiJwjGDi4FwCXp89ecyNfs6fcL8j+TJ+Xqkyv6v7c31j/4OlL5ly86ATT6yTpA==}
+  '@iconify-json/material-symbols@1.2.67':
+    resolution: {integrity: sha512-9cKkCiHfShI795yoX+f7EqchoOcPWgyl2pMcXkyylX66AJ+B5mYEOEFxYpU7toOoquOEY2OYrgU89neik0N02w==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -2072,8 +2072,8 @@ packages:
   '@iconify-json/noto@1.2.7':
     resolution: {integrity: sha512-2pNHliXnMLpnepNTZwR9hPBSl6GmhIfXPnudFCHY5v9pJhmA7LoVb/pFY0qLDY/k+3ikET8RXRf7XFxc/pHObA==}
 
-  '@iconify-json/openmoji@1.2.26':
-    resolution: {integrity: sha512-wyU2+m4fD9IojxOhioaH59yLDF2F5JkKBpUKzGXURpD78JCjkDqoHE3TQHT4rClkE5hHTrN7G37+JbJrut2kYw==}
+  '@iconify-json/openmoji@1.2.27':
+    resolution: {integrity: sha512-pIH1ofyNMYOD1vysHYtRzhAMMftcdmw+kCdzr/GDxIIa8jU4XrK3LzZcMs+kHXWzNaZL13VZkJ7H+a07BPWiiQ==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -6094,16 +6094,16 @@ packages:
   twoslash-protocol@0.3.6:
     resolution: {integrity: sha512-FHGsJ9Q+EsNr5bEbgG3hnbkvEBdW5STgPU824AHUjB4kw0Dn4p8tABT7Ncg1Ie6V0+mDg3Qpy41VafZXcQhWMA==}
 
-  twoslash-protocol@0.3.7:
-    resolution: {integrity: sha512-mwDFdclG7DbFW3aZA/CGATzV2efV2uPai90mmRSblqPbrc1Z1cu+DpI5oKMNciGY4rw8EOXc7QGY8O0iw1hnzg==}
+  twoslash-protocol@0.3.8:
+    resolution: {integrity: sha512-HmvAHoiEviK8LqvAQyc9/irkdvwTUiR1fHmNwH/0gq8EHxyBt4PWVPixjEXg6wJu1u6yBrILEWXGK9Kw58/8yQ==}
 
   twoslash@0.3.6:
     resolution: {integrity: sha512-VuI5OKl+MaUO9UIW3rXKoPgHI3X40ZgB/j12VY6h98Ae1mCBihjPvhOPeJWlxCYcmSbmeZt5ZKkK0dsVtp+6pA==}
     peerDependencies:
       typescript: ^5.5.0
 
-  twoslash@0.3.7:
-    resolution: {integrity: sha512-f7YgM+6G5e3wRGwMiOV8Z0wfusR4zCcdDPSqgGjpLSiW0ymT9r/dM6g++IvOMtSO0KnP/yGTUFhH04y6uqpL6g==}
+  twoslash@0.3.8:
+    resolution: {integrity: sha512-OeDz0kDl8sqPUN3nr7gqcvOs70f5lZsdhKYTX3/SgB9OvdadzzoYJI/4SBXhXV1HG8E9fLc+e17itoRYTxmoig==}
     peerDependencies:
       typescript: ^5.5.0 || ^6.0.0
 
@@ -7773,7 +7773,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.66':
+  '@iconify-json/material-symbols@1.2.67':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7785,7 +7785,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/openmoji@1.2.26':
+  '@iconify-json/openmoji@1.2.27':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -12325,7 +12325,7 @@ snapshots:
 
   twoslash-protocol@0.3.6: {}
 
-  twoslash-protocol@0.3.7: {}
+  twoslash-protocol@0.3.8: {}
 
   twoslash@0.3.6(typescript@5.9.3):
     dependencies:
@@ -12335,10 +12335,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  twoslash@0.3.7(typescript@5.9.3):
+  twoslash@0.3.8(typescript@5.9.3):
     dependencies:
       '@typescript/vfs': 1.6.4(typescript@5.9.3)
-      twoslash-protocol: 0.3.7
+      twoslash-protocol: 0.3.8
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color

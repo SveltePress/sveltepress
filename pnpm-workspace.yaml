@@ -20,17 +20,17 @@ catalog:
   '@docsearch/css': ^4.6.2
   '@docsearch/js': ^4.6.2
   '@floating-ui/dom': ^1.7.6
-  '@fontsource/inter': ^5.2.0
+  '@fontsource/inter': ^5.2.8
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
   '@iconify-json/carbon': ^1.2.20
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.11
-  '@iconify-json/material-symbols': ^1.2.66
+  '@iconify-json/material-symbols': ^1.2.67
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
-  '@iconify-json/openmoji': ^1.2.26
+  '@iconify-json/openmoji': ^1.2.27
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.33
@@ -80,15 +80,15 @@ catalog:
   remark-parse: ^11.0.0
   remark-rehype: ^11.1.2
   remark-stringify: ^11.0.0
-  satori: ^0.12.0
+  satori: ^0.12.2
   shiki: ^3.23.0
   source-map-js: ^1.2.1
   svelte: ^5.55.4
   svelte-check: ^4.4.6
   svelte2tsx: ^0.7.53
   taze: ^19.11.0
-  twoslash: ^0.3.7
-  twoslash-protocol: ^0.3.7
+  twoslash: ^0.3.8
+  twoslash-protocol: ^0.3.8
   typescript: ^5.9.3
   uid: ^2.0.2
   unbuild: ^3.6.1
