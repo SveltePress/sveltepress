@@ -165,7 +165,7 @@
     --sp-blog-primary: #fb923c;
     --sp-blog-secondary: #dc2626;
     --sp-font-serif: 'Fraunces Variable', Georgia, serif;
-    --sp-font-sans: Inter, system-ui, sans-serif;
+    --sp-font-sans: 'Inter', system-ui, sans-serif;
   }
 
   /* ── Light palette (warm cream) ──────────────────────────── */
@@ -179,7 +179,7 @@
     --sp-blog-primary: #c2410c;
     --sp-blog-secondary: #dc2626;
     --sp-font-serif: 'Fraunces Variable', Georgia, serif;
-    --sp-font-sans: Inter, system-ui, sans-serif;
+    --sp-font-sans: 'Inter', system-ui, sans-serif;
   }
 
   /* ── Base layout ─────────────────────────────────────────── */
