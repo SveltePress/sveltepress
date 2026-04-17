@@ -12,7 +12,7 @@ const CACHE_FILE = 'blog-posts.json'
  * cannot be trusted — e.g. Shiki/remark/rehype plugin upgrades, or
  * changes to ParsedPost fields. Included in every entry's hash.
  */
-const CACHE_VERSION = 1
+const CACHE_VERSION = 2
 
 export interface CacheEntry {
   hash: string

@@ -52,6 +52,12 @@ const config = defineConfig({
   server: {
     port: 36739,
   },
+  ssr: {
+    // Fontsource CSS packages imported from theme-blog's GlobalLayout must be
+    // bundled (not externalised) so Node's ESM loader doesn't try to load raw
+    // `.css` files during SSR.
+    noExternal: ['@fontsource-variable/fraunces', '@fontsource/inter'],
+  },
 })
 
 export default config
