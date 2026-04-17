@@ -99,11 +99,11 @@
     position: sticky;
     top: 80px;
     min-height: 220px;
+    padding-right: 1rem; /* reserve room for the vertical rail */
   }
   .sp-toc {
     font-family: var(--sp-font-sans);
     font-size: 0.8rem;
-    padding-right: 1rem; /* reserve room for the vertical rail */
   }
   .sp-toc__label {
     font-size: 0.625rem;
