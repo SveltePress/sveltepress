@@ -13,7 +13,10 @@
 <article class="sp-card-small">
   <a href={`${base}/posts/${post.slug}/`} class="sp-card-small__link">
     {#if post.tags[0]}
-      <span class="sp-card__tag">{post.tags[0]}</span>
+      <span
+        class="sp-card__tag"
+        style="view-transition-name: sp-tag-{post.slug}">{post.tags[0]}</span
+      >
     {/if}
     <h2
       class="sp-card-small__title"
@@ -23,8 +26,10 @@
     </h2>
     <p class="sp-card-small__quote">{post.excerpt}</p>
     <div class="sp-card__meta">
-      <time>{post.date}</time>
-      <span>{post.readingTime} min read</span>
+      <time style="view-transition-name: sp-date-{post.slug}">{post.date}</time>
+      <span style="view-transition-name: sp-reading-{post.slug}"
+        >{post.readingTime} min read</span
+      >
     </div>
   </a>
 </article>

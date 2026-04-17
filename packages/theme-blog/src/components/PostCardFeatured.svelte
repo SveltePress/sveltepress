@@ -28,7 +28,11 @@
     >
       <div class="sp-card-featured__overlay">
         {#if post.tags[0]}
-          <span class="sp-card-featured__tag">{post.tags[0]}</span>
+          <span
+            class="sp-card-featured__tag"
+            style="view-transition-name: sp-tag-{post.slug}"
+            >{post.tags[0]}</span
+          >
         {/if}
         <h2
           class="sp-card-featured__title"
@@ -38,8 +42,12 @@
         </h2>
         <p class="sp-card-featured__excerpt">{post.excerpt}</p>
         <div class="sp-card__meta sp-card__meta--light">
-          <time>{post.date}</time>
-          <span>{post.readingTime} min read</span>
+          <time style="view-transition-name: sp-date-{post.slug}"
+            >{post.date}</time
+          >
+          <span style="view-transition-name: sp-reading-{post.slug}"
+            >{post.readingTime} min read</span
+          >
         </div>
       </div>
     </div>

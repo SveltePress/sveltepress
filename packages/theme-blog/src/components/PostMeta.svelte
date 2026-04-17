@@ -15,14 +15,25 @@
     <span class="sp-post-meta__author">{post.author}</span>
     <span class="sp-post-meta__sep">·</span>
   {/if}
-  <time class="sp-post-meta__date">{post.date}</time>
+  <time
+    class="sp-post-meta__date"
+    style="view-transition-name: sp-date-{post.slug}">{post.date}</time
+  >
   <span class="sp-post-meta__sep">·</span>
-  <span>{post.readingTime} min read</span>
+  <span style="view-transition-name: sp-reading-{post.slug}"
+    >{post.readingTime} min read</span
+  >
   {#if post.tags.length}
     <span class="sp-post-meta__sep">·</span>
     <div class="sp-post-meta__tags">
-      {#each post.tags as tag}
-        <a href={`${base}/tags/${tag}/`} class="sp-post-meta__tag">{tag}</a>
+      {#each post.tags as tag, i}
+        <a
+          href={`${base}/tags/${tag}/`}
+          class="sp-post-meta__tag"
+          style={i === 0
+            ? `view-transition-name: sp-tag-${post.slug}`
+            : undefined}>{tag}</a
+        >
       {/each}
     </div>
   {/if}

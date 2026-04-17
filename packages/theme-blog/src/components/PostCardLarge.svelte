@@ -56,7 +56,10 @@
     {/if}
     <div class="sp-card-large__body">
       {#if post.tags[0]}
-        <span class="sp-card__tag">{post.tags[0]}</span>
+        <span
+          class="sp-card__tag"
+          style="view-transition-name: sp-tag-{post.slug}">{post.tags[0]}</span
+        >
       {/if}
       <h2
         class="sp-card-large__title"
@@ -66,8 +69,12 @@
       </h2>
       <p class="sp-card-large__excerpt">{post.excerpt}</p>
       <div class="sp-card__meta">
-        <time>{post.date}</time>
-        <span>{post.readingTime} min read</span>
+        <time style="view-transition-name: sp-date-{post.slug}"
+          >{post.date}</time
+        >
+        <span style="view-transition-name: sp-reading-{post.slug}"
+          >{post.readingTime} min read</span
+        >
       </div>
     </div>
   </a>
