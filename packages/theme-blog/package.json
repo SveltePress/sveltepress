@@ -2,7 +2,7 @@
   "name": "@sveltepress/theme-blog",
   "type": "module",
   "version": "0.2.0",
-  "packageManager": "pnpm@10.33.1",
+  "packageManager": "pnpm@10.33.2",
   "description": "A magazine-style blog theme for Sveltepress",
   "author": {
     "name": "Dongsheng Zhao",

@@ -2,7 +2,7 @@
   "name": "@sveltepress/docsearch",
   "type": "module",
   "version": "0.1.1",
-  "packageManager": "pnpm@10.33.1",
+  "packageManager": "pnpm@10.33.2",
   "description": "Docsearch component for sveltepress",
   "author": "Dongsheng Zhao",
   "license": "MIT",
