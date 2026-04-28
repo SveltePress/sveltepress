@@ -16,11 +16,11 @@ catalogs:
       specifier: ^2.31.0
       version: 2.31.0
     '@docsearch/css':
-      specifier: ^4.6.2
-      version: 4.6.2
+      specifier: ^4.6.3
+      version: 4.6.3
     '@docsearch/js':
-      specifier: ^4.6.2
-      version: 4.6.2
+      specifier: ^4.6.3
+      version: 4.6.3
     '@floating-ui/dom':
       specifier: ^1.7.6
       version: 1.7.6
@@ -603,10 +603,10 @@ importers:
     dependencies:
       '@docsearch/css':
         specifier: 'catalog:'
-        version: 4.6.2
+        version: 4.6.3
       '@docsearch/js':
         specifier: 'catalog:'
-        version: 4.6.2
+        version: 4.6.3
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
@@ -1623,11 +1623,11 @@ packages:
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
 
-  '@docsearch/css@4.6.2':
-    resolution: {integrity: sha512-fH/cn8BjEEdM2nJdjNMHIvOVYupG6AIDtFVDgIZrNzdCSj4KXr9kd+hsehqsNGYjpUjObeKYKvgy/IwCb1jZYQ==}
+  '@docsearch/css@4.6.3':
+    resolution: {integrity: sha512-nlOwcXcsNAptQl4vlL4MA78qNJKO0Qlds5GuBjCoePgkebTXLSf8Qt1oyZ3YBshYupKXG9VRGEsk1zr23d+bzQ==}
 
-  '@docsearch/js@4.6.2':
-    resolution: {integrity: sha512-qj1yoxl3y4GKoK7+VM6fq/rQqPnvUmg3IKzJ9x0VzN14QVzdB/SG/J6VfV1BWT5RcPUFxIcVwoY1fwHM2fSRRw==}
+  '@docsearch/js@4.6.3':
+    resolution: {integrity: sha512-qUIX2b4Apew3tv4F0qhmgShsl/Lfw4m6mqv/5/5dWNxwTcDdLMp2s3YwZ+NMGh3IKCg0pBaXm7Q5VdyU5Rj+cQ==}
 
   '@emnapi/core@1.8.1':
     resolution: {integrity: sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg==}
@@ -7467,9 +7467,9 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
-  '@docsearch/css@4.6.2': {}
+  '@docsearch/css@4.6.3': {}
 
-  '@docsearch/js@4.6.2': {}
+  '@docsearch/js@4.6.3': {}
 
   '@emnapi/core@1.8.1':
     dependencies:
