@@ -35,7 +35,7 @@ catalog:
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.33
-  '@iconify-json/vscode-icons': ^1.2.47
+  '@iconify-json/vscode-icons': ^1.2.48
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -103,5 +103,5 @@ catalog:
   workbox-precaching: ^7.4.0
   workbox-routing: ^7.4.0
   workbox-window: ^7.4.0
-  yaml: ^2.8.3
+  yaml: ^2.8.4
   zx: ^8.8.5
