@@ -2,6 +2,7 @@
 import { writeFileSync } from 'node:fs'
 import { cwd } from 'node:process'
 import { $ } from 'zx'
+import { getChangesetFilename } from './check-utils.mjs'
 
 $.cwd = cwd()
 
@@ -15,20 +16,7 @@ async function createChangeset() {
 
 chore: update deps
 `
-  writeFileSync(`.changeset/${generateRandomWords(3)}.md`, mdContent)
-}
-
-function generateRandomWords(num, wordLength = 5, separator = '-') {
-  const words = []
-  const possible = 'abcdefghijklmnopqrstuvwxyz'
-  for (let i = 0; i < num; i++) {
-    let word = ''
-    for (let j = 0; j < wordLength; j++) {
-      word += possible.charAt(Math.floor(Math.random() * possible.length))
-    }
-    words.push(word)
-  }
-  return words.join(separator)
+  writeFileSync(`.changeset/${getChangesetFilename()}`, mdContent)
 }
 
 async function createGitCommit() {
