@@ -28,14 +28,14 @@ catalog:
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.11
-  '@iconify-json/material-symbols': ^1.2.69
+  '@iconify-json/material-symbols': ^1.2.70
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.27
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
-  '@iconify-json/tabler': ^1.2.33
-  '@iconify-json/vscode-icons': ^1.2.48
+  '@iconify-json/tabler': ^1.2.34
+  '@iconify-json/vscode-icons': ^1.2.49
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -44,7 +44,7 @@ catalog:
   '@sveltejs/package': ^2.5.7
   '@sveltejs/vite-plugin-svelte': ^6.2.4
   '@types/cross-spawn': ^6.0.6
-  '@types/estree': ^1.0.8
+  '@types/estree': ^1.0.9
   '@types/fs-extra': ^11.0.4
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
@@ -58,7 +58,7 @@ catalog:
   dayjs: ^1.11.20
   eslint: ^9.39.4
   eslint-plugin-svelte: ^3.17.1
-  fs-extra: ^11.3.4
+  fs-extra: ^11.3.5
   husky: ^9.1.7
   lint-staged: ^16.4.0
   lru-cache: ^11.3.6
