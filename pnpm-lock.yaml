@@ -37,8 +37,8 @@ catalogs:
       specifier: ^1.2.3
       version: 1.2.3
     '@iconify-json/carbon':
-      specifier: ^1.2.20
-      version: 1.2.20
+      specifier: ^1.2.21
+      version: 1.2.21
     '@iconify-json/emojione':
       specifier: ^1.2.3
       version: 1.2.3
@@ -49,8 +49,8 @@ catalogs:
       specifier: ^1.2.11
       version: 1.2.11
     '@iconify-json/material-symbols':
-      specifier: ^1.2.70
-      version: 1.2.70
+      specifier: ^1.2.71
+      version: 1.2.71
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -67,8 +67,8 @@ catalogs:
       specifier: ^1.2.5
       version: 1.2.5
     '@iconify-json/tabler':
-      specifier: ^1.2.34
-      version: 1.2.34
+      specifier: ^1.2.35
+      version: 1.2.35
     '@iconify-json/vscode-icons':
       specifier: ^1.2.49
       version: 1.2.49
@@ -375,7 +375,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.20
+        version: 1.2.21
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -387,7 +387,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.70
+        version: 1.2.71
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -405,7 +405,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.34
+        version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.49
@@ -453,7 +453,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.20
+        version: 1.2.21
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -465,7 +465,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.70
+        version: 1.2.71
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -483,7 +483,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.34
+        version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.49
@@ -531,7 +531,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.20
+        version: 1.2.21
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -543,7 +543,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.70
+        version: 1.2.71
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -561,7 +561,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.34
+        version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.49
@@ -2063,8 +2063,8 @@ packages:
   '@iconify-json/bxs@1.2.3':
     resolution: {integrity: sha512-SxRzB4e0zrWq1duwDUmuT5t5gaDjwN2nMu1yoO2mP2tNaiciylx33+hKxEz3ykxIGKPi3/ItX0V6Sfdju1FrZA==}
 
-  '@iconify-json/carbon@1.2.20':
-    resolution: {integrity: sha512-wqyxKEbIRdzGdfCAwQqn8iSfO6jx0m1toZAAQdx1NFjxd6iFl1YY4eKI1woWt7XOxs7s7phMW530kDD867JZGw==}
+  '@iconify-json/carbon@1.2.21':
+    resolution: {integrity: sha512-yCutC5KWR7uiXdCum1MqNrnfUhq118WYhHkUiBux6wekc6UnlVKvIte54AER0B2uEe0wfKxFIMoJqJugjViATQ==}
 
   '@iconify-json/emojione@1.2.3':
     resolution: {integrity: sha512-T9+T3HIbJNLKKsmxYKlaYhvnHYkz/HNYTV7SHCXVZPfeUi4FqskY70YeN8yYAZT8cCv7w5vJxS4Q1m8zb9CMMg==}
@@ -2075,8 +2075,8 @@ packages:
   '@iconify-json/logos@1.2.11':
     resolution: {integrity: sha512-fOo4pGEatuyuCFNL+cwquYMa2Im0oJHRHV7lt/Qqs5Ode/lPImHCQcfTtPzZj7qYMPb/h8YHN3TG54uEowrjNQ==}
 
-  '@iconify-json/material-symbols@1.2.70':
-    resolution: {integrity: sha512-8FljpHMgaYwqHKEt7ovTog4d5Vuz6ivv0jih3yuoo68UWM1VltL6FUxSq/HrAsgItWBy9VNIOQUSIHgNUoHrkA==}
+  '@iconify-json/material-symbols@1.2.71':
+    resolution: {integrity: sha512-anxtI3TtLv7VVtISrp8WqXU4vexszKwN7yFOmXoZjSSsIgiFp3HrMeWBFqlZPr90CVgP717dxc2OhCJyiEnOfw==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -2093,8 +2093,8 @@ packages:
   '@iconify-json/solar@1.2.5':
     resolution: {integrity: sha512-WMAiNwchU8zhfrySww6KQBRIBbsQ6SvgIu2yA+CHGyMima/0KQwT5MXogrZPJGoQF+1Ye3Qj6K+1CiyNn3YkoA==}
 
-  '@iconify-json/tabler@1.2.34':
-    resolution: {integrity: sha512-WSlE5QrptidM57sCnXkpxZKcrk+oue6OlSJD5+gw8rIjuovOeNlejL/zABBM5kASsxLjoSy738Q8hmKrVzODuA==}
+  '@iconify-json/tabler@1.2.35':
+    resolution: {integrity: sha512-/sJMqHvh5ZWrEERVfDCT5NjVDeKJdhosFtKjJofAVl+P/3AzLiryOQw7WvrfDF25Xa5N/eoOQ15Y1jnhYXxBoQ==}
 
   '@iconify-json/vscode-icons@1.2.49':
     resolution: {integrity: sha512-kPSF7NYMEepp/YxM/Sz9AK3+8tEb4Vz94N67OH4Xw9PetIs6at9iETVAAD47WR1sV+VkQo+Uynd8IMKw3J5NGQ==}
@@ -2935,9 +2935,6 @@ packages:
 
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
-
-  '@types/node@24.12.2':
-    resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
 
   '@types/node@24.12.3':
     resolution: {integrity: sha512-8oljBDGun9cIsZRJR6fkihn0TSXJI0UDOOhncYaERq6M0JMDoPLxyscwruJcb4GKS6dvK/d8xebYBg27h/duaQ==}
@@ -7779,7 +7776,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/carbon@1.2.20':
+  '@iconify-json/carbon@1.2.21':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7795,7 +7792,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.70':
+  '@iconify-json/material-symbols@1.2.71':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7819,7 +7816,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/tabler@1.2.34':
+  '@iconify-json/tabler@1.2.35':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8493,10 +8490,6 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@24.12.2':
-    dependencies:
-      undici-types: 7.16.0
-
   '@types/node@24.12.3':
     dependencies:
       undici-types: 7.16.0
@@ -8508,7 +8501,7 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 24.12.3
 
   '@types/resolve@1.20.2': {}
 
@@ -10475,7 +10468,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 24.12.2
+      '@types/node': 24.12.3
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
