@@ -49,7 +49,7 @@ catalog:
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.12.3
+  '@types/node': ^24.12.4
   '@types/prompts': ^2.4.9
   '@unocss/extractor-svelte': ^66.6.8
   '@vite-pwa/sveltekit': ^1.1.0
@@ -70,7 +70,7 @@ catalog:
   pagefind: ^1.5.2
   picocolors: ^1.1.1
   prettier: ~3.6.2
-  prettier-plugin-svelte: ^3.5.1
+  prettier-plugin-svelte: ^3.5.2
   prompts: ^2.4.2
   rehype-stringify: ^10.0.1
   remark-directive: ^4.0.0
@@ -103,5 +103,5 @@ catalog:
   workbox-precaching: ^7.4.1
   workbox-routing: ^7.4.1
   workbox-window: ^7.4.1
-  yaml: ^2.8.4
+  yaml: ^2.9.0
   zx: ^8.8.5
