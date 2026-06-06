@@ -24,7 +24,7 @@ catalog:
   '@fontsource/inter': ^5.2.8
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
-  '@iconify-json/carbon': ^1.2.22
+  '@iconify-json/carbon': ^1.2.23
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.11
@@ -49,7 +49,7 @@ catalog:
   '@types/hast': ^3.0.4
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.13.0
+  '@types/node': ^24.13.1
   '@types/prompts': ^2.4.9
   '@unocss/extractor-svelte': ^66.7.0
   '@vite-pwa/sveltekit': ^1.1.0
