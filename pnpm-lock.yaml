@@ -70,8 +70,8 @@ catalogs:
       specifier: ^1.2.35
       version: 1.2.35
     '@iconify-json/vscode-icons':
-      specifier: ^1.2.54
-      version: 1.2.54
+      specifier: ^1.2.55
+      version: 1.2.55
     '@resvg/resvg-js':
       specifier: ^2.6.2
       version: 2.6.2
@@ -408,7 +408,7 @@ importers:
         version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.54
+        version: 1.2.55
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.63.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.56.2(@typescript-eslint/types@8.50.0))(vite@7.3.5(@types/node@24.13.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.2(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@7.3.5(@types/node@24.13.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -486,7 +486,7 @@ importers:
         version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.54
+        version: 1.2.55
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.63.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.56.2(@typescript-eslint/types@8.50.0))(vite@7.3.5(@types/node@24.13.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.2(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@7.3.5(@types/node@24.13.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -564,7 +564,7 @@ importers:
         version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.54
+        version: 1.2.55
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.63.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.56.2(@typescript-eslint/types@8.50.0))(vite@7.3.5(@types/node@24.13.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.2(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@7.3.5(@types/node@24.13.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -2099,8 +2099,8 @@ packages:
   '@iconify-json/tabler@1.2.35':
     resolution: {integrity: sha512-/sJMqHvh5ZWrEERVfDCT5NjVDeKJdhosFtKjJofAVl+P/3AzLiryOQw7WvrfDF25Xa5N/eoOQ15Y1jnhYXxBoQ==}
 
-  '@iconify-json/vscode-icons@1.2.54':
-    resolution: {integrity: sha512-WxGA+FE5AP7mbKuy7lMClIKc/iY9hCKgafZsrCeQjyO2G3MvP/2cZev1W1QPn3tAbXDmVak5K3HB3rxvi+066g==}
+  '@iconify-json/vscode-icons@1.2.55':
+    resolution: {integrity: sha512-7c6yep/OW7/xVWPedBeFbHv5wM4PnRcrZvlsaB+l5cBNWL/6thNE1yuN+PDPQZoEGdXRMUfwDAI3qF0ZVftwag==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2942,9 +2942,6 @@ packages:
 
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
-
-  '@types/node@24.13.0':
-    resolution: {integrity: sha512-5vtOqGQr4NJKeEzV441FcOi2MeG9UTWq9LqVLGneDdu4vlX17H8kQ2PA2UmNwCUGPVDj4oBjNhS7ReVEIWJJrg==}
 
   '@types/node@24.13.1':
     resolution: {integrity: sha512-RSpUJGmvsJ1ZeBehQZFhIdpsz+bIpES0nIQXko4Ybq+N+kX6XvOq3Jo+iJ82FWLdblFq85AsMikd3m35jgezYg==}
@@ -7870,7 +7867,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.54':
+  '@iconify-json/vscode-icons@1.2.55':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8541,10 +8538,6 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@24.13.0':
-    dependencies:
-      undici-types: 7.18.2
-
   '@types/node@24.13.1':
     dependencies:
       undici-types: 7.18.2
@@ -8556,7 +8549,7 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 24.13.0
+      '@types/node': 24.13.1
 
   '@types/resolve@1.20.2': {}
 
@@ -10538,7 +10531,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 24.13.0
+      '@types/node': 24.13.1
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
