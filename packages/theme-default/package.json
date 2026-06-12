@@ -2,7 +2,7 @@
   "name": "@sveltepress/theme-default",
   "type": "module",
   "version": "7.3.2",
-  "packageManager": "pnpm@10.34.2",
+  "packageManager": "pnpm@10.34.3",
   "description": "The default theme for sveltepress",
   "author": {
     "name": "Dongsheng Zhao",
