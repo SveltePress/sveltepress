@@ -1,5 +1,7 @@
 ---
+'@sveltepress/theme-blog': patch
+'@sveltepress/theme-default': patch
 '@sveltepress/vite': patch
 ---
 
-Normalize SvelteKit preload dependency paths in static builds to avoid nested `/_app/immutable` requests during hydration.
+Require SvelteKit 2.65.1 or newer so static builds use the upstream fix for absolute preload dependency paths.
