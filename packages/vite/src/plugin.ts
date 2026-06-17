@@ -1,11 +1,12 @@
 import type { Plugin } from 'unified'
 import type { PluginOption } from 'vite'
 import type { RehypePluginsOrderer, RemarkPluginsOrderer, SveltepressVitePluginOptions } from './types.js'
-import { existsSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { generateLlmsTxt } from './llms.js'
+import { normalizeVitePreloadPaths } from './utils/preload-paths.js'
 import { wrapPage } from './utils/wrap-page.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
@@ -123,7 +124,23 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         ctx.read = async () => await getWrappedCode(file, src)
       }
     },
-    writeBundle() {
+    writeBundle(options, bundle) {
+      if (isBuild) {
+        const dir = options.dir
+        if (dir) {
+          for (const [fileName, output] of Object.entries(bundle)) {
+            if (output.type !== 'chunk' || !fileName.endsWith('.js'))
+              continue
+
+            const filePath = resolve(dir, fileName)
+            const code = readFileSync(filePath, 'utf-8')
+            const normalized = normalizeVitePreloadPaths(code)
+            if (normalized !== code)
+              writeFileSync(filePath, normalized)
+          }
+        }
+      }
+
       if (isBuild && llms?.enabled) {
         generateLlmsTxt(llms, siteConfig ?? {})
       }
