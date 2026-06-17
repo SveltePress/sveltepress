@@ -1,1 +1,6 @@
+#!/usr/bin/env sh
+
+[ "${HUSKY-}" = "0" ] && exit 0
+
+export PATH="node_modules/.bin:$PATH"
 lint-staged

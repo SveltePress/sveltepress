@@ -9,7 +9,7 @@
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
     "test:theme-blog": "cd packages/theme-blog && npx vitest run && cd ../..",
     "test": "pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
-    "prepare": "husky"
+    "prepare": "husky && git config core.hooksPath .husky"
   },
   "dependencies": {
     "@changesets/changelog-github": "catalog:"
