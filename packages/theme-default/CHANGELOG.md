@@ -1,5 +1,91 @@
 # @sveltepress/theme-default
 
+## 7.3.3
+
+### Patch Changes
+
+- [`35dc104`](https://github.com/Blackman99/sveltepress/commit/35dc104f8e97310b73620727edcc6d6854868033) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`72a33e7`](https://github.com/Blackman99/sveltepress/commit/72a33e7c5ecf224f52f65876ffc58459b820b741) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`423ac78`](https://github.com/Blackman99/sveltepress/commit/423ac78366a796e47bb64d462d8d1d05f1fdbaab) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`ade2925`](https://github.com/Blackman99/sveltepress/commit/ade29251f6512ac320d3f3eb4e8da800a30d6a74) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8d13b1a`](https://github.com/Blackman99/sveltepress/commit/8d13b1a0bee6ea5b1938ad5c02046c37bf2bd5f5) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d8554cc`](https://github.com/Blackman99/sveltepress/commit/d8554ccede0572bb959b9ace6ac7ccc0ffe0b5db) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`87961b3`](https://github.com/Blackman99/sveltepress/commit/87961b3eec10fb4a0148c4675a4d77f39ac869eb) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b3da6e9`](https://github.com/Blackman99/sveltepress/commit/b3da6e9648574adbf03ac9ac03e790ebdfa3e2a3) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`704f970`](https://github.com/Blackman99/sveltepress/commit/704f97010b2c6a4816ab0013a03b16f0dbac4e59) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`3caf6aa`](https://github.com/Blackman99/sveltepress/commit/3caf6aa9c87280e76ce7ee1039f988cfcb4b4679) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`94bdb7d`](https://github.com/Blackman99/sveltepress/commit/94bdb7dc06f088f833f50e2407063dfa9cef761b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a796d44`](https://github.com/Blackman99/sveltepress/commit/a796d44f3b7a4f912c5951bc1067e23ebadb2894) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`f0e02ea`](https://github.com/Blackman99/sveltepress/commit/f0e02ea4a72b096afa1c5434a8479304017294c1) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`c6e0338`](https://github.com/Blackman99/sveltepress/commit/c6e03387552a09f4640819682a94851ac529e7e4) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`55ad74b`](https://github.com/Blackman99/sveltepress/commit/55ad74bc60d3a1ec1db0b612287e1c5996dbe2f2) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e07a834`](https://github.com/Blackman99/sveltepress/commit/e07a8347611f6630e72e37846eb85cd765f9d14d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e503e7f`](https://github.com/Blackman99/sveltepress/commit/e503e7fbb3f9a2e929b6a1f8d1b7b052fb359a4d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`00b853a`](https://github.com/Blackman99/sveltepress/commit/00b853a5a49be0e791a4cce074307da44dcbd42f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`09f8601`](https://github.com/Blackman99/sveltepress/commit/09f8601df03d496bc526f9fc16f3e5dcaa95e0ea) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`72e8b8f`](https://github.com/Blackman99/sveltepress/commit/72e8b8f83eac9391ad615204f2509335ba09c433) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`84cfca0`](https://github.com/Blackman99/sveltepress/commit/84cfca00149ea63969059bce14317ea548f4d87b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`749212d`](https://github.com/Blackman99/sveltepress/commit/749212dc47e74bc0cb85bdd80c2383323b53fe4e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`45739bb`](https://github.com/Blackman99/sveltepress/commit/45739bb10b36317f9c6a11648a672895efae29ea) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`5320ea1`](https://github.com/Blackman99/sveltepress/commit/5320ea1c72109642233486849577e9fcb943e723) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`774cd63`](https://github.com/Blackman99/sveltepress/commit/774cd63cdc1561ac45a2bed6a4fc16a38a932f09) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`71bffe5`](https://github.com/Blackman99/sveltepress/commit/71bffe54120b9d6def76bfc91b2e2fbe60f82a1a) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`713eabe`](https://github.com/Blackman99/sveltepress/commit/713eabe162cd6b6d54841cbf359f26f9a1a93888) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e2b15d9`](https://github.com/Blackman99/sveltepress/commit/e2b15d90d5aace05bbd3474f438ff77099ffd35d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`09804b2`](https://github.com/Blackman99/sveltepress/commit/09804b268e8947e3b8cbfd78dba83be2f4d0a63e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`7e7b318`](https://github.com/Blackman99/sveltepress/commit/7e7b318d435ce5b0ac12cb786790b5e1119abcf0) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`54ed424`](https://github.com/Blackman99/sveltepress/commit/54ed42467d3ea1e342223b422d43da32ccc359e0) Thanks [@Blackman99](https://github.com/Blackman99)! - Require SvelteKit 2.65.1 or newer so static builds use the upstream fix for absolute preload dependency paths.
+
+- [`8797bb2`](https://github.com/Blackman99/sveltepress/commit/8797bb297f55f14d2c6f00717bb1acef060f7b5f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8b4373c`](https://github.com/Blackman99/sveltepress/commit/8b4373cb08fa5a0b13f66653202dceb430d2d4be) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8fbbc00`](https://github.com/Blackman99/sveltepress/commit/8fbbc0064ae0acf38c6aaadb137895c747c993a9) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`432a472`](https://github.com/Blackman99/sveltepress/commit/432a4725f90079b332503b5ff2d5635fe7681e7d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`cfb0971`](https://github.com/Blackman99/sveltepress/commit/cfb09715b9ba100aea858d12def34a4ae4e9a7be) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`c0ab344`](https://github.com/Blackman99/sveltepress/commit/c0ab34444c4f73717875d9bbfd83b439153eae01) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`506dd16`](https://github.com/Blackman99/sveltepress/commit/506dd165e83b87eb5877d0cb06acb8da1f7e72ad) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e31d811`](https://github.com/Blackman99/sveltepress/commit/e31d81112bff8ad48118f3b1e3d27689d898911c) Thanks [@Blackman99](https://github.com/Blackman99)! - Upgrade the SvelteKit Vite toolchain to Vite 8 and `@sveltejs/vite-plugin-svelte` 7.
+
+- Updated dependencies [[`35dc104`](https://github.com/Blackman99/sveltepress/commit/35dc104f8e97310b73620727edcc6d6854868033), [`72a33e7`](https://github.com/Blackman99/sveltepress/commit/72a33e7c5ecf224f52f65876ffc58459b820b741), [`423ac78`](https://github.com/Blackman99/sveltepress/commit/423ac78366a796e47bb64d462d8d1d05f1fdbaab), [`ade2925`](https://github.com/Blackman99/sveltepress/commit/ade29251f6512ac320d3f3eb4e8da800a30d6a74), [`8d13b1a`](https://github.com/Blackman99/sveltepress/commit/8d13b1a0bee6ea5b1938ad5c02046c37bf2bd5f5), [`d8554cc`](https://github.com/Blackman99/sveltepress/commit/d8554ccede0572bb959b9ace6ac7ccc0ffe0b5db), [`87961b3`](https://github.com/Blackman99/sveltepress/commit/87961b3eec10fb4a0148c4675a4d77f39ac869eb), [`b3da6e9`](https://github.com/Blackman99/sveltepress/commit/b3da6e9648574adbf03ac9ac03e790ebdfa3e2a3), [`704f970`](https://github.com/Blackman99/sveltepress/commit/704f97010b2c6a4816ab0013a03b16f0dbac4e59), [`3caf6aa`](https://github.com/Blackman99/sveltepress/commit/3caf6aa9c87280e76ce7ee1039f988cfcb4b4679), [`94bdb7d`](https://github.com/Blackman99/sveltepress/commit/94bdb7dc06f088f833f50e2407063dfa9cef761b), [`a796d44`](https://github.com/Blackman99/sveltepress/commit/a796d44f3b7a4f912c5951bc1067e23ebadb2894), [`f0e02ea`](https://github.com/Blackman99/sveltepress/commit/f0e02ea4a72b096afa1c5434a8479304017294c1), [`c6e0338`](https://github.com/Blackman99/sveltepress/commit/c6e03387552a09f4640819682a94851ac529e7e4), [`55ad74b`](https://github.com/Blackman99/sveltepress/commit/55ad74bc60d3a1ec1db0b612287e1c5996dbe2f2), [`e07a834`](https://github.com/Blackman99/sveltepress/commit/e07a8347611f6630e72e37846eb85cd765f9d14d), [`e503e7f`](https://github.com/Blackman99/sveltepress/commit/e503e7fbb3f9a2e929b6a1f8d1b7b052fb359a4d), [`00b853a`](https://github.com/Blackman99/sveltepress/commit/00b853a5a49be0e791a4cce074307da44dcbd42f), [`09f8601`](https://github.com/Blackman99/sveltepress/commit/09f8601df03d496bc526f9fc16f3e5dcaa95e0ea), [`72e8b8f`](https://github.com/Blackman99/sveltepress/commit/72e8b8f83eac9391ad615204f2509335ba09c433), [`84cfca0`](https://github.com/Blackman99/sveltepress/commit/84cfca00149ea63969059bce14317ea548f4d87b), [`749212d`](https://github.com/Blackman99/sveltepress/commit/749212dc47e74bc0cb85bdd80c2383323b53fe4e), [`45739bb`](https://github.com/Blackman99/sveltepress/commit/45739bb10b36317f9c6a11648a672895efae29ea), [`5320ea1`](https://github.com/Blackman99/sveltepress/commit/5320ea1c72109642233486849577e9fcb943e723), [`774cd63`](https://github.com/Blackman99/sveltepress/commit/774cd63cdc1561ac45a2bed6a4fc16a38a932f09), [`71bffe5`](https://github.com/Blackman99/sveltepress/commit/71bffe54120b9d6def76bfc91b2e2fbe60f82a1a), [`713eabe`](https://github.com/Blackman99/sveltepress/commit/713eabe162cd6b6d54841cbf359f26f9a1a93888), [`e2b15d9`](https://github.com/Blackman99/sveltepress/commit/e2b15d90d5aace05bbd3474f438ff77099ffd35d), [`09804b2`](https://github.com/Blackman99/sveltepress/commit/09804b268e8947e3b8cbfd78dba83be2f4d0a63e), [`7e7b318`](https://github.com/Blackman99/sveltepress/commit/7e7b318d435ce5b0ac12cb786790b5e1119abcf0), [`54ed424`](https://github.com/Blackman99/sveltepress/commit/54ed42467d3ea1e342223b422d43da32ccc359e0), [`8797bb2`](https://github.com/Blackman99/sveltepress/commit/8797bb297f55f14d2c6f00717bb1acef060f7b5f), [`8b4373c`](https://github.com/Blackman99/sveltepress/commit/8b4373cb08fa5a0b13f66653202dceb430d2d4be), [`8fbbc00`](https://github.com/Blackman99/sveltepress/commit/8fbbc0064ae0acf38c6aaadb137895c747c993a9), [`432a472`](https://github.com/Blackman99/sveltepress/commit/432a4725f90079b332503b5ff2d5635fe7681e7d), [`cfb0971`](https://github.com/Blackman99/sveltepress/commit/cfb09715b9ba100aea858d12def34a4ae4e9a7be), [`c0ab344`](https://github.com/Blackman99/sveltepress/commit/c0ab34444c4f73717875d9bbfd83b439153eae01), [`506dd16`](https://github.com/Blackman99/sveltepress/commit/506dd165e83b87eb5877d0cb06acb8da1f7e72ad), [`e31d811`](https://github.com/Blackman99/sveltepress/commit/e31d81112bff8ad48118f3b1e3d27689d898911c)]:
+  - @sveltepress/twoslash@1.3.12
+  - @sveltepress/vite@1.3.12
+
 ## 7.3.2
 
 ### Patch Changes
