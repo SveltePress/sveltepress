@@ -2,6 +2,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation'
   import { base } from '$app/paths'
+  import { withBase } from '../search-url.js'
 
   interface Props {
     open: boolean
@@ -112,7 +113,7 @@
       selected = Math.max(0, selected - 1)
       e.preventDefault()
     } else if (e.key === 'Enter' && results[selected]) {
-      goto(results[selected].url)
+      goto(withBase(results[selected].url, base))
       onClose()
     } else if (e.key === 'Tab') {
       // Focus trap: the dialog has a single focusable control (the input).
@@ -146,7 +147,7 @@
             class:is-selected={i === selected}
             onmouseenter={() => (selected = i)}
           >
-            <a href={r.url} onclick={onClose}>
+            <a href={withBase(r.url, base)} onclick={onClose}>
               <strong>{r.meta?.title ?? r.url}</strong>
               <!-- Pagefind returns excerpt HTML with <mark> wrapping matches.
                    Trust model: site content is author-trusted. If you render
