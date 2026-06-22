@@ -70,8 +70,8 @@ catalogs:
       specifier: ^1.2.35
       version: 1.2.35
     '@iconify-json/vscode-icons':
-      specifier: ^1.2.58
-      version: 1.2.58
+      specifier: ^1.2.59
+      version: 1.2.59
     '@resvg/resvg-js':
       specifier: ^2.6.2
       version: 2.6.2
@@ -229,11 +229,11 @@ catalogs:
       specifier: ^19.14.1
       version: 19.14.1
     twoslash:
-      specifier: ^0.3.8
-      version: 0.3.8
+      specifier: ^0.3.9
+      version: 0.3.9
     twoslash-protocol:
-      specifier: ^0.3.8
-      version: 0.3.8
+      specifier: ^0.3.9
+      version: 0.3.9
     typescript:
       specifier: ^5.9.3
       version: 5.9.3
@@ -412,7 +412,7 @@ importers:
         version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.58
+        version: 1.2.59
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.66.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.50.0))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.3(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -490,7 +490,7 @@ importers:
         version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.58
+        version: 1.2.59
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.66.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.50.0))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.3(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -568,7 +568,7 @@ importers:
         version: 1.2.35
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.58
+        version: 1.2.59
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.66.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.50.0))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.3(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -863,10 +863,10 @@ importers:
         version: 0.7.56(svelte@5.56.3(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       twoslash:
         specifier: 'catalog:'
-        version: 0.3.8(typescript@5.9.3)
+        version: 0.3.9(typescript@5.9.3)
       twoslash-protocol:
         specifier: 'catalog:'
-        version: 0.3.8
+        version: 0.3.9
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
@@ -2103,8 +2103,8 @@ packages:
   '@iconify-json/tabler@1.2.35':
     resolution: {integrity: sha512-/sJMqHvh5ZWrEERVfDCT5NjVDeKJdhosFtKjJofAVl+P/3AzLiryOQw7WvrfDF25Xa5N/eoOQ15Y1jnhYXxBoQ==}
 
-  '@iconify-json/vscode-icons@1.2.58':
-    resolution: {integrity: sha512-ZM6O1GpImQ+n2+/dVijB4uDR1OVgfwoPgnVlKMnUxzJwExPTzuBb/Hd2iwnHj4gWbgBba9Io1qRolVJwYty50A==}
+  '@iconify-json/vscode-icons@1.2.59':
+    resolution: {integrity: sha512-6RN+ixRubu3UKrUEqV24iuwvh2DgY541h2QWdxBeK3kJvXuDpaFNxw2dUSUqp80IU7f+QAU5sh718tXgyynnbQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -6314,16 +6314,16 @@ packages:
   twoslash-protocol@0.3.6:
     resolution: {integrity: sha512-FHGsJ9Q+EsNr5bEbgG3hnbkvEBdW5STgPU824AHUjB4kw0Dn4p8tABT7Ncg1Ie6V0+mDg3Qpy41VafZXcQhWMA==}
 
-  twoslash-protocol@0.3.8:
-    resolution: {integrity: sha512-HmvAHoiEviK8LqvAQyc9/irkdvwTUiR1fHmNwH/0gq8EHxyBt4PWVPixjEXg6wJu1u6yBrILEWXGK9Kw58/8yQ==}
+  twoslash-protocol@0.3.9:
+    resolution: {integrity: sha512-9/iwp+CXOnjFMPQuPL5PkuRbZnDoNpBvtJCLs9t8kDYkL3YHujbvnHfZA1i5fApDftVEdBw+T/4F+dH5kIzpYQ==}
 
   twoslash@0.3.6:
     resolution: {integrity: sha512-VuI5OKl+MaUO9UIW3rXKoPgHI3X40ZgB/j12VY6h98Ae1mCBihjPvhOPeJWlxCYcmSbmeZt5ZKkK0dsVtp+6pA==}
     peerDependencies:
       typescript: ^5.5.0
 
-  twoslash@0.3.8:
-    resolution: {integrity: sha512-OeDz0kDl8sqPUN3nr7gqcvOs70f5lZsdhKYTX3/SgB9OvdadzzoYJI/4SBXhXV1HG8E9fLc+e17itoRYTxmoig==}
+  twoslash@0.3.9:
+    resolution: {integrity: sha512-rDclk+OtzuTX+tnea7DYLCkqGQ3eP0IyfD+kzUJ7t46X/NzlaxwrhecmEBNuSCuEn3V+n1PhcjUUQQ7gUJzX5Q==}
     peerDependencies:
       typescript: ^5.5.0 || ^6.0.0
 
@@ -8055,7 +8055,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.58':
+  '@iconify-json/vscode-icons@1.2.59':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -12672,7 +12672,7 @@ snapshots:
 
   twoslash-protocol@0.3.6: {}
 
-  twoslash-protocol@0.3.8: {}
+  twoslash-protocol@0.3.9: {}
 
   twoslash@0.3.6(typescript@5.9.3):
     dependencies:
@@ -12682,10 +12682,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  twoslash@0.3.8(typescript@5.9.3):
+  twoslash@0.3.9(typescript@5.9.3):
     dependencies:
       '@typescript/vfs': 1.6.4(typescript@5.9.3)
-      twoslash-protocol: 0.3.8
+      twoslash-protocol: 0.3.9
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
