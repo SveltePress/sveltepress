@@ -88,9 +88,9 @@ catalog:
   satori: ^0.12.2
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.56.3
-  svelte-check: ^4.6.0
-  svelte2tsx: ^0.7.56
+  svelte: ^5.56.4
+  svelte-check: ^4.7.0
+  svelte2tsx: ^0.7.57
   taze: ^19.14.1
   twoslash: ^0.3.9
   twoslash-protocol: ^0.3.9
@@ -101,7 +101,7 @@ catalog:
   unist-util-visit: ^5.1.0
   unocss: ^66.7.2
   vfile: ^6.0.3
-  vite: ^8.0.16
+  vite: ^8.1.0
   vite-plugin-inspect: ^11.4.1
   vitest: 4.0.14
   workbox-build: ^7.4.1
