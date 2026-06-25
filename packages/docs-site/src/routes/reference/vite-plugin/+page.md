@@ -11,7 +11,7 @@ title: Vite plugin
 ### `siteConfig`
 
 * `title`: The site's title. Would be `'Untitled site'` if not provided.
-* `description`: The site's description. Would be `'Build by sveltepress'` if not provided.
+* `description`: The site's description. Would be `'Built by SveltePress'` if not provided.
 
 ### `addInspect`
 
@@ -58,6 +58,15 @@ export default defineConfig({
 
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
+
+### SvelteKit options
+
+As of SvelteKit version 2.62.0, it has been possible to pass the SvelteKit
+[configuration](https://svelte.dev/docs/kit/configuration) directly to the
+[SvelteKit Vite plugin](https://svelte.dev/docs/kit/@sveltejs-kit-vite).
+
+This is also supported by the `sveltepress` plugin. Omitting the need for
+a `svelte.config.js` file completely.
 
 ## ResolvedTheme
 
