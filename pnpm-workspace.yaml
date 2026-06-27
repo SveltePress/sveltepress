@@ -61,7 +61,7 @@ catalog:
   cross-spawn: ^7.0.6
   dayjs: ^1.11.21
   eslint: ^9.39.4
-  eslint-plugin-svelte: ^3.19.0
+  eslint-plugin-svelte: ^3.20.0
   fs-extra: ^11.3.5
   husky: ^9.1.7
   lint-staged: ^16.4.0
