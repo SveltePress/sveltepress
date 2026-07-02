@@ -1,5 +1,12 @@
 # @sveltepress/theme-blog
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`b9aab12`](https://github.com/Blackman99/sveltepress/commit/b9aab12a44028226fbf4095ec6ff7513af15c9ed), [`0062364`](https://github.com/Blackman99/sveltepress/commit/0062364d7d0ca17a5a306d908c90298462a47e78), [`b77bcdf`](https://github.com/Blackman99/sveltepress/commit/b77bcdfb92aca6b6b30f555d9c8ae9b23bf91300), [`d84959f`](https://github.com/Blackman99/sveltepress/commit/d84959fe3e3ddd41c1580473c3e10c3d46a34920), [`88f2b83`](https://github.com/Blackman99/sveltepress/commit/88f2b837e3394d3191300ec4da8b2e515356ea98), [`5f749da`](https://github.com/Blackman99/sveltepress/commit/5f749da9b25392e05f946aedbcfc967785cbd1cb), [`611c161`](https://github.com/Blackman99/sveltepress/commit/611c1612d74264fe16691143604d9e3faf0056c8), [`0f8a78e`](https://github.com/Blackman99/sveltepress/commit/0f8a78ea7156aeb7aeffb9381cdb2ace06aac478), [`ddf26c6`](https://github.com/Blackman99/sveltepress/commit/ddf26c69f77ad0e51b5fc2af889f26953aa2643c), [`0f826d2`](https://github.com/Blackman99/sveltepress/commit/0f826d21ff39553821f5d0d215fd75feef405391), [`7f8c7d4`](https://github.com/Blackman99/sveltepress/commit/7f8c7d4b50d07388219f12f9ca6ead40ac4b9e7a), [`b0f0670`](https://github.com/Blackman99/sveltepress/commit/b0f0670101f76b52928c32d1eb2546f9340c28fa), [`ee9e7dc`](https://github.com/Blackman99/sveltepress/commit/ee9e7dced9b33a307af0fa7a5664430ca6e5c1a8)]:
+  - @sveltepress/vite@1.3.13
+
 ## 0.2.1
 
 ### Patch Changes
