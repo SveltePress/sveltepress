@@ -28,7 +28,7 @@ catalog:
   '@fontsource/inter': ^5.2.8
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
-  '@iconify-json/carbon': ^1.2.23
+  '@iconify-json/carbon': ^1.2.24
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.11
@@ -39,7 +39,7 @@ catalog:
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.35
-  '@iconify-json/vscode-icons': ^1.2.63
+  '@iconify-json/vscode-icons': ^1.2.64
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
