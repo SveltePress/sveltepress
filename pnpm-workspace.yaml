@@ -60,7 +60,7 @@ catalog:
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
   dayjs: ^1.11.21
-  eslint: ^9.39.4
+  eslint: ^9.39.5
   eslint-plugin-svelte: ^3.20.0
   fs-extra: ^11.3.6
   husky: ^9.1.7

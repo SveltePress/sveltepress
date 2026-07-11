@@ -2,7 +2,7 @@
   "name": "@sveltepress/example-blog",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.34.4",
+  "packageManager": "pnpm@10.34.5",
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",
