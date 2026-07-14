@@ -38,6 +38,10 @@ const config = defineConfig({
 export default config
 ```
 
+:::warning[请移除原来的 `sveltekit()` 插件]
+`sveltepress()` 已经为你配置好了 SvelteKit。如果在 `plugins` 中同时保留 `sveltekit()` 和 `sveltepress()`，每个 Svelte 文件都会被编译两次，导致开发服务器崩溃并报错 `Expected token }`。
+:::
+
 ### 在 svelte.config.js 中添加 `'.md'` 到 `extensions` 选项
 
 ```ts title="svelte.config.js"
@@ -61,3 +65,29 @@ const config = {
 
 export default config
 ```
+
+:::tip[没有 `svelte.config.js`？（较新的 SvelteKit 项目结构）]
+使用较新的 `npx sv create` 创建的项目会把 SvelteKit 配置直接内联写在 `vite.config.ts` 中，且不再包含 `svelte.config.js`。请将这些配置移动到 `sveltepress({ svelteKitOptions })` 中（Sveltepress 会自动帮你加上 `'.md'` 扩展名），并移除单独的 `sveltekit()` 插件：
+
+```ts title="vite.config.ts"
+import adapter from '@sveltejs/adapter-auto'
+import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltekit({ // [svp! --]
+    sveltepress({ // [svp! ++]
+      svelteKitOptions: { // [svp! ++]
+        compilerOptions: {
+          runes: ({ filename }) =>
+            filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
+        },
+        adapter: adapter(),
+      }, // [svp! ++]
+    }),
+  ],
+})
+```
+:::

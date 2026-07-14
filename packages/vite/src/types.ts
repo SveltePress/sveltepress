@@ -1,6 +1,18 @@
+import type { sveltekit } from '@sveltejs/kit/vite'
 import type { BundledLanguage } from 'shiki/langs'
 import type { Plugin } from 'unified'
 import type { PluginOption } from 'vite'
+
+/**
+ * The options accepted by SvelteKit's `sveltekit()` vite plugin.
+ *
+ * On the newer SvelteKit project layout there is no `svelte.config.js` and all
+ * config (`compilerOptions`, `adapter`, ...) is passed inline to `sveltekit()`
+ * in `vite.config.ts`. Forward those options through `sveltepress()` so the
+ * standalone `sveltekit()` plugin can be removed (having both crashes the dev
+ * server with duplicated Svelte compilation).
+ */
+export type SvelteKitOptions = Parameters<typeof sveltekit>[0]
 
 export type RemarkLiveCode = Plugin<[], any>
 
@@ -54,6 +66,18 @@ export interface SveltepressVitePluginOptions {
   remarkPlugins?: Plugin[] | RemarkPluginsOrderer
   rehypePlugins?: Plugin[] | RehypePluginsOrderer
   llms?: LlmsConfig
+  /**
+   * Options forwarded to the SvelteKit vite plugin that `sveltepress()` sets up
+   * internally.
+   *
+   * Use this on the newer SvelteKit layout (no `svelte.config.js`, config passed
+   * inline to `sveltekit()`) to move your `compilerOptions`, `adapter`, etc. into
+   * `sveltepress()` and remove the standalone `sveltekit()` plugin. `'.md'` is
+   * always added to `extensions` automatically.
+   *
+   * When omitted, SvelteKit reads its config from `svelte.config.js` as before.
+   */
+  svelteKitOptions?: SvelteKitOptions
 }
 
 export type LoadTheme<ThemeOptions = any> = (themeOptions?: ThemeOptions) => ResolvedTheme

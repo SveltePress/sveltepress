@@ -88,6 +88,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     enforce: 'pre',
     configResolved(config) {
       isBuild = config.command === 'build' && !config.build.ssr
+      assertSingleSvelteKit(config.plugins)
     },
     config: () => ({
       server: {
@@ -128,6 +129,26 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         generateLlmsTxt(llms, siteConfig ?? {})
       }
     },
+  }
+}
+
+/**
+ * `sveltepress()` sets up SvelteKit (and therefore vite-plugin-svelte)
+ * internally. If the user also keeps a standalone `sveltekit()` plugin — which
+ * is easy to do on the newer layout where `sveltekit()` carries the inline
+ * config — every svelte file gets compiled twice and the build crashes with a
+ * cryptic "Expected token }". `vite-plugin-svelte` registers exactly one plugin
+ * named `vite-plugin-svelte` per instance (a marker meant for exactly this kind
+ * of detection), so more than one means a duplicate SvelteKit setup.
+ */
+export function assertSingleSvelteKit(plugins: ReadonlyArray<{ name?: string }>) {
+  const svelteInstanceCount = plugins.filter(p => p?.name === 'vite-plugin-svelte').length
+  if (svelteInstanceCount > 1) {
+    throw new Error(
+      '[@sveltepress/vite] Detected more than one SvelteKit (vite-plugin-svelte) instance in your vite config.\n'
+      + '`sveltepress()` already sets up SvelteKit for you, so you must remove the standalone `sveltekit()` plugin from `plugins`.\n'
+      + 'To pass SvelteKit options such as `compilerOptions` or `adapter`, forward them through `sveltepress({ svelteKitOptions: { ... } })` instead.',
+    )
   }
 }
 
