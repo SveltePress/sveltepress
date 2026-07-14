@@ -68,22 +68,21 @@ export default config
 Projects scaffolded with a recent `npx sv create` keep their SvelteKit config inline in `vite.config.ts` and ship no `svelte.config.js`. Move those options into `sveltepress({ svelteKitOptions })` (Sveltepress adds the `'.md'` extension for you automatically) and remove the standalone `sveltekit()` plugin:
 
 ```ts title="vite.config.ts"
+// @noErrors
 import adapter from '@sveltejs/adapter-auto'
-import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
-    sveltekit({ // [svp! --]
-    sveltepress({ // [svp! ++]
-      svelteKitOptions: { // [svp! ++]
+    sveltepress({
+      svelteKitOptions: {
         compilerOptions: {
           runes: ({ filename }) =>
             filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
         },
         adapter: adapter(),
-      }, // [svp! ++]
+      },
     }),
   ],
 })

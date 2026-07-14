@@ -70,22 +70,21 @@ export default config
 使用较新的 `npx sv create` 创建的项目会把 SvelteKit 配置直接内联写在 `vite.config.ts` 中，且不再包含 `svelte.config.js`。请将这些配置移动到 `sveltepress({ svelteKitOptions })` 中（Sveltepress 会自动帮你加上 `'.md'` 扩展名），并移除单独的 `sveltekit()` 插件：
 
 ```ts title="vite.config.ts"
+// @noErrors
 import adapter from '@sveltejs/adapter-auto'
-import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
-    sveltekit({ // [svp! --]
-    sveltepress({ // [svp! ++]
-      svelteKitOptions: { // [svp! ++]
+    sveltepress({
+      svelteKitOptions: {
         compilerOptions: {
           runes: ({ filename }) =>
             filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
         },
         adapter: adapter(),
-      }, // [svp! ++]
+      },
     }),
   ],
 })
