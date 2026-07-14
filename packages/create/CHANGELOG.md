@@ -1,5 +1,13 @@
 # @sveltepress/create
 
+## 1.3.14
+
+### Patch Changes
+
+- [`7229a8d`](https://github.com/Blackman99/sveltepress/commit/7229a8de23e69ac33d97b7635982b8a26db6d9fc) Thanks [@Blackman99](https://github.com/Blackman99)! - Actually fix `npm create @sveltepress@latest` failing with `EUNSUPPORTEDPROTOCOL Unsupported URL Type "catalog:"` (#407).
+
+  The previous attempt only rewrote the tarball's `package.json` at pack time, but npm resolves a dependency's tree from the **registry manifest**, which still carried the raw `catalog:` specifiers. The `create` package's runtime `dependencies` now use concrete version ranges instead of `catalog:`, so the published manifest installs correctly with npm and yarn. Also fixes the `files` glob so the `template-js`/`template-ts` folders are actually included in the published tarball.
+
 ## 1.3.13
 
 ### Patch Changes
