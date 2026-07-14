@@ -162,9 +162,6 @@ catalogs:
     meilisearch:
       specifier: ^0.48.2
       version: 0.48.2
-    minimist:
-      specifier: ^1.2.8
-      version: 1.2.8
     pagefind:
       specifier: ^1.5.2
       version: 1.5.2
@@ -177,9 +174,6 @@ catalogs:
     prettier-plugin-svelte:
       specifier: ^3.5.2
       version: 3.5.2
-    prompts:
-      specifier: ^2.4.2
-      version: 2.4.2
     rehype-stringify:
       specifier: ^10.0.1
       version: 10.0.1
@@ -338,16 +332,16 @@ importers:
   packages/create:
     dependencies:
       cross-spawn:
-        specifier: 'catalog:'
+        specifier: ^7.0.6
         version: 7.0.6
       minimist:
-        specifier: 'catalog:'
+        specifier: ^1.2.8
         version: 1.2.8
       picocolors:
-        specifier: 'catalog:'
+        specifier: ^1.1.1
         version: 1.1.1
       prompts:
-        specifier: 'catalog:'
+        specifier: ^2.4.2
         version: 2.4.2
     devDependencies:
       '@types/cross-spawn':

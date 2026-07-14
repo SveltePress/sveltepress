@@ -70,12 +70,10 @@ catalog:
   mdast-util-gfm: ^3.1.0
   mdast-util-to-hast: ^13.2.1
   meilisearch: ^0.48.2
-  minimist: ^1.2.8
   pagefind: ^1.5.2
   picocolors: ^1.1.1
   prettier: ~3.6.2
   prettier-plugin-svelte: ^3.5.2
-  prompts: ^2.4.2
   rehype-stringify: ^10.0.1
   remark-directive: ^4.0.0
   remark-emoji: ^5.0.2

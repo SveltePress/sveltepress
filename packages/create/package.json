@@ -30,19 +30,18 @@
   "bin": "index.js",
   "files": [
     "dist",
-    "template-*"
+    "template-js",
+    "template-ts"
   ],
   "scripts": {
     "build": "unbuild",
-    "prepare": "pnpm build",
-    "prepack": "node scripts/resolve-catalog.mjs",
-    "postpack": "node scripts/resolve-catalog.mjs --restore"
+    "prepare": "pnpm build"
   },
   "dependencies": {
-    "cross-spawn": "catalog:",
-    "minimist": "catalog:",
-    "picocolors": "catalog:",
-    "prompts": "catalog:"
+    "cross-spawn": "^7.0.6",
+    "minimist": "^1.2.8",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/cross-spawn": "catalog:",

@@ -54,4 +54,13 @@ export default antfu({
     'unused-imports/no-unused-vars': 'off',
     'no-unused-vars': 'off',
   },
+}, {
+  // `@sveltepress/create` is published to npm and installed by end users via
+  // `npm create @sveltepress`. npm/yarn cannot resolve pnpm's `catalog:`
+  // protocol, and the npm registry manifest is generated from these specifiers,
+  // so its runtime dependencies must use concrete version ranges, not `catalog:`.
+  files: ['packages/create/package.json'],
+  rules: {
+    'pnpm/json-enforce-catalog': 'off',
+  },
 })
