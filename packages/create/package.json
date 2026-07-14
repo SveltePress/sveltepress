@@ -34,7 +34,9 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "prepare": "pnpm build"
+    "prepare": "pnpm build",
+    "prepack": "node scripts/resolve-catalog.mjs",
+    "postpack": "node scripts/resolve-catalog.mjs --restore"
   },
   "dependencies": {
     "cross-spawn": "catalog:",
