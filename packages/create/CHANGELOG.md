@@ -1,5 +1,55 @@
 # @sveltepress/create
 
+## 1.3.13
+
+### Patch Changes
+
+- [`b9aab12`](https://github.com/Blackman99/sveltepress/commit/b9aab12a44028226fbf4095ec6ff7513af15c9ed) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`0062364`](https://github.com/Blackman99/sveltepress/commit/0062364d7d0ca17a5a306d908c90298462a47e78) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b77bcdf`](https://github.com/Blackman99/sveltepress/commit/b77bcdfb92aca6b6b30f555d9c8ae9b23bf91300) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d84959f`](https://github.com/Blackman99/sveltepress/commit/d84959fe3e3ddd41c1580473c3e10c3d46a34920) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`88f2b83`](https://github.com/Blackman99/sveltepress/commit/88f2b837e3394d3191300ec4da8b2e515356ea98) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`5f749da`](https://github.com/Blackman99/sveltepress/commit/5f749da9b25392e05f946aedbcfc967785cbd1cb) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`611c161`](https://github.com/Blackman99/sveltepress/commit/611c1612d74264fe16691143604d9e3faf0056c8) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`0f8a78e`](https://github.com/Blackman99/sveltepress/commit/0f8a78ea7156aeb7aeffb9381cdb2ace06aac478) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`ddf26c6`](https://github.com/Blackman99/sveltepress/commit/ddf26c69f77ad0e51b5fc2af889f26953aa2643c) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`0f826d2`](https://github.com/Blackman99/sveltepress/commit/0f826d21ff39553821f5d0d215fd75feef405391) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`7f8c7d4`](https://github.com/Blackman99/sveltepress/commit/7f8c7d4b50d07388219f12f9ca6ead40ac4b9e7a) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b0f0670`](https://github.com/Blackman99/sveltepress/commit/b0f0670101f76b52928c32d1eb2546f9340c28fa) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`ee9e7dc`](https://github.com/Blackman99/sveltepress/commit/ee9e7dced9b33a307af0fa7a5664430ca6e5c1a8) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`83cdcdb`](https://github.com/Blackman99/sveltepress/commit/83cdcdbb31a398cfe3ac6bffb1ddf5952b8f92c7) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`72a016c`](https://github.com/Blackman99/sveltepress/commit/72a016ca9a9ba16ef807798c8922a84962603d80) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`17bae3b`](https://github.com/Blackman99/sveltepress/commit/17bae3b7ac46c8e631f762b1b04df37558b24df0) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`9c6d3c3`](https://github.com/Blackman99/sveltepress/commit/9c6d3c3dd3de72657097197bca89a9af0385efce) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`4b14f9d`](https://github.com/Blackman99/sveltepress/commit/4b14f9d84bb971a42c30b7b06193c8ad459b455e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`4f8accc`](https://github.com/Blackman99/sveltepress/commit/4f8accc82631ff38d65862c9f2d9e43e627814c9) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a3d5509`](https://github.com/Blackman99/sveltepress/commit/a3d550903e9cef98948db0a41e7c0f5f28a07d0f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`887ab13`](https://github.com/Blackman99/sveltepress/commit/887ab138bd09f069237390067e3f3e2b1f455a74) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`c3dd66e`](https://github.com/Blackman99/sveltepress/commit/c3dd66e8c156e9ce192fb0214baf631055db607b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`c1b0808`](https://github.com/Blackman99/sveltepress/commit/c1b080815bff42e24545f03a082955e4b557e87b) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix `npm create @sveltepress@latest` failing with `EUNSUPPORTEDPROTOCOL Unsupported URL Type "catalog:"`. The published package now resolves pnpm `catalog:` specifiers to concrete versions at pack time, so it installs correctly with npm and yarn (#407).
+
 ## 1.3.12
 
 ### Patch Changes
