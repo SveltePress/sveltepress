@@ -49,8 +49,8 @@ catalogs:
       specifier: ^1.2.11
       version: 1.2.11
     '@iconify-json/material-symbols':
-      specifier: ^1.2.84
-      version: 1.2.84
+      specifier: ^1.2.85
+      version: 1.2.85
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -214,11 +214,11 @@ catalogs:
       specifier: ^5.56.5
       version: 5.56.5
     svelte-check:
-      specifier: ^4.7.2
-      version: 4.7.2
+      specifier: ^4.7.3
+      version: 4.7.3
     svelte2tsx:
-      specifier: ^0.7.57
-      version: 0.7.57
+      specifier: ^0.7.58
+      version: 0.7.58
     taze:
       specifier: ^19.14.1
       version: 19.14.1
@@ -385,7 +385,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.84
+        version: 1.2.85
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -433,7 +433,7 @@ importers:
         version: 5.56.5(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.2(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.3(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -463,7 +463,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.84
+        version: 1.2.85
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -511,7 +511,7 @@ importers:
         version: 5.56.5(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.2(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.3(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -541,7 +541,7 @@ importers:
         version: 1.2.11
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.84
+        version: 1.2.85
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -589,7 +589,7 @@ importers:
         version: 5.56.5(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.2(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.3(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -650,7 +650,7 @@ importers:
         version: 5.56.5(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.2(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.3(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -854,7 +854,7 @@ importers:
         version: 1.2.1
       svelte2tsx:
         specifier: 'catalog:'
-        version: 0.7.57(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 0.7.58(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       twoslash:
         specifier: 'catalog:'
         version: 0.3.9(typescript@5.9.3)
@@ -2085,8 +2085,8 @@ packages:
   '@iconify-json/logos@1.2.11':
     resolution: {integrity: sha512-fOo4pGEatuyuCFNL+cwquYMa2Im0oJHRHV7lt/Qqs5Ode/lPImHCQcfTtPzZj7qYMPb/h8YHN3TG54uEowrjNQ==}
 
-  '@iconify-json/material-symbols@1.2.84':
-    resolution: {integrity: sha512-DWwjwrrzVNyMShkis47exANpi4uXUSoRE7/1rnOct9yO3SkMbt2I8386V/ou5od22us13bKkfwHitK2zK3Ah3g==}
+  '@iconify-json/material-symbols@1.2.85':
+    resolution: {integrity: sha512-FrnwVJvD1nbLWUS2Zw7LPgTT/8Rq3l1821GsQl/IXjA1DKloaDVpQ8Ugk0IndzlRQrlPywr0a5lN/WWPB4naEA==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -6171,8 +6171,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svelte-check@4.7.2:
-    resolution: {integrity: sha512-GoS4XJdGswlq0rIT1vtFLzJY1bvHtY37McY9H9Gkm1Ggw/ICdZYn8J/Z8Yi0BEL0i3R4+jtaWVePjyppMlij/A==}
+  svelte-check@4.7.3:
+    resolution: {integrity: sha512-DHdTCGX62R0fCxBEaT+USdASAnoaRBaaNczkRJl0K7o3WyoCeVUbVxo6fKqpOll/B+WMWCsiFK0eFrJSNBKZIg==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
@@ -6199,8 +6199,8 @@ packages:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0 || ^6.0.0
 
-  svelte2tsx@0.7.57:
-    resolution: {integrity: sha512-nQo0xEfUpSVjfkxan2UmC6Wl9UZVe9+/pglUiyBNMJ7KDQ9DDooucmXdToBOvzSfgYjj/kMYwf6CTTDz/z048w==}
+  svelte2tsx@0.7.58:
+    resolution: {integrity: sha512-NXzvlRQ2ZH8mhHOIQURyzGAu2RbbY+rcSNIXs39m2bBo6Fcw3T+EgDHnCKhncupRtzUqhWNaqQnAkfLCDjHrDg==}
     peerDependencies:
       svelte: ^3.55 || ^4.0.0-next.0 || ^4.0 || ^5.0.0-next.0
       typescript: ^4.9.4 || ^5.0.0 || ^6.0.0
@@ -8067,7 +8067,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.84':
+  '@iconify-json/material-symbols@1.2.85':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -12547,7 +12547,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.7.2(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3):
+  svelte-check@4.7.3(picomatch@4.0.5)(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@sveltejs/load-config': 0.2.0
@@ -12583,7 +12583,7 @@ snapshots:
       svelte: 5.56.5(@typescript-eslint/types@8.50.0)
       typescript: 5.9.3
 
-  svelte2tsx@0.7.57(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3):
+  svelte2tsx@0.7.58(svelte@5.56.5(@typescript-eslint/types@8.50.0))(typescript@5.9.3):
     dependencies:
       dedent-js: 1.0.1
       scule: 1.3.0
