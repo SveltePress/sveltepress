@@ -20,7 +20,7 @@ overrides:
 catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
-  '@changesets/cli': ^2.31.0
+  '@changesets/cli': ^2.31.1
   '@docsearch/css': ^4.6.3
   '@docsearch/js': ^4.6.3
   '@floating-ui/dom': ^1.8.0
@@ -86,7 +86,7 @@ catalog:
   satori: ^0.12.2
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.56.5
+  svelte: ^5.56.6
   svelte-check: ^4.7.3
   svelte2tsx: ^0.7.58
   taze: ^19.14.1
@@ -99,7 +99,7 @@ catalog:
   unist-util-visit: ^5.1.0
   unocss: ^66.7.5
   vfile: ^6.0.3
-  vite: ^8.1.4
+  vite: ^8.1.5
   vite-plugin-inspect: ^11.4.1
   vitest: 4.0.14
   workbox-build: ^7.4.1
