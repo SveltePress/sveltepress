@@ -139,8 +139,8 @@ catalogs:
       specifier: ^3.22.0
       version: 3.22.0
     fs-extra:
-      specifier: ^11.3.6
-      version: 11.3.6
+      specifier: ^11.4.0
+      version: 11.4.0
     husky:
       specifier: ^9.1.7
       version: 9.1.7
@@ -897,7 +897,7 @@ importers:
         version: 7.0.6
       fs-extra:
         specifier: 'catalog:'
-        version: 11.3.6
+        version: 11.4.0
       lru-cache:
         specifier: 'catalog:'
         version: 11.5.2
@@ -4292,8 +4292,8 @@ packages:
   fraction.js@5.3.4:
     resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
 
-  fs-extra@11.3.6:
-    resolution: {integrity: sha512-w8ZNZr2mKIc7qeNaQ9AVPT1+iFaI+Avd4xudVOvdDJ8VytREi1Ft5Ih7hd9jjehod8vAM5GMsfQ/TpPf4EyoEA==}
+  fs-extra@11.4.0:
+    resolution: {integrity: sha512-EQsFzMUJkCKGr1ePqlYADkIUmHW1s3ZXr5Yqy6wbGrfUCphpl2maM/kyOIRA2HpP3AaFQTZXD4ldjek+nccddA==}
     engines: {node: '>=14.14'}
 
   fs-extra@7.0.1:
@@ -10360,7 +10360,7 @@ snapshots:
 
   fraction.js@5.3.4: {}
 
-  fs-extra@11.3.6:
+  fs-extra@11.4.0:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.2.0

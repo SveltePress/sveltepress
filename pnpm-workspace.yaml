@@ -62,7 +62,7 @@ catalog:
   dayjs: ^1.11.21
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.22.0
-  fs-extra: ^11.3.6
+  fs-extra: ^11.4.0
   husky: ^9.1.7
   lint-staged: ^16.4.0
   lru-cache: ^11.5.2
