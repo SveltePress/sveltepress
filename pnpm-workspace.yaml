@@ -86,7 +86,7 @@ catalog:
   satori: ^0.12.2
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.56.7
+  svelte: ^5.56.8
   svelte-check: ^4.7.3
   svelte2tsx: ^0.7.58
   taze: ^19.16.0
