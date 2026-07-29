@@ -19,8 +19,8 @@ catalogs:
       specifier: ^4.6.3
       version: 4.6.3
     '@docsearch/js':
-      specifier: ^4.6.3
-      version: 4.6.3
+      specifier: ^4.7.0
+      version: 4.7.0
     '@floating-ui/dom':
       specifier: ^1.8.0
       version: 1.8.0
@@ -67,8 +67,8 @@ catalogs:
       specifier: ^1.2.5
       version: 1.2.5
     '@iconify-json/tabler':
-      specifier: ^1.2.37
-      version: 1.2.37
+      specifier: ^1.2.38
+      version: 1.2.38
     '@iconify-json/vscode-icons':
       specifier: ^1.2.67
       version: 1.2.67
@@ -403,7 +403,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.37
+        version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.67
@@ -481,7 +481,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.37
+        version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.67
@@ -559,7 +559,7 @@ importers:
         version: 1.2.5
       '@iconify-json/tabler':
         specifier: 'catalog:'
-        version: 1.2.37
+        version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.67
@@ -604,7 +604,7 @@ importers:
         version: 4.6.3
       '@docsearch/js':
         specifier: 'catalog:'
-        version: 4.6.3
+        version: 4.7.0
     devDependencies:
       '@sveltejs/package':
         specifier: 'catalog:'
@@ -1627,8 +1627,8 @@ packages:
   '@docsearch/css@4.6.3':
     resolution: {integrity: sha512-nlOwcXcsNAptQl4vlL4MA78qNJKO0Qlds5GuBjCoePgkebTXLSf8Qt1oyZ3YBshYupKXG9VRGEsk1zr23d+bzQ==}
 
-  '@docsearch/js@4.6.3':
-    resolution: {integrity: sha512-qUIX2b4Apew3tv4F0qhmgShsl/Lfw4m6mqv/5/5dWNxwTcDdLMp2s3YwZ+NMGh3IKCg0pBaXm7Q5VdyU5Rj+cQ==}
+  '@docsearch/js@4.7.0':
+    resolution: {integrity: sha512-x5lCqu1tetgsJFkjQ6VSocbHldsRkGEgwg5N98Vx21sq/V5wcmj4u226PY9k+TEpIgQ772zlYbPLTPicWyGnpA==}
 
   '@emnapi/core@1.10.0':
     resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
@@ -2103,8 +2103,8 @@ packages:
   '@iconify-json/solar@1.2.5':
     resolution: {integrity: sha512-WMAiNwchU8zhfrySww6KQBRIBbsQ6SvgIu2yA+CHGyMima/0KQwT5MXogrZPJGoQF+1Ye3Qj6K+1CiyNn3YkoA==}
 
-  '@iconify-json/tabler@1.2.37':
-    resolution: {integrity: sha512-tXc0jGhrxec6eTKxMI9We/r3cEItyU5dG8ngDOEKsL36a6+/xwk4sR7PIZROVajzxmvyUBsn659adDIfcswiUw==}
+  '@iconify-json/tabler@1.2.38':
+    resolution: {integrity: sha512-9v6ooRU/bKOK/Whv4w2aiK5gBnfCV9Ei+uD1iDDeLu2b+EnF3G3ZKkRKWEOOLG8bJyfKn6XEia6gUQ9oO7cF+Q==}
 
   '@iconify-json/vscode-icons@1.2.67':
     resolution: {integrity: sha512-/fObxEkBtqK2e1qf1IRjuZ4drWknAnzykdT2ngGAKESf35tCcj0Lx3MdsxYBneE5YbgvsUfOl0hbZ59R5s19vw==}
@@ -7729,7 +7729,7 @@ snapshots:
 
   '@docsearch/css@4.6.3': {}
 
-  '@docsearch/js@4.6.3': {}
+  '@docsearch/js@4.7.0': {}
 
   '@emnapi/core@1.10.0':
     dependencies:
@@ -8087,7 +8087,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/tabler@1.2.37':
+  '@iconify-json/tabler@1.2.38':
     dependencies:
       '@iconify/types': 2.0.0
 
