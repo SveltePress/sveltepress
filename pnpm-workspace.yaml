@@ -21,7 +21,7 @@ catalog:
   '@antfu/eslint-config': ^6.7.3
   '@changesets/changelog-github': ^0.5.2
   '@changesets/cli': ^2.31.1
-  '@docsearch/css': ^4.6.3
+  '@docsearch/css': ^4.7.0
   '@docsearch/js': ^4.7.0
   '@floating-ui/dom': ^1.8.0
   '@fontsource-variable/fraunces': ^5.3.0
@@ -44,7 +44,7 @@ catalog:
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.10.4
-  '@sveltejs/kit': ^2.70.1
+  '@sveltejs/kit': ^2.70.2
   '@sveltejs/package': ^2.5.8
   '@sveltejs/vite-plugin-svelte': ^7.2.0
   '@types/cross-spawn': ^6.0.6
