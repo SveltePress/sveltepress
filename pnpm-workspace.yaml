@@ -28,7 +28,7 @@ catalog:
   '@fontsource/inter': ^5.3.0
   '@iconify-json/bi': ^1.2.7
   '@iconify-json/bxs': ^1.2.3
-  '@iconify-json/carbon': ^1.2.24
+  '@iconify-json/carbon': ^1.2.25
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.11

@@ -37,8 +37,8 @@ catalogs:
       specifier: ^1.2.3
       version: 1.2.3
     '@iconify-json/carbon':
-      specifier: ^1.2.24
-      version: 1.2.24
+      specifier: ^1.2.25
+      version: 1.2.25
     '@iconify-json/emojione':
       specifier: ^1.2.3
       version: 1.2.3
@@ -373,7 +373,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.24
+        version: 1.2.25
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -451,7 +451,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.24
+        version: 1.2.25
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -529,7 +529,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.24
+        version: 1.2.25
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -2073,8 +2073,8 @@ packages:
   '@iconify-json/bxs@1.2.3':
     resolution: {integrity: sha512-SxRzB4e0zrWq1duwDUmuT5t5gaDjwN2nMu1yoO2mP2tNaiciylx33+hKxEz3ykxIGKPi3/ItX0V6Sfdju1FrZA==}
 
-  '@iconify-json/carbon@1.2.24':
-    resolution: {integrity: sha512-b7u/eTWE3xFa7UXlRJBSEm6At1y6+F0P3imBEip5/8QeRzouxVjBf80Y2xnu1GYsFo9MYlHA0bZfxxMd5givfw==}
+  '@iconify-json/carbon@1.2.25':
+    resolution: {integrity: sha512-7GLgXnmi47Skh8DcPPiP8U3vgm3rOVziEe+flCdG/kwiVaeb649U3Eqt/ej4f3NvlZK8BrOxpR3xQlWFLZYblQ==}
 
   '@iconify-json/emojione@1.2.3':
     resolution: {integrity: sha512-T9+T3HIbJNLKKsmxYKlaYhvnHYkz/HNYTV7SHCXVZPfeUi4FqskY70YeN8yYAZT8cCv7w5vJxS4Q1m8zb9CMMg==}
@@ -8062,7 +8062,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/carbon@1.2.24':
+  '@iconify-json/carbon@1.2.25':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -9154,7 +9154,7 @@ snapshots:
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.19
+      postcss: 8.5.25
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.13':
