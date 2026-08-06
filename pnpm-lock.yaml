@@ -220,8 +220,8 @@ catalogs:
       specifier: ^0.7.59
       version: 0.7.59
     taze:
-      specifier: ^19.17.1
-      version: 19.17.1
+      specifier: ^19.17.2
+      version: 19.17.2
     twoslash:
       specifier: ^0.3.9
       version: 0.3.9
@@ -318,7 +318,7 @@ importers:
         version: 5.56.8(@typescript-eslint/types@8.50.0)
       taze:
         specifier: 'catalog:'
-        version: 19.17.1
+        version: 19.17.2
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -6237,8 +6237,8 @@ packages:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
 
-  taze@19.17.1:
-    resolution: {integrity: sha512-ZUrU86BRNGJRZzCWOaMWC1ohYogHpRlQcGYuTClW8CpSE3iWjHE/jPuqpsOA/lKijL7O3algqq7l2bbdLCfrxg==}
+  taze@19.17.2:
+    resolution: {integrity: sha512-1WH+LUf5H0R07EF606fuP5TuHPVvtrMIPpn69EkqaOVJYg0foL8xnD+lEs0s19Zfmplul5nRd3TpbbF0twXCkw==}
     hasBin: true
 
   temp-dir@2.0.0:
@@ -12647,7 +12647,7 @@ snapshots:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
-  taze@19.17.1:
+  taze@19.17.2:
     dependencies:
       '@antfu/ni': 30.3.0
       '@henrygd/queue': 1.2.0
