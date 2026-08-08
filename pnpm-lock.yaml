@@ -58,8 +58,8 @@ catalogs:
       specifier: ^1.2.7
       version: 1.2.7
     '@iconify-json/openmoji':
-      specifier: ^1.2.28
-      version: 1.2.28
+      specifier: ^1.2.29
+      version: 1.2.29
     '@iconify-json/ph':
       specifier: ^1.2.2
       version: 1.2.2
@@ -70,8 +70,8 @@ catalogs:
       specifier: ^1.2.38
       version: 1.2.38
     '@iconify-json/vscode-icons':
-      specifier: ^1.2.69
-      version: 1.2.69
+      specifier: ^1.2.70
+      version: 1.2.70
     '@resvg/resvg-js':
       specifier: ^2.6.2
       version: 2.6.2
@@ -214,8 +214,8 @@ catalogs:
       specifier: ^5.56.8
       version: 5.56.8
     svelte-check:
-      specifier: ^4.7.4
-      version: 4.7.4
+      specifier: ^4.7.5
+      version: 4.7.5
     svelte2tsx:
       specifier: ^0.7.59
       version: 0.7.59
@@ -394,7 +394,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.28
+        version: 1.2.29
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -406,7 +406,7 @@ importers:
         version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.69
+        version: 1.2.70
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.56.8(@typescript-eslint/types@8.50.0))(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -433,7 +433,7 @@ importers:
         version: 5.56.8(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.4(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.5(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -472,7 +472,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.28
+        version: 1.2.29
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -484,7 +484,7 @@ importers:
         version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.69
+        version: 1.2.70
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.56.8(@typescript-eslint/types@8.50.0))(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -511,7 +511,7 @@ importers:
         version: 5.56.8(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.4(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.5(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -550,7 +550,7 @@ importers:
         version: 1.2.7
       '@iconify-json/openmoji':
         specifier: 'catalog:'
-        version: 1.2.28
+        version: 1.2.29
       '@iconify-json/ph':
         specifier: 'catalog:'
         version: 1.2.2
@@ -562,7 +562,7 @@ importers:
         version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.69
+        version: 1.2.70
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.2.0(svelte@5.56.8(@typescript-eslint/types@8.50.0))(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -589,7 +589,7 @@ importers:
         version: 5.56.8(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.4(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.5(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -650,7 +650,7 @@ importers:
         version: 5.56.8(@typescript-eslint/types@8.50.0)
       svelte-check:
         specifier: 'catalog:'
-        version: 4.7.4(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+        version: 4.7.5(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
       vite:
         specifier: 'catalog:'
         version: 8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -2094,8 +2094,8 @@ packages:
   '@iconify-json/noto@1.2.7':
     resolution: {integrity: sha512-2pNHliXnMLpnepNTZwR9hPBSl6GmhIfXPnudFCHY5v9pJhmA7LoVb/pFY0qLDY/k+3ikET8RXRf7XFxc/pHObA==}
 
-  '@iconify-json/openmoji@1.2.28':
-    resolution: {integrity: sha512-JIuSjNZsl2KDiWUqz4iDIN32uNMpJvW60JjwsXIt05vPf8KJkMvJloFMF8xQO6CZ/7ukviVrkdjaEoQqE4tMYg==}
+  '@iconify-json/openmoji@1.2.29':
+    resolution: {integrity: sha512-vXdhkqcXVSO6suy+m9LbcUM3OdVyuNOtpV8/als/WqfkQIRxevL5Geb/g+6GH/Qwnq1OqksEmaDGTCmZ5nFKJQ==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -2106,8 +2106,8 @@ packages:
   '@iconify-json/tabler@1.2.38':
     resolution: {integrity: sha512-9v6ooRU/bKOK/Whv4w2aiK5gBnfCV9Ei+uD1iDDeLu2b+EnF3G3ZKkRKWEOOLG8bJyfKn6XEia6gUQ9oO7cF+Q==}
 
-  '@iconify-json/vscode-icons@1.2.69':
-    resolution: {integrity: sha512-qNT3Xf7tVylX3LbTj867/VRa5/FxCxYA1lclucf5TPGn9t5J5qwu0sm8RwN10+UGeEc3oAewYuJ+rDam9l8cqA==}
+  '@iconify-json/vscode-icons@1.2.70':
+    resolution: {integrity: sha512-J5EnIWj9cCPvn0obl88giucgFtNalgBkhML3oHse5MBEU7H7fyezKHhVsfXOuxs7osSfTAoOcXtmbmWUD6rXqw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2975,8 +2975,8 @@ packages:
       typescript:
         optional: true
 
-  '@sveltejs/load-config@0.2.1':
-    resolution: {integrity: sha512-5m3B2cbqQ4TbwW6Xkh66Ntw6dD7gNc77cCxABTTesWcq9jxIzMgTk97pZx5vEtvQx8iokgi7GIphqZe+PGwcZA==}
+  '@sveltejs/load-config@0.2.2':
+    resolution: {integrity: sha512-K7dsJDQxBOF+f+epuhMactcjK2VP4MRkLKtwSykNtEI+cKVEyzrmmhQ1pmoxI800m4JKcyJ05L2M4yPwAGiBNw==}
     engines: {node: '>= 18.0.0'}
 
   '@sveltejs/package@2.5.8':
@@ -6182,8 +6182,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svelte-check@4.7.4:
-    resolution: {integrity: sha512-IW9ot9YqAoyv8FvyN+eb4ZTe8zgcKZrJLNYU6dzSKkGwEBsSPc4K7lmQ8bKn8W2YMXM6WDfZSSVOaGtekyUfOQ==}
+  svelte-check@4.7.5:
+    resolution: {integrity: sha512-NnkHGCTPH6k4ka1E9IpTuNv40uLArHnX52kLEuaHSGqRlPYTnkbFs529jSWG+y+wDy+v+jA2PQ0soN1umVK+OA==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
     peerDependencies:
@@ -8090,7 +8090,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/openmoji@1.2.28':
+  '@iconify-json/openmoji@1.2.29':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8106,7 +8106,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.69':
+  '@iconify-json/vscode-icons@1.2.70':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8731,7 +8731,7 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       typescript: 5.9.3
 
-  '@sveltejs/load-config@0.2.1': {}
+  '@sveltejs/load-config@0.2.2': {}
 
   '@sveltejs/package@2.5.8(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3)':
     dependencies:
@@ -12558,10 +12558,10 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte-check@4.7.4(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3):
+  svelte-check@4.7.5(picomatch@4.0.5)(svelte@5.56.8(@typescript-eslint/types@8.50.0))(typescript@5.9.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
-      '@sveltejs/load-config': 0.2.1
+      '@sveltejs/load-config': 0.2.2
       chokidar: 4.0.1
       fdir: 6.5.0(picomatch@4.0.5)
       picocolors: 1.1.1

@@ -35,11 +35,11 @@ catalog:
   '@iconify-json/material-symbols': ^1.2.88
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.7
-  '@iconify-json/openmoji': ^1.2.28
+  '@iconify-json/openmoji': ^1.2.29
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.5
   '@iconify-json/tabler': ^1.2.38
-  '@iconify-json/vscode-icons': ^1.2.69
+  '@iconify-json/vscode-icons': ^1.2.70
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -87,7 +87,7 @@ catalog:
   shiki: ^3.23.0
   source-map-js: ^1.2.1
   svelte: ^5.56.8
-  svelte-check: ^4.7.4
+  svelte-check: ^4.7.5
   svelte2tsx: ^0.7.59
   taze: ^19.17.2
   twoslash: ^0.3.9
