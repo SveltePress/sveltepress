@@ -86,13 +86,22 @@
     --at-apply: 'mb-2 sm:mb-4';
   }
   .sidebar-group:not(:last-of-type) {
-    --at-apply: 'border-b-solid border-b border-light-8 dark:border-b-gray-7 mb-4 pb-4';
+    --at-apply: 'border-b-solid border-b border-black/5 dark:border-b-white/8 mb-4 pb-4';
   }
   .group-title {
-    --at-apply: 'font-bold text-slate-8 dark:text-slate-2 flex items-center justify-between';
+    --at-apply: 'font-600 text-slate-8 dark:text-zinc-2 flex items-center justify-between';
   }
   .links {
-    --at-apply: 'leading-8 overflow-hidden';
+    --at-apply: 'leading-7 overflow-hidden text-[15px]';
+  }
+  .links > :global(.link) {
+    --at-apply: 'px-2.5 py-1 mx--2.5 my-0.5 rounded-md transition-colors transition-150 text-slate-7 dark:text-zinc-3';
+  }
+  .links > :global(.link:not(.active):hover) {
+    --at-apply: 'bg-black/4 dark:bg-white/6';
+  }
+  .links > :global(.link.active) {
+    --at-apply: 'bg-svp-primary/8 dark:bg-svp-primary/12 text-svp-primary-deep dark:text-svp-primary font-600';
   }
   .collapse-control {
     --at-apply: 'transition transition-200 transition-bg transition-transform cursor-pointer text-5 hover:bg-gray-2 active:bg-gray-3 dark:hover:bg-gray-8 dark:active:bg-gray-7 w-[28px] h-[28px] flex items-center justify-center rounded';

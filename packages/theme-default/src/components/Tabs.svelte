@@ -121,7 +121,7 @@
 
 <style>
   .svp-tab {
-    --at-apply: 'b-1 b-solid b-gray-2 rounded-lg dark:b-gray-8';
+    --at-apply: 'b-1 b-solid b-black/6 rounded-lg dark:b-white/8';
   }
   :global(.svp-tab .svp-live-code--container) {
     margin-bottom: 0;
@@ -133,16 +133,19 @@
     --at-apply: 'relative overflow-hidden';
   }
   .tab-header {
-    --at-apply: 'relative flex items-center justify-center sm:justify-start bg-white dark:bg-black rounded-t-lg text-4 b-b-1 b-b-gray-2 dark:b-b-gray-8 b-b-solid';
+    --at-apply: 'relative flex items-center justify-center sm:justify-start bg-white dark:bg-[#1c1c1f] rounded-t-lg text-4 b-b-1 b-b-black/6 dark:b-b-white/8 b-b-solid';
   }
   .tab-header-item {
-    --at-apply: 'py-3 px-4 sm:px-8 sm:py-4 cursor-pointer hover:text-svp-hover transition-color flex items-center';
+    --at-apply: 'py-3 px-4 sm:px-8 sm:py-4 cursor-pointer hover:text-svp-hover transition-color flex items-center text-slate-6 dark:text-zinc-4';
+  }
+  .tab-header-item.active {
+    --at-apply: 'text-svp-primary-deep dark:text-svp-primary font-500';
   }
   .name {
     --at-apply: 'ml-2';
   }
   .active-bar {
-    --at-apply: 'absolute bottom-0 h-[4px] bg-svp-primary';
+    --at-apply: 'absolute bottom-0 h-[2px] bg-svp-primary';
     width: var(--bar-width);
     left: var(--bar-left);
   }

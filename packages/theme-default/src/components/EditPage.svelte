@@ -42,7 +42,7 @@
 
 <style>
   .edit-link {
-    --at-apply: 'flex items-center text-svp-primary hover:text-svp-hover cursor-pointer';
+    --at-apply: 'flex items-center text-svp-primary-deep dark:text-svp-primary hover:text-svp-hover cursor-pointer';
   }
   .edit-icon {
     --at-apply: 'text-5 flex items-center';

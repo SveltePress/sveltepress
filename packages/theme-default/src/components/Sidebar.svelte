@@ -52,10 +52,10 @@
     --at-apply: 'sm:hidden';
   }
   .theme-default-sidebar {
-    --at-apply: 'fixed top-0 left-0 bottom-0 pr-6 pb-4 sm:pb-32 overflow-y-auto bg-light-6 dark:bg-dark-9 z-999 sm:w-[25vw] w-[70vw] pl-4 sm:pl-[5vw] md:pl-[10vw] box-border transition-transform transition-300 shadow-md sm:shadow-none';
+    --at-apply: 'fixed top-0 left-0 bottom-0 pr-6 pb-4 sm:pb-32 overflow-y-auto bg-light-6 dark:bg-[#161618] z-999 sm:w-[25vw] w-[70vw] pl-4 sm:pl-[5vw] md:pl-[10vw] box-border transition-transform transition-300 shadow-md sm:shadow-none b-r-1 b-r-solid b-r-black/5 dark:b-r-white/6';
   }
   .sidebar-logo {
-    --at-apply: 'sm:h-[72px] flex items-center justify-between mb-4 py-4 sm:py-0 sticky top-0 bg-inherit border-b-solid border-b border-light-8 dark:border-b-gray-7';
+    --at-apply: 'sm:h-[72px] flex items-center justify-between mb-4 py-4 sm:py-0 sticky top-0 bg-inherit border-b-solid border-b border-black/5 dark:border-b-white/8';
   }
   .collapsed {
     --at-apply: 'sm:translate-x-0';

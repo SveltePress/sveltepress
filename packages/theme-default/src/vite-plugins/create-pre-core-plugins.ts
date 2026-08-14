@@ -16,7 +16,15 @@ const DEFAULT_GRADIENT = {
   end: '#fee140',
 }
 
+// The default #fee140 tail is ~1.2:1 against light backgrounds — fine as a
+// button fill, illegible as clipped text. Text gradients get a deeper gold.
+const DEFAULT_GRADIENT_TEXT_END = '#f59e0b'
+
 const DEFAULT_PRIMARY = '#fb7185'
+
+// Accent text on light backgrounds: #fb7185 is only ~2.7:1 on white,
+// so text usages pair this deeper rose (light mode) with primary (dark mode)
+const DEFAULT_PRIMARY_DEEP = '#e11d48'
 
 const DEFAULT_HOVER = '#f43f5e'
 
@@ -40,6 +48,9 @@ export default async (options?: DefaultThemeOptions) => {
     primary: DEFAULT_PRIMARY,
     hover: DEFAULT_HOVER,
   }
+  // No color math on user-supplied primaries — fall back to their primary as-is
+  const primaryDeep = options?.themeColor?.primaryDeep
+    ?? (options?.themeColor?.primary ? primary : DEFAULT_PRIMARY_DEEP)
 
   // Resolve auto-sidebar if configured
   const resolvedOptions = { ...options }
@@ -64,7 +75,10 @@ export default async (options?: DefaultThemeOptions) => {
       theme: {
         colors: {
           svp: {
-            primary,
+            primary: {
+              DEFAULT: primary,
+              deep: primaryDeep,
+            },
             hover,
           },
         },
@@ -75,7 +89,7 @@ export default async (options?: DefaultThemeOptions) => {
       },
       shortcuts: {
         'svp-gradient-bg': `bg-gradient-linear bg-gradient-[45deg,${gradient.start},${gradient.end}]`,
-        'svp-gradient-text': 'svp-gradient-bg bg-clip-text text-transparent',
+        'svp-gradient-text': `bg-gradient-linear bg-gradient-[45deg,${gradient.start},${options?.themeColor?.gradient ? gradient.end : DEFAULT_GRADIENT_TEXT_END}] bg-clip-text text-transparent`,
         'svp-modal-bg': 'sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-black dark:bg-white bg-opacity-70 dark:bg-opacity-70 z-900 opacity-0 pointer-events-none transition-opacity transition-300',
         'svp-modal-bg-show': 'opacity-100 pointer-events-auto',
       },

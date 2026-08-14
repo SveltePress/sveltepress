@@ -49,27 +49,27 @@
 
 <style>
   .home-page {
-    --at-apply: 'sm:w-[70vw] max-w-[1152px] mx-auto sm:px-0 px-4 pt-4';
+    --at-apply: 'sm:w-[70vw] max-w-[1152px] mx-auto sm:px-0 px-4 pt-6 sm:pt-14';
   }
   .title {
-    --at-apply: 'sm:text-16 text-10 grid grid-cols-12 font-700 leading-24';
+    --at-apply: 'sm:text-16 text-10 grid grid-cols-12 font-700 leading-[1.15] tracking-[-0.02em]';
   }
   .description {
-    --at-apply: 'text-8 leading-10 sm:text-inherit';
+    --at-apply: 'text-8 leading-[1.2] sm:text-inherit';
   }
   .intro {
     --at-apply: 'col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1 text-center sm:text-left';
   }
   .gradient-title {
-    --at-apply: 'svp-gradient-text';
+    --at-apply: 'svp-gradient-text pb-1';
   }
   .tagline {
-    --at-apply: 'text-slate-5 dark:text-slate-4 text-6 mt-4 font-500 leading-9 font-normal';
+    --at-apply: 'text-slate-5 dark:text-zinc-4 text-6 mt-5 font-400 leading-9';
   }
   .actions {
-    --at-apply: 'grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-4 justify-center sm:justify-start max-w-[320px] mx-auto sm:max-w-none';
+    --at-apply: 'grid-cols-1 px-10 sm:px-0 grid sm:flex gap-4 mt-8 justify-center sm:justify-start max-w-[320px] mx-auto sm:max-w-none';
   }
   .features {
-    --at-apply: 'grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 grid-cols-1 mb-4';
+    --at-apply: 'grid sm:grid-cols-2 md:grid-cols-3 gap-5 mt-10 sm:mt-16 grid-cols-1 mb-8';
   }
 </style>

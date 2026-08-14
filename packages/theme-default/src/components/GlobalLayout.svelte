@@ -110,7 +110,10 @@
     --at-apply: 'scroll-smooth';
   }
   :global(body) {
-    --at-apply: 'bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-warm-gray-2 scroll-smooth';
+    /* clip (not hidden): full-bleed vw-sized blocks overflow by the classic
+       scrollbar width; clip removes the wiggle without breaking sticky */
+    overflow-x: clip;
+    --at-apply: 'bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-zinc-2 scroll-smooth';
     font-family:
       'Inter var experimental',
       'Inter var',
@@ -132,13 +135,13 @@
       'Noto Color Emoji';
   }
   :global(a) {
-    --at-apply: 'text-[#002211] dark:text-[#efefef] decoration-none';
+    --at-apply: 'text-inherit decoration-none';
   }
   :global(sup a) {
-    --at-apply: 'c-svp-primary';
+    --at-apply: 'c-svp-primary-deep dark:c-svp-primary';
   }
   :global(p) {
-    --at-apply: 'leading-6';
+    --at-apply: 'leading-7';
   }
 
   :global(ul) {
@@ -154,20 +157,20 @@
     color-scheme: dark;
   }
   :global(code) {
-    --at-apply: 'bg-[#e3e4e6] dark:bg-[#3a3a3a] dark:text-[#c9def1] text-[#476582] px-[6px] py-[3px] rounded break-all';
+    --at-apply: 'bg-[#eceef1] dark:bg-[#2e2e32] dark:text-[#c9def1] text-[#40566e] px-[6px] py-[3px] rounded-md break-words text-[0.875em]';
   }
   :global(pre.shiki code) {
-    --at-apply: 'bg-transparent dark:bg-transparent p-unset block';
+    --at-apply: 'bg-transparent dark:bg-transparent p-unset block text-[1em]';
   }
 
   :global(.svp-code-block-wrapper) {
-    --at-apply: 'bg-white dark:bg-[#011627] sm:rounded-lg text-[14px] mb-8 mx-[-5vw] sm:mx-none';
+    --at-apply: 'bg-white dark:bg-[#011627] sm:rounded-lg text-[14px] mb-8 mx-[-5vw] sm:mx-none b-1 b-solid b-black/6 dark:b-white/8';
   }
   :global(.svp-live-code--container) {
     --at-apply: 'mx-[-5vw] sm:mx-none';
   }
   :global(.svp-live-code--container .svp-code-block-wrapper) {
-    --at-apply: 'mx-none mb-none rounded-b-0 b-b b-b-solid b-b-gray-2 dark:b-b-gray-8';
+    --at-apply: 'mx-none mb-none rounded-b-0 b-t-0 b-x-0 b-b-1 b-b-solid b-b-black/6 dark:b-b-white/8';
   }
   :global(.svp-live-code--container .c-expansion .svp-code-block-wrapper) {
     --at-apply: 'rounded-0 b-none';
@@ -176,7 +179,7 @@
     --at-apply: 'relative px-[18px] py-[12px] overflow-auto';
   }
   :global(.svp-code-block--title) {
-    --at-apply: 'px-[18px] leading-10 font-700 b-b b-b-solid b-b-gray-2 dark:b-b-gray-8';
+    --at-apply: 'px-[18px] leading-10 font-600 text-[13px] b-b b-b-solid b-b-black/6 dark:b-b-white/8';
   }
   :global(.svp-code-block--with-line-numbers) {
     --at-apply: 'pl-10';
@@ -195,7 +198,7 @@
     --at-apply: 'mb-none';
   }
   :global(.svp-code-block--lang) {
-    --at-apply: 'absolute top-2 right-3 z-100 text-cool-gray-3 dark:text-cool-gray-7 text-[12px] transition-300 transition-opacity';
+    --at-apply: 'absolute top-2 right-3 z-100 text-gray-5 dark:text-[#5f7e97] text-[12px] transition-300 transition-opacity';
   }
   :global(.svp-code-block--command-line) {
     --at-apply: 'absolute left-0 right-0 z-4 h-[1.5em] pointer-events-none';
@@ -232,23 +235,26 @@
     --at-apply: 'opacity-0';
   }
   :global(blockquote) {
-    --at-apply: 'border-l-[4px] border-l-solid border-gray-4 m-none bg-gray-2 indent-[1em] text-gray-4 py-[4px] my-4 dark:border-l-gray-5 dark:bg-gray-8';
+    --at-apply: 'border-l-[3px] border-l-solid border-l-gray-3 dark:border-l-zinc-6 m-none pl-4 py-1 my-5 text-gray-6 dark:text-zinc-4';
   }
   :global(blockquote p) {
     --at-apply: 'm-none';
   }
 
   :global(table) {
-    --at-apply: 'border-collapse w-full';
+    --at-apply: 'border-collapse w-full my-6';
   }
   :global(table th) {
-    --at-apply: text-left p-2;
+    --at-apply: 'text-left px-3 py-2 font-600 border-b-2 border-b-solid border-black/10 dark:border-white/12';
   }
   :global(table tbody tr) {
-    --at-apply: 'border-t-1 border-t-solid border-gray-2 dark:border-gray-7';
+    --at-apply: 'border-t-1 border-t-solid border-black/6 dark:border-white/8';
+  }
+  :global(table tbody tr:hover) {
+    --at-apply: 'bg-black/4 dark:bg-white/5';
   }
   :global(table tbody tr td) {
-    --at-apply: p-2;
+    --at-apply: 'px-3 py-2';
   }
   :global(.svp-anchor-item) {
     --at-apply: 'relative bottom-[100px]';

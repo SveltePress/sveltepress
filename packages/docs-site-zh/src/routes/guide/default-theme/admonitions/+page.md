@@ -11,7 +11,7 @@ title: 高亮块
 这个特性集成了 [remark-directive](https://github.com/remarkjs/remark-directive)
 
 ```md
-:::tip|info|note|warning|important|caution[标题]
+:::tip|info|note|warning|important|caution|danger[标题]
 一些高亮内容
 :::
 ```
@@ -83,5 +83,16 @@ title: 高亮块
 
 :::caution[自定义图标的当心标题]{icon=openmoji:red-apple}
 一些当心内容
+:::
+```
+
+## 危险
+```md live no-ast
+:::danger[危险标题]
+一些危险内容
+:::
+
+:::danger[自定义图标的危险标题]{icon=openmoji:red-apple}
+一些危险内容
 :::
 ```

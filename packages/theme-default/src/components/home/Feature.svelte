@@ -80,19 +80,20 @@
   .clickable {
     --at-apply: 'cursor-pointer';
   }
-  .clickable:hover .feature-title {
-    --at-apply: 'underline';
+  .clickable:hover {
+    --at-apply: 'b-black/10 dark:b-white/16 shadow-lg shadow-black/5 dark:shadow-black/40';
+    transform: translateY(-2px);
   }
   .feature-title {
-    --at-apply: font-600 mt-3;
+    --at-apply: 'font-600 mt-4';
   }
   .feature-desc {
-    --at-apply: text-slate-5 mt-3 text-[14px];
+    --at-apply: 'text-slate-6 dark:text-zinc-4 mt-2 text-[14px] leading-6';
   }
   .feature-item {
-    --at-apply: 'bg-white dark:bg-gray-9 p-4 rounded-lg hover:shadow-md transition-shadow transition-300';
+    --at-apply: 'bg-white dark:bg-[#202023] p-5 rounded-xl b-1 b-solid b-black/6 dark:b-white/8 transition-all transition-200';
   }
   .icon {
-    --at-apply: 'text-10 inline-flex items-center p-1 bg-[#e5e5e5] dark:bg-[#252525] rounded-md';
+    --at-apply: 'text-9 inline-flex items-center p-1.5 bg-black/5 dark:bg-white/8 rounded-lg';
   }
 </style>

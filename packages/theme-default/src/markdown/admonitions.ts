@@ -33,7 +33,8 @@ export const customTypes: Record<string, Admonition> = {
   danger: warning,
   note: secondary,
   tip: success,
-  warning,
+  // the skull-and-crossbones glyph reads as "danger" — warning gets the triangle
+  warning: caution,
   info,
   important,
   caution,

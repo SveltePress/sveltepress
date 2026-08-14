@@ -109,14 +109,14 @@
     --at-apply: 'opacity-80';
   }
   :global(:not(.dropdown) > .nav-item:not(.nav-item--icon):hover) {
-    --at-apply: 'svp-gradient-text';
+    --at-apply: 'text-svp-hover';
   }
   .dropdown {
-    --at-apply: 'transition-transform transition-opacity transition-300 opacity-0 pointer-events-none  absolute top-0 right-0 bg-white dark:bg-[#232323] whitespace-nowrap z-3 rounded shadow-sm p-2';
+    --at-apply: 'transition-transform transition-opacity transition-300 opacity-0 pointer-events-none  absolute top-0 right-0 bg-white dark:bg-[#202023] whitespace-nowrap z-3 rounded-lg shadow-lg b-1 b-solid b-black/5 dark:b-white/8 p-1.5';
     transform: translateY(72px);
   }
   :global(.dropdown > .nav-item) {
-    --at-apply: 'block py-2 px-4 decoration-none rounded hover:bg-svp-primary hover:bg-opacity-20 hover:text-svp-primary text-[#213547] dark:text-[#efefef]';
+    --at-apply: 'block py-2 px-4 decoration-none rounded-md hover:bg-svp-primary hover:bg-opacity-15 hover:text-svp-primary-deep dark:hover:text-svp-primary text-[#213547] dark:text-[#efefef]';
   }
   :global(.dropdown > .nav-item:hover) {
     background-image: none;
@@ -132,6 +132,6 @@
     transform: rotate(180deg);
   }
   .active {
-    --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';
+    --at-apply: 'text-svp-primary-deep dark:text-svp-primary hover:text-svp-primary-deep dark:hover:text-svp-primary font-600 cursor-default';
   }
 </style>

@@ -139,7 +139,7 @@
 
 <style>
   :global(.svp-live-code--container) {
-    --at-apply: 'mb-8 shadow-sm b-1 b-solid b-gray-2  dark:b-warmgray-8 rounded-lg';
+    --at-apply: 'mb-8 shadow-sm b-1 b-solid b-black/6 dark:b-white/8 rounded-lg';
   }
   :global(.svp-live-code--demo) {
     --at-apply: 'p-4';

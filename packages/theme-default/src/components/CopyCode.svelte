@@ -37,7 +37,8 @@
 
 <style>
   :global(.svp-code-bock--copy-code) {
-    --at-apply: 'opacity-0 events-none absolute top-[6px] right-[12px] cursor-pointer z-200 w-[28px] h-[28px] text-4 rounded-lg border-solid border-2 border-gray-3 hover:border-svp-primary hover:text-svp-primary flex items-center justify-center transition-all transition-300';
+    --at-apply: 'opacity-0 events-none absolute top-[6px] right-[12px] cursor-pointer z-200 w-[28px] h-[28px] text-4 rounded-md border-solid border-1 border-black/10 dark:border-white/15 bg-white/90 dark:bg-white/10 text-gray-6 dark:text-gray-3 hover:border-svp-primary hover:text-svp-primary flex items-center justify-center transition-all transition-200';
+    backdrop-filter: blur(4px);
   }
   :global(.svp-code-block:hover .svp-code-bock--copy-code) {
     --at-apply: 'opacity-100 events-all';

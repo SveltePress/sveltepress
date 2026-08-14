@@ -11,7 +11,7 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 :::
 
 ```md
-:::tip|info|note|warning|important|caution[Title]{icon=icon-collection:icon-name}
+:::tip|info|note|warning|important|caution|danger[Title]{icon=icon-collection:icon-name}
 Some admonition content
 :::
 ```
@@ -85,5 +85,17 @@ Some caution content
 
 :::caution[Caution with custom icon]{icon=ph:smiley}
 Some caution content
+:::
+```
+
+## Danger
+
+```md live no-ast
+:::danger[Danger title]
+Some danger content
+:::
+
+:::danger[Danger with custom icon]{icon=ph:smiley}
+Some danger content
 :::
 ```

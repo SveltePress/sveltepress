@@ -59,7 +59,15 @@
 
 <style>
   .highlight {
-    --at-apply: 'text-svp-primary';
+    --at-apply: 'text-svp-primary-deep dark:text-svp-primary font-500';
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition: text-decoration-color 0.2s;
+  }
+  .highlight:hover {
+    text-decoration-color: currentColor;
   }
   .link {
     --at-apply: 'inline-flex hover:text-svp-hover cursor-pointer items-center transition-200 transition-color';
@@ -68,6 +76,6 @@
     --at-apply: 'flex';
   }
   .active {
-    --at-apply: 'svp-gradient-text hover:svp-gradient-text cursor-default';
+    --at-apply: 'text-svp-primary-deep dark:text-svp-primary hover:text-svp-primary-deep dark:hover:text-svp-primary font-600 cursor-default';
   }
 </style>

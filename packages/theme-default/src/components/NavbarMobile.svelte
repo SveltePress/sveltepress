@@ -61,7 +61,7 @@
     --at-apply: 'ml-4 text-6 flex items-center sm:hidden';
   }
   .navbar-mobile {
-    --at-apply: 'fixed top-[48px] left-0 right-0 bg-white dark:bg-black z-900 shadow-lg pb-4 dark:shadow-gray-8';
+    --at-apply: 'fixed top-[48px] left-0 right-0 bg-white dark:bg-[#1c1c1f] z-900 shadow-lg pb-4 b-b-1 b-b-solid b-b-black/5 dark:b-b-white/8';
   }
   :global(.navbar-mobile .nav-item) {
     --at-apply: 'leading-12 px-4';

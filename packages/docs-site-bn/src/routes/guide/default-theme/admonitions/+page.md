@@ -11,7 +11,7 @@ title: অ্যাডমনিশন
 :::
 
 ```md
-:::tip|info|note|warning|important|caution[Title]{icon=icon-collection:icon-name}
+:::tip|info|note|warning|important|caution|danger[Title]{icon=icon-collection:icon-name}
 Some admonition content
 :::
 ```
@@ -83,5 +83,16 @@ Some admonition content
 
 :::caution[কাস্টম আইকনযুক্ত সতর্কতার শিরোনাম]{icon=ph:smiley}
 সতর্কতার বিষয়বস্তু
+:::
+```
+
+## বিপদ
+```md live no-ast
+:::danger[বিপদের শিরোনাম]
+বিপদের বিষয়বস্তু
+:::
+
+:::danger[কাস্টম আইকনযুক্ত বিপদের শিরোনাম]{icon=ph:smiley}
+বিপদের বিষয়বস্তু
 :::
 ```

@@ -2,6 +2,7 @@
   --svp-expansion-bg: #f8f8fb;
   --svp-expansion-bg-darker: #f2f2f7;
   --svp-expansion-bg-darker2: #e8e8f2;
+  --svp-divider: rgba(60, 60, 67, 0.1);
   --docsearch-primary-color: rgba(251, 113, 133, 1);
   --svp-code-font: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
   --docsearch-searchbox-background: transparent;
@@ -12,17 +13,31 @@
 html.dark,
 html[data-theme='dark'] {
   --svp-text: #dfdedd;
-  --svp-expansion-bg: #282c34;
-  --svp-expansion-bg-darker: #262626;
-  --svp-expansion-bg-darker2: #222;
+  --svp-expansion-bg: #202023;
+  --svp-expansion-bg-darker: #1c1c1f;
+  --svp-expansion-bg-darker2: #18181b;
+  --svp-divider: rgba(255, 255, 255, 0.09);
   --docsearch-text-color: var(--svp-text);
   --docsearch-key-gradient: var(--svp-expansion-bg);
   --docsearch-searchbox-focus-background: var(--svp-expansion-bg-darker2);
-  --docsearch-modal-background: #252529;
-  --docsearch-footer-background: #1e1e20;
-  --docsearch-hit-background: #313136;
+  --docsearch-modal-background: #202023;
+  --docsearch-footer-background: #1c1c1f;
+  --docsearch-hit-background: #2a2a2e;
   --docsearch-hit-color: var(--svp-text);
   --twoslash-popup-bg: var(--svp-expansion-bg);
+}
+
+html.dark .DocSearch-Button {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .DocSearch-Button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:focus-visible {
+  outline: 2px solid var(--docsearch-primary-color);
+  outline-offset: 2px;
 }
 
 .c-expansion {
@@ -67,9 +82,9 @@ html[data-theme='dark'] {
 }
 
 .admonition {
-  margin-bottom: 1em;
-  padding: 15px 30px 15px 15px;
-  border-radius: 4px;
+  margin: 16px 0 20px;
+  padding: 14px 16px;
+  border-radius: 8px;
 }
 
 .admonition h5 {
@@ -83,14 +98,14 @@ html[data-theme='dark'] {
 .admonition-icon {
   display: flex;
   align-items: center;
-  margin-right: 0.3em;
-  font-size: 1.5rem;
+  margin-right: 0.4em;
+  font-size: 1.25rem;
 }
 
 .admonition-icon svg {
   display: inline-block;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   stroke-width: 0;
 }
 
@@ -98,20 +113,35 @@ html[data-theme='dark'] {
   margin-bottom: 0;
 }
 
+/*
+ * Each type defines a light/dark pair:
+ * --admonition-color   label + icon, must stay readable on the tinted bg
+ * --admonition-border  accent bar, may be more saturated than the label
+ * --admonition-bg      tint derived from the accent hue
+ */
+
 /* default for custom types */
 .admonition {
-  --admonition-bg: rgb(118 51 219 / 10%);
-  --admonition-color: #7633db;
+  --admonition-color: #6d28d9;
+  --admonition-border: #8b5cf6;
+  --admonition-bg: rgb(139 92 246 / 8%);
   background-color: var(--admonition-bg);
-  border-left: 8px solid var(--admonition-color);
+  border-left: 4px solid var(--admonition-border, var(--admonition-color));
+}
+
+html.dark .admonition {
+  --admonition-color: #a78bfa;
+  --admonition-bg: rgb(139 92 246 / 14%);
 }
 
 .admonition .admonition-heading {
   color: var(--admonition-color);
-  font-weight: bold;
+  font-weight: 600;
   font-size: 14px;
+  letter-spacing: 0.02em;
   display: flex;
   align-items: center;
+  margin-bottom: 6px;
 }
 
 .admonition .admonition-icon svg {
@@ -121,28 +151,84 @@ html[data-theme='dark'] {
 
 /** native types */
 .admonition-caution {
-  --admonition-color: #e67e22;
-  --admonition-bg: rgb(230 126 34 / 10%);
+  --admonition-color: #c2410c;
+  --admonition-border: #f97316;
+  --admonition-bg: rgb(249 115 22 / 9%);
 }
 
-.admonition-tip {
-  --admonition-color: #2ecc71;
-  --admonition-bg: rgb(46 204 113 / 10%);
+html.dark .admonition-caution {
+  --admonition-color: #fb923c;
+  --admonition-bg: rgb(249 115 22 / 14%);
+}
+
+.admonition-tip,
+.admonition-success {
+  --admonition-color: #047857;
+  --admonition-border: #10b981;
+  --admonition-bg: rgb(16 185 129 / 9%);
+}
+
+html.dark .admonition-tip,
+html.dark .admonition-success {
+  --admonition-color: #34d399;
+  --admonition-bg: rgb(16 185 129 / 13%);
 }
 
 .admonition-warning {
-  --admonition-color: #e74c3c;
-  --admonition-bg: rgb(231 76 60 / 10%);
+  --admonition-color: #b45309;
+  --admonition-border: #f59e0b;
+  --admonition-bg: rgb(245 158 11 / 10%);
+}
+
+html.dark .admonition-warning {
+  --admonition-color: #fbbf24;
+  --admonition-bg: rgb(245 158 11 / 13%);
+}
+
+.admonition-danger {
+  --admonition-color: #b91c1c;
+  --admonition-border: #ef4444;
+  --admonition-bg: rgb(239 68 68 / 9%);
+}
+
+html.dark .admonition-danger {
+  --admonition-color: #f87171;
+  --admonition-bg: rgb(239 68 68 / 14%);
 }
 
 .admonition-important {
-  --admonition-bg: rgb(52 152 219 / 10%);
-  --admonition-color: #3498db;
+  --admonition-color: #1d4ed8;
+  --admonition-border: #3b82f6;
+  --admonition-bg: rgb(59 130 246 / 8%);
 }
 
-.admonition-note {
-  --admonition-bg: rgba(241, 196, 15, 0.06);
-  --admonition-color: #f1c40f;
+html.dark .admonition-important {
+  --admonition-color: #60a5fa;
+  --admonition-bg: rgb(59 130 246 / 14%);
+}
+
+.admonition-info {
+  --admonition-color: #6d28d9;
+  --admonition-border: #8b5cf6;
+  --admonition-bg: rgb(139 92 246 / 8%);
+}
+
+html.dark .admonition-info {
+  --admonition-color: #a78bfa;
+  --admonition-bg: rgb(139 92 246 / 14%);
+}
+
+.admonition-note,
+.admonition-secondary {
+  --admonition-color: #475569;
+  --admonition-border: #94a3b8;
+  --admonition-bg: rgb(100 116 139 / 8%);
+}
+
+html.dark .admonition-note,
+html.dark .admonition-secondary {
+  --admonition-color: #cbd5e1;
+  --admonition-bg: rgb(148 163 184 / 12%);
 }
 
 .c-expansion--body .shiki {
@@ -154,12 +240,14 @@ html[data-theme='dark'] {
 @font-face {
   font-family: Dank Mono;
   src: url('./fonts/Dank Mono Regular.otf');
+  font-display: swap;
 }
 
 @font-face {
   font-family: Dank Mono;
   src: url('./fonts/Dank Mono Italic.otf');
   font-style: italic;
+  font-display: swap;
 }
 
 .shiki {
@@ -242,12 +330,51 @@ html.dark .twoslash-popup-container span {
 }
 
 .admonition code {
-  color: var(--admonition-color);
-  background-color: #f1f1f1;
-  /* background-color: #313136; */
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.07);
 }
 
 .dark .admonition code {
-  color: var(--admonition-color);
-  background-color: #010106;
+  color: inherit;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Slim, unobtrusive scrollbars on chrome-y surfaces */
+.theme-default-sidebar,
+.svp-code-block,
+.shiki,
+.toc .anchors {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(115, 115, 115, 0.35) transparent;
+}
+
+.theme-default-sidebar::-webkit-scrollbar,
+.svp-code-block::-webkit-scrollbar,
+.shiki::-webkit-scrollbar,
+.toc .anchors::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.theme-default-sidebar::-webkit-scrollbar-thumb,
+.svp-code-block::-webkit-scrollbar-thumb,
+.shiki::-webkit-scrollbar-thumb,
+.toc .anchors::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.35);
+  border-radius: 3px;
+}
+
+.theme-default-sidebar::-webkit-scrollbar-track,
+.svp-code-block::-webkit-scrollbar-track,
+.shiki::-webkit-scrollbar-track,
+.toc .anchors::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Copy button must be reachable on touch devices where hover never fires */
+@media (hover: none) {
+  .svp-code-bock--copy-code {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }

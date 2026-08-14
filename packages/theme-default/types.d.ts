@@ -56,6 +56,12 @@ declare module 'virtual:sveltepress/theme-default' {
       light: string
       dark: string
       primary?: string
+      /**
+       * Darker variant of primary, used for accent text on light backgrounds
+       * where the primary color alone lacks contrast.
+       * Defaults to `#e11d48` when primary is not customized, otherwise falls back to primary.
+       */
+      primaryDeep?: string
       hover?: string
       gradient?: {
         start: string

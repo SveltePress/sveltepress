@@ -118,8 +118,9 @@
 
 <style>
   .header {
-    --at-apply: 'transition-transform fixed top-0 left-0 right-0 sm:h-[73px] z-888 dark:bg-opacity-40';
-    backdrop-filter: blur(5px);
+    --at-apply: 'transition-transform fixed top-0 left-0 right-0 sm:h-[73px] z-888 bg-[rgba(246,246,247,0.85)] dark:bg-[rgba(24,24,27,0.8)] b-b-1 b-b-solid b-b-black/5 dark:b-b-white/8';
+    backdrop-filter: blur(12px) saturate(1.8);
+    -webkit-backdrop-filter: blur(12px) saturate(1.8);
   }
   .hidden-in-mobile {
     --at-apply: 'translate-y-[-100%] sm:translate-y-0';

@@ -31,10 +31,13 @@
 
 <style>
   .svp-action {
-    --at-apply: 'inline-flex items-center h-12 leading-12 rounded-6 px-6 bg-white dark:bg-zinc-8 transition-300 transition-shadow hover:shadow dark:hover:shadow-gray-6';
+    --at-apply: 'inline-flex items-center h-12 leading-12 rounded-full px-6 font-500 bg-white dark:bg-[#202023] b-1 b-solid b-black/8 dark:b-white/12 transition-all transition-200 hover:b-svp-primary/50 hover:text-svp-hover hover:shadow-sm';
   }
   .svp-action--primary {
-    --at-apply: 'svp-gradient-bg text-white dark:text-warm-gray-8';
+    --at-apply: 'svp-gradient-bg text-[#4c0519] font-600 b-none';
+  }
+  .svp-action--primary:hover {
+    --at-apply: 'text-[#4c0519] shadow-[0_4px_16px_rgba(250,112,154,0.35)]';
   }
   .external-icon {
     --at-apply: 'text-6 ml-2 flex items-center';
