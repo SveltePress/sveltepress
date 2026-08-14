@@ -1,5 +1,77 @@
 # @sveltepress/theme-default
 
+## 7.4.0
+
+### Minor Changes
+
+- [`7b447b1`](https://github.com/Blackman99/sveltepress/commit/7b447b18c4d9a663581b50fd26662d3802f71911) Thanks [@Blackman99](https://github.com/Blackman99)! - Design refresh for the default theme
+  - Navbar now has a real translucent surface (light & dark) with a hairline bottom border and stronger backdrop blur — content no longer ghosts behind it while scrolling
+  - New accessible admonition palette with separate light/dark pairs (the old flat-UI colors failed contrast badly — e.g. the yellow NOTE label was ~1.6:1); `note` is now neutral slate, `warning` is amber with a triangle icon (the skull stays on `danger`), border slimmed to 4px with an 8px radius
+  - Dark mode surfaces unified on one neutral zinc ramp (body `#18181b`, sidebar `#161618`, cards/dropdowns `#202023`) instead of mixed blue-tinted/pure-black grays
+  - Content column capped at 780px and paragraph line-height raised to 1.75 for a readable measure on wide screens; explicit heading scale (h2 24px, h3 20px, h4 18px) with tuned spacing rhythm
+  - Prose links are underlined with a 500 weight; navbar/sidebar active states use solid brand color instead of low-contrast gradient text at small sizes
+  - New `themeColor.primaryDeep` option (default `#e11d48`): a deeper accent used for rose _text_ in light mode (links, TOC/sidebar/nav active states, edit link, prev/next titles) so accent text meets AA contrast, while dark mode keeps the lighter primary
+  - Primary hero button uses dark text on the gradient (white-on-yellow was unreadable); secondary buttons and feature cards get hairline borders and refined hover states
+  - Gradient _text_ (hero wordmark) defaults to a deeper gold tail (`#f59e0b`) so it stays legible on light backgrounds; custom `themeColor.gradient` values are respected unchanged
+  - Code blocks get hairline borders, a legible language label, a visible-on-touch copy button, thin scrollbars; inline code no longer breaks mid-token and is sized at 0.875em
+  - Blockquotes, tables (header rule + row hover), sidebar (hover/active pills, right border), TOC (colored active item) and mobile nav polished; global `:focus-visible` ring added
+
+### Patch Changes
+
+- [`cee89e5`](https://github.com/Blackman99/sveltepress/commit/cee89e5d26296e78ce80efe37dd84fb1605a5a8d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`acdbdee`](https://github.com/Blackman99/sveltepress/commit/acdbdee4eaf32f00db5df603ccc06e6ddfa2f8eb) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`5e0fd6c`](https://github.com/Blackman99/sveltepress/commit/5e0fd6c4e103fe2f5a48a0d30ea7b2ab9d839e4f) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`40e3f71`](https://github.com/Blackman99/sveltepress/commit/40e3f71cb37073598268542ece479f757e190846) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`18ceb0c`](https://github.com/Blackman99/sveltepress/commit/18ceb0c0cbf7873ab63d6cffa70a2dad0787ce50) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`287d952`](https://github.com/Blackman99/sveltepress/commit/287d952608b895076afaecb23e91d63a0a1aeb25) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`edaa64e`](https://github.com/Blackman99/sveltepress/commit/edaa64e68d90419f4c38766187a5f84e43180840) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`996a84d`](https://github.com/Blackman99/sveltepress/commit/996a84d2ef43c8004cdfd95b1089a2d5559f9ae9) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`9ebc6c7`](https://github.com/Blackman99/sveltepress/commit/9ebc6c786e5e9c188839e5b1d41eed82a495a135) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`3d44e9a`](https://github.com/Blackman99/sveltepress/commit/3d44e9ac5fa83bb743035575154846c220a12516) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8391e5f`](https://github.com/Blackman99/sveltepress/commit/8391e5ff7c86bfd5434135e24e002b63d80e7d16) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`ab8641f`](https://github.com/Blackman99/sveltepress/commit/ab8641f620289393a82f36f771f6372b370402a9) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`1d9bf22`](https://github.com/Blackman99/sveltepress/commit/1d9bf22254ab09b6c49bac22caddb61e82ad59d3) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`86caccd`](https://github.com/Blackman99/sveltepress/commit/86caccde4de83bd1d881ec1d2a1d316223e19d75) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e4d8471`](https://github.com/Blackman99/sveltepress/commit/e4d84710a1af724da04666dcfe87ba7de80b5696) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`4761d09`](https://github.com/Blackman99/sveltepress/commit/4761d098702c4280adf1ecb3c159d3b83a476366) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a33b9bf`](https://github.com/Blackman99/sveltepress/commit/a33b9bf808aaa826a308c0a06b883fcf84f15175) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`41f5ebb`](https://github.com/Blackman99/sveltepress/commit/41f5ebbeec08b84677a7c15ad4718aa3c0d9ea6b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`32cc710`](https://github.com/Blackman99/sveltepress/commit/32cc710339e716d8df1fe6af937966863b289d0a) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e0250cf`](https://github.com/Blackman99/sveltepress/commit/e0250cf87afa59d2896bce89216059d501e1c2b1) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d1ebe7f`](https://github.com/Blackman99/sveltepress/commit/d1ebe7f47d539eb8dcbdbcb76cac7c425e1543b0) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`baf29f8`](https://github.com/Blackman99/sveltepress/commit/baf29f8272a13a6bab3b9c20f8fa709263253beb) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`270aba9`](https://github.com/Blackman99/sveltepress/commit/270aba93b0da83293132ec0f85926135d6d551cf) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`9eaa81d`](https://github.com/Blackman99/sveltepress/commit/9eaa81d23c5c2e08df32758f795f4e814c104d16) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`cf45110`](https://github.com/Blackman99/sveltepress/commit/cf45110d237e25db6e705e18f251a11c68dbc8dd) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- Updated dependencies [[`cee89e5`](https://github.com/Blackman99/sveltepress/commit/cee89e5d26296e78ce80efe37dd84fb1605a5a8d), [`acdbdee`](https://github.com/Blackman99/sveltepress/commit/acdbdee4eaf32f00db5df603ccc06e6ddfa2f8eb), [`5e0fd6c`](https://github.com/Blackman99/sveltepress/commit/5e0fd6c4e103fe2f5a48a0d30ea7b2ab9d839e4f), [`40e3f71`](https://github.com/Blackman99/sveltepress/commit/40e3f71cb37073598268542ece479f757e190846), [`18ceb0c`](https://github.com/Blackman99/sveltepress/commit/18ceb0c0cbf7873ab63d6cffa70a2dad0787ce50), [`287d952`](https://github.com/Blackman99/sveltepress/commit/287d952608b895076afaecb23e91d63a0a1aeb25), [`edaa64e`](https://github.com/Blackman99/sveltepress/commit/edaa64e68d90419f4c38766187a5f84e43180840), [`996a84d`](https://github.com/Blackman99/sveltepress/commit/996a84d2ef43c8004cdfd95b1089a2d5559f9ae9), [`9ebc6c7`](https://github.com/Blackman99/sveltepress/commit/9ebc6c786e5e9c188839e5b1d41eed82a495a135), [`3d44e9a`](https://github.com/Blackman99/sveltepress/commit/3d44e9ac5fa83bb743035575154846c220a12516), [`8391e5f`](https://github.com/Blackman99/sveltepress/commit/8391e5ff7c86bfd5434135e24e002b63d80e7d16), [`ab8641f`](https://github.com/Blackman99/sveltepress/commit/ab8641f620289393a82f36f771f6372b370402a9), [`1d9bf22`](https://github.com/Blackman99/sveltepress/commit/1d9bf22254ab09b6c49bac22caddb61e82ad59d3), [`86caccd`](https://github.com/Blackman99/sveltepress/commit/86caccde4de83bd1d881ec1d2a1d316223e19d75), [`e4d8471`](https://github.com/Blackman99/sveltepress/commit/e4d84710a1af724da04666dcfe87ba7de80b5696), [`4761d09`](https://github.com/Blackman99/sveltepress/commit/4761d098702c4280adf1ecb3c159d3b83a476366), [`a33b9bf`](https://github.com/Blackman99/sveltepress/commit/a33b9bf808aaa826a308c0a06b883fcf84f15175), [`41f5ebb`](https://github.com/Blackman99/sveltepress/commit/41f5ebbeec08b84677a7c15ad4718aa3c0d9ea6b), [`32cc710`](https://github.com/Blackman99/sveltepress/commit/32cc710339e716d8df1fe6af937966863b289d0a), [`e0250cf`](https://github.com/Blackman99/sveltepress/commit/e0250cf87afa59d2896bce89216059d501e1c2b1), [`d1ebe7f`](https://github.com/Blackman99/sveltepress/commit/d1ebe7f47d539eb8dcbdbcb76cac7c425e1543b0), [`baf29f8`](https://github.com/Blackman99/sveltepress/commit/baf29f8272a13a6bab3b9c20f8fa709263253beb), [`270aba9`](https://github.com/Blackman99/sveltepress/commit/270aba93b0da83293132ec0f85926135d6d551cf), [`9eaa81d`](https://github.com/Blackman99/sveltepress/commit/9eaa81d23c5c2e08df32758f795f4e814c104d16), [`cf45110`](https://github.com/Blackman99/sveltepress/commit/cf45110d237e25db6e705e18f251a11c68dbc8dd)]:
+  - @sveltepress/twoslash@1.3.14
+  - @sveltepress/vite@1.3.14
+
 ## 7.3.4
 
 ### Patch Changes
