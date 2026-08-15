@@ -1,8 +1,7 @@
 <script>
   import { page } from '$app/state'
-  import { scale, slide } from 'svelte/transition'
+  import { slide } from 'svelte/transition'
   import ArrowDown from './icons/ArrowDown.svelte'
-  import PointLeft from './icons/PointLeft.svelte'
   import Link from './Link.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
   import { isLinkActive } from './utils'
@@ -65,13 +64,7 @@
             label={item.title}
             inline={false}
             highlight={false}
-          >
-            {#if active}
-              <div transition:scale class="active-icon">
-                <PointLeft />
-              </div>
-            {/if}
-          </Link>
+          />
         {/if}
       {/each}
     </div>
@@ -111,8 +104,5 @@
   }
   .collapsed {
     --at-apply: 'rotate--90';
-  }
-  .active-icon {
-    --at-apply: 'text-svp-primary ml-4 flex items-center text-5';
   }
 </style>

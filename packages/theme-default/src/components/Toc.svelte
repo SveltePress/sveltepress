@@ -20,46 +20,57 @@
 
   let scrollY = $state()
 
-  let activeIdx = $state(0)
+  // All sections intersecting the viewport are active, Nuxt-style:
+  // [firstActiveIdx, lastActiveIdx]
+  let activeRange = $state([0, 0])
 
   afterNavigate(() => {
-    activeIdx = 0
+    activeRange = [0, 0]
   })
 
   let mounted = false
 
-  function computeActiveIdx() {
-    if (!mounted) return
+  function computeActiveRange() {
+    if (!mounted || !anchors.length) return
     const positions = anchors.map(
-      ({ slugId }) => document.getElementById(slugId).offsetTop,
+      ({ slugId }) => document.getElementById(slugId)?.offsetTop ?? 0,
     )
+    const viewportTop = scrollY ?? 0
+    const viewportBottom = viewportTop + window.innerHeight
+    const docBottom = document.documentElement.scrollHeight
+    let first = -1
+    let last = 0
     for (let i = 0; i < positions.length; i++) {
-      const pos = positions[i]
-      if (
-        scrollY >= pos &&
-        (scrollY < positions[i + 1] || i === positions.length - 1)
-      ) {
-        activeIdx = i
-        return
+      // a section spans from its own anchor to the next one (or page end)
+      const start = positions[i]
+      const end = i + 1 < positions.length ? positions[i + 1] : docBottom
+      if (start < viewportBottom && end > viewportTop) {
+        if (first === -1) first = i
+        last = i
       }
     }
+    if (first === -1) first = last = 0
+    activeRange = [first, last]
   }
 
   $effect(() => {
-    computeActiveIdx(scrollY)
+    computeActiveRange(scrollY)
   })
 
   onMount(() => {
     mounted = true
     const anchorTarget = decodeURI(page.url.hash)
-    if (!anchorTarget) return
+    if (!anchorTarget) {
+      computeActiveRange()
+      return
+    }
     try {
       const ele = document.querySelector(anchorTarget)
       if (ele) scrollY = ele.offsetTop
     } catch {
       // Invalid query selector, ignore
     }
-    tick().then(computeActiveIdx)
+    tick().then(computeActiveRange)
   })
 
   function handleTocToggleClick() {
@@ -67,15 +78,18 @@
   }
 </script>
 
-<svelte:window bind:scrollY />
+<svelte:window bind:scrollY onresize={computeActiveRange} />
 {#if anchors.length}
   <div class="toc" class:collapsed={$tocCollapsed}>
     <div class="title">
       {themeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
     </div>
-    <div class="anchors" style={`--bar-top: calc(${activeIdx * 2}em);`}>
+    <div
+      class="anchors"
+      style={`--bar-top: ${activeRange[0] * 2}em; --bar-height: ${(activeRange[1] - activeRange[0] + 1) * 2}em;`}
+    >
       {#each anchors as an, i}
-        {@const active = activeIdx === i}
+        {@const active = i >= activeRange[0] && i <= activeRange[1]}
         <a
           href="#{an.slugId}"
           class="item"
@@ -103,11 +117,11 @@
     --at-apply: 'font-600 pl-4 mb-1 text-gray-8 dark:text-zinc-2 text-3.5';
   }
   .item {
-    --at-apply: 'pl-4 relative z-3 block truncate cursor-default';
+    --at-apply: 'pl-4 relative z-3 block truncate cursor-pointer';
     text-indent: calc((var(--heading-depth) - 2) * 1.2em);
   }
-  .item:not(.active) {
-    --at-apply: 'hover:text-svp-primary-deep dark:hover:text-svp-primary cursor-pointer';
+  .item:hover {
+    --at-apply: 'text-svp-primary-deep dark:text-svp-primary';
   }
   .toc a.active {
     --at-apply: 'text-svp-primary-deep dark:text-svp-primary font-500';
@@ -121,8 +135,12 @@
     content: ' ';
   }
   .active-bar {
-    --at-apply: 'absolute z-2 left-0 h-[2em] border-l-[3px] border-l-solid border-svp-primary border-opacity-80 w-full transition-transform transition-300 top-0';
+    --at-apply: 'absolute z-2 left-0 border-l-[3px] border-l-solid border-svp-primary border-opacity-80 w-full top-0';
+    height: var(--bar-height, 2em);
     transform: translateY(var(--bar-top));
+    transition:
+      transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .collapsed {
     --at-apply: 'sm:translate-x-0';
