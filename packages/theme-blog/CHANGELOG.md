@@ -1,5 +1,12 @@
 # @sveltepress/theme-blog
 
+## 0.2.4
+
+### Patch Changes
+
+- Updated dependencies [[`a993349`](https://github.com/Blackman99/sveltepress/commit/a993349add9f26f9d3eae9271123afcaafaed0e1)]:
+  - @sveltepress/vite@1.3.15
+
 ## 0.2.3
 
 ### Patch Changes
