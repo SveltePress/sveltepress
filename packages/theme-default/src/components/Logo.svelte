@@ -5,7 +5,7 @@
   import { getPathFromBase, parseImageSrc } from './utils'
 </script>
 
-<NavItem to={getPathFromBase('/')} title={siteConfig.title}>
+<NavItem to={getPathFromBase('/')} title={siteConfig.title} brand>
   {#if themeOptions.logo}
     <img
       class="logo"

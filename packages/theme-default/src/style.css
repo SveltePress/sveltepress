@@ -3,11 +3,24 @@
   --svp-expansion-bg-darker: #f2f2f7;
   --svp-expansion-bg-darker2: #e8e8f2;
   --svp-divider: rgba(60, 60, 67, 0.1);
-  --docsearch-primary-color: rgba(251, 113, 133, 1);
   --svp-code-font: 'Dank Mono', Consolas, 'Courier New', Courier, monospace;
+}
+
+/*
+ * Docsearch brand overrides.
+ * Docsearch injects its own stylesheet at runtime (after ours) and declares
+ * its variables on `:root` / `html[data-theme=dark]`, so we bump specificity
+ * (`:root:root`) to guarantee our rose accents win in both color modes.
+ */
+:root:root {
+  --docsearch-primary-color: #fb7185;
+  --docsearch-logo-color: #fb7185;
+  --docsearch-highlight-color: #e11d48;
+  --docsearch-focus-color: #e11d48;
+  --docsearch-soft-primary-color: rgb(251 113 133 / 12%);
+  --docsearch-hit-highlight-color: rgb(251 113 133 / 14%);
   --docsearch-searchbox-background: transparent;
-  --docsearch-logo-color: var(--docsearch-primary-color);
-  --docsearch-searchbox-shadow: inset 0px 0px 0px 1px var(--docsearch-primary-color);
+  --docsearch-searchbox-shadow: inset 0 0 0 1px #fb7185;
 }
 
 html.dark,
@@ -17,14 +30,25 @@ html[data-theme='dark'] {
   --svp-expansion-bg-darker: #1c1c1f;
   --svp-expansion-bg-darker2: #18181b;
   --svp-divider: rgba(255, 255, 255, 0.09);
+  --twoslash-popup-bg: var(--svp-expansion-bg);
+}
+
+:root:root.dark,
+:root:root[data-theme='dark'] {
+  --docsearch-primary-color: #fb7185;
+  --docsearch-logo-color: #fb7185;
+  --docsearch-highlight-color: #fb7185;
+  --docsearch-focus-color: #fb7185;
+  --docsearch-soft-primary-color: rgb(251 113 133 / 16%);
+  --docsearch-hit-highlight-color: rgb(251 113 133 / 20%);
   --docsearch-text-color: var(--svp-text);
-  --docsearch-key-gradient: var(--svp-expansion-bg);
   --docsearch-searchbox-focus-background: var(--svp-expansion-bg-darker2);
   --docsearch-modal-background: #202023;
   --docsearch-footer-background: #1c1c1f;
   --docsearch-hit-background: #2a2a2e;
   --docsearch-hit-color: var(--svp-text);
-  --twoslash-popup-bg: var(--svp-expansion-bg);
+  --docsearch-key-background: #2a2a2e;
+  --docsearch-key-color: var(--svp-text);
 }
 
 html.dark .DocSearch-Button {

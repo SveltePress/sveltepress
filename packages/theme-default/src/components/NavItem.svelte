@@ -13,6 +13,7 @@
    * @property {string | boolean} [icon] - Icon
    * @property {boolean} [external] - Whether the link is external
    * @property {boolean} [builtInIcon] - Whether the icon is built-in
+   * @property {boolean} [brand] - Whether the item is the brand logo (no active indicator)
    * @property {import('svelte').Snippet} [children] - Children content
    */
 
@@ -24,6 +25,7 @@
     icon = false,
     external = false,
     builtInIcon = false,
+    brand = false,
     children,
     ...rest
   } = $props()
@@ -68,6 +70,7 @@
     class:nav-item--icon={icon}
     class="nav-item"
     class:active
+    class:brand
     {...external ? { target: '_blank' } : {}}
     aria-label={title}
   >
@@ -133,5 +136,15 @@
   }
   .active {
     --at-apply: 'text-svp-primary-deep dark:text-svp-primary hover:text-svp-primary-deep dark:hover:text-svp-primary font-600 cursor-default';
+  }
+  .active:not(.brand)::after {
+    content: ' ';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentColor;
   }
 </style>

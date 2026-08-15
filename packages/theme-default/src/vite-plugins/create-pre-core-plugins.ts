@@ -16,9 +16,14 @@ const DEFAULT_GRADIENT = {
   end: '#fee140',
 }
 
-// The default #fee140 tail is ~1.2:1 against light backgrounds — fine as a
-// button fill, illegible as clipped text. Text gradients get a deeper gold.
-const DEFAULT_GRADIENT_TEXT_END = '#f59e0b'
+// Button fills are solid and always paired with dark text, so the light
+// yellow tail is fine there. Clipped text gradients need darker endpoints:
+// a deeper rose→amber in light mode (readable on white) and the vibrant
+// rose→amber in dark mode.
+const DEFAULT_GRADIENT_TEXT = {
+  light: { start: '#e11d48', end: '#d97706' },
+  dark: { start: '#fb7185', end: '#fbbf24' },
+}
 
 const DEFAULT_PRIMARY = '#fb7185'
 
@@ -51,6 +56,13 @@ export default async (options?: DefaultThemeOptions) => {
   // No color math on user-supplied primaries — fall back to their primary as-is
   const primaryDeep = options?.themeColor?.primaryDeep
     ?? (options?.themeColor?.primary ? primary : DEFAULT_PRIMARY_DEEP)
+
+  // A user-supplied gradient drives text clipping in both color modes;
+  // otherwise the dark-aware default pair keeps the title legible on white.
+  const userGradient = options?.themeColor?.gradient
+  const textGradient = userGradient
+    ? { light: userGradient, dark: userGradient }
+    : DEFAULT_GRADIENT_TEXT
 
   // Resolve auto-sidebar if configured
   const resolvedOptions = { ...options }
@@ -89,7 +101,7 @@ export default async (options?: DefaultThemeOptions) => {
       },
       shortcuts: {
         'svp-gradient-bg': `bg-gradient-linear bg-gradient-[45deg,${gradient.start},${gradient.end}]`,
-        'svp-gradient-text': `bg-gradient-linear bg-gradient-[45deg,${gradient.start},${options?.themeColor?.gradient ? gradient.end : DEFAULT_GRADIENT_TEXT_END}] bg-clip-text text-transparent`,
+        'svp-gradient-text': `bg-gradient-linear bg-gradient-[45deg,${textGradient.light.start},${textGradient.light.end}] dark:bg-gradient-[45deg,${textGradient.dark.start},${textGradient.dark.end}] bg-clip-text text-transparent`,
         'svp-modal-bg': 'sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-black dark:bg-white bg-opacity-70 dark:bg-opacity-70 z-900 opacity-0 pointer-events-none transition-opacity transition-300',
         'svp-modal-bg-show': 'opacity-100 pointer-events-auto',
       },

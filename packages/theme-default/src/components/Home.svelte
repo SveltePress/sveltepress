@@ -50,6 +50,33 @@
 <style>
   .home-page {
     --at-apply: 'sm:w-[70vw] max-w-[1152px] mx-auto sm:px-0 px-4 pt-6 sm:pt-14';
+    position: relative;
+  }
+  .home-page::before {
+    content: ' ';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: 420px;
+    background: radial-gradient(
+      60% 100% at 50% 0%,
+      rgb(251 113 133 / 8%),
+      transparent 75%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  .home-page > * {
+    position: relative;
+    z-index: 1;
+  }
+  :global(.dark) .home-page::before {
+    background: radial-gradient(
+      60% 100% at 50% 0%,
+      rgb(251 113 133 / 16%),
+      transparent 75%
+    );
   }
   .title {
     --at-apply: 'sm:text-16 text-10 grid grid-cols-12 font-700 leading-[1.15] tracking-[-0.02em]';
