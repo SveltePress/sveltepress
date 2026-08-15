@@ -76,19 +76,21 @@
     --at-apply: 'pl-4 mt-2';
   }
   .with-mb {
-    --at-apply: 'mb-2 sm:mb-4';
+    --at-apply: 'mb-1 sm:mb-2';
   }
   .sidebar-group:not(:last-of-type) {
-    --at-apply: 'border-b-solid border-b border-black/5 dark:border-b-white/8 mb-4 pb-4';
+    --at-apply: 'border-b-solid border-b border-black/5 dark:border-b-white/8 mb-3 pb-3';
   }
+  /* pl matches the links' inner padding so every label lines up on one edge,
+     while pills and the group rule share the outer edge */
   .group-title {
-    --at-apply: 'font-600 text-slate-8 dark:text-zinc-2 flex items-center justify-between';
+    --at-apply: 'font-600 text-slate-8 dark:text-zinc-2 flex items-center justify-between pl-3';
   }
   .links {
-    --at-apply: 'leading-7 overflow-hidden text-[15px]';
+    --at-apply: 'overflow-hidden text-[14px]';
   }
   .links > :global(.link) {
-    --at-apply: 'px-2.5 py-1 mx--2.5 my-0.5 rounded-md transition-colors transition-150 text-slate-7 dark:text-zinc-3';
+    --at-apply: 'px-3 py-1.5 my-px leading-5 rounded-md transition-colors transition-150 text-slate-7 dark:text-zinc-3';
   }
   .links > :global(.link:not(.active):hover) {
     --at-apply: 'bg-black/4 dark:bg-white/6';
