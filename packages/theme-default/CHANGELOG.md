@@ -1,5 +1,20 @@
 # @sveltepress/theme-default
 
+## 7.5.0
+
+### Minor Changes
+
+- [`3bd3d92`](https://github.com/Blackman99/sveltepress/commit/3bd3d923c2b3d2fe0e8567cc86e87828deea8964) Thanks [@Blackman99](https://github.com/Blackman99)! - - Nuxt-style TOC highlighting: every section currently visible in the viewport is highlighted (not just one), with the rail indicator animating its position _and_ height to span the whole visible range; TOC items stay clickable while active
+  - Removed the pointing-hand icon next to the active sidebar link — the tinted pill + rose text now carry the active state on their own
+
+### Patch Changes
+
+- [`a993349`](https://github.com/Blackman99/sveltepress/commit/a993349add9f26f9d3eae9271123afcaafaed0e1) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- Updated dependencies [[`a993349`](https://github.com/Blackman99/sveltepress/commit/a993349add9f26f9d3eae9271123afcaafaed0e1)]:
+  - @sveltepress/twoslash@1.3.15
+  - @sveltepress/vite@1.3.15
+
 ## 7.4.0
 
 ### Minor Changes
