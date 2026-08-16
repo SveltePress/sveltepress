@@ -1,5 +1,9 @@
 # Contributing
 
+## Code of Conduct
+
+Sveltepress has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](./CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
 The Open Source Guides website has a collection of resources for individuals, communities, and companies. These resources help people who want to learn how to run and contribute to open source projects. Contributors and people new to open source alike will find the following guides especially useful:
 
 * [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
