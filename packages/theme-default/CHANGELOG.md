@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 8.1.1
+
+### Patch Changes
+
+- [`9714db8`](https://github.com/Blackman99/sveltepress/commit/9714db8fb41330c863152dde51e6a4cb1fd61e71) Thanks [@Blackman99](https://github.com/Blackman99)! - Reserve the scrollbar gutter on every page (`scrollbar-gutter: stable`) so fixed/centered chrome — notably the navbar search pill — no longer shifts horizontally between scrollable and short pages on classic-scrollbar systems
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.4.1
+
 ## 8.1.0
 
 ### Minor Changes
