@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 8.1.2
+
+### Patch Changes
+
+- [`1508505`](https://github.com/Blackman99/sveltepress/commit/1508505a727c9e65c7f00c2ebf1861a533c57102) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix long code blocks staying clipped inside an expanded "View code" panel: the Expansion slide used a height captured once at mount as a permanent cap, so clicking "Expand code" grew the code but not the panel. The slide now measures on each toggle and releases the cap (`max-height: none`) once the opening animation finishes, so content that grows later stays fully visible.
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.4.1
+
 ## 8.1.1
 
 ### Patch Changes
