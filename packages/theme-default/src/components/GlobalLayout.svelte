@@ -193,8 +193,11 @@
   :global(.dark) {
     color-scheme: dark;
   }
-  :global(h1, h2, h3, h4, h5, h6) {
-    --at-apply: 'text-zinc-9 dark:text-zinc-1';
+  /* Heading ink via a variable at zero specificity (:where), so any
+     utility class — e.g. text-green on a demo heading — wins in BOTH
+     modes. A `.dark h3 { color }` rule would outrank utility classes. */
+  :global(:where(h1, h2, h3, h4, h5, h6)) {
+    color: var(--svp-c-heading, #18181b);
   }
   :global(code) {
     --at-apply: 'bg-[#ececee] dark:bg-[#2e2e32] dark:text-zinc-3 text-zinc-7 px-[6px] py-[3px] rounded-md break-words text-[0.875em]';

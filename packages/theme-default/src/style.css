@@ -3,6 +3,7 @@
   --svp-expansion-bg-darker: #f2f2f7;
   --svp-expansion-bg-darker2: #e8e8f2;
   --svp-divider: rgba(60, 60, 67, 0.1);
+  --svp-c-heading: #18181b;
   --svp-code-font: 'Dank Mono', ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 }
 
@@ -31,6 +32,7 @@ html[data-theme='dark'] {
   --svp-expansion-bg-darker: #1c1c1f;
   --svp-expansion-bg-darker2: #18181b;
   --svp-divider: rgba(255, 255, 255, 0.09);
+  --svp-c-heading: #f4f4f5;
   --twoslash-popup-bg: var(--svp-expansion-bg);
 }
 
