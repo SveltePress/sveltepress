@@ -22,7 +22,7 @@ import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, Cod
 {/await}
 
 </div>
-<Expansion codeType="svelte" title="Click fold/expand code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
+<Expansion codeType="svelte" title="View code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
     
     <pre class="shiki shiki-themes vitesse-light night-owl twoslash lsp" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">h1</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span><span style="color:#393A34;--shiki-dark:#D6DEEB">This is a async svelte live code</span><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;/</span><span style="color:#1E754F;--shiki-dark:#CAECE6">h1</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span></code></pre>
     <div class="svp-code-block--lang">svelte</div>
@@ -50,7 +50,7 @@ import LiveCodecb092c7e665 from '/.sveltepress/live-code/LiveCodecb092c7e665.sve
 <div class="svp-live-code--demo">
   <LiveCode5666bdf98c2 />
 </div>
-<Expansion codeType="svelte" title="Click fold/expand code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
+<Expansion codeType="svelte" title="View code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
     
     <pre class="shiki shiki-themes vitesse-light night-owl twoslash lsp" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">script</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span>
 <span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">  let</span><span style="color:#B07D48;--shiki-dark:#D7DBE0"> </span><span style="color:#B07D48;--shiki-dark:#D7DBE0"><Floating class="twoslash-hover"><span>count</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#393A34;--shiki-dark:#D6DEEB">let count: number</span></code></span>{/snippet}</Floating></span><span style="color:#999999;--shiki-dark:#C792EA"> =</span><span style="color:#999999;--shiki-dark:#C792EA"> </span><span style="color:#999999;--shiki-dark:#C792EA"><Floating class="twoslash-hover"><span>$</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#393A34;--shiki-dark:#D6DEEB">function $state</span><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#393A34;--shiki-dark:#7FDBCA">0</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span><span style="color:#393A34;--shiki-dark:#D6DEEB">(initial: 0): 0 (+1 overload)</span></span>
@@ -75,7 +75,7 @@ import LiveCodecb092c7e665 from '/.sveltepress/live-code/LiveCodecb092c7e665.sve
 <div class="svp-live-code--demo">
   <LiveCodecb092c7e665 />
 </div>
-<Expansion codeType="svelte" title="Click fold/expand code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
+<Expansion codeType="svelte" title="View code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
     
     <pre class="shiki shiki-themes vitesse-light night-owl twoslash lsp" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#1E754F;--shiki-dark:#CAECE6">script</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span></span>
 <span class="line"><span style="color:#AB5959;--shiki-dark:#C792EA">  let</span><span style="color:#B07D48;--shiki-dark:#D7DBE0"> </span><span style="color:#B07D48;--shiki-dark:#D7DBE0"><Floating class="twoslash-hover"><span>count</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="color:#393A34;--shiki-dark:#D6DEEB">let count: number</span></code></span>{/snippet}</Floating></span><span style="color:#999999;--shiki-dark:#C792EA"> =</span><span style="color:#999999;--shiki-dark:#C792EA"> </span><span style="color:#999999;--shiki-dark:#C792EA"><Floating class="twoslash-hover"><span>$</span>{#snippet floatingContent()}<span class="twoslash-popup-container"><code class="twoslash-popup-code"><pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#393A34;--shiki-dark:#D6DEEB">function $state</span><span style="color:#999999;--shiki-dark:#7FDBCA">&#x3C;</span><span style="color:#393A34;--shiki-dark:#7FDBCA">0</span><span style="color:#999999;--shiki-dark:#7FDBCA">></span><span style="color:#393A34;--shiki-dark:#D6DEEB">(initial: 0): 0 (+1 overload)</span></span>
@@ -100,7 +100,7 @@ import LiveCodecb092c7e665 from '/.sveltepress/live-code/LiveCodecb092c7e665.sve
 <li>list item1</li>
 <li>list item2
 <a href="https://google.com">Google</a></li>
-</ul></div><Expansion codeType="md" title="Click fold/expand code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
+</ul></div><Expansion codeType="md" title="View code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
     
     <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#82B1FF;--shiki-dark-font-weight:inherit">###</span><span style="color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#82B1FF;--shiki-dark-font-weight:inherit"> title</span></span>
 <span class="line"></span>
@@ -136,7 +136,7 @@ import LiveCodecb092c7e665 from '/.sveltepress/live-code/LiveCodecb092c7e665.sve
     <CopyCode />
     
   </div>
-</div></div><Expansion codeType="md" title="Click fold/expand code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
+</div></div><Expansion codeType="md" title="View code" reverse={true}><div class="svp-code-block-wrapper"><div class="svp-code-block">
     
     <pre class="shiki shiki-themes vitesse-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#393a34;--shiki-dark:#d6deeb" tabindex="0"><code><span class="line"><span style="color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#82B1FF;--shiki-dark-font-weight:inherit">###</span><span style="color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#82B1FF;--shiki-dark-font-weight:inherit"> title</span></span>
 <span class="line"></span>

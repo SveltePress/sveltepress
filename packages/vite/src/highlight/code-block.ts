@@ -20,6 +20,10 @@ export interface WrapCodeBlockOptions {
   copyButtonHtml?: string
   /** Escape { } to &#123; &#125; for Svelte compilation. Default: false */
   escapeForSvelte?: boolean
+  /** Collapse blocks taller than this many lines. Omit or 0 to never collapse. */
+  collapseAfterLines?: number
+  /** Label for the expand bar shown on collapsed blocks. Default: 'Expand code' */
+  expandLabel?: string
 }
 
 /**
@@ -74,7 +78,7 @@ export function wrapCodeBlock(
   prepared: PreparedCodeBlock,
   options: WrapCodeBlockOptions = {},
 ): string {
-  const { copyButtonHtml, escapeForSvelte = false } = options
+  const { copyButtonHtml, escapeForSvelte = false, collapseAfterLines, expandLabel } = options
   const { title, containLineNumbers, commandDoms, lines } = prepared
 
   let html = highlightedHtml
@@ -92,12 +96,17 @@ export function wrapCodeBlock(
     ? `<div class="svp-code-block--line-numbers">${lines.map((_, i) => `<div class="svp-code-block--line-number-item">${i + 1}</div>`).join('\n')}</div>`
     : ''
 
-  return `<div class="svp-code-block-wrapper">${titleHtml}<div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
+  const collapsed = !!collapseAfterLines && lines.length > collapseAfterLines
+  const expandBarHtml = collapsed
+    ? `<div class="svp-code-block--expand" role="button" tabindex="0">${expandLabel || 'Expand code'}</div>`
+    : ''
+
+  return `<div class="svp-code-block-wrapper${collapsed ? ' svp-code-block-wrapper--collapsed' : ''}">${titleHtml}<div class="svp-code-block${containLineNumbers ? ' svp-code-block--with-line-numbers' : ''}">
     ${commandDoms.join('\n')}
     ${html}
     <div class="svp-code-block--lang">${lang}</div>
     ${copyButtonHtml || ''}
     ${lineNumbersHtml}
   </div>
-</div>`
+${expandBarHtml}</div>`
 }

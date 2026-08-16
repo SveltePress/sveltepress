@@ -53,6 +53,17 @@
 
   let pwaComponent = $state()
 
+  // Delegated handler for the "Expand code" bar on collapsed long code
+  // blocks — the bar is emitted by the markdown pipeline as plain HTML.
+  function handleCodeExpand(e) {
+    if (e.type === 'keyup' && e.key !== 'Enter') return
+    const trigger = e.target?.closest?.('.svp-code-block--expand')
+    if (trigger) {
+      const wrapper = trigger.closest('.svp-code-block-wrapper')
+      wrapper?.classList.remove('svp-code-block-wrapper--collapsed')
+    }
+  }
+
   onMount(async () => {
     if (themeOptions.pwa)
       pwaComponent = (await import('./pwa/Pwa.svelte')).default
@@ -65,6 +76,8 @@
 <svelte:window
   onscroll={() => ($oldScrollY = $scrollY)}
   bind:scrollY={$scrollY}
+  onclick={handleCodeExpand}
+  onkeyup={handleCodeExpand}
 />
 
 {#if $showHeader}
@@ -108,12 +121,14 @@
   }
   :global(html) {
     --at-apply: 'scroll-smooth';
+    color-scheme: light;
+    overflow-x: clip;
   }
   :global(body) {
     /* clip (not hidden): full-bleed vw-sized blocks overflow by the classic
        scrollbar width; clip removes the wiggle without breaking sticky */
     overflow-x: clip;
-    --at-apply: 'bg-light-4 dark:bg-zinc-9 text-[#213547] dark:text-zinc-2 scroll-smooth';
+    --at-apply: 'bg-light-4 dark:bg-zinc-9 text-zinc-7 dark:text-zinc-3 scroll-smooth';
     font-family:
       'Inter var experimental',
       'Inter var',
@@ -156,15 +171,42 @@
   :global(.dark) {
     color-scheme: dark;
   }
+  :global(h1, h2, h3, h4, h5, h6) {
+    --at-apply: 'text-zinc-9 dark:text-zinc-1';
+  }
   :global(code) {
-    --at-apply: 'bg-[#eceef1] dark:bg-[#2e2e32] dark:text-[#c9def1] text-[#40566e] px-[6px] py-[3px] rounded-md break-words text-[0.875em]';
+    --at-apply: 'bg-[#ececee] dark:bg-[#2e2e32] dark:text-zinc-3 text-zinc-7 px-[6px] py-[3px] rounded-md break-words text-[0.875em]';
   }
   :global(pre.shiki code) {
     --at-apply: 'bg-transparent dark:bg-transparent p-unset block text-[1em]';
   }
 
   :global(.svp-code-block-wrapper) {
-    --at-apply: 'bg-white dark:bg-[#011627] sm:rounded-lg text-[14px] mb-8 mx-[-5vw] sm:mx-none b-1 b-solid b-black/6 dark:b-white/8';
+    --svp-code-bg: #ffffff;
+    --at-apply: 'bg-[var(--svp-code-bg)] sm:rounded-lg text-[14px] mb-8 mx-[-5vw] sm:mx-none b-1 b-solid b-black/8 dark:b-white/8';
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  :global(.dark .svp-code-block-wrapper) {
+    --svp-code-bg: #1f1f23;
+    box-shadow: none;
+  }
+  :global(.svp-code-block-wrapper--collapsed .svp-code-block) {
+    max-height: 400px;
+    overflow-y: hidden;
+  }
+  :global(.svp-code-block-wrapper--collapsed .svp-code-block::after) {
+    content: ' ';
+    --at-apply: 'absolute left-0 right-0 bottom-0 h-20 pointer-events-none z-5';
+    background: linear-gradient(transparent, var(--svp-code-bg));
+  }
+  :global(.svp-code-block--expand) {
+    --at-apply: 'text-center text-[12px] leading-8 cursor-pointer text-zinc-5 dark:text-zinc-4 b-t-1 b-t-solid b-t-black/5 dark:b-t-white/6 hover:text-svp-primary-deep dark:hover:text-svp-primary transition-colors transition-150 select-none';
+  }
+  :global(
+    .svp-code-block-wrapper:not(.svp-code-block-wrapper--collapsed)
+      .svp-code-block--expand
+  ) {
+    --at-apply: 'hidden';
   }
   :global(.svp-live-code--container) {
     --at-apply: 'mx-[-5vw] sm:mx-none';
@@ -185,7 +227,7 @@
     --at-apply: 'pl-10';
   }
   :global(.svp-code-block--line-numbers) {
-    --at-apply: 'absolute left-0 top-0 bottom-0 py-inherit text-3 text-right text-gray-4 px-2 leading-[21px] b-r-solid b-r b-r-light-4 dark:b-r-gray-8';
+    --at-apply: 'absolute left-0 top-0 bottom-0 py-inherit text-3 text-right text-zinc-4 dark:text-zinc-6 px-2 leading-[21px] b-r-solid b-r b-r-black/5 dark:b-r-white/6';
     font-family: var(--svp-code-font);
   }
   :global(.svp-code-block:hover .svp-code-block--lang) {
@@ -194,11 +236,14 @@
   :global(.c-expansion--body .svp-code-block) {
     --at-apply: 'rounded-none';
   }
+  :global(.svp-live-code--container .c-expansion--title) {
+    --at-apply: 'text-[13px] text-zinc-5 dark:text-zinc-4';
+  }
   :global(.c-expansion--body .svp-code-block-wrapper) {
     --at-apply: 'mb-none';
   }
   :global(.svp-code-block--lang) {
-    --at-apply: 'absolute top-2 right-3 z-100 text-gray-5 dark:text-[#5f7e97] text-[12px] transition-300 transition-opacity';
+    --at-apply: 'absolute top-[7px] right-3 z-100 text-zinc-5 dark:text-zinc-4 text-[11px] leading-none font-500 uppercase tracking-[0.06em] px-1.5 py-1 rounded bg-black/4 dark:bg-white/8 transition-300 transition-opacity';
   }
   :global(.svp-code-block--command-line) {
     --at-apply: 'absolute left-0 right-0 z-4 h-[1.5em] pointer-events-none';
@@ -208,20 +253,20 @@
     backdrop-filter: blur(1.5px);
   }
   :global(.svp-code-block--diff-bg-add) {
-    --at-apply: 'bg-green-4 bg-opacity-20 dark:bg-green-8 dark:bg-opacity-30';
+    --at-apply: 'bg-emerald-5 bg-opacity-12 dark:bg-emerald-4 dark:bg-opacity-14';
   }
   :global(.svp-code-block--diff-bg-sub) {
-    --at-apply: 'bg-rose-4 bg-opacity-20 dark:bg-red-8 dark:bg-opacity-30';
+    --at-apply: 'bg-rose-5 bg-opacity-12 dark:bg-rose-4 dark:bg-opacity-14';
   }
   :global(.svp-code-block--with-line-numbers .svp-code-block--diff-add),
   :global(.svp-code-block--with-line-numbers .svp-code-block--diff-sub) {
     --at-apply: 'pl-8';
   }
   :global(.svp-code-block--diff-add) {
-    --at-apply: 'text-green-4';
+    --at-apply: 'text-emerald-6 dark:text-emerald-4';
   }
   :global(.svp-code-block--diff-sub) {
-    --at-apply: 'text-rose-4';
+    --at-apply: 'text-rose-6 dark:text-rose-4';
   }
   :global(.svp-code-block--diff-add),
   :global(.svp-code-block--diff-sub) {
@@ -229,7 +274,7 @@
     font-family: var(--svp-code-font);
   }
   :global(.svp-code-block--hl) {
-    --at-apply: 'bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10';
+    --at-apply: 'bg-black dark:bg-white bg-opacity-6 dark:bg-opacity-7';
   }
   :global(.svp-code-block:hover .svp-code-block--focus) {
     --at-apply: 'opacity-0';

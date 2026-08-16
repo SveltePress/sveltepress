@@ -50,11 +50,9 @@
   <div class="header-inner">
     <div class="left">
       <NavbarMobile />
-      {#if hasError || isHome}
-        <div class="logo-container">
-          <Logo />
-        </div>
-      {/if}
+      <div class="logo-container" class:desktop-visible={hasError || isHome}>
+        <Logo />
+      </div>
     </div>
     {#if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
       <div
@@ -125,11 +123,20 @@
   .hidden-in-mobile {
     --at-apply: 'translate-y-[-100%] sm:translate-y-0';
   }
+  /* Mobile always shows the brand mark (wordmark hidden to save space);
+     desktop shows the full logo only on home/error, elsewhere it lives in
+     the sidebar. */
   .logo-container {
-    --at-apply: 'hidden sm:block';
+    --at-apply: 'block';
+  }
+  .logo-container:not(.desktop-visible) {
+    --at-apply: 'sm:hidden';
+  }
+  .logo-container :global(.title) {
+    --at-apply: 'hidden sm:inline';
   }
   .header-inner {
-    --at-apply: 'sm:w-[80vw] h-full flex items-stretch justify-between mx-auto';
+    --at-apply: 'sm:max-w-[1440px] box-border sm:px-6 h-full flex items-stretch justify-between mx-auto';
   }
   .left {
     --at-apply: 'flex items-center';
@@ -140,8 +147,11 @@
   .doc-search.is-home {
     --at-apply: 'left-2';
   }
+  /* On docs pages the sidebar panel (incl. its logo row) paints over the
+     header's left zone, so the pill starts just right of the sidebar edge —
+     i.e. aligned with the content area. */
   .doc-search.move {
-    --at-apply: 'sm:left-[15.5vw]';
+    --at-apply: 'sm:left-[calc(min(25vw,288px)-8px)]';
   }
 
   .navbar-pc {

@@ -6,6 +6,7 @@
   import themeOptions from 'virtual:sveltepress/theme-default'
   import EditPage from './EditPage.svelte'
   import Home from './Home.svelte'
+  import HeroCode from './home/HeroCode.svelte'
   import HeroImage from './home/HeroImage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages, showHeader, showLayout, sidebar } from './layout'
@@ -59,6 +60,8 @@
   {#snippet defaultHeroImage()}
     {#if fm.heroImage}
       <HeroImage heroImage={fm.heroImage} />
+    {:else}
+      <HeroCode />
     {/if}
   {/snippet}
   {#if !isHome}

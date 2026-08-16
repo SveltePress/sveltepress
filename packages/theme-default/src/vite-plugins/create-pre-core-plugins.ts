@@ -11,15 +11,15 @@ import { initHighlighter } from '../markdown/highlighter.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
 
+// One gradient family across the theme: deep rose → amber. The button fill
+// ends at amber-700 so white label text stays AA-readable across the pill.
 const DEFAULT_GRADIENT = {
-  start: '#fa709a',
-  end: '#fee140',
+  start: '#e11d48',
+  end: '#b45309',
 }
 
-// Button fills are solid and always paired with dark text, so the light
-// yellow tail is fine there. Clipped text gradients need darker endpoints:
-// a deeper rose→amber in light mode (readable on white) and the vibrant
-// rose→amber in dark mode.
+// Clipped text gradients need mode-aware endpoints: a deeper rose→amber in
+// light mode (readable on white) and the vibrant rose→amber in dark mode.
 const DEFAULT_GRADIENT_TEXT = {
   light: { start: '#e11d48', end: '#d97706' },
   dark: { start: '#fb7185', end: '#fbbf24' },

@@ -28,7 +28,7 @@ const config = defineConfig({
         },
         preBuildIconifyIcons: {
           'vscode-icons': ['file-type-svelte', 'file-type-markdown', 'file-type-vite'],
-          'logos': ['typescript-icon', 'svelte-kit'],
+          'logos': ['typescript-icon', 'svelte-kit', 'svelte-icon'],
           'emojione': ['artist-palette'],
           'ph': ['smiley', 'layout-duotone'],
           'noto': ['package'],

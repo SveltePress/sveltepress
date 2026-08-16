@@ -65,7 +65,7 @@
     --at-apply: 'border-solid border-1 border-black/8 dark:border-white/10 rounded-lg flex-grow cursor-pointer hover:border-svp-primary/60 hover:bg-black/2 dark:hover:bg-white/3 transition-200 transition-colors';
   }
   .hint {
-    --at-apply: 'text-gray-5 dark:text-zinc-5 text-3';
+    --at-apply: 'text-zinc-5 text-3';
   }
   .title {
     --at-apply: 'flex items-center text-svp-primary-deep dark:text-svp-primary mt-3';

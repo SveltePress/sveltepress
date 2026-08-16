@@ -119,7 +119,7 @@
     transform: translateY(72px);
   }
   :global(.dropdown > .nav-item) {
-    --at-apply: 'block py-2 px-4 decoration-none rounded-md hover:bg-svp-primary hover:bg-opacity-15 hover:text-svp-primary-deep dark:hover:text-svp-primary text-[#213547] dark:text-[#efefef]';
+    --at-apply: 'block py-2 px-4 decoration-none rounded-md hover:bg-svp-primary hover:bg-opacity-15 hover:text-svp-primary-deep dark:hover:text-svp-primary text-zinc-7 dark:text-zinc-2';
   }
   :global(.dropdown > .nav-item:hover) {
     background-image: none;
@@ -129,7 +129,7 @@
     transform: translateY(54px);
   }
   .arrow {
-    --at-apply: 'flex items-center transition-transform transition-300 text-6 text-[#213547] dark:text-light-4';
+    --at-apply: 'flex items-center transition-transform transition-300 text-6 text-zinc-7 dark:text-zinc-3';
   }
   .nav-item:hover .arrow {
     transform: rotate(180deg);

@@ -15,12 +15,12 @@
 {#if lastUpdate}
   <div class="last-update">
     {themeOptions.i18n?.lastUpdateAt || DEFAULT_TEXT}
-    {lastUpdate}
+    {lastUpdate.replace(/:\d{2}$/, '')}
   </div>
 {/if}
 
 <style>
   .last-update {
-    --at-apply: 'mt-4 sm:mt-0 text-gray-5 dark:text-gray-4 text-[14px]';
+    --at-apply: 'mt-4 sm:mt-0 text-zinc-5 dark:text-zinc-4 text-[14px]';
   }
 </style>

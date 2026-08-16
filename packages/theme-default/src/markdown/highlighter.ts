@@ -58,12 +58,17 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 
   const prepared = prepareCodeBlock(code, meta)
 
+  const themeOptions = themeOptionsRef.value
+  const collapseAfterLines = themeOptions?.highlighter?.codeCollapseLines ?? 30
+
   cached = wrapCodeBlock(
     await _highlighter(prepared.processedCode, lang, meta),
     lang,
     prepared,
     {
       copyButtonHtml: `<!-- svelte-ignore a11y_no_noninteractive_tabindex -->\n    <CopyCode />`,
+      collapseAfterLines: collapseAfterLines || undefined,
+      expandLabel: themeOptions?.i18n?.expandCode || 'Expand code',
     },
   )
 

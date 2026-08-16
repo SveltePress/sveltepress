@@ -108,13 +108,13 @@
 
 <style>
   .toc {
-    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 sm:w-[22vw] w-[70vw] bg-white dark:bg-zinc-8 sm:bg-transparent top-0 z-988 sm:dark:bg-transparent';
+    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 w-[70vw] bg-white dark:bg-[#1c1c1f] sm:bg-transparent top-0 z-988 sm:dark:bg-transparent box-border sm:w-[calc(max(0px,(100vw-1440px)/2)+min(22vw,256px))] sm:pr-[max(0px,calc((100vw-1440px)/2))]';
   }
   .toc a {
-    --at-apply: 'text-slate-6 dark:text-zinc-4 transition-colors transition-150';
+    --at-apply: 'text-zinc-6 dark:text-zinc-4 transition-colors transition-150';
   }
   .title {
-    --at-apply: 'font-600 pl-4 mb-1 text-gray-8 dark:text-zinc-2 text-3.5';
+    --at-apply: 'font-600 pl-4 mb-1 text-zinc-8 dark:text-zinc-2 text-3.5';
   }
   .item {
     --at-apply: 'pl-4 relative z-3 block truncate cursor-pointer';
@@ -128,7 +128,7 @@
   }
 
   .anchors {
-    --at-apply: 'relative z-3 sm:w-[15vw] sm:max-w-[260px] max-h-[70vh] overflow-y-auto overflow-x-hidden';
+    --at-apply: 'relative z-3 sm:w-[min(15vw,224px)] max-h-[70vh] overflow-y-auto overflow-x-hidden';
   }
   .anchors::after {
     --at-apply: 'absolute left-[1px] top-0 bottom-0 w-[1px] bg-black/8 dark:bg-white/10 hidden sm:block';

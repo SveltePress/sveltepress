@@ -14,6 +14,6 @@
     --at-apply: 'flex items-center justify-center sm:col-span-5 col-span-6 col-start-4 sm:col-start-8';
   }
   .hero-image img {
-    --at-apply: 'sm:w-60 w-full max-w-[220px]';
+    --at-apply: 'sm:w-60 w-full max-w-[220px] dark:bg-white/6 dark:p-7 dark:rounded-[28px] dark:b-1 dark:b-solid dark:b-white/10 box-border';
   }
 </style>

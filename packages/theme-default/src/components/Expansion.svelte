@@ -148,13 +148,13 @@
     --at-apply: 'mb-none';
   }
   .c-expansion--header {
-    --at-apply: 'rounded-b flex justify-between px-4 py-2 items-center';
+    --at-apply: 'rounded-b flex justify-between px-4 py-1.5 items-center';
   }
   .c-expansion--icon {
-    --at-apply: 'mr-2 text-6 flex items-center';
+    --at-apply: 'mr-2 text-4.5 flex items-center';
   }
   .c-expansion--arrow {
-    --at-apply: 'text-6 flex items-center';
+    --at-apply: 'text-5 flex items-center';
   }
   .c-expansion--header-left {
     --at-apply: 'flex items-center';

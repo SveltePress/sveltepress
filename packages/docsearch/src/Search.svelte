@@ -12,38 +12,53 @@
   }: Omit<DocSearchProps, 'container' | 'theme'> = $props()
 
   let containerEl = $state<HTMLDivElement | undefined>()
-  let lastIsDark: boolean | undefined
 
-  function initDocsearch() {
-    if (typeof document === 'undefined') return
-    if (!containerEl) return
+  // Re-initializing docsearch on theme change (wiping the container and
+  // mounting again) silently fails and leaves the button unmounted. Instead
+  // we mount ONCE and keep `data-theme` on <html> in sync — docsearch v4's
+  // palette and our overrides both key off `[data-theme='dark']`. We must
+  // NOT pass the `theme` option: docsearch pins it back onto <html> every
+  // time the modal opens, undoing a later manual theme switch.
+  function syncTheme() {
     const isDark = document.documentElement.classList.contains('dark')
-    if (isDark === lastIsDark && lastIsDark !== undefined) return
-    lastIsDark = isDark
-    containerEl.innerHTML = ''
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light'
+  }
+
+  // docsearch v4 renders the modal inline in its container instead of
+  // portaling to <body> (v3 behavior). Inside the fixed navbar that traps
+  // the modal in the header's stacking context (painted under the sidebar)
+  // and its backdrop-filter containing block. Lift it out on open — moved
+  // DOM keeps working since the listeners live on the nodes themselves.
+  function liftModal() {
+    const modal = containerEl?.querySelector('.DocSearch-Container')
+    if (modal && modal.parentElement !== document.body)
+      document.body.appendChild(modal)
+  }
+
+  onMount(() => {
+    if (!containerEl) return
+    syncTheme()
     docsearch({
       container: containerEl,
       appId,
       apiKey,
       indexName,
-      theme: isDark ? 'dark' : 'light',
       ...rest,
     })
-  }
 
-  onMount(() => {
-    initDocsearch()
-
-    const observer = new MutationObserver(() => {
-      initDocsearch()
-    })
-
-    observer.observe(document.documentElement, {
+    const themeObserver = new MutationObserver(syncTheme)
+    themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class'],
     })
 
-    return () => observer.disconnect()
+    const modalObserver = new MutationObserver(liftModal)
+    modalObserver.observe(containerEl, { childList: true })
+
+    return () => {
+      themeObserver.disconnect()
+      modalObserver.disconnect()
+    }
   })
 </script>
 

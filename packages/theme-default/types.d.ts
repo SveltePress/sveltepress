@@ -73,6 +73,12 @@ declare module 'virtual:sveltepress/theme-default' {
       themeLight?: BundledTheme
       themeDark?: BundledTheme
       twoslash?: boolean | CreateTwoslashSvelteOptions
+      /**
+       * Code blocks taller than this many lines start collapsed with an
+       * "Expand code" bar. Set to 0 to disable collapsing.
+       * @default 30
+       */
+      codeCollapseLines?: number
     }
     i18n?: {
       onThisPage?: string
@@ -81,6 +87,8 @@ declare module 'virtual:sveltepress/theme-default' {
       previousPage?: string
       nextPage?: string
       expansionTitle?: string
+      /** Label of the expand bar on collapsed long code blocks */
+      expandCode?: string
       pwa?: {
         tip?: string
         reload?: string

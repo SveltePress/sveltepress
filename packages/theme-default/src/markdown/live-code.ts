@@ -165,7 +165,7 @@ const liveCode: Plugin<any[], any> = function () {
                 ...await getLiveNodeFromLang(lang) as any[],
                 {
                   type: 'html',
-                  value: `<Expansion codeType="${lang}" title="${themeOptionsRef.value?.i18n?.expansionTitle || 'Click fold/expand code'}" reverse={true}>`,
+                  value: `<Expansion codeType="${lang}" title="${themeOptionsRef.value?.i18n?.expansionTitle || 'View code'}" reverse={true}>`,
                 },
                 codeHighlightNode,
                 {

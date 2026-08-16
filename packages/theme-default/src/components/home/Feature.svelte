@@ -74,7 +74,7 @@
     --at-apply: 'font-600 mt-4';
   }
   .feature-desc {
-    --at-apply: 'text-slate-6 dark:text-zinc-4 mt-2 text-[14px] leading-6';
+    --at-apply: 'text-zinc-6 dark:text-zinc-4 mt-2 text-[14px] leading-6';
   }
   .feature-item {
     --at-apply: 'bg-white dark:bg-[#202023] p-5 rounded-xl b-1 b-solid b-black/6 dark:b-white/8 transition-all transition-200';
