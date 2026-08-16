@@ -1,5 +1,5 @@
 <script>
-  import { afterNavigate, beforeNavigate } from '$app/navigation'
+  import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
   import { page } from '$app/state'
   import { onMount, setContext } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
@@ -49,6 +49,25 @@
     ajaxBar?.end()
     $sidebarCollapsed = true
     $navCollapsed = true
+  })
+
+  // Cross-page view transition: the brand logo and the search pill morph
+  // smoothly between their home/docs positions (see the `svp-nav-vt` rules
+  // in style.css). The page itself still swaps instantly.
+  onNavigate(navigation => {
+    if (!document.startViewTransition) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    return new Promise(resolve => {
+      document.documentElement.classList.add('svp-nav-vt')
+      const transition = document.startViewTransition(async () => {
+        resolve()
+        await navigation.complete
+      })
+      transition.finished.finally(() => {
+        document.documentElement.classList.remove('svp-nav-vt')
+      })
+    })
   })
 
   let pwaComponent = $state()

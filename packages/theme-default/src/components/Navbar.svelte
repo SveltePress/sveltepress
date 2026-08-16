@@ -142,7 +142,7 @@
     --at-apply: 'flex items-center';
   }
   .doc-search {
-    --at-apply: 'flex-grow flex items-center relative transition-500 transition-left';
+    --at-apply: 'flex-grow flex items-center relative transition-300 transition-left ease-out';
   }
   .doc-search.is-home {
     --at-apply: 'left-2';

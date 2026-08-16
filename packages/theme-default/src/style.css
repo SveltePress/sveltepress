@@ -351,6 +351,52 @@ html .DocSearch-Container {
   z-index: 1;
 }
 
+/*
+ * Navigation view transitions (html.svp-nav-vt is set by GlobalLayout's
+ * onNavigate hook). The page itself swaps instantly — the old root frame is
+ * hidden and the new one wins regardless of color mode — while the two
+ * named elements below (brand logo, search pill) morph between their
+ * home/docs positions. Names are only assigned while the class is present,
+ * so the dark-toggle reveal transition is unaffected.
+ */
+html.svp-nav-vt::view-transition-old(root),
+html.dark.svp-nav-vt::view-transition-old(root) {
+  animation: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+html.svp-nav-vt::view-transition-new(root),
+html.dark.svp-nav-vt::view-transition-new(root) {
+  animation: none;
+  z-index: 2;
+}
+
+html.svp-nav-vt .doc-search {
+  /* let the view transition own the motion — no double animation */
+  transition: none;
+}
+
+@media (min-width: 950px) {
+  html.svp-nav-vt .DocSearch-Button {
+    view-transition-name: svp-search;
+  }
+
+  /* On home the brand lives in the navbar, on docs pages in the sidebar —
+     the shared name makes it fly between the two. Each is display:none on
+     the other page type, so the name stays unique per snapshot. */
+  html.svp-nav-vt .header .logo-container > .nav-item,
+  html.svp-nav-vt .theme-default-sidebar .sidebar-logo > .nav-item {
+    view-transition-name: svp-brand;
+  }
+}
+
+::view-transition-group(svp-search),
+::view-transition-group(svp-brand) {
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .svp--async-live-code--loading {
   color: var(--docsearch-primary-color);
   font-size: 2rem;
