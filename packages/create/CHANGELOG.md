@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.3.17
+
+### Patch Changes
+
+- [`22c376c`](https://github.com/Blackman99/sveltepress/commit/22c376cacab894494c347ac2eb5e7460d6aa85f2) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.16
 
 ### Patch Changes

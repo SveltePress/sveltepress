@@ -1,5 +1,27 @@
 # @sveltepress/theme-default
 
+## 8.1.0
+
+### Minor Changes
+
+- [`7b87963`](https://github.com/Blackman99/sveltepress/commit/7b87963c7bea9408acfc72896da332eb19e1e3f9) Thanks [@Blackman99](https://github.com/Blackman99)! - Silky cross-page morph for the navbar search pill and brand logo
+
+  Client-side navigations are now wrapped in the View Transitions API (same
+  capability the dark-mode reveal already uses): the search pill morphs between
+  its home/docs positions instead of the old two-step jump-then-slide, and the
+  brand logo flies between the navbar (home) and the sidebar (docs pages). The
+  page body still swaps instantly, the dark-toggle reveal is untouched,
+  `prefers-reduced-motion` is respected, and browsers without
+  `startViewTransition` fall back to a tightened CSS transition.
+
+### Patch Changes
+
+- [`22c376c`](https://github.com/Blackman99/sveltepress/commit/22c376cacab894494c347ac2eb5e7460d6aa85f2) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- Updated dependencies [[`22c376c`](https://github.com/Blackman99/sveltepress/commit/22c376cacab894494c347ac2eb5e7460d6aa85f2)]:
+  - @sveltepress/twoslash@1.3.16
+  - @sveltepress/vite@1.4.1
+
 ## 8.0.0
 
 ### Minor Changes
