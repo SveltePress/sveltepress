@@ -1,5 +1,14 @@
 # @sveltepress/theme-default
 
+## 8.1.3
+
+### Patch Changes
+
+- [`39cb4c0`](https://github.com/Blackman99/sveltepress/commit/39cb4c0db599fe4d874db86b61817b185464c73f) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix utility color classes (e.g. `text-green`) being overridden on headings in dark mode: the heading ink rule expanded to `.dark h1..h6 { color }`, which outranked single-class utilities. Heading ink now uses a zero-specificity `:where()` rule driven by the `--svp-c-heading` variable, so author classes win in both color modes.
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.4.1
+
 ## 8.1.2
 
 ### Patch Changes
