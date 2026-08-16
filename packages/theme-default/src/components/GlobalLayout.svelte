@@ -142,6 +142,9 @@
     --at-apply: 'scroll-smooth';
     color-scheme: light;
     overflow-x: clip;
+    /* reserve the scrollbar gutter on every page so fixed/centered chrome
+       (navbar, search pill) doesn't shift between scrollable and short pages */
+    scrollbar-gutter: stable;
   }
   :global(body) {
     /* clip (not hidden): full-bleed vw-sized blocks overflow by the classic
