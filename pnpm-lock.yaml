@@ -46,11 +46,11 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     '@iconify-json/logos':
-      specifier: ^1.2.12
-      version: 1.2.12
+      specifier: ^1.2.13
+      version: 1.2.13
     '@iconify-json/material-symbols':
-      specifier: ^1.2.88
-      version: 1.2.88
+      specifier: ^1.2.89
+      version: 1.2.89
     '@iconify-json/mdi':
       specifier: ^1.2.3
       version: 1.2.3
@@ -70,8 +70,8 @@ catalogs:
       specifier: ^1.2.38
       version: 1.2.38
     '@iconify-json/vscode-icons':
-      specifier: ^1.2.72
-      version: 1.2.72
+      specifier: ^1.2.73
+      version: 1.2.73
     '@resvg/resvg-js':
       specifier: ^2.6.2
       version: 2.6.2
@@ -130,8 +130,8 @@ catalogs:
       specifier: ^7.0.6
       version: 7.0.6
     dayjs:
-      specifier: ^1.11.21
-      version: 1.11.21
+      specifier: ^1.11.22
+      version: 1.11.22
     eslint:
       specifier: ^9.39.5
       version: 9.39.5
@@ -382,10 +382,10 @@ importers:
         version: 1.2.2
       '@iconify-json/logos':
         specifier: 'catalog:'
-        version: 1.2.12
+        version: 1.2.13
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.88
+        version: 1.2.89
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -406,7 +406,7 @@ importers:
         version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.72
+        version: 1.2.73
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.9(@typescript-eslint/types@8.50.0))(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.9(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -460,10 +460,10 @@ importers:
         version: 1.2.2
       '@iconify-json/logos':
         specifier: 'catalog:'
-        version: 1.2.12
+        version: 1.2.13
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.88
+        version: 1.2.89
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -484,7 +484,7 @@ importers:
         version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.72
+        version: 1.2.73
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.9(@typescript-eslint/types@8.50.0))(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.9(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -538,10 +538,10 @@ importers:
         version: 1.2.2
       '@iconify-json/logos':
         specifier: 'catalog:'
-        version: 1.2.12
+        version: 1.2.13
       '@iconify-json/material-symbols':
         specifier: 'catalog:'
-        version: 1.2.88
+        version: 1.2.89
       '@iconify-json/mdi':
         specifier: 'catalog:'
         version: 1.2.3
@@ -562,7 +562,7 @@ importers:
         version: 1.2.38
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.72
+        version: 1.2.73
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.2(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.56.9(@typescript-eslint/types@8.50.0))(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))(svelte@5.56.9(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.2.1(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)))
@@ -973,7 +973,7 @@ importers:
         version: 24.13.3
       dayjs:
         specifier: 'catalog:'
-        version: 1.11.21
+        version: 1.11.22
       svelte:
         specifier: 'catalog:'
         version: 5.56.9(@typescript-eslint/types@8.50.0)
@@ -2082,11 +2082,11 @@ packages:
   '@iconify-json/fxemoji@1.2.2':
     resolution: {integrity: sha512-UAasRaxzFUKfIGSmLwnoarsssA4LX0VLLuEmplIqM6ZNQqIQRtav8tZ4H1neTlBreXuMQyAifr5jP4kn78DpiQ==}
 
-  '@iconify-json/logos@1.2.12':
-    resolution: {integrity: sha512-zUi/AoezU2F3L65nPVd2smiU6Y+ZI7RjdVPlGfeAeYbPbZ9kWn7Ucxj+KshmyQRBYwLtKoqAlUyoGgMqWG1T8g==}
+  '@iconify-json/logos@1.2.13':
+    resolution: {integrity: sha512-Up54ZnIuiuBgGAsuzhR1nvKqwq8VE6YM3XLwVB6IgY+7NAasz6WKu9Ay5hGfAkfuOKowodfwDC8ozReEBYrWRg==}
 
-  '@iconify-json/material-symbols@1.2.88':
-    resolution: {integrity: sha512-lx5EwRkKckCkczozRrKiyrtD+K2/tIn+/kf9HFrUez/6DGMQKb2sI7b+/agN7jItLvmY/VYUajs/ZcEjj6xiaA==}
+  '@iconify-json/material-symbols@1.2.89':
+    resolution: {integrity: sha512-wYJjKAOptNhc8Bq65PPJVEz/4Ozm+b3ZWEB3H65yGw37dr9AvXibW0GkEdVD7qrCtbD6aC6fY7SLmQCuUGtEAQ==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -2106,8 +2106,8 @@ packages:
   '@iconify-json/tabler@1.2.38':
     resolution: {integrity: sha512-9v6ooRU/bKOK/Whv4w2aiK5gBnfCV9Ei+uD1iDDeLu2b+EnF3G3ZKkRKWEOOLG8bJyfKn6XEia6gUQ9oO7cF+Q==}
 
-  '@iconify-json/vscode-icons@1.2.72':
-    resolution: {integrity: sha512-IWsfSq21QZtZ8WWNtNm09E9I1PKXNSx9PQnOAD6vWSSNrL4bMDpK5nEbmyNV4XBYuQ/jAc1Foj233C/QtRAQOg==}
+  '@iconify-json/vscode-icons@1.2.73':
+    resolution: {integrity: sha512-qoJ5ZYQbes3Wi3+5A65c0vBKG8iCNXcpEIObgJ8e8fltLIG3U/zgA3Ft3+tUCupEl/kO9vIPht85n1kjJVyDMw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3750,8 +3750,8 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  dayjs@1.11.21:
-    resolution: {integrity: sha512-98IT+HOahAisibz/yjKbzuOBwYcjJ7BCLPzARyHiyEBmRz4fatF+KPJszEHXsGYjUG234aH/cOjW1wwTbKUZlA==}
+  dayjs@1.11.22:
+    resolution: {integrity: sha512-1YRnxzt/AabP3GHxnaB9/b+ZScCKu5TeF+co+BWG+lnWVIwEcTFc1FVE0WLNmNO3sA6GGXL40i5qkHfbLzpwrg==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -8068,11 +8068,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/logos@1.2.12':
+  '@iconify-json/logos@1.2.13':
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.88':
+  '@iconify-json/material-symbols@1.2.89':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8100,7 +8100,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.72':
+  '@iconify-json/vscode-icons@1.2.73':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -9659,7 +9659,7 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  dayjs@1.11.21: {}
+  dayjs@1.11.22: {}
 
   debug@4.4.3:
     dependencies:
