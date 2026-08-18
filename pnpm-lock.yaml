@@ -130,8 +130,8 @@ catalogs:
       specifier: ^7.0.6
       version: 7.0.6
     dayjs:
-      specifier: ^1.11.22
-      version: 1.11.22
+      specifier: ^1.11.23
+      version: 1.11.23
     eslint:
       specifier: ^9.39.5
       version: 9.39.5
@@ -973,7 +973,7 @@ importers:
         version: 24.13.3
       dayjs:
         specifier: 'catalog:'
-        version: 1.11.22
+        version: 1.11.23
       svelte:
         specifier: 'catalog:'
         version: 5.56.9(@typescript-eslint/types@8.50.0)
@@ -3750,8 +3750,8 @@ packages:
   dataloader@1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
 
-  dayjs@1.11.22:
-    resolution: {integrity: sha512-1YRnxzt/AabP3GHxnaB9/b+ZScCKu5TeF+co+BWG+lnWVIwEcTFc1FVE0WLNmNO3sA6GGXL40i5qkHfbLzpwrg==}
+  dayjs@1.11.23:
+    resolution: {integrity: sha512-QDTCU0M0MxR3hQfnlDJfwekQiaanm1ubOD231u73WBckQ/fsamwRLiE2GBz6D3a/xF1NgfiDLJjXBa1hYOYTtQ==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -9659,7 +9659,7 @@ snapshots:
 
   dataloader@1.4.0: {}
 
-  dayjs@1.11.22: {}
+  dayjs@1.11.23: {}
 
   debug@4.4.3:
     dependencies:

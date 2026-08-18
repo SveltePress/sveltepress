@@ -59,7 +59,7 @@ catalog:
   '@vite-pwa/sveltekit': ^1.1.0
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
-  dayjs: ^1.11.22
+  dayjs: ^1.11.23
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.23.0
   fs-extra: ^11.4.0
