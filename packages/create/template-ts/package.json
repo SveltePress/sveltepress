@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.70.2",
+    "@sveltejs/kit": "^2.70.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "@sveltepress/theme-default": "^8.1.3",
     "@sveltepress/vite": "^1.4.1",
