@@ -1,5 +1,21 @@
 # @sveltepress/create
 
+## 1.3.18
+
+### Patch Changes
+
+- [`df237f9`](https://github.com/Blackman99/sveltepress/commit/df237f9a2e14d93e86d161da7b9889260da7a2fa) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`ff0f7b0`](https://github.com/Blackman99/sveltepress/commit/ff0f7b0ba842011b61ecdb557e440430faffa6e8) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`aeff447`](https://github.com/Blackman99/sveltepress/commit/aeff447e94204e29ad41c43bf06bcbcd69634008) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`75a3083`](https://github.com/Blackman99/sveltepress/commit/75a3083a36724eccc5e69649299d9fb3d66bd124) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a628b2b`](https://github.com/Blackman99/sveltepress/commit/a628b2b133ab23642b30b49c7f60e725ff5eda58) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`c0f6f68`](https://github.com/Blackman99/sveltepress/commit/c0f6f68300114b2fe76d979db59dd103e04b388e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.17
 
 ### Patch Changes
