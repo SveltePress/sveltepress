@@ -64,8 +64,8 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     '@iconify-json/solar':
-      specifier: ^1.2.8
-      version: 1.2.8
+      specifier: ^1.2.9
+      version: 1.2.9
     '@iconify-json/tabler':
       specifier: ^1.2.38
       version: 1.2.38
@@ -400,7 +400,7 @@ importers:
         version: 1.2.2
       '@iconify-json/solar':
         specifier: 'catalog:'
-        version: 1.2.8
+        version: 1.2.9
       '@iconify-json/tabler':
         specifier: 'catalog:'
         version: 1.2.38
@@ -478,7 +478,7 @@ importers:
         version: 1.2.2
       '@iconify-json/solar':
         specifier: 'catalog:'
-        version: 1.2.8
+        version: 1.2.9
       '@iconify-json/tabler':
         specifier: 'catalog:'
         version: 1.2.38
@@ -556,7 +556,7 @@ importers:
         version: 1.2.2
       '@iconify-json/solar':
         specifier: 'catalog:'
-        version: 1.2.8
+        version: 1.2.9
       '@iconify-json/tabler':
         specifier: 'catalog:'
         version: 1.2.38
@@ -2091,8 +2091,8 @@ packages:
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
 
-  '@iconify-json/solar@1.2.8':
-    resolution: {integrity: sha512-2I1STrytA8QNqLeP25+UIdcDETWcXRvhfIDoqsd9d3ZuEccK63DiUp3mHRdeRvjEZgSBBxJ62qhgBBl6fH1lFw==}
+  '@iconify-json/solar@1.2.9':
+    resolution: {integrity: sha512-OTtjT1fY81kZDAs7KtcqFaOAZmYluHzus2i7sj82DfmzMcN66Dgo0SKPuPAuRH+0lQIYL01o8jwl89N5k+eNcg==}
 
   '@iconify-json/tabler@1.2.38':
     resolution: {integrity: sha512-9v6ooRU/bKOK/Whv4w2aiK5gBnfCV9Ei+uD1iDDeLu2b+EnF3G3ZKkRKWEOOLG8bJyfKn6XEia6gUQ9oO7cF+Q==}
@@ -8079,7 +8079,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/solar@1.2.8':
+  '@iconify-json/solar@1.2.9':
     dependencies:
       '@iconify/types': 2.0.0
 
