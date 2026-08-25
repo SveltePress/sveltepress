@@ -2,6 +2,8 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.34.5",
   "scripts": {
+    "check:docs:content": "node check-docs.mjs",
+    "check:docs": "pnpm check:docs:content && pnpm --dir packages/docs-site check && pnpm --dir packages/docs-site-zh check && pnpm --dir packages/docs-site-bn check",
     "lint": "eslint",
     "format": "prettier \"./**/*.svelte\" --check",
     "release": "changeset publish",

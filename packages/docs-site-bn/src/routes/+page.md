@@ -9,7 +9,7 @@ actions:
     type: primary
   - label: গিটহাবে দেখুন
     type: flat
-    to: https://github.com/Blackman99/sveltepress
+    to: https://github.com/SveltePress/sveltepress
     external: true
 features:
   - title: Markdown কেন্দ্রিক
@@ -26,7 +26,7 @@ features:
       collection: logos
       name: svelte-kit
   - title: Markdown এ Svelte
-    description: মার্কডাউনে নির্দ্বিধায় Svelte (3 এবং 4) এর ব্যবহার অসীম সম্ভাবনার দুয়ার খুলে দেয়।
+    description: Markdown-এর মধ্যে সরাসরি Svelte 5 কম্পোনেন্ট ও runes ব্যবহার করুন।
     icon:
       type: iconify
       collection: vscode-icons

@@ -59,6 +59,38 @@ export default defineConfig({
 The rehype plugins used for html generator.
 Read [Rehype plugins](https://github.com/rehypejs/rehype#plugins) for more details.
 
+### `llms`
+
+Generate machine-readable documentation indexes during production builds. It is disabled by default.
+
+```ts title="vite.config.ts"
+import { sveltepress } from '@sveltepress/vite'
+
+sveltepress({
+  siteConfig: {
+    title: 'My docs',
+    description: 'Documentation for my project',
+  },
+  llms: {
+    enabled: true,
+    baseUrl: 'https://docs.example.com',
+    filter: (_filePath, frontmatter) => frontmatter.llms !== false,
+  },
+})
+```
+
+| Option | Type | Default | Purpose |
+|---|---|---|---|
+| `enabled` | `boolean` | `false` | Write `static/llms.txt` and `static/llms-full.txt` during a build. |
+| `title` | `string` | `siteConfig.title` | Title used in both generated files. |
+| `description` | `string` | `siteConfig.description` | Description used in both generated files. |
+| `baseUrl` | `string` | `''` | Absolute site origin prepended to route links. |
+| `routesDir` | `string` | `'src/routes'` | Directory scanned for pages. |
+| `filter` | `(filePath, frontmatter) => boolean` | — | Exclude selected pages. |
+| `sort` | `(a, b) => number` | route path | Customize page order. |
+
+The current generator reads `+page.md` files only. Svelte-only pages and runtime data are not included. Generated files are written into `static/`, so decide whether to commit them or ignore and regenerate them consistently in CI.
+
 ## ResolvedTheme
 
 ### `name`
@@ -90,7 +122,7 @@ For example: `path.resolve(process.cwd(), 'ThemePageLayout.svelte')`
 
 Used for code highlighting.
 For example, the default theme use [Shiki](https://github.com/shikijs/shiki).
-You can check the [Default theme highlighter source code](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) for detail usage.
+You can check the [default theme highlighter source code](https://github.com/SveltePress/sveltepress/blob/main/packages/theme-default/src/markdown/highlighter.ts) for detailed usage.
 
 ### `remarkPlugins`
 

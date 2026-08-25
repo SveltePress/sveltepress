@@ -71,9 +71,7 @@ For the OG URLs in meta tags to be fully-qualified (required by Facebook and mos
 
 `⌘K` / `Ctrl+K` opens the search modal. Pagefind is the indexer; run it as a post-build step:
 
-```bash
-pnpm vite build && pnpm pagefind --site dist
-```
+Configure `"build": "vite build && pagefind --site dist"` in `package.json`, then run `pnpm build`.
 
 In dev, the theme serves `/pagefind/` from your last build's `dist/pagefind/` directory, so search works if you've built at least once.
 

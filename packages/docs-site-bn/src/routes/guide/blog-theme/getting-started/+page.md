@@ -5,7 +5,7 @@ title: শুরু করা
 :::tip[আগে লাইভ ডেমো দেখুন]{icon=noto:rocket}
 স্ক্যাফোল্ড করার আগে **লাইভ ডেমোটা এক ঝলক দেখে নিন — [sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**। এই পেজে যা কিছু বর্ণনা করা হয়েছে, সব সেখানে ইতিমধ্যেই চালু অবস্থায় আছে।
 
-সোর্স: monorepo-এর [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)। রেপো ক্লোন করে `pnpm install && pnpm dev` চালালেই `localhost:4173`-এ একটি রান করার উপযোগী রেফারেন্স প্রজেক্ট পাবেন।
+সোর্স: monorepo-এর [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)। রেপো ক্লোন করে রুট থেকে `pnpm install` এবং `pnpm --filter @sveltepress/example-blog dev` চালান। ডেমোটি `http://localhost:36739`-এ চালু হবে।
 :::
 
 `@sveltepress/theme-blog` হলো ম্যাগাজিন-স্টাইলের একটি ব্লগ থিম — বাম পাশে সাইডবার, ম্যাসনরি পোস্ট গ্রিড, প্রতি পোস্টের জন্য OG ইমেজ, RSS, Pagefind সার্চ এবং Giscus কমেন্ট সাপোর্ট করে। এই পেজে একটি কাজ করা ব্লগ স্ক্যাফোল্ড করার ধাপগুলো দেখানো হয়েছে।
@@ -14,9 +14,17 @@ title: শুরু করা
 
 @install-pkg(@sveltepress/theme-blog)
 
+থিমটি Sveltepress Vite প্লাগইন দিয়ে লোড হয়:
+
+@install-pkg(@sveltepress/vite)
+
 এই থিমের জন্য `@sveltejs/adapter-static` দরকার, কারণ এটি সম্পূর্ণ স্ট্যাটিক সাইট (প্রি-রেন্ডার করা HTML, JSON, RSS, OG ইমেজ) তৈরি করে।
 
 @install-pkg(@sveltejs/adapter-static)
+
+Vite বিল্ডের পরে Pagefind লোকাল সার্চ ইনডেক্স তৈরি করে:
+
+@install-pkg(pagefind)
 
 ## Vite কনফিগার করুন
 
@@ -122,10 +130,20 @@ excerpt: নতুন ব্লগের প্রথম পোস্ট।
 
 ## বিল্ড
 
-```bash
-pnpm vite build && pnpm pagefind --site dist
+`package.json`-এ Pagefind-সহ বিল্ড স্ক্রিপ্ট যোগ করুন:
+
+```txt title="package.json"
+{
+  "scripts": {
+    "build": "vite build && pagefind --site dist"
+  }
+}
 ```
 
-Pagefind স্টেপটি বিল্ড হওয়া সাইটে ইনডেক্স তৈরি করে যাতে সার্চ মডাল (`⌘K` / `Ctrl+K`) কাজ করে। সার্চ ব্যবহার না করলে এটি স্কিপ করতে পারেন।
+```bash
+pnpm build
+```
+
+Pagefind বিল্ড হওয়া সাইটে ইনডেক্স তৈরি করে যাতে বিল্ট-ইন সার্চ মডাল (`⌘K` / `Ctrl+K`) কাজ করে। বর্তমান থিম সবসময় Pagefind সার্চ রেন্ডার করে, তাই এই পোস্ট-বিল্ড ধাপটি রাখুন।
 
 ফলাফল `dist/` একটি স্ট্যাটিক বান্ডেল — যেকোনো স্ট্যাটিক হোস্টে ডিপ্লয় করা যাবে।

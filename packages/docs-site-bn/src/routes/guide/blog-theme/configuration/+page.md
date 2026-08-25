@@ -23,6 +23,7 @@ title: কনফিগারেশন
 | `rss` | `{ enabled, limit, copyright }` | enabled, 20 | RSS ফিড তৈরি। `static/rss.xml` এ লেখে। |
 | `ogImage` | `{ enabled, fontPath, tagline }` | enabled | Satori দিয়ে প্রতি পোস্টের OG ইমেজ তৈরি। |
 | `giscus` | [`GiscusConfig`](#giscusconfig) | — | GitHub Discussions-ভিত্তিক কমেন্ট সক্রিয় করতে সেট করুন। |
+| `search` | reserved | — | এখন কনফিগার করবেন না। বর্তমান রিলিজ সবসময় বিল্ট-ইন Pagefind সার্চ ব্যবহার করে। |
 
 ## `AuthorProfile`
 

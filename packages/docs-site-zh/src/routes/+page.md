@@ -9,7 +9,7 @@ actions:
     type: primary
   - label: 在 Github 上查看
     type: flat
-    to: https://github.com/Blackman99/sveltepress
+    to: https://github.com/SveltePress/sveltepress
     external: true
 features:
   - title: 以 Markdown 为中心

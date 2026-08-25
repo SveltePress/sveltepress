@@ -5,7 +5,7 @@ title: 快速上手
 :::tip[先看在线效果]{icon=noto:rocket}
 动手搭建之前，强烈建议**先打开在线 Demo：[sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**。本页介绍的一切特性都已经在这里跑起来了。
 
-源码在 monorepo 中的 [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)。克隆仓库、执行 `pnpm install && pnpm dev`，你就能在 `localhost:4173` 得到一份可直接运行的参考实现。
+源码在 monorepo 中的 [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)。克隆仓库后，在仓库根目录执行 `pnpm install` 和 `pnpm --filter @sveltepress/example-blog dev`，Demo 会启动在 `http://localhost:36739`。
 :::
 
 `@sveltepress/theme-blog` 是一款杂志风格的博客主题，自带左侧边栏、瀑布流文章网格、自动生成的单篇 OG 图片、RSS、Pagefind 搜索和 Giscus 评论。本页演示如何从零搭建一个可运行的博客。
@@ -14,9 +14,17 @@ title: 快速上手
 
 @install-pkg(@sveltepress/theme-blog)
 
+主题由 Sveltepress Vite 插件加载：
+
+@install-pkg(@sveltepress/vite)
+
 主题依赖 `@sveltejs/adapter-static`，因为它会生成完全静态的站点（预渲染 HTML、JSON、RSS 与 OG 图片）。
 
 @install-pkg(@sveltejs/adapter-static)
+
+Vite 构建完成后，由 Pagefind 创建本地搜索索引：
+
+@install-pkg(pagefind)
 
 ## 配置 Vite
 
@@ -122,10 +130,20 @@ excerpt: 博客的第一篇文章。
 
 ## 构建
 
-```bash
-pnpm vite build && pnpm pagefind --site dist
+在 `package.json` 中把 Pagefind 加到构建脚本：
+
+```txt title="package.json"
+{
+  "scripts": {
+    "build": "vite build && pagefind --site dist"
+  }
+}
 ```
 
-Pagefind 步骤会对构建产物建立索引，以便搜索弹窗（`⌘K` / `Ctrl+K`）能正常工作。如果你不用搜索可以跳过这一步。
+```bash
+pnpm build
+```
+
+Pagefind 会为构建产物建立索引，让内置搜索弹窗（`⌘K` / `Ctrl+K`）正常工作。当前版本始终渲染 Pagefind 搜索，因此请保留这个构建后步骤。
 
 最终的 `dist/` 是一个可以部署到任意静态主机的静态站点。

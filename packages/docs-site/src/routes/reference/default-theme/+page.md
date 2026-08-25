@@ -100,8 +100,9 @@ An object that contains custom highlight options.
 * `languages` - Customize the supported highlight languages.
 Default is: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
-* `darkTheme` - The code theme that will be applied in dark mode. Default is `night-owl`
+* `themeDark` - The code theme that will be applied in dark mode. Default is `night-owl`
 * `twoslash` - Set to `true` to enable [Twoslash](/guide/default-theme/twoslash/). Default is `false`
+* `codeCollapseLines` - Collapse code blocks taller than this number of lines. Default is `30`; set it to `0` to disable collapsing.
 
 :::important[TIP]
 You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki)
@@ -110,7 +111,7 @@ You can get all the supported languages and themes in [Shiki Repo](https://githu
 ### `editLink`
 
 The link used for bottom edit this page on GitHub button
-For example this site use `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
+For example this site uses `https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route`
 
 `:route` represent the route path, for example: `/foo/bar/+page.md`
 
@@ -123,24 +124,10 @@ Would add gtag script in site head if provided.
 
 ### `search`
 
-Custom search component for the navbar.
+Reserved custom-search hook with type `Component | string`. It is not production-ready: components are lost when theme options are serialized, while local string paths are not bundled for the browser's runtime import. Do not configure it yet; use `docsearch` instead. See the [search guide](/guide/default-theme/search/) for details.
 
-- Type: `Component | string`
-- If a `Component` is provided, it is rendered directly.
-- If a `string` is provided, it is treated as a component path and loaded via dynamic `import()`.
-
-Examples:
-
-```ts
-// Use Meilisearch
-search: '@sveltepress/meilisearch/Search.svelte'
-
-// Or a custom component
-search: '/src/lib/MySearch.svelte'
-```
-
-:::note[search vs docsearch priority]
-When both `search` and `docsearch` are provided, `search` takes priority and `docsearch` is ignored.
+:::warning[Current limitation]
+Although `search` remains in the public type, it is not a working production contract.
 :::
 
 ### `docsearch`
@@ -172,6 +159,7 @@ const defaultGradient = {
 }
 ```
 * `primary` - the primary theme color of the site
+* `primaryDeep` - a darker primary color used for accessible accent text on light backgrounds
 * `hover` - the hovered links color
 
 ### `i18n`
@@ -184,6 +172,7 @@ The fixed text contents that can be replaced by your config.
 * `previousPage` - The text for "Previous"
 * `nextPage` - The text for "Next"
 * `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
+* `expandCode` - The label on the expand bar for collapsed long code blocks
 * `pwa` - The PWA prompt relative text contents. All of the following fields correspond to the same text in PWA prompt
   * `tip`
   * `reload`

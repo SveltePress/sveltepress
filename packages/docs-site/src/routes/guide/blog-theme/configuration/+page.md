@@ -23,6 +23,7 @@ All options are passed to `blogTheme()` in `vite.config.ts`.
 | `rss` | `{ enabled, limit, copyright }` | enabled, 20 | RSS feed generation. Writes to `static/rss.xml`. |
 | `ogImage` | `{ enabled, fontPath, tagline }` | enabled | Per-post OG image generation via Satori. |
 | `giscus` | [`GiscusConfig`](#giscusconfig) | — | Set to enable GitHub-discussions-backed comments. |
+| `search` | reserved | — | Do not configure yet. The current release always uses the built-in Pagefind search. |
 
 ## `AuthorProfile`
 

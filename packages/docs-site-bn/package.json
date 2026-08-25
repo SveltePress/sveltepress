@@ -1,5 +1,5 @@
 {
-  "name": "@sveltepress/docs-site",
+  "name": "@sveltepress/docs-site-bn",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@10.34.5",
@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "build:vercel": "cd ../vite && pnpm build && cd ../theme-default && pnpm build && cd ../docs-site && pnpm build",
+    "build:vercel": "cd ../vite && pnpm build && cd ../theme-default && pnpm build && cd ../docs-site-bn && pnpm build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },

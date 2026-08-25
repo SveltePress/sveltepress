@@ -11,7 +11,7 @@ const config = defineConfig({
       theme: defaultTheme({
         navbar,
         sidebar,
-        editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
+        editLink: 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route',
         github: 'https://github.com/SveltePress/sveltepress',
         logo: '/sveltepress.svg',
         discord: 'https://discord.gg/MeYRrGGxbE',

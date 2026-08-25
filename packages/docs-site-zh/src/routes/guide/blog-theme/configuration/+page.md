@@ -23,6 +23,7 @@ title: 配置
 | `rss` | `{ enabled, limit, copyright }` | 开启，20 | RSS 生成。写入 `static/rss.xml`。 |
 | `ogImage` | `{ enabled, fontPath, tagline }` | 开启 | 通过 Satori 为每篇文章生成 OG 图片。 |
 | `giscus` | [`GiscusConfig`](#giscusconfig) | — | 设置后启用基于 GitHub Discussions 的评论。 |
+| `search` | 预留 | — | 暂时不要配置。当前版本固定使用内置 Pagefind 搜索。 |
 
 ## `AuthorProfile`
 

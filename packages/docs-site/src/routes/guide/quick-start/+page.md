@@ -2,13 +2,18 @@
 title: Quick Start
 ---
 
+## Requirements
+
+- Node.js `^20.19.0` or `>=22.12.0`
+- Svelte 5, SvelteKit 2, and Vite 8
+- pnpm 10 is recommended; npm, Yarn, and Bun are also supported by the create command
+
 ## Creating a project
 
-Run one of the following command
-Depend on what package manager you are using
+Run the command for your package manager.
 
 :::tip[PNPM first]
-Use pnpm as much as possible. It respects package version more than npm.
+The repository and generated templates are tested with pnpm 10.
 :::
 
 @install-pkg(@sveltepress@latest,create)

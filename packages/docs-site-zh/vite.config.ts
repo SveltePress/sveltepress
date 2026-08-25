@@ -1,11 +1,11 @@
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
-import docsearch from './config/docsearch'
-import i18n from './config/i18n'
-import navbar from './config/navbar'
-import pwa from './config/pwa'
-import sidebar from './config/sidebar'
+import docsearch from './config/docsearch.ts'
+import i18n from './config/i18n.ts'
+import navbar from './config/navbar.ts'
+import pwa from './config/pwa.ts'
+import sidebar from './config/sidebar.ts'
 
 const config = defineConfig({
   plugins: [
@@ -13,7 +13,7 @@ const config = defineConfig({
       theme: defaultTheme({
         navbar,
         sidebar,
-        editLink: 'https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route',
+        editLink: 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site-zh/src/routes/:route',
         github: 'https://github.com/SveltePress/sveltepress',
         logo: '/sveltepress.svg',
         discord: 'https://discord.gg/MeYRrGGxbE',

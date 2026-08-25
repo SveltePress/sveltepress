@@ -28,6 +28,28 @@ A content centered site build tool
 Inspired by [Vitepress](https://vitepress.vuejs.org/)
 Build with [SvelteKit](https://kit.svelte.dev/)
 
+Sveltepress supports Svelte 5, SvelteKit 2, and Vite 8. Use Node.js `^20.19.0` or `>=22.12.0`.
+
+## :rocket: Quick start
+
+```bash
+npm create @sveltepress@latest
+```
+
+The generated project uses the default documentation theme. For an editorial site with posts, pagination, RSS, Open Graph images, and Pagefind search, follow the [blog theme guide](https://sveltepress.site/guide/blog-theme/getting-started/).
+
+## :package: Packages
+
+| Package | Purpose |
+|---|---|
+| `@sveltepress/create` | Scaffold a Sveltepress project |
+| `@sveltepress/vite` | Markdown and SvelteKit integration |
+| `@sveltepress/theme-default` | Documentation theme |
+| `@sveltepress/theme-blog` | Static editorial/blog theme |
+| `@sveltepress/twoslash` | TypeScript hover information in code blocks |
+| `@sveltepress/docsearch` | Algolia DocSearch component |
+| `@sveltepress/meilisearch` | Meilisearch component |
+
 ## :bookmark_tabs: Online docs and demos
 
 [Sveltepress](https://sveltepress.site/)

@@ -56,6 +56,38 @@ export default defineConfig({
 ```
 :::
 
+### `llms`
+
+在生产构建时生成便于机器读取的文档索引。默认关闭。
+
+```ts title="vite.config.ts"
+import { sveltepress } from '@sveltepress/vite'
+
+sveltepress({
+  siteConfig: {
+    title: 'My docs',
+    description: 'Documentation for my project',
+  },
+  llms: {
+    enabled: true,
+    baseUrl: 'https://docs.example.com',
+    filter: (_filePath, frontmatter) => frontmatter.llms !== false,
+  },
+})
+```
+
+| 选项 | 类型 | 默认值 | 作用 |
+|---|---|---|---|
+| `enabled` | `boolean` | `false` | 构建时写入 `static/llms.txt` 和 `static/llms-full.txt`。 |
+| `title` | `string` | `siteConfig.title` | 两个生成文件使用的标题。 |
+| `description` | `string` | `siteConfig.description` | 两个生成文件使用的描述。 |
+| `baseUrl` | `string` | `''` | 拼接在路由链接前的站点绝对地址。 |
+| `routesDir` | `string` | `'src/routes'` | 扫描页面的目录。 |
+| `filter` | `(filePath, frontmatter) => boolean` | — | 排除指定页面。 |
+| `sort` | `(a, b) => number` | 路由路径 | 自定义页面顺序。 |
+
+当前生成器只读取 `+page.md`，不包含纯 Svelte 页面和运行时数据。文件会写入 `static/`，请明确选择提交生成结果，或在 CI 中统一忽略并重新生成。
+
 ## `ResolvedTheme`
 
 @code(/../vite/src/types.ts,13,25)
@@ -87,7 +119,7 @@ export default defineConfig({
 
 代码高亮渲染函数
 例如，默认主题使用了 [shiki](https://github.com/shikijs/shiki).
-阅读 [默认主题源代码](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) 来查看具体用法
+阅读 [默认主题高亮器源码](https://github.com/SveltePress/sveltepress/blob/main/packages/theme-default/src/markdown/highlighter.ts) 查看具体用法。
 
 ### `remarkPlugins`
 

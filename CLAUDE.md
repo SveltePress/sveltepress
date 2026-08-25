@@ -8,8 +8,8 @@ This document provides context and guidance for AI assistants (like Claude) work
 
 - **Website**: https://sveltepress.site/
 - **Repository**: https://github.com/SveltePress/sveltepress
-- **Package Manager**: pnpm (v10.30.2)
-- **Node Version**: >16
+- **Package Manager**: pnpm (v10.34.5)
+- **Node Version**: ^20.19.0 or >=22.12.0
 
 ## Monorepo Structure
 

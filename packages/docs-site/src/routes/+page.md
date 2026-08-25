@@ -8,7 +8,7 @@ actions:
     type: primary
   - label: View on github
     type: flat
-    to: https://github.com/Blackman99/sveltepress
+    to: https://github.com/SveltePress/sveltepress
     external: true
 features:
   - title: Markdown centered
@@ -25,7 +25,7 @@ features:
       collection: logos
       name: svelte-icon
   - title: Svelte in Markdown
-    description: Feel free to use svelte (3 and 4) in markdown. Explore infinite possibilities.
+    description: Use Svelte 5 components and runes directly in Markdown.
     icon:
       type: iconify
       collection: vscode-icons

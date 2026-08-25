@@ -71,9 +71,7 @@ blogTheme({
 
 `⌘K` / `Ctrl+K` 打开搜索弹窗。Pagefind 是索引器，作为构建后步骤运行：
 
-```bash
-pnpm vite build && pnpm pagefind --site dist
-```
+在 `package.json` 配置 `"build": "vite build && pagefind --site dist"`，然后运行 `pnpm build`。
 
 开发时主题会从上次构建的 `dist/pagefind/` 提供 `/pagefind/`，所以只要构建过一次，开发模式下搜索就能工作。
 

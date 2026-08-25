@@ -12,7 +12,7 @@ const config = defineConfig({
 				sidebar: {
 					// Add your sidebar configs here
 				},
-				github: 'https://github.com/Blackman99/sveltepress',
+				github: 'https://github.com/SveltePress/sveltepress',
 				logo: '/sveltepress.svg',
 			}),
 			siteConfig: {

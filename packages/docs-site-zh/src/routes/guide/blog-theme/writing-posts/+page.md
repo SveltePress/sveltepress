@@ -30,7 +30,7 @@ draft: false
 | `category` | string | — | 每篇最多一个。对应 `/categories/<name>/` 页面。 |
 | `author` | string | — | 对当前文章覆盖站点级 `author.name`。 |
 | `cover` | string | — | 封面图路径或 URL。设置后文章以 `PostCardLarge` 渲染；否则主题会按标签哈希一个渐变色。 |
-| `draft` | boolean | — | 草稿会被构建但不会出现在列表、RSS、OG 图片生成和时间线中。 |
+| `draft` | boolean | — | 草稿不会生成公开路由，也不会进入列表、RSS、OG 图片和时间线。 |
 
 ## 列表页
 
@@ -49,7 +49,7 @@ draft: false
 
 ## 草稿
 
-在 frontmatter 设置 `draft: true` 可将文章隐藏于公开列表。文章仍会在构建时写入磁盘（这样你预发布时分享的链接仍然可用），但不会出现在首页、RSS、时间线或 OG 图片集中。
+在 frontmatter 设置 `draft: true` 会把文章完全排除在生成站点之外。草稿不会写入公开文章索引，生产构建也不会预渲染对应的 `/posts/<slug>/` 路由，因此直接访问会返回 404。
 
 准备好发布时把 `draft` 改为 `false`。
 

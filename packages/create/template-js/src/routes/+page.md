@@ -5,7 +5,7 @@ tagline: A simple, easy to use content centered site build tool with the full po
 actions:
   - label: View on github
     type: primary
-    to: https://github.com/Blackman99/sveltepress
+    to: https://github.com/SveltePress/sveltepress
     external: true
 features:
   - title: Markdown centered

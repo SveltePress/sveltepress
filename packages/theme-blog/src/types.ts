@@ -90,10 +90,7 @@ export interface BlogThemeOptions {
   title: string
   description?: string
   base?: string
-  /**
-   * Site-wide author identity. Rendered as AuthorCard at the bottom of posts
-   *  and AuthorProfile on the About page.
-   */
+  /** Site-wide author identity rendered in the sidebar. */
   author?: AuthorProfile
   themeColor?: ThemeColor
   themeColorLight?: ThemeColor // custom light mode overrides
@@ -107,14 +104,19 @@ export interface BlogThemeOptions {
     limit?: number
     copyright?: string
   }
+  /**
+   * Reserved for a future pluggable search integration.
+   * The current theme always renders its built-in Pagefind search.
+   * @deprecated Do not configure this option yet.
+   */
   search?: 'docsearch' | 'meilisearch' | false
   navbar?: Array<{ title: string, to: string }>
   /**
-   * Giscus comments configuration. If set, `/about/+page.svelte` is
-   *  scaffolded and GiscusComments is rendered below each post.
+   * Giscus comments configuration. When set, GiscusComments is rendered
+   * below each post.
    */
   giscus?: GiscusConfig
-  /** About page content. If set, `/about/+page.svelte` is scaffolded. */
+  /** Raw HTML rendered in the author section of the sidebar. */
   about?: AboutConfig
   /** Auto-generated Open Graph images. Defaults to enabled. */
   ogImage?: OgImageConfig

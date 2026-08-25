@@ -2,11 +2,7 @@
 title: Search
 ---
 
-Sveltepress default theme supports three ways to add search to your site:
-
-- **Algolia DocSearch** — via the built-in `docsearch` option
-- **Meilisearch** — via `@sveltepress/meilisearch` and the `search` option
-- **Custom search** — pass any Svelte component or a module path string to the `search` option
+For production sites, the default theme currently supports **Algolia DocSearch** through the built-in `docsearch` option.
 
 ## Algolia DocSearch
 
@@ -38,69 +34,11 @@ export default defineConfig({
 DocSearch is free for open-source documentation sites. Apply at [docsearch.algolia.com](https://docsearch.algolia.com/apply/).
 :::
 
-## Meilisearch
+## Custom search and Meilisearch status
 
-[Meilisearch](https://www.meilisearch.com/) is an open-source, self-hosted search engine. Use the `@sveltepress/meilisearch` package together with the `search` option to add it to your site.
+The public type still exposes `search?: Component | string`, and the repository contains an `@sveltepress/meilisearch` component. Do not use either through `defaultTheme({ search })` in production yet:
 
-### Installation
+- component objects are removed when theme options are serialized;
+- string paths are imported by the browser at runtime and local `/src/...` modules are not included in the production bundle.
 
-@install-pkg(@sveltepress/meilisearch)
-
-### Configuration
-
-Pass the path to the `Search.svelte` component exported by `@sveltepress/meilisearch` to the `search` option:
-
-```ts title="vite.config.(js|ts)"
-import { defaultTheme } from '@sveltepress/theme-default'
-import { sveltepress } from '@sveltepress/vite'
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  plugins: [
-    sveltepress({
-      theme: defaultTheme({
-        search: '@sveltepress/meilisearch/Search.svelte',
-      }),
-    }),
-  ],
-})
-```
-
-The `Search.svelte` component accepts the following props. You can pass them by creating a thin wrapper component around the imported `Search.svelte` and providing them as props.
-
-| Prop | Type | Required | Description |
-|---|---|---|---|
-| `host` | `string` | ✅ | URL of your Meilisearch instance |
-| `apiKey` | `string` | ✅ | Search-only API key |
-| `indexName` | `string` | ✅ | Index name to search |
-| `placeholder` | `string` | — | Placeholder text for the search input (default: `'Search...'`) |
-| `limit` | `number` | — | Maximum number of results to show (default: `10`) |
-
-:::tip[Self-hosted vs Meilisearch Cloud]
-You can host Meilisearch yourself or use [Meilisearch Cloud](https://cloud.meilisearch.com/). The `host` URL points to whichever deployment you choose.
-:::
-
-## Custom Search
-
-The `search` option also accepts a Svelte `Component` directly, which lets you use any search library you like:
-
-```ts title="vite.config.(js|ts)"
-import { defaultTheme } from '@sveltepress/theme-default'
-import { sveltepress } from '@sveltepress/vite'
-import { defineConfig } from 'vite'
-import MySearchComponent from './src/components/MySearchComponent.svelte'
-
-export default defineConfig({
-  plugins: [
-    sveltepress({
-      theme: defaultTheme({
-        search: MySearchComponent,
-      }),
-    }),
-  ],
-})
-```
-
-:::note[search vs docsearch priority]
-When both `search` and `docsearch` are provided, `search` takes priority and `docsearch` is ignored.
-:::
+Until the runtime integration is redesigned, use `docsearch` or implement search outside the default theme's `search` option. The option remains documented so its current limitation is explicit; it is not a working production contract.

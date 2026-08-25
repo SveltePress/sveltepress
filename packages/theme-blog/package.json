@@ -15,7 +15,7 @@
   "homepage": "https://sveltepress.site/",
   "repository": {
     "type": "github",
-    "url": "https://github.com/Blackman99/sveltepress",
+    "url": "https://github.com/SveltePress/sveltepress",
     "directory": "packages/theme-blog"
   },
   "keywords": [

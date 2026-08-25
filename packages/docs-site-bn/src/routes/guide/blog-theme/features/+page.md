@@ -71,9 +71,7 @@ meta ট্যাগে OG URL পূর্ণ-কোয়ালিফাইড
 
 `⌘K` / `Ctrl+K` সার্চ মডাল খুলে। Pagefind হলো ইনডেক্সার; এটি পোস্ট-বিল্ড স্টেপ হিসেবে রান করুন:
 
-```bash
-pnpm vite build && pnpm pagefind --site dist
-```
+`package.json`-এ `"build": "vite build && pagefind --site dist"` কনফিগার করে `pnpm build` চালান।
 
 dev এ থিম আপনার শেষ বিল্ডের `dist/pagefind/` ডিরেক্টরি থেকে `/pagefind/` সার্ভ করে, তাই একবার বিল্ড করলেই সার্চ কাজ করবে।
 

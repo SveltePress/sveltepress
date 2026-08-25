@@ -98,8 +98,9 @@ Logo 图片
 
 * `languages` - 自定义支持的语言列表，默认为：`['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - 日间模式所使用的高亮主题，默认为：`vitesse-light`
-* `darkTheme` - 夜间模式所使用的高亮主题，默认为：`night-owl`
+* `themeDark` - 夜间模式所使用的高亮主题，默认为：`night-owl`
 * `twoslash` - 设置为 `true` 可以开启 [Twoslash](/guide/default-theme/twoslash/) 功能. 默认为 `false`
+* `codeCollapseLines` - 超过该行数的代码块会默认折叠，默认为 `30`；设为 `0` 可关闭折叠。
 
 :::important[TIP]
 你可以在 [Shiki Repo](https://github.com/shikijs/shiki) 获得所有支持的语言以及主题
@@ -107,7 +108,7 @@ Logo 图片
 
 ### `editLink`
 
-页面底部展示的“在 Github” 上编辑此页的链接，例如该站点使用的配置为：`https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route`
+页面底部展示的“在 Github 上编辑此页”链接，例如本站使用：`https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site-zh/src/routes/:route`
 
 `:route` 代表路由，例如 src/routes/foo/bar/+page.md => /foo/bar
 
@@ -119,24 +120,10 @@ Logo 图片
 
 ### `search`
 
-导航栏自定义搜索组件。
+预留的自定义搜索入口，类型为 `Component | string`。该入口尚不能用于生产：主题配置序列化时会丢弃组件，本地字符串路径也不会进入浏览器运行时导入所需的构建产物。暂时不要配置，请改用 `docsearch`。详情见[搜索指南](/guide/default-theme/search/)。
 
-- 类型：`Component | string`
-- 传入 `Component` 时将直接渲染。
-- 传入 `string` 时会被当作组件路径，并通过动态 `import()` 加载。
-
-示例：
-
-```ts
-// 使用 Meilisearch
-search: '@sveltepress/meilisearch/Search.svelte'
-
-// 或自定义组件
-search: '/src/lib/MySearch.svelte'
-```
-
-:::note[search 与 docsearch 的优先级]
-当 `search` 和 `docsearch` 同时配置时，`search` 优先，`docsearch` 将被忽略。
+:::warning[当前限制]
+尽管 `search` 仍存在于公开类型中，它目前并不是可用的生产合同。
 :::
 
 ### `docsearch`
@@ -167,6 +154,7 @@ const defaultGradient = {
 }
 ```
 * `primary` - 站点主色
+* `primaryDeep` - 浅色背景上用于保证对比度的深主色
 * `hover` - 鼠标上浮时主色
 
 ### `i18n`
@@ -179,6 +167,7 @@ const defaultGradient = {
 * `previousPage` - "Previous"
 * `nextPage` - "Next"
 * `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
+* `expandCode` - 长代码块展开栏的文本
 * `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本
   * `tip`
   * `reload`

@@ -56,6 +56,8 @@ The scaffolded files under `src/routes/` import components from `@sveltepress/th
 
 The theme re-exports these building blocks:
 
+- `@sveltepress/theme-blog/GlobalLayout.svelte`
+- `@sveltepress/theme-blog/PageLayout.svelte`
 - `@sveltepress/theme-blog/PostLayout.svelte`
 - `@sveltepress/theme-blog/components/MasonryGrid.svelte`
 - `@sveltepress/theme-blog/components/Timeline.svelte`
@@ -66,6 +68,21 @@ The theme re-exports these building blocks:
 - `@sveltepress/theme-blog/components/GiscusComments.svelte`
 - `@sveltepress/theme-blog/components/RelatedPosts.svelte`
 - `@sveltepress/theme-blog/components/TaxonomyHeader.svelte`
+- `@sveltepress/theme-blog/components/AuthorCard.svelte`
+- `@sveltepress/theme-blog/components/AuthorProfile.svelte`
+
+## Data modules
+
+The package ships TypeScript declarations for the virtual modules used by scaffolded routes. The main customization points are:
+
+| Module | Export |
+|---|---|
+| `virtual:sveltepress/blog-posts-meta` | `posts: BlogPostMeta[]` |
+| `virtual:sveltepress/blog-tags-index` | `tags: Array<{ name, count }>` |
+| `virtual:sveltepress/blog-categories-index` | `categories: Array<{ name, count }>` |
+| `virtual:sveltepress/blog-config` | `blogConfig: BlogThemeOptions` |
+
+Per-post, per-tag, and per-category records are also exposed through literal module IDs such as `virtual:sveltepress/blog-post/<slug>`. `virtual:sveltepress/blog-runtime` contains absolute cache paths for server loads and must not be imported into client components.
 
 ## Deploying under a subpath
 
@@ -94,7 +111,7 @@ Then build with both set, e.g. for GitHub Pages project site at `user.github.io/
 
 ```bash
 BASE_PATH=/repo/blog SITE_URL=https://user.github.io/repo/blog \
-  pnpm vite build && pnpm pagefind --site dist
+  pnpm build
 ```
 
 All internal links in the theme components use SvelteKit's `$app/paths` `base`, so they resolve correctly under the subpath. OG image URLs and RSS item URLs use `SITE_URL` so social crawlers get fully-qualified URLs.

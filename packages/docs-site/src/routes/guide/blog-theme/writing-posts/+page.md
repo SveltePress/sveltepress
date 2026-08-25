@@ -30,7 +30,7 @@ Write markdown below the frontmatter.
 | `category` | string | — | At most one per post. Gets a `/categories/<name>/` page. |
 | `author` | string | — | Overrides the site-wide `author.name` for this post. |
 | `cover` | string | — | Path or URL to a cover image. If set, the post renders with `PostCardLarge`; if not, the theme picks a tag-hashed gradient. |
-| `draft` | boolean | — | Drafts are built but excluded from listings, RSS, OG image generation, and the timeline. |
+| `draft` | boolean | — | Drafts are excluded from generated routes, listings, RSS, OG images, and the timeline. |
 
 ## Listings
 
@@ -49,7 +49,7 @@ Reading time is computed automatically from word count and shown in post cards, 
 
 ## Drafts
 
-Set `draft: true` in frontmatter to keep a post off public listings. The post is still written to disk during build (so links you share pre-publish keep working if you copied them early), but it won't appear in the home grid, RSS, timeline, or OG image set.
+Set `draft: true` in frontmatter to exclude a post from the generated site. Drafts are not written to the public post index and their `/posts/<slug>/` route is not prerendered, so direct links return 404 in a production build.
 
 Flip `draft: false` when you're ready to publish.
 

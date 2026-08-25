@@ -9,10 +9,10 @@ export default {
     },
     modal: {
       searchBox: {
-        resetButtonTitle: '重置查询',
-        resetButtonAriaLabel: '重置查询',
-        cancelButtonText: '取消',
-        cancelButtonAriaLabel: '取消',
+        clearButtonTitle: '清除查询',
+        clearButtonAriaLabel: '清除查询',
+        closeButtonText: '关闭',
+        closeButtonAriaLabel: '关闭',
       },
       startScreen: {
         recentSearchesTitle: '最近',

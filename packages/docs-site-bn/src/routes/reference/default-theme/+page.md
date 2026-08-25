@@ -77,8 +77,9 @@ export default config
 * `languages` - সাপোর্টেড হাইলাইট ল্যাংগুয়েজ কাস্টমাইজ করা।
 ডিফল্ট হচ্ছে: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - কোড থিম যা লাইট মোডে অ্যাপ্লাই হবে, ডিফল্ট হচ্ছে `vitesse-light`
-* `darkTheme` - কোড থিম যা ডার্ক মোডে অ্যাপ্লাই হবে, ডিফল্ট হচ্ছে `night-owl`
+* `themeDark` - কোড থিম যা ডার্ক মোডে অ্যাপ্লাই হবে, ডিফল্ট হচ্ছে `night-owl`
 * `twoslash` -  [Twoslash](/guide/default-theme/twoslash/) চালু করতে `true` সেট করুন. ডিফল্টে `false`
+* `codeCollapseLines` - এই সংখ্যার চেয়ে লম্বা কোড ব্লক ডিফল্টে সংকুচিত থাকবে। ডিফল্ট `30`; বন্ধ করতে `0` দিন।
 
 :::important[টিপ]
 আপনি সব সাপোর্টেড ল্যাংগুয়েজ এবং থিম [Shiki Repo](https://github.com/shikijs/shiki) তে পাবেন
@@ -87,7 +88,7 @@ export default config
 ### `editLink`
 
 এই লিংকটি edit this page on github বাটনে থাকে।
-উদাহরণস্বরূপ, এই সাইটটি `https://github.com/Blackman99/sveltepress/edit/main/packages/docs-site/src/routes/:route` ব্যবহার করে।
+উদাহরণস্বরূপ, এই সাইটটি `https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site-bn/src/routes/:route` ব্যবহার করে।
 
 `:route` রাউট প্যাথ বোঝায়, যেমন: /foo/bar/+page.md
 
@@ -100,24 +101,10 @@ export default config
 
 ### `search`
 
-Navbar-এর জন্য custom search component।
+Reserved custom-search hook; type `Component | string`। এটি production-ready নয়: theme option serialize হলে component হারিয়ে যায় এবং local string path browser-এর runtime import-এর জন্য bundle হয় না। এখন এটি configure করবেন না; `docsearch` ব্যবহার করুন। বিস্তারিত [search guide](/guide/default-theme/search/)-এ আছে।
 
-- Type: `Component | string`
-- `Component` দিলে সরাসরি render হবে।
-- `string` দিলে এটাকে component path হিসেবে dynamic `import()` দিয়ে load করা হবে।
-
-Example:
-
-```ts
-// Meilisearch ব্যবহার
-search: '@sveltepress/meilisearch/Search.svelte'
-
-// অথবা custom component
-search: '/src/lib/MySearch.svelte'
-```
-
-:::note[search ও docsearch-এর অগ্রাধিকার]
-`search` এবং `docsearch` একসাথে দেওয়া থাকলে `search`-ই কার্যকর হবে এবং `docsearch` উপেক্ষা করা হবে।
+:::warning[বর্তমান সীমাবদ্ধতা]
+Public type-এ `search` থাকলেও এটি এখন কার্যকর production contract নয়।
 :::
 
 ### `docsearch`
@@ -149,6 +136,7 @@ const defaultGradient = {
 }
 ```
 * `primary` - সাইটের প্রাইমারি থিম কালার
+* `primaryDeep` - হালকা পটভূমিতে পর্যাপ্ত কনট্রাস্টের জন্য গাঢ় প্রাথমিক রং
 * `hover` - হোভার করা অবস্থায় লিংকের কালার
 
 ### `i18n`
@@ -161,6 +149,7 @@ const defaultGradient = {
 * `previousPage` - "পূর্ববর্তী" এর লেখা
 * `nextPage` - "পরবর্তী" এর লেখা
 * `expansionTitle` - markdown বা svelte live code এর "কোড দেখতে বা হাইড করতে ক্লিক করুন" এর লেখা
+* `expandCode` - সংকুচিত লম্বা কোড ব্লকের expand bar-এর লেখা
 * `pwa` - pwa prompt এর relative টেক্সট কন্টেন্ট. নিচের সব ফিল্ডই pwa prompt এর মতই
   * `tip`
   * `reload`

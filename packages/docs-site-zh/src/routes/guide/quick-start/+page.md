@@ -2,6 +2,12 @@
 title: 快速开始
 ---
 
+## 环境要求
+
+- Node.js `^20.19.0` 或 `>=22.12.0`
+- Svelte 5、SvelteKit 2 和 Vite 8
+- 推荐 pnpm 10；创建命令同时支持 npm、Yarn 和 Bun
+
 ## 创建一个项目
 
 根据您所使用的包管理工具选择运行以下命令：
@@ -9,7 +15,7 @@ title: 快速开始
 @install-pkg(@sveltepress@latest,create)
 
 :::tip[pnpm 优先]
-如果可能的话请尽可能使用 pnpm. Pnpm 更加尊重您项目所使用的依赖版本
+仓库与生成模板均使用 pnpm 10 验证。
 :::
 
 ## 添加到一个已经存在的 Sveltekit 项目
@@ -21,7 +27,7 @@ title: 快速开始
 ### 在 vite.config.(js|ts) 中替换 `sveltekit` 插件
 
 ```ts title="vite.config.(js|ts)"
-import { sveltekit } from '@sveltejs/kit' // [svp! --]
+import { sveltekit } from '@sveltejs/kit/vite' // [svp! --]
 
 import { sveltepress } from '@sveltepress/vite' // [svp! ++]
 

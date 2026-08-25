@@ -34,11 +34,11 @@ Small pull requests are much easier to review and more likely to get merged.
 
 ### Creating a branch
 
-[Fork the repository](https://github.com/SveltePress/sveltepress/fork) and create your branch from master. If you've never sent a GitHub pull request before, you can learn how from [this free video series](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+[Fork the repository](https://github.com/SveltePress/sveltepress/fork) and create your branch from `main`. If you've never sent a GitHub pull request before, you can learn how from [this free video series](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
 
 ### Installation
 
-* Make sure you have [PNPM](https://pnpm.io/) and Node > 16 installed
+* Make sure you have [pnpm](https://pnpm.io/) 10 and Node `^20.19.0` or `>=22.12.0` installed
 * Run `pnpm install` in the project root
 
 ### Testing

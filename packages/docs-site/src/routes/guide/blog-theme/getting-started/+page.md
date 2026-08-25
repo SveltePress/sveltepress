@@ -5,7 +5,7 @@ title: Getting started
 :::tip[See it live first]{icon=noto:rocket}
 Before you scaffold anything, **take a look at the live demo — [sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**. Everything described on this page is already working there.
 
-Source: [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog) in the monorepo. Clone it, `pnpm install && pnpm dev`, and you have a runnable reference on `localhost:4173`.
+Source: [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog) in the monorepo. After cloning the repository, run `pnpm install` and `pnpm --filter @sveltepress/example-blog dev` from the repository root. The demo starts on `http://localhost:36739`.
 :::
 
 `@sveltepress/theme-blog` is a magazine-style blog theme with a left-rail sidebar, masonry post grid, per-post OG images, RSS, Pagefind search, and Giscus comments. This page walks you through scaffolding a working blog.
@@ -14,9 +14,17 @@ Source: [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tre
 
 @install-pkg(@sveltepress/theme-blog)
 
+The theme is loaded by the Sveltepress Vite plugin:
+
+@install-pkg(@sveltepress/vite)
+
 The theme requires `@sveltejs/adapter-static` because it generates a fully static site (prerendered HTML, JSON, RSS, OG images).
 
 @install-pkg(@sveltejs/adapter-static)
+
+Pagefind builds the local search index after Vite finishes:
+
+@install-pkg(pagefind)
 
 ## Configure Vite
 
@@ -122,10 +130,20 @@ On the next `vite dev` or `vite build`, the theme writes these files if they don
 
 ## Build
 
-```bash
-pnpm vite build && pnpm pagefind --site dist
+Add Pagefind to your project build script:
+
+```txt title="package.json"
+{
+  "scripts": {
+    "build": "vite build && pagefind --site dist"
+  }
+}
 ```
 
-The Pagefind step indexes the built site so the search modal (`⌘K` / `Ctrl+K`) works. Skip it if you don't use search.
+```bash
+pnpm build
+```
+
+The Pagefind step indexes the built site so the built-in search modal (`⌘K` / `Ctrl+K`) works. The current theme always renders this Pagefind integration, so keep the post-build indexing step enabled.
 
 The resulting `dist/` is a static bundle deployable to any static host.

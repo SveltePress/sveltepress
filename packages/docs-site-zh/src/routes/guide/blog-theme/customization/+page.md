@@ -56,6 +56,8 @@ blogTheme({
 
 主题重新导出了以下可复用组件：
 
+- `@sveltepress/theme-blog/GlobalLayout.svelte`
+- `@sveltepress/theme-blog/PageLayout.svelte`
 - `@sveltepress/theme-blog/PostLayout.svelte`
 - `@sveltepress/theme-blog/components/MasonryGrid.svelte`
 - `@sveltepress/theme-blog/components/Timeline.svelte`
@@ -66,6 +68,21 @@ blogTheme({
 - `@sveltepress/theme-blog/components/GiscusComments.svelte`
 - `@sveltepress/theme-blog/components/RelatedPosts.svelte`
 - `@sveltepress/theme-blog/components/TaxonomyHeader.svelte`
+- `@sveltepress/theme-blog/components/AuthorCard.svelte`
+- `@sveltepress/theme-blog/components/AuthorProfile.svelte`
+
+## 数据模块
+
+包内为脚手架路由使用的虚拟模块提供了 TypeScript 声明。主要自定义入口如下：
+
+| 模块 | 导出 |
+|---|---|
+| `virtual:sveltepress/blog-posts-meta` | `posts: BlogPostMeta[]` |
+| `virtual:sveltepress/blog-tags-index` | `tags: Array<{ name, count }>` |
+| `virtual:sveltepress/blog-categories-index` | `categories: Array<{ name, count }>` |
+| `virtual:sveltepress/blog-config` | `blogConfig: BlogThemeOptions` |
+
+单篇文章、标签和分类数据也可通过 `virtual:sveltepress/blog-post/<slug>` 等字面量模块 ID 访问。`virtual:sveltepress/blog-runtime` 包含服务端 load 使用的绝对缓存路径，不能导入客户端组件。
 
 ## 子路径部署
 
@@ -94,7 +111,7 @@ blogTheme({
 
 ```bash
 BASE_PATH=/repo/blog SITE_URL=https://user.github.io/repo/blog \
-  pnpm vite build && pnpm pagefind --site dist
+  pnpm build
 ```
 
 主题组件中的所有内部链接都使用 SvelteKit 的 `$app/paths` `base`，因此在子路径下也能正确解析。OG 图片 URL 与 RSS 条目 URL 使用 `SITE_URL`，确保社交平台爬虫拿到的是完整绝对路径。

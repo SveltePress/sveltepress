@@ -32,6 +32,38 @@ The remark plugins ব্যবহার করা হয়েছে মার্�
 The rehype plugins ব্যবহার করা হয়েছে html জেনারেট করার জন্য।
 আরো জানতে [Rehype plugins](https://github.com/rehypejs/rehype#plugins) পড়ুন।
 
+### `llms`
+
+production build-এর সময় machine-readable documentation index তৈরি করে। ডিফল্টে বন্ধ থাকে।
+
+```ts title="vite.config.ts"
+import { sveltepress } from '@sveltepress/vite'
+
+sveltepress({
+  siteConfig: {
+    title: 'My docs',
+    description: 'Documentation for my project',
+  },
+  llms: {
+    enabled: true,
+    baseUrl: 'https://docs.example.com',
+    filter: (_filePath, frontmatter) => frontmatter.llms !== false,
+  },
+})
+```
+
+| Option | Type | Default | কাজ |
+|---|---|---|---|
+| `enabled` | `boolean` | `false` | build-এর সময় `static/llms.txt` ও `static/llms-full.txt` লেখে। |
+| `title` | `string` | `siteConfig.title` | তৈরি হওয়া উভয় ফাইলের title। |
+| `description` | `string` | `siteConfig.description` | তৈরি হওয়া উভয় ফাইলের description। |
+| `baseUrl` | `string` | `''` | route link-এর আগে যোগ হওয়া absolute site origin। |
+| `routesDir` | `string` | `'src/routes'` | page scan করার directory। |
+| `filter` | `(filePath, frontmatter) => boolean` | — | নির্বাচিত page বাদ দেয়। |
+| `sort` | `(a, b) => number` | route path | page order কাস্টমাইজ করে। |
+
+বর্তমান generator শুধু `+page.md` পড়ে; Svelte-only page ও runtime data অন্তর্ভুক্ত হয় না। ফাইলগুলো `static/`-এ লেখা হয়, তাই সেগুলো commit করবেন নাকি ignore করে CI-তে regenerate করবেন তা স্থির রাখুন।
+
 ## ResolvedTheme
 
 <!-- @code(/../vite/src/types.ts,13,25) -->
@@ -65,7 +97,7 @@ The rehype plugins ব্যবহার করা হয়েছে html জে�
 
 কোড হাইলাইটিং এর জন্য ব্যবহৃত।
 যেমন, ডিফল্ট থিম [shiki](https://github.com/shikijs/shiki) ব্যবহার করে।
-আপনি বিস্তারিত ব্যবহারবিধি জানতে [ডিফল্ট থিম হাইলাইটার সোর্স কোড](https://github.com/Blackman99/sveltepress/blob/256c1abe6be51d37fa1ff5f9148368207c47a7ae/packages/theme-default/src/markdown/highlighter.ts) চেক করতে পারেন।
+বিস্তারিত ব্যবহারের জন্য [ডিফল্ট থিম হাইলাইটার সোর্স কোড](https://github.com/SveltePress/sveltepress/blob/main/packages/theme-default/src/markdown/highlighter.ts) দেখুন।
 
 ### `remarkPlugins`
 

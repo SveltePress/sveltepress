@@ -56,6 +56,8 @@ blogTheme({
 
 থিম এই বিল্ডিং ব্লকগুলো re-export করে:
 
+- `@sveltepress/theme-blog/GlobalLayout.svelte`
+- `@sveltepress/theme-blog/PageLayout.svelte`
 - `@sveltepress/theme-blog/PostLayout.svelte`
 - `@sveltepress/theme-blog/components/MasonryGrid.svelte`
 - `@sveltepress/theme-blog/components/Timeline.svelte`
@@ -66,6 +68,21 @@ blogTheme({
 - `@sveltepress/theme-blog/components/GiscusComments.svelte`
 - `@sveltepress/theme-blog/components/RelatedPosts.svelte`
 - `@sveltepress/theme-blog/components/TaxonomyHeader.svelte`
+- `@sveltepress/theme-blog/components/AuthorCard.svelte`
+- `@sveltepress/theme-blog/components/AuthorProfile.svelte`
+
+## Data module
+
+Scaffolded route-এ ব্যবহৃত virtual module-গুলোর TypeScript declaration package-এর সঙ্গে থাকে। প্রধান customization point:
+
+| Module | Export |
+|---|---|
+| `virtual:sveltepress/blog-posts-meta` | `posts: BlogPostMeta[]` |
+| `virtual:sveltepress/blog-tags-index` | `tags: Array<{ name, count }>` |
+| `virtual:sveltepress/blog-categories-index` | `categories: Array<{ name, count }>` |
+| `virtual:sveltepress/blog-config` | `blogConfig: BlogThemeOptions` |
+
+Per-post, per-tag ও per-category record `virtual:sveltepress/blog-post/<slug>`-এর মতো literal module ID দিয়েও পাওয়া যায়। `virtual:sveltepress/blog-runtime` server load-এর absolute cache path দেয় এবং client component-এ import করা যাবে না।
 
 ## সাবপাথে ডিপ্লয়
 
@@ -94,7 +111,7 @@ blogTheme({
 
 ```bash
 BASE_PATH=/repo/blog SITE_URL=https://user.github.io/repo/blog \
-  pnpm vite build && pnpm pagefind --site dist
+  pnpm build
 ```
 
 থিম কম্পোনেন্টের সব ইন্টারনাল লিংক SvelteKit-এর `$app/paths` `base` ব্যবহার করে, তাই সাবপাথের নিচে এগুলো সঠিকভাবে resolve হয়। OG ইমেজ URL এবং RSS আইটেম URL `SITE_URL` ব্যবহার করে, যাতে সোশ্যাল ক্রলার পূর্ণ-কোয়ালিফাইড URL পায়।
