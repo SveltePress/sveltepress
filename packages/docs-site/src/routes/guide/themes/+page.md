@@ -10,7 +10,7 @@ Read [Vite plugin options](/reference/vite-plugin/) and [Default theme options](
 
 | Choose | Best for | Content model | Search |
 |---|---|---|---|
-| Default theme | Documentation, product guides, API references | SvelteKit routes written as Markdown or Svelte | Algolia DocSearch, Meilisearch, or a custom component |
+| Default theme | Documentation, product guides, API references | SvelteKit routes written as Markdown or Svelte | Algolia DocSearch; the custom-search hook is not production-ready |
 | Blog theme | Editorial sites and chronological publications | Markdown files in `src/posts` plus generated routes | Built-in Pagefind integration |
 
 ## Default theme

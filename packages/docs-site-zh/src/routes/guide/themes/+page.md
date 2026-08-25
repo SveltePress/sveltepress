@@ -10,7 +10,7 @@ title: 主题
 
 | 选择 | 适用场景 | 内容模型 | 搜索 |
 |---|---|---|---|
-| 默认主题 | 文档、产品指南和 API 参考 | 使用 Markdown 或 Svelte 编写的 SvelteKit 路由 | Algolia DocSearch、Meilisearch 或自定义组件 |
+| 默认主题 | 文档、产品指南和 API 参考 | 使用 Markdown 或 Svelte 编写的 SvelteKit 路由 | Algolia DocSearch；自定义搜索钩子暂不可用于生产环境 |
 | 博客主题 | 编辑型站点和按时间发布的内容 | `src/posts` 中的 Markdown 与自动生成路由 | 内置 Pagefind |
 
 ## 默认主题

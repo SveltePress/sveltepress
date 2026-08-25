@@ -119,6 +119,36 @@ for (const path of activeFiles) {
   }
 }
 
+const defaultThemeSearchAssertions = {
+  'docs-site': {
+    label: 'Default theme',
+    search: 'Algolia DocSearch; the custom-search hook is not production-ready',
+  },
+  'docs-site-zh': {
+    label: '默认主题',
+    search: 'Algolia DocSearch；自定义搜索钩子暂不可用于生产环境',
+  },
+  'docs-site-bn': {
+    label: 'Default theme',
+    search: 'Algolia DocSearch; custom-search hook এখনও production-ready নয়',
+  },
+}
+
+for (const [site, expected] of Object.entries(defaultThemeSearchAssertions)) {
+  const path = join(root, 'packages', site, 'src', 'routes', 'guide', 'themes', '+page.md')
+  const defaultThemeRow = read(path)
+    .split('\n')
+    .find(line => line.startsWith(`| ${expected.label} |`))
+
+  if (!defaultThemeRow) {
+    fail(`${site} theme comparison is missing its default-theme row`)
+    continue
+  }
+  const searchColumn = defaultThemeRow.split('|').at(-2)?.trim()
+  if (searchColumn !== expected.search)
+    fail(`${site} default-theme search claim must be: ${expected.search}`)
+}
+
 const llmsOptions = interfaceKeys(join(root, 'packages', 'vite', 'src', 'types.ts'), 'LlmsConfig')
 const defaultThemeOptions = interfaceKeys(join(root, 'packages', 'theme-default', 'types.d.ts'), 'DefaultThemeOptions')
 const blogThemeOptions = interfaceKeys(join(root, 'packages', 'theme-blog', 'src', 'types.ts'), 'BlogThemeOptions')

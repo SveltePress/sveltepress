@@ -10,7 +10,7 @@ title: থিম
 
 | পছন্দ | উপযোগী ক্ষেত্র | Content model | Search |
 |---|---|---|---|
-| Default theme | Documentation, product guide ও API reference | Markdown অথবা Svelte-এ লেখা SvelteKit route | Algolia DocSearch, Meilisearch অথবা custom component |
+| Default theme | Documentation, product guide ও API reference | Markdown অথবা Svelte-এ লেখা SvelteKit route | Algolia DocSearch; custom-search hook এখনও production-ready নয় |
 | Blog theme | Editorial site ও সময়ভিত্তিক publication | `src/posts`-এর Markdown এবং generated route | Built-in Pagefind |
 
 ## ডিফল্ট থিম
