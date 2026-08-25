@@ -20,6 +20,8 @@ defaultTheme({
 })
 ```
 
+> **Known production build bug:** the custom-search API and Meilisearch component are supported, and this source-path configuration works in development. The current default-theme runtime leaves the `.svelte` path as a browser import, so a static production build does not bundle it yet. Track this as a default-theme bundling bug rather than an unsupported Meilisearch feature, and verify your deployment while that runtime path is being fixed.
+
 Create a wrapper component:
 
 ```svelte

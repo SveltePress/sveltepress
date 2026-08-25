@@ -101,10 +101,18 @@ export default config
 
 ### `search`
 
-Reserved custom-search hook; type `Component | string`। এটি production-ready নয়: theme option serialize হলে component হারিয়ে যায় এবং local string path browser-এর runtime import-এর জন্য bundle হয় না। এখন এটি configure করবেন না; `docsearch` ব্যবহার করুন। বিস্তারিত [search guide](/guide/default-theme/search/)-এ আছে।
+Supported custom-search hook; type `Component | string`। `@sveltepress/meilisearch`-এর মতো Svelte search component integrate করতে এটি ব্যবহার করুন। String value wrapper component-এর source path নির্দেশ করে:
 
-:::warning[বর্তমান সীমাবদ্ধতা]
-Public type-এ `search` থাকলেও এটি এখন কার্যকর production contract নয়।
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  search: '/src/lib/MeilisearchSearch.svelte',
+})
+```
+
+:::warning[Known production build bug]
+এই public API এবং M Search integration supported, কিন্তু বর্তমান default-theme runtime source `.svelte` path-কে static production output-এ bundle করে না। সরাসরি component দিলেও theme-option serialization সেটি বাদ দেয়। এটি production bundling bug, unsupported feature নয়। Wrapper setup এবং deployment caveat-এর জন্য [search guide](/guide/default-theme/search/) দেখুন।
 :::
 
 ### `docsearch`

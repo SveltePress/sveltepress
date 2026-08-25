@@ -124,10 +124,18 @@ Would add gtag script in site head if provided.
 
 ### `search`
 
-Reserved custom-search hook with type `Component | string`. It is not production-ready: components are lost when theme options are serialized, while local string paths are not bundled for the browser's runtime import. Do not configure it yet; use `docsearch` instead. See the [search guide](/guide/default-theme/search/) for details.
+The supported custom-search hook, with type `Component | string`. Use it to integrate a Svelte search component such as `@sveltepress/meilisearch`. A string identifies the wrapper component's source path:
 
-:::warning[Current limitation]
-Although `search` remains in the public type, it is not a working production contract.
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  search: '/src/lib/MeilisearchSearch.svelte',
+})
+```
+
+:::warning[Known production build bug]
+This public API and M Search integration are supported, but the current default-theme runtime does not bundle a source `.svelte` path into static production output. Passing a component directly is also lost during theme-option serialization. This is a production bundling bug, not an unsupported feature. See the [search guide](/guide/default-theme/search/) for the wrapper setup and deployment caveat.
 :::
 
 ### `docsearch`

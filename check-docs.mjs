@@ -31,6 +31,22 @@ function expectTokens(path, tokens, label) {
   }
 }
 
+function expectSubstrings(path, expectations, label) {
+  const content = read(path)
+  for (const [substring, description] of expectations) {
+    if (!content.includes(substring))
+      fail(`${label} is missing ${description}: ${relative(root, path)}`)
+  }
+}
+
+function rejectPatterns(path, patterns, label) {
+  const content = read(path)
+  for (const pattern of patterns) {
+    if (pattern.test(content))
+      fail(`${label} contains a stale unsupported-search claim: ${relative(root, path)}`)
+  }
+}
+
 function interfaceKeys(path, interfaceName) {
   const source = ts.createSourceFile(path, read(path), ts.ScriptTarget.Latest, true)
   let keys
@@ -108,7 +124,6 @@ const forbidden = [
   [/pnpm vite build && pnpm pagefind --site dist/, 'unrepeatable blog build command'],
   [/pnpm install && pnpm dev/, 'ambiguous monorepo demo command'],
   [/search:\s*['"]@sveltepress\/meilisearch\/Search\.svelte['"]/, 'Meilisearch component without required props'],
-  [/search:\s*['"]\/src\//, 'unsupported custom search path example'],
 ]
 
 for (const path of activeFiles) {
@@ -119,34 +134,76 @@ for (const path of activeFiles) {
   }
 }
 
-const defaultThemeSearchAssertions = {
+const defaultThemeSearchDocs = {
   'docs-site': {
     label: 'Default theme',
-    search: 'Algolia DocSearch; the custom-search hook is not production-ready',
+    caveatMarker: 'production build bug',
+    guideSupportMarker: 'supports **Algolia DocSearch** through `docsearch` and custom search components through `search`, including `@sveltepress/meilisearch`',
+    referenceSupportMarker: 'The supported custom-search hook, with type `Component | string`. Use it to integrate a Svelte search component such as `@sveltepress/meilisearch`.',
+    staleClaimPatterns: [
+      /not production-ready/i,
+      /not a working production contract/i,
+      /Do not use either through `defaultTheme\(\{ search \}\)` in production yet/i,
+    ],
   },
   'docs-site-zh': {
     label: '默认主题',
-    search: 'Algolia DocSearch；自定义搜索钩子暂不可用于生产环境',
+    caveatMarker: '生产构建缺陷',
+    guideSupportMarker: '默认主题支持通过 `docsearch` 接入 **Algolia DocSearch**，也支持通过 `search` 接入自定义搜索组件，包括 `@sveltepress/meilisearch`',
+    referenceSupportMarker: '受支持的自定义搜索入口，类型为 `Component | string`，可用于接入 `@sveltepress/meilisearch` 等 Svelte 搜索组件。',
+    staleClaimPatterns: [/尚不能用于生产|暂时不要配置|并不是可用的生产合同/],
   },
   'docs-site-bn': {
     label: 'Default theme',
-    search: 'Algolia DocSearch; custom-search hook এখনও production-ready নয়',
+    caveatMarker: 'production build bug',
+    guideSupportMarker: 'Default theme `docsearch` দিয়ে **Algolia DocSearch** এবং `search` দিয়ে custom search component সমর্থন করে, যার মধ্যে `@sveltepress/meilisearch`-ও আছে',
+    referenceSupportMarker: 'Supported custom-search hook; type `Component | string`। `@sveltepress/meilisearch`-এর মতো Svelte search component integrate করতে এটি ব্যবহার করুন।',
+    staleClaimPatterns: [/production-ready নয়|কার্যকর production contract নয়/],
   },
 }
 
-for (const [site, expected] of Object.entries(defaultThemeSearchAssertions)) {
+for (const [site, docsConfig] of Object.entries(defaultThemeSearchDocs)) {
   const path = join(root, 'packages', site, 'src', 'routes', 'guide', 'themes', '+page.md')
   const defaultThemeRow = read(path)
     .split('\n')
-    .find(line => line.startsWith(`| ${expected.label} |`))
+    .find(line => line.startsWith(`| ${docsConfig.label} |`))
 
   if (!defaultThemeRow) {
     fail(`${site} theme comparison is missing its default-theme row`)
     continue
   }
-  const searchColumn = defaultThemeRow.split('|').at(-2)?.trim()
-  if (searchColumn !== expected.search)
-    fail(`${site} default-theme search claim must be: ${expected.search}`)
+  for (const integration of ['Algolia DocSearch', 'Meilisearch']) {
+    if (!defaultThemeRow.includes(integration))
+      fail(`${site} default-theme row must list ${integration} support`)
+  }
+
+  const docsPages = [
+    {
+      label: 'search guide',
+      path: join(root, 'packages', site, 'src', 'routes', 'guide', 'default-theme', 'search', '+page.md'),
+      supportMarker: docsConfig.guideSupportMarker,
+    },
+    {
+      label: 'default-theme reference',
+      path: join(root, 'packages', site, 'src', 'routes', 'reference', 'default-theme', '+page.md'),
+      supportMarker: docsConfig.referenceSupportMarker,
+    },
+  ]
+  for (const docsPage of docsPages) {
+    expectSubstrings(
+      docsPage.path,
+      [
+        [docsPage.supportMarker, 'a positive Meilisearch support statement'],
+        [docsConfig.caveatMarker, 'the known production build caveat'],
+      ],
+      `${site} ${docsPage.label}`,
+    )
+    rejectPatterns(
+      docsPage.path,
+      docsConfig.staleClaimPatterns,
+      `${site} ${docsPage.label}`,
+    )
+  }
 }
 
 const llmsOptions = interfaceKeys(join(root, 'packages', 'vite', 'src', 'types.ts'), 'LlmsConfig')

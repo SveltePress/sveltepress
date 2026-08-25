@@ -120,10 +120,18 @@ Logo 图片
 
 ### `search`
 
-预留的自定义搜索入口，类型为 `Component | string`。该入口尚不能用于生产：主题配置序列化时会丢弃组件，本地字符串路径也不会进入浏览器运行时导入所需的构建产物。暂时不要配置，请改用 `docsearch`。详情见[搜索指南](/guide/default-theme/search/)。
+受支持的自定义搜索入口，类型为 `Component | string`，可用于接入 `@sveltepress/meilisearch` 等 Svelte 搜索组件。字符串用于指定包装组件的源码路径：
 
-:::warning[当前限制]
-尽管 `search` 仍存在于公开类型中，它目前并不是可用的生产合同。
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  search: '/src/lib/MeilisearchSearch.svelte',
+})
+```
+
+:::warning[已知生产构建缺陷]
+该公开 API 和 M Search 接入均受支持，但当前默认主题运行时不会把源码 `.svelte` 路径打包进静态生产产物；直接传入组件也会在主题配置序列化时丢失。这是生产构建缺陷，并非功能不受支持。包装组件用法和部署注意事项见[搜索指南](/guide/default-theme/search/)。
 :::
 
 ### `docsearch`

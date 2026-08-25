@@ -2,7 +2,7 @@
 title: 搜索
 ---
 
-对于生产站点，默认主题目前仅支持通过内置 `docsearch` 选项接入 **Algolia DocSearch**。
+默认主题支持通过 `docsearch` 接入 **Algolia DocSearch**，也支持通过 `search` 接入自定义搜索组件，包括 `@sveltepress/meilisearch`。
 
 ## Algolia DocSearch
 
@@ -34,11 +34,40 @@ export default defineConfig({
 DocSearch 对开源文档站点免费，可前往 [docsearch.algolia.com](https://docsearch.algolia.com/apply/) 申请。
 :::
 
-## 自定义搜索与 Meilisearch 的当前状态
+## Meilisearch
 
-公开类型仍保留 `search?: Component | string`，仓库中也有 `@sveltepress/meilisearch` 组件，但目前不要通过 `defaultTheme({ search })` 用于生产环境：
+`@sveltepress/meilisearch` 是官方支持的 Meilisearch 搜索组件。先安装依赖：
 
-- 主题配置序列化时会丢弃组件对象；
-- 字符串路径由浏览器在运行时导入，本地 `/src/...` 模块不会进入生产构建产物。
+@install-pkg(@sveltepress/meilisearch)
 
-在运行时接入方式重构前，请使用 `docsearch`，或在默认主题的 `search` 选项之外自行实现搜索。这里保留该选项的说明，是为了明确当前限制，并不代表它已经形成可用的生产合同。
+创建一个包装组件，并传入 Meilisearch 连接配置：
+
+```svelte title="src/lib/MeilisearchSearch.svelte"
+<script lang="ts">
+  import Search from '@sveltepress/meilisearch/Search.svelte'
+</script>
+
+<Search
+  host="https://search.example.com"
+  apiKey="YOUR_SEARCH_ONLY_KEY"
+  indexName="docs"
+/>
+```
+
+然后把包装组件路径传给默认主题的自定义搜索入口：
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  search: '/src/lib/MeilisearchSearch.svelte',
+})
+```
+
+该组件只查询已经建立的 Meilisearch 索引，不负责创建索引。每条记录应提供 `id`、`title`、`content`，以及 `url` 或 `path`。浏览器端必须使用仅有搜索权限的 API Key。
+
+:::warning[已知生产构建缺陷]
+自定义搜索 API 和 `@sveltepress/meilisearch` 组件均受支持，上述源码路径配置在开发环境中可以工作。但当前默认主题运行时会把 `.svelte` 路径留给浏览器动态导入，因此静态生产构建不会打包这个包装组件；直接传入组件对象也会在主题配置序列化时丢失。这是默认主题的生产构建缺陷，并不表示不支持 M Search。在运行时接入修复前，请务必验证实际生产部署。
+:::
+
+如需接入其他搜索服务，也可以使用同一个 `search` 入口提供自己的 Svelte 包装组件。同时配置 `search` 和 `docsearch` 时，优先使用 `search`。
