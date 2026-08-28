@@ -71,11 +71,12 @@
 
     {#if !changes}
       <p class="change-status" role="status">{empty}</p>
-    {:else if changes.baselineVersionId === null}
-      <p class="change-status" role="status">{noBaseline}</p>
-    {:else if changes && changes.newPages.length === 0 && changes.updatedPages.length === 0}
-      <p class="change-status" role="status">{empty}</p>
-    {:else if changes}
+    {:else}
+      {#if changes.baselineVersionId === null}
+        <p class="change-status" role="status">{noBaseline}</p>
+      {:else if changes.newPages.length === 0 && changes.updatedPages.length === 0}
+        <p class="change-status" role="status">{empty}</p>
+      {/if}
       <section aria-labelledby="version-new-pages">
         <h2 id="version-new-pages">{newPagesLabel}</h2>
         {#if changes.newPages.length}
@@ -90,7 +91,7 @@
             {/each}
           </ul>
         {:else}
-          <p class="change-status" role="status">{empty}</p>
+          <p class="change-status">{empty}</p>
         {/if}
       </section>
 
@@ -129,7 +130,7 @@
             {/each}
           </ul>
         {:else}
-          <p class="change-status" role="status">{empty}</p>
+          <p class="change-status">{empty}</p>
         {/if}
       </section>
     {/if}

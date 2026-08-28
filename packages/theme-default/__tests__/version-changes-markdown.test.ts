@@ -24,6 +24,7 @@ describe('version change markdown', () => {
       remarkPlugins: [versionChanges({ manifest, newLabel: '新增于 {version}' })],
     })
     expect(code).toContain('id="hot-reload"')
+    expect(code).toContain('tabindex="-1"')
     expect(code).toContain('新增于 Current')
     expect(code).toContain('Hot reload')
     expect(code).toContain('No restart needed.')

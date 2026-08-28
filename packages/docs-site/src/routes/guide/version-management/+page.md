@@ -114,6 +114,8 @@ The Default Theme displays page and section badges only while browsing the versi
 <VersionChanges />
 ```
 
+See the official site's live catalog on the [What's new page](/whats-new/).
+
 `VersionChanges` defaults to the current version and uses `?version={id}` for historical selections. Current links stay unprefixed; historical links target `/v/{id}/...`, including exact section anchors.
 
 Custom themes can read the same immutable data from `virtual:sveltepress/versions`:

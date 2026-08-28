@@ -8,10 +8,6 @@ export default [
     to: '/reference/vite-plugin/',
   },
   {
-    title: '新增内容',
-    to: '/whats-new/',
-  },
-  {
     title: '博客主题',
     to: '/guide/blog-theme/getting-started/',
   },

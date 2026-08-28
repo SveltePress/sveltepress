@@ -30,9 +30,11 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   llms,
   versions,
 }) => {
-  const versionManifest = versions === false
+  const siteRoot = process.cwd()
+  const manifestFile = versions?.manifest
+  let versionManifest = versions === false
     ? null
-    : loadVersionManifest(process.cwd(), versions?.manifest)
+    : loadVersionManifest(siteRoot, manifestFile)
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
 
@@ -111,6 +113,10 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         },
       },
     }),
+    configureServer(server) {
+      if (versionManifest)
+        server.watcher.add(resolve(siteRoot, manifestFile ?? 'sveltepress.versions.json'))
+    },
     resolveId(id) {
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return SVELTEPRESS_SITE_CONFIG_MODULE
@@ -153,6 +159,17 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     },
     async handleHotUpdate(ctx) {
       const { file } = ctx
+      const manifestPath = resolve(siteRoot, manifestFile ?? 'sveltepress.versions.json')
+      const versionSourceChanged = Boolean(versionManifest) && (
+        PAGE_OR_LAYOUT_RE.test(file) || file === manifestPath
+      )
+      if (versionSourceChanged) {
+        versionManifest = loadVersionManifest(siteRoot, manifestFile)
+        const virtualModule = ctx.server.moduleGraph.getModuleById(SVELTEPRESS_VERSIONS_MODULE)
+        if (virtualModule)
+          ctx.server.moduleGraph.invalidateModule(virtualModule)
+        ctx.server.ws.send({ type: 'full-reload' })
+      }
       if (PAGE_OR_LAYOUT_RE.test(file)) {
         const src = await ctx.read()
         // overwrite read() to return content parsed by md-to-svelte so that sveltekit can handle the HMR

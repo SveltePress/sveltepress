@@ -1,8 +1,8 @@
 import type { ResolvedTheme, ThemeVitePlugins, VersionPluginOptions } from '@sveltepress/vite'
+import type { loadVersionManifest } from '@sveltepress/vite/versioning'
 import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
 import process from 'node:process'
-import { loadVersionManifest } from '@sveltepress/vite/versioning'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import { SERVICE_WORKER_PATH } from './constants.js'
 import admonitions from './markdown/admonitions.js'
@@ -13,6 +13,7 @@ import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
 import versionChanges from './markdown/version-changes.js'
+import { createVersionManifestReader } from './version-manifest.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
 export { generateSidebar, isAutoSidebarOptions } from './auto-sidebar.js'
@@ -31,11 +32,10 @@ export const themeOptionsRef: {
 const defaultTheme: ThemeDefault = (options) => {
   themeOptionsRef.value = options
   let versionOptions: VersionPluginOptions
+  const readVersionManifest = createVersionManifestReader(process.cwd(), () => versionOptions)
   let versionManifest = null as ReturnType<typeof loadVersionManifest>
   const vitePlugins = (async (corePlugin) => {
-    versionManifest = versionOptions === false
-      ? null
-      : loadVersionManifest(process.cwd(), versionOptions?.manifest)
+    versionManifest = readVersionManifest()
     const plugins = [
       ...await createPreCorePlugins(options, versionManifest),
       corePlugin,
@@ -105,7 +105,7 @@ const defaultTheme: ThemeDefault = (options) => {
     remarkPlugins: [
       liveCode,
       versionChanges({
-        getManifest: () => versionManifest,
+        getManifest: readVersionManifest,
         newLabel: options?.i18n?.versionNewLabel,
       }),
       admonitions,

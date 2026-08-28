@@ -52,6 +52,7 @@ export default function versionChanges(options: VersionChangesOptions): Plugin {
           hName: 'section',
           hProperties: {
             id,
+            tabIndex: -1,
             className: 'version-change-section my-6 rounded-lg b-1 b-solid b-black/8 dark:b-white/10 p-4 scroll-mt-24',
           },
         },

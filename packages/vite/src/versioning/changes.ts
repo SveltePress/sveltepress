@@ -6,6 +6,9 @@ import type {
 } from './index.js'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
+import remarkDirective from 'remark-directive'
+import remarkParse from 'remark-parse'
+import { unified } from 'unified'
 import { parse } from 'yaml'
 
 interface PageChangeMetadata {
@@ -141,7 +144,7 @@ function scanPages(siteRoot: string, manifest: VersionManifest, versionId: strin
   const pages = new Map<string, PageChangeMetadata>()
   if (!existsSync(root))
     return pages
-  visit(root, (path) => {
+  visitFiles(root, (path) => {
     if (!/\+page(?:@[\w-]+)?\.(?:md|svelte)$/.test(path))
       return
     const relativePath = relative(root, path).split(sep).join('/')
@@ -179,13 +182,23 @@ function parsePageChangeMetadata(source: string, path: string, route: string, kn
 
   const sections: VersionChangeSection[] = []
   const ids = new Set<string>()
-  const directive = /:{3,}since(?:\[([^\]]*)\])?(?:\{([^}]*)\})?/g
-  const markdown = path.endsWith('.md') ? stripMarkdownCode(source) : ''
-  for (const match of markdown.matchAll(directive)) {
-    const title = match[1]?.trim()
-    const { attributes, errors: attributeErrors } = parseAttributes(match[2] ?? '')
+  const lines = source.split(/\r?\n/)
+  const parsedLines = new Set<number>()
+  const directives = path.endsWith('.md') ? findSinceDirectives(source) : []
+  for (const directive of directives) {
+    const line = directive.position?.start.line
+    const endLine = directive.position?.end.line
+    if (line)
+      parsedLines.add(line)
+    const header = line ? lines[line - 1] ?? '' : ''
+    const attributeSource = header.match(/\{(.*)\}\s*$/)?.[1] ?? ''
+    const { attributes, errors: attributeErrors } = parseAttributes(attributeSource)
     errors.push(...attributeErrors.map(error => `since marker ${error}`))
     rejectUnknown(attributes, ['version', 'id', 'summary'], 'since marker', errors)
+    if (!endLine || !/^:{3,}$/.test(lines[endLine - 1]?.trim() ?? ''))
+      errors.push('since marker must be closed with a standalone ::: line.')
+    const label = directive.children?.[0]
+    const title = label?.data?.directiveLabel ? collectText(label).trim() : ''
     const version = attributes.version
     const id = attributes.id
     if (!title)
@@ -210,6 +223,12 @@ function parsePageChangeMetadata(source: string, path: string, route: string, kn
         introducedIn: version,
       })
     }
+  }
+  if (path.endsWith('.md')) {
+    stripMarkdownCode(source).split('\n').forEach((line, index) => {
+      if (/^ {0,3}:{3,}since\b/.test(line) && !parsedLines.has(index + 1))
+        errors.push(`since marker on line ${index + 1} has invalid Markdown directive syntax.`)
+    })
   }
   if (errors.length)
     throw new Error(`[sveltepress:versions] Invalid version changes in ${path}:\n- ${errors.join('\n- ')}`)
@@ -329,6 +348,34 @@ function parseAttributes(source: string): { attributes: Record<string, string>, 
   return { attributes, errors }
 }
 
+interface DirectiveNode {
+  type?: string
+  name?: string
+  value?: string
+  data?: { directiveLabel?: boolean }
+  children?: DirectiveNode[]
+  position?: { start: { line: number }, end: { line: number } }
+}
+
+function findSinceDirectives(source: string): DirectiveNode[] {
+  const tree = unified().use(remarkParse).use(remarkDirective as any).parse(source) as DirectiveNode
+  const directives: DirectiveNode[] = []
+  walkTree(tree, (node) => {
+    if (node.type === 'containerDirective' && node.name === 'since')
+      directives.push(node)
+  })
+  return directives
+}
+
+function walkTree(node: DirectiveNode, callback: (node: DirectiveNode) => void) {
+  callback(node)
+  node.children?.forEach(child => walkTree(child, callback))
+}
+
+function collectText(node: DirectiveNode): string {
+  return node.value ?? node.children?.map(collectText).join('') ?? ''
+}
+
 function validateChangePage(
   value: unknown,
   context: string,
@@ -390,11 +437,11 @@ function rejectUnknown(value: Record<string, unknown>, allowed: string[], contex
   }
 }
 
-function visit(directory: string, callback: (path: string) => void) {
+function visitFiles(directory: string, callback: (path: string) => void) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     const path = join(directory, entry.name)
     if (entry.isDirectory())
-      visit(path, callback)
+      visitFiles(path, callback)
     else if (entry.isFile())
       callback(path)
   }

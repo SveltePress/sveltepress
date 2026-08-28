@@ -97,6 +97,8 @@ Default Theme page ও section badge শুধু সেই version-এ দে�
 <VersionChanges />
 ```
 
+এই site-এর route উদাহরণ [নতুন কী page](/whats-new/)-এ দেখা যাবে।
+
 Component current version দিয়ে শুরু করে এবং historical selection-এর জন্য `?version={id}` ব্যবহার করে। Current link unprefixed থাকে; historical link `/v/{id}/...` ও নির্দিষ্ট section anchor-এ যায়।
 
 Custom theme একই frozen data পড়তে পারে:

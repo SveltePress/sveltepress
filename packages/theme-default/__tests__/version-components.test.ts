@@ -95,6 +95,8 @@ describe('rendered documentation version UI', () => {
     setPage('/whats-new/?version=2026-08-26')
     let view = render(VersionChanges)
     expect(view.getByRole('status').textContent).toContain('首个版本')
+    expect(view.getByRole('heading', { name: '新增页面' })).toBeTruthy()
+    expect(view.getByRole('heading', { name: '更新页面' })).toBeTruthy()
 
     cleanup()
     setPage('/whats-new/?version=2026-08-27')

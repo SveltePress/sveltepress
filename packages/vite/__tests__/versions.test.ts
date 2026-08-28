@@ -192,6 +192,29 @@ describe('version manifest', () => {
     ])
   })
 
+  it('ignores since-like text that is not a Markdown container directive', () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-changes-'))
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(
+      join(root, 'src/routes/guide/+page.md'),
+      'A sentence with :::since[Inline]{version="v9" id="inline"} text.',
+    )
+    const value = manifest()
+    value.current.routes = ['/guide/']
+    value.versions[0].routes = ['/guide/']
+    expect(computeVersionChangeSet(root, value).updatedPages).toEqual([])
+  })
+
+  it('rejects an unclosed since container that cannot render a stable anchor', () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-changes-'))
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), [
+      ':::since[Open marker]{version="v9" id="open-marker"}',
+      'This container never closes.',
+    ].join('\n'))
+    expect(() => computeVersionChangeSet(root, manifest())).toThrow(/since marker must be closed/)
+  })
+
   it('rejects invalid versionChanges frontmatter types', () => {
     const root = mkdtempSync(join(tmpdir(), 'sveltepress-changes-'))
     mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
