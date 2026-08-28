@@ -1,5 +1,11 @@
 # @sveltepress/vite
 
+## 1.6.1
+
+### Patch Changes
+
+- [`4136508`](https://github.com/Blackman99/sveltepress/commit/413650848152edacb3b8192422c8ec46c36d167e) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the version runtime browser-safe, and render lifecycle states as compact badges without wrapping date-based version labels.
+
 ## 1.6.0
 
 ### Minor Changes
