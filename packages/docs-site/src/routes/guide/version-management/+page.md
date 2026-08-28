@@ -80,3 +80,52 @@ Version-aware builds also:
 * exclude historical HTML from PWA precaching and fetch it with a network-first strategy.
 
 Treat snapshot directories as generated release artifacts: review and commit them, but do not edit them by hand. Make corrections in the current routes and create the next snapshot.
+
+## Describe what changed
+
+SveltePress compares the current route inventory with the most recent historical version in manifest order. A route that only exists in the current version is listed as a new page. Use page frontmatter to provide a focused summary or keep a page out of the change catalog:
+
+```yaml
+---
+title: What's new
+versionChanges:
+  exclude: true
+  summary: Optional overview summary
+---
+```
+
+For an existing Markdown page, mark only the important new section. The version, title, and page-unique stable ID are required:
+
+```md
+:::since[Hot reload configuration]{version="8.2" id="hot-reload" summary="No restart required"}
+New documentation content.
+:::
+```
+
+Unknown versions, duplicate IDs, unknown fields, and invalid field types stop development and production builds. New pages appear only under **New pages**; their `since` sections are not repeated under **Updated pages**. The first managed version has no comparison baseline and does not report the entire site as new.
+
+The Default Theme displays page and section badges only while browsing the version that introduced them. Add a changelog route wherever it fits your site:
+
+```svelte title="src/routes/whats-new/+page.svelte"
+<script>
+  import VersionChanges from '@sveltepress/theme-default/VersionChanges.svelte'
+</script>
+
+<VersionChanges />
+```
+
+`VersionChanges` defaults to the current version and uses `?version={id}` for historical selections. Current links stay unprefixed; historical links target `/v/{id}/...`, including exact section anchors.
+
+Custom themes can read the same immutable data from `virtual:sveltepress/versions`:
+
+```ts
+import {
+  changeSets,
+  resolveVersionChanges,
+} from 'virtual:sveltepress/versions'
+
+const currentChanges = resolveVersionChanges()
+const historicalChanges = resolveVersionChanges('8.1')
+```
+
+`versions create` freezes the outgoing current change set in `.sveltepress-version.json`. Historical catalogs are always read from that metadata rather than reconstructed from later current documentation, and `versions validate` detects malformed markers, invalid references, duplicate anchors, and snapshot drift.

@@ -12,6 +12,7 @@ import highlighter, { initHighlighter } from './markdown/highlighter.js'
 import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
+import versionChanges from './markdown/version-changes.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
 export { generateSidebar, isAutoSidebarOptions } from './auto-sidebar.js'
@@ -30,8 +31,9 @@ export const themeOptionsRef: {
 const defaultTheme: ThemeDefault = (options) => {
   themeOptionsRef.value = options
   let versionOptions: VersionPluginOptions
+  let versionManifest = null as ReturnType<typeof loadVersionManifest>
   const vitePlugins = (async (corePlugin) => {
-    const versionManifest = versionOptions === false
+    versionManifest = versionOptions === false
       ? null
       : loadVersionManifest(process.cwd(), versionOptions?.manifest)
     const plugins = [
@@ -102,6 +104,10 @@ const defaultTheme: ThemeDefault = (options) => {
     vitePlugins,
     remarkPlugins: [
       liveCode,
+      versionChanges({
+        getManifest: () => versionManifest,
+        newLabel: options?.i18n?.versionNewLabel,
+      }),
       admonitions,
       links,
       anchors,

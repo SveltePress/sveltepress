@@ -178,5 +178,11 @@
     "../vite/src/types.ts",
     "config/pwa.ts",
     "vite.config.ts"
-  ]
+  ],
+  "changes": {
+    "versionId": "2026-08-27",
+    "baselineVersionId": null,
+    "newPages": [],
+    "updatedPages": []
+  }
 }

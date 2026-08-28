@@ -39,6 +39,11 @@
       "types": "./dist/components/PageLayout.svelte.d.ts",
       "import": "./dist/components/PageLayout.svelte"
     },
+    "./VersionChanges.svelte": {
+      "svelte": "./dist/components/VersionChanges.svelte",
+      "types": "./dist/components/VersionChanges.svelte.d.ts",
+      "import": "./dist/components/VersionChanges.svelte"
+    },
     "./GlobalLayout.svelte": {
       "types": "./dist/components/GlobalLayout.svelte.d.ts",
       "import": "./dist/components/GlobalLayout.svelte",

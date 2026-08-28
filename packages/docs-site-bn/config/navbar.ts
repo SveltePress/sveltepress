@@ -10,6 +10,10 @@ export default [
     to: '/reference/vite-plugin/',
   },
   {
+    title: 'নতুন কী',
+    to: '/whats-new/',
+  },
+  {
     title: 'ব্লগ থিম',
     to: '/guide/blog-theme/getting-started/',
   },

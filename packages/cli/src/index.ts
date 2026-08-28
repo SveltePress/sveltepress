@@ -5,7 +5,12 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, r
 import { basename, dirname, join, relative, resolve, sep } from 'node:path'
 import process from 'node:process'
 import { resolveSveltepressThemeSnapshot } from '@sveltepress/vite'
-import { loadVersionManifest, validateVersionId, validateVersionManifest } from '@sveltepress/vite/versioning'
+import {
+  loadVersionManifest,
+  validateFrozenVersionChangeSets,
+  validateVersionId,
+  validateVersionManifest,
+} from '@sveltepress/vite/versioning'
 
 export interface CliIO {
   cwd: string
@@ -172,19 +177,21 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
       routes: manifest.current.routes ?? [],
       sidebar,
       sharedDependencies: dependencyReport.shared,
+      changes: manifest.current.changes,
     })
     renameSync(staging, target)
     snapshotCommitted = true
 
+    const { changes: _currentChanges, ...current } = manifest.current
     const previous: DocumentationVersion = {
-      ...manifest.current,
+      ...current,
       status: 'stable',
       routes: manifest.current.routes ?? [],
     }
     const nextManifest: VersionManifest = {
       ...manifest,
       current: { id: nextId, label: options.label ?? nextId },
-      versions: [previous, ...manifest.versions],
+      versions: [previous, ...manifest.versions.map(({ changes: _changes, ...version }) => version)],
     }
     validateVersionManifest(nextManifest)
     if (io.writeManifest)
@@ -212,6 +219,7 @@ function listVersions(io: CliIO) {
 
 function validateSite(io: CliIO) {
   const manifest = requireManifest(io.cwd)
+  validateFrozenVersionChangeSets(io.cwd, manifest)
   const routesRoot = join(io.cwd, 'src/routes')
   const baseRoot = join(io.cwd, 'src/routes', manifest.basePath.slice(1))
   const reports = [analyzeDependencies(

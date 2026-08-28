@@ -1,8 +1,10 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, sep } from 'node:path'
 import process from 'node:process'
+import { computeVersionChangeSet, validateVersionChangeSet } from './changes.js'
 
 export const DEFAULT_VERSION_MANIFEST = 'sveltepress.versions.json'
+export { computeVersionChangeSet, validateFrozenVersionChangeSets, validateVersionChangeSet } from './changes.js'
 export { generateVersionSitemap } from './output.js'
 
 export type VersionStatus = 'stable' | 'deprecated' | 'eol'
@@ -25,6 +27,28 @@ export interface DocumentationVersion {
   routes?: string[]
   sidebar?: Record<string, VersionNavigationItem[]>
   sharedDependencies?: string[]
+  changes?: VersionChangeSet
+}
+
+export interface VersionChangeSection {
+  id: string
+  title: string
+  summary?: string
+  introducedIn: string
+}
+
+export interface VersionChangePage {
+  route: string
+  title: string
+  summary?: string
+  sections: VersionChangeSection[]
+}
+
+export interface VersionChangeSet {
+  versionId: string
+  baselineVersionId: string | null
+  newPages: VersionChangePage[]
+  updatedPages: VersionChangePage[]
 }
 
 export interface VersionNavigationItem {
@@ -63,6 +87,8 @@ export interface VersionSwitchTarget {
 
 export interface VersionRuntime {
   manifest: VersionManifest | null
+  changeSets: Record<string, VersionChangeSet>
+  resolveVersionChanges: (versionId?: string) => VersionChangeSet | null
   resolveVersionContext: (pathname: string) => VersionContext | null
   resolveVersionedPath: (to: string, context: VersionContext | null) => string
   resolveVersionSwitch: (pathname: string, targetVersionId: string) => VersionSwitchTarget | null
@@ -177,8 +203,15 @@ export function loadVersionManifest(siteRoot = process.cwd(), manifestFile = DEF
       routes: normalizeRoutes(version.routes ?? metadata?.routes ?? scanRoutes(snapshotRoot)),
       sidebar: version.sidebar ?? metadata?.sidebar,
       sharedDependencies: metadata?.sharedDependencies,
+      changes: metadata?.changes,
     }
   })
+  const knownVersions = new Set([manifest.current.id, ...manifest.versions.map(version => version.id)])
+  for (const version of manifest.versions) {
+    if (version.changes)
+      validateVersionChangeSet(version.changes, `version "${version.id}" changes`, version.id, knownVersions)
+  }
+  manifest.current.changes = computeVersionChangeSet(siteRoot, manifest)
   return manifest
 }
 
@@ -222,8 +255,15 @@ export function resolveVersionedPath(to: string, context: VersionContext | null,
 }
 
 export function createVersionRuntime(manifest: VersionManifest | null): VersionRuntime {
+  const changeSets = Object.fromEntries(
+    manifest
+      ? [manifest.current, ...manifest.versions].filter(version => version.changes).map(version => [version.id, version.changes!])
+      : [],
+  )
   return {
     manifest,
+    changeSets,
+    resolveVersionChanges: versionId => manifest ? changeSets[versionId ?? manifest.current.id] ?? null : null,
     resolveVersionContext: pathname => resolveVersionContext(pathname, manifest),
     resolveVersionedPath: (to, context) => resolveVersionedPath(to, context, manifest),
     resolveVersionSwitch: (pathname, targetVersionId) => manifest ? resolveVersionSwitch(pathname, targetVersionId, manifest) : null,
@@ -243,14 +283,14 @@ function scanRoutes(root: string, excludedRoot?: string): string[] {
     })
 }
 
-function readSnapshotMetadata(snapshotRoot: string): Pick<DocumentationVersion, 'routes' | 'sidebar' | 'sharedDependencies'> | null {
+function readSnapshotMetadata(snapshotRoot: string): Pick<DocumentationVersion, 'routes' | 'sidebar' | 'sharedDependencies' | 'changes'> | null {
   const path = join(snapshotRoot, '.sveltepress-version.json')
   if (!existsSync(path))
     return null
   try {
     const metadata = JSON.parse(readFileSync(path, 'utf8')) as Record<string, unknown>
     const errors: string[] = []
-    rejectUnknownKeys(metadata, ['id', 'routes', 'sidebar', 'sharedDependencies'], 'snapshot metadata', errors)
+    rejectUnknownKeys(metadata, ['id', 'routes', 'sidebar', 'sharedDependencies', 'changes'], 'snapshot metadata', errors)
     if (typeof metadata.id !== 'string' || !validateVersionId(metadata.id))
       errors.push('snapshot metadata id is invalid.')
     if (!Array.isArray(metadata.routes) || !metadata.routes.every(route => typeof route === 'string' && route.startsWith('/')))
@@ -259,9 +299,17 @@ function readSnapshotMetadata(snapshotRoot: string): Pick<DocumentationVersion, 
       validateSidebar(metadata.sidebar, 'snapshot metadata sidebar', errors)
     if (!Array.isArray(metadata.sharedDependencies) || !metadata.sharedDependencies.every(item => typeof item === 'string'))
       errors.push('snapshot metadata sharedDependencies must be an array of strings.')
+    if (metadata.changes !== undefined) {
+      try {
+        validateVersionChangeSet(metadata.changes, 'snapshot metadata changes')
+      }
+      catch (error) {
+        errors.push((error as Error).message)
+      }
+    }
     if (errors.length)
       throw new Error(errors.join('\n- '))
-    return metadata as Pick<DocumentationVersion, 'routes' | 'sidebar' | 'sharedDependencies'>
+    return metadata as Pick<DocumentationVersion, 'routes' | 'sidebar' | 'sharedDependencies' | 'changes'>
   }
   catch (error) {
     throw new Error(`[sveltepress:versions] Cannot parse snapshot metadata for ${snapshotRoot}: ${(error as Error).message}`)

@@ -91,6 +91,26 @@ sveltepress({
 
 The current generator reads `+page.md` files only. Svelte-only pages and runtime data are not included. Generated files are written into `static/`, so decide whether to commit them or ignore and regenerate them consistently in CI.
 
+:::since[Version change discovery]{version="2026-08-28" id="version-change-discovery" summary="Build-time change catalogs are available to themes and custom pages."}
+### `versions`
+
+Document version management is discovered from `sveltepress.versions.json` by default. Disable discovery or choose another manifest path explicitly:
+
+```ts
+import { sveltepress } from '@sveltepress/vite'
+
+sveltepress({
+  versions: false,
+})
+
+sveltepress({
+  versions: { manifest: 'config/document-versions.json' },
+})
+```
+
+When enabled, `virtual:sveltepress/versions` exports `changeSets` and `resolveVersionChanges(versionId?)` alongside the manifest and route helpers. See [Document version management](/guide/version-management/) for snapshot and What’s New usage.
+:::
+
 ## ResolvedTheme
 
 ### `name`

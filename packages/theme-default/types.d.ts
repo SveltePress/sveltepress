@@ -105,6 +105,13 @@ declare module 'virtual:sveltepress/theme-default' {
       versionDeprecatedLabel?: string
       versionEolLabel?: string
       versionSearchUnavailable?: string
+      /** Template for page and section badges. Use `{version}` for the version label. */
+      versionNewLabel?: string
+      versionChangesSelector?: string
+      versionChangesNewPages?: string
+      versionChangesUpdatedPages?: string
+      versionChangesNoBaseline?: string
+      versionChangesEmpty?: string
     }
     preBuildIconifyIcons?: {
       [iconSetName: string]: string[]

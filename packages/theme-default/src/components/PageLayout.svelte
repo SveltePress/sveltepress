@@ -4,7 +4,11 @@
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    manifest,
+    resolveVersionChanges,
+    resolveVersionContext,
+  } from 'virtual:sveltepress/versions'
   import EditPage from './EditPage.svelte'
   import Home from './Home.svelte'
   import HeroCode from './home/HeroCode.svelte'
@@ -15,6 +19,20 @@
 
   const routeId = $derived(page.route.id)
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const versionChanges = $derived(
+    resolveVersionChanges(versionContext?.versionId),
+  )
+  const newPage = $derived(
+    versionChanges?.newPages.find(
+      changedPage => changedPage.route === versionContext?.logicalPath,
+    ),
+  )
+  const newPageLabel = $derived(
+    (themeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(
+      '{version}',
+      versionContext?.version.label ?? versionContext?.versionId ?? '',
+    ),
+  )
   const canonical = $derived(manifest ? page.url.pathname : null)
   const noIndex = $derived.by(() => {
     if (!versionContext?.historical) return false
@@ -82,6 +100,10 @@
         {#if fm.title}
           <h1 class="page-title">
             {fm.title}
+            {#if newPage}<span
+                class="version-new-badge ml-2 inline-flex align-middle items-center rounded-full bg-rose-50 dark:bg-rose-950/45 px-2.5 py-1 text-xs font-700 text-svp-primary-deep dark:text-svp-primary"
+                >{newPageLabel}</span
+              >{/if}
           </h1>
         {/if}
         {@render children?.()}

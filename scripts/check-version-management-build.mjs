@@ -26,8 +26,10 @@ const currentHome = join(official, 'index.html')
 const historicalHome = join(historicalRoot, 'index.html')
 const currentFeature = join(official, 'guide/version-management/index.html')
 const historicalFeature = join(historicalRoot, 'guide/version-management/index.html')
+const currentWhatsNew = join(official, 'whats-new/index.html')
+const currentViteReference = join(official, 'reference/vite-plugin/index.html')
 
-for (const required of [currentHome, historicalHome, currentFeature, join(official, 'llms.txt'), join(historicalRoot, 'llms.txt'), join(official, 'sitemap.xml'), join(official, 'sw.js')])
+for (const required of [currentHome, historicalHome, currentFeature, currentWhatsNew, currentViteReference, join(official, 'llms.txt'), join(historicalRoot, 'llms.txt'), join(official, 'sitemap.xml'), join(official, 'sw.js')])
   assert(existsSync(required), `Missing production artifact: ${required}`)
 assert(!existsSync(historicalFeature), 'A page added after the snapshot leaked into historical routes')
 
@@ -37,6 +39,11 @@ assert(historicalHtml.includes('<link rel="canonical" href="/v/2026-08-27/"'), '
 assert(historicalHtml.includes('This snapshot is preserved for compatibility.'), 'Historical lifecycle message is missing')
 assert(historicalHtml.includes('Search is not available for this documentation version.'), 'Historical search did not fail closed')
 assert(currentHtml.includes('2026-08-28') && historicalHtml.includes('2026-08-27'), 'Version selector labels are missing')
+const whatsNewHtml = read(currentWhatsNew)
+assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), 'What’s New groups are missing')
+assert(whatsNewHtml.includes('/guide/version-management/') && whatsNewHtml.includes('/reference/vite-plugin/#version-change-discovery'), 'What’s New links do not cover new and updated documentation')
+const viteReferenceHtml = read(currentViteReference)
+assert(viteReferenceHtml.includes('id="version-change-discovery"') && viteReferenceHtml.includes('New in 2026-08-28'), 'The real since marker was not rendered')
 
 const currentLlms = read(join(official, 'llms.txt'))
 const historicalLlms = read(join(historicalRoot, 'llms.txt'))

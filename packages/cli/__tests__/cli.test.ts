@@ -90,6 +90,62 @@ describe('sveltepress versions CLI', () => {
     const manifest = JSON.parse(readFileSync(join(root, 'sveltepress.versions.json'), 'utf8'))
     expect(manifest.current.id).toBe('v9')
     expect(manifest.versions[0]).toMatchObject({ id: 'v8', status: 'stable' })
+    const metadata = JSON.parse(readFileSync(join(root, 'src/routes/v/v8/.sveltepress-version.json'), 'utf8'))
+    expect(metadata.changes).toEqual({
+      versionId: 'v8',
+      baselineVersionId: null,
+      newPages: [],
+      updatedPages: [],
+    })
+  })
+
+  it('freezes new pages and marked updates against the previous snapshot', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    await invoke(root, ['versions', 'create', 'v9'])
+    mkdirSync(join(root, 'src/routes/reference/new-api'), { recursive: true })
+    writeFileSync(join(root, 'src/routes/reference/new-api/+page.md'), [
+      '---',
+      'title: New API',
+      'versionChanges:',
+      '  summary: A focused overview',
+      '---',
+      '# New API',
+    ].join('\n'))
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), [
+      '---',
+      'title: Guide',
+      '---',
+      ':::since[Fast refresh]{version="v9" id="fast-refresh"}',
+      'No restart is needed.',
+      ':::',
+    ].join('\n'))
+
+    expect(await invoke(root, ['versions', 'create', 'v10'])).toMatchObject({ code: 0 })
+    const metadata = JSON.parse(readFileSync(join(root, 'src/routes/v/v9/.sveltepress-version.json'), 'utf8'))
+    expect(metadata.changes).toEqual({
+      versionId: 'v9',
+      baselineVersionId: 'v8',
+      newPages: [{ route: '/reference/new-api/', title: 'New API', summary: 'A focused overview', sections: [] }],
+      updatedPages: [{
+        route: '/guide/',
+        title: 'Guide',
+        sections: [{ id: 'fast-refresh', title: 'Fast refresh', introducedIn: 'v9' }],
+      }],
+    })
+  })
+
+  it('leaves the manifest and snapshots untouched when change extraction fails', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), ':::since[Broken]{version="unknown" id="broken"}\n:::')
+    const before = readFileSync(join(root, 'sveltepress.versions.json'), 'utf8')
+
+    const result = await invoke(root, ['versions', 'create', 'v9'])
+    expect(result).toMatchObject({ code: 1 })
+    expect(result.stderr).toContain('unknown version')
+    expect(existsSync(join(root, 'src/routes/v'))).toBe(false)
+    expect(readFileSync(join(root, 'sveltepress.versions.json'), 'utf8')).toBe(before)
   })
 
   it('does not overwrite an existing historical id', async () => {
@@ -247,5 +303,19 @@ describe('sveltepress versions CLI', () => {
     const result = await invoke(root, ['versions', 'validate'])
     expect(result).toMatchObject({ code: 1 })
     expect(result.stderr).toContain('$lib/Widget.svelte')
+  })
+
+  it('reports drift between frozen changes and historical snapshot content', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    await invoke(root, ['versions', 'create', 'v9'])
+    const metadataPath = join(root, 'src/routes/v/v8/.sveltepress-version.json')
+    const metadata = JSON.parse(readFileSync(metadataPath, 'utf8'))
+    metadata.changes.newPages.push({ route: '/missing/', title: 'Missing', sections: [] })
+    writeFileSync(metadataPath, JSON.stringify(metadata))
+
+    const result = await invoke(root, ['versions', 'validate'])
+    expect(result).toMatchObject({ code: 1 })
+    expect(result.stderr).toMatch(/frozen changes.*snapshot content.*drift/i)
   })
 })

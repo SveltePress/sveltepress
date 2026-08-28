@@ -52,8 +52,9 @@ const transforms: Record<string, SourceTransform> = {
     '    <VersionSelector mobile />\n',
   ),
   'PageLayout.svelte': (source) => {
-    let result = replaceRequired(source, `  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'\n`)
-    result = replaceRequired(result, `  const versionContext = $derived(resolveVersionContext(page.url.pathname))\n  const canonical = $derived(manifest ? page.url.pathname : null)\n  const noIndex = $derived.by(() => {\n    if (!versionContext?.historical) return false\n    return (\n      versionContext.version.status === 'eol' &&\n      versionContext.version.noIndex !== false\n    )\n  })\n`)
+    let result = replaceRequired(source, `  import {\n    manifest,\n    resolveVersionChanges,\n    resolveVersionContext,\n  } from 'virtual:sveltepress/versions'\n`)
+    result = replaceRequired(result, `  const versionContext = $derived(resolveVersionContext(page.url.pathname))\n  const versionChanges = $derived(\n    resolveVersionChanges(versionContext?.versionId),\n  )\n  const newPage = $derived(\n    versionChanges?.newPages.find(\n      changedPage => changedPage.route === versionContext?.logicalPath,\n    ),\n  )\n  const newPageLabel = $derived(\n    (themeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(\n      '{version}',\n      versionContext?.version.label ?? versionContext?.versionId ?? '',\n    ),\n  )\n  const canonical = $derived(manifest ? page.url.pathname : null)\n  const noIndex = $derived.by(() => {\n    if (!versionContext?.historical) return false\n    return (\n      versionContext.version.status === 'eol' &&\n      versionContext.version.noIndex !== false\n    )\n  })\n`)
+    result = replaceRequired(result, `            {#if newPage}<span\n                class="version-new-badge ml-2 inline-flex align-middle items-center rounded-full bg-rose-50 dark:bg-rose-950/45 px-2.5 py-1 text-xs font-700 text-svp-primary-deep dark:text-svp-primary"\n                >{newPageLabel}</span\n              >{/if}\n`)
     return replaceRequired(result, `  {#if canonical}<link rel="canonical" href={canonical} />{/if}\n  {#if noIndex}<meta name="robots" content="noindex,follow" />{/if}\n`)
   },
   'layout.ts': (source) => {

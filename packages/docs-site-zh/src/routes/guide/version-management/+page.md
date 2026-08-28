@@ -64,3 +64,49 @@ pnpm exec sveltepress versions validate
 版本构建还会输出页面 canonical、版本化 `sitemap.xml` 和 `/v/{id}/llms.txt`，根目录 LLM 文件只包含当前文档。PWA 不预缓存历史 HTML，并对历史页面使用 network-first 策略。
 
 自定义主题可导入 `virtual:sveltepress/versions`，使用其中的清单与路径解析函数。快照目录应作为发版生成物审查并提交，不要手工修改；修订当前路由后再创建下一版快照。
+
+## 说明当前版本新增了什么
+
+SveltePress 会按清单顺序比较当前路由与最近的历史版本。只存在于当前版本的路由会被列为新增页面。可通过 frontmatter 补充摘要或排除不应进入变化总览的页面：
+
+```yaml
+---
+title: 新增内容
+versionChanges:
+  exclude: true
+  summary: 可选的页面摘要
+---
+```
+
+已有 Markdown 页面中的重点新增段落使用显式标记；版本、标题和页面内唯一的稳定 ID 都是必填项：
+
+```md
+:::since[热更新配置]{version="8.2" id="hot-reload" summary="无需重启"}
+这里是新增的文档内容。
+:::
+```
+
+未知版本、重复 ID、未知字段或错误类型会直接终止开发服务器和生产构建。新增页面只进入“新增页面”，不会因为内部存在 `since` 标记而再次进入“更新页面”；第一个受管理版本没有比较基准，也不会把整站视为新增。
+
+默认主题只在浏览内容首次引入的版本时显示页面和段落标签。站点可以自行决定变化总览 URL：
+
+```svelte title="src/routes/whats-new/+page.svelte"
+<script>
+  import VersionChanges from '@sveltepress/theme-default/VersionChanges.svelte'
+</script>
+
+<VersionChanges />
+```
+
+组件默认展示当前版本，通过 `?version={id}` 切换历史记录。当前链接不加前缀，历史链接精确指向 `/v/{id}/...` 及段落锚点。
+
+自定义主题可以读取相同的冻结数据：
+
+```ts
+import { changeSets, resolveVersionChanges } from 'virtual:sveltepress/versions'
+
+const currentChanges = resolveVersionChanges()
+const historicalChanges = resolveVersionChanges('8.1')
+```
+
+`versions create` 会把即将冻结的当前变化集写入 `.sveltepress-version.json`。历史变化只从该元数据读取；`versions validate` 还会检查标记、版本引用、锚点唯一性和快照漂移。

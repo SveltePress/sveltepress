@@ -4,6 +4,8 @@ import { cleanup, fireEvent, render } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import Navbar from '../src/components/Navbar.svelte'
+import PageLayout from '../src/components/PageLayout.svelte'
+import VersionChanges from '../src/components/VersionChanges.svelte'
 import VersionFallbackNotice from '../src/components/VersionFallbackNotice.svelte'
 import VersionLifecycleBanner from '../src/components/VersionLifecycleBanner.svelte'
 import VersionSelector from '../src/components/VersionSelector.svelte'
@@ -66,5 +68,43 @@ describe('rendered documentation version UI', () => {
     setPage('/guide/')
     await tick()
     expect(view.getByTestId('search').textContent).toBe('search:2026-08-28')
+  })
+
+  it('shows the page badge only while browsing the version that introduced it', async () => {
+    setPage('/guide/new/')
+    const current = render(PageLayout, { fm: { title: 'New guide', pageType: 'md' } })
+    expect(current.getByText('新增于 2026-08-28')).toBeTruthy()
+
+    cleanup()
+    setPage('/v/2026-08-27/guide/')
+    const historical = render(PageLayout, { fm: { title: 'Guide', pageType: 'md' } })
+    expect(historical.queryByText('新增于 2026-08-28')).toBeNull()
+  })
+
+  it('renders both change groups with exact current links', () => {
+    setPage('/whats-new/')
+    const view = render(VersionChanges)
+    expect(view.getByRole('combobox', { name: '查看版本变化' })).toBeTruthy()
+    expect(view.getByRole('heading', { name: '新增页面' })).toBeTruthy()
+    expect(view.getByRole('link', { name: 'New guide' }).getAttribute('href')).toBe('/guide/new/')
+    expect(view.getByRole('heading', { name: '更新页面' })).toBeTruthy()
+    expect(view.getByRole('link', { name: 'Hot reload' }).getAttribute('href')).toBe('/guide/#hot-reload')
+  })
+
+  it('switches the overview through URL state and uses historical links', async () => {
+    setPage('/whats-new/?version=2026-08-26')
+    let view = render(VersionChanges)
+    expect(view.getByRole('status').textContent).toContain('首个版本')
+
+    cleanup()
+    setPage('/whats-new/?version=2026-08-27')
+    view = render(VersionChanges)
+    expect(view.getByRole('link', { name: 'Legacy new page' }).getAttribute('href')).toBe('/v/2026-08-27/guide/legacy-new/')
+
+    cleanup()
+    setPage('/whats-new/')
+    view = render(VersionChanges)
+    await fireEvent.change(view.getByRole('combobox'), { target: { value: '2026-08-27' } })
+    expect(gotoCalls).toEqual(['/whats-new/?version=2026-08-27'])
   })
 })

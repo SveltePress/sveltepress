@@ -124,16 +124,20 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         if (!versionManifest) {
           return `
             export const manifest = null
+            export const changeSets = {}
+            export const resolveVersionChanges = () => null
             export const resolveVersionContext = () => null
             export const resolveVersionedPath = value => value
             export const resolveVersionSwitch = () => null
-            export default { manifest, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch }
+            export default { manifest, changeSets, resolveVersionChanges, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch }
           `
         }
         return `
           import { createVersionRuntime } from '@sveltepress/vite/versioning'
           export const manifest = ${JSON.stringify(versionManifest)}
           const runtime = createVersionRuntime(manifest)
+          export const changeSets = runtime.changeSets
+          export const resolveVersionChanges = runtime.resolveVersionChanges
           export const resolveVersionContext = runtime.resolveVersionContext
           export const resolveVersionedPath = runtime.resolveVersionedPath
           export const resolveVersionSwitch = runtime.resolveVersionSwitch

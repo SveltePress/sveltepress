@@ -7,6 +7,7 @@ import InstallPkg from './InstallPkg.svelte'
 import Link from './Link.svelte'
 import TabPanel from './TabPanel.svelte'
 import Tabs from './Tabs.svelte'
+import VersionChanges from './VersionChanges.svelte'
 
 export {
   CodeBlock,
@@ -18,4 +19,5 @@ export {
   Link,
   TabPanel,
   Tabs,
+  VersionChanges,
 }

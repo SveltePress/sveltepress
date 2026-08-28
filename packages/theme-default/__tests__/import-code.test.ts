@@ -19,7 +19,7 @@ describe('code import', async () => {
 
       @code(./fake-file.ts)
 
-      @code(/src/index.ts,20,37)
+      @code(/src/index.ts,22,42)
       "
     `)
 

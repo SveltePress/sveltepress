@@ -63,3 +63,49 @@ Historical search স্পষ্ট `search` configuration ছাড়া ব�
 Build প্রতিটি page-এর canonical, version-aware `sitemap.xml`, এবং `/v/{id}/llms.txt` তৈরি করে; root LLM file শুধু current docs রাখে। PWA historical HTML precache করে না এবং historical page-এর জন্য network-first strategy ব্যবহার করে। Custom theme `virtual:sveltepress/versions` থেকে manifest ও path resolver নিতে পারে।
 
 Snapshot directory release artifact হিসেবে review ও commit করুন, হাতে edit করবেন না। Current route সংশোধন করে পরের snapshot তৈরি করুন।
+
+## Current version-এ কী নতুন তা বর্ণনা করুন
+
+SveltePress manifest-এর ক্রম অনুযায়ী current route inventory-কে সর্বশেষ historical version-এর সঙ্গে তুলনা করে। শুধু current version-এ থাকা route নতুন page হিসেবে তালিকাভুক্ত হয়। Summary যোগ করতে বা change catalog থেকে page বাদ দিতে frontmatter ব্যবহার করুন:
+
+```yaml
+---
+title: নতুন কী
+versionChanges:
+  exclude: true
+  summary: ঐচ্ছিক page summary
+---
+```
+
+আগের Markdown page-এ গুরুত্বপূর্ণ নতুন section স্পষ্টভাবে চিহ্নিত করুন। Version, title এবং page-এর মধ্যে unique stable ID—তিনটিই আবশ্যক:
+
+```md
+:::since[Hot reload configuration]{version="8.2" id="hot-reload" summary="Restart লাগে না"}
+নতুন documentation content।
+:::
+```
+
+Unknown version, duplicate ID, unknown field বা ভুল type development server ও production build বন্ধ করে দেয়। নতুন page কেবল **New pages** group-এ যায়; তার `since` section আবার **Updated pages**-এ আসে না। প্রথম managed version-এর কোনো baseline নেই এবং পুরো site-কে নতুন ধরা হয় না।
+
+Default Theme page ও section badge শুধু সেই version-এ দেখায় যেখানে content প্রথম এসেছে। Site নিজের পছন্দের route-এ overview component রাখতে পারে:
+
+```svelte title="src/routes/whats-new/+page.svelte"
+<script>
+  import VersionChanges from '@sveltepress/theme-default/VersionChanges.svelte'
+</script>
+
+<VersionChanges />
+```
+
+Component current version দিয়ে শুরু করে এবং historical selection-এর জন্য `?version={id}` ব্যবহার করে। Current link unprefixed থাকে; historical link `/v/{id}/...` ও নির্দিষ্ট section anchor-এ যায়।
+
+Custom theme একই frozen data পড়তে পারে:
+
+```ts
+import { changeSets, resolveVersionChanges } from 'virtual:sveltepress/versions'
+
+const currentChanges = resolveVersionChanges()
+const historicalChanges = resolveVersionChanges('8.1')
+```
+
+`versions create` outgoing current change set-কে `.sveltepress-version.json`-এ freeze করে। Historical change পরের current docs থেকে পুনরায় হিসাব হয় না; `versions validate` marker, version reference, unique anchor এবং snapshot drift পরীক্ষা করে।
