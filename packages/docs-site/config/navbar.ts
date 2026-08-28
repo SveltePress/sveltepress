@@ -6,6 +6,10 @@ export default [
     to: '/guide/introduction/',
   },
   {
+    title: 'What\'s new',
+    to: '/whats-new/',
+  },
+  {
     title: 'Reference',
     to: '/reference/vite-plugin/',
   },

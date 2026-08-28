@@ -14,22 +14,28 @@
   }
 </script>
 
-<div
+<button
+  type="button"
   class="nav-trigger"
   onclick={toggleNav}
-  onkeypress={toggleNav}
-  role="menu"
-  tabindex="0"
+  aria-label={themeOptions.i18n?.navbarMenu ?? 'Toggle navigation menu'}
+  aria-expanded={!$navCollapsed}
+  aria-controls="sveltepress-mobile-navigation"
 >
   {#if $navCollapsed}
     <TocMenu />
   {:else}
     <TocClose />
   {/if}
-</div>
+</button>
 
 {#if !$navCollapsed}
-  <nav class="navbar-mobile" transition:slide aria-label="Menu">
+  <nav
+    id="sveltepress-mobile-navigation"
+    class="navbar-mobile"
+    transition:slide
+    aria-label="Menu"
+  >
     <Logo />
     <VersionSelector mobile />
     {#each themeOptions.navbar as navItem}
@@ -60,10 +66,10 @@
 
 <style>
   .nav-trigger {
-    --at-apply: 'ml-4 text-6 flex items-center sm:hidden';
+    --at-apply: 'text-6 text-inherit flex items-center justify-center w-8 h-10 flex-none p-0 b-0 bg-transparent cursor-pointer';
   }
   .navbar-mobile {
-    --at-apply: 'fixed top-[48px] left-0 right-0 bg-white dark:bg-[#1c1c1f] z-900 shadow-lg pb-4 b-b-1 b-b-solid b-b-black/5 dark:b-b-white/8';
+    --at-apply: 'fixed top-14 left-0 right-0 max-h-[calc(100vh-56px)] overflow-y-auto bg-white dark:bg-[#1c1c1f] z-900 shadow-lg pb-4 b-b-1 b-b-solid b-b-black/5 dark:b-b-white/8';
   }
   :global(.navbar-mobile .nav-item) {
     --at-apply: 'leading-12 px-4';
@@ -77,5 +83,19 @@
   }
   :global(.navbar-mobile .c-expansion .nav-item) {
     --at-apply: 'indent-[1em]';
+  }
+
+  @media (min-width: 950px) and (max-width: 1439px) {
+    .navbar-mobile {
+      top: 73px;
+      max-height: calc(100vh - 73px);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .nav-trigger,
+    .navbar-mobile {
+      display: none;
+    }
   }
 </style>

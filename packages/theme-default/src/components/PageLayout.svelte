@@ -50,17 +50,23 @@
     lastUpdate,
     anchors: fmAnchors = [],
     sidebar: fmSidebar = true,
+    home,
+    heroImage: fmHeroImage,
     header = true,
     layout = true,
   } = fm
 
-  $sidebar = fmSidebar
+  function resolveHomeLayout() {
+    return (routeId === '/' && home !== false) || home === true
+  }
+
+  const isHome = $derived(resolveHomeLayout())
+
+  $sidebar = resolveHomeLayout() ? false : fmSidebar
   $showHeader = header
   $showLayout = layout
 
-  const isHome = $derived(routeId === '/' && fm.home !== false)
-
-  anchors.set(fmAnchors)
+  anchors.set(resolveHomeLayout() ? [] : fmAnchors)
 
   let ready = $state(false)
 
@@ -88,8 +94,8 @@
   {@render children?.()}
 {:else}
   {#snippet defaultHeroImage()}
-    {#if fm.heroImage}
-      <HeroImage heroImage={fm.heroImage} />
+    {#if fmHeroImage}
+      <HeroImage heroImage={fmHeroImage} />
     {:else}
       <HeroCode />
     {/if}
@@ -118,11 +124,13 @@
         {/if}
       </div>
     </div>
-  {:else if fm.home !== false}
+  {:else if home !== false}
     <Home
       {...fm}
       {siteConfig}
-      heroImage={heroImage ?? defaultHeroImage}
+      heroImage={fmHeroImage === false
+        ? undefined
+        : (heroImage ?? defaultHeroImage)}
       {children}
     ></Home>
   {/if}

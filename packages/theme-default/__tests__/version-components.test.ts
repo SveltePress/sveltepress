@@ -2,8 +2,12 @@
 
 import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { get } from 'svelte/store'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { anchors, navCollapsed, sidebar } from '../src/components/layout'
+import MobileSubNav from '../src/components/MobileSubNav.svelte'
 import Navbar from '../src/components/Navbar.svelte'
+import NavbarMobile from '../src/components/NavbarMobile.svelte'
 import PageLayout from '../src/components/PageLayout.svelte'
 import VersionChanges from '../src/components/VersionChanges.svelte'
 import VersionFallbackNotice from '../src/components/VersionFallbackNotice.svelte'
@@ -12,10 +16,17 @@ import VersionSelector from '../src/components/VersionSelector.svelte'
 import { setPage } from './fixtures/app-state.svelte'
 import { gotoCalls, resetNavigation } from './fixtures/navigation'
 
+vi.mock('svelte/transition', () => ({
+  slide: () => ({ duration: 0 }),
+}))
+
 beforeEach(() => {
   setPage('/guide/')
   window.history.replaceState({}, '', '/guide/')
   resetNavigation()
+  anchors.set([])
+  navCollapsed.set(true)
+  sidebar.set(true)
 })
 
 afterEach(cleanup)
@@ -42,6 +53,23 @@ describe('rendered documentation version UI', () => {
     const view = render(VersionSelector, { mobile: true })
     expect(view.container.querySelector('.version-selector.mobile')).not.toBeNull()
     expect(view.getByRole('button', { name: '文档版本' })).toBeTruthy()
+  })
+
+  it('exposes the compact navigation as a labelled disclosure button', async () => {
+    const view = render(NavbarMobile)
+    const trigger = view.getByRole('button', { name: '打开导航菜单' })
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('false')
+    expect(trigger.getAttribute('aria-controls')).toBe(
+      'sveltepress-mobile-navigation',
+    )
+
+    await fireEvent.click(trigger)
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('true')
+    expect(view.getByRole('navigation', { name: 'Menu' }).id).toBe(
+      'sveltepress-mobile-navigation',
+    )
   })
 
   it('keeps date version labels intact and renders lifecycle states as badges', async () => {
@@ -93,22 +121,68 @@ describe('rendered documentation version UI', () => {
     expect(historical.queryByText('新增于 2026-08-28')).toBeNull()
   })
 
+  it('renders an arbitrary home page as a standalone landing page', () => {
+    setPage('/whats-new/')
+    const view = render(PageLayout, {
+      fm: {
+        title: 'What\'s new',
+        description: 'Explore the latest documentation changes.',
+        home: true,
+        heroImage: false,
+        pageType: 'md',
+      },
+    })
+
+    expect(view.container.querySelector('.home-page')).not.toBeNull()
+    expect(view.getByRole('heading', { name: 'What\'s new' })).toBeTruthy()
+    expect(view.container.querySelector('.theme-default--page-layout')).toBeNull()
+    expect(view.container.querySelector('.meta')).toBeNull()
+  })
+
+  it('keeps the default root home page free of docs navigation spacing', () => {
+    setPage('/')
+    anchors.set([{ id: 'stale-anchor', title: 'Stale anchor' }])
+    render(PageLayout, {
+      fm: {
+        title: 'SveltePress',
+        description: 'Build documentation sites.',
+        pageType: 'md',
+      },
+    })
+
+    expect(get(sidebar)).toBe(false)
+    expect(get(anchors)).toEqual([])
+  })
+
+  it('omits the mobile docs subnav when a landing page has no docs controls', () => {
+    sidebar.set(false)
+    anchors.set([])
+    const view = render(MobileSubNav)
+
+    expect(view.queryByRole('navigation', { name: 'Browse docs' })).toBeNull()
+  })
+
   it('renders both change groups with exact current links', () => {
     setPage('/whats-new/')
     const view = render(VersionChanges)
     expect(view.getByRole('combobox', { name: '查看版本变化' })).toBeTruthy()
-    expect(view.getByRole('heading', { name: '新增页面' })).toBeTruthy()
+    const summary = view.getByRole('region', { name: '2026-08-28' })
+    expect(summary).toBeTruthy()
+    expect(view.getByRole('heading', { name: '新增页面 1' })).toBeTruthy()
     expect(view.getByRole('link', { name: 'New guide' }).getAttribute('href')).toBe('/guide/new/')
-    expect(view.getByRole('heading', { name: '更新页面' })).toBeTruthy()
+    expect(view.getByRole('heading', { name: '更新页面 1' })).toBeTruthy()
     expect(view.getByRole('link', { name: 'Hot reload' }).getAttribute('href')).toBe('/guide/#hot-reload')
+    expect(view.container.querySelectorAll('.change-card')).toHaveLength(2)
+    for (const label of view.container.querySelectorAll('.release-stat span'))
+      expect(getComputedStyle(label).whiteSpace).not.toBe('nowrap')
   })
 
   it('switches the overview through URL state and uses historical links', async () => {
     setPage('/whats-new/?version=2026-08-26')
     let view = render(VersionChanges)
     expect(view.getByRole('status').textContent).toContain('首个版本')
-    expect(view.getByRole('heading', { name: '新增页面' })).toBeTruthy()
-    expect(view.getByRole('heading', { name: '更新页面' })).toBeTruthy()
+    expect(view.getByRole('heading', { name: '新增页面 0' })).toBeTruthy()
+    expect(view.getByRole('heading', { name: '更新页面 0' })).toBeTruthy()
 
     cleanup()
     setPage('/whats-new/?version=2026-08-27')

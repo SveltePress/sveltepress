@@ -81,6 +81,7 @@ declare module 'virtual:sveltepress/theme-default' {
       codeCollapseLines?: number
     }
     i18n?: {
+      navbarMenu?: string
       onThisPage?: string
       suggestChangesToThisPage?: string
       lastUpdateAt?: string

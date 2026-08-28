@@ -4,6 +4,10 @@ export default [
     to: '/guide/introduction/',
   },
   {
+    title: '最新内容',
+    to: '/whats-new/',
+  },
+  {
     title: '参考',
     to: '/reference/vite-plugin/',
   },

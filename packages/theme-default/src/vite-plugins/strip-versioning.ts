@@ -79,8 +79,10 @@ transforms['Navbar.svelte'] = (source) => {
   const searchEnd = result.indexOf('\n\n    <nav class="nav-links"', searchStart)
   if (searchStart === -1 || searchEnd === -1)
     throw new Error('[@sveltepress/default-theme] Cannot locate the version-aware Navbar search block.')
-  result = `${result.slice(0, searchStart)}    {#if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}\n      <div\n        class:is-home={isHome}\n        class:move={!isHome && !hasError}\n        class="doc-search"\n      >\n        <svelte:component this={searchComponent || themeOptions.search} />\n      </div>\n    {:else if themeOptions.docsearch && docsearchComponent}\n      <div\n        class:is-home={isHome}\n        class:move={!isHome && !hasError}\n        class="doc-search"\n      >\n        <svelte:component\n          this={docsearchComponent}\n          {...themeOptions.docsearch}\n        />\n      </div>\n    {/if}${result.slice(searchEnd)}`
-  result = replaceRequired(result, '        {#if manifest}<VersionSelector />{/if}\n')
+  result = `${result.slice(0, searchStart)}    {#if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}\n      <div\n        class:is-home={isHome || !$sidebar}\n        class:move={!isHome && !hasError && $sidebar}\n        class="doc-search"\n      >\n        <svelte:component this={searchComponent || themeOptions.search} />\n      </div>\n    {:else if themeOptions.docsearch && docsearchComponent}\n      <div\n        class:is-home={isHome || !$sidebar}\n        class:move={!isHome && !hasError && $sidebar}\n        class="doc-search"\n      >\n        <svelte:component\n          this={docsearchComponent}\n          {...themeOptions.docsearch}\n        />\n      </div>\n    {/if}${result.slice(searchEnd)}`
+  result = replaceRequired(result, `        {#if manifest}<div class="desktop-version-selector">\n            <VersionSelector />\n          </div>{/if}\n`)
+  result = replaceRequired(result, `  .desktop-nav-items,\n  .desktop-version-selector {\n    display: none;\n  }`, `  .desktop-nav-items {\n    display: none;\n  }`)
+  result = replaceRequired(result, `    .desktop-nav-items,\n    .desktop-version-selector {\n      display: flex;\n    }`, `    .desktop-nav-items {\n      display: flex;\n    }`)
   return replaceRequired(result, `  .search-unavailable {\n    --at-apply: 'text-xs text-zinc-500 dark:text-zinc-400 px-3 flex-none max-w-32 sm:max-w-55 overflow-hidden text-ellipsis whitespace-nowrap';\n  }\n`)
 }
 

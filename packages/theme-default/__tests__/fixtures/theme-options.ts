@@ -5,6 +5,7 @@ export default {
   sidebar: {},
   search: Search,
   i18n: {
+    navbarMenu: '打开导航菜单',
     versionSelector: '文档版本',
     versionPageUnavailable: '所选版本没有此页面，已返回版本首页。',
     versionDeprecated: '此版本已弃用。',

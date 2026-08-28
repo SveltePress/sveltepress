@@ -15,7 +15,7 @@ Home frontmatter এরকম হতে পারে।
 
 ### `heroImage`
 
-হোম পেজের লোগো। হাই কোয়ালিটির ইমেজ ব্যবহার করা উত্তম।
+হোম পেজের লোগো। হাই কোয়ালিটির ইমেজ ব্যবহার করা উত্তম। Landing page-এর সম্পূর্ণ width content-এর জন্য রাখতে এবং default hero illustration লুকাতে এটিকে `false` করুন।
 
 ### `tagline`
 
@@ -56,7 +56,9 @@ iconify আইকন [প্রিবিল্ড iconify কনফিগ](/refe
 
 ### `home`
 
-হোম পেজের সকল কন্টেন্ট যা উল্লেখ করা হয়েছে, তা রিমুভ করতে `false` করে দিন।
+Root route default ভাবে home layout ব্যবহার করে। অন্য যেকোনো route-এ `home: true` দিলে page-টির নিজস্ব `title`, `description`, এবং `tagline` সহ একই landing-page presentation ব্যবহার করা যাবে। Landing page-এ documentation sidebar, table of contents, edit metadata, বা previous/next page switcher দেখানো হয় না।
+
+Default home page content সরাতে root route-এ `home: false` দিন।
 
 ## স্লট
 

@@ -7,6 +7,8 @@
     actions = [],
     tagline = '',
     siteConfig,
+    title = siteConfig.title,
+    description = siteConfig.description,
     heroImage,
     children,
   } = $props()
@@ -16,10 +18,10 @@
   <div class="title">
     <div class="intro">
       <h1 class="gradient-title">
-        {siteConfig.title}
+        {title}
       </h1>
       <div class="description">
-        {siteConfig.description}
+        {description}
       </div>
       {#if tagline}
         <div class="tagline">
@@ -32,20 +34,28 @@
     {/if}
   </div>
 
-  <div class="actions">
-    {#each actions as action}
-      <ActionButton {...action} />
-    {/each}
-  </div>
+  {#if actions.length}
+    <div class="actions">
+      {#each actions as action}
+        <ActionButton {...action} />
+      {/each}
+    </div>
+  {/if}
 
-  <div class="features">
-    {#each features as fe, i}
-      <Feature {...fe} {i} />
-    {/each}
-  </div>
+  {#if features.length}
+    <div class="features">
+      {#each features as fe, i}
+        <Feature {...fe} {i} />
+      {/each}
+    </div>
+  {/if}
 </div>
 
-{@render children?.()}
+{#if children}
+  <div class="home-content">
+    {@render children()}
+  </div>
+{/if}
 
 <style>
   .home-page {
@@ -103,5 +113,8 @@
   }
   .features > :global(.feature-item) {
     --at-apply: 'basis-full sm:basis-[calc((100%-1.25rem)/2)] md:basis-[calc((100%-2.5rem)/3)] grow-0 shrink-0 box-border';
+  }
+  .home-content {
+    --at-apply: 'sm:w-[70vw] max-w-[1152px] mx-auto px-4 sm:px-0 pb-12 sm:pb-24';
   }
 </style>

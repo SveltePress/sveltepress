@@ -111,7 +111,10 @@
 {:else if $showLayout === false}
   {@render children?.()}
 {:else}
-  <main class:without-header={$showHeader === false}>
+  <main
+    class:without-header={$showHeader === false}
+    class:with-mobile-subnav={$sidebar || $anchors.length}
+  >
     <AjaxBar bind:this={ajaxBar} />
     {#if manifest}
       <VersionFallbackNotice />
@@ -141,7 +144,10 @@
 
 <style>
   main {
-    --at-apply: 'pt-[76px] sm:pt-[73px]';
+    --at-apply: 'pt-14 sm:pt-[73px]';
+  }
+  main.with-mobile-subnav {
+    --at-apply: 'pt-[100px] sm:pt-[73px]';
   }
   main.without-header {
     --at-apply: 'pt-0';

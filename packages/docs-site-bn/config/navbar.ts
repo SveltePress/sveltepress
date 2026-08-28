@@ -6,6 +6,10 @@ export default [
     to: '/guide/introduction/',
   },
   {
+    title: 'নতুন কী',
+    to: '/whats-new/',
+  },
+  {
     title: 'রেফারেন্স',
     to: '/reference/vite-plugin/',
   },

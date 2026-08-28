@@ -15,7 +15,7 @@ And you can see [Home page](/) for result
 
 ### `heroImage`
 
-The home page logo image. It is recommended to use an image with high quality
+The home page logo image. It is recommended to use an image with high quality. Set it to `false` when a landing page should use the full content width without the default hero illustration.
 
 ### `tagline`
 
@@ -56,7 +56,9 @@ The iconify icons should be in the [Pre-build iconify icons config](/reference/d
 
 ### `home`
 
-Config to `false` to remove all home page content that mentioned above.
+The root route uses the home layout by default. Set `home: true` on any other route to reuse the same landing-page presentation with that page's own `title`, `description`, and `tagline`. Landing pages do not render the documentation sidebar, table of contents, edit metadata, or previous/next page switcher.
+
+Set `home: false` on the root route to remove the default home page content.
 
 ## Slots
 

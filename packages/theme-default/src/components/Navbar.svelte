@@ -7,7 +7,7 @@
   import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
-  import { scrollDirection } from './layout'
+  import { scrollDirection, sidebar } from './layout'
   import Logo from './Logo.svelte'
   import MobileSubNav from './MobileSubNav.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
@@ -86,17 +86,23 @@
 </script>
 
 <header class="header" class:hidden-in-mobile={$scrollDirection === 'down'}>
-  <div class="header-inner">
+  <div
+    class="header-inner"
+    class:has-sidebar={!isHome && !hasError && $sidebar}
+  >
     <div class="left">
       <NavbarMobile />
-      <div class="logo-container" class:desktop-visible={hasError || isHome}>
+      <div
+        class="logo-container"
+        class:desktop-visible={hasError || isHome || !$sidebar}
+      >
         <Logo />
       </div>
     </div>
     {#if hasConfiguredSearch && !versionSearch.available}
       <div
-        class:is-home={isHome}
-        class:move={!isHome && !hasError}
+        class:is-home={isHome || !$sidebar}
+        class:move={!isHome && !hasError && $sidebar}
         class="doc-search search-unavailable"
         role="status"
       >
@@ -105,8 +111,8 @@
       </div>
     {:else if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
       <div
-        class:is-home={isHome}
-        class:move={!isHome && !hasError}
+        class:is-home={isHome || !$sidebar}
+        class:move={!isHome && !hasError && $sidebar}
         class="doc-search"
       >
         {#key versionContext?.versionId}
@@ -119,8 +125,8 @@
       </div>
     {:else if versionedDocsearch && docsearchComponent}
       <div
-        class:is-home={isHome}
-        class:move={!isHome && !hasError}
+        class:is-home={isHome || !$sidebar}
+        class:move={!isHome && !hasError && $sidebar}
         class="doc-search"
       >
         {#key versionContext?.versionId}
@@ -134,12 +140,14 @@
 
     <nav class="nav-links" aria-label="Menu">
       <div class="navbar-pc">
-        <div class="sm:flex none">
+        <div class="desktop-nav-items">
           {#each themeOptions.navbar as navItem}
             <NavItem {...navItem} />
           {/each}
         </div>
-        {#if manifest}<VersionSelector />{/if}
+        {#if manifest}<div class="desktop-version-selector">
+            <VersionSelector />
+          </div>{/if}
         {#if themeOptions.github}
           <NavItem
             to={themeOptions.github}
@@ -190,42 +198,80 @@
     --at-apply: 'block';
   }
   .logo-container:not(.desktop-visible) {
-    --at-apply: 'sm:hidden';
+    display: block;
   }
   .logo-container :global(.title) {
-    --at-apply: 'hidden sm:inline';
+    display: none;
   }
   .header-inner {
-    --at-apply: 'sm:max-w-[1440px] box-border sm:px-6 h-full flex items-stretch justify-between mx-auto';
+    --at-apply: 'sm:max-w-[1440px] box-border px-3 sm:px-4 xl:px-6 h-14 sm:h-full flex items-stretch justify-between gap-2 mx-auto';
   }
   .left {
-    --at-apply: 'flex items-center';
+    --at-apply: 'flex items-center gap-2 flex-none';
   }
   .doc-search {
-    --at-apply: 'flex-grow flex items-center relative transition-300 transition-left ease-out';
+    --at-apply: 'flex-grow min-w-0 flex items-center relative transition-300 ease-out';
   }
   .doc-search.is-home {
-    --at-apply: 'left-2';
+    --at-apply: 'left-0';
   }
   /* On docs pages the sidebar panel (incl. its logo row) paints over the
      header's left zone, so the pill starts just right of the sidebar edge —
      i.e. aligned with the content area. */
   .doc-search.move {
-    --at-apply: 'sm:left-[calc(min(25vw,288px)-8px)]';
+    --at-apply: 'left-0';
   }
   .search-unavailable {
     --at-apply: 'text-xs text-zinc-500 dark:text-zinc-400 px-3 flex-none max-w-32 sm:max-w-55 overflow-hidden text-ellipsis whitespace-nowrap';
   }
 
   .navbar-pc {
-    --at-apply: 'items-stretch flex';
+    --at-apply: 'items-stretch flex flex-none gap-1';
   }
   .nav-links {
     --at-apply: 'flex items-stretch flex-grow justify-end';
   }
 
-  .navbar-pc :global(.nav-item:not(.nav-item--icon)),
-  .navbar-pc :global(.nav-item--user-icon) {
-    --at-apply: 'hidden sm:flex';
+  .desktop-nav-items,
+  .desktop-version-selector {
+    display: none;
+  }
+  .navbar-pc :global(.nav-item--icon),
+  .navbar-pc :global(.toggle) {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
+  .navbar-pc :global(.nav-item--icon::after),
+  .navbar-pc :global(.toggle::after) {
+    display: none;
+  }
+
+  @media (min-width: 1440px) {
+    .logo-container:not(.desktop-visible) {
+      display: none;
+    }
+    .logo-container :global(.title) {
+      display: inline;
+    }
+    .doc-search.move {
+      margin-left: min(25vw, 288px);
+    }
+    .desktop-nav-items,
+    .desktop-version-selector {
+      display: flex;
+    }
+    .navbar-pc :global(.nav-item--icon::after),
+    .navbar-pc :global(.toggle::after) {
+      display: block;
+    }
+  }
+
+  @media (min-width: 950px) and (max-width: 1439px) {
+    .header-inner.has-sidebar {
+      padding-left: calc(min(25vw, 288px) + 1rem);
+    }
+    .header-inner.has-sidebar .logo-container {
+      display: none;
+    }
   }
 </style>
