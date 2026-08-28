@@ -14,7 +14,7 @@
       : (themeOptions.i18n?.versionDeprecated ?? defaultOldVersionMessage),
   )
   const currentLabel = $derived(
-    themeOptions.i18n?.versionViewCurrent ?? 'Switch to the current version',
+    themeOptions.i18n?.versionViewCurrent ?? 'Current version',
   )
   const statusLabel = $derived(
     banner?.status === 'eol'
@@ -56,7 +56,16 @@
     --at-apply: 'leading-4 sm:leading-5';
   }
   .version-lifecycle :global(.link) {
-    --at-apply: 'flex-none max-w-36 justify-center rounded-lg sm:rounded-full bg-black/15 dark:bg-black/25 px-3 py-2 sm:py-1.5 text-center leading-4 font-700 text-amber-950 no-underline hover:bg-black/20 hover:text-amber-950 dark:hover:bg-black/35';
+    --at-apply: 'flex-none gap-1 px-1 py-1 leading-4 font-700 text-amber-950 no-underline hover:text-amber-950';
+    white-space: nowrap;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  }
+  .version-lifecycle :global(.link)::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+  .version-lifecycle :global(.link):hover::after {
+    transform: translateX(2px);
   }
   .version-lifecycle.eol :global(.link) {
     --at-apply: 'text-white hover:text-white';

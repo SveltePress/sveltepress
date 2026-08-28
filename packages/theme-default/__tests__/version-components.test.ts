@@ -3,6 +3,7 @@
 import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
+import themeOptions from 'virtual:sveltepress/theme-default'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import GlobalLayout from '../src/components/GlobalLayout.svelte'
 import { anchors, navCollapsed, resolveSidebar, sidebar } from '../src/components/layout'
@@ -99,6 +100,22 @@ describe('rendered documentation version UI', () => {
     window.history.replaceState({}, '', '/v/2026-08-27/?svp-version-fallback=1')
     const fallback = render(VersionFallbackNotice)
     expect(fallback.getByRole('status').textContent).toBe('所选版本没有此页面，已返回版本首页。')
+  })
+
+  it('renders a concise default current-version action', () => {
+    const configuredLabel = themeOptions.i18n.versionViewCurrent
+    Reflect.deleteProperty(themeOptions.i18n, 'versionViewCurrent')
+
+    try {
+      setPage('/v/2026-08-27/guide/')
+      const view = render(VersionLifecycleBanner)
+      const link = view.getByRole('link', { name: 'Current version' })
+
+      expect(link.textContent?.trim()).toBe('Current version')
+    }
+    finally {
+      themeOptions.i18n.versionViewCurrent = configuredLabel
+    }
   })
 
   it('renders the old-version warning as a global bar before the page shell', () => {

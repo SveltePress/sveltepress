@@ -52,10 +52,10 @@ const admonitions: Plugin<any[], any> = () => {
 
           const [collection, name] = (icon || '').split(':')
 
-          let title = type.toUpperCase()
+          let titleChildren = [{ type: 'text', value: type.toUpperCase() }]
           let hasLabel = false
           if (mayBeLabel && mayBeLabel.data?.directiveLabel) {
-            title = mayBeLabel.children[0].value
+            titleChildren = mayBeLabel.children
             hasLabel = true
           }
 
@@ -90,10 +90,7 @@ const admonitions: Plugin<any[], any> = () => {
                       value: icon ? `<IconifyIcon collection="${collection}" name="${name}" />` : ad.svg,
                     }],
                   },
-                  {
-                    type: 'text',
-                    value: title,
-                  },
+                  ...titleChildren,
                 ],
               },
               {
