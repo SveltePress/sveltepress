@@ -29,6 +29,7 @@ const config = defineConfig({
           'vscode-icons': ['file-type-svelte', 'file-type-markdown', 'file-type-vite'],
           'logos': ['typescript-icon', 'svelte-kit'],
           'emojione': ['artist-palette'],
+          'material-symbols': ['history'],
           'openmoji': ['red-apple'],
           'ph': ['smiley', 'layout-duotone'],
           'noto': ['package'],

@@ -37,6 +37,13 @@ features:
       type: iconify
       collection: logos
       name: typescript-icon
+  - title: Document version management
+    description: Keep current docs at clean URLs while publishing immutable historical snapshots with built-in version navigation and release change catalogs.
+    icon:
+      type: iconify
+      collection: material-symbols
+      name: history
+    link: /guide/version-management/
   - title: Theme Customizable
     description: Feel free to use default theme, community themes or write your own.
     icon:

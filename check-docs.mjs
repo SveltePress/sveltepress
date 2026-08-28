@@ -56,6 +56,46 @@ function expectSubstrings(path, expectations, label) {
   }
 }
 
+function homeFeatureCards(path) {
+  const lines = read(path).split('\n')
+  const featuresStart = lines.findIndex(line => line === 'features:')
+  if (featuresStart === -1) {
+    fail(`home page is missing its features frontmatter: ${relative(root, path)}`)
+    return []
+  }
+
+  const cards = []
+  let card
+  for (const line of lines.slice(featuresStart + 1)) {
+    if (line && !line.startsWith(' '))
+      break
+
+    const title = line.match(/^ {2}- title: (.+)$/)?.[1]
+    if (title) {
+      if (card)
+        cards.push(card)
+      card = { title }
+      continue
+    }
+    if (!card)
+      continue
+
+    const field = line.match(/^ {4}(description|link): (.+)$/)
+    if (field) {
+      card[field[1]] = field[2]
+      continue
+    }
+    const iconField = line.match(/^ {6}(type|collection|name): (.+)$/)
+    if (iconField) {
+      card.icon ??= {}
+      card.icon[iconField[1]] = iconField[2]
+    }
+  }
+  if (card)
+    cards.push(card)
+  return cards
+}
+
 function rejectPatterns(path, patterns, label) {
   const content = read(path)
   for (const pattern of patterns) {
@@ -258,6 +298,47 @@ for (const site of docsSites) {
     if (!content.includes(component))
       fail(`${site} public component reference is missing ${component}`)
   }
+}
+
+const versionManagementFeatures = {
+  'docs-site': {
+    title: 'Document version management',
+    description: 'Keep current docs at clean URLs while publishing immutable historical snapshots with built-in version navigation and release change catalogs.',
+  },
+  'docs-site-zh': {
+    title: '文档版本管理',
+    description: '让当前文档保持简洁 URL，同时发布不可变的历史快照，并提供内置版本导航和发布变化总览。',
+  },
+  'docs-site-bn': {
+    title: 'ডকুমেন্টেশন ভার্সন ম্যানেজমেন্ট',
+    description: 'বর্তমান ডকুমেন্টেশনকে পরিচ্ছন্ন URL-এ রেখে অপরিবর্তনীয় ঐতিহাসিক স্ন্যাপশট প্রকাশ করুন; সঙ্গে পান অন্তর্নির্মিত ভার্সন নেভিগেশন ও রিলিজ পরিবর্তনের তালিকা।',
+  },
+}
+
+for (const [site, expected] of Object.entries(versionManagementFeatures)) {
+  const homePath = join(root, 'packages', site, 'src', 'routes', '+page.md')
+  const feature = homeFeatureCards(homePath).find(card => card.title === expected.title)
+  if (!feature) {
+    fail(`${site} home page is missing the localized version-management feature card`)
+  }
+  else {
+    const expectedFeature = {
+      ...expected,
+      icon: {
+        type: 'iconify',
+        collection: 'material-symbols',
+        name: 'history',
+      },
+      link: '/guide/version-management/',
+    }
+    if (JSON.stringify(feature) !== JSON.stringify(expectedFeature))
+      fail(`${site} version-management feature card does not match ${JSON.stringify(expectedFeature)}: ${relative(root, homePath)}`)
+  }
+  expectSubstrings(
+    join(root, 'packages', site, 'vite.config.ts'),
+    [[`'material-symbols': ['history']`, 'the prebuilt version-management icon']],
+    `${site} icon config`,
+  )
 }
 
 const packageNames = docsSites.map((site) => {

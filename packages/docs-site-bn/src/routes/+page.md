@@ -38,6 +38,13 @@ features:
       type: iconify
       collection: logos
       name: typescript-icon
+  - title: ডকুমেন্টেশন ভার্সন ম্যানেজমেন্ট
+    description: বর্তমান ডকুমেন্টেশনকে পরিচ্ছন্ন URL-এ রেখে অপরিবর্তনীয় ঐতিহাসিক স্ন্যাপশট প্রকাশ করুন; সঙ্গে পান অন্তর্নির্মিত ভার্সন নেভিগেশন ও রিলিজ পরিবর্তনের তালিকা।
+    icon:
+      type: iconify
+      collection: material-symbols
+      name: history
+    link: /guide/version-management/
   - title: থিম কাস্টমাইজযোগ্য
     description: নির্দ্বিধায় ডিফল্ট থিম, কমিউনিটি থিম বা আপনার নিজের বানানো থিম ব্যবহার করুন।
     icon:

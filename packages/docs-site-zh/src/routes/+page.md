@@ -36,6 +36,13 @@ features:
       type: iconify
       collection: logos
       name: typescript-icon
+  - title: 文档版本管理
+    description: 让当前文档保持简洁 URL，同时发布不可变的历史快照，并提供内置版本导航和发布变化总览。
+    icon:
+      type: iconify
+      collection: material-symbols
+      name: history
+    link: /guide/version-management/
   - title: 支持主题自定义
     description: 根据您的需要选择默认主题，社区主题，或者自行开发主题own.
     icon:

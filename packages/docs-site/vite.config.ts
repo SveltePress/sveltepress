@@ -30,6 +30,7 @@ const config = defineConfig({
           'vscode-icons': ['file-type-svelte', 'file-type-markdown', 'file-type-vite'],
           'logos': ['typescript-icon', 'svelte-kit', 'svelte-icon'],
           'emojione': ['artist-palette'],
+          'material-symbols': ['history'],
           'ph': ['smiley', 'layout-duotone'],
           'noto': ['package'],
           'solar': ['chat-square-code-outline', 'reorder-outline'],
