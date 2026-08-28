@@ -1,5 +1,11 @@
 # @sveltepress/twoslash
 
+## 1.3.18
+
+### Patch Changes
+
+- [`90c8178`](https://github.com/Blackman99/sveltepress/commit/90c8178a3c2bc56abd5ca0cf707f343717290cbf) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.17
 
 ### Patch Changes
