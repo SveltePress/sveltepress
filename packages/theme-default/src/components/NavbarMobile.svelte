@@ -5,7 +5,7 @@
   import Expansion from './Expansion.svelte'
   import TocClose from './icons/TocClose.svelte'
   import TocMenu from './icons/TocMenu.svelte'
-  import { navCollapsed } from './layout'
+  import { navCollapsed, sidebar } from './layout'
   import Logo from './Logo.svelte'
   import NavItem from './NavItem.svelte'
 
@@ -33,6 +33,7 @@
   <nav
     id="sveltepress-mobile-navigation"
     class="navbar-mobile"
+    class:has-sidebar={$sidebar}
     transition:slide
     aria-label="Menu"
   >
@@ -89,6 +90,9 @@
     .navbar-mobile {
       top: 73px;
       max-height: calc(100vh - 73px);
+    }
+    .navbar-mobile.has-sidebar {
+      left: calc(max(0px, (100vw - 1440px) / 2) + min(25vw, 288px));
     }
   }
 

@@ -317,6 +317,8 @@ const versionManagementFeatures = {
 
 for (const [site, expected] of Object.entries(versionManagementFeatures)) {
   const homePath = join(root, 'packages', site, 'src', 'routes', '+page.md')
+  if (/^tagline:/m.test(read(homePath)))
+    fail(`${site} home page must not repeat its hero description as a tagline: ${relative(root, homePath)}`)
   const feature = homeFeatureCards(homePath).find(card => card.title === expected.title)
   if (!feature) {
     fail(`${site} home page is missing the localized version-management feature card`)

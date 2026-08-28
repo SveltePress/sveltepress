@@ -2,7 +2,6 @@
 title: 一个以内容为中心的站点构建工具
 description: 一个简单、易用、保留了 SvelteKit 的完整能力的站点构建工具
 heroImage: /android-chrome-192x192.png
-tagline: 一个简单的、易用的，保留了 SvelteKit 的完整能力的站点构建工具
 actions:
   - label: 阅读文档
     to: /guide/introduction/

@@ -67,9 +67,9 @@ describe('rendered documentation version UI', () => {
     await fireEvent.click(trigger)
 
     expect(trigger.getAttribute('aria-expanded')).toBe('true')
-    expect(view.getByRole('navigation', { name: 'Menu' }).id).toBe(
-      'sveltepress-mobile-navigation',
-    )
+    const navigation = view.getByRole('navigation', { name: 'Menu' })
+    expect(navigation.id).toBe('sveltepress-mobile-navigation')
+    expect(navigation.classList.contains('has-sidebar')).toBe(true)
   })
 
   it('keeps date version labels intact and renders lifecycle states as badges', async () => {
