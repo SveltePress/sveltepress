@@ -1,5 +1,11 @@
 # @sveltepress/theme-blog
 
+## 1.0.2
+
+### Patch Changes
+
+- [`40901e2`](https://github.com/Blackman99/sveltepress/commit/40901e2be134ff2177de19f2ee86286ea8f41b02) Thanks [@Blackman99](https://github.com/Blackman99)! - Add framework-level document version management with atomic CLI snapshots, manifest validation, version-aware routes and outputs, frozen historical navigation, lifecycle UI, isolated search, canonical metadata, and PWA caching boundaries.
+
 ## 1.0.1
 
 ### Patch Changes
