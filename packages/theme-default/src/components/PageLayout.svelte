@@ -17,7 +17,6 @@
   import { anchors, pages, showHeader, showLayout, sidebar } from './layout'
   import PageSwitcher from './PageSwitcher.svelte'
 
-  const routeId = $derived(page.route.id)
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const versionChanges = $derived(
     resolveVersionChanges(versionContext?.versionId),
@@ -57,7 +56,9 @@
   } = fm
 
   function resolveHomeLayout() {
-    return (routeId === '/' && home !== false) || home === true
+    return (
+      (versionContext?.logicalPath === '/' && home !== false) || home === true
+    )
   }
 
   const isHome = $derived(resolveHomeLayout())

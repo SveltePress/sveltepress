@@ -103,6 +103,9 @@
   onkeyup={handleCodeExpand}
 />
 
+{#if manifest}
+  <VersionLifecycleBanner />
+{/if}
 {#if $showHeader}
   <Navbar />
 {/if}
@@ -118,7 +121,6 @@
     <AjaxBar bind:this={ajaxBar} />
     {#if manifest}
       <VersionFallbackNotice />
-      <VersionLifecycleBanner />
     {/if}
     {#if $sidebar}
       <Sidebar />

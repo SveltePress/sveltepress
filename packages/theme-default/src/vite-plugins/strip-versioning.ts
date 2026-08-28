@@ -28,7 +28,8 @@ const transforms: Record<string, SourceTransform> = {
   'GlobalLayout.svelte': (source) => {
     let result = replaceRequired(source, `  import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'\n  import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'\n  import { manifest } from 'virtual:sveltepress/versions'\n`)
     result = replaceRequired(result, '    resolveSidebar(page.route.id)\n    $sidebarCollapsed', '    $sidebarCollapsed')
-    return replaceRequired(result, `    {#if manifest}\n      <VersionFallbackNotice />\n      <VersionLifecycleBanner />\n    {/if}\n`)
+    result = replaceRequired(result, `{#if manifest}\n  <VersionLifecycleBanner />\n{/if}\n`)
+    return replaceRequired(result, `    {#if manifest}\n      <VersionFallbackNotice />\n    {/if}\n`)
   },
   'Link.svelte': (source) => {
     let result = replaceRequired(source, `  import { page } from '$app/state'\n  import {\n    resolveVersionContext,\n    resolveVersionedPath,\n  } from 'virtual:sveltepress/versions'\n`)
@@ -53,8 +54,9 @@ const transforms: Record<string, SourceTransform> = {
   ),
   'PageLayout.svelte': (source) => {
     let result = replaceRequired(source, `  import {\n    manifest,\n    resolveVersionChanges,\n    resolveVersionContext,\n  } from 'virtual:sveltepress/versions'\n`)
-    result = replaceRequired(result, `  const versionContext = $derived(resolveVersionContext(page.url.pathname))\n  const versionChanges = $derived(\n    resolveVersionChanges(versionContext?.versionId),\n  )\n  const newPage = $derived(\n    versionChanges?.newPages.find(\n      changedPage => changedPage.route === versionContext?.logicalPath,\n    ),\n  )\n  const newPageLabel = $derived(\n    (themeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(\n      '{version}',\n      versionContext?.version.label ?? versionContext?.versionId ?? '',\n    ),\n  )\n  const canonical = $derived(manifest ? page.url.pathname : null)\n  const noIndex = $derived.by(() => {\n    if (!versionContext?.historical) return false\n    return (\n      versionContext.version.status === 'eol' &&\n      versionContext.version.noIndex !== false\n    )\n  })\n`)
+    result = replaceRequired(result, `  const versionContext = $derived(resolveVersionContext(page.url.pathname))\n  const versionChanges = $derived(\n    resolveVersionChanges(versionContext?.versionId),\n  )\n  const newPage = $derived(\n    versionChanges?.newPages.find(\n      changedPage => changedPage.route === versionContext?.logicalPath,\n    ),\n  )\n  const newPageLabel = $derived(\n    (themeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(\n      '{version}',\n      versionContext?.version.label ?? versionContext?.versionId ?? '',\n    ),\n  )\n  const canonical = $derived(manifest ? page.url.pathname : null)\n  const noIndex = $derived.by(() => {\n    if (!versionContext?.historical) return false\n    return (\n      versionContext.version.status === 'eol' &&\n      versionContext.version.noIndex !== false\n    )\n  })\n`, `  const routeId = $derived(page.route.id)\n`)
     result = replaceRequired(result, `            {#if newPage}<span\n                class="version-new-badge ml-2 inline-flex align-middle items-center rounded-full bg-rose-50 dark:bg-rose-950/45 px-2.5 py-1 text-xs font-700 text-svp-primary-deep dark:text-svp-primary"\n                >{newPageLabel}</span\n              >{/if}\n`)
+    result = replaceRequired(result, `  function resolveHomeLayout() {\n    return (\n      (versionContext?.logicalPath === '/' && home !== false) || home === true\n    )\n  }`, `  function resolveHomeLayout() {\n    return (routeId === '/' && home !== false) || home === true\n  }`)
     return replaceRequired(result, `  {#if canonical}<link rel="canonical" href={canonical} />{/if}\n  {#if noIndex}<meta name="robots" content="noindex,follow" />{/if}\n`)
   },
   'layout.ts': (source) => {

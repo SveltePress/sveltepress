@@ -12,6 +12,11 @@ export default {
     newContentAvailable: '发现新内容，点击刷新按钮来更新',
   },
   onThisPage: '当前页面',
+  versionDeprecated: '当前访问的是旧版站点，无法保证所有功能可用性，请切换至',
+  versionDeprecatedLabel: '已弃用',
+  versionEol: '当前访问的是旧版站点，无法保证所有功能可用性，请切换至',
+  versionEolLabel: '停止支持',
+  versionViewCurrent: '新版本',
   versionNavigationNewLabel: '新',
   footnoteLabel: '脚注',
 }

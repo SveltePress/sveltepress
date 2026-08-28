@@ -53,7 +53,7 @@ pnpm exec sveltepress versions validate
 
 版本 ID 必须是适合 URL 的小写标识，可包含点和连字符。`include`、`exclude` 决定冻结哪些路由文件；`shared` 明确声明不复制、继续引用当前文件的依赖。共享清单应尽量小，因为未来修改会影响所有历史版本。
 
-把 `status` 设为 `deprecated` 或 `eol` 会显示生命周期提示。`sourceRef` 让历史页面的编辑链接指向对应 Git ref，也可用 `editLink: false` 隐藏。EOL 版本默认输出 `noindex`，其他版本可用 `noIndex: true` 主动关闭索引。
+把 `status` 设为 `deprecated` 或 `eol` 会在全站导航上方显示醒目的旧版横条，提示旧版站点的功能可能不可用，并链接到最新版的同一逻辑页面。`sourceRef` 让历史页面的编辑链接指向对应 Git ref，也可用 `editLink: false` 隐藏。EOL 版本默认输出 `noindex`，其他版本可用 `noIndex: true` 主动关闭索引。
 
 ## 导航、搜索与构建输出
 

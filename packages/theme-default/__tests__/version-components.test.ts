@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import GlobalLayout from '../src/components/GlobalLayout.svelte'
 import { anchors, navCollapsed, resolveSidebar, sidebar } from '../src/components/layout'
 import MobileSubNav from '../src/components/MobileSubNav.svelte'
 import Navbar from '../src/components/Navbar.svelte'
@@ -89,13 +90,34 @@ describe('rendered documentation version UI', () => {
   it('renders localized lifecycle and missing-page notices', () => {
     setPage('/v/2026-08-27/guide/')
     const lifecycle = render(VersionLifecycleBanner)
-    expect(lifecycle.getByRole('complementary', { name: '已弃用' }).textContent).toContain('此版本已弃用。')
-    expect(lifecycle.getByRole('link', { name: '查看当前文档' }).getAttribute('href')).toBe('/guide/')
+    expect(lifecycle.getByRole('status', { name: '已弃用' }).textContent).toContain(
+      '当前访问的是旧版站点，无法保证所有功能可用性，请切换至',
+    )
+    expect(lifecycle.getByRole('link', { name: '新版本' }).getAttribute('href')).toBe('/guide/')
 
     cleanup()
     window.history.replaceState({}, '', '/v/2026-08-27/?svp-version-fallback=1')
     const fallback = render(VersionFallbackNotice)
     expect(fallback.getByRole('status').textContent).toBe('所选版本没有此页面，已返回版本首页。')
+  })
+
+  it('renders the old-version warning as a global bar before the page shell', () => {
+    setPage('/v/2026-08-27/guide/')
+
+    const view = render(GlobalLayout)
+    const banner = view.getByRole('status', { name: '已弃用' })
+    const main = view.container.querySelector('main')
+
+    expect(view.container.firstElementChild).toBe(banner)
+    expect(
+      banner.compareDocumentPosition(main!),
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING)
+    expect(banner.textContent).toContain(
+      '当前访问的是旧版站点，无法保证所有功能可用性，请切换至',
+    )
+    expect(view.getByRole('link', { name: '新版本' }).getAttribute('href')).toBe(
+      '/guide/',
+    )
   })
 
   it('disables historical search and restores current search after SPA navigation', async () => {
@@ -185,6 +207,24 @@ describe('rendered documentation version UI', () => {
       },
     })
 
+    expect(get(sidebar)).toBe(false)
+    expect(get(anchors)).toEqual([])
+  })
+
+  it('renders a historical root snapshot with the home page layout', () => {
+    setPage('/v/2026-08-27/')
+
+    const view = render(PageLayout, {
+      fm: {
+        title: 'SveltePress',
+        description: 'Build documentation sites.',
+        pageType: 'md',
+      },
+    })
+
+    expect(view.container.querySelector('.home-page')).not.toBeNull()
+    expect(view.container.querySelector('.theme-default--page-layout')).toBeNull()
+    expect(view.container.querySelector('.meta')).toBeNull()
     expect(get(sidebar)).toBe(false)
     expect(get(anchors)).toEqual([])
   })

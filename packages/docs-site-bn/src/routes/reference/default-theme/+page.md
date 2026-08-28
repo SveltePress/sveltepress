@@ -158,6 +158,9 @@ const defaultGradient = {
 * `nextPage` - "পরবর্তী" এর লেখা
 * `expansionTitle` - markdown বা svelte live code এর "কোড দেখতে বা হাইড করতে ক্লিক করুন" এর লেখা
 * `expandCode` - সংকুচিত লম্বা কোড ব্লকের expand bar-এর লেখা
+* `versionDeprecated` / `versionEol` - global old-version lifecycle bar-এর message
+* `versionDeprecatedLabel` / `versionEolLabel` - compact lifecycle status label
+* `versionViewCurrent` - একই logical page-এর current version link-এর label
 * `versionNavigationNewLabel` - পরিবর্তিত sidebar page ও table-of-contents section-এর পাশের compact badge text। Default `"New"`
 * `pwa` - pwa prompt এর relative টেক্সট কন্টেন্ট. নিচের সব ফিল্ডই pwa prompt এর মতই
   * `tip`

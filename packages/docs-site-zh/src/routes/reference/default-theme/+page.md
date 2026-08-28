@@ -176,6 +176,9 @@ const defaultGradient = {
 * `nextPage` - "Next"
 * `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
 * `expandCode` - 长代码块展开栏的文本
+* `versionDeprecated` / `versionEol` - 全局旧版生命周期横条中的提示文本
+* `versionDeprecatedLabel` / `versionEolLabel` - 生命周期状态的紧凑标签
+* `versionViewCurrent` - 打开同一逻辑页面最新版的链接文本
 * `versionNavigationNewLabel` - 侧边栏变化页面和当前页面目录新增段落旁的紧凑徽章文本，默认为 `"New"`
 * `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本
   * `tip`

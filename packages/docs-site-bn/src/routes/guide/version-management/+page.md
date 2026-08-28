@@ -52,7 +52,7 @@ pnpm exec sveltepress versions validate
 
 Version ID URL-safe lowercase হতে হবে; dot ও hyphen ব্যবহার করা যায়। `include` ও `exclude` কোন route file freeze হবে তা ঠিক করে। `shared` ইচ্ছাকৃত live dependency ঘোষণা করে; তালিকাটি ছোট রাখুন, কারণ ভবিষ্যৎ পরিবর্তন সব historical version-এ প্রভাব ফেলতে পারে।
 
-`status`-এ `deprecated` বা `eol` দিলে lifecycle banner দেখা যায়। `sourceRef` historical edit link-কে সংশ্লিষ্ট Git ref-এ পাঠায়; `editLink: false` দিয়ে link লুকানো যায়। EOL version ডিফল্টভাবে `noindex` পায়।
+`status`-এ `deprecated` বা `eol` দিলে navigation-এর উপরে একটি স্পষ্ট site-wide পুরোনো-version banner দেখা যায়। এটি পুরোনো site-এর কিছু feature কাজ নাও করতে পারে বলে জানায় এবং একই logical page-এর current version-এ link দেয়। `sourceRef` historical edit link-কে সংশ্লিষ্ট Git ref-এ পাঠায়; `editLink: false` দিয়ে link লুকানো যায়। EOL version ডিফল্টভাবে `noindex` পায়।
 
 ## Navigation, search ও output
 

@@ -60,7 +60,7 @@ The operation is atomic: a failed preflight does not leave a partial snapshot or
 
 Version IDs are URL-safe lowercase identifiers and may contain dots or hyphens. `include` and `exclude` select route files to freeze. `shared` explicitly allows dependencies that remain live instead of being copied; keep this list narrow because a later change can affect every historical version.
 
-Set `status` to `deprecated` or `eol` to show a lifecycle banner. `sourceRef` redirects historical edit links to a matching Git ref; set `editLink: false` to hide them. EOL versions default to `noindex`, and `noIndex: true` can opt another version out of indexing.
+Set `status` to `deprecated` or `eol` to show a prominent site-wide banner above the navigation. It warns that older-site functionality may be unavailable and links to the current version of the same logical page. `sourceRef` redirects historical edit links to a matching Git ref; set `editLink: false` to hide them. EOL versions default to `noindex`, and `noIndex: true` can opt another version out of indexing.
 
 ## Navigation and missing pages
 
