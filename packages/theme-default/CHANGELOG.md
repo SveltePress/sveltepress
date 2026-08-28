@@ -1,5 +1,24 @@
 # @sveltepress/theme-default
 
+## 8.4.0
+
+### Minor Changes
+
+- [`a94a51a`](https://github.com/Blackman99/sveltepress/commit/a94a51a9c2eaf763dbfda49d01e657343affe951) Thanks [@Blackman99](https://github.com/Blackman99)! - Add reusable non-root landing pages, redesign the version changes overview, and keep crowded desktop and mobile navigation layouts readable.
+
+### Patch Changes
+
+- [`90c8178`](https://github.com/Blackman99/sveltepress/commit/90c8178a3c2bc56abd5ca0cf707f343717290cbf) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`060cd24`](https://github.com/Blackman99/sveltepress/commit/060cd24db91bbf84334d875184f7341afb88887f) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the collapsed top navigation visible beside the documentation sidebar at intermediate viewport widths.
+
+- [`667b438`](https://github.com/Blackman99/sveltepress/commit/667b438c6868ac5f2a8e39350d4f106adb32f5d3) Thanks [@Blackman99](https://github.com/Blackman99)! - Mark changed sidebar pages and explicitly introduced table-of-contents sections with compact New badges.
+
+- [`f91d41b`](https://github.com/Blackman99/sveltepress/commit/f91d41badec45e284019724afe0be387907eb119) Thanks [@Blackman99](https://github.com/Blackman99)! - Move deprecated and end-of-life version notices into a global top bar, polish the current-version link, expose the version selector in compact navigation, preserve the home layout for historical root pages, and keep inline markup in custom admonition titles.
+
+- Updated dependencies [[`90c8178`](https://github.com/Blackman99/sveltepress/commit/90c8178a3c2bc56abd5ca0cf707f343717290cbf)]:
+  - @sveltepress/twoslash@1.3.18
+
 ## 8.3.1
 
 ### Patch Changes
