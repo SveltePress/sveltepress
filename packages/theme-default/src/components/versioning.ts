@@ -1,5 +1,5 @@
 import type { VersionManifest, VersionNavigationItem } from '@sveltepress/vite/versioning'
-import { resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from '@sveltepress/vite/versioning'
+import { resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from '@sveltepress/vite/versioning/runtime'
 
 export function getVersionOptions(routeId: string, manifest: VersionManifest | null) {
   if (!manifest)

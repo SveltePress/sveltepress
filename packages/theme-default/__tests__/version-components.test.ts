@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 
-import { cleanup, fireEvent, render } from '@testing-library/svelte'
+import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import Navbar from '../src/components/Navbar.svelte'
@@ -42,6 +42,18 @@ describe('rendered documentation version UI', () => {
     const view = render(VersionSelector, { mobile: true })
     expect(view.container.querySelector('.version-selector.mobile')).not.toBeNull()
     expect(view.getByRole('button', { name: '文档版本' })).toBeTruthy()
+  })
+
+  it('keeps date version labels intact and renders lifecycle states as badges', async () => {
+    const view = render(VersionSelector)
+    await fireEvent.click(view.getByRole('button', { name: '文档版本' }))
+
+    const deprecated = view.getByRole('menuitem', { name: /2026-08-27 已弃用/ })
+    const versionLabel = within(deprecated).getByText('2026-08-27')
+    const statusBadge = within(deprecated).getByText('已弃用')
+
+    expect(getComputedStyle(versionLabel).whiteSpace).toBe('nowrap')
+    expect(statusBadge.classList.contains('version-status-badge')).toBe(true)
   })
 
   it('renders localized lifecycle and missing-page notices', () => {

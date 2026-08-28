@@ -52,6 +52,8 @@ describe('version changes in development', () => {
     await (plugin.handleHotUpdate as (context: unknown) => Promise<void>)(context)
     const source = await (plugin.load as (id: string) => string)('virtual:sveltepress/versions')
     expect(source).toContain('fast-refresh')
+    expect(source).toContain('from \'@sveltepress/vite/versioning/runtime\'')
+    expect(source).not.toContain('from \'@sveltepress/vite/versioning\'')
     expect(invalidateModule).toHaveBeenCalledWith(virtualModule)
     expect(send).toHaveBeenCalledWith({ type: 'full-reload' })
 

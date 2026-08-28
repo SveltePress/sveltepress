@@ -139,7 +139,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
           `
         }
         return `
-          import { createVersionRuntime } from '@sveltepress/vite/versioning'
+          import { createVersionRuntime } from '@sveltepress/vite/versioning/runtime'
           export const manifest = ${JSON.stringify(versionManifest)}
           const runtime = createVersionRuntime(manifest)
           export const changeSets = runtime.changeSets

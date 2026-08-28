@@ -62,6 +62,8 @@ Historical search স্পষ্ট `search` configuration ছাড়া ব�
 
 Build প্রতিটি page-এর canonical, version-aware `sitemap.xml`, এবং `/v/{id}/llms.txt` তৈরি করে; root LLM file শুধু current docs রাখে। PWA historical HTML precache করে না এবং historical page-এর জন্য network-first strategy ব্যবহার করে। Custom theme `virtual:sveltepress/versions` থেকে manifest ও path resolver নিতে পারে।
 
+Browser code-এ package থেকে এই resolver-গুলো সরাসরি import করলে `@sveltepress/vite/versioning/runtime` ব্যবহার করুন; এই entry-তে Node file-system code নেই। Build ও configuration code-এ `@sveltepress/vite/versioning` ব্যবহার করা যাবে।
+
 Snapshot directory release artifact হিসেবে review ও commit করুন, হাতে edit করবেন না। Current route সংশোধন করে পরের snapshot তৈরি করুন।
 
 ## Current version-এ কী নতুন তা বর্ণনা করুন

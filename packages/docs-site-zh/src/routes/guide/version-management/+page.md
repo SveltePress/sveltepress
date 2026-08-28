@@ -65,6 +65,8 @@ pnpm exec sveltepress versions validate
 
 自定义主题可导入 `virtual:sveltepress/versions`，使用其中的清单与路径解析函数。快照目录应作为发版生成物审查并提交，不要手工修改；修订当前路由后再创建下一版快照。
 
+在浏览器代码中直接从包导入这些解析函数时，请使用 `@sveltepress/vite/versioning/runtime`；该入口不包含 Node 文件系统代码。构建和配置代码仍可使用 `@sveltepress/vite/versioning`。
+
 ## 说明当前版本新增了什么
 
 SveltePress 会按清单顺序比较当前路由与最近的历史版本。只存在于当前版本的路由会被列为新增页面。可通过 frontmatter 补充摘要或排除不应进入变化总览的页面：

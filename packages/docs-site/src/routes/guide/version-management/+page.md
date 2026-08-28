@@ -68,6 +68,8 @@ The Default Theme adds an accessible version selector automatically. Internal li
 
 Custom themes can import `virtual:sveltepress/versions`. It exposes the validated manifest plus `resolveVersionContext`, `resolveVersionedPath`, and `resolveVersionSwitch` helpers.
 
+Browser code that imports these helpers directly from the package should use `@sveltepress/vite/versioning/runtime`; this entry contains no Node file-system code. Build and configuration code can continue to use `@sveltepress/vite/versioning`.
+
 ## Search, PWA, and generated files
 
 Historical search is disabled unless that version has an explicit `search` object. The Default Theme passes the selected version and search metadata to custom search components, and applies configured DocSearch facet filters. This prevents current results from being presented as historical documentation.

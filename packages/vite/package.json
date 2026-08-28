@@ -32,6 +32,10 @@
       "types": "./dist/versioning/index.d.ts",
       "import": "./dist/versioning/index.mjs"
     },
+    "./versioning/runtime": {
+      "types": "./dist/versioning/runtime.d.ts",
+      "import": "./dist/versioning/runtime.mjs"
+    },
     "./types": {
       "types": "./types.d.ts"
     }

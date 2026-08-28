@@ -6,6 +6,7 @@ export default defineBuildConfig({
     'src/types',
     'src/highlight/index',
     'src/versioning/index',
+    'src/versioning/runtime',
     'src/theme-snapshot',
   ],
   declaration: true,

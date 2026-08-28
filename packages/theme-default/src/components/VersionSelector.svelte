@@ -120,8 +120,11 @@
             tabindex={index === activeIndex ? 0 : -1}
             onclick={() => selectVersion(option.target)}
           >
-            <span>{option.label}</span>
-            {#if statusLabel(option.status)}<small
+            <span
+              class="version-option-label"
+              style="white-space: nowrap; flex-shrink: 0">{option.label}</span
+            >
+            {#if statusLabel(option.status)}<small class="version-status-badge"
                 >{statusLabel(option.status)}</small
               >{/if}
             {#if option.id === context?.versionId}<span aria-hidden="true"
@@ -151,18 +154,19 @@
     transform: rotate(180deg);
   }
   .version-menu {
-    --at-apply: 'absolute top-[calc(100%-8px)] right-0 min-w-36 bg-white dark:bg-zinc-8 rounded-md shadow-lg b-1 b-solid b-black/8 dark:b-white/8 p-1 z-999';
+    --at-apply: 'absolute top-[calc(100%-8px)] right-0 min-w-52 bg-white dark:bg-zinc-8 rounded-md shadow-lg b-1 b-solid b-black/8 dark:b-white/8 p-1 z-999';
   }
   .mobile .version-menu {
     --at-apply: 'top-full left-4 right-4';
   }
   .version-menu button {
-    --at-apply: 'w-full b-0 bg-transparent text-left px-3 py-2 rounded flex items-center justify-between cursor-pointer text-zinc-7 dark:text-zinc-2 hover:bg-black/5 dark:hover:bg-white/7';
+    --at-apply: 'w-full b-0 bg-transparent text-left px-3 py-2 rounded flex items-center justify-between gap-2 cursor-pointer text-zinc-7 dark:text-zinc-2 hover:bg-black/5 dark:hover:bg-white/7';
   }
   .version-menu button.active {
     --at-apply: 'text-svp-primary-deep dark:text-svp-primary font-600';
   }
-  .version-menu small {
-    --at-apply: 'ml-auto mr-2 text-[10px] uppercase tracking-wide text-zinc-500 dark:text-zinc-400';
+  .version-status-badge {
+    white-space: nowrap;
+    --at-apply: 'ml-auto rounded-full bg-black/6 dark:bg-white/10 px-2 py-1 text-[10px] leading-none uppercase tracking-wide text-zinc-500 dark:text-zinc-300';
   }
 </style>
