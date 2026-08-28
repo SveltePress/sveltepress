@@ -4,11 +4,13 @@ import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { get } from 'svelte/store'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { anchors, navCollapsed, sidebar } from '../src/components/layout'
+import { anchors, navCollapsed, resolveSidebar, sidebar } from '../src/components/layout'
 import MobileSubNav from '../src/components/MobileSubNav.svelte'
 import Navbar from '../src/components/Navbar.svelte'
 import NavbarMobile from '../src/components/NavbarMobile.svelte'
 import PageLayout from '../src/components/PageLayout.svelte'
+import Sidebar from '../src/components/Sidebar.svelte'
+import Toc from '../src/components/Toc.svelte'
 import VersionChanges from '../src/components/VersionChanges.svelte'
 import VersionFallbackNotice from '../src/components/VersionFallbackNotice.svelte'
 import VersionLifecycleBanner from '../src/components/VersionLifecycleBanner.svelte'
@@ -119,6 +121,39 @@ describe('rendered documentation version UI', () => {
     setPage('/v/2026-08-27/guide/')
     const historical = render(PageLayout, { fm: { title: 'Guide', pageType: 'md' } })
     expect(historical.queryByText('新增于 2026-08-28')).toBeNull()
+  })
+
+  it('marks new and updated pages in the sidebar for the active version', () => {
+    setPage('/guide/')
+    resolveSidebar('/guide/')
+
+    const view = render(Sidebar)
+
+    expect(view.getByRole('link', { name: 'Guide, 新' })).toBeTruthy()
+    expect(view.getByRole('link', { name: 'New guide, 新' })).toBeTruthy()
+    expect(view.getByRole('link', { name: 'Unchanged' })).toBeTruthy()
+    expect(view.container.querySelectorAll('.version-navigation-new-badge')).toHaveLength(2)
+  })
+
+  it('marks only explicitly changed sections in the current page table of contents', () => {
+    setPage('/guide/')
+    resolveSidebar('/guide/')
+
+    const view = render(Toc, {
+      anchors: [
+        {
+          slugId: 'hot-reload-options',
+          title: 'Hot reload',
+          depth: 2,
+          versionChangeId: 'hot-reload',
+        },
+        { slugId: 'existing-section', title: 'Existing section', depth: 2 },
+      ],
+    })
+
+    expect(view.getByRole('link', { name: 'Hot reload 新' }).getAttribute('href')).toBe('#hot-reload-options')
+    expect(view.getByRole('link', { name: 'Existing section' })).toBeTruthy()
+    expect(view.container.querySelectorAll('.version-navigation-new-badge')).toHaveLength(1)
   })
 
   it('renders an arbitrary home page as a standalone landing page', () => {

@@ -2,7 +2,16 @@ import Search from './Search.svelte'
 
 export default {
   navbar: [],
-  sidebar: {},
+  sidebar: {
+    '/guide/': [{
+      title: 'Guide',
+      items: [
+        { title: 'Guide', to: '/guide/' },
+        { title: 'New guide', to: '/guide/new/' },
+        { title: 'Unchanged', to: '/guide/unchanged/' },
+      ],
+    }],
+  },
   search: Search,
   i18n: {
     navbarMenu: '打开导航菜单',
@@ -15,6 +24,7 @@ export default {
     versionViewCurrent: '查看当前文档',
     versionSearchUnavailable: '此文档版本不提供搜索。',
     versionNewLabel: '新增于 {version}',
+    versionNavigationNewLabel: '新',
     versionChangesSelector: '查看版本变化',
     versionChangesNewPages: '新增页面',
     versionChangesUpdatedPages: '更新页面',

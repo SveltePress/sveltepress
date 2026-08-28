@@ -58,8 +58,27 @@ const transforms: Record<string, SourceTransform> = {
     return replaceRequired(result, `  {#if canonical}<link rel="canonical" href={canonical} />{/if}\n  {#if noIndex}<meta name="robots" content="noindex,follow" />{/if}\n`)
   },
   'layout.ts': (source) => {
-    const result = replaceRequired(source, `import { resolveVersionSidebar } from 'virtual:sveltepress/theme-default/versioning'\nimport { manifest as versionManifest } from 'virtual:sveltepress/versions'\n`)
+    let result = replaceRequired(source, `import { resolveVersionSidebar } from 'virtual:sveltepress/theme-default/versioning'\nimport {\n  resolveVersionChanges,\n  resolveVersionContext,\n  resolveVersionedPath,\n  manifest as versionManifest,\n} from 'virtual:sveltepress/versions'\n`)
+    result = replaceRequired(result, `export const changedPageRoutes = writable<Set<string>>(new Set())\n\nexport const changedSectionIds = writable<Set<string>>(new Set())\n\n`)
+    result = replaceRequired(result, `  resolveVersionNavigationChanges(routeId)\n`)
+    result = replaceRequired(result, `\nfunction resolveVersionNavigationChanges(routeId: string) {\n  const context = resolveVersionContext(routeId)\n  const changes = resolveVersionChanges(context?.versionId)\n  if (!context || !changes) {\n    changedPageRoutes.set(new Set())\n    changedSectionIds.set(new Set())\n    return\n  }\n\n  changedPageRoutes.set(new Set(\n    [...changes.newPages, ...changes.updatedPages].map(changedPage =>\n      normalizeNavigationRoute(resolveVersionedPath(changedPage.route, context)),\n    ),\n  ))\n  const currentPageChanges = changes.updatedPages.find(changedPage =>\n    normalizeNavigationRoute(changedPage.route) === normalizeNavigationRoute(context.logicalPath),\n  )\n  changedSectionIds.set(new Set(currentPageChanges?.sections.map(section => section.id) ?? []))\n}\n\nexport function normalizeNavigationRoute(route: string): string {\n  return route === '/' ? route : route.replace(/\\/+$/, '')\n}\n`)
     return replaceRequired(result, `  resolvedSidebar.set(resolveVersionSidebar(routeId, themeOptions.sidebar || {}, versionManifest) as LinkItem[])`, `  const normalizedRouteId = routeId.replace(/\\/$/, '')\n  const key = Object.keys(themeOptions.sidebar || {}).find(key =>\n    normalizedRouteId.startsWith(key.replace(/\\/$/, '')),\n  )\n  // If no matching key found, clear the sidebar\n  if (!key) {\n    resolvedSidebar.set([])\n    return\n  }\n  resolvedSidebar.set(themeOptions.sidebar?.[key] || [])`)
+  },
+  'SidebarGroup.svelte': (source) => {
+    let result = replaceRequired(source, `  import themeOptions from 'virtual:sveltepress/theme-default'\n`)
+    result = replaceRequired(result, `  import { changedPageRoutes, normalizeNavigationRoute } from './layout'\n`)
+    result = replaceRequired(result, `  import VersionNavigationBadge from './VersionNavigationBadge.svelte'\n`)
+    result = replaceRequired(result, `  const newBadgeLabel = $derived(\n    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',\n  )\n`)
+    result = replaceRequired(result, `        {@const changed =\n          item.to && $changedPageRoutes.has(normalizeNavigationRoute(item.to))}\n`)
+    result = replaceRequired(result, `          {#snippet labelRenderer()}\n            <span class="link-label">{item.title}</span>\n            {#if changed}<VersionNavigationBadge label={newBadgeLabel} />{/if}\n          {/snippet}\n`)
+    result = replaceRequired(result, `            label={changed ? \`${'${item.title}'}, ${'${newBadgeLabel}'}\` : item.title}\n            {labelRenderer}\n`, `            label={item.title}\n`)
+    return replaceRequired(result, `  .link-label {\n    --at-apply: 'min-w-0 truncate';\n  }\n`)
+  },
+  'Toc.svelte': (source) => {
+    let result = replaceRequired(source, `  import { changedSectionIds, tocCollapsed } from './layout'\n  import VersionNavigationBadge from './VersionNavigationBadge.svelte'\n`, `  import { tocCollapsed } from './layout'\n`)
+    result = replaceRequired(result, `  const newBadgeLabel = $derived(\n    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',\n  )\n`)
+    result = replaceRequired(result, `          <span class="item-label">{an.title}</span>\n          {#if an.versionChangeId && $changedSectionIds.has(an.versionChangeId)}<VersionNavigationBadge\n              label={newBadgeLabel}\n            />{/if}`, `          {an.title}`)
+    return replaceRequired(result, `  .item {\n    --at-apply: 'relative z-3 flex min-w-0 items-center cursor-pointer';\n    padding-left: calc(1rem + (var(--heading-depth) - 2) * 1.2em);\n  }\n  .item-label {\n    --at-apply: 'min-w-0 truncate';\n  }`, `  .item {\n    --at-apply: 'pl-4 relative z-3 block truncate cursor-pointer';\n    text-indent: calc((var(--heading-depth) - 2) * 1.2em);\n  }`)
   },
   'sw.js': (source) => {
     const result = replaceRequired(source, `import { NetworkFirst } from 'workbox-strategies'\n`)

@@ -14,6 +14,8 @@ const reviewedManifestlessHashes = {
   'Navbar.svelte': 'ca365c97d23cde2b729d3da572ea929b42a54eefdb9e4f42c2458b38b7d4f87a',
   'NavbarMobile.svelte': 'b257abd92d303544f61e918657a9029fe0d307686444eceda6ce7562cc9d8d23',
   'PageLayout.svelte': 'c51bd40ec9b39059ad4cac521d1997d5dd7dc22c2cd4a3c0e793cf0443cc8991',
+  'SidebarGroup.svelte': 'dcd7ea9b49d67184ebd282513b6237cd4646e92404ceff8a1921894115da4537',
+  'Toc.svelte': 'e09d889fc09b315cdb8151de6d026048d7ec9a22eb6f873b307cdcc137615502',
   'layout.ts': '14406f3500c45be5085c3e7f5bc156542aa896cf9f7a6cc0acfafa1ae8f994b5',
   'pwa/sw.js': '34531cfb59de917b1ebf006b4928ab744cdd24f755a9666872f62f7bf41911b3',
 }

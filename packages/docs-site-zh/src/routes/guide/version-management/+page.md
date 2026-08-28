@@ -92,6 +92,8 @@ versionChanges:
 
 默认主题只在浏览内容首次引入的版本时显示页面和段落标签。站点可以自行决定变化总览 URL：
 
+侧边栏会为新增页面和更新页面显示紧凑的“新”徽章；“当前页面”目录只为通过 `:::since` 显式声明的段落显示同一徽章。可通过 `i18n.versionNavigationNewLabel` 覆盖紧凑文案。
+
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>
   import VersionChanges from '@sveltepress/theme-default/VersionChanges.svelte'

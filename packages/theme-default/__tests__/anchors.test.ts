@@ -1,6 +1,8 @@
+import type { VersionManifest } from '@sveltepress/vite/versioning'
 import { mdToSvelte } from '@sveltepress/vite'
 import { describe, expect, it } from 'vitest'
 import anchors from '../src/markdown/anchors'
+import versionChanges from '../src/markdown/version-changes'
 
 const md = `
 ## Foo \`foo\`
@@ -48,5 +50,26 @@ describe('anchors', () => {
         },
       }
     `)
+  })
+
+  it('associates a heading slug with its containing version change ID', async () => {
+    const manifest: VersionManifest = {
+      basePath: '/v',
+      current: { id: 'v9', label: '9.x' },
+      versions: [{ id: 'v8', label: '8.x' }],
+      content: { include: ['**'], exclude: [], shared: [] },
+    }
+    const result = await mdToSvelte({
+      filename: '/site/src/routes/guide/+page.md',
+      mdContent: `:::since[Version change discovery]{version="v9" id="stable-change-id"}\n### versions\nNew content.\n:::`,
+      remarkPlugins: [versionChanges({ manifest }), anchors],
+    })
+
+    expect(result.data.anchors).toEqual([{
+      slugId: 'versions',
+      title: 'versions',
+      depth: 3,
+      versionChangeId: 'stable-change-id',
+    }])
   })
 })

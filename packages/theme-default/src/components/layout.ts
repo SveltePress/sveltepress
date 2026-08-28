@@ -2,7 +2,12 @@ import type { LinkItem } from 'virtual:sveltepress/theme-default'
 import { get, writable } from 'svelte/store'
 import themeOptions from 'virtual:sveltepress/theme-default'
 import { resolveVersionSidebar } from 'virtual:sveltepress/theme-default/versioning'
-import { manifest as versionManifest } from 'virtual:sveltepress/versions'
+import {
+  resolveVersionChanges,
+  resolveVersionContext,
+  resolveVersionedPath,
+  manifest as versionManifest,
+} from 'virtual:sveltepress/versions'
 
 export const MOBILE_EDGE_WIDTH = 950
 
@@ -15,6 +20,10 @@ export const navCollapsed = writable(true)
 export const anchors = writable([])
 
 export const pages = writable<LinkItem[]>([])
+
+export const changedPageRoutes = writable<Set<string>>(new Set())
+
+export const changedSectionIds = writable<Set<string>>(new Set())
 
 export const scrollY = writable(0)
 
@@ -65,5 +74,30 @@ tocCollapsed.subscribe((v) => {
 export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
+  resolveVersionNavigationChanges(routeId)
   resolvedSidebar.set(resolveVersionSidebar(routeId, themeOptions.sidebar || {}, versionManifest) as LinkItem[])
+}
+
+function resolveVersionNavigationChanges(routeId: string) {
+  const context = resolveVersionContext(routeId)
+  const changes = resolveVersionChanges(context?.versionId)
+  if (!context || !changes) {
+    changedPageRoutes.set(new Set())
+    changedSectionIds.set(new Set())
+    return
+  }
+
+  changedPageRoutes.set(new Set(
+    [...changes.newPages, ...changes.updatedPages].map(changedPage =>
+      normalizeNavigationRoute(resolveVersionedPath(changedPage.route, context)),
+    ),
+  ))
+  const currentPageChanges = changes.updatedPages.find(changedPage =>
+    normalizeNavigationRoute(changedPage.route) === normalizeNavigationRoute(context.logicalPath),
+  )
+  changedSectionIds.set(new Set(currentPageChanges?.sections.map(section => section.id) ?? []))
+}
+
+export function normalizeNavigationRoute(route: string): string {
+  return route === '/' ? route : route.replace(/\/+$/, '')
 }

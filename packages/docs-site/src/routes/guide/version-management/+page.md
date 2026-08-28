@@ -108,6 +108,8 @@ Unknown versions, duplicate IDs, unknown fields, and invalid field types stop de
 
 The Default Theme displays page and section badges only while browsing the version that introduced them. Add a changelog route wherever it fits your site:
 
+The sidebar adds a compact **New** badge to both new and updated pages. **On this page** adds the same badge only to sections declared with `:::since`. Override the compact text with `i18n.versionNavigationNewLabel`.
+
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>
   import VersionChanges from '@sveltepress/theme-default/VersionChanges.svelte'

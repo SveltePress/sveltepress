@@ -12,5 +12,6 @@ export default {
     newContentAvailable: '发现新内容，点击刷新按钮来更新',
   },
   onThisPage: '当前页面',
+  versionNavigationNewLabel: '新',
   footnoteLabel: '脚注',
 }

@@ -1,10 +1,13 @@
 <script>
   import { page } from '$app/state'
   import { slide } from 'svelte/transition'
+  import themeOptions from 'virtual:sveltepress/theme-default'
   import ArrowDown from './icons/ArrowDown.svelte'
+  import { changedPageRoutes, normalizeNavigationRoute } from './layout'
   import Link from './Link.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
   import { isLinkActive } from './utils'
+  import VersionNavigationBadge from './VersionNavigationBadge.svelte'
 
   const routeId = $derived(page.route.id)
 
@@ -25,6 +28,9 @@
   } = $props()
 
   let collapsed = $state(false)
+  const newBadgeLabel = $derived(
+    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',
+  )
 
   function handleToggle() {
     collapsed = !collapsed
@@ -55,13 +61,20 @@
     <div class="links" transition:slide>
       {#each items as item}
         {@const active = isLinkActive(item.to, routeId)}
+        {@const changed =
+          item.to && $changedPageRoutes.has(normalizeNavigationRoute(item.to))}
         {#if Array.isArray(item.items) && item.items.length}
           <SidebarGroup {...item} nested />
         {:else}
+          {#snippet labelRenderer()}
+            <span class="link-label">{item.title}</span>
+            {#if changed}<VersionNavigationBadge label={newBadgeLabel} />{/if}
+          {/snippet}
           <Link
             to={item.to}
             {active}
-            label={item.title}
+            label={changed ? `${item.title}, ${newBadgeLabel}` : item.title}
+            {labelRenderer}
             inline={false}
             highlight={false}
           />
@@ -91,6 +104,9 @@
   }
   .links > :global(.link) {
     --at-apply: 'px-3 py-1.5 my-px leading-5 rounded-md transition-colors transition-150 text-zinc-7 dark:text-zinc-3';
+  }
+  .link-label {
+    --at-apply: 'min-w-0 truncate';
   }
   .links > :global(.link:not(.active):hover) {
     --at-apply: 'bg-black/4 dark:bg-white/6';

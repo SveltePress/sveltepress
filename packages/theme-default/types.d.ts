@@ -108,6 +108,8 @@ declare module 'virtual:sveltepress/theme-default' {
       versionSearchUnavailable?: string
       /** Template for page and section badges. Use `{version}` for the version label. */
       versionNewLabel?: string
+      /** Compact badge shown beside changed sidebar pages and table-of-contents sections. */
+      versionNavigationNewLabel?: string
       versionChangesSelector?: string
       versionChangesNewPages?: string
       versionChangesUpdatedPages?: string

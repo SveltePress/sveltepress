@@ -8,7 +8,8 @@
   import { onMount, tick } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Backdrop from './Backdrop.svelte'
-  import { tocCollapsed } from './layout'
+  import { changedSectionIds, tocCollapsed } from './layout'
+  import VersionNavigationBadge from './VersionNavigationBadge.svelte'
 
   /**
    * @typedef {object} Props
@@ -17,6 +18,9 @@
 
   /** @type {Props} */
   const { anchors = [] } = $props()
+  const newBadgeLabel = $derived(
+    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',
+  )
 
   let scrollY = $state()
 
@@ -96,7 +100,10 @@
           class:active
           style="--heading-depth: {an.depth < 2 ? 2 : an.depth};"
         >
-          {an.title}
+          <span class="item-label">{an.title}</span>
+          {#if an.versionChangeId && $changedSectionIds.has(an.versionChangeId)}<VersionNavigationBadge
+              label={newBadgeLabel}
+            />{/if}
         </a>
       {/each}
       <div class="active-bar"></div>
@@ -117,8 +124,11 @@
     --at-apply: 'font-600 pl-4 mb-1 text-zinc-8 dark:text-zinc-2 text-3.5';
   }
   .item {
-    --at-apply: 'pl-4 relative z-3 block truncate cursor-pointer';
-    text-indent: calc((var(--heading-depth) - 2) * 1.2em);
+    --at-apply: 'relative z-3 flex min-w-0 items-center cursor-pointer';
+    padding-left: calc(1rem + (var(--heading-depth) - 2) * 1.2em);
+  }
+  .item-label {
+    --at-apply: 'min-w-0 truncate';
   }
   .item:hover {
     --at-apply: 'text-svp-primary-deep dark:text-svp-primary';

@@ -91,6 +91,8 @@ Unknown version, duplicate ID, unknown field বা ভুল type development s
 
 Default Theme page ও section badge শুধু সেই version-এ দেখায় যেখানে content প্রথম এসেছে। Site নিজের পছন্দের route-এ overview component রাখতে পারে:
 
+Sidebar নতুন ও updated page-এর পাশে compact **New** badge দেখায়। **On this page** কেবল `:::since` দিয়ে স্পষ্টভাবে চিহ্নিত section-এ একই badge দেখায়। Compact text বদলাতে `i18n.versionNavigationNewLabel` ব্যবহার করুন।
+
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>
   import VersionChanges from '@sveltepress/theme-default/VersionChanges.svelte'
