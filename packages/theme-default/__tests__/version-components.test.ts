@@ -2,6 +2,7 @@
 
 import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
+import { compile } from 'svelte/compiler'
 import { get } from 'svelte/store'
 import themeOptions from 'virtual:sveltepress/theme-default'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -17,6 +18,7 @@ import VersionChanges from '../src/components/VersionChanges.svelte'
 import VersionFallbackNotice from '../src/components/VersionFallbackNotice.svelte'
 import VersionLifecycleBanner from '../src/components/VersionLifecycleBanner.svelte'
 import VersionSelector from '../src/components/VersionSelector.svelte'
+import versionSelectorSource from '../src/components/VersionSelector.svelte?raw'
 import { setPage } from './fixtures/app-state.svelte'
 import { gotoCalls, resetNavigation } from './fixtures/navigation'
 
@@ -59,6 +61,31 @@ describe('rendered documentation version UI', () => {
     expect(view.getByRole('button', { name: '文档版本' })).toBeTruthy()
   })
 
+  it('keeps the compact navigation selector visible above the mobile breakpoint', () => {
+    const style = document.createElement('style')
+    const componentCss = compile(versionSelectorSource, {
+      filename: new URL(
+        '../src/components/VersionSelector.svelte',
+        import.meta.url,
+      ).pathname,
+    }).css?.code ?? ''
+    style.textContent = componentCss.replaceAll(/\.svelte-[\w-]+/g, '')
+    document.head.append(style)
+
+    try {
+      const view = render(VersionSelector, { mobile: true })
+      const selector = view.container.querySelector<HTMLElement>(
+        '.version-selector.mobile',
+      )
+
+      expect(selector).not.toBeNull()
+      expect(getComputedStyle(selector!).display).toBe('flex')
+    }
+    finally {
+      style.remove()
+    }
+  })
+
   it('exposes the compact navigation as a labelled disclosure button', async () => {
     const view = render(NavbarMobile)
     const trigger = view.getByRole('button', { name: '打开导航菜单' })
@@ -74,6 +101,9 @@ describe('rendered documentation version UI', () => {
     const navigation = view.getByRole('navigation', { name: 'Menu' })
     expect(navigation.id).toBe('sveltepress-mobile-navigation')
     expect(navigation.classList.contains('has-sidebar')).toBe(true)
+    expect(
+      within(navigation).getByRole('button', { name: '文档版本' }),
+    ).toBeTruthy()
   })
 
   it('keeps date version labels intact and renders lifecycle states as badges', async () => {

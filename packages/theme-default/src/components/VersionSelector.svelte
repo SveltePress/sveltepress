@@ -142,7 +142,8 @@
     --at-apply: 'relative hidden sm:flex items-center';
   }
   .version-selector.mobile {
-    --at-apply: 'flex sm:hidden px-4 py-2';
+    --at-apply: 'px-4 py-2';
+    display: flex;
   }
   .version-trigger {
     --at-apply: 'bg-transparent b-0 px-3 py-2 text-sm font-600 text-zinc-7 dark:text-zinc-2 cursor-pointer flex items-center gap-1 rounded hover:bg-black/4 dark:hover:bg-white/6';
