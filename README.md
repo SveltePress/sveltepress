@@ -42,13 +42,14 @@ The generated project uses the default documentation theme. For an editorial sit
 
 | Package | Purpose |
 |---|---|
-| `@sveltepress/create` | Scaffold a Sveltepress project |
-| `@sveltepress/vite` | Markdown and SvelteKit integration |
-| `@sveltepress/theme-default` | Documentation theme |
-| `@sveltepress/theme-blog` | Static editorial/blog theme |
-| `@sveltepress/twoslash` | TypeScript hover information in code blocks |
-| `@sveltepress/docsearch` | Algolia DocSearch component |
-| `@sveltepress/meilisearch` | Meilisearch component |
+| [`@sveltepress/create`](./packages/create/) | Interactive scaffolder for JavaScript and TypeScript Sveltepress sites |
+| [`@sveltepress/cli`](./packages/cli/) | Version manifest, documentation snapshot, and validation CLI |
+| [`@sveltepress/vite`](./packages/vite/) | Core Vite and SvelteKit integration, Markdown pipeline, and version routing |
+| [`@sveltepress/theme-default`](./packages/theme-default/) | Default documentation theme with navigation, search, and content features |
+| [`@sveltepress/theme-blog`](./packages/theme-blog/) | Static magazine-style blog theme with posts, pagination, RSS, OG images, and Pagefind |
+| [`@sveltepress/twoslash`](./packages/twoslash/) | TypeScript and Svelte hover information for Shiki code blocks |
+| [`@sveltepress/docsearch`](./packages/docsearch/) | Algolia DocSearch UI component for Sveltepress themes |
+| [`@sveltepress/meilisearch`](./packages/meilisearch/) | Meilisearch search UI integration for Sveltepress themes |
 
 ## :bookmark_tabs: Online docs and demos
 
