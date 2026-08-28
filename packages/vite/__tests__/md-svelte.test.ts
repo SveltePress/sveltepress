@@ -105,13 +105,13 @@ describe('md to svelte', () => {
       {
         "fm": {
           "description": "Some page description",
-          "lastUpdate": "Invalid Date",
+          "lastUpdate": "",
           "pageType": "md",
           "title": "Page Title",
         },
         "wrappedCode": "<script>
       import PageLayout from '/path/to/CustomLayout.svelte'
-      const fm = {"pageType":"md","lastUpdate":"Invalid Date","title":"Page Title","description":"Some page description"}
+      const fm = {"pageType":"md","lastUpdate":"","title":"Page Title","description":"Some page description"}
         import Counter from './Counter.svelte'
         let count = $state(0)
       </script>

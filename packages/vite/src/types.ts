@@ -36,7 +36,11 @@ export interface ResolvedTheme {
    * The footnote label used for [remark rehype](https://github.com/remarkjs/remark-rehype#api)
    */
   footnoteLabel?: string
+  /** Receive the core version configuration before theme plugins are resolved. */
+  configureVersions?: (versions: VersionPluginOptions) => void
 }
+
+export type VersionPluginOptions = SveltepressVitePluginOptions['versions']
 
 export type RemarkPluginsOrderer = ((themeRemarkPlugins: Plugin[]) => Plugin[])
 
@@ -66,6 +70,13 @@ export interface SveltepressVitePluginOptions {
   remarkPlugins?: Plugin[] | RemarkPluginsOrderer
   rehypePlugins?: Plugin[] | RehypePluginsOrderer
   llms?: LlmsConfig
+  /**
+   * Enable document version management by discovering
+   * `sveltepress.versions.json`, override its location, or disable discovery.
+   */
+  versions?: false | {
+    manifest?: string
+  }
   /**
    * Options forwarded to the SvelteKit vite plugin that `sveltepress()` sets up
    * internally.

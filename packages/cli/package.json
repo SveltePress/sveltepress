@@ -1,0 +1,40 @@
+{
+  "name": "@sveltepress/cli",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.34.5",
+  "description": "Document version management CLI for SveltePress",
+  "license": "MIT",
+  "homepage": "https://sveltepress.site/",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/SveltePress/sveltepress",
+    "directory": "packages/cli"
+  },
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "sveltepress": "./bin.js"
+  },
+  "files": [
+    "bin.js",
+    "dist",
+    "schema"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "unbuild",
+    "prepare": "pnpm build"
+  },
+  "dependencies": {
+    "@sveltepress/vite": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "unbuild": "catalog:",
+    "vitest": "catalog:"
+  }
+}

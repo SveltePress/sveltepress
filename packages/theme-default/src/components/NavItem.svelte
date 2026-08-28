@@ -1,5 +1,9 @@
 <script>
   import { page } from '$app/state'
+  import {
+    resolveVersionContext,
+    resolveVersionedPath,
+  } from 'virtual:sveltepress/versions'
   import External from './icons/External.svelte'
   import NavArrowDown from './icons/NavArrowDown.svelte'
   import Self from './NavItem.svelte'
@@ -30,8 +34,14 @@
     ...rest
   } = $props()
 
-  const normalizedTo = to.endsWith('/') ? to.slice(0, -1) : to
-  const isExactMatch = p => p === to
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const resolvedTo = $derived(
+    external ? to : resolveVersionedPath(to, versionContext),
+  )
+  const normalizedTo = $derived(
+    resolvedTo.endsWith('/') ? resolvedTo.slice(0, -1) : resolvedTo,
+  )
+  const isExactMatch = p => p === resolvedTo
   const isChildMatch = p => p.startsWith(`${normalizedTo}/`)
   let active = $derived(
     isExactMatch(page.url.pathname) || isChildMatch(page.url.pathname),
@@ -66,7 +76,7 @@
   </div>
 {:else}
   <a
-    href={external ? to : getPathFromBase(to)}
+    href={external ? to : getPathFromBase(resolvedTo)}
     class:nav-item--icon={icon}
     class="nav-item"
     class:active

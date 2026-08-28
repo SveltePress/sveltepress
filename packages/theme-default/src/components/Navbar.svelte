@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { Component } from 'svelte'
   import { page } from '$app/state'
-  import { onMount } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import { resolveVersionSearch } from 'virtual:sveltepress/theme-default/versioning'
+  import VersionSelector from 'virtual:sveltepress/theme-default/VersionSelector.svelte'
+  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
   import { scrollDirection } from './layout'
@@ -15,13 +17,42 @@
   const routeId = $derived(page.route.id)
   const isHome = $derived(routeId === '/')
   const hasError = $derived(page.error)
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const versionSearch = $derived(
+    resolveVersionSearch(page.url.pathname, manifest),
+  )
+  const hasConfiguredSearch = $derived(
+    Boolean(themeOptions.search || themeOptions.docsearch),
+  )
+  const versionedDocsearch = $derived.by(() => {
+    if (!themeOptions.docsearch) return null
+    const metadata = versionSearch.metadata
+    if (!metadata) return themeOptions.docsearch
+    const { facetFilters, ...overrides } = metadata
+    return {
+      ...themeOptions.docsearch,
+      ...overrides,
+      ...(facetFilters
+        ? {
+            searchParameters: {
+              ...themeOptions.docsearch.searchParameters,
+              facetFilters,
+            },
+          }
+        : {}),
+    }
+  })
 
   let docsearchComponent = $state<Component | undefined>()
   let searchComponent = $state<Component | undefined>()
 
-  onMount(async () => {
+  async function loadSearch() {
     // Load custom search component if it's a string path
-    if (themeOptions.search && typeof themeOptions.search === 'string') {
+    if (
+      versionSearch.available &&
+      themeOptions.search &&
+      typeof themeOptions.search === 'string'
+    ) {
       try {
         searchComponent = (await import(/* @vite-ignore */ themeOptions.search))
           .default
@@ -34,7 +65,11 @@
     }
 
     // Load docsearch if no custom search is provided
-    if (themeOptions.docsearch && !themeOptions.search) {
+    if (
+      versionSearch.available &&
+      themeOptions.docsearch &&
+      !themeOptions.search
+    ) {
       try {
         docsearchComponent = (
           await import('@sveltepress/docsearch/Search.svelte')
@@ -43,6 +78,10 @@
         console.error('[sveltepress] Failed to load docsearch component:', e)
       }
     }
+  }
+
+  $effect(() => {
+    if (versionSearch.available) void loadSearch()
   })
 </script>
 
@@ -54,24 +93,42 @@
         <Logo />
       </div>
     </div>
-    {#if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
+    {#if hasConfiguredSearch && !versionSearch.available}
       <div
         class:is-home={isHome}
         class:move={!isHome && !hasError}
-        class="doc-search"
+        class="doc-search search-unavailable"
+        role="status"
       >
-        <svelte:component this={searchComponent || themeOptions.search} />
+        {themeOptions.i18n?.versionSearchUnavailable ??
+          'Search is not available for this documentation version.'}
       </div>
-    {:else if themeOptions.docsearch && docsearchComponent}
+    {:else if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
       <div
         class:is-home={isHome}
         class:move={!isHome && !hasError}
         class="doc-search"
       >
-        <svelte:component
-          this={docsearchComponent}
-          {...themeOptions.docsearch}
-        />
+        {#key versionContext?.versionId}
+          {@const SearchComponent = searchComponent || themeOptions.search}
+          <SearchComponent
+            version={versionContext?.version}
+            versionSearch={versionSearch.metadata}
+          />
+        {/key}
+      </div>
+    {:else if versionedDocsearch && docsearchComponent}
+      <div
+        class:is-home={isHome}
+        class:move={!isHome && !hasError}
+        class="doc-search"
+      >
+        {#key versionContext?.versionId}
+          {#if docsearchComponent}
+            {@const DocsearchComponent = docsearchComponent}
+            <DocsearchComponent {...versionedDocsearch} />
+          {/if}
+        {/key}
       </div>
     {/if}
 
@@ -82,6 +139,7 @@
             <NavItem {...navItem} />
           {/each}
         </div>
+        {#if manifest}<VersionSelector />{/if}
         {#if themeOptions.github}
           <NavItem
             to={themeOptions.github}
@@ -154,6 +212,9 @@
      i.e. aligned with the content area. */
   .doc-search.move {
     --at-apply: 'sm:left-[calc(min(25vw,288px)-8px)]';
+  }
+  .search-unavailable {
+    --at-apply: 'text-xs text-zinc-500 dark:text-zinc-400 px-3 flex-none max-w-32 sm:max-w-55 overflow-hidden text-ellipsis whitespace-nowrap';
   }
 
   .navbar-pc {

@@ -1,4 +1,9 @@
 <script>
+  import { page } from '$app/state'
+  import {
+    resolveVersionContext,
+    resolveVersionedPath,
+  } from 'virtual:sveltepress/versions'
   import External from './icons/External.svelte'
   import { getPathFromBase } from './utils'
 
@@ -12,10 +17,14 @@
 
   /** @type {Props} */
   let { label, type = '', to, external = false } = $props()
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const resolvedTo = $derived(
+    external ? to : resolveVersionedPath(to, versionContext),
+  )
 </script>
 
 <a
-  href={external ? to : getPathFromBase(to)}
+  href={external ? to : getPathFromBase(resolvedTo)}
   class={`svp-action ${type ? `svp-action--${type}` : ''}`}
   target={external ? '_blank' : ''}
 >

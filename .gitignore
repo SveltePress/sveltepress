@@ -13,6 +13,9 @@ dist
 # Generated llms.txt files
 **/static/llms.txt
 **/static/llms-full.txt
+**/static/**/llms.txt
+**/static/**/llms-full.txt
+**/static/sitemap.xml
 .vscode
 .history
 node-jiti

@@ -28,6 +28,10 @@
       "types": "./dist/highlight/index.d.ts",
       "import": "./dist/highlight/index.mjs"
     },
+    "./versioning": {
+      "types": "./dist/versioning/index.d.ts",
+      "import": "./dist/versioning/index.mjs"
+    },
     "./types": {
       "types": "./types.d.ts"
     }

@@ -21,6 +21,10 @@ This is a pnpm monorepo workspace containing multiple packages:
   - Provides both JS and TS templates (`template-js/`, `template-ts/`)
   - Entry point: `src/index.ts`
 
+- **`packages/cli/`** - Author-time document version management CLI
+  - Provides `sveltepress versions init`, `create`, `list`, and `validate`
+  - Owns manifest creation, safe snapshots, and validation
+
 - **`packages/vite/`** - Vite plugin and core build functionality
   - Contains Vite plugins and build configurations
   - Tests in `__tests__/`

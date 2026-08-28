@@ -1,4 +1,5 @@
 import type { LlmsConfig, PageInfo } from './types.js'
+import type { VersionManifest } from './versioning/index.js'
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import process from 'node:process'
@@ -38,15 +39,17 @@ function deriveRoutePath(filePath: string, routesDir: string): string {
   return `/${parts.join('/')}`
 }
 
-function collectPages(dir: string): string[] {
+function collectPages(dir: string, excludedRoot?: string): string[] {
   const results: string[] = []
   if (!existsSync(dir))
     return results
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry)
+    if (excludedRoot && resolve(full) === resolve(excludedRoot))
+      continue
     const stat = statSync(full)
     if (stat.isDirectory()) {
-      results.push(...collectPages(full))
+      results.push(...collectPages(full, excludedRoot))
     }
     else if (entry === '+page.md') {
       results.push(full)
@@ -62,13 +65,43 @@ function sectionOf(routePath: string): string {
   return parts[0] || ''
 }
 
-export function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: string, description?: string }) {
-  const cwd = process.cwd()
+export function generateLlmsTxt(
+  config: LlmsConfig,
+  siteConfig: { title?: string, description?: string },
+  manifest?: VersionManifest | null,
+  siteRoot = process.cwd(),
+) {
+  const cwd = siteRoot
   const routesDir = resolve(cwd, config.routesDir ?? 'src/routes')
   const staticDir = resolve(cwd, 'static')
+  const versionRoutesRoot = manifest ? join(routesDir, manifest.basePath.slice(1)) : undefined
 
-  const files = collectPages(routesDir)
-  const baseUrl = config.baseUrl?.replace(/\/$/, '') ?? ''
+  generateLlmsFiles(config, siteConfig, routesDir, staticDir, '', versionRoutesRoot)
+  if (manifest) {
+    for (const version of manifest.versions) {
+      generateLlmsFiles(
+        config,
+        siteConfig,
+        join(versionRoutesRoot!, version.id),
+        join(staticDir, manifest.basePath.slice(1), version.id),
+        `${manifest.basePath}/${version.id}`,
+      )
+    }
+  }
+}
+
+function generateLlmsFiles(
+  config: LlmsConfig,
+  siteConfig: { title?: string, description?: string },
+  routesDir: string,
+  outputDir: string,
+  routePrefix: string,
+  excludedRoot?: string,
+) {
+  const files = collectPages(routesDir, excludedRoot)
+  const configuredBaseUrl = config.baseUrl?.replace(/\/$/, '') ?? ''
+  const baseUrl = `${configuredBaseUrl}${routePrefix}`
+
   const title = config.title ?? siteConfig.title ?? 'Untitled'
   const description = config.description ?? siteConfig.description ?? ''
 
@@ -126,10 +159,10 @@ export function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: string
     llmsLines.push('')
   }
 
-  if (!existsSync(staticDir))
-    mkdirSync(staticDir, { recursive: true })
+  if (!existsSync(outputDir))
+    mkdirSync(outputDir, { recursive: true })
 
-  writeFileSync(join(staticDir, 'llms.txt'), llmsLines.join('\n'), 'utf-8')
+  writeFileSync(join(outputDir, 'llms.txt'), llmsLines.join('\n'), 'utf-8')
 
   // Build llms-full.txt (with content)
   const fullLines: string[] = [`# ${title}`]
@@ -161,5 +194,5 @@ export function generateLlmsTxt(config: LlmsConfig, siteConfig: { title?: string
     isFirstSection = false
   }
 
-  writeFileSync(join(staticDir, 'llms-full.txt'), fullLines.join('\n'), 'utf-8')
+  writeFileSync(join(outputDir, 'llms-full.txt'), fullLines.join('\n'), 'utf-8')
 }

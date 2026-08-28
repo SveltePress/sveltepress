@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sveltepress.site/schemas/versions.json",
+  "title": "SveltePress document versions",
+  "type": "object",
+  "required": ["basePath", "current", "versions", "content"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "basePath": { "type": "string", "pattern": "^/[a-z0-9-]+$", "default": "/v" },
+    "current": { "$ref": "#/$defs/version" },
+    "versions": { "type": "array", "items": { "$ref": "#/$defs/version" } },
+    "content": {
+      "type": "object",
+      "required": ["include", "exclude", "shared"],
+      "properties": {
+        "include": { "type": "array", "items": { "type": "string" } },
+        "exclude": { "type": "array", "items": { "type": "string" } },
+        "shared": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "version": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$" },
+        "label": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["stable", "deprecated", "eol"] },
+        "message": { "type": "string" },
+        "sourceRef": { "type": "string" },
+        "editLink": { "const": false },
+        "noIndex": { "type": "boolean" },
+        "search": {
+          "type": "object",
+          "properties": {
+            "indexName": { "type": "string" },
+            "facetFilters": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "routes": { "type": "array", "items": { "type": "string", "pattern": "^/" } },
+        "sidebar": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/navigationItem" }
+          }
+        },
+        "sharedDependencies": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "navigationItem": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "to": { "type": "string" },
+        "external": { "type": "boolean" },
+        "collapsible": { "type": "boolean" },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/navigationItem" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

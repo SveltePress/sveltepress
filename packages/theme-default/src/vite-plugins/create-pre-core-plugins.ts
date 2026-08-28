@@ -1,15 +1,29 @@
+import type { VersionManifest } from '@sveltepress/vite/versioning'
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
 import type { PluginOption } from 'vite'
 import { resolve } from 'node:path'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import extractorSvelte from '@unocss/extractor-svelte'
 import { presetIcons, presetUno, transformerDirectives } from 'unocss'
 import Unocss from 'unocss/vite'
 import { generateSidebar, isAutoSidebarOptions } from '../auto-sidebar.js'
 import { SERVICE_WORKER_PATH } from '../constants.js'
 import { initHighlighter } from '../markdown/highlighter.js'
+import { stripVersioningForManifestlessSite } from './strip-versioning.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
+const THEME_VERSIONING_MODULE = 'virtual:sveltepress/theme-default/versioning'
+const VERSION_SELECTOR_MODULE = 'virtual:sveltepress/theme-default/VersionSelector.svelte'
+const VERSION_FALLBACK_MODULE = 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
+const VERSION_LIFECYCLE_MODULE = 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
+
+const VERSIONING_PATH = fileURLToPath(new URL('../components/versioning.js', import.meta.url))
+const VERSIONING_DISABLED_PATH = fileURLToPath(new URL('../components/versioning-disabled.js', import.meta.url))
+const VERSION_SELECTOR_PATH = fileURLToPath(new URL('../components/VersionSelector.svelte', import.meta.url))
+const VERSION_FALLBACK_PATH = fileURLToPath(new URL('../components/VersionFallbackNotice.svelte', import.meta.url))
+const VERSION_LIFECYCLE_PATH = fileURLToPath(new URL('../components/VersionLifecycleBanner.svelte', import.meta.url))
+const VERSION_COMPONENT_DISABLED_PATH = fileURLToPath(new URL('../components/VersioningDisabled.svelte', import.meta.url))
 
 // One gradient family across the theme: deep rose → amber. The button fill
 // ends at amber-700 so white label text stays AA-readable across the pill.
@@ -46,7 +60,7 @@ function getIconSafelist(themeOptions?: DefaultThemeOptions): string[] {
   return iconSafelist
 }
 
-export default async (options?: DefaultThemeOptions) => {
+export default async (options?: DefaultThemeOptions, versionManifest?: VersionManifest | null) => {
   await initHighlighter(options?.highlighter)
   const { gradient = DEFAULT_GRADIENT, primary = DEFAULT_PRIMARY, hover = DEFAULT_HOVER } = options?.themeColor || {
     gradient: DEFAULT_GRADIENT,
@@ -71,7 +85,6 @@ export default async (options?: DefaultThemeOptions) => {
     autoSidebarRoutesDir = resolve(resolvedOptions.sidebar.routesDir || 'src/routes')
     resolvedOptions.sidebar = generateSidebar(resolvedOptions.sidebar)
   }
-
   const iconSafelist = getIconSafelist(options)
 
   const vitePluginsPre: PluginOption = [
@@ -111,13 +124,33 @@ export default async (options?: DefaultThemeOptions) => {
     }),
     {
       name: '@sveltepress/default-theme',
+      enforce: 'pre',
+      api: {
+        sveltepress: {
+          themeSnapshot: {
+            sidebar: resolvedOptions.sidebar,
+          },
+        },
+      },
       resolveId(id) {
         if (id === THEME_OPTIONS_MODULE)
           return THEME_OPTIONS_MODULE
+        if (id === THEME_VERSIONING_MODULE)
+          return versionManifest ? VERSIONING_PATH : VERSIONING_DISABLED_PATH
+        if (id === VERSION_SELECTOR_MODULE)
+          return versionManifest ? VERSION_SELECTOR_PATH : VERSION_COMPONENT_DISABLED_PATH
+        if (id === VERSION_FALLBACK_MODULE)
+          return versionManifest ? VERSION_FALLBACK_PATH : VERSION_COMPONENT_DISABLED_PATH
+        if (id === VERSION_LIFECYCLE_MODULE)
+          return versionManifest ? VERSION_LIFECYCLE_PATH : VERSION_COMPONENT_DISABLED_PATH
       },
       load(id) {
         if (id === THEME_OPTIONS_MODULE)
           return `export default ${JSON.stringify(resolvedOptions || {})}`
+      },
+      transform(source, id) {
+        if (!versionManifest)
+          return stripVersioningForManifestlessSite(source, id) ?? undefined
       },
       async config() {
         return {

@@ -63,7 +63,7 @@
   "peerDependencies": {
     "@sveltejs/kit": ">=2.65.1 <3",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
-    "@sveltepress/vite": "workspace:*",
+    "@sveltepress/vite": "workspace:^",
     "svelte": "^5.46.4",
     "vite": "^8.0.0"
   },
@@ -83,13 +83,16 @@
     "unocss": "catalog:",
     "workbox-build": "catalog:",
     "workbox-precaching": "catalog:",
-    "workbox-routing": "catalog:"
+    "workbox-routing": "catalog:",
+    "workbox-strategies": "catalog:"
   },
   "devDependencies": {
     "@sveltejs/kit": "catalog:",
     "@sveltejs/package": "catalog:",
     "@sveltepress/vite": "workspace:*",
+    "@testing-library/svelte": "catalog:",
     "@types/node": "catalog:",
+    "happy-dom": "catalog:",
     "svelte": "catalog:",
     "unified": "catalog:",
     "vite": "catalog:",

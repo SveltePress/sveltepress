@@ -13,6 +13,10 @@ export default {
           to: '/guide/quick-start/',
         },
         {
+          title: 'Document versions',
+          to: '/guide/version-management/',
+        },
+        {
           title: 'Themes',
           to: '/guide/themes/',
         },

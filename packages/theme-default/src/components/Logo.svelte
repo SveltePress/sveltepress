@@ -2,10 +2,10 @@
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import NavItem from './NavItem.svelte'
-  import { getPathFromBase, parseImageSrc } from './utils'
+  import { parseImageSrc } from './utils'
 </script>
 
-<NavItem to={getPathFromBase('/')} title={siteConfig.title} brand>
+<NavItem to="/" title={siteConfig.title} brand>
   {#if themeOptions.logo}
     <img
       class="logo"

@@ -13,6 +13,10 @@ export default {
           to: '/guide/quick-start/',
         },
         {
+          title: '文档版本管理',
+          to: '/guide/version-management/',
+        },
+        {
           title: '主题',
           to: '/guide/themes/',
         },

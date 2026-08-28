@@ -7,15 +7,17 @@ import { resolve } from 'node:path'
 import process from 'node:process'
 import { generateLlmsTxt } from './llms.js'
 import { wrapPage } from './utils/wrap-page.js'
+import { generateVersionSitemap, loadVersionManifest } from './versioning/index.js'
 
 export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
+const SVELTEPRESS_VERSIONS_MODULE = 'virtual:sveltepress/versions'
 
 // only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by theme.pageLayout
 // eslint-disable-next-line regexp/strict
-export const PAGE_OR_LAYOUT_RE = /\/src\/routes(\/[()[\]\w- ]+)*\/\+(?:page|layout)(@[\w-]*)?\.(?:svelte|md)$/
+export const PAGE_OR_LAYOUT_RE = /\/src\/routes(\/[()[\].\w- ]+)*\/\+(?:page|layout)(@[\w-]*)?\.(?:svelte|md)$/
 
 if (!existsSync(BASE_PATH))
   mkdirSync(BASE_PATH, { recursive: true })
@@ -26,7 +28,11 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   rehypePlugins,
   remarkPlugins,
   llms,
+  versions,
 }) => {
+  const versionManifest = versions === false
+    ? null
+    : loadVersionManifest(process.cwd(), versions?.manifest)
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
 
@@ -91,6 +97,9 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       assertSingleSvelteKit(config.plugins)
     },
     config: () => ({
+      define: {
+        'import.meta.env.SVELTEPRESS_VERSION_BASE': JSON.stringify(versionManifest?.basePath ?? ''),
+      },
       server: {
         fs: {
           allow: ['.sveltepress'],
@@ -105,10 +114,32 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     resolveId(id) {
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return SVELTEPRESS_SITE_CONFIG_MODULE
+      if (id === SVELTEPRESS_VERSIONS_MODULE)
+        return SVELTEPRESS_VERSIONS_MODULE
     },
     load(id) {
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return `export default ${JSON.stringify(siteConfig)}`
+      if (id === SVELTEPRESS_VERSIONS_MODULE) {
+        if (!versionManifest) {
+          return `
+            export const manifest = null
+            export const resolveVersionContext = () => null
+            export const resolveVersionedPath = value => value
+            export const resolveVersionSwitch = () => null
+            export default { manifest, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch }
+          `
+        }
+        return `
+          import { createVersionRuntime } from '@sveltepress/vite/versioning'
+          export const manifest = ${JSON.stringify(versionManifest)}
+          const runtime = createVersionRuntime(manifest)
+          export const resolveVersionContext = runtime.resolveVersionContext
+          export const resolveVersionedPath = runtime.resolveVersionedPath
+          export const resolveVersionSwitch = runtime.resolveVersionSwitch
+          export default runtime
+        `
+      }
     },
     async transform(src, id) {
       if (PAGE_OR_LAYOUT_RE.test(id)) {
@@ -126,8 +157,10 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     },
     writeBundle() {
       if (isBuild && llms?.enabled) {
-        generateLlmsTxt(llms, siteConfig ?? {})
+        generateLlmsTxt(llms, siteConfig ?? {}, versionManifest)
       }
+      if (isBuild && versionManifest)
+        generateVersionSitemap(versionManifest, process.cwd(), llms?.baseUrl)
     },
   }
 }

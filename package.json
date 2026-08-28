@@ -2,15 +2,17 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.34.5",
   "scripts": {
-    "check:docs:content": "node check-docs.mjs",
+    "check:docs:content": "vitest run --config vitest.docs.config.ts && node check-docs.mjs",
     "check:docs": "pnpm check:docs:content && pnpm --dir packages/docs-site check && pnpm --dir packages/docs-site-zh check && pnpm --dir packages/docs-site-bn check",
+    "check:versioning-build": "pnpm --filter @sveltepress/docs-site build && pnpm --filter docs-site-zh build && pnpm --filter docs-site-bn build && node scripts/check-version-management-build.mjs",
     "lint": "eslint",
     "format": "prettier \"./**/*.svelte\" --check",
     "release": "changeset publish",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",
+    "test:cli": "cd packages/cli && npx vitest run && cd ../..",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
     "test:theme-blog": "cd packages/theme-blog && npx vitest run && cd ../..",
-    "test": "pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
+    "test": "pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
     "prepare": "husky && git config core.hooksPath .husky"
   },
   "dependencies": {

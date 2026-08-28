@@ -13,6 +13,10 @@ export default {
           to: '/guide/quick-start/',
         },
         {
+          title: 'ডকুমেন্ট সংস্করণ ব্যবস্থাপনা',
+          to: '/guide/version-management/',
+        },
+        {
           title: 'থিম',
           to: '/guide/themes/',
         },

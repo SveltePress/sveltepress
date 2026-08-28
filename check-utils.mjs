@@ -5,3 +5,8 @@ export function getChangesetFilename(date = new Date()) {
 
   return `${year}-${month}-${day}-update-deps.md`
 }
+
+export function isHistoricalVersionRoute(relativePath, basePath, versionIds) {
+  const baseSegment = basePath.replace(/^\//, '').replace(/\/$/, '')
+  return versionIds.some(versionId => relativePath === `${baseSegment}/${versionId}` || relativePath.startsWith(`${baseSegment}/${versionId}/`))
+}

@@ -1,4 +1,9 @@
 <script>
+  import { page } from '$app/state'
+  import {
+    resolveVersionContext,
+    resolveVersionedPath,
+  } from 'virtual:sveltepress/versions'
   import External from './icons/External.svelte'
   import { getPathFromBase } from './utils'
 
@@ -10,6 +15,7 @@
    * @property {boolean} [active] - Whether the link is active
    * @property {boolean} [highlight] - Whether the link should be highlighted
    * @property {boolean} [withBase] - Whether the link should have the base URL
+   * @property {boolean} [withVersion] - Whether the active documentation version should be applied
    * @property {string} [target] - Link target attribute (e.g., '_blank', '_self')
    * @property {import('svelte').Snippet} [labelRenderer] - Prepend content
    * @property {import('svelte').Snippet} [pre] - Prepend content
@@ -24,6 +30,7 @@
     active = false,
     highlight = true,
     withBase = true,
+    withVersion = true,
     target,
     pre,
     labelRenderer,
@@ -31,7 +38,11 @@
   } = $props()
 
   let isExternal = $derived(/^https?|mailto:/.test(to))
-  let toWithBase = $derived(isExternal ? to : getPathFromBase(to))
+  let versionContext = $derived(resolveVersionContext(page.url.pathname))
+  let versionedTo = $derived(
+    withVersion ? resolveVersionedPath(to, versionContext) : to,
+  )
+  let toWithBase = $derived(isExternal ? to : getPathFromBase(versionedTo))
 </script>
 
 <a

@@ -3,10 +3,27 @@ import { dirname, extname, join, relative } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
+import { isHistoricalVersionRoute } from './check-utils.mjs'
 
 const root = dirname(fileURLToPath(import.meta.url))
 const docsSites = ['docs-site', 'docs-site-zh', 'docs-site-bn']
 const failures = []
+
+function versionManifest(site) {
+  const path = join(root, 'packages', site, 'sveltepress.versions.json')
+  return existsSync(path) ? JSON.parse(read(path)) : null
+}
+
+function activeRouteFiles(site) {
+  const routesDir = join(root, 'packages', site, 'src', 'routes')
+  const manifest = versionManifest(site)
+  return walk(routesDir).filter((path) => {
+    if (!manifest)
+      return true
+    const routePath = relative(routesDir, path).split('\\').join('/')
+    return !isHistoricalVersionRoute(routePath, manifest.basePath, manifest.versions.map(version => version.id))
+  })
+}
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -76,7 +93,7 @@ function interfaceKeys(path, interfaceName) {
 const pageSets = new Map()
 for (const site of docsSites) {
   const routesDir = join(root, 'packages', site, 'src', 'routes')
-  const pages = walk(routesDir)
+  const pages = activeRouteFiles(site)
     .filter(path => path.endsWith('+page.md'))
     .map(path => relative(routesDir, path))
     .sort()
@@ -109,7 +126,7 @@ const activeFiles = [
   ...walk(join(root, 'packages', 'create', 'template-js')),
   ...walk(join(root, 'packages', 'create', 'template-ts')),
   ...docsSites.flatMap(site => [
-    ...walk(join(root, 'packages', site, 'src', 'routes')),
+    ...activeRouteFiles(site),
     ...walk(join(root, 'packages', site, 'config')),
     join(root, 'packages', site, 'vite.config.ts'),
     join(root, 'packages', site, 'package.json'),

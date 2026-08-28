@@ -97,6 +97,14 @@ declare module 'virtual:sveltepress/theme-default' {
         newContentAvailable?: string
       }
       footnoteLabel?: string
+      versionSelector?: string
+      versionPageUnavailable?: string
+      versionDeprecated?: string
+      versionEol?: string
+      versionViewCurrent?: string
+      versionDeprecatedLabel?: string
+      versionEolLabel?: string
+      versionSearchUnavailable?: string
     }
     preBuildIconifyIcons?: {
       [iconSetName: string]: string[]
@@ -115,4 +123,29 @@ declare module '@sveltepress/theme-default/context' {
     isDark: Writable<boolean>
   }
   export const SVELTEPRESS_CONTEXT_KEY: symbol
+}
+
+declare module 'virtual:sveltepress/theme-default/versioning' {
+  export * from '@sveltepress/theme-default/dist/components/versioning'
+}
+
+declare module 'virtual:sveltepress/theme-default/VersionSelector.svelte' {
+  import type { Component } from 'svelte'
+
+  const component: Component<{ mobile?: boolean }>
+  export default component
+}
+
+declare module 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte' {
+  import type { Component } from 'svelte'
+
+  const component: Component
+  export default component
+}
+
+declare module 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte' {
+  import type { Component } from 'svelte'
+
+  const component: Component
+  export default component
 }

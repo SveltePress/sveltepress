@@ -16,6 +16,7 @@ describe('page re', () => {
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo-bar)/bar/+page@abc.md')).toBe(true)
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo_bar)/bar/+page@abc.md')).toBe(true)
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo bar)/bar/+page@abc.md')).toBe(true)
+    expect(PAGE_OR_LAYOUT_RE.test('/src/routes/v/8.1.0/guide/+page.md')).toBe(true)
     expect(PAGE_OR_LAYOUT_RE.test('/src/routes/(foo bar)/bar/+page@abc.md')).toBe(true)
 
     // don't match server files

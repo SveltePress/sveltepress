@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-globals */
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
+import { NetworkFirst } from 'workbox-strategies'
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
@@ -31,5 +32,13 @@ const route = new NavigationRoute(
   createHandlerBoundToURL('/'),
   { allowlist },
 )
+
+const versionBase = import.meta.env.SVELTEPRESS_VERSION_BASE
+if (versionBase) {
+  registerRoute(
+    ({ request, url }) => request.mode === 'navigate' && url.pathname.startsWith(`${versionBase}/`),
+    new NetworkFirst({ cacheName: 'sveltepress-version-pages' }),
+  )
+}
 
 registerRoute(route)

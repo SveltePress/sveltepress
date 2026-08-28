@@ -7,7 +7,7 @@ import mdToSvelte from './markdown/md-to-svelte.js'
 import SveltepressVitePlugin from './plugin.js'
 import { resolveSvelteKitOptions } from './utils/resolve-svelte-kit-options.js'
 
-export * as log from './utils/log.js'
+export * from './theme-snapshot.js'
 
 const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = async ({
   theme,
@@ -16,6 +16,7 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
   remarkPlugins,
   rehypePlugins,
   llms,
+  versions,
   svelteKitOptions,
 } = {
   addInspect: false,
@@ -31,6 +32,7 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
       remarkPlugins,
       rehypePlugins,
       llms,
+      versions,
     }),
     // must come before sveltekit, and after sveltepress
     enhancedImages(),
@@ -41,6 +43,8 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
     // there is no `svelte.config.js` — forward their config here instead.
     sveltekit(resolveSvelteKitOptions(svelteKitOptions)),
   ]
+
+  theme?.configureVersions?.(versions)
 
   const plugins = typeof theme?.vitePlugins === 'function'
     ? await theme.vitePlugins(corePlugin)
@@ -56,3 +60,5 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
 
 export { mdToSvelte, sveltepress }
 export type { Highlighter, LlmsConfig, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
+export * as log from './utils/log.js'
+export * from './versioning/index.js'

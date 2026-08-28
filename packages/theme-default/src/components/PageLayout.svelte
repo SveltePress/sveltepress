@@ -4,6 +4,7 @@
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
   import EditPage from './EditPage.svelte'
   import Home from './Home.svelte'
   import HeroCode from './home/HeroCode.svelte'
@@ -13,6 +14,15 @@
   import PageSwitcher from './PageSwitcher.svelte'
 
   const routeId = $derived(page.route.id)
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const canonical = $derived(manifest ? page.url.pathname : null)
+  const noIndex = $derived.by(() => {
+    if (!versionContext?.historical) return false
+    return (
+      versionContext.version.status === 'eol' &&
+      versionContext.version.noIndex !== false
+    )
+  })
 
   // The frontmatter info. This would be injected by sveltepress
   const { fm, children, heroImage } = $props()
@@ -52,6 +62,8 @@
     >{fm.title ? `${fm.title} - ${siteConfig.title}` : siteConfig.title}</title
   >
   <meta name="description" content={fm.description || siteConfig.description} />
+  {#if canonical}<link rel="canonical" href={canonical} />{/if}
+  {#if noIndex}<meta name="robots" content="noindex,follow" />{/if}
 </svelte:head>
 
 {#if layout === false}

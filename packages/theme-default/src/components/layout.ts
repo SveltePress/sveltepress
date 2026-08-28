@@ -1,6 +1,8 @@
 import type { LinkItem } from 'virtual:sveltepress/theme-default'
 import { get, writable } from 'svelte/store'
 import themeOptions from 'virtual:sveltepress/theme-default'
+import { resolveVersionSidebar } from 'virtual:sveltepress/theme-default/versioning'
+import { manifest as versionManifest } from 'virtual:sveltepress/versions'
 
 export const MOBILE_EDGE_WIDTH = 950
 
@@ -63,14 +65,5 @@ tocCollapsed.subscribe((v) => {
 export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
-  const normalizedRouteId = routeId.replace(/\/$/, '')
-  const key = Object.keys(themeOptions.sidebar || {}).find(key =>
-    normalizedRouteId.startsWith(key.replace(/\/$/, '')),
-  )
-  // If no matching key found, clear the sidebar
-  if (!key) {
-    resolvedSidebar.set([])
-    return
-  }
-  resolvedSidebar.set(themeOptions.sidebar?.[key] || [])
+  resolvedSidebar.set(resolveVersionSidebar(routeId, themeOptions.sidebar || {}, versionManifest) as LinkItem[])
 }

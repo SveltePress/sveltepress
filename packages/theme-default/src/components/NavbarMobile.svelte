@@ -1,6 +1,7 @@
 <script>
   import { slide } from 'svelte/transition'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import VersionSelector from 'virtual:sveltepress/theme-default/VersionSelector.svelte'
   import Expansion from './Expansion.svelte'
   import TocClose from './icons/TocClose.svelte'
   import TocMenu from './icons/TocMenu.svelte'
@@ -30,6 +31,7 @@
 {#if !$navCollapsed}
   <nav class="navbar-mobile" transition:slide aria-label="Menu">
     <Logo />
+    <VersionSelector mobile />
     {#each themeOptions.navbar as navItem}
       {#if navItem.items}
         <Expansion title={navItem.title} showIcon={false}>

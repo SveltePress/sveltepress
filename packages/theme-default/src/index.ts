@@ -1,5 +1,8 @@
-import type { ResolvedTheme, ThemeVitePlugins } from '@sveltepress/vite'
+import type { ResolvedTheme, ThemeVitePlugins, VersionPluginOptions } from '@sveltepress/vite'
+import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
+import process from 'node:process'
+import { loadVersionManifest } from '@sveltepress/vite/versioning'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import { SERVICE_WORKER_PATH } from './constants.js'
 import admonitions from './markdown/admonitions.js'
@@ -26,24 +29,50 @@ export const themeOptionsRef: {
 
 const defaultTheme: ThemeDefault = (options) => {
   themeOptionsRef.value = options
+  let versionOptions: VersionPluginOptions
   const vitePlugins = (async (corePlugin) => {
+    const versionManifest = versionOptions === false
+      ? null
+      : loadVersionManifest(process.cwd(), versionOptions?.manifest)
     const plugins = [
-      ...await createPreCorePlugins(options),
+      ...await createPreCorePlugins(options, versionManifest),
       corePlugin,
     ]
     if (options?.pwa) {
+      const pwaOptions = options.pwa as SvelteKitPWAOptions & Record<string, any>
+      const historicalGlob = versionManifest
+        ? `prerendered/pages${versionManifest.basePath}/**/*.html`
+        : null
+      const versionRuntimeCaching = versionManifest
+        ? [{
+            urlPattern: new RegExp(`^${versionManifest.basePath}/`),
+            handler: 'NetworkFirst' as const,
+            options: { cacheName: 'sveltepress-version-pages' },
+          }]
+        : []
       plugins.push(SvelteKitPWA({
         strategies: 'injectManifest',
         srcDir: SERVICE_WORKER_PATH.replace(/sw\.js$/, ''),
         filename: 'sw.js',
+        ...pwaOptions,
         injectManifest: {
           globDirectory: '.svelte-kit/output',
           globPatterns: [
             'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
             'prerendered/**/*.html',
           ],
+          ...pwaOptions.injectManifest,
+          ...(historicalGlob
+            ? { globIgnores: [...(pwaOptions.injectManifest?.globIgnores ?? []), historicalGlob] }
+            : {}),
         },
-        ...options.pwa,
+        workbox: {
+          ...pwaOptions.workbox,
+          ...(historicalGlob
+            ? { globIgnores: [...(pwaOptions.workbox?.globIgnores ?? []), historicalGlob] }
+            : {}),
+          runtimeCaching: [...(pwaOptions.workbox?.runtimeCaching ?? []), ...versionRuntimeCaching],
+        },
       }))
     }
     else {
@@ -81,6 +110,9 @@ const defaultTheme: ThemeDefault = (options) => {
     ],
     highlighter,
     footnoteLabel: options?.i18n?.footnoteLabel,
+    configureVersions(versions) {
+      versionOptions = versions
+    },
   } satisfies ResolvedTheme
 }
 

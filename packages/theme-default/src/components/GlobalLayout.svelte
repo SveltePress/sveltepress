@@ -3,6 +3,9 @@
   import { page } from '$app/state'
   import { onMount, setContext } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
+  import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
+  import { manifest } from 'virtual:sveltepress/versions'
   import { SVELTEPRESS_CONTEXT_KEY } from '../context'
   import AjaxBar from './AjaxBar.svelte'
   import Backdrop from './Backdrop.svelte'
@@ -47,6 +50,7 @@
 
   afterNavigate(() => {
     ajaxBar?.end()
+    resolveSidebar(page.route.id)
     $sidebarCollapsed = true
     $navCollapsed = true
   })
@@ -109,6 +113,10 @@
 {:else}
   <main class:without-header={$showHeader === false}>
     <AjaxBar bind:this={ajaxBar} />
+    {#if manifest}
+      <VersionFallbackNotice />
+      <VersionLifecycleBanner />
+    {/if}
     {#if $sidebar}
       <Sidebar />
     {/if}

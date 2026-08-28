@@ -7,6 +7,17 @@ declare module 'virtual:sveltepress/site' {
   export default siteConfig
 }
 
+declare module 'virtual:sveltepress/versions' {
+  import type { VersionManifest, VersionRuntime } from '@sveltepress/vite/versioning'
+
+  export const manifest: VersionManifest | null
+  export const resolveVersionContext: VersionRuntime['resolveVersionContext']
+  export const resolveVersionedPath: VersionRuntime['resolveVersionedPath']
+  export const resolveVersionSwitch: VersionRuntime['resolveVersionSwitch']
+  const runtime: VersionRuntime
+  export default runtime
+}
+
 declare module '*.md' {
   import type { SvelteComponentTyped } from 'svelte'
 
