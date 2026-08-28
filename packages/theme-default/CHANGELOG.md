@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 8.3.0
+
+### Minor Changes
+
+- [`134f459`](https://github.com/Blackman99/sveltepress/commit/134f459af671a3d442eea498309b040843ca8f01) Thanks [@Blackman99](https://github.com/Blackman99)! - Add build-time documentation change catalogs, frozen historical change metadata, strict `:::since` markers, current-version badges, and the `VersionChanges` overview component.
+
 ## 8.2.0
 
 ### Minor Changes
