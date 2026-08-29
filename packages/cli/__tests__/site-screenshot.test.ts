@@ -8,7 +8,7 @@ import {
   parseArgs,
   readPngDimensions,
   STABLE_SVG_TIME_SECONDS,
-} from './capture-site-screenshot.mjs'
+} from '../../../scripts/capture-site-screenshot.mjs'
 
 function pngHeader(width, height) {
   const buffer = Buffer.alloc(24)

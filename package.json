@@ -11,10 +11,9 @@
     "release": "changeset publish",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",
     "test:cli": "cd packages/cli && npx vitest run && cd ../..",
-    "test:site-screenshot": "vitest run --config vitest.docs.config.ts scripts/capture-site-screenshot.test.mjs",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
     "test:theme-blog": "cd packages/theme-blog && npx vitest run && cd ../..",
-    "test": "pnpm test:site-screenshot && pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
+    "test": "pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
     "prepare": "husky && git config core.hooksPath .husky"
   },
   "dependencies": {
