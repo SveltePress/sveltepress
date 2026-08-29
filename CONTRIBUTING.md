@@ -55,6 +55,13 @@ To run test, run `pnpm test` in the package root.
 * run `pnpm dev`
 * Open the address in the terminal to see local started docs site
 
+### Refresh the README site screenshot
+
+When a homepage change affects the header, hero, feature cards, theme styling,
+or responsive layout, run `pnpm capture:site-screenshot`. See the
+[site screenshot workflow](./workflows/site-screenshot.md) for browser setup,
+local-preview capture, visual approval, and failure handling.
+
 ### Develop vite plugin package
 
 **Please provide test cases if possible**

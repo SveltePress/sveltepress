@@ -2,6 +2,7 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.34.5",
   "scripts": {
+    "capture:site-screenshot": "node scripts/capture-site-screenshot.mjs",
     "check:docs:content": "vitest run --config vitest.docs.config.ts && node check-docs.mjs",
     "check:docs": "pnpm check:docs:content && pnpm --dir packages/docs-site check && pnpm --dir packages/docs-site-zh check && pnpm --dir packages/docs-site-bn check",
     "check:versioning-build": "pnpm --filter @sveltepress/docs-site build && pnpm --filter docs-site-zh build && pnpm --filter docs-site-bn build && node scripts/check-version-management-build.mjs",
@@ -10,9 +11,10 @@
     "release": "changeset publish",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",
     "test:cli": "cd packages/cli && npx vitest run && cd ../..",
+    "test:site-screenshot": "vitest run --config vitest.docs.config.ts scripts/capture-site-screenshot.test.mjs",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
     "test:theme-blog": "cd packages/theme-blog && npx vitest run && cd ../..",
-    "test": "pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
+    "test": "pnpm test:site-screenshot && pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
     "prepare": "husky && git config core.hooksPath .husky"
   },
   "dependencies": {
@@ -26,6 +28,7 @@
     "eslint-plugin-svelte": "catalog:",
     "husky": "catalog:",
     "lint-staged": "catalog:",
+    "playwright": "catalog:",
     "prettier": "catalog:",
     "prettier-plugin-svelte": "catalog:",
     "svelte": "catalog:",

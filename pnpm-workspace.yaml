@@ -74,6 +74,7 @@ catalog:
   meilisearch: ^0.48.2
   pagefind: ^1.5.2
   picocolors: ^1.1.1
+  playwright: ^1.62.1
   prettier: ~3.6.2
   prettier-plugin-svelte: ^3.5.2
   rehype-stringify: ^10.0.1
