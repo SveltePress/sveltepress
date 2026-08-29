@@ -96,3 +96,37 @@ title: 高亮块
 一些危险内容
 :::
 ```
+
+## 链接与行内代码
+
+高亮块内的链接和行内代码会继承高亮块的主题色与背景色：
+
+```md live no-ast
+:::tip[提示标题]
+[提示链接](/guide/introduction/) 与 `tip` 都匹配提示的主题色
+:::
+
+:::info[信息标题]
+[信息链接](/guide/introduction/) 与 `info` 都匹配信息的主题色
+:::
+
+:::note[注意标题]
+[注意链接](/guide/introduction/) 与 `note` 都匹配注意的主题色
+:::
+
+:::warning[警告标题]
+[警告链接](/guide/introduction/) 与 `warning` 都匹配警告的主题色
+:::
+
+:::important[重要标题]
+[重要链接](/guide/introduction/) 与 `important` 都匹配重要的主题色
+:::
+
+:::caution[当心标题]
+[当心链接](/guide/introduction/) 与 `caution` 都匹配当心的主题色
+:::
+
+:::danger[危险标题]
+[危险链接](/guide/introduction/) 与 `danger` 都匹配危险的主题色
+:::
+```

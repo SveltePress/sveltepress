@@ -99,3 +99,37 @@ Some danger content
 Some danger content
 :::
 ```
+
+## Links and inline code
+
+Links and inline code inside an admonition inherit the admonition's theme color and background:
+
+```md live no-ast
+:::tip[Tip title]
+A [tip link](/guide/introduction/) and `tip` both match the tip color.
+:::
+
+:::info[Info title]
+An [info link](/guide/introduction/) and `info` both match the info color.
+:::
+
+:::note[Note title]
+A [note link](/guide/introduction/) and `note` both match the note color.
+:::
+
+:::warning[Warning title]
+A [warning link](/guide/introduction/) and `warning` both match the warning color.
+:::
+
+:::important[Important title]
+An [important link](/guide/introduction/) and `important` both match the important color.
+:::
+
+:::caution[Caution title]
+A [caution link](/guide/introduction/) and `caution` both match the caution color.
+:::
+
+:::danger[Danger title]
+A [danger link](/guide/introduction/) and `danger` both match the danger color.
+:::
+```
