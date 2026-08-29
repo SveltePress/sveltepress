@@ -82,7 +82,7 @@ cd packages/docs-site
 ### Testing
 
 - **Test Framework**: [Vitest](https://vitest.dev/)
-- **Test Location**: `packages/[package-name]/__tests__/`
+- **Test Location**: package tests live in `packages/[package-name]/__tests__/`; repository-level tooling tests live in `scripts/__tests__/`
 - **Running Tests**: 
   - All tests: `pnpm test` (from root)
   - Package-specific: `cd packages/[package] && npx vitest run`

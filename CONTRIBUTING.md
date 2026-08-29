@@ -45,7 +45,8 @@ Small pull requests are much easier to review and more likely to get merged.
 
 Use [Vitest](https://vitest.dev/) for testing.
 
-All tests are located in `packages/[package name]/__test__` folder.
+Package tests are located in `packages/[package name]/__tests__`. Tests for
+repository-level tooling are located in `scripts/__tests__`.
 
 To run test, run `pnpm test` in the package root.
 
