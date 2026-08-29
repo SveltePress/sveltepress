@@ -420,13 +420,13 @@ html.svp-nav-vt .doc-search {
 
 
 .admonition code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.07);
+  color: var(--admonition-color);
+  background-color: color-mix(in srgb, var(--admonition-color) 15%, transparent);
 }
 
 .dark .admonition code {
-  color: inherit;
-  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--admonition-color);
+  background-color: color-mix(in srgb, var(--admonition-color) 18%, transparent);
 }
 
 /* Slim, unobtrusive scrollbars on chrome-y surfaces */
