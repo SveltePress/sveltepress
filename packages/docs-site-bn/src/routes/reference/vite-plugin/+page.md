@@ -64,6 +64,26 @@ sveltepress({
 
 বর্তমান generator শুধু `+page.md` পড়ে; Svelte-only page ও runtime data অন্তর্ভুক্ত হয় না। ফাইলগুলো `static/`-এ লেখা হয়, তাই সেগুলো commit করবেন নাকি ignore করে CI-তে regenerate করবেন তা স্থির রাখুন।
 
+:::since[Version change discovery]{version="2026-08-28" id="version-change-discovery" summary="Build-time change catalogs are available to themes and custom pages."}
+### `versions`
+
+Document version management-কে `sveltepress.versions.json` থেকে স্বয়ংক্রিয়ভাবে আবিষ্কার করা হয়। Discovery বন্ধ করুন বা অন্য manifest path চয়ন করুন:
+
+```ts
+import { sveltepress } from '@sveltepress/vite'
+
+sveltepress({
+  versions: false,
+})
+
+sveltepress({
+  versions: { manifest: 'config/document-versions.json' },
+})
+```
+
+সক্রিয় হলে `virtual:sveltepress/versions` manifest ও route helper-এর পাশাপাশি `changeSets` ও `resolveVersionChanges(versionId?)` export করে। Snapshot ও What’s New ব্যবহারের জন্য[ডকুমেন্ট সংস্করণ ব্যবস্থাপনা](/guide/version-management/) দেখুন।
+:::
+
 ## ResolvedTheme
 
 <!-- @code(/../vite/src/types.ts,13,25) -->

@@ -56,21 +56,31 @@ const serviceWorker = read(join(official, 'sw.js'))
 assert(serviceWorker.includes('sveltepress-version-pages'), 'Historical runtime cache is absent from the service worker')
 assert(!serviceWorker.includes(`v/${historicalId}/index.html`), 'Historical HTML was added to the precache')
 
-const forbiddenNoManifestMarkers = [
+const versionRuntimeMarkers = [
   'Documentation version',
-  'svp-version-fallback',
-  'This documentation version has reached end of life',
-  'createVersionRuntime',
+  'version-selector',
   'resolveVersionContext',
   'resolveVersionedPath',
-  'version-selector',
-  'version-fallback',
 ]
 for (const site of ['docs-site-zh', 'docs-site-bn']) {
-  const appRoot = join(root, 'packages', site, 'dist/_app')
+  const siteRoot = join(root, 'packages', site, 'dist')
+  const appRoot = join(siteRoot, '_app')
   const bundled = files(appRoot).map(read).join('\n')
-  for (const marker of forbiddenNoManifestMarkers)
-    assert(!bundled.includes(marker), `${site} bundled version-only runtime marker: ${marker}`)
+  for (const marker of versionRuntimeMarkers)
+    assert(bundled.includes(marker), `${site} bundled version-only runtime marker missing: ${marker}`)
+
+  const historicalRoot = join(siteRoot, 'v', historicalId)
+  const historicalHome = join(historicalRoot, 'index.html')
+  assert(existsSync(historicalHome), `${site} historical snapshot did not build: ${historicalHome}`)
+  const historicalHtml = read(historicalHome)
+  assert(historicalHtml.includes(`rel="canonical" href="/v/${historicalId}/"`), `${site} historical home is not self-canonical`)
+  assert(historicalHtml.includes('version-lifecycle'), `${site} historical lifecycle banner is missing`)
+  assert(historicalHtml.includes('version-selector'), `${site} historical version selector is missing`)
+  assert(historicalHtml.includes('Search is not available for this documentation version'), `${site} historical search did not fail closed`)
+
+  const currentWhatsNew = read(join(siteRoot, 'whats-new/index.html'))
+  assert(currentWhatsNew.includes('New pages') && currentWhatsNew.includes('Updated pages'), `${site} What's New groups are missing`)
+  assert(currentWhatsNew.includes('/guide/version-management/') && currentWhatsNew.includes('/reference/vite-plugin/#version-change-discovery'), `${site} What's New links do not cover new and updated documentation`)
 }
 
 console.log('Version-management production artifacts verified.')

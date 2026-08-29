@@ -1,0 +1,60 @@
+{
+  "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
+  "basePath": "/v",
+  "current": {
+    "id": "2026-08-28",
+    "label": "2026-08-28"
+  },
+  "versions": [
+    {
+      "id": "2026-08-27",
+      "label": "2026-08-27",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/reference/default-theme/",
+        "/reference/vite-plugin/"
+      ],
+      "status": "deprecated",
+      "message": "আপনি এই সাইটের পুরোনো সংস্করণ দেখছেন। কিছু ফিচার প্রত্যাশামতো কাজ নাও করতে পারে।"
+    }
+  ],
+  "content": {
+    "include": [
+      "**"
+    ],
+    "exclude": [],
+    "shared": [
+      "$lib/**",
+      "../vite/**",
+      "../theme-default/**",
+      "config/**",
+      "static/**",
+      "vite.config.ts"
+    ]
+  }
+}

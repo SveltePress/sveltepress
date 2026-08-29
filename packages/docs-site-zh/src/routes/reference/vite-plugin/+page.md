@@ -88,6 +88,26 @@ sveltepress({
 
 当前生成器只读取 `+page.md`，不包含纯 Svelte 页面和运行时数据。文件会写入 `static/`，请明确选择提交生成结果，或在 CI 中统一忽略并重新生成。
 
+:::since[版本变更发现]{version="2026-08-28" id="version-change-discovery" summary="构建时的变更目录可供主题和自定义页面使用。"}
+### `versions`
+
+文档版本管理默认通过 `sveltepress.versions.json` 自动发现。也可以关闭发现，或显式指定其他清单路径：
+
+```ts
+import { sveltepress } from '@sveltepress/vite'
+
+sveltepress({
+  versions: false,
+})
+
+sveltepress({
+  versions: { manifest: 'config/document-versions.json' },
+})
+```
+
+启用后，`virtual:sveltepress/versions` 会在清单与路由辅助函数之外，额外导出 `changeSets` 和 `resolveVersionChanges(versionId?)`。快照与变化总览用法请参阅[文档版本管理](/guide/version-management/)。
+:::
+
 ## `ResolvedTheme`
 
 @code(/../vite/src/types.ts,13,25)
