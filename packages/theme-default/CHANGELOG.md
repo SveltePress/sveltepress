@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 8.4.1
+
+### Patch Changes
+
+- [`fd82091`](https://github.com/Blackman99/sveltepress/commit/fd82091ca791e7904fe1790cb639926eaef5dbc9) Thanks [@Blackman99](https://github.com/Blackman99)! - Make inline code inside admonitions inherit the admonition's theme color and a matching tinted background.
+
 ## 8.4.0
 
 ### Minor Changes
