@@ -39,7 +39,7 @@ catalog:
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.10
   '@iconify-json/tabler': ^1.2.38
-  '@iconify-json/vscode-icons': ^1.2.75
+  '@iconify-json/vscode-icons': ^1.2.76
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@sveltejs/adapter-static': ^3.0.10
@@ -64,7 +64,7 @@ catalog:
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.23.0
   fs-extra: ^11.4.0
-  happy-dom: ^20.11.12
+  happy-dom: ^20.11.15
   husky: ^9.1.7
   lint-staged: ^16.4.0
   lru-cache: ^11.5.2
@@ -89,7 +89,7 @@ catalog:
   satori: ^0.12.2
   shiki: ^3.23.0
   source-map-js: ^1.2.1
-  svelte: ^5.56.10
+  svelte: ^5.57.0
   svelte-check: ^4.7.6
   svelte2tsx: ^0.7.61
   taze: ^19.17.2
