@@ -18,6 +18,17 @@
         "shared": { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["mode", "siteId"],
+      "properties": {
+        "mode": { "const": "incremental" },
+        "siteId": { "type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]*$" },
+        "store": { "type": "string", "minLength": 1 },
+        "sources": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
     }
   },
   "$defs": {
@@ -47,7 +58,20 @@
             "items": { "$ref": "#/$defs/navigationItem" }
           }
         },
-        "sharedDependencies": { "type": "array", "items": { "type": "string" } }
+        "sharedDependencies": { "type": "array", "items": { "type": "string" } },
+        "sourceHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "changes": { "$ref": "#/$defs/changeSet" }
+      },
+      "additionalProperties": false
+    },
+    "changeSet": {
+      "type": "object",
+      "required": ["versionId", "baselineVersionId", "newPages", "updatedPages"],
+      "properties": {
+        "versionId": { "type": "string" },
+        "baselineVersionId": { "type": ["string", "null"] },
+        "newPages": { "type": "array" },
+        "updatedPages": { "type": "array" }
       },
       "additionalProperties": false
     },

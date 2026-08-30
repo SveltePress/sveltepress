@@ -13,18 +13,57 @@ pnpm exec sveltepress versions init --current 8.1 --label "8.1"
 
 Vite plugin স্বয়ংক্রিয়ভাবে manifest খুঁজে পায়। `sveltepress({ versions: false })` দিয়ে এটি বন্ধ করা যায়, অথবা `sveltepress({ versions: { manifest: 'path/to/versions.json' } })` দিয়ে অন্য manifest বেছে নেওয়া যায়।
 
-## Release snapshot তৈরি
+## Incremental artifact চালু করুন
 
-নতুন current version সরাসরি তৈরি করুন। CLI নিজেই সাইটের Vite ও Default Theme configuration resolve করে, তাই আগাম build ছাড়াই active sidebar freeze হয়:
+Existing site-এর committed পূর্ণ snapshot একবার migrate করুন। New site-এ `versions init`-এর পর একই command চালানো যায়:
 
 ```sh
+pnpm exec sveltepress versions migrate --site-id docs-example
+```
+
+Migration পূর্ণ `src/routes/v/{id}` copy-কে committed `version-deltas/{id}` source delta দিয়ে বদলে দেয় এবং `.sveltepress/version-artifacts`-এ content-addressed page store তৈরি করে। Store-টি build cache; source delta commit করুন এবং CI-তে artifact store restore/cache করুন।
+
+Production build script:
+
+```json
+{
+  "scripts": {
+    "build": "sveltepress versions build"
+  }
+}
+```
+
+`versions plan` build না করেই compiled, reused, removed ও recomposed route জানায়। `versions build` committed delta থেকে missing history restore করে, current version-এর শুধু বদলানো page compile করে, stable SveltePress shell-এ সব route compose করে, তারপর স্বাভাবিক Vite production build চালায়। Shell বা index বদলালে page content পুনরায় compile না করেও route recompose হতে পারে; page compiler বা artifact schema বদলালে সব page artifact ইচ্ছাকৃতভাবে invalid হয়।
+
+GitHub Actions-এ build-এর আগে সর্বশেষ compatible store restore করুন এবং current commit key-তে updated store save করুন:
+
+```yaml
+- uses: actions/cache@v4
+  with:
+    path: .sveltepress/version-artifacts
+    key: sveltepress-pages-${{ runner.os }}-${{ github.sha }}
+    restore-keys: |
+      sveltepress-pages-${{ runner.os }}-
+- run: pnpm build
+```
+
+অন্য CI provider-এ সমতুল্য persistent cache ব্যবহার করুন। আলাদা `siteId`-এর মধ্যে একই store share করবেন না।
+
+## Release snapshot তৈরি
+
+Manifest এগোনোর আগে outgoing current version build করুন:
+
+```sh
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2"
 pnpm exec sveltepress versions validate
 ```
 
-`create` নির্বাচিত route source `src/routes/v/8.1/`-এ কপি করে, route ও sidebar metadata freeze করে, `8.1`-কে history-তে রাখে এবং `8.2`-কে current করে। Duplicate ID, symbolic link, dirty Git worktree এবং frozen boundary-এর বাইরের dependency প্রত্যাখ্যাত হয়। Uncommitted state-ই release source হলে শুধু তখন `--allow-dirty` ব্যবহার করুন। ব্যর্থ preflight কোনো অসম্পূর্ণ snapshot বা manifest পরিবর্তন রেখে যায় না।
+`create` current draft manifest publish করে, কেবল বদলানো page ও tombstone `version-deltas/8.1/`-এ লেখে, route/sidebar/change metadata freeze করে, `8.1`-কে history-তে রাখে এবং `8.2`-কে current করে। Stale draft, duplicate ID, symbolic link, dirty Git worktree এবং frozen boundary-এর বাইরের dependency প্রত্যাখ্যাত হয়। Uncommitted state-ই release source হলে শুধু তখন `--allow-dirty` ব্যবহার করুন। Failed preflight কোনো অসম্পূর্ণ delta বা manifest change রেখে যায় না।
 
-`versions list` সব version দেখায় এবং `versions validate` missing বা orphan snapshot directory পরীক্ষা করে।
+Published version-এ generated `sourceHash` লেখা হয় এবং প্রতিটি delta metadata hash দিয়ে frozen route, sidebar ও change catalog bind করে। `versions validate` প্রতিটি committed delta reconstruct করে দুই hash-ই পরীক্ষা করে, তাই artifact cache খালি থাকলেও source বা metadata drift ধরা পড়ে। Hash বা delta file হাতে edit করবেন না।
+
+`versions list` version order দেখায়, `versions publish 8.1` CI publication-এর immutable manifest hash দেয়, এবং `versions gc --dry-run` cleanup-এর আগে unreferenced local blob দেখায়।
 
 ## Manifest-এর মূল ক্ষেত্র
 
@@ -46,6 +85,12 @@ pnpm exec sveltepress versions validate
     "include": ["**"],
     "exclude": ["internal/**"],
     "shared": ["$lib/**", "static/**"]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "docs-example",
+    "store": ".sveltepress/version-artifacts",
+    "sources": "version-deltas"
   }
 }
 ```
@@ -64,7 +109,7 @@ Build প্রতিটি page-এর canonical, version-aware `sitemap.xml`, 
 
 Browser code-এ package থেকে এই resolver-গুলো সরাসরি import করলে `@sveltepress/vite/versioning/runtime` ব্যবহার করুন; এই entry-তে Node file-system code নেই। Build ও configuration code-এ `@sveltepress/vite/versioning` ব্যবহার করা যাবে।
 
-Snapshot directory release artifact হিসেবে review ও commit করুন, হাতে edit করবেন না। Current route সংশোধন করে পরের snapshot তৈরি করুন।
+`version-deltas` immutable release source হিসেবে review ও commit করুন, হাতে edit করবেন না। Cold CI এগুলো থেকে artifact restore করতে পারে; persistent CI cache historical page পুনরায় compile করা এড়ায়। Current route সংশোধন করে পরের release delta তৈরি করুন।
 
 ## Current version-এ কী নতুন তা বর্ণনা করুন
 
@@ -114,4 +159,4 @@ const currentChanges = resolveVersionChanges()
 const historicalChanges = resolveVersionChanges('8.1')
 ```
 
-`versions create` outgoing current change set-কে `.sveltepress-version.json`-এ freeze করে। Historical change পরের current docs থেকে পুনরায় হিসাব হয় না; `versions validate` marker, version reference, unique anchor এবং snapshot drift পরীক্ষা করে।
+`versions create` outgoing current change set-কে immutable artifact manifest ও source delta-তে freeze করে। Historical change পরের current docs থেকে পুনরায় হিসাব হয় না; `versions validate` marker, version reference, unique anchor, corrupt artifact এবং delta drift পরীক্ষা করে।

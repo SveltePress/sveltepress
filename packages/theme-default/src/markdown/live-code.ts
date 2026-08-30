@@ -25,12 +25,6 @@ interface LiveCodePathItem {
   path: string
 }
 
-const globalComponentsImporters = [
-  'import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, CodeBlock } from \'@sveltepress/theme-default/components\'',
-]
-
-const twoslashImporter = ['import Floating from \'@sveltepress/twoslash/FloatingWrapper.svelte\'']
-
 function createAsyncImportCode(componentPath: string) {
   return `
 {#await import('${componentPath}')}
@@ -186,12 +180,13 @@ const liveCode: Plugin<any[], any> = function () {
     await Promise.allSettled(asyncNodeOperations)
 
     const liveCodeImports = liveCodePaths.map(({ componentName, path }) => `import ${componentName} from '${path}'`)
+    const importers = liveCodeImports
 
     visit(tree, (node, idx, parent) => {
-      if (node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
+      if (importers.length && node.type === 'html' && node.value.startsWith('<script') && !hasScript) {
         hasScript = true
         const value = node.value.replace(/^<script[ \w+="]*>/, (m: string) =>
-          [m, ...globalComponentsImporters, ...(themeOptionsRef.value?.highlighter?.twoslash ? [twoslashImporter] : []), ...liveCodeImports].join('\n'))
+          [m, ...importers].join('\n'))
         parent.children.splice(idx, 1, {
           type: 'html',
           value,
@@ -199,10 +194,10 @@ const liveCode: Plugin<any[], any> = function () {
       }
     })
 
-    if (!hasScript) {
+    if (importers.length && !hasScript) {
       tree.children.unshift({
         type: 'html',
-        value: ['<script>', ...globalComponentsImporters, ...(themeOptionsRef.value?.highlighter?.twoslash ? [twoslashImporter] : []), ...liveCodeImports, '</script>'].join('\n'),
+        value: ['<script>', ...importers, '</script>'].join('\n'),
       })
     }
   }

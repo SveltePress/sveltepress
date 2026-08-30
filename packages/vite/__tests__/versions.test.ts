@@ -48,6 +48,51 @@ describe('version manifest', () => {
     expect(loadVersionManifest(root)?.current.id).toBe('v9')
   })
 
+  it('accepts explicit incremental artifact configuration and frozen changes', () => {
+    const value = manifest()
+    value.artifacts = {
+      mode: 'incremental',
+      siteId: 'docs-en',
+      store: '.sveltepress/version-artifacts',
+      sources: 'version-deltas',
+    }
+    value.versions[0].sourceHash = 'a'.repeat(64)
+    value.versions[1].sourceHash = 'b'.repeat(64)
+    value.versions[0].changes = {
+      versionId: '8.1.0',
+      baselineVersionId: null,
+      newPages: [],
+      updatedPages: [],
+    }
+    expect(() => validateVersionManifest(value)).not.toThrow()
+  })
+
+  it('still validates content configuration for incremental manifests', () => {
+    const value = manifest() as VersionManifest & { content: Record<string, unknown> }
+    value.artifacts = { mode: 'incremental', siteId: 'docs-en' }
+    value.content = { include: 'bad', exclude: [], shared: [], unexpected: true }
+    expect(() => validateVersionManifest(value)).toThrow(/content.*unexpected.*content\.include/s)
+  })
+
+  it('preserves frozen incremental metadata when no legacy snapshot directory exists', () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-versions-'))
+    const value = manifest()
+    value.artifacts = { mode: 'incremental', siteId: 'docs-en' }
+    value.versions[0].sourceHash = 'a'.repeat(64)
+    value.versions[1].sourceHash = 'b'.repeat(64)
+    value.versions[0].sharedDependencies = ['static/**']
+    value.versions[0].changes = {
+      versionId: '8.1.0',
+      baselineVersionId: null,
+      newPages: [],
+      updatedPages: [],
+    }
+    writeFileSync(join(root, 'sveltepress.versions.json'), JSON.stringify(value))
+    const loaded = loadVersionManifest(root)!
+    expect(loaded.versions[0].changes).toEqual(value.versions[0].changes)
+    expect(loaded.versions[0].sharedDependencies).toEqual(['static/**'])
+  })
+
   it('rejects duplicate ids and an invalid route base', () => {
     const root = mkdtempSync(join(tmpdir(), 'sveltepress-versions-'))
     const invalid = manifest()

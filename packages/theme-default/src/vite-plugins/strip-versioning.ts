@@ -26,8 +26,13 @@ const transforms: Record<string, SourceTransform> = {
     return replaceRequired(result, `{#if resolvedEditLink}\n  <div\n    class="edit-link"\n    onclick={handleEditLinkClick}\n    onkeyup={handleEditLinkClick}\n    role="link"\n    tabindex="0"\n  >\n    <div class="edit-icon">\n      <Edit />\n    </div>\n    <div class="edit-text">\n      {themeOptions.i18n?.suggestChangesToThisPage || DEFAULT_TEXT}\n    </div>\n  </div>\n{/if}`, `<div\n  class="edit-link"\n  onclick={handleEditLinkClick}\n  onkeyup={handleEditLinkClick}\n  role="link"\n  tabindex="0"\n>\n  <div class="edit-icon">\n    <Edit />\n  </div>\n  <div class="edit-text">\n    {themeOptions.i18n?.suggestChangesToThisPage || DEFAULT_TEXT}\n  </div>\n</div>`)
   },
   'GlobalLayout.svelte': (source) => {
-    let result = replaceRequired(source, `  import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'\n  import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'\n  import { manifest } from 'virtual:sveltepress/versions'\n`)
+    let result = replaceRequired(source, `  import { onMount, setContext, tick } from 'svelte'`, `  import { onMount, setContext } from 'svelte'`)
+    result = replaceRequired(result, `  import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'\n  import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'\n  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'\n`)
+    result = replaceRequired(result, `  import { updateVersionChangeBadges } from './version-change-badges'\n`)
+    result = replaceRequired(result, `\n  function refreshVersionChangeBadges() {\n    const context = resolveVersionContext(page.url.pathname)\n    updateVersionChangeBadges(document, context?.version)\n  }\n`)
     result = replaceRequired(result, '    resolveSidebar(page.route.id)\n    $sidebarCollapsed', '    $sidebarCollapsed')
+    result = replaceRequired(result, `    tick().then(refreshVersionChangeBadges)\n`)
+    result = replaceRequired(result, `    refreshVersionChangeBadges()\n`)
     result = replaceRequired(result, `{#if manifest}\n  <VersionLifecycleBanner />\n{/if}\n`)
     return replaceRequired(result, `    {#if manifest}\n      <VersionFallbackNotice />\n    {/if}\n`)
   },

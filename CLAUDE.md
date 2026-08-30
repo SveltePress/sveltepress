@@ -22,8 +22,8 @@ This is a pnpm monorepo workspace containing multiple packages:
   - Entry point: `src/index.ts`
 
 - **`packages/cli/`** - Author-time document version management CLI
-  - Provides `sveltepress versions init`, `create`, `list`, and `validate`
-  - Owns manifest creation, safe snapshots, and validation
+  - Provides `sveltepress versions init`, `create`, `list`, `validate`, `plan`, `build`, `compose`, `publish`, `migrate`, and `gc`
+  - Owns manifest creation, immutable source deltas, content-addressed page artifacts, safe release advancement, and validation
 
 - **`packages/vite/`** - Vite plugin and core build functionality
   - Contains Vite plugins and build configurations

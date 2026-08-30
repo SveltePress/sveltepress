@@ -93,11 +93,38 @@ export function wrapSvelteCode({
   pageLayout: string
   fm: Record<string, any>
 }) {
-  const imports = [
+  const preamble = [
     `import PageLayout from '${pageLayout}'`,
     `const fm = ${JSON.stringify(fm)}`,
   ].join('\n')
 
+  const parts = extractSvelteComponentParts(svelteCode)
+  injectInstanceScript(parts.scripts, preamble)
+  return `${parts.scripts.join('\n')}
+${parts.svelteBuiltinTags.join('\n')}
+<PageLayout {fm}>${parts.body}</PageLayout>
+${parts.styleCode}
+`
+}
+
+export function prepareSvelteContentComponent({
+  svelteCode,
+  fm,
+}: {
+  svelteCode: string
+  fm: Record<string, any>
+}) {
+  const parts = extractSvelteComponentParts(svelteCode)
+  injectInstanceScript(parts.scripts, `const fm = ${JSON.stringify(fm)}`)
+  return `${parts.scripts.join('\n')}
+${parts.svelteBuiltinTags.join('\n')}
+${parts.body}
+${parts.styleCode}
+`
+}
+
+function extractSvelteComponentParts(initialCode: string) {
+  let svelteCode = initialCode
   const svelteTagReArr = [svelteHeadRe, svelteBodyRe, svelteWindowRe]
   const svelteBuiltinTags = svelteTagReArr.reduce<string[]>((res, re) => {
     const tags = hoistTag(re, svelteCode)
@@ -109,16 +136,6 @@ export function wrapSvelteCode({
   }, [])
 
   const scripts = hoistTag(scriptRe, svelteCode)
-  if (scripts.length) {
-    scripts[0] = scripts[0].replace(/<script\b[^>]*>/, m => [
-      m,
-      imports,
-    ].join('\n'))
-  }
-  else {
-    scripts.push('<script>', imports, '</script>')
-  }
-
   const styleMatches = styleRe.exec(svelteCode)
   let styleCode = ''
   if (styleMatches) {
@@ -126,11 +143,19 @@ export function wrapSvelteCode({
     svelteCode = svelteCode.replace(styleRe, '')
   }
   svelteCode = svelteCode.replace(scriptRe, '')
-  return `${scripts.join('\n')}
-${svelteBuiltinTags.join('\n')}
-<PageLayout {fm}>${svelteCode}</PageLayout>
-${styleCode}
-`
+  return { scripts, svelteBuiltinTags, body: svelteCode, styleCode }
+}
+
+function injectInstanceScript(scripts: string[], preamble: string) {
+  const instanceIndex = scripts.findIndex((script) => {
+    const attributes = /^<script\b([^>]*)>/.exec(script)?.[1] ?? ''
+    return !/(?:^|\s)(?:module(?:\s|=|$)|context=["']module["'])/.test(attributes)
+  })
+  if (instanceIndex === -1) {
+    scripts.push(['<script>', preamble, '</script>'].join('\n'))
+    return
+  }
+  scripts[instanceIndex] = scripts[instanceIndex].replace(/<script\b[^>]*>/, tag => [tag, preamble].join('\n'))
 }
 
 function hoistTag(tagRe: RegExp, svelteCode: string) {

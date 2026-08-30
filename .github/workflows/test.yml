@@ -24,10 +24,22 @@ jobs:
         with:
           node-version: lts/*
           cache: pnpm
+      - name: Restore version page artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            packages/docs-site/.sveltepress/version-artifacts
+            packages/docs-site-zh/.sveltepress/version-artifacts
+            packages/docs-site-bn/.sveltepress/version-artifacts
+          key: sveltepress-page-artifacts-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            sveltepress-page-artifacts-${{ runner.os }}-
       - name: Install Dependencies
         run: pnpm i
       - name: Check docs
         run: pnpm check:docs
+      - name: Build versioned docs
+        run: pnpm check:versioning-build
 
   vitest:
     name: Running tests

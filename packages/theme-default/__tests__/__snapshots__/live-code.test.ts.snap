@@ -2,9 +2,8 @@
 
 exports[`live code > async svelte live code 1`] = `
 "<script>
-import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, CodeBlock } from '@sveltepress/theme-default/components'
-</script>
-<div class="svp-live-code--container"><div></div>
+import { Expansion, CopyCode } from '@sveltepress/theme-default/components'
+</script><div class="svp-live-code--container"><div></div>
 <div class="svp-live-code--demo">
   
 {#await import('/.sveltepress/live-code/LiveCodebaa49804eec.svelte')}
@@ -36,7 +35,8 @@ import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, Cod
 exports[`live code > simple parse 1`] = `
 "<h3>title level 3</h3>
 <script module>
-import { Expansion, Link, CopyCode, Tabs, TabPanel, InstallPkg, IconifyIcon, CodeBlock } from '@sveltepress/theme-default/components'
+import { Expansion, CopyCode, IconifyIcon } from '@sveltepress/theme-default/components'
+import Floating from '@sveltepress/twoslash/FloatingWrapper.svelte'
 import LiveCode5666bdf98c2 from '/.sveltepress/live-code/LiveCode5666bdf98c2.svelte'
 import LiveCodecb092c7e665 from '/.sveltepress/live-code/LiveCodecb092c7e665.svelte'
   const a = 'a'

@@ -44,7 +44,12 @@ const whatsNewHtml = read(currentWhatsNew)
 assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), 'What’s New groups are missing')
 assert(whatsNewHtml.includes('/guide/version-management/') && whatsNewHtml.includes('/reference/vite-plugin/#version-change-discovery'), 'What’s New links do not cover new and updated documentation')
 const viteReferenceHtml = read(currentViteReference)
-assert(viteReferenceHtml.includes('id="version-change-discovery"') && viteReferenceHtml.includes('New in 2026-08-28'), 'The real since marker was not rendered')
+assert(
+  viteReferenceHtml.includes('id="version-change-discovery"')
+  && viteReferenceHtml.includes('data-sveltepress-introduced-in="2026-08-28"')
+  && viteReferenceHtml.includes('data-sveltepress-version-label-template="New in __SVELTEPRESS_VERSION__"'),
+  'The real since marker was not rendered',
+)
 
 const currentLlms = read(join(official, 'llms.txt'))
 const historicalLlms = read(join(historicalRoot, 'llms.txt'))

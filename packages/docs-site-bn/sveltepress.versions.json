@@ -3,12 +3,70 @@
   "basePath": "/v",
   "current": {
     "id": "2026-08-28",
-    "label": "2026-08-28"
+    "label": "2026-08-28",
+    "routes": [
+      "/",
+      "/guide/blog-theme/configuration/",
+      "/guide/blog-theme/customization/",
+      "/guide/blog-theme/features/",
+      "/guide/blog-theme/getting-started/",
+      "/guide/blog-theme/writing-posts/",
+      "/guide/default-theme/admonitions/",
+      "/guide/default-theme/builtin-components/",
+      "/guide/default-theme/code-related/",
+      "/guide/default-theme/frontmatter/",
+      "/guide/default-theme/google-analytics/",
+      "/guide/default-theme/headings-and-anchors/",
+      "/guide/default-theme/home-page/",
+      "/guide/default-theme/navbar/",
+      "/guide/default-theme/pwa/",
+      "/guide/default-theme/search/",
+      "/guide/default-theme/sidebar/",
+      "/guide/default-theme/twoslash/",
+      "/guide/default-theme/unocss/",
+      "/guide/introduction/",
+      "/guide/markdown/basic-writing/",
+      "/guide/markdown/frontmatter/",
+      "/guide/markdown/svelte-in-markdown/",
+      "/guide/quick-start/",
+      "/guide/themes/",
+      "/guide/typescript/",
+      "/guide/version-management/",
+      "/reference/default-theme/",
+      "/reference/vite-plugin/",
+      "/whats-new/"
+    ],
+    "changes": {
+      "versionId": "2026-08-28",
+      "baselineVersionId": "2026-08-27",
+      "newPages": [
+        {
+          "route": "/guide/version-management/",
+          "title": "ডকুমেন্ট সংস্করণ ব্যবস্থাপনা",
+          "sections": []
+        }
+      ],
+      "updatedPages": [
+        {
+          "route": "/reference/vite-plugin/",
+          "title": "Vite প্লাগিন",
+          "sections": [
+            {
+              "id": "version-change-discovery",
+              "title": "Version change discovery",
+              "summary": "Build-time change catalogs are available to themes and custom pages.",
+              "introducedIn": "2026-08-28"
+            }
+          ]
+        }
+      ]
+    }
   },
   "versions": [
     {
       "id": "2026-08-27",
       "label": "2026-08-27",
+      "sourceHash": "3c28c75d831dfea889219eb8b72b3455a3ed9afbaaf1077f981df26160083b49",
       "routes": [
         "/",
         "/guide/blog-theme/configuration/",
@@ -40,7 +98,163 @@
         "/reference/vite-plugin/"
       ],
       "status": "deprecated",
-      "message": "আপনি এই সাইটের পুরোনো সংস্করণ দেখছেন। কিছু ফিচার প্রত্যাশামতো কাজ নাও করতে পারে।"
+      "message": "আপনি এই সাইটের পুরোনো সংস্করণ দেখছেন। কিছু ফিচার প্রত্যাশামতো কাজ নাও করতে পারে।",
+      "sidebar": {
+        "/guide/": [
+          {
+            "title": "পরিচিতি",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Svelte কী?",
+                "to": "/guide/introduction/"
+              },
+              {
+                "title": "দ্রুত শুরু",
+                "to": "/guide/quick-start/"
+              },
+              {
+                "title": "থিম",
+                "to": "/guide/themes/"
+              },
+              {
+                "title": "Typescript ব্যবহার",
+                "to": "/guide/typescript/"
+              }
+            ]
+          },
+          {
+            "title": "Markdown এর ফিচারসমূহ",
+            "items": [
+              {
+                "title": "হাতেখড়ি",
+                "to": "/guide/markdown/basic-writing/"
+              },
+              {
+                "title": "Frontmatter",
+                "to": "/guide/markdown/frontmatter/"
+              },
+              {
+                "title": "Markdown এ Svelte",
+                "to": "/guide/markdown/svelte-in-markdown/"
+              }
+            ]
+          },
+          {
+            "title": "ডিফল্ট থিমের ফিচারসমূহ",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Frontmatter",
+                "to": "/guide/default-theme/frontmatter/"
+              },
+              {
+                "title": "ন্যাভবার",
+                "to": "/guide/default-theme/navbar/"
+              },
+              {
+                "title": "সাইডবার",
+                "to": "/guide/default-theme/sidebar/"
+              },
+              {
+                "title": "হোমপেজ",
+                "to": "/guide/default-theme/home-page/"
+              },
+              {
+                "title": "বিল্ট-ইন কম্পোনেন্ট",
+                "to": "/guide/default-theme/builtin-components/"
+              },
+              {
+                "title": "হেডিংস এবং অ্যাঙ্কর",
+                "to": "/guide/default-theme/headings-and-anchors/"
+              },
+              {
+                "title": "অ্যাডমনিশন",
+                "to": "/guide/default-theme/admonitions/"
+              },
+              {
+                "title": "কোড সম্পর্কিত",
+                "to": "/guide/default-theme/code-related/"
+              },
+              {
+                "title": "Twoslash",
+                "to": "/guide/default-theme/twoslash/"
+              },
+              {
+                "title": "Unocss",
+                "to": "/guide/default-theme/unocss/"
+              },
+              {
+                "title": "সার্চ",
+                "to": "/guide/default-theme/search/"
+              },
+              {
+                "title": "PWA",
+                "to": "/guide/default-theme/pwa/"
+              },
+              {
+                "title": "Google Analytics",
+                "to": "/guide/default-theme/google-analytics/"
+              }
+            ]
+          },
+          {
+            "title": "ব্লগ থিমের ফিচারসমূহ",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "শুরু করা",
+                "to": "/guide/blog-theme/getting-started/"
+              },
+              {
+                "title": "কনফিগারেশন",
+                "to": "/guide/blog-theme/configuration/"
+              },
+              {
+                "title": "পোস্ট লেখা",
+                "to": "/guide/blog-theme/writing-posts/"
+              },
+              {
+                "title": "ফিচারসমূহ",
+                "to": "/guide/blog-theme/features/"
+              },
+              {
+                "title": "কাস্টমাইজেশন",
+                "to": "/guide/blog-theme/customization/"
+              }
+            ]
+          }
+        ],
+        "/reference/": [
+          {
+            "title": "রেফারেন্স",
+            "items": [
+              {
+                "title": "Vite প্লাগিন",
+                "to": "/reference/vite-plugin/"
+              },
+              {
+                "title": "ডিফল্ট থিম",
+                "to": "/reference/default-theme/"
+              }
+            ]
+          }
+        ]
+      },
+      "sharedDependencies": [
+        "$lib/MyGrid.svelte",
+        "../theme-default/types.d.ts",
+        "../vite/src/types.ts",
+        "config/pwa.ts",
+        "static/layout-hierarchy.png",
+        "vite.config.ts"
+      ],
+      "changes": {
+        "versionId": "2026-08-27",
+        "baselineVersionId": null,
+        "newPages": [],
+        "updatedPages": []
+      }
     }
   ],
   "content": {
@@ -56,5 +270,11 @@
       "static/**",
       "vite.config.ts"
     ]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "sveltepress-docs-bn",
+    "store": ".sveltepress/version-artifacts",
+    "sources": "version-deltas"
   }
 }

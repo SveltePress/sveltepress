@@ -9,12 +9,10 @@ interface VersionChangesOptions {
 }
 
 export default function versionChanges(options: VersionChangesOptions): Plugin {
-  return () => (tree, file) => {
+  return () => (tree) => {
     const manifest = options.getManifest?.() ?? options.manifest
     if (!manifest)
       return
-    const pageVersionId = resolvePageVersion(String(file.path ?? file.history?.[0] ?? ''), manifest)
-    const versions = [manifest.current, ...manifest.versions]
 
     visit(tree, (node: any, index: number | undefined, parent: any) => {
       if (node.type !== 'containerDirective' || node.name !== 'since' || index === undefined || !parent)
@@ -25,22 +23,23 @@ export default function versionChanges(options: VersionChangesOptions): Plugin {
         : ''
       const introducedIn = node.attributes?.version
       const id = node.attributes?.id
-      const version = versions.find(candidate => candidate.id === introducedIn)
-      const showBadge = introducedIn === pageVersionId
-      const badgeText = (options.newLabel ?? 'New in {version}').replace('{version}', version?.label ?? introducedIn ?? '')
-      const headingChildren: any[] = []
-      if (showBadge) {
-        headingChildren.push({
+      const headingChildren: any[] = [
+        {
           type: 'versionChangeBadge',
           data: {
             hName: 'span',
             hProperties: {
-              className: 'version-new-badge inline-flex items-center rounded-full bg-rose-50 dark:bg-rose-950/45 px-2.5 py-1 text-xs font-700 text-svp-primary-deep dark:text-svp-primary',
+              'hidden': true,
+              'ariaHidden': 'true',
+              'data-sveltepress-introduced-in': introducedIn,
+              'data-sveltepress-version-label-template': (options.newLabel ?? 'New in {version}')
+                .replace('{version}', '__SVELTEPRESS_VERSION__'),
+              'className': 'version-new-badge inline-flex items-center rounded-full bg-rose-50 dark:bg-rose-950/45 px-2.5 py-1 text-xs font-700 text-svp-primary-deep dark:text-svp-primary',
             },
           },
-          children: [{ type: 'text', value: badgeText }],
-        })
-      }
+          children: [],
+        },
+      ]
       headingChildren.push({
         type: 'versionChangeTitle',
         data: { hName: 'strong' },
@@ -70,16 +69,4 @@ export default function versionChanges(options: VersionChangesOptions): Plugin {
       })
     })
   }
-}
-
-function resolvePageVersion(filename: string, manifest: VersionManifest): string {
-  const normalized = filename.replaceAll('\\', '/')
-  const prefix = `/src/routes/${manifest.basePath.slice(1)}/`
-  const start = normalized.indexOf(prefix)
-  if (start === -1)
-    return manifest.current.id
-  const versionId = normalized.slice(start + prefix.length).split('/')[0]
-  return manifest.versions.some(version => version.id === versionId)
-    ? versionId
-    : manifest.current.id
 }

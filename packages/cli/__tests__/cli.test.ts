@@ -1,12 +1,14 @@
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join, relative, sep } from 'node:path'
+import { readVersionArtifactManifest } from '@sveltepress/vite/versioning'
 import { describe, expect, it } from 'vitest'
 import { runCli } from '../src/index'
 
 function site() {
   const root = mkdtempSync(join(tmpdir(), 'sveltepress-cli-'))
+  writeFileSync(join(root, 'package.json'), '{"scripts":{"build":"vite build"}}\n')
   mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
   writeFileSync(join(root, 'src/routes/+layout.svelte'), '<slot />')
   writeFileSync(join(root, 'src/routes/+page.md'), '# Home')
@@ -45,7 +47,190 @@ async function invokeWithSidebar(root: string, args: string[], sidebar: unknown)
   return { code, stdout: stdout.join('\n'), stderr: stderr.join('\n') }
 }
 
+function incrementalIO(root: string) {
+  const stdout: string[] = []
+  const stderr: string[] = []
+  const compiled: string[] = []
+  let builds = 0
+  let historicalRoutesMounted = false
+  let compilerVersion = 1
+  return {
+    stdout,
+    stderr,
+    compiled,
+    get builds() { return builds },
+    get historicalRoutesMounted() { return historicalRoutesMounted },
+    setCompilerVersion(value: number) { compilerVersion = value },
+    io: {
+      cwd: root,
+      stdout: (value: string) => stdout.push(value),
+      stderr: (value: string) => stderr.push(value),
+      compilePage: async (filename: string, source: string, options: { routesDirectory: string, siteRoot: string }) => {
+        const segments = relative(options.routesDirectory, dirname(filename)).split(sep).filter(Boolean)
+        const route = segments.length ? `/${segments.join('/')}/` : '/'
+        compiled.push(route)
+        return {
+          files: {
+            'client.js': `export default ${JSON.stringify(`client:${compilerVersion}:${source}`)}`,
+            'server.js': `export default ${JSON.stringify(`server:${compilerVersion}:${source}`)}`,
+            'metadata.json': JSON.stringify({ route, fm: { title: route } }),
+          },
+        }
+      },
+      runBuild: async () => {
+        builds += 1
+        historicalRoutesMounted = existsSync(join(root, 'src/routes/v'))
+      },
+    },
+  }
+}
+
 describe('sveltepress versions CLI', () => {
+  it('migrates once and stores only two new page blobs for a two-page release', async () => {
+    const root = site()
+    for (let index = 0; index < 28; index += 1) {
+      mkdirSync(join(root, `src/routes/page-${index}`), { recursive: true })
+      writeFileSync(join(root, `src/routes/page-${index}/+page.md`), `# Page ${index}`)
+    }
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    expect(existsSync(join(root, 'src/routes/v'))).toBe(false)
+    expect(harness.compiled).toHaveLength(30)
+
+    harness.compiled.length = 0
+    const firstCreate = await runCli(['versions', 'create', 'v9'], harness.io)
+    expect({ code: firstCreate, stderr: harness.stderr.join('\n') }).toEqual({ code: 0, stderr: '' })
+    expect(JSON.parse(readFileSync(join(root, 'version-deltas/v8/delta.json'), 'utf8')).pages).toHaveLength(30)
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), '# Guide changed')
+    writeFileSync(join(root, 'src/routes/page-7/+page.md'), '# Page 7 changed')
+    writeFileSync(join(root, 'package.json'), '{"scripts":{"build":"sveltepress versions build"}}\n')
+
+    harness.stdout.length = 0
+    expect(await runCli(['versions', 'plan'], harness.io)).toBe(0)
+    const plan = JSON.parse(harness.stdout.at(-1)!)
+    expect(plan).toMatchObject({ compiledPages: 2, reusedPages: 28 })
+    expect(plan.compiledRoutes).toEqual(['/guide/', '/page-7/'])
+
+    harness.stdout.length = 0
+    expect(await runCli(['versions', 'build'], harness.io)).toBe(0)
+    expect(harness.compiled).toEqual(['/guide/', '/page-7/'])
+    expect(harness.builds).toBe(1)
+    expect(harness.historicalRoutesMounted).toBe(true)
+    expect(existsSync(join(root, 'src/routes/v'))).toBe(false)
+
+    expect(await runCli(['versions', 'create', 'v10'], harness.io)).toBe(0)
+    expect(JSON.parse(readFileSync(join(root, 'version-deltas/v9/delta.json'), 'utf8')).pages.map((page: any) => page.route)).toEqual(['/guide/', '/page-7/'])
+    const store = join(root, '.sveltepress/version-artifacts')
+    const v8 = readVersionArtifactManifest(store, 'docs-test', 'v8')!
+    const v9 = readVersionArtifactManifest(store, 'docs-test', 'v9')!
+    const changedHashes = Object.keys(v9.pages).filter(route => v9.pages[route].artifactHash !== v8.pages[route].artifactHash)
+    expect(changedHashes).toEqual(['/guide/', '/page-7/'])
+    expect(existsSync(join(root, 'src/routes/v/v9'))).toBe(false)
+  })
+
+  it('rejects a stale incremental draft after compiler inputs change', async () => {
+    const root = site()
+    writeFileSync(join(root, 'vite.config.ts'), 'export default { marker: 1 }\n')
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    writeFileSync(join(root, 'vite.config.ts'), 'export default { marker: 2 }\n')
+
+    expect(await runCli(['versions', 'create', 'v9'], harness.io)).toBe(1)
+    expect(harness.stderr.join('\n')).toMatch(/fingerprint.*versions build/i)
+    expect(existsSync(join(root, 'version-deltas/v8'))).toBe(false)
+    expect(readVersionArtifactManifest(join(root, '.sveltepress/version-artifacts'), 'docs-test', 'v8')).toBeNull()
+  })
+
+  it('keeps incremental publication atomic when sidebar resolution fails', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    harness.io.resolveSidebar = async () => {
+      throw new Error('Cannot resolve incremental sidebar')
+    }
+
+    expect(await runCli(['versions', 'create', 'v9'], harness.io)).toBe(1)
+    expect(harness.stderr.join('\n')).toContain('Cannot resolve incremental sidebar')
+    expect(existsSync(join(root, 'version-deltas/v8'))).toBe(false)
+    expect(readVersionArtifactManifest(join(root, '.sveltepress/version-artifacts'), 'docs-test', 'v8')).toBeNull()
+    expect(JSON.parse(readFileSync(join(root, 'sveltepress.versions.json'), 'utf8')).current.id).toBe('v8')
+  })
+
+  it('validates committed incremental sources without a local artifact cache and detects drift', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    const create = await runCli(['versions', 'create', 'v9'], harness.io)
+    expect({ code: create, stderr: harness.stderr.join('\n') }).toEqual({ code: 0, stderr: '' })
+    rmSync(join(root, '.sveltepress/version-artifacts'), { recursive: true, force: true })
+    expect(await runCli(['versions', 'validate'], harness.io)).toBe(0)
+
+    writeFileSync(join(root, 'version-deltas/v8/files/src/routes/guide/+page.md'), '# Tampered guide')
+    harness.stderr.length = 0
+    expect(await runCli(['versions', 'validate'], harness.io)).toBe(1)
+    expect(harness.stderr.join('\n')).toMatch(/source delta.*drift/i)
+  })
+
+  it('rebuilds incompatible historical cache entries from committed deltas', async () => {
+    const root = site()
+    writeFileSync(join(root, 'vite.config.ts'), 'export default { marker: 1 }\n')
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    expect(await runCli(['versions', 'create', 'v9'], harness.io)).toBe(0)
+    const store = join(root, '.sveltepress/version-artifacts')
+    const before = readVersionArtifactManifest(store, 'docs-test', 'v8')!
+
+    writeFileSync(join(root, 'vite.config.ts'), 'export default { marker: 2 }\n')
+    harness.setCompilerVersion(2)
+    harness.compiled.length = 0
+    expect(await runCli(['versions', 'build'], harness.io)).toBe(0)
+
+    const after = readVersionArtifactManifest(store, 'docs-test', 'v8')!
+    expect(after.fingerprints.pageCompiler).not.toBe(before.fingerprints.pageCompiler)
+    expect(harness.compiled).toEqual(['/', '/guide/'])
+    expect(await runCli(['versions', 'validate'], harness.io)).toBe(0)
+  })
+
+  it('reconstructs corrupt historical cache manifests and blobs from committed deltas', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    expect(await runCli(['versions', 'create', 'v9'], harness.io)).toBe(0)
+    const store = join(root, '.sveltepress/version-artifacts')
+    const artifact = readVersionArtifactManifest(store, 'docs-test', 'v8')!
+    const homeBlob = artifact.pages['/'].artifactHash
+    writeFileSync(join(store, 'blobs', homeBlob, 'client.js'), 'corrupt')
+    writeFileSync(join(store, 'manifests/docs-test/v8.json'), '{ corrupt')
+
+    harness.compiled.length = 0
+    expect(await runCli(['versions', 'build'], harness.io)).toBe(0)
+
+    expect(harness.compiled).toEqual(['/', '/guide/'])
+    expect(readVersionArtifactManifest(store, 'docs-test', 'v8')).not.toBeNull()
+    expect(readFileSync(join(store, 'blobs', homeBlob, 'client.js'), 'utf8')).not.toBe('corrupt')
+  })
+
+  it('detects drift in incremental frozen metadata', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    expect(await runCli(['versions', 'create', 'v9'], harness.io)).toBe(0)
+    updateManifest(root, (manifest) => {
+      manifest.versions[0].sidebar = { '/': [{ title: 'Tampered', to: '/' }] }
+    })
+
+    harness.stderr.length = 0
+    expect(await runCli(['versions', 'validate'], harness.io)).toBe(1)
+    expect(harness.stderr.join('\n')).toMatch(/frozen metadata.*drift/i)
+  })
+
   it('initializes, lists, and validates a site', async () => {
     const root = site()
     expect(await invoke(root, ['versions', 'init', '--current', 'v8', '--label', '8.x'])).toMatchObject({ code: 0 })

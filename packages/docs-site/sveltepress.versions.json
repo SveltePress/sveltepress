@@ -3,12 +3,70 @@
   "basePath": "/v",
   "current": {
     "id": "2026-08-28",
-    "label": "2026-08-28"
+    "label": "2026-08-28",
+    "routes": [
+      "/",
+      "/guide/blog-theme/configuration/",
+      "/guide/blog-theme/customization/",
+      "/guide/blog-theme/features/",
+      "/guide/blog-theme/getting-started/",
+      "/guide/blog-theme/writing-posts/",
+      "/guide/default-theme/admonitions/",
+      "/guide/default-theme/builtin-components/",
+      "/guide/default-theme/code-related/",
+      "/guide/default-theme/frontmatter/",
+      "/guide/default-theme/google-analytics/",
+      "/guide/default-theme/headings-and-anchors/",
+      "/guide/default-theme/home-page/",
+      "/guide/default-theme/navbar/",
+      "/guide/default-theme/pwa/",
+      "/guide/default-theme/search/",
+      "/guide/default-theme/sidebar/",
+      "/guide/default-theme/twoslash/",
+      "/guide/default-theme/unocss/",
+      "/guide/introduction/",
+      "/guide/markdown/basic-writing/",
+      "/guide/markdown/frontmatter/",
+      "/guide/markdown/svelte-in-markdown/",
+      "/guide/quick-start/",
+      "/guide/themes/",
+      "/guide/typescript/",
+      "/guide/version-management/",
+      "/reference/default-theme/",
+      "/reference/vite-plugin/",
+      "/whats-new/"
+    ],
+    "changes": {
+      "versionId": "2026-08-28",
+      "baselineVersionId": "2026-08-27",
+      "newPages": [
+        {
+          "route": "/guide/version-management/",
+          "title": "Document version management",
+          "sections": []
+        }
+      ],
+      "updatedPages": [
+        {
+          "route": "/reference/vite-plugin/",
+          "title": "Vite plugin",
+          "sections": [
+            {
+              "id": "version-change-discovery",
+              "title": "Version change discovery",
+              "summary": "Build-time change catalogs are available to themes and custom pages.",
+              "introducedIn": "2026-08-28"
+            }
+          ]
+        }
+      ]
+    }
   },
   "versions": [
     {
       "id": "2026-08-27",
       "label": "2026-08-27",
+      "sourceHash": "f92ec0375c939abd25fbc644f04a5b3189877cda454750badc57ab1277cab347",
       "routes": [
         "/",
         "/guide/blog-theme/configuration/",
@@ -40,7 +98,149 @@
         "/reference/vite-plugin/"
       ],
       "status": "deprecated",
-      "message": "You are viewing an older version of this site. Some features may not work as expected."
+      "message": "You are viewing an older version of this site. Some features may not work as expected.",
+      "sidebar": {
+        "/guide/": [
+          {
+            "title": "Introduction",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "What is Sveltepress",
+                "to": "/guide/introduction/"
+              },
+              {
+                "title": "Quick Start",
+                "to": "/guide/quick-start/"
+              },
+              {
+                "title": "Themes",
+                "to": "/guide/themes/"
+              },
+              {
+                "title": "Working with TypeScript",
+                "to": "/guide/typescript/"
+              }
+            ]
+          },
+          {
+            "title": "Markdown features",
+            "items": [
+              {
+                "title": "Basic Writing",
+                "to": "/guide/markdown/basic-writing/"
+              },
+              {
+                "title": "Frontmatter",
+                "to": "/guide/markdown/frontmatter/"
+              },
+              {
+                "title": "Svelte in Markdown",
+                "to": "/guide/markdown/svelte-in-markdown/"
+              }
+            ]
+          },
+          {
+            "title": "Default theme features",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Frontmatter",
+                "to": "/guide/default-theme/frontmatter/"
+              },
+              {
+                "title": "Navbar",
+                "to": "/guide/default-theme/navbar/"
+              },
+              {
+                "title": "Sidebar",
+                "to": "/guide/default-theme/sidebar/"
+              },
+              {
+                "title": "Home page",
+                "to": "/guide/default-theme/home-page/"
+              },
+              {
+                "title": "Built-in Components",
+                "to": "/guide/default-theme/builtin-components/"
+              },
+              {
+                "title": "Headings & Anchors",
+                "to": "/guide/default-theme/headings-and-anchors/"
+              },
+              {
+                "title": "Admonitions",
+                "to": "/guide/default-theme/admonitions/"
+              },
+              {
+                "title": "Code related",
+                "to": "/guide/default-theme/code-related/"
+              },
+              {
+                "title": "Twoslash",
+                "to": "/guide/default-theme/twoslash/"
+              },
+              {
+                "title": "Unocss",
+                "to": "/guide/default-theme/unocss/"
+              },
+              {
+                "title": "Search",
+                "to": "/guide/default-theme/search/"
+              },
+              {
+                "title": "PWA",
+                "to": "/guide/default-theme/pwa/"
+              },
+              {
+                "title": "Google Analytics",
+                "to": "/guide/default-theme/google-analytics/"
+              }
+            ]
+          },
+          {
+            "title": "Blog theme features",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Getting started",
+                "to": "/guide/blog-theme/getting-started/"
+              },
+              {
+                "title": "Configuration",
+                "to": "/guide/blog-theme/configuration/"
+              },
+              {
+                "title": "Writing posts",
+                "to": "/guide/blog-theme/writing-posts/"
+              },
+              {
+                "title": "Features",
+                "to": "/guide/blog-theme/features/"
+              },
+              {
+                "title": "Customisation",
+                "to": "/guide/blog-theme/customization/"
+              }
+            ]
+          }
+        ],
+        "/reference/": [
+          {
+            "title": "Reference",
+            "items": [
+              {
+                "title": "Vite plugin",
+                "to": "/reference/vite-plugin/"
+              },
+              {
+                "title": "Default theme",
+                "to": "/reference/default-theme/"
+              }
+            ]
+          }
+        ]
+      }
     }
   ],
   "content": {
@@ -56,5 +256,11 @@
       "static/**",
       "vite.config.ts"
     ]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "sveltepress-docs-en",
+    "store": ".sveltepress/version-artifacts",
+    "sources": "version-deltas"
   }
 }

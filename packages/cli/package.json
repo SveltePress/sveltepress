@@ -29,7 +29,8 @@
     "prepare": "pnpm build"
   },
   "dependencies": {
-    "@sveltepress/vite": "workspace:*"
+    "@sveltepress/vite": "workspace:*",
+    "vite": "catalog:"
   },
   "devDependencies": {
     "@types/node": "catalog:",

@@ -3,12 +3,70 @@
   "basePath": "/v",
   "current": {
     "id": "2026-08-28",
-    "label": "2026-08-28"
+    "label": "2026-08-28",
+    "routes": [
+      "/",
+      "/guide/blog-theme/configuration/",
+      "/guide/blog-theme/customization/",
+      "/guide/blog-theme/features/",
+      "/guide/blog-theme/getting-started/",
+      "/guide/blog-theme/writing-posts/",
+      "/guide/default-theme/admonitions/",
+      "/guide/default-theme/builtin-components/",
+      "/guide/default-theme/code-related/",
+      "/guide/default-theme/frontmatter/",
+      "/guide/default-theme/google-analytics/",
+      "/guide/default-theme/headings-and-anchors/",
+      "/guide/default-theme/home-page/",
+      "/guide/default-theme/navbar/",
+      "/guide/default-theme/pwa/",
+      "/guide/default-theme/search/",
+      "/guide/default-theme/sidebar/",
+      "/guide/default-theme/twoslash/",
+      "/guide/default-theme/unocss/",
+      "/guide/introduction/",
+      "/guide/markdown/basic-writing/",
+      "/guide/markdown/frontmatter/",
+      "/guide/markdown/svelte-in-markdown/",
+      "/guide/quick-start/",
+      "/guide/themes/",
+      "/guide/typescript/",
+      "/guide/version-management/",
+      "/reference/default-theme/",
+      "/reference/vite-plugin/",
+      "/whats-new/"
+    ],
+    "changes": {
+      "versionId": "2026-08-28",
+      "baselineVersionId": "2026-08-27",
+      "newPages": [
+        {
+          "route": "/guide/version-management/",
+          "title": "文档版本管理",
+          "sections": []
+        }
+      ],
+      "updatedPages": [
+        {
+          "route": "/reference/vite-plugin/",
+          "title": "Vite 插件",
+          "sections": [
+            {
+              "id": "version-change-discovery",
+              "title": "版本变更发现",
+              "summary": "构建时的变更目录可供主题和自定义页面使用。",
+              "introducedIn": "2026-08-28"
+            }
+          ]
+        }
+      ]
+    }
   },
   "versions": [
     {
       "id": "2026-08-27",
       "label": "2026-08-27",
+      "sourceHash": "187fec99cfd03eff5ea259c7abd4ae7b8bf18ad908302139325e115bb1948d32",
       "routes": [
         "/",
         "/guide/blog-theme/configuration/",
@@ -40,7 +98,163 @@
         "/reference/vite-plugin/"
       ],
       "status": "deprecated",
-      "message": "您正在查看本站的旧版本，某些功能可能无法正常工作。"
+      "message": "您正在查看本站的旧版本，某些功能可能无法正常工作。",
+      "sidebar": {
+        "/guide/": [
+          {
+            "title": "介绍",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Sveltepress 是什么",
+                "to": "/guide/introduction/"
+              },
+              {
+                "title": "快速开始",
+                "to": "/guide/quick-start/"
+              },
+              {
+                "title": "主题",
+                "to": "/guide/themes/"
+              },
+              {
+                "title": "与 Typescript 一起开发",
+                "to": "/guide/typescript/"
+              }
+            ]
+          },
+          {
+            "title": "Markdown 相关",
+            "items": [
+              {
+                "title": "写作基础",
+                "to": "/guide/markdown/basic-writing/"
+              },
+              {
+                "title": "Frontmatter",
+                "to": "/guide/markdown/frontmatter/"
+              },
+              {
+                "title": "在 Markdown 中使用 Svelte",
+                "to": "/guide/markdown/svelte-in-markdown/"
+              }
+            ]
+          },
+          {
+            "title": "默认主题特性",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Frontmatter",
+                "to": "/guide/default-theme/frontmatter/"
+              },
+              {
+                "title": "导航栏",
+                "to": "/guide/default-theme/navbar/"
+              },
+              {
+                "title": "侧边栏",
+                "to": "/guide/default-theme/sidebar/"
+              },
+              {
+                "title": "主页",
+                "to": "/guide/default-theme/home-page/"
+              },
+              {
+                "title": "内置组件",
+                "to": "/guide/default-theme/builtin-components/"
+              },
+              {
+                "title": "标题与页内导航",
+                "to": "/guide/default-theme/headings-and-anchors/"
+              },
+              {
+                "title": "高亮块",
+                "to": "/guide/default-theme/admonitions/"
+              },
+              {
+                "title": "代码相关",
+                "to": "/guide/default-theme/code-related/"
+              },
+              {
+                "title": "Twoslash",
+                "to": "/guide/default-theme/twoslash/"
+              },
+              {
+                "title": "Unocss",
+                "to": "/guide/default-theme/unocss/"
+              },
+              {
+                "title": "搜索",
+                "to": "/guide/default-theme/search/"
+              },
+              {
+                "title": "PWA",
+                "to": "/guide/default-theme/pwa/"
+              },
+              {
+                "title": "Google Analytics",
+                "to": "/guide/default-theme/google-analytics/"
+              }
+            ]
+          },
+          {
+            "title": "博客主题特性",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "快速上手",
+                "to": "/guide/blog-theme/getting-started/"
+              },
+              {
+                "title": "配置",
+                "to": "/guide/blog-theme/configuration/"
+              },
+              {
+                "title": "写文章",
+                "to": "/guide/blog-theme/writing-posts/"
+              },
+              {
+                "title": "特性",
+                "to": "/guide/blog-theme/features/"
+              },
+              {
+                "title": "自定义",
+                "to": "/guide/blog-theme/customization/"
+              }
+            ]
+          }
+        ],
+        "/reference/": [
+          {
+            "title": "参考",
+            "items": [
+              {
+                "title": "Vite 插件",
+                "to": "/reference/vite-plugin/"
+              },
+              {
+                "title": "默认主题",
+                "to": "/reference/default-theme/"
+              }
+            ]
+          }
+        ]
+      },
+      "sharedDependencies": [
+        "$lib/MyGrid.svelte",
+        "../theme-default/types.d.ts",
+        "../vite/src/types.ts",
+        "config/pwa.ts",
+        "static/layout-hierarchy.png",
+        "vite.config.ts"
+      ],
+      "changes": {
+        "versionId": "2026-08-27",
+        "baselineVersionId": null,
+        "newPages": [],
+        "updatedPages": []
+      }
     }
   ],
   "content": {
@@ -56,5 +270,11 @@
       "static/**",
       "vite.config.ts"
     ]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "sveltepress-docs-zh",
+    "store": ".sveltepress/version-artifacts",
+    "sources": "version-deltas"
   }
 }

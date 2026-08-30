@@ -1,11 +1,11 @@
 <script>
   import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
   import { page } from '$app/state'
-  import { onMount, setContext } from 'svelte'
+  import { onMount, setContext, tick } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
   import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
-  import { manifest } from 'virtual:sveltepress/versions'
+  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
   import { SVELTEPRESS_CONTEXT_KEY } from '../context'
   import AjaxBar from './AjaxBar.svelte'
   import Backdrop from './Backdrop.svelte'
@@ -26,6 +26,7 @@
   import Navbar from './Navbar.svelte'
   import Sidebar from './Sidebar.svelte'
   import Toc from './Toc.svelte'
+  import { updateVersionChangeBadges } from './version-change-badges'
   import 'virtual:uno.css'
   import '../style.css'
   /**
@@ -42,6 +43,11 @@
 
   resolveSidebar(page.route.id)
 
+  function refreshVersionChangeBadges() {
+    const context = resolveVersionContext(page.url.pathname)
+    updateVersionChangeBadges(document, context?.version)
+  }
+
   let ajaxBar = $state()
 
   beforeNavigate(() => {
@@ -53,6 +59,7 @@
     resolveSidebar(page.route.id)
     $sidebarCollapsed = true
     $navCollapsed = true
+    tick().then(refreshVersionChangeBadges)
   })
 
   // Cross-page view transition: the brand logo and the search pill morph
@@ -88,6 +95,7 @@
   }
 
   onMount(async () => {
+    refreshVersionChangeBadges()
     if (themeOptions.pwa)
       pwaComponent = (await import('./pwa/Pwa.svelte')).default
   })

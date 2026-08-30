@@ -8,6 +8,7 @@ import { SERVICE_WORKER_PATH } from './constants.js'
 import admonitions from './markdown/admonitions.js'
 import anchors from './markdown/anchors.js'
 import codeImport from './markdown/code-import.js'
+import componentImports from './markdown/component-imports.js'
 import highlighter, { initHighlighter } from './markdown/highlighter.js'
 import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
@@ -114,6 +115,7 @@ const defaultTheme: ThemeDefault = (options) => {
       codeImport,
       installPkg,
     ],
+    rehypePlugins: [componentImports],
     highlighter,
     footnoteLabel: options?.i18n?.footnoteLabel,
     configureVersions(versions) {

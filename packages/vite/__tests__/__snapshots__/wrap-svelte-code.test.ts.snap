@@ -2,11 +2,11 @@
 
 exports[`wrap svelte code > with script, style and context script 1`] = `
 "<script module>
-import PageLayout from '/path/to/PageLayout.svelte'
-const fm = {"title":"title"}
   export const someVar = 'some value'
 </script>
 <script>
+import PageLayout from '/path/to/PageLayout.svelte'
+const fm = {"title":"title"}
 import SomeComponent from '/path/to/SomeComponent.svelte'
 
 let innerWidth

@@ -13,18 +13,57 @@ pnpm exec sveltepress versions init --current 8.1 --label "8.1"
 
 命令会创建 `sveltepress.versions.json`。Vite 插件会自动发现它；可以用 `sveltepress({ versions: false })` 关闭，或用 `sveltepress({ versions: { manifest: 'path/to/versions.json' } })` 指定其他清单。
 
-## 创建发版快照
+## 启用增量产物
 
-直接创建下一个当前版本。CLI 会自行解析站点的 Vite 与默认主题配置，因此无需预先构建也能冻结当前侧栏：
+已有站点只需迁移一次已提交的完整快照；新站点可在 `versions init` 后直接执行同一命令：
 
 ```sh
+pnpm exec sveltepress versions migrate --site-id docs-example
+```
+
+迁移会用已提交的 `version-deltas/{id}` 源码增量替代完整的 `src/routes/v/{id}` 副本，并在 `.sveltepress/version-artifacts` 初始化内容寻址页面存储。该存储属于构建缓存；应提交源码增量，并在 CI 中恢复或缓存产物存储。
+
+生产构建脚本应改为：
+
+```json
+{
+  "scripts": {
+    "build": "sveltepress versions build"
+  }
+}
+```
+
+`versions plan` 会在不构建的情况下报告需要编译、复用、删除和重新组合的路由。`versions build` 会从已提交增量恢复缺失的历史产物，只编译当前版本中真正变化的页面，以稳定 SveltePress 壳层组合全部路由，然后执行正常的 Vite 生产构建。壳层或索引变化可以重新组合路由而不重编译页面内容；页面编译器或产物 schema 变化则会有意使所有页面产物失效。
+
+在 GitHub Actions 中，可在构建前恢复最近的兼容存储，并按当前提交保存更新后的存储：
+
+```yaml
+- uses: actions/cache@v4
+  with:
+    path: .sveltepress/version-artifacts
+    key: sveltepress-pages-${{ runner.os }}-${{ github.sha }}
+    restore-keys: |
+      sveltepress-pages-${{ runner.os }}-
+- run: pnpm build
+```
+
+其他 CI 平台应使用对应的持久化缓存能力。不同 `siteId` 不要共用同一个存储。
+
+## 创建发版快照
+
+推进清单前先构建即将冻结的当前版本：
+
+```sh
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2"
 pnpm exec sveltepress versions validate
 ```
 
-`create` 会把选中的路由源码复制到 `src/routes/v/8.1/`，冻结路由和侧栏元数据，把 `8.1` 移入历史版本，并将 `8.2` 设为当前版本。重复 ID、符号链接、脏 Git 工作区和冻结边界外的依赖都会被拒绝。只有当未提交内容就是本次发版来源时才使用 `--allow-dirty`。
+`create` 会发布当前草稿清单，只把变化页面和 tombstone 写入 `version-deltas/8.1/`，冻结路由、侧栏和变化元数据，把 `8.1` 移入历史版本，并将 `8.2` 设为当前版本。过期草稿、重复 ID、符号链接、脏 Git 工作区和冻结边界外的依赖都会被拒绝。只有当未提交内容就是本次发版来源时才使用 `--allow-dirty`。
 
-操作是原子的：预检失败不会留下半成品快照，也不会修改清单。`versions list` 列出版本，`versions validate` 检查缺失或孤立的快照目录。
+已发布版本还会获得自动生成的 `sourceHash`，每个 delta 还会用元数据哈希绑定冻结的路由、侧栏和变化目录。`versions validate` 会重建每个已提交 delta 并检查这两个哈希，因此即使产物缓存为空也能发现源码或元数据漂移。不要手工修改哈希或 delta 文件。
+
+操作是原子的：预检失败不会留下半成品增量，也不会修改清单。`versions list` 列出版本顺序，`versions publish 8.1` 输出供 CI 发布使用的不可变清单哈希，`versions gc --dry-run` 可在清理前报告未引用的本地产物。
 
 ## 清单配置
 
@@ -47,6 +86,12 @@ pnpm exec sveltepress versions validate
     "include": ["**"],
     "exclude": ["internal/**"],
     "shared": ["$lib/**", "static/**"]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "docs-example",
+    "store": ".sveltepress/version-artifacts",
+    "sources": "version-deltas"
   }
 }
 ```
@@ -63,7 +108,7 @@ pnpm exec sveltepress versions validate
 
 版本构建还会输出页面 canonical、版本化 `sitemap.xml` 和 `/v/{id}/llms.txt`，根目录 LLM 文件只包含当前文档。PWA 不预缓存历史 HTML，并对历史页面使用 network-first 策略。
 
-自定义主题可导入 `virtual:sveltepress/versions`，使用其中的清单与路径解析函数。快照目录应作为发版生成物审查并提交，不要手工修改；修订当前路由后再创建下一版快照。
+自定义主题可导入 `virtual:sveltepress/versions`，使用其中的清单与路径解析函数。`version-deltas` 是不可变的发版源码，应审查并提交但不要手工修改。冷 CI 可以用它恢复产物，而持久化 CI 缓存可避免重新编译历史页面；修订当前路由后再创建下一版增量。
 
 在浏览器代码中直接从包导入这些解析函数时，请使用 `@sveltepress/vite/versioning/runtime`；该入口不包含 Node 文件系统代码。构建和配置代码仍可使用 `@sveltepress/vite/versioning`。
 
@@ -115,4 +160,4 @@ const currentChanges = resolveVersionChanges()
 const historicalChanges = resolveVersionChanges('8.1')
 ```
 
-`versions create` 会把即将冻结的当前变化集写入 `.sveltepress-version.json`。历史变化只从该元数据读取；`versions validate` 还会检查标记、版本引用、锚点唯一性和快照漂移。
+`versions create` 会把即将冻结的当前变化集写入不可变产物清单和源码增量。历史变化只从冻结元数据读取；`versions validate` 还会检查标记、版本引用、锚点唯一性、损坏产物和增量漂移。

@@ -20,18 +20,57 @@ pnpm exec sveltepress versions init --current 8.1 --label "8.1"
 
 This creates `sveltepress.versions.json`. The Vite plugin discovers that file automatically; use `sveltepress({ versions: false })` to disable discovery or `sveltepress({ versions: { manifest: 'path/to/versions.json' } })` to select another manifest.
 
-## Create a release snapshot
+## Enable incremental artifacts
 
-Create the next current version. The CLI resolves the site's Vite and Default Theme configuration itself, so it can freeze the active sidebar without a preliminary build:
+Existing sites can migrate their committed snapshot directories once. New sites can run the same command immediately after `versions init`:
 
 ```sh
+pnpm exec sveltepress versions migrate --site-id docs-example
+```
+
+Migration replaces full `src/routes/v/{id}` copies with committed `version-deltas/{id}` source deltas and initializes a content-addressed page store under `.sveltepress/version-artifacts`. The store is a build cache; commit the source deltas and restore/cache the artifact store in CI.
+
+Use the incremental command as the production build script:
+
+```json
+{
+  "scripts": {
+    "build": "sveltepress versions build"
+  }
+}
+```
+
+`versions plan` reports compiled, reused, removed, and recomposed routes without building. `versions build` restores missing historical artifacts from committed deltas, compiles only changed current pages, composes the stable SveltePress shell, and then runs the normal Vite production build. A shell or index change may recompose routes without recompiling unchanged page content; a page compiler or artifact schema change intentionally invalidates every page artifact.
+
+For GitHub Actions, restore the newest compatible store before the build and save the updated store under the current commit key:
+
+```yaml
+- uses: actions/cache@v4
+  with:
+    path: .sveltepress/version-artifacts
+    key: sveltepress-pages-${{ runner.os }}-${{ github.sha }}
+    restore-keys: |
+      sveltepress-pages-${{ runner.os }}-
+- run: pnpm build
+```
+
+Use the equivalent persistent-cache facility on other CI providers. Do not share a store between different `siteId` values.
+
+## Create a release snapshot
+
+Build the outgoing current version before advancing the manifest:
+
+```sh
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2"
 pnpm exec sveltepress versions validate
 ```
 
-`create` copies the selected route source into `src/routes/v/8.1/`, records route and sidebar metadata, moves `8.1` into the historical list, and makes `8.2` current. It refuses duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.
+`create` publishes the current draft manifest, writes only changed source pages and tombstones to `version-deltas/8.1/`, freezes route/sidebar/change metadata, moves `8.1` into history, and makes `8.2` current. It refuses stale drafts, duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.
 
-The operation is atomic: a failed preflight does not leave a partial snapshot or update the manifest. `versions list` prints the current and historical versions, while `versions validate` detects missing and orphaned snapshot directories.
+Published versions also receive a generated `sourceHash`. Each delta binds the frozen route, sidebar, and change catalog with a metadata hash. `versions validate` reconstructs every committed delta and checks both hashes, so source or metadata drift is detected even when the artifact cache is empty. Do not edit the hashes or delta files by hand.
+
+The operation is atomic: a failed preflight does not leave a partial delta or update the manifest. `versions list` prints the version order, `versions publish 8.1` prints the immutable manifest hash for CI publication, and `versions gc --dry-run` reports unreferenced local blobs before cleanup.
 
 ## Manifest
 
@@ -54,6 +93,12 @@ The operation is atomic: a failed preflight does not leave a partial snapshot or
     "include": ["**"],
     "exclude": ["internal/**"],
     "shared": ["$lib/**", "static/**"]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "docs-example",
+    "store": ".sveltepress/version-artifacts",
+    "sources": "version-deltas"
   }
 }
 ```
@@ -81,7 +126,7 @@ Version-aware builds also:
 * keep root `llms.txt`/`llms-full.txt` current-only and write historical files below `/v/{id}/`;
 * exclude historical HTML from PWA precaching and fetch it with a network-first strategy.
 
-Treat snapshot directories as generated release artifacts: review and commit them, but do not edit them by hand. Make corrections in the current routes and create the next snapshot.
+Treat `version-deltas` as immutable release source: review and commit it, but do not edit it by hand. The artifact store can be restored from those deltas on a cold CI worker, while a persistent CI cache avoids recompiling historical pages. Make corrections in current routes and create the next release delta.
 
 ## Describe what changed
 
@@ -134,4 +179,4 @@ const currentChanges = resolveVersionChanges()
 const historicalChanges = resolveVersionChanges('8.1')
 ```
 
-`versions create` freezes the outgoing current change set in `.sveltepress-version.json`. Historical catalogs are always read from that metadata rather than reconstructed from later current documentation, and `versions validate` detects malformed markers, invalid references, duplicate anchors, and snapshot drift.
+`versions create` freezes the outgoing current change set in its immutable artifact manifest and source delta. Historical catalogs are always read from frozen metadata rather than reconstructed from later current documentation, and `versions validate` detects malformed markers, invalid references, duplicate anchors, corrupt artifacts, and delta drift.

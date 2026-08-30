@@ -4,9 +4,15 @@ import process from 'node:process'
 import { computeVersionChangeSet, validateVersionChangeSet } from './changes.js'
 
 export const DEFAULT_VERSION_MANIFEST = 'sveltepress.versions.json'
+
+export * from './artifact-store.js'
+export * from './artifacts.js'
 export { computeVersionChangeSet, validateFrozenVersionChangeSets, validateVersionChangeSet } from './changes.js'
 export { generateVersionSitemap } from './output.js'
+export * from './page-artifact-module.js'
 export { createVersionRuntime, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from './runtime.js'
+export * from './shell-routes.js'
+export * from './source-deltas.js'
 
 export type VersionStatus = 'stable' | 'deprecated' | 'eol'
 
@@ -28,6 +34,7 @@ export interface DocumentationVersion {
   routes?: string[]
   sidebar?: Record<string, VersionNavigationItem[]>
   sharedDependencies?: string[]
+  sourceHash?: string
   changes?: VersionChangeSet
 }
 
@@ -66,12 +73,20 @@ export interface VersionContentConfig {
   shared: string[]
 }
 
+export interface VersionArtifactConfig {
+  mode: 'incremental'
+  siteId: string
+  store?: string
+  sources?: string
+}
+
 export interface VersionManifest {
   $schema?: string
   basePath: string
   current: DocumentationVersion
   versions: DocumentationVersion[]
   content: VersionContentConfig
+  artifacts?: VersionArtifactConfig
 }
 
 export interface VersionContext {
@@ -106,7 +121,7 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
   }
 
   const manifest = value as Partial<VersionManifest>
-  rejectUnknownKeys(manifest, ['$schema', 'basePath', 'current', 'versions', 'content'], 'manifest', errors)
+  rejectUnknownKeys(manifest, ['$schema', 'basePath', 'current', 'versions', 'content', 'artifacts'], 'manifest', errors)
   if (typeof manifest.basePath !== 'string' || !/^\/[a-z0-9-]+$/.test(manifest.basePath))
     errors.push('basePath must be one lowercase absolute route segment such as "/v".')
 
@@ -124,6 +139,23 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
     for (const key of ['include', 'exclude', 'shared'] as const) {
       if (!Array.isArray(manifest.content[key]) || !manifest.content[key].every(item => typeof item === 'string'))
         errors.push(`content.${key} must be an array of strings.`)
+    }
+  }
+
+  if (manifest.artifacts !== undefined) {
+    if (!manifest.artifacts || typeof manifest.artifacts !== 'object') {
+      errors.push('artifacts must be an object.')
+    }
+    else {
+      rejectUnknownKeys(manifest.artifacts, ['mode', 'siteId', 'store', 'sources'], 'artifacts', errors)
+      if (manifest.artifacts.mode !== 'incremental')
+        errors.push('artifacts.mode must be "incremental".')
+      if (typeof manifest.artifacts.siteId !== 'string' || !/^[a-z0-9][\w.-]*$/i.test(manifest.artifacts.siteId))
+        errors.push('artifacts.siteId must be a safe non-empty identifier.')
+      if (manifest.artifacts.store !== undefined && (typeof manifest.artifacts.store !== 'string' || !manifest.artifacts.store.trim()))
+        errors.push('artifacts.store must be a non-empty path when provided.')
+      if (manifest.artifacts.sources !== undefined && (typeof manifest.artifacts.sources !== 'string' || !manifest.artifacts.sources.trim()))
+        errors.push('artifacts.sources must be a non-empty path when provided.')
     }
   }
 
@@ -154,6 +186,8 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
       'routes',
       'sidebar',
       'sharedDependencies',
+      'sourceHash',
+      'changes',
     ], `version "${String(version.id)}"`, errors)
     if (version.status && !['stable', 'deprecated', 'eol'].includes(version.status))
       errors.push(`version "${String(version.id)}" has an invalid status.`)
@@ -172,6 +206,23 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
       validateSidebar(version.sidebar, `version "${String(version.id)}" sidebar`, errors)
     if (version.sharedDependencies !== undefined && (!Array.isArray(version.sharedDependencies) || !version.sharedDependencies.every(item => typeof item === 'string')))
       errors.push(`version "${String(version.id)}" sharedDependencies must be an array of strings.`)
+    if (version.sourceHash !== undefined && (typeof version.sourceHash !== 'string' || !/^[a-f0-9]{64}$/.test(version.sourceHash)))
+      errors.push(`version "${String(version.id)}" sourceHash must be a SHA-256 hash.`)
+    if (version.changes !== undefined) {
+      try {
+        validateVersionChangeSet(version.changes, `version "${String(version.id)}" changes`, version.id)
+      }
+      catch (error) {
+        errors.push((error as Error).message)
+      }
+    }
+  }
+
+  if (manifest.artifacts) {
+    for (const version of Array.isArray(manifest.versions) ? manifest.versions : []) {
+      if (typeof version?.sourceHash !== 'string')
+        errors.push(`incremental version "${String(version?.id)}" must include sourceHash.`)
+    }
   }
 
   if (errors.length)
@@ -203,8 +254,8 @@ export function loadVersionManifest(siteRoot = process.cwd(), manifestFile = DEF
       status: version.status ?? 'stable',
       routes: normalizeRoutes(version.routes ?? metadata?.routes ?? scanRoutes(snapshotRoot)),
       sidebar: version.sidebar ?? metadata?.sidebar,
-      sharedDependencies: metadata?.sharedDependencies,
-      changes: metadata?.changes,
+      sharedDependencies: metadata?.sharedDependencies ?? version.sharedDependencies,
+      changes: metadata?.changes ?? version.changes,
     }
   })
   const knownVersions = new Set([manifest.current.id, ...manifest.versions.map(version => version.id)])

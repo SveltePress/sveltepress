@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 2,
+  "siteId": "sveltepress-docs-bn",
+  "versionId": "2026-08-27",
+  "parentVersionId": null,
+  "metadataHash": "3a7817fd6cb96cf722889af1b364f6f12472490b9004bc3311775cb7d12b03df",
+  "pages": [
+    {
+      "route": "/",
+      "files": [
+        "src/routes/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/configuration/",
+      "files": [
+        "src/routes/guide/blog-theme/configuration/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/customization/",
+      "files": [
+        "src/routes/guide/blog-theme/customization/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/features/",
+      "files": [
+        "src/routes/guide/blog-theme/features/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/getting-started/",
+      "files": [
+        "src/routes/guide/blog-theme/getting-started/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/writing-posts/",
+      "files": [
+        "src/routes/guide/blog-theme/writing-posts/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/admonitions/",
+      "files": [
+        "src/routes/guide/default-theme/admonitions/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/builtin-components/",
+      "files": [
+        "src/routes/guide/default-theme/builtin-components/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/code-related/",
+      "files": [
+        "src/routes/guide/default-theme/code-related/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/frontmatter/",
+      "files": [
+        "src/routes/guide/default-theme/frontmatter/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/google-analytics/",
+      "files": [
+        "src/routes/guide/default-theme/google-analytics/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/headings-and-anchors/",
+      "files": [
+        "src/routes/guide/default-theme/headings-and-anchors/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/home-page/",
+      "files": [
+        "src/routes/+page.md",
+        "src/routes/guide/default-theme/home-page/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/navbar/",
+      "files": [
+        "src/routes/guide/default-theme/navbar/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/pwa/",
+      "files": [
+        "src/routes/guide/default-theme/pwa/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/search/",
+      "files": [
+        "src/routes/guide/default-theme/search/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/sidebar/",
+      "files": [
+        "src/routes/guide/default-theme/sidebar/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/twoslash/",
+      "files": [
+        "src/routes/guide/default-theme/twoslash/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/unocss/",
+      "files": [
+        "src/routes/guide/default-theme/unocss/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/introduction/",
+      "files": [
+        "src/routes/guide/introduction/+page.md",
+        "static/layout-hierarchy.png"
+      ]
+    },
+    {
+      "route": "/guide/markdown/basic-writing/",
+      "files": [
+        "src/routes/guide/markdown/basic-writing/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/markdown/frontmatter/",
+      "files": [
+        "src/routes/guide/markdown/frontmatter/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/markdown/svelte-in-markdown/",
+      "files": [
+        "src/routes/guide/markdown/svelte-in-markdown/+page.md",
+        "src/routes/guide/markdown/svelte-in-markdown/Counter.svelte"
+      ]
+    },
+    {
+      "route": "/guide/quick-start/",
+      "files": [
+        "src/routes/guide/quick-start/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/themes/",
+      "files": [
+        "src/routes/guide/themes/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/typescript/",
+      "files": [
+        "src/routes/guide/typescript/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/default-theme/",
+      "files": [
+        "src/routes/reference/default-theme/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/vite-plugin/",
+      "files": [
+        "src/routes/reference/vite-plugin/+page.md"
+      ]
+    }
+  ],
+  "removedRoutes": []
+}

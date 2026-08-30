@@ -349,6 +349,9 @@ importers:
       '@sveltepress/vite':
         specifier: workspace:*
         version: link:../vite
+      vite:
+        specifier: 'catalog:'
+        version: 8.2.2(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
     devDependencies:
       '@types/node':
         specifier: 'catalog:'

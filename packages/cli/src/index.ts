@@ -1,4 +1,4 @@
-import type { DocumentationVersion, VersionManifest } from '@sveltepress/vite/versioning'
+import type { CompiledPageArtifact, DocumentationVersion, VersionManifest } from '@sveltepress/vite/versioning'
 import { execFileSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
@@ -11,6 +11,16 @@ import {
   validateVersionId,
   validateVersionManifest,
 } from '@sveltepress/vite/versioning'
+import {
+  buildIncrementalSite,
+  composeIncrementalSite,
+  createIncrementalVersion,
+  garbageCollectIncrementalArtifacts,
+  migrateIncrementalSite,
+  printIncrementalPlan,
+  publishIncrementalStatus,
+  validateIncrementalArtifacts,
+} from './incremental.js'
 
 export interface CliIO {
   cwd: string
@@ -19,6 +29,8 @@ export interface CliIO {
   resolveSidebar?: (cwd: string) => Promise<unknown>
   /** Optional embedding hook; primarily useful for testing transactional failures. */
   writeManifest?: (path: string, manifest: VersionManifest) => void | Promise<void>
+  compilePage?: (filename: string, source: string, options: { routesDirectory: string, siteRoot: string }) => Promise<CompiledPageArtifact>
+  runBuild?: (input: { cwd: string, routesDirectory: string, storeRoot: string, siteId: string }) => Promise<void>
 }
 
 const DEFAULT_IO: CliIO = {
@@ -30,19 +42,43 @@ const DEFAULT_IO: CliIO = {
 export async function runCli(args: string[], io: CliIO = DEFAULT_IO): Promise<number> {
   try {
     if (args[0] !== 'versions')
-      throw new Error('Usage: sveltepress versions <init|create|list|validate>')
+      throw new Error('Usage: sveltepress versions <init|create|list|validate|plan|build|compose|publish|migrate|gc>')
     const command = args[1]
     const options = parseArgs(args.slice(2))
-    if (command === 'init')
+    if (command === 'init') {
       initializeVersions(io, options)
-    else if (command === 'create')
+    }
+    else if (command === 'create') {
       await createVersion(io, options)
-    else if (command === 'list')
+    }
+    else if (command === 'list') {
       listVersions(io)
-    else if (command === 'validate')
-      validateSite(io)
-    else
-      throw new Error('Usage: sveltepress versions <init|create|list|validate>')
+    }
+    else if (command === 'validate') {
+      await validateSite(io)
+    }
+    else if (command === 'plan') {
+      await printIncrementalPlan(io, requireManifest(io.cwd))
+    }
+    else if (command === 'build') {
+      await buildIncrementalSite(io, requireManifest(io.cwd), options)
+    }
+    else if (command === 'compose') {
+      await composeIncrementalSite(io, requireManifest(io.cwd), options)
+    }
+    else if (command === 'publish') {
+      publishIncrementalStatus(io, requireManifest(io.cwd), options)
+    }
+    else if (command === 'migrate') {
+      const manifest = requireManifest(io.cwd)
+      await migrateIncrementalSite(io, manifest, options, next => commitManifest(io, next))
+    }
+    else if (command === 'gc') {
+      garbageCollectIncrementalArtifacts(io, requireManifest(io.cwd), options)
+    }
+    else {
+      throw new Error('Usage: sveltepress versions <init|create|list|validate|plan|build|compose|publish|migrate|gc>')
+    }
     return 0
   }
   catch (error) {
@@ -57,17 +93,37 @@ interface ParsedArgs {
   label?: string
   basePath?: string
   allowDirty: boolean
+  siteId?: string
+  store?: string
+  output?: string
+  dryRun: boolean
 }
 
 function parseArgs(args: string[]): ParsedArgs {
-  const parsed: ParsedArgs = { positional: [], allowDirty: false }
+  const parsed: ParsedArgs = { positional: [], allowDirty: false, dryRun: false }
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index]
     if (arg === '--allow-dirty') {
       parsed.allowDirty = true
       continue
     }
-    const key = arg === '--current' ? 'current' : arg === '--label' ? 'label' : arg === '--base-path' ? 'basePath' : null
+    if (arg === '--dry-run') {
+      parsed.dryRun = true
+      continue
+    }
+    const key = arg === '--current'
+      ? 'current'
+      : arg === '--label'
+        ? 'label'
+        : arg === '--base-path'
+          ? 'basePath'
+          : arg === '--site-id'
+            ? 'siteId'
+            : arg === '--store'
+              ? 'store'
+              : arg === '--output'
+                ? 'output'
+                : null
     if (key) {
       const value = args[index + 1]
       if (!value || value.startsWith('--'))
@@ -146,6 +202,17 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
   if (!options.allowDirty)
     assertCleanGit(io.cwd)
 
+  if (manifest.artifacts) {
+    await createIncrementalVersion({
+      io,
+      manifest,
+      nextId,
+      label: options.label ?? nextId,
+      writeManifest: next => commitManifest(io, next),
+    })
+    return
+  }
+
   const routesRoot = join(io.cwd, 'src/routes')
   const baseSegment = manifest.basePath.slice(1)
   const baseRoot = join(routesRoot, baseSegment)
@@ -217,8 +284,12 @@ function listVersions(io: CliIO) {
     io.stdout(`${version.status ?? 'stable'}\t${version.id}\t${version.label}`)
 }
 
-function validateSite(io: CliIO) {
+async function validateSite(io: CliIO) {
   const manifest = requireManifest(io.cwd)
+  if (manifest.artifacts) {
+    await validateIncrementalArtifacts(io, manifest)
+    return
+  }
   validateFrozenVersionChangeSets(io.cwd, manifest)
   const routesRoot = join(io.cwd, 'src/routes')
   const baseRoot = join(io.cwd, 'src/routes', manifest.basePath.slice(1))
@@ -253,6 +324,15 @@ function validateSite(io: CliIO) {
   if (shared.length)
     io.stdout(`Shared live dependencies:\n${shared.map(value => `- ${value}`).join('\n')}`)
   io.stdout(`Version manifest is valid (${manifest.versions.length} historical version${manifest.versions.length === 1 ? '' : 's'}).`)
+}
+
+async function commitManifest(io: CliIO, manifest: VersionManifest) {
+  validateVersionManifest(manifest)
+  const path = join(io.cwd, 'sveltepress.versions.json')
+  if (io.writeManifest)
+    await io.writeManifest(path, manifest)
+  else
+    writeJsonAtomic(path, manifest)
 }
 
 function collectDependencyFiles(root: string): string[] {
