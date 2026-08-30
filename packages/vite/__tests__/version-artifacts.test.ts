@@ -180,6 +180,34 @@ describe('incremental version artifacts', () => {
     expect(after.find(input => input.route === '/guide/')?.dependencies).toContain('src/lib/Card.svelte')
   })
 
+  it('tracks source dependencies referenced inside svelte live code', () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-live-code-dependencies-'))
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    mkdirSync(join(root, 'src/lib'), { recursive: true })
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), [
+      '# Guide',
+      '',
+      '```svelte live',
+      '<script>',
+      '  import Card from \'$lib/Card.svelte\'',
+      '  import Local from \'./Local.svelte\'',
+      '</script>',
+      '<Card /><Local /><img src="./preview.png" alt="Preview" />',
+      '```',
+    ].join('\n'))
+    writeFileSync(join(root, 'src/routes/guide/Local.svelte'), '<span>Local</span>')
+    writeFileSync(join(root, 'src/routes/guide/preview.png'), 'preview')
+    writeFileSync(join(root, 'src/lib/Card.svelte'), '<article>Card</article>')
+
+    const [guide] = collectPageArtifactInputs(root, { basePath: '/v' })
+
+    expect(guide.dependencies).toEqual([
+      'src/lib/Card.svelte',
+      'src/routes/guide/Local.svelte',
+      'src/routes/guide/preview.png',
+    ])
+  })
+
   it('hashes legacy snapshot and current route roots by the same logical paths', () => {
     const root = mkdtempSync(join(tmpdir(), 'sveltepress-artifact-paths-'))
     mkdirSync(join(root, 'src/routes/guide'), { recursive: true })

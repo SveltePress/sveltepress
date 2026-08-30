@@ -3,7 +3,7 @@ import type { PluginOption } from 'vite'
 import type { RehypePluginsOrderer, RemarkPluginsOrderer, SveltepressVitePluginOptions } from './types.js'
 import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 
-import { dirname, resolve } from 'node:path'
+import { basename, dirname, extname, resolve } from 'node:path'
 import process from 'node:process'
 import { generateLlmsTxt } from './llms.js'
 import { wrapPage } from './utils/wrap-page.js'
@@ -12,6 +12,7 @@ import {
   createArtifactPageWrapper,
   generateVersionSitemap,
   loadVersionManifest,
+  PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX,
   PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX,
   PAGE_ARTIFACT_VIRTUAL_PREFIX,
   readDraftVersionArtifactManifest,
@@ -26,6 +27,27 @@ export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 const SVELTEPRESS_VERSIONS_MODULE = 'virtual:sveltepress/versions'
+const PAGE_ARTIFACT_TEXT_EXTENSIONS = new Set([
+  '',
+  '.cjs',
+  '.css',
+  '.cts',
+  '.html',
+  '.js',
+  '.json',
+  '.jsx',
+  '.less',
+  '.md',
+  '.mjs',
+  '.mts',
+  '.pcss',
+  '.postcss',
+  '.sass',
+  '.scss',
+  '.svelte',
+  '.ts',
+  '.tsx',
+])
 
 // only the src/routes/**/*.+(page|layout).(svelte|md) will need to be wrapped by theme.pageLayout
 // eslint-disable-next-line regexp/strict
@@ -150,7 +172,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       if (id.startsWith(PAGE_ARTIFACT_VIRTUAL_PREFIX))
         return `\0${id}/entry.js`
       if (importer?.startsWith(`\0${PAGE_ARTIFACT_VIRTUAL_PREFIX}`)
-        || importer?.startsWith(`\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`)) {
+        || importer?.startsWith(`\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`)
+        || importer?.startsWith(`\0${PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX}`)) {
         const resolved = await resolvePageArtifactDependency(id, importer)
         if (resolved)
           return resolved
@@ -159,6 +182,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         return SVELTEPRESS_SITE_CONFIG_MODULE
       if (id === SVELTEPRESS_VERSIONS_MODULE)
         return SVELTEPRESS_VERSIONS_MODULE
+      return null
     },
     async load(id, options) {
       if (id.startsWith(`\0${PAGE_ARTIFACT_VIRTUAL_PREFIX}`)) {
@@ -170,13 +194,35 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       }
       if (id.startsWith(`\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`)) {
         const value = id.slice(`\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`.length)
+        if (value.includes('?'))
+          return null
         const slash = value.indexOf('/')
         const artifactHash = value.slice(0, slash)
         const sourcePath = value.slice(slash + 1)
         const storeRoot = process.env.SVELTEPRESS_ARTIFACT_STORE
         if (!storeRoot)
           throw new Error('[sveltepress:versions] SVELTEPRESS_ARTIFACT_STORE is required to load page artifact sources.')
-        return readFileSync(resolve(storeRoot, 'blobs', artifactHash, 'sources', sourcePath), 'utf8')
+        const descriptor = await validateStoredPageArtifact(storeRoot, artifactHash)
+        const artifactPath = `sources/${sourcePath}`
+        if (!descriptor.files.some(file => file.path === artifactPath))
+          throw new Error(`[sveltepress:versions] Page artifact ${artifactHash} has no source file ${sourcePath}.`)
+        return loadPageArtifactFile(artifactPath, storeRoot, artifactHash, file => this.emitFile(file))
+      }
+      if (id.startsWith(`\0${PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX}`)) {
+        const value = id.slice(`\0${PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX}`.length)
+        if (value.includes('?'))
+          return null
+        const slash = value.indexOf('/')
+        const artifactHash = value.slice(0, slash)
+        const generatedPath = value.slice(slash + 1)
+        const storeRoot = process.env.SVELTEPRESS_ARTIFACT_STORE
+        if (!storeRoot)
+          throw new Error('[sveltepress:versions] SVELTEPRESS_ARTIFACT_STORE is required to load generated page artifact files.')
+        const descriptor = await validateStoredPageArtifact(storeRoot, artifactHash)
+        const artifactPath = `generated/${generatedPath}`
+        if (!descriptor.files.some(file => file.path === artifactPath))
+          throw new Error(`[sveltepress:versions] Page artifact ${artifactHash} has no generated file ${generatedPath}.`)
+        return loadPageArtifactFile(artifactPath, storeRoot, artifactHash, file => this.emitFile(file))
       }
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return `export default ${JSON.stringify(siteConfig)}`
@@ -250,26 +296,55 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     },
   }
 
+  function loadPageArtifactFile(
+    artifactPath: string,
+    storeRoot: string,
+    artifactHash: string,
+    emitAsset: (file: { type: 'asset', name: string, source: Uint8Array }) => string,
+  ): string {
+    const filePath = resolve(storeRoot, 'blobs', artifactHash, artifactPath)
+    if (PAGE_ARTIFACT_TEXT_EXTENSIONS.has(extname(artifactPath).toLowerCase()))
+      return readFileSync(filePath, 'utf8')
+    const referenceId = emitAsset({
+      type: 'asset',
+      name: basename(artifactPath),
+      source: readFileSync(filePath),
+    })
+    return `export default import.meta.ROLLUP_FILE_URL_${referenceId}`
+  }
+
   async function resolvePageArtifactDependency(source: string, importer: string): Promise<string | null> {
-    if (!source.startsWith('.') && !source.startsWith('$lib/'))
+    const importerPrefixes = [
+      `\0${PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX}`,
+      `\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`,
+      `\0${PAGE_ARTIFACT_VIRTUAL_PREFIX}`,
+    ]
+    const prefix = importerPrefixes.find(value => importer.startsWith(value))
+    if (!prefix)
       return null
     const storeRoot = process.env.SVELTEPRESS_ARTIFACT_STORE
     if (!storeRoot)
       throw new Error('[sveltepress:versions] SVELTEPRESS_ARTIFACT_STORE is required to resolve page artifact dependencies.')
-    const prefix = importer.startsWith(`\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`)
-      ? `\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`
-      : `\0${PAGE_ARTIFACT_VIRTUAL_PREFIX}`
     const value = importer.slice(prefix.length)
     const slash = value.indexOf('/')
     const artifactHash = value.slice(0, slash)
+    const descriptor = await validateStoredPageArtifact(storeRoot, artifactHash)
+    if (source.startsWith(PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX)) {
+      const generatedPath = source.slice(PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX.length)
+      const artifactPath = `generated/${generatedPath}`
+      return descriptor.files.some(file => file.path === artifactPath)
+        ? `\0${PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX}${artifactHash}/${generatedPath}`
+        : null
+    }
+    if (!source.startsWith('.') && !source.startsWith('$lib/'))
+      return null
     const metadata = await readPageArtifactMetadata(storeRoot, artifactHash)
-    const importerSource = prefix.includes('source')
+    const importerSource = prefix === `\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`
       ? value.slice(slash + 1)
       : metadata.sourceFile
     const requested = source.startsWith('$lib/')
       ? `src/lib/${source.slice('$lib/'.length)}`
       : resolve(dirname(`/${importerSource}`), source).slice(1)
-    const descriptor = await validateStoredPageArtifact(storeRoot, artifactHash)
     const candidates = [
       requested,
       ...['.svelte', '.ts', '.js', '.mjs', '.cjs', '.css', '.json'].map(extension => `${requested}${extension}`),

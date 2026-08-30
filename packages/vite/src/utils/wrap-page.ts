@@ -2,6 +2,7 @@ import type { ResolvedTheme } from '../types.js'
 import { env } from 'node:process'
 import { LRUCache } from 'lru-cache'
 import mdToSvelte from '../markdown/md-to-svelte.js'
+import { withoutPageArtifactContext } from '../versioning/page-artifact-generated.js'
 import { getFileLastUpdateTime } from './get-file-last-update.js'
 import { parseSvelteFrontmatter } from './parse-svelte-frontmatter.js'
 
@@ -20,14 +21,17 @@ export async function wrapPage({
   rehypePlugins,
   remarkPlugins,
   footnoteLabel,
+  data: inputData,
 }: {
   mdOrSvelteCode: string
   id: string
   layout?: string
+  data?: Record<string, unknown>
 } & Partial<Omit<ResolvedTheme, 'name' | 'vitePlugins' | 'pageLayout' | 'globalLayout'>>) {
   const cacheKey = JSON.stringify({ id, mdOrSvelteCode })
+  const cacheEnabled = env.NODE_ENV === 'development' && !inputData
   let cached
-  if (env.NODE_ENV === 'development') {
+  if (cacheEnabled) {
     cached = cache.get(cacheKey)
     if (cached)
       return cached
@@ -45,8 +49,9 @@ export async function wrapPage({
       rehypePlugins,
       filename: id,
       footnoteLabel,
+      data: inputData,
     }) || { code: '', data: {} }
-    const { fm: dataFm = {}, ...others } = data || { fm: {} }
+    const { fm: dataFm = {}, ...others } = withoutPageArtifactContext(data || { fm: {} })
     fm = {
       pageType: 'md',
       lastUpdate,
@@ -79,7 +84,7 @@ export async function wrapPage({
     wrappedCode,
     fm,
   }
-  if (env.NODE_ENV === 'development')
+  if (cacheEnabled)
     cache.set(cacheKey, cached)
   return cached
 }

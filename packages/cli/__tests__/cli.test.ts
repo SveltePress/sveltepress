@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join, relative, sep } from 'node:path'
-import { readVersionArtifactManifest } from '@sveltepress/vite/versioning'
+import { PAGE_ARTIFACT_MODULE_SCHEMA, readVersionArtifactManifest } from '@sveltepress/vite/versioning'
 import { describe, expect, it } from 'vitest'
 import { runCli } from '../src/index'
 
@@ -193,6 +193,26 @@ describe('sveltepress versions CLI', () => {
     const after = readVersionArtifactManifest(store, 'docs-test', 'v8')!
     expect(after.fingerprints.pageCompiler).not.toBe(before.fingerprints.pageCompiler)
     expect(harness.compiled).toEqual(['/', '/guide/'])
+    expect(await runCli(['versions', 'validate'], harness.io)).toBe(0)
+  })
+
+  it('rebuilds page-module-v2 caches with self-contained generated artifacts', async () => {
+    const root = site()
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+    const harness = incrementalIO(root)
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-test'], harness.io)).toBe(0)
+    expect(await runCli(['versions', 'create', 'v9'], harness.io)).toBe(0)
+    const store = join(root, '.sveltepress/version-artifacts')
+    const manifestPath = join(store, 'manifests/docs-test/v8.json')
+    const legacy = JSON.parse(readFileSync(manifestPath, 'utf8'))
+    legacy.fingerprints.artifactSchema = 'page-module-v2'
+    writeFileSync(manifestPath, `${JSON.stringify(legacy, null, 2)}\n`)
+
+    harness.compiled.length = 0
+    expect(await runCli(['versions', 'build'], harness.io)).toBe(0)
+
+    expect(harness.compiled).toEqual(['/', '/guide/'])
+    expect(readVersionArtifactManifest(store, 'docs-test', 'v8')?.fingerprints.artifactSchema).toBe(PAGE_ARTIFACT_MODULE_SCHEMA)
     expect(await runCli(['versions', 'validate'], harness.io)).toBe(0)
   })
 

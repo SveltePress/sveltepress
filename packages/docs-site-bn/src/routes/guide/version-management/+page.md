@@ -49,6 +49,8 @@ GitHub Actions-এ build-এর আগে সর্বশেষ compatible store
 
 অন্য CI provider-এ সমতুল্য persistent cache ব্যবহার করুন। আলাদা `siteId`-এর মধ্যে একই store share করবেন না।
 
+Default Theme-এর LiveCode component-সহ generated page module তার নিজস্ব page artifact-এর মধ্যে রাখা হয়। CI-তে শুধু `.sveltepress/version-artifacts` cache করলেই যথেষ্ট; `.sveltepress/live-code` local development-এর temporary directory এবং reused page restore করতে এটি প্রয়োজন হয় না।
+
 ## Release snapshot তৈরি
 
 Manifest এগোনোর আগে outgoing current version build করুন:

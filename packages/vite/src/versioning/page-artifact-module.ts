@@ -6,9 +6,11 @@ import { dirname, join, relative, resolve, sep } from 'node:path'
 import { compile } from 'svelte/compiler'
 import { prepareSvelteContentComponent, wrapPage } from '../utils/wrap-page.js'
 import { validateStoredPageArtifact } from './artifact-store.js'
+import { createPageArtifactFileCollector } from './page-artifact-generated.js'
 
 export const PAGE_ARTIFACT_VIRTUAL_PREFIX = 'virtual:sveltepress/page-artifact/'
 export const PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX = 'virtual:sveltepress/page-artifact-source/'
+export const PAGE_ARTIFACT_MODULE_SCHEMA = 'page-module-v3'
 
 export interface PageArtifactMetadata {
   route: string
@@ -26,6 +28,7 @@ export async function compilePageArtifactModule(input: {
   rehypePlugins?: Plugin[]
   footnoteLabel?: string
 }): Promise<CompiledPageArtifact> {
+  const generated = createPageArtifactFileCollector()
   const routesDirectory = resolve(input.routesDirectory ?? inferRoutesDirectory(input.filename))
   const { wrappedCode, fm } = await wrapPage({
     id: input.filename,
@@ -34,6 +37,7 @@ export async function compilePageArtifactModule(input: {
     remarkPlugins: input.remarkPlugins,
     rehypePlugins: input.rehypePlugins,
     footnoteLabel: input.footnoteLabel,
+    data: generated.data,
   })
   const route = routeFromPageFilename(input.filename, routesDirectory)
   const siteRoot = resolve(input.siteRoot ?? inferSiteRoot(input.filename))
@@ -55,6 +59,7 @@ export async function compilePageArtifactModule(input: {
       'client.js': client.js.code,
       'server.js': server.js.code,
       'metadata.json': `${JSON.stringify(metadata, null, 2)}\n`,
+      ...generated.files,
     },
   }
 }

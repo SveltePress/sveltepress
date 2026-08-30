@@ -49,6 +49,8 @@ pnpm exec sveltepress versions migrate --site-id docs-example
 
 其他 CI 平台应使用对应的持久化缓存能力。不同 `siteId` 不要共用同一个存储。
 
+页面生成模块（包括 Default Theme 的 LiveCode 组件）会写入所属页面产物。CI 只需缓存 `.sveltepress/version-artifacts`；`.sveltepress/live-code` 是本地开发临时目录，恢复复用页面时不需要它。
+
 ## 创建发版快照
 
 推进清单前先构建即将冻结的当前版本：

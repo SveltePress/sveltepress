@@ -26,6 +26,7 @@ import {
   collectPageArtifactInputs,
   generateVersionShellRoutes,
   materializeVersionSourceDeltas,
+  PAGE_ARTIFACT_MODULE_SCHEMA,
   planVersionBuild,
   publishDraftVersionArtifactManifest,
   readDraftVersionArtifactManifest,
@@ -687,7 +688,7 @@ function resolveFingerprints(siteRoot: string, manifest: VersionManifest): Versi
     })),
   })).digest('hex')
   return {
-    artifactSchema: 'page-module-v2',
+    artifactSchema: PAGE_ARTIFACT_MODULE_SCHEMA,
     pageCompiler: compilerHash,
     shell: compilerHash,
     index: indexHash,

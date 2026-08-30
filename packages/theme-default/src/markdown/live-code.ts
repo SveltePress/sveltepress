@@ -1,8 +1,10 @@
 import type { Plugin } from 'unified'
+import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { mdToSvelte } from '@sveltepress/vite'
+import { emitPageArtifactFile } from '@sveltepress/vite/versioning'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { gfmFromMarkdown } from 'mdast-util-gfm'
 import { uid } from 'uid'
@@ -44,19 +46,9 @@ function createAsyncImportCode(componentPath: string) {
 }
 
 const liveCode: Plugin<any[], any> = function () {
-  if (!existsSync(BASE_PATH)) {
-    mkdirSync(BASE_PATH, {
-      recursive: true,
-    })
-  }
-
-  if (!existsSync(LIVE_CODE_MAP))
-    writeFileSync(LIVE_CODE_MAP, '{}')
-
   return async (tree, vFile) => {
     let hasScript = false
-    const liveCodePaths: LiveCodePathItem[] = []
-    const asyncNodeOperations: Promise<any>[] = []
+    const asyncNodeOperations: Array<Promise<LiveCodePathItem | null>> = []
     visit(
       tree,
       (node, idx, parent) => {
@@ -70,28 +62,42 @@ const liveCode: Plugin<any[], any> = function () {
         ) {
           const getLiveNodeFromLang = async (lang: SupportedLiveLang) => {
             if (lang === 'svelte') {
-              const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
-
-              const blockId = `${vFile.path}-${idx}`
-
-              let name = idNameMap[blockId]
-              if (!name) {
-                const svelteFileName = `LiveCode${uid()}`
-                name = idNameMap[blockId] = `${svelteFileName}.svelte`
-                writeFileSync(LIVE_CODE_MAP, JSON.stringify(idNameMap, null, 2))
+              const content = node.value || ''
+              const digest = createHash('sha256').update(content).digest('hex')
+              const generatedName = `${digest}.svelte`
+              const generatedPath = emitPageArtifactFile(vFile, {
+                path: `live-code/${generatedName}`,
+                content,
+              })
+              let componentName: string
+              let componentPath: string
+              if (generatedPath) {
+                componentName = `LiveCode${digest}`
+                componentPath = generatedPath
               }
-
-              const path = resolve(BASE_PATH, name)
-              writeFileSync(path, node.value || '')
-
-              const componentName = name.replace(/\.svelte$/, '')
-              const componentPath = `/.sveltepress/live-code/${name}`
-              if (!isAsync) {
-                liveCodePaths.push({
-                  componentName,
-                  path: componentPath,
-                })
+              else {
+                if (!existsSync(BASE_PATH))
+                  mkdirSync(BASE_PATH, { recursive: true })
+                if (!existsSync(LIVE_CODE_MAP))
+                  writeFileSync(LIVE_CODE_MAP, '{}')
+                const idNameMap = JSON.parse(readFileSync(LIVE_CODE_MAP, 'utf-8'))
+                const blockId = `${vFile.path}-${idx}`
+                let name = idNameMap[blockId]
+                if (!name) {
+                  const svelteFileName = `LiveCode${uid()}`
+                  name = idNameMap[blockId] = `${svelteFileName}.svelte`
+                  writeFileSync(LIVE_CODE_MAP, JSON.stringify(idNameMap, null, 2))
+                }
+                writeFileSync(resolve(BASE_PATH, name), content)
+                componentName = name.replace(/\.svelte$/, '')
+                componentPath = `/.sveltepress/live-code/${name}`
               }
+              const importItem = !isAsync
+                ? {
+                    componentName,
+                    path: componentPath,
+                  }
+                : null
               const svelteComponent = {
                 type: 'html',
                 value: `
@@ -100,11 +106,11 @@ const liveCode: Plugin<any[], any> = function () {
 </div>
 `,
               }
-              return [svelteComponent]
+              return { nodes: [svelteComponent], importItem }
             }
             else if (lang === 'md') {
               const noAst = meta.split(' ').includes('no-ast')
-              return [
+              return { nodes: [
                 {
                   type: 'html',
                   value: '<div class="p-4">',
@@ -132,7 +138,7 @@ const liveCode: Plugin<any[], any> = function () {
                   type: 'html',
                   value: '</div>',
                 },
-              ]
+              ], importItem: null }
             }
           }
           const asyncAdd = async () => {
@@ -143,6 +149,7 @@ const liveCode: Plugin<any[], any> = function () {
               data,
               meta,
             }
+            const result = await getLiveNodeFromLang(lang)
             const liveCodeNode = {
               type: 'liveCode',
               data: {
@@ -156,7 +163,7 @@ const liveCode: Plugin<any[], any> = function () {
                   type: 'html',
                   value: '<div></div>',
                 },
-                ...await getLiveNodeFromLang(lang) as any[],
+                ...result.nodes as any[],
                 {
                   type: 'html',
                   value: `<Expansion codeType="${lang}" title="${themeOptionsRef.value?.i18n?.expansionTitle || 'View code'}" reverse={true}>`,
@@ -170,6 +177,7 @@ const liveCode: Plugin<any[], any> = function () {
             }
 
             parent.children.splice(idx, 1, liveCodeNode)
+            return result.importItem
           }
 
           asyncNodeOperations.push(asyncAdd())
@@ -177,9 +185,13 @@ const liveCode: Plugin<any[], any> = function () {
       },
     )
 
-    await Promise.allSettled(asyncNodeOperations)
+    const liveCodePaths = new Map<string, LiveCodePathItem>()
+    for (const item of await Promise.all(asyncNodeOperations)) {
+      if (item)
+        liveCodePaths.set(item.componentName, item)
+    }
 
-    const liveCodeImports = liveCodePaths.map(({ componentName, path }) => `import ${componentName} from '${path}'`)
+    const liveCodeImports = Array.from(liveCodePaths.values()).map(({ componentName, path }) => `import ${componentName} from '${path}'`)
     const importers = liveCodeImports
 
     visit(tree, (node, idx, parent) => {

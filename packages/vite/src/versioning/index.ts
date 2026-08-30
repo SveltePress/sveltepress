@@ -9,6 +9,11 @@ export * from './artifact-store.js'
 export * from './artifacts.js'
 export { computeVersionChangeSet, validateFrozenVersionChangeSets, validateVersionChangeSet } from './changes.js'
 export { generateVersionSitemap } from './output.js'
+export {
+  emitPageArtifactFile,
+  PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX,
+} from './page-artifact-generated.js'
+export type { PageArtifactGeneratedFile } from './page-artifact-generated.js'
 export * from './page-artifact-module.js'
 export { createVersionRuntime, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from './runtime.js'
 export * from './shell-routes.js'

@@ -277,7 +277,9 @@ function extractDependencies(file: string, source: string): string[] {
   const dependencySource = markdown
     ? [...source.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(match => match[1]).join('\n')
     : source
-  const markdownSource = markdown ? stripMarkdownExamples(source) : source
+  const markdownSource = markdown
+    ? `${stripMarkdownExamples(source)}\n${extractSvelteLiveCode(source)}`
+    : source
   const dependencies = new Set<string>()
   for (const match of dependencySource.matchAll(/(?:from\s+|import\s*\(\s*|import\s+|require\s*\(\s*)['"]([^'"]+)['"]/g))
     dependencies.add(match[1])
@@ -419,4 +421,44 @@ function stripMarkdownExamples(source: string): string {
       fence = null
     return ''
   }).join('\n')
+}
+
+function extractSvelteLiveCode(source: string): string {
+  const blocks: string[] = []
+  let marker: { character: '`' | '~', length: number } | null = null
+  let collect = false
+  let block: string[] = []
+  for (const line of source.split('\n')) {
+    const trimmed = line.trimStart()
+    if (!marker) {
+      const character = trimmed[0]
+      if (character !== '`' && character !== '~')
+        continue
+      let markerLength = 0
+      while (trimmed[markerLength] === character)
+        markerLength += 1
+      if (markerLength < 3)
+        continue
+      const tokens = trimmed.slice(markerLength).trim().split(/\s+/).filter(Boolean)
+      marker = {
+        character,
+        length: markerLength,
+      }
+      collect = tokens[0] === 'svelte' && tokens.slice(1).includes('live')
+      block = []
+      continue
+    }
+    const closing = line.trim()
+    if (closing.length >= marker.length && [...closing].every(character => character === marker!.character)) {
+      if (collect)
+        blocks.push(block.join('\n'))
+      marker = null
+      collect = false
+      block = []
+      continue
+    }
+    if (collect)
+      block.push(line)
+  }
+  return blocks.join('\n')
 }

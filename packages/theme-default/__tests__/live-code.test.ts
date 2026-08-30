@@ -1,4 +1,8 @@
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { mdToSvelte } from '@sveltepress/vite'
+import { compilePageArtifactModule } from '@sveltepress/vite/versioning'
 import { describe, expect, it } from 'vitest'
 import componentImports from '../src/markdown/component-imports'
 import highlighter, { initHighlighter } from '../src/markdown/highlighter'
@@ -98,6 +102,65 @@ title: Test Page
     }) || { code: '' }
 
     expect(code).toMatchSnapshot()
+  })
+
+  it('embeds svelte live code in reusable page artifacts', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-live-code-artifact-'))
+    const filename = join(root, 'src/routes/guide/+page.md')
+    const source = `# Guide
+
+\`\`\`svelte live
+<button>Artifact demo</button>
+\`\`\`
+`
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(filename, source)
+
+    const artifact = await compilePageArtifactModule({
+      filename,
+      source,
+      remarkPlugins: [liveCode],
+      rehypePlugins: [componentImports],
+    })
+
+    const generated = Object.keys(artifact.files).filter(path => path.startsWith('generated/live-code/'))
+    expect(generated).toHaveLength(1)
+    expect(String(artifact.files[generated[0]])).toBe('<button>Artifact demo</button>')
+    expect(String(artifact.files['client.js'])).toContain('virtual:sveltepress/page-artifact-generated/live-code/')
+    expect(String(artifact.files['client.js'])).not.toContain('/.sveltepress/live-code/')
+  })
+
+  it('deduplicates stable generated files across sync and async live code blocks', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-deduplicated-live-code-'))
+    const filename = join(root, 'src/routes/guide/+page.md')
+    const demo = '<button>Same demo</button>'
+    const source = [
+      '# Guide',
+      '',
+      '```svelte live',
+      demo,
+      '```',
+      '',
+      '```svelte live',
+      demo,
+      '```',
+      '',
+      '```svelte live async',
+      demo,
+      '```',
+    ].join('\n')
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(filename, source)
+
+    const artifact = await compilePageArtifactModule({
+      filename,
+      source,
+      remarkPlugins: [liveCode],
+      rehypePlugins: [componentImports],
+    })
+
+    expect(Object.keys(artifact.files).filter(path => path.startsWith('generated/live-code/'))).toHaveLength(1)
+    expect(String(artifact.files['client.js']).match(/page-artifact-generated\/live-code\//g)).toHaveLength(2)
   })
 
   it('does not couple plain markdown to unused theme components', async () => {

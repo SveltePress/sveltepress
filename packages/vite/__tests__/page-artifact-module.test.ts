@@ -1,10 +1,13 @@
+import type { Plugin } from 'unified'
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { wrapPage } from '../src/utils/wrap-page'
 import {
   compilePageArtifactModule,
   createArtifactPageWrapper,
+  emitPageArtifactFile,
   readPageArtifactModule,
   writePageArtifact,
 } from '../src/versioning'
@@ -72,5 +75,94 @@ describe('page artifact modules', () => {
     expect(server).toContain('const fm = {')
     expect(server).toContain('"title": "Stateful guide"')
     expect(server).not.toContain('$$renderer.push(`<script>')
+  })
+
+  it('emits safe generated files idempotently through the artifact compiler', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-generated-page-module-'))
+    const filename = join(root, 'src/routes/guide/+page.md')
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(filename, '# Generated')
+    const emitter: Plugin = () => (_tree, vFile) => {
+      const generated = { path: 'examples/Demo.svelte', content: '<h1>Demo</h1>' }
+      expect(emitPageArtifactFile(vFile, generated)).toBe('virtual:sveltepress/page-artifact-generated/examples/Demo.svelte')
+      expect(emitPageArtifactFile(vFile, generated)).toBe('virtual:sveltepress/page-artifact-generated/examples/Demo.svelte')
+      expect(emitPageArtifactFile(vFile, {
+        path: 'images/pixel.png',
+        content: Uint8Array.from([0, 255, 137, 80]),
+      })).toBe('virtual:sveltepress/page-artifact-generated/images/pixel.png')
+    }
+
+    const artifact = await compilePageArtifactModule({ filename, source: '# Generated', remarkPlugins: [emitter] })
+
+    expect(artifact.files['generated/examples/Demo.svelte']).toBe('<h1>Demo</h1>')
+    expect(artifact.files['generated/images/pixel.png']).toEqual(Uint8Array.from([0, 255, 137, 80]))
+  })
+
+  it('rejects unsafe and conflicting generated files', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-invalid-generated-page-module-'))
+    const filename = join(root, 'src/routes/guide/+page.md')
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(filename, '# Generated')
+    const unsafe: Plugin = () => (_tree, vFile) => {
+      emitPageArtifactFile(vFile, { path: '../escape.svelte', content: 'escape' })
+    }
+    const conflicting: Plugin = () => (_tree, vFile) => {
+      emitPageArtifactFile(vFile, { path: 'examples/Demo.svelte', content: 'first' })
+      emitPageArtifactFile(vFile, { path: 'examples/Demo.svelte', content: 'second' })
+    }
+
+    await expect(compilePageArtifactModule({ filename, source: '# Generated', remarkPlugins: [unsafe] })).rejects.toThrow(/unsafe/i)
+    await expect(compilePageArtifactModule({ filename, source: '# Generated', remarkPlugins: [conflicting] })).rejects.toThrow(/conflicting content/i)
+    for (const path of ['examples/Demo.svelte?raw', 'examples/Demo.svelte#fragment']) {
+      const reserved: Plugin = () => (_tree, vFile) => {
+        emitPageArtifactFile(vFile, { path, content: 'reserved' })
+      }
+      await expect(compilePageArtifactModule({ filename, source: '# Generated', remarkPlugins: [reserved] })).rejects.toThrow(/unsafe/i)
+    }
+  })
+
+  it('keeps artifact and ordinary markdown compilation isolated in the development cache', async () => {
+    const previousNodeEnv = process.env.NODE_ENV
+    process.env.NODE_ENV = 'development'
+    const emitter: Plugin = () => (tree, vFile) => {
+      const generated = emitPageArtifactFile(vFile, {
+        path: 'examples/Demo.svelte',
+        content: '<h1>Demo</h1>',
+      })
+      tree.children.push({ type: 'html', value: `<p>${generated ?? 'ordinary'}</p>` } as never)
+    }
+    const compilePair = async (name: string, artifactFirst: boolean) => {
+      const root = mkdtempSync(join(tmpdir(), `sveltepress-page-cache-${name}-`))
+      const filename = join(root, 'src/routes/guide/+page.md')
+      const source = `# ${name}`
+      mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+      writeFileSync(filename, source)
+      const compileArtifact = () => compilePageArtifactModule({ filename, source, remarkPlugins: [emitter] })
+      const compileOrdinary = () => wrapPage({ id: filename, mdOrSvelteCode: source, remarkPlugins: [emitter] })
+      if (artifactFirst) {
+        const artifact = await compileArtifact()
+        const ordinary = await compileOrdinary()
+        return { artifact, ordinary }
+      }
+      const ordinary = await compileOrdinary()
+      const artifact = await compileArtifact()
+      return { artifact, ordinary }
+    }
+
+    try {
+      for (const artifactFirst of [false, true]) {
+        const { artifact, ordinary } = await compilePair(artifactFirst ? 'artifact-first' : 'ordinary-first', artifactFirst)
+        expect(artifact.files['generated/examples/Demo.svelte']).toBe('<h1>Demo</h1>')
+        expect(String(artifact.files['client.js'])).toContain('page-artifact-generated/examples/Demo.svelte')
+        expect(ordinary.wrappedCode).toContain('<p>ordinary</p>')
+        expect(ordinary.wrappedCode).not.toContain('page-artifact-generated')
+      }
+    }
+    finally {
+      if (previousNodeEnv === undefined)
+        delete process.env.NODE_ENV
+      else
+        process.env.NODE_ENV = previousNodeEnv
+    }
   })
 })

@@ -56,6 +56,8 @@ For GitHub Actions, restore the newest compatible store before the build and sav
 
 Use the equivalent persistent-cache facility on other CI providers. Do not share a store between different `siteId` values.
 
+Generated page modules, including Default Theme LiveCode components, are embedded in their owning page artifacts. Cache only `.sveltepress/version-artifacts`; `.sveltepress/live-code` is a local development directory and is not required when a CI worker restores reusable pages.
+
 ## Create a release snapshot
 
 Build the outgoing current version before advancing the manifest:

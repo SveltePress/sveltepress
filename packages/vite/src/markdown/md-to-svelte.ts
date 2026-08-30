@@ -22,6 +22,7 @@ interface CompileOptions {
   rehypePlugins?: Plugin[]
   filename: string
   footnoteLabel?: string
+  data?: Record<string, unknown>
 }
 
 export default async function ({
@@ -31,6 +32,7 @@ export default async function ({
   highlighter,
   filename,
   footnoteLabel,
+  data: inputData,
 }: CompileOptions): Promise<{
   data: Record<string, any>
   code: string
@@ -87,6 +89,7 @@ export default async function ({
     .process({
       value: mdContent,
       path: filename,
+      ...(inputData ? { data: inputData } : {}),
     })
 
   const code = String(vFile)
