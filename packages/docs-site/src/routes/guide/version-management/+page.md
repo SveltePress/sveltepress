@@ -58,6 +58,122 @@ Use the equivalent persistent-cache facility on other CI providers. Do not share
 
 Generated page modules, including Default Theme LiveCode components, are embedded in their owning page artifacts. Cache only `.sveltepress/version-artifacts`; `.sveltepress/live-code` is a local development directory and is not required when a CI worker restores reusable pages.
 
+## LiveCode artifact self-check
+
+This page dogfoods that behavior. The interactive component below is generated from this Markdown file, embedded in the page artifact, and server-rendered again after the local `.sveltepress/live-code` directory is removed. If the card renders and its button responds, both the reusable artifact and client hydration paths are working.
+
+```svelte live
+<script>
+  let interactions = $state(0)
+  const checks = [
+    'Generated module embedded',
+    'Server render complete',
+    'Client hydration ready',
+  ]
+</script>
+
+<section class="artifact-check" data-version-artifact-live-code>
+  <div class="artifact-check__status" aria-hidden="true">✓</div>
+  <div class="artifact-check__content">
+    <p class="artifact-check__eyebrow">LIVE DOCUMENTATION CHECK</p>
+    <h3>Artifact self-check passed</h3>
+    <ul>
+      {#each checks as check}
+        <li><span aria-hidden="true">✓</span>{check}</li>
+      {/each}
+    </ul>
+    <button type="button" onclick={() => interactions++}>
+      Test interaction{interactions ? ` · ${interactions}` : ''}
+    </button>
+  </div>
+</section>
+
+<style>
+  .artifact-check {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1.25rem;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 1rem;
+    background:
+      radial-gradient(circle at 100% 0%, rgb(255 94 122 / 18%), transparent 45%),
+      color-mix(in srgb, currentColor 4%, transparent);
+  }
+
+  .artifact-check__status {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: 0.85rem;
+    color: #14231a;
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: #70e19b;
+    box-shadow: 0 0 0 0.35rem rgb(112 225 155 / 12%);
+  }
+
+  .artifact-check__content h3,
+  .artifact-check__content p {
+    margin: 0;
+  }
+
+  .artifact-check__eyebrow {
+    color: #ff5e7a;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  .artifact-check__content h3 {
+    margin-top: 0.15rem;
+    font-size: 1.2rem;
+  }
+
+  .artifact-check__content ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.85rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .artifact-check__content li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    background: color-mix(in srgb, currentColor 8%, transparent);
+  }
+
+  .artifact-check__content li span {
+    color: #45c97c;
+    font-weight: 800;
+  }
+
+  .artifact-check__content button {
+    padding: 0.55rem 0.8rem;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    border-radius: 0.65rem;
+    color: inherit;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .artifact-check__content button:hover {
+    border-color: #ff5e7a;
+  }
+</style>
+```
+
 ## Create a release snapshot
 
 Build the outgoing current version before advancing the manifest:

@@ -51,6 +51,122 @@ GitHub Actions-এ build-এর আগে সর্বশেষ compatible store
 
 Default Theme-এর LiveCode component-সহ generated page module তার নিজস্ব page artifact-এর মধ্যে রাখা হয়। CI-তে শুধু `.sveltepress/version-artifacts` cache করলেই যথেষ্ট; `.sveltepress/live-code` local development-এর temporary directory এবং reused page restore করতে এটি প্রয়োজন হয় না।
 
+## LiveCode artifact স্ব-পরীক্ষা
+
+এই পৃষ্ঠাটি সেই আচরণ সরাসরি ব্যবহার করে। নিচের interactive component-টি এই Markdown file থেকে তৈরি হয়ে page artifact-এ সংরক্ষিত হয়। Local `.sveltepress/live-code` directory মুছে ফেলার পরও reused artifact build-এ এটি server-render হয়। Card-টি দেখা গেলে এবং button-টি কাজ করলে reusable artifact ও client hydration—দুই পথই সঠিকভাবে চলছে।
+
+```svelte live
+<script>
+  let interactions = $state(0)
+  const checks = [
+    'Generated module অন্তর্ভুক্ত',
+    'Server render সম্পন্ন',
+    'Client hydration প্রস্তুত',
+  ]
+</script>
+
+<section class="artifact-check" data-version-artifact-live-code>
+  <div class="artifact-check__status" aria-hidden="true">✓</div>
+  <div class="artifact-check__content">
+    <p class="artifact-check__eyebrow">লাইভ ডকুমেন্টেশন পরীক্ষা</p>
+    <h3>Artifact স্ব-পরীক্ষা সফল</h3>
+    <ul>
+      {#each checks as check}
+        <li><span aria-hidden="true">✓</span>{check}</li>
+      {/each}
+    </ul>
+    <button type="button" onclick={() => interactions++}>
+      Interaction পরীক্ষা করুন{interactions ? ` · ${interactions}` : ''}
+    </button>
+  </div>
+</section>
+
+<style>
+  .artifact-check {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    overflow: hidden;
+    padding: 1.25rem;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 1rem;
+    background:
+      radial-gradient(circle at 100% 0%, rgb(255 94 122 / 18%), transparent 45%),
+      color-mix(in srgb, currentColor 4%, transparent);
+  }
+
+  .artifact-check__status {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: 0.85rem;
+    color: #14231a;
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: #70e19b;
+    box-shadow: 0 0 0 0.35rem rgb(112 225 155 / 12%);
+  }
+
+  .artifact-check__content h3,
+  .artifact-check__content p {
+    margin: 0;
+  }
+
+  .artifact-check__eyebrow {
+    color: #ff5e7a;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  .artifact-check__content h3 {
+    margin-top: 0.15rem;
+    font-size: 1.2rem;
+  }
+
+  .artifact-check__content ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.85rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .artifact-check__content li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    background: color-mix(in srgb, currentColor 8%, transparent);
+  }
+
+  .artifact-check__content li span {
+    color: #45c97c;
+    font-weight: 800;
+  }
+
+  .artifact-check__content button {
+    padding: 0.55rem 0.8rem;
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    border-radius: 0.65rem;
+    color: inherit;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .artifact-check__content button:hover {
+    border-color: #ff5e7a;
+  }
+</style>
+```
+
 ## Release snapshot তৈরি
 
 Manifest এগোনোর আগে outgoing current version build করুন:

@@ -35,11 +35,17 @@ assert(!existsSync(historicalFeature), 'A page added after the snapshot leaked i
 
 const historicalHtml = read(historicalHome)
 const currentHtml = read(currentHome)
+const currentFeatureHtml = read(currentFeature)
 assert(historicalHtml.includes('<link rel="canonical" href="/v/2026-08-27/"'), 'Historical home is not self-canonical')
 assert(historicalHtml.includes('You are viewing an older version of this site. Some features may not work as expected.'), 'Historical lifecycle message is missing')
 assert(historicalHtml.includes('Current version'), 'Historical current-version link is missing')
 assert(historicalHtml.includes('Search is not available for this documentation version.'), 'Historical search did not fail closed')
 assert(currentHtml.includes('2026-08-28') && historicalHtml.includes('2026-08-27'), 'Version selector labels are missing')
+assert(
+  currentFeatureHtml.includes('data-version-artifact-live-code')
+  && currentFeatureHtml.includes('Artifact self-check passed'),
+  'The version-management LiveCode artifact self-check was not server-rendered',
+)
 const whatsNewHtml = read(currentWhatsNew)
 assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), 'What’s New groups are missing')
 assert(whatsNewHtml.includes('/guide/version-management/') && whatsNewHtml.includes('/reference/vite-plugin/#version-change-discovery'), 'What’s New links do not cover new and updated documentation')
@@ -70,8 +76,13 @@ const versionRuntimeMarkers = [
 ]
 for (const site of ['docs-site-zh', 'docs-site-bn']) {
   const siteRoot = join(root, 'packages', site, 'dist')
+  const currentFeature = join(siteRoot, 'guide/version-management/index.html')
   const appRoot = join(siteRoot, '_app')
   const bundled = files(appRoot).map(read).join('\n')
+  assert(
+    read(currentFeature).includes('data-version-artifact-live-code'),
+    `${site} version-management LiveCode artifact self-check was not server-rendered`,
+  )
   for (const marker of versionRuntimeMarkers)
     assert(bundled.includes(marker), `${site} bundled version-only runtime marker missing: ${marker}`)
 
