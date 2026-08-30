@@ -81,7 +81,7 @@ sveltepress({
 
 | Option | Type | Default | Purpose |
 |---|---|---|---|
-| `enabled` | `boolean` | `false` | Write `static/llms.txt` and `static/llms-full.txt` during a build. |
+| `enabled` | `boolean` | `false` | Write `llms.txt` and `llms-full.txt` during a build. |
 | `title` | `string` | `siteConfig.title` | Title used in both generated files. |
 | `description` | `string` | `siteConfig.description` | Description used in both generated files. |
 | `baseUrl` | `string` | `''` | Absolute site origin prepended to route links. |
@@ -89,7 +89,7 @@ sveltepress({
 | `filter` | `(filePath, frontmatter) => boolean` | — | Exclude selected pages. |
 | `sort` | `(a, b) => number` | route path | Customize page order. |
 
-The current generator reads `+page.md` files only. Svelte-only pages and runtime data are not included. Generated files are written into `static/`, so decide whether to commit them or ignore and regenerate them consistently in CI.
+The generator reads Markdown pages only; Svelte-only pages and runtime data are not included. With incremental document versions, historical indexes read each page's frozen Markdown artifact rather than current source. Builds write the files into both `static/` and the production bundle so a clean CI build includes them in the deployed output. Decide whether to commit the `static/` copies or ignore and regenerate them consistently in CI.
 
 :::since[Version change discovery]{version="2026-08-28" id="version-change-discovery" summary="Build-time change catalogs are available to themes and custom pages."}
 ### `versions`

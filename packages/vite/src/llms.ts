@@ -1,7 +1,7 @@
 import type { LlmsConfig, PageInfo } from './types.js'
 import type { VersionManifest } from './versioning/index.js'
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
-import { join, relative, resolve } from 'node:path'
+import { extname, join, relative, resolve, sep } from 'node:path'
 import process from 'node:process'
 import yaml from 'yaml'
 
@@ -30,8 +30,8 @@ function parseFrontmatter(content: string): { frontmatter: Record<string, unknow
 
 function deriveRoutePath(filePath: string, routesDir: string): string {
   const rel = relative(routesDir, filePath)
-  // Remove +page.md filename
-  const dir = rel.replace(/[/\\]\+page\.md$/, '').replace(/^\+page\.md$/, '')
+  // Remove the Markdown source or generated artifact-shell filename.
+  const dir = rel.replace(/[/\\]\+page\.(?:md|svelte)$/, '').replace(/^\+page\.(?:md|svelte)$/, '')
   if (!dir)
     return '/'
   // Split and filter out route groups like (group)
@@ -51,11 +51,39 @@ function collectPages(dir: string, excludedRoot?: string): string[] {
     if (stat.isDirectory()) {
       results.push(...collectPages(full, excludedRoot))
     }
-    else if (entry === '+page.md') {
+    else if (entry === '+page.md' || (entry === '+page.svelte' && isArtifactShell(full))) {
       results.push(full)
     }
   }
   return results
+}
+
+function isArtifactShell(filePath: string): boolean {
+  return readFileSync(filePath, 'utf8').includes('<!-- sveltepress:artifact-shell -->')
+}
+
+function readPageSource(filePath: string, siteRoot: string): { content: string, filterPath: string } | null {
+  const raw = readFileSync(filePath, 'utf8')
+  if (extname(filePath) === '.md')
+    return { content: raw, filterPath: filePath }
+  const artifactHash = raw.match(/virtual:sveltepress\/page-artifact\/([a-f0-9]{64})/)?.[1]
+  if (!artifactHash)
+    return null
+  const storeRoot = process.env.SVELTEPRESS_ARTIFACT_STORE
+  if (!storeRoot)
+    throw new Error(`[sveltepress] Cannot generate llms output for artifact shell without SVELTEPRESS_ARTIFACT_STORE: ${filePath}`)
+  const blobRoot = resolve(storeRoot, 'blobs', artifactHash)
+  const metadata = JSON.parse(readFileSync(join(blobRoot, 'metadata.json'), 'utf8')) as { sourceFile?: unknown }
+  if (typeof metadata.sourceFile !== 'string' || extname(metadata.sourceFile) !== '.md')
+    return null
+  const sourcePath = resolve(blobRoot, 'sources', metadata.sourceFile)
+  const sourceRelative = relative(join(blobRoot, 'sources'), sourcePath)
+  if (sourceRelative === '..' || sourceRelative.startsWith(`..${sep}`))
+    throw new Error(`[sveltepress] Artifact ${artifactHash} contains an unsafe llms source path.`)
+  return {
+    content: readFileSync(sourcePath, 'utf8'),
+    filterPath: resolve(siteRoot, metadata.sourceFile),
+  }
 }
 
 function sectionOf(routePath: string): string {
@@ -70,21 +98,22 @@ export function generateLlmsTxt(
   siteConfig: { title?: string, description?: string },
   manifest?: VersionManifest | null,
   siteRoot = process.cwd(),
+  outputRoot = resolve(siteRoot, 'static'),
 ) {
   const cwd = siteRoot
   const routesDir = resolve(cwd, config.routesDir ?? 'src/routes')
-  const staticDir = resolve(cwd, 'static')
   const versionRoutesRoot = manifest ? join(routesDir, manifest.basePath.slice(1)) : undefined
 
-  generateLlmsFiles(config, siteConfig, routesDir, staticDir, '', versionRoutesRoot)
+  generateLlmsFiles(config, siteConfig, routesDir, outputRoot, '', siteRoot, versionRoutesRoot)
   if (manifest) {
     for (const version of manifest.versions) {
       generateLlmsFiles(
         config,
         siteConfig,
         join(versionRoutesRoot!, version.id),
-        join(staticDir, manifest.basePath.slice(1), version.id),
+        join(outputRoot, manifest.basePath.slice(1), version.id),
         `${manifest.basePath}/${version.id}`,
+        siteRoot,
       )
     }
   }
@@ -96,6 +125,7 @@ function generateLlmsFiles(
   routesDir: string,
   outputDir: string,
   routePrefix: string,
+  siteRoot: string,
   excludedRoot?: string,
 ) {
   const files = collectPages(routesDir, excludedRoot)
@@ -107,17 +137,19 @@ function generateLlmsFiles(
 
   const pages: PageInfo[] = []
   for (const filePath of files) {
-    let raw: string
+    let source: { content: string, filterPath: string } | null
     try {
-      raw = readFileSync(filePath, 'utf-8')
+      source = readPageSource(filePath, siteRoot)
     }
     catch (err) {
       console.warn(`[sveltepress] Failed to read ${filePath}:`, err)
       continue
     }
-    const { frontmatter, body } = parseFrontmatter(raw)
+    if (!source)
+      continue
+    const { frontmatter, body } = parseFrontmatter(source.content)
     const routePath = deriveRoutePath(filePath, routesDir)
-    if (config.filter && !config.filter(filePath, frontmatter))
+    if (config.filter && !config.filter(source.filterPath, frontmatter))
       continue
     pages.push({
       title: (frontmatter.title as string) || routePath,

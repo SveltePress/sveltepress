@@ -54,7 +54,7 @@ sveltepress({
 
 | Option | Type | Default | কাজ |
 |---|---|---|---|
-| `enabled` | `boolean` | `false` | build-এর সময় `static/llms.txt` ও `static/llms-full.txt` লেখে। |
+| `enabled` | `boolean` | `false` | build-এর সময় `llms.txt` ও `llms-full.txt` লেখে। |
 | `title` | `string` | `siteConfig.title` | তৈরি হওয়া উভয় ফাইলের title। |
 | `description` | `string` | `siteConfig.description` | তৈরি হওয়া উভয় ফাইলের description। |
 | `baseUrl` | `string` | `''` | route link-এর আগে যোগ হওয়া absolute site origin। |
@@ -62,7 +62,7 @@ sveltepress({
 | `filter` | `(filePath, frontmatter) => boolean` | — | নির্বাচিত page বাদ দেয়। |
 | `sort` | `(a, b) => number` | route path | page order কাস্টমাইজ করে। |
 
-বর্তমান generator শুধু `+page.md` পড়ে; Svelte-only page ও runtime data অন্তর্ভুক্ত হয় না। ফাইলগুলো `static/`-এ লেখা হয়, তাই সেগুলো commit করবেন নাকি ignore করে CI-তে regenerate করবেন তা স্থির রাখুন।
+Generator শুধু Markdown page পড়ে; Svelte-only page ও runtime data অন্তর্ভুক্ত হয় না। Incremental document version চালু থাকলে historical index বর্তমান source-এর বদলে প্রতিটি page-এর frozen Markdown artifact পড়ে। Build ফাইলগুলো `static/` ও production bundle—দুই জায়গাতেই লেখে, তাই clean CI build-এর deployed output-এও সেগুলো থাকে। `static/` copy commit করবেন নাকি ignore করে CI-তে regenerate করবেন তা স্থির রাখুন।
 
 :::since[Version change discovery]{version="2026-08-28" id="version-change-discovery" summary="Build-time change catalogs are available to themes and custom pages."}
 ### `versions`

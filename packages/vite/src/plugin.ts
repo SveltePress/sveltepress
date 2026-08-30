@@ -235,12 +235,18 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         ctx.read = async () => await getWrappedCode(file, src)
       }
     },
-    writeBundle() {
+    writeBundle(outputOptions) {
+      const bundleDirectory = outputOptions.dir ? resolve(siteRoot, outputOptions.dir) : null
       if (isBuild && llms?.enabled) {
         generateLlmsTxt(llms, siteConfig ?? {}, versionManifest)
+        if (bundleDirectory)
+          generateLlmsTxt(llms, siteConfig ?? {}, versionManifest, siteRoot, bundleDirectory)
       }
-      if (isBuild && versionManifest)
+      if (isBuild && versionManifest) {
         generateVersionSitemap(versionManifest, process.cwd(), llms?.baseUrl)
+        if (bundleDirectory)
+          generateVersionSitemap(versionManifest, siteRoot, llms?.baseUrl, bundleDirectory)
+      }
     },
   }
 

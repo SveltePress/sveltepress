@@ -78,7 +78,7 @@ sveltepress({
 
 | 选项 | 类型 | 默认值 | 作用 |
 |---|---|---|---|
-| `enabled` | `boolean` | `false` | 构建时写入 `static/llms.txt` 和 `static/llms-full.txt`。 |
+| `enabled` | `boolean` | `false` | 构建时写入 `llms.txt` 和 `llms-full.txt`。 |
 | `title` | `string` | `siteConfig.title` | 两个生成文件使用的标题。 |
 | `description` | `string` | `siteConfig.description` | 两个生成文件使用的描述。 |
 | `baseUrl` | `string` | `''` | 拼接在路由链接前的站点绝对地址。 |
@@ -86,7 +86,7 @@ sveltepress({
 | `filter` | `(filePath, frontmatter) => boolean` | — | 排除指定页面。 |
 | `sort` | `(a, b) => number` | 路由路径 | 自定义页面顺序。 |
 
-当前生成器只读取 `+page.md`，不包含纯 Svelte 页面和运行时数据。文件会写入 `static/`，请明确选择提交生成结果，或在 CI 中统一忽略并重新生成。
+生成器只读取 Markdown 页面，不包含纯 Svelte 页面和运行时数据。启用增量文档版本后，历史索引读取每个页面冻结的 Markdown 构件，而不是当前源码。构建会同时把文件写入 `static/` 和生产 bundle，确保干净 CI 构建的部署产物也包含这些文件。请明确选择提交 `static/` 副本，或忽略并在 CI 中统一重新生成。
 
 :::since[版本变更发现]{version="2026-08-28" id="version-change-discovery" summary="构建时的变更目录可供主题和自定义页面使用。"}
 ### `versions`

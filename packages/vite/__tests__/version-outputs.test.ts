@@ -1,5 +1,5 @@
 import type { VersionManifest } from '../src/versioning'
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -37,6 +37,44 @@ describe('version-aware build outputs', () => {
     expect(historical).toContain('Version 8 only')
     expect(historical).not.toContain('Current only')
     expect(historical).toContain('https://docs.example.com/v/v8/guide')
+  })
+
+  it('writes build outputs to a custom directory and reads frozen artifact-shell sources', () => {
+    const { root, manifest } = fixture()
+    const output = join(root, 'build-client')
+    const store = join(root, 'artifacts')
+    const hash = 'a'.repeat(64)
+    const blob = join(store, 'blobs', hash)
+    const historicalRoute = join(root, 'src/routes/v/v8/guide/+page.svelte')
+    rmSync(join(root, 'src/routes/v/v8/guide/+page.md'))
+    mkdirSync(join(blob, 'sources/src/routes/guide'), { recursive: true })
+    writeFileSync(join(blob, 'metadata.json'), JSON.stringify({ sourceFile: 'src/routes/guide/+page.md' }))
+    writeFileSync(join(blob, 'sources/src/routes/guide/+page.md'), '---\ntitle: Frozen guide\n---\nFrozen body')
+    writeFileSync(historicalRoute, `<script>import Content from 'virtual:sveltepress/page-artifact/${hash}'</script>\n<!-- sveltepress:artifact-shell -->`)
+    const previousStore = process.env.SVELTEPRESS_ARTIFACT_STORE
+    const filteredPaths: string[] = []
+    process.env.SVELTEPRESS_ARTIFACT_STORE = store
+    try {
+      generateLlmsTxt({
+        enabled: true,
+        filter: (filePath) => {
+          filteredPaths.push(filePath)
+          return filePath.endsWith('.md')
+        },
+      }, { title: 'Docs' }, manifest, root, output)
+      generateVersionSitemap(manifest, root, 'https://docs.example.com', output)
+    }
+    finally {
+      if (previousStore === undefined)
+        delete process.env.SVELTEPRESS_ARTIFACT_STORE
+      else
+        process.env.SVELTEPRESS_ARTIFACT_STORE = previousStore
+    }
+    expect(readFileSync(join(output, 'v/v8/llms-full.txt'), 'utf8')).toContain('Frozen body')
+    expect(readFileSync(join(output, 'v/v8/llms.txt'), 'utf8')).toContain('[Frozen guide](/v/v8/guide)')
+    expect(readFileSync(join(output, 'sitemap.xml'), 'utf8')).toContain('https://docs.example.com/v/v8/guide/')
+    expect(filteredPaths).toContain(join(root, 'src/routes/guide/+page.md'))
+    expect(filteredPaths.some(filePath => filePath.endsWith('+page.svelte'))).toBe(false)
   })
 
   it('includes supported routes in sitemap and excludes EOL by default', () => {

@@ -54,6 +54,7 @@ assert(
 const currentLlms = read(join(official, 'llms.txt'))
 const historicalLlms = read(join(historicalRoot, 'llms.txt'))
 assert(currentLlms.includes('Document version management'), 'Current llms.txt omits the version-management guide')
+assert(historicalLlms.includes('Quick Start'), 'Historical llms.txt omits frozen documentation pages')
 assert(!historicalLlms.includes('Document version management'), 'Historical llms.txt contains post-snapshot content')
 assert(read(join(official, 'sitemap.xml')).includes(`/v/${historicalId}/`), 'Historical stable/deprecated routes are absent from sitemap.xml')
 
