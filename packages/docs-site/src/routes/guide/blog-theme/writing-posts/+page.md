@@ -32,6 +32,10 @@ Write markdown below the frontmatter.
 | `cover` | string | — | Path or URL to a cover image. If set, the post renders with `PostCardLarge`; if not, the theme picks a tag-hashed gradient. |
 | `draft` | boolean | — | Drafts are excluded from generated routes, listings, RSS, OG images, and the timeline. |
 
+## Images and links
+
+Put site-owned images in `static/` and reference them with site-absolute paths such as `/covers/new-beginning.jpg`. The theme prefixes site-absolute cover paths, Markdown image sources, and links in post bodies with SvelteKit's configured base path, so the same post works at the site root and under a subpath such as GitHub Pages. Fully qualified, protocol-relative, fragment, mail, and relative URLs remain unchanged.
+
 ## Listings
 
 - The home page (`/`) shows posts in a masonry grid with the newest post featured.

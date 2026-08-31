@@ -32,6 +32,10 @@ draft: false
 | `cover` | string | — | 封面图路径或 URL。设置后文章以 `PostCardLarge` 渲染；否则主题会按标签哈希一个渐变色。 |
 | `draft` | boolean | — | 草稿不会生成公开路由，也不会进入列表、RSS、OG 图片和时间线。 |
 
+## 图片和链接
+
+站点自有图片应放在 `static/`，并使用 `/covers/new-beginning.jpg` 这样的站点绝对路径引用。主题会根据 SvelteKit 配置的基础路径，为封面路径、Markdown 图片地址和正文链接自动添加前缀，因此同一篇文章既可部署在站点根路径，也可部署到 GitHub Pages 等子路径。完整 URL、协议相对 URL、片段、邮件和相对路径保持不变。
+
 ## 列表页
 
 - 首页（`/`）以瀑布流网格展示文章，最新一篇特色展示。

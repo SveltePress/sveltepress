@@ -4,7 +4,7 @@ date: 2026-04-10
 tags: [sveltekit, routing, svelte]
 category: Tutorials
 author: Demo Author
-cover: https://picsum.photos/seed/routing/800/400
+cover: /covers/routing.svg
 ---
 
 # SvelteKit Routing Basics

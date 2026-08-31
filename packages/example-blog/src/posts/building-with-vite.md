@@ -4,7 +4,7 @@ date: 2026-02-14
 tags: [vite, tooling, performance]
 category: Tutorials
 author: Demo Author
-cover: https://picsum.photos/seed/vite/800/400
+cover: /covers/vite.svg
 ---
 
 # Building Fast Sites with Vite

@@ -4,7 +4,7 @@ date: 2026-04-05
 tags: [css, dark-mode, web]
 category: Web Design
 author: Demo Author
-cover: https://picsum.photos/seed/darkmode/800/400
+cover: /covers/darkmode.svg
 ---
 
 # Dark Mode Without Flash of Wrong Theme

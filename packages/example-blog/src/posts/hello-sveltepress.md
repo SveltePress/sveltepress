@@ -4,7 +4,7 @@ date: 2026-04-01
 tags: [svelte, sveltepress, web]
 category: Announcements
 author: Demo Author
-cover: https://picsum.photos/seed/hello/800/400
+cover: /covers/hello.svg
 ---
 
 # Hello, Sveltepress Blog Theme!

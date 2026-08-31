@@ -4,7 +4,7 @@ date: 2026-03-22
 tags: [performance, web, tooling]
 category: Performance
 author: Demo Author
-cover: https://picsum.photos/seed/bundle/800/400
+cover: /covers/bundle.svg
 ---
 
 # Auditing JavaScript Bundle Size

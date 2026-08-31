@@ -32,6 +32,10 @@ frontmatter এর নিচে markdown এ লিখুন।
 | `cover` | string | — | কভার ইমেজের পাথ বা URL। সেট করলে পোস্টটি `PostCardLarge` দিয়ে রেন্ডার হয়; না হলে থিম ট্যাগ-হ্যাশ করা gradient বেছে নেয়। |
 | `draft` | boolean | — | ড্রাফটের পাবলিক রুট তৈরি হয় না এবং এটি লিস্টিং, RSS, OG ইমেজ ও টাইমলাইন থেকে বাদ থাকে। |
 
+## ছবি ও লিংক
+
+Site-এর নিজস্ব image `static/`-এ রাখুন এবং `/covers/new-beginning.jpg`-এর মতো site-absolute path দিয়ে reference করুন। Theme SvelteKit-এ configured base path অনুযায়ী cover path, Markdown image source এবং post body link-এ স্বয়ংক্রিয় prefix যোগ করে, তাই একই post site root ও GitHub Pages-এর মতো subpath—দুই জায়গাতেই কাজ করে। Fully qualified, protocol-relative, fragment, mail এবং relative URL অপরিবর্তিত থাকে।
+
 ## লিস্টিং
 
 - হোম পেজ (`/`) সর্বশেষ পোস্টকে ফিচার করে সব পোস্ট ম্যাসনরি গ্রিডে দেখায়।

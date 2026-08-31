@@ -66,6 +66,35 @@ describe('parsePost', () => {
     expect(result.contentHtml).toContain('<strong>body</strong>')
   })
 
+  it('prefixes site-absolute body URLs with the deployment base path', async () => {
+    const result = await parsePost(
+      'base-paths',
+      `![diagram](/images/diagram.svg)
+
+[Read on](/posts/next/)
+
+![remote](https://example.com/remote.png)
+
+![cdn](//cdn.example.com/image.png)
+
+![already based](/blog/images/already.svg)`,
+      { base: '/blog' },
+    )
+
+    expect(result.contentHtml).toContain('src="/blog/images/diagram.svg"')
+    expect(result.contentHtml).toContain('href="/blog/posts/next/"')
+    expect(result.contentHtml).toContain('src="https://example.com/remote.png"')
+    expect(result.contentHtml).toContain('src="//cdn.example.com/image.png"')
+    expect(result.contentHtml).toContain('src="/blog/images/already.svg"')
+    expect(result.contentHtml).not.toContain('/blog/blog/')
+  })
+
+  it('leaves site-absolute body URLs unchanged at the site root', async () => {
+    const result = await parsePost('root-paths', '![diagram](/images/diagram.svg)', { base: '' })
+
+    expect(result.contentHtml).toContain('src="/images/diagram.svg"')
+  })
+
   it('returns draft flag', async () => {
     const result = await parsePost('draft-post', DRAFT)
     expect(result.draft).toBe(true)

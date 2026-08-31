@@ -4,7 +4,7 @@ date: 2026-04-16
 tags: [demo, code]
 category: Features
 author: Demo Author
-cover: https://picsum.photos/seed/code/800/400
+cover: /covers/code.svg
 ---
 
 # Code Highlighting Features

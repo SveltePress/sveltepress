@@ -45,6 +45,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
   }
 
   async function doRebuild(root: string): Promise<ParsedPost[]> {
+    const base = (config?.base ?? '/').replace(/\/+$/, '')
     const postsDir = resolve(root, options.postsDir ?? 'src/posts')
     let files: string[] = []
     try {
@@ -59,13 +60,13 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       files.map(async (file) => {
         const raw = await readFile(join(postsDir, file), 'utf-8')
         const slug = file.replace(/\.md$/, '')
-        const hash = hashContent(raw, options.highlighter)
+        const hash = hashContent(raw, { highlighter: options.highlighter, base })
         const existing = cache[slug]
         if (existing && existing.hash === hash) {
           next[slug] = existing
           return existing.parsed
         }
-        const p = await parsePost(slug, raw)
+        const p = await parsePost(slug, raw, { base })
         next[slug] = { hash, parsed: p }
         return p
       }),

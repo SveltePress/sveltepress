@@ -313,6 +313,9 @@ importers:
       eslint-plugin-svelte:
         specifier: 'catalog:'
         version: 3.23.0(eslint@9.39.5(jiti@2.6.1))(svelte@5.57.0(@typescript-eslint/types@8.50.0))
+      happy-dom:
+        specifier: 'catalog:'
+        version: 20.12.0
       husky:
         specifier: 'catalog:'
         version: 9.1.7

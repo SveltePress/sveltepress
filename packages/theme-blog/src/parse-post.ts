@@ -7,21 +7,36 @@ import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 import { parse as parseYaml } from 'yaml'
 import { readingTime } from './reading-time.js'
+import { rehypeBasePath } from './rehype-base-path.js'
 import { rehypeFigure } from './rehype-figure.js'
 import { rehypeHeadingIds } from './rehype-heading-ids.js'
 import { remarkCodeBlocks } from './remark-code-blocks.js'
 import { remarkPullQuote } from './remark-pull-quote.js'
 
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkDirective)
-  .use(remarkPullQuote)
-  .use(remarkCodeBlocks)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeFigure)
-  .use(rehypeHeadingIds)
-  .use(rehypeStringify, { allowDangerousHtml: true })
+function createProcessor(base: string) {
+  return unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkDirective)
+    .use(remarkPullQuote)
+    .use(remarkCodeBlocks)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeFigure)
+    .use(rehypeHeadingIds)
+    .use(rehypeBasePath, { base })
+    .use(rehypeStringify, { allowDangerousHtml: true })
+}
+
+const processors = new Map<string, ReturnType<typeof createProcessor>>()
+
+function processorFor(base: string) {
+  let processor = processors.get(base)
+  if (!processor) {
+    processor = createProcessor(base)
+    processors.set(base, processor)
+  }
+  return processor
+}
 
 /** Split raw markdown into frontmatter YAML block and body text. */
 function splitFrontmatter(raw: string): { yaml: string, body: string } {
@@ -40,11 +55,20 @@ export interface ParsedPost extends BlogPost {
   draft: boolean
 }
 
-export async function parsePost(slug: string, raw: string): Promise<ParsedPost> {
+export interface ParsePostOptions {
+  /** SvelteKit's `paths.base`, so site-absolute URLs in the body resolve. */
+  base?: string
+}
+
+export async function parsePost(
+  slug: string,
+  raw: string,
+  options: ParsePostOptions = {},
+): Promise<ParsedPost> {
   const { yaml, body } = splitFrontmatter(raw)
   const fm = yaml ? (parseYaml(yaml) as Record<string, unknown>) : {}
 
-  const contentHtml = String(await processor.process(body))
+  const contentHtml = String(await processorFor(options.base ?? '').process(body))
 
   const plainBody = stripHtml(contentHtml)
   const excerpt = typeof fm.excerpt === 'string'

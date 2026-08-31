@@ -26,6 +26,7 @@
     "changelogithub": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-svelte": "catalog:",
+    "happy-dom": "catalog:",
     "husky": "catalog:",
     "lint-staged": "catalog:",
     "playwright": "catalog:",
