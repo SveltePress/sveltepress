@@ -3,7 +3,11 @@
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
   import themeOptions from 'virtual:sveltepress/theme-default'
-  import { manifest, resolveVersionChanges } from 'virtual:sveltepress/versions'
+  import {
+    manifest,
+    resolveVersionChanges,
+    resolveVersionContext,
+  } from 'virtual:sveltepress/versions'
   import { getPathFromBase } from './utils'
 
   const defaultNoBaseline =
@@ -14,9 +18,10 @@
   )
   const selectedVersionId = $derived.by(() => {
     const requested = browser ? page.url.searchParams.get('version') : null
+    const routeVersion = resolveVersionContext(page.url.pathname)?.versionId
     return versions.some(version => version.id === requested)
       ? requested!
-      : (manifest?.current.id ?? '')
+      : (routeVersion ?? manifest?.current.id ?? '')
   })
   const changes = $derived(resolveVersionChanges(selectedVersionId))
   const selectedVersionLabel = $derived(versionLabel(selectedVersionId))

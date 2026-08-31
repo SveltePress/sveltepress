@@ -278,7 +278,9 @@ Sidebar নতুন ও updated page-এর পাশে compact **New** badge 
 
 এই site-এর route উদাহরণ [নতুন কী page](/whats-new/)-এ দেখা যাবে।
 
-Component current version দিয়ে শুরু করে এবং historical selection-এর জন্য `?version={id}` ব্যবহার করে। Current link unprefixed থাকে; historical link `/v/{id}/...` ও নির্দিষ্ট section anchor-এ যায়।
+:::since[Route অনুযায়ী আলাদা নতুন কী catalog]{version="2026-08-31" id="version-scoped-whats-new" summary="প্রতিটি নতুন কী route-কে তার আগের version-এর তুলনায় freeze করা নিজস্ব change set-এর সঙ্গে যুক্ত রাখুন।"}
+`VersionChanges` default হিসেবে current page URL থেকে resolve করা documentation version ব্যবহার করে; valid `?version={id}` সেই context-কে স্পষ্টভাবে override করতে পারে। প্রতিটি version-এর catalog manifest order-এ তার ঠিক আগের version-এর সঙ্গে তুলনা করে তৈরি হয়, আর frozen historical catalog পরবর্তী current documentation থেকে স্বাধীন থাকে। Current link unprefixed থাকে; historical link `/v/{id}/...` ও নির্দিষ্ট section anchor-এ যায়।
+:::
 
 Custom theme একই frozen data পড়তে পারে:
 

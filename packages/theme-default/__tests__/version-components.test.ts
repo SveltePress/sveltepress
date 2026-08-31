@@ -403,6 +403,28 @@ Existing content.`,
       expect(getComputedStyle(label).whiteSpace).not.toBe('nowrap')
   })
 
+  it('defaults a historical overview route to that version\'s frozen changes', () => {
+    setPage('/v/2026-08-27/whats-new/')
+    const view = render(VersionChanges)
+
+    expect(view.getByRole('region', { name: '2026-08-27' })).toBeTruthy()
+    expect(view.queryByRole('region', { name: '2026-08-28' })).toBeNull()
+    expect(
+      view.getByRole('link', { name: 'Legacy new page' }).getAttribute('href'),
+    ).toBe('/v/2026-08-27/guide/legacy-new/')
+  })
+
+  it('lets a valid query override the route version and ignores invalid queries', () => {
+    setPage('/v/2026-08-27/whats-new/?version=2026-08-28')
+    let view = render(VersionChanges)
+    expect(view.getByRole('region', { name: '2026-08-28' })).toBeTruthy()
+
+    cleanup()
+    setPage('/v/2026-08-27/whats-new/?version=unknown')
+    view = render(VersionChanges)
+    expect(view.getByRole('region', { name: '2026-08-27' })).toBeTruthy()
+  })
+
   it('switches the overview through URL state and uses historical links', async () => {
     setPage('/whats-new/?version=2026-08-26')
     let view = render(VersionChanges)

@@ -295,7 +295,9 @@ The sidebar adds a compact **New** badge to both new and updated pages. When a `
 
 See the official site's live catalog on the [What's new page](/whats-new/).
 
-`VersionChanges` defaults to the current version and uses `?version={id}` for historical selections. Current links stay unprefixed; historical links target `/v/{id}/...`, including exact section anchors.
+:::since[Route-scoped What's New catalogs]{version="2026-08-31" id="version-scoped-whats-new" summary="Keep each What's New route bound to its own frozen preceding-version comparison."}
+`VersionChanges` defaults to the documentation version resolved from the current page URL. A valid `?version={id}` explicitly overrides that context. Each version's catalog is generated against its immediately preceding version in manifest order, while frozen historical catalogs stay independent of later current documentation. Current links stay unprefixed; historical links target `/v/{id}/...`, including exact section anchors.
+:::
 
 Custom themes can read the same immutable data from `virtual:sveltepress/versions`:
 

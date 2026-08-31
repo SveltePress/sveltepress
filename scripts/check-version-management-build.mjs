@@ -16,10 +16,16 @@ const currentChanges = [
   { route: 'guide/default-theme/headings-and-anchors', id: 'toc-heading-hierarchy' },
   { route: 'guide/default-theme/home-page', id: 'hero-code-localization' },
   { route: 'guide/version-management', id: 'next-version-doc-workflow' },
+  { route: 'guide/version-management', id: 'version-scoped-whats-new' },
   { route: 'reference/vite-plugin', id: 'literal-code-preparation' },
 ]
 const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)
 const currentChangeRoutes = [...new Set(currentChanges.map(({ route }) => `/${route}/`))]
+const previousChangeLinks = [`/v/${previousId}/reference/vite-plugin/#version-change-discovery`]
+const previousChangeRoutes = [
+  `/v/${previousId}/guide/version-management/`,
+  `/v/${previousId}/reference/vite-plugin/`,
+]
 const changedCodeRelatedTocSlugs = {
   'docs-site': ['Focus', 'Markdown-live-code'],
   'docs-site-zh': ['聚焦', 'Markdown-可折叠代码块'],
@@ -66,6 +72,17 @@ function assertVersionSelectorLabel(html, versionId, message) {
   )
 }
 
+function assertVersionChangesSummary(html, versionId, message) {
+  const start = html.indexOf('class="release-summary')
+  const end = html.indexOf('</section>', start)
+  assert(
+    start >= 0
+    && end > start
+    && html.slice(start, end).includes(`aria-label="${versionId}"`),
+    message,
+  )
+}
+
 function versionPickerIds(html) {
   const start = html.indexOf('<select id="version-changes-selector"')
   const end = html.indexOf('</select>', start)
@@ -91,7 +108,12 @@ function assertTableOfContentsBadge(html, slug, expected, message) {
 
 function assertCurrentDocumentationChanges(site, siteRoot) {
   const whatsNewHtml = read(join(siteRoot, 'whats-new/index.html'))
+  const previousWhatsNewPath = join(siteRoot, 'v', previousId, 'whats-new/index.html')
+  assert(existsSync(previousWhatsNewPath), `${site} ${previousId} What’s New artifact is missing`)
+  const previousWhatsNewHtml = read(previousWhatsNewPath)
   assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), `${site} What’s New groups are missing`)
+  assertVersionChangesSummary(whatsNewHtml, currentId, `${site} current What’s New summary selected the wrong version`)
+  assertVersionChangesSummary(previousWhatsNewHtml, previousId, `${site} ${previousId} What’s New summary selected the wrong version`)
   assertSameStrings(
     linksWithClass(whatsNewHtml, 'section-link'),
     currentChangeLinks,
@@ -106,6 +128,16 @@ function assertCurrentDocumentationChanges(site, siteRoot) {
     versionPickerIds(whatsNewHtml),
     versionIds,
     `${site} What’s New version picker does not expose every documentation version`,
+  )
+  assertSameStrings(
+    linksWithClass(previousWhatsNewHtml, 'section-link'),
+    previousChangeLinks,
+    `${site} ${previousId} What’s New section links are not isolated from ${currentId}`,
+  )
+  assertSameStrings(
+    linksWithClass(previousWhatsNewHtml, 'change-card-link'),
+    previousChangeRoutes,
+    `${site} ${previousId} What’s New page links are not isolated from ${currentId}`,
   )
 
   for (const { route, id } of currentChanges) {
