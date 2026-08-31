@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 8.5.1
+
+### Patch Changes
+
+- [`1c5c4d8`](https://github.com/Blackman99/sveltepress/commit/1c5c4d806aa57dc35ee90f818327d2775b218a03) Thanks [@Blackman99](https://github.com/Blackman99)! - Resolve the default `VersionChanges` catalog from the active documentation route so historical What's New pages render their own frozen comparison instead of the latest version.
+
 ## 8.5.0
 
 ### Minor Changes
