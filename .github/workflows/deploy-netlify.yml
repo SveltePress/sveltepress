@@ -69,6 +69,7 @@ jobs:
           pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
             --no-build \
             --prod \
+            --filter @sveltepress/docs-site-bn \
             --dir packages/docs-site-bn/dist \
             --site sveltepress-docs-site-bn \
             --auth "${NETLIFY_AUTH_TOKEN}" \
@@ -81,6 +82,7 @@ jobs:
           pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
             --no-build \
             --prod \
+            --filter @sveltepress/docs-site-zh \
             --dir packages/docs-site-zh/dist \
             --site sveltepress-docs-site-zh \
             --auth "${NETLIFY_AUTH_TOKEN}" \
@@ -93,6 +95,7 @@ jobs:
           pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
             --no-build \
             --prod \
+            --filter @sveltepress/docs-site \
             --dir packages/docs-site/dist \
             --site sveltepress-main-site \
             --auth "${NETLIFY_AUTH_TOKEN}" \
