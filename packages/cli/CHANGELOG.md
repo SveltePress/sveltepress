@@ -1,5 +1,18 @@
 # @sveltepress/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- [`38c2225`](https://github.com/Blackman99/sveltepress/commit/38c2225ddc00882146324d3eba5d0c1e298e85b8) Thanks [@Blackman99](https://github.com/Blackman99)! - Add content-addressed incremental document version builds. Historical releases are stored as immutable source deltas and reusable page artifacts, while the stable SveltePress shell composes current and historical routes without recompiling unchanged pages.
+
+### Patch Changes
+
+- [`77f2d01`](https://github.com/Blackman99/sveltepress/commit/77f2d01b3492bfc334a6b117dcb79dc87e420813) Thanks [@Blackman99](https://github.com/Blackman99)! - Embed generated LiveCode modules in reusable page artifacts so incremental version builds can restore pages without a separate live-code cache.
+
+- Updated dependencies [[`098f952`](https://github.com/Blackman99/sveltepress/commit/098f9527d0dd1af101be8030be684df16765b387), [`b103daa`](https://github.com/Blackman99/sveltepress/commit/b103daa1b560eb9a8a731bd3b47b404bbece4bee), [`37c4784`](https://github.com/Blackman99/sveltepress/commit/37c4784116cbac743a304296947ac0bdc561be4b), [`77f2d01`](https://github.com/Blackman99/sveltepress/commit/77f2d01b3492bfc334a6b117dcb79dc87e420813), [`38c2225`](https://github.com/Blackman99/sveltepress/commit/38c2225ddc00882146324d3eba5d0c1e298e85b8), [`89eb53b`](https://github.com/Blackman99/sveltepress/commit/89eb53ba387ac2907df7ee08871ae06e5cfdb798), [`54c9a77`](https://github.com/Blackman99/sveltepress/commit/54c9a77afe645a06ce65170c7aade3d53094b8a7)]:
+  - @sveltepress/vite@1.7.0
+
 ## 0.2.2
 
 ### Patch Changes
