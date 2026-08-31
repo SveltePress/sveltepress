@@ -1,0 +1,96 @@
+name: Deploy docs to Netlify
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netlify-docs-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Restore version page artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            packages/docs-site/.sveltepress/version-artifacts
+            packages/docs-site-zh/.sveltepress/version-artifacts
+            packages/docs-site-bn/.sveltepress/version-artifacts
+          key: sveltepress-page-artifacts-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            sveltepress-page-artifacts-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check documentation
+        run: pnpm check:docs
+
+      - name: Build versioned documentation
+        run: pnpm check:versioning-build
+
+      - name: Check Netlify credentials
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [[ -z "${NETLIFY_AUTH_TOKEN}" ]]; then
+            echo "::error::Missing NETLIFY_AUTH_TOKEN GitHub Actions secret"
+            exit 1
+          fi
+
+      - name: Deploy Bengali documentation
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          pnpm dlx netlify-cli@27.4.1 deploy \
+            --no-build \
+            --prod \
+            --dir packages/docs-site-bn/dist \
+            --site sveltepress-docs-site-bn \
+            --auth "${NETLIFY_AUTH_TOKEN}" \
+            --message "GitHub Actions ${GITHUB_SHA}"
+
+      - name: Deploy Chinese documentation
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          pnpm dlx netlify-cli@27.4.1 deploy \
+            --no-build \
+            --prod \
+            --dir packages/docs-site-zh/dist \
+            --site sveltepress-docs-site-zh \
+            --auth "${NETLIFY_AUTH_TOKEN}" \
+            --message "GitHub Actions ${GITHUB_SHA}"
+
+      - name: Deploy English documentation
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          pnpm dlx netlify-cli@27.4.1 deploy \
+            --no-build \
+            --prod \
+            --dir packages/docs-site/dist \
+            --site sveltepress-main-site \
+            --auth "${NETLIFY_AUTH_TOKEN}" \
+            --message "GitHub Actions ${GITHUB_SHA}"
