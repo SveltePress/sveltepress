@@ -59,11 +59,14 @@ jobs:
             exit 1
           fi
 
+      - name: Check Netlify CLI
+        run: pnpm --package=netlify-cli@27.4.1 dlx netlify deploy --help > /dev/null
+
       - name: Deploy Bengali documentation
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
-          pnpm dlx netlify-cli@27.4.1 deploy \
+          pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
             --no-build \
             --prod \
             --dir packages/docs-site-bn/dist \
@@ -75,7 +78,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
-          pnpm dlx netlify-cli@27.4.1 deploy \
+          pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
             --no-build \
             --prod \
             --dir packages/docs-site-zh/dist \
@@ -87,7 +90,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
-          pnpm dlx netlify-cli@27.4.1 deploy \
+          pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
             --no-build \
             --prod \
             --dir packages/docs-site/dist \
