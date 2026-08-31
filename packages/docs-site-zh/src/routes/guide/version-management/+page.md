@@ -169,13 +169,21 @@ pnpm exec sveltepress versions migrate --site-id docs-example
 
 ## 创建发版快照
 
-推进清单前先构建即将冻结的当前版本：
+:::since[先推进版本，再编辑下一版文档]{version="2026-08-31" id="next-version-doc-workflow" summary="先冻结 outgoing 文档，再编辑新 current 并添加版本标记。"}
+从干净、完整的 outgoing 文档开始。在编辑下一版页面或添加对应的 `:::since` 标记之前，先构建并创建下一版本。`create` 会冻结 outgoing current，并把传入的 ID 设为新的 current；只有此后，新文档才应使用这个 ID。
 
 ```sh
 pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2"
+
+# 8.2 现在是 current：编辑文档并添加 version="8.2" 标记
+
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions validate
 ```
+
+不要在已经写入下一版内容的文档上直接运行 `versions create`，否则这些改动会被错误地冻结到 outgoing 版本中。如果已经提前开始编辑，应先恢复已知的干净 outgoing 状态，完成构建和版本推进，再把改动重新应用到新的 current。
+:::
 
 `create` 会发布当前草稿清单，只把变化页面和 tombstone 写入 `version-deltas/8.1/`，冻结路由、侧栏和变化元数据，把 `8.1` 移入历史版本，并将 `8.2` 设为当前版本。过期草稿、重复 ID、符号链接、脏 Git 工作区和冻结边界外的依赖都会被拒绝。只有当未提交内容就是本次发版来源时才使用 `--allow-dirty`。
 

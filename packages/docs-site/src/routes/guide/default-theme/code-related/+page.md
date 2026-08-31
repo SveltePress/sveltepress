@@ -101,6 +101,7 @@ function hello() {
 Use `// [svp! fc]` or `// [svp! !!]` to focus line
 Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current line
 
+:::since[Multiple focus ranges]{version="2026-08-31" id="multiple-focus-ranges" summary="Use multiple non-contiguous focus commands or ranges in one code block."}
 You can use multiple focus commands in the same code block. Each selected line or range stays focused, while the remaining lines are dimmed.
 
 ````md live
@@ -126,9 +127,11 @@ You can use multiple focus commands in the same code block. Each selected line o
 </div>
 ```
 ````
+:::
 
 ## Markdown live code
 
+:::since[Literal Markdown live source]{version="2026-08-31" id="literal-markdown-live-source" summary="Keep Markdown live-code source literal while transforms run only in the preview."}
 Use the `md` language with the `live` prop to render the Markdown preview and show its source below. The source panel only applies Markdown syntax highlighting: code commands and other transforms run in the preview, while the original Markdown remains unchanged in the source.
 
 **Input**
@@ -139,7 +142,7 @@ Use the `md` language with the `live` prop to render the Markdown preview and sh
 * item1
 * item2
 ```js
-const foo = 'bar'
+const foo = 'bar' // [svp! hl]
 ```
 ````
 `````
@@ -150,9 +153,10 @@ const foo = 'bar'
 * item1
 * item2
 ```js
-const foo = 'bar'
+const foo = 'bar' // [svp! hl]
 ```
 ````
+:::
 
 ## Svelte live code
 

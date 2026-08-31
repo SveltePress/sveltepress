@@ -226,6 +226,24 @@ code
 data
 ```
 
+:::since[按字面量准备代码块]{version="2026-08-31" id="literal-code-preparation" summary="保留代码指令和 @noErrors，同时继续解析标题和行号元数据。"}
+### `@sveltepress/vite/highlight`
+
+从 `@sveltepress/vite/highlight` 导入 `prepareCodeBlock`，并在不应转换源码时将 `{ mode: 'literal' }` 作为第三个参数传入。`// [svp! hl]` 等代码指令和首行的 `// @noErrors` 会原样保留在 `processedCode` 中，同时元数据解析仍会处理 `title` 和 `ln`。
+
+```ts
+import { prepareCodeBlock } from '@sveltepress/vite/highlight'
+
+const prepared = prepareCodeBlock(
+  '// @noErrors\nconst value = 1 // [svp! hl]',
+  'title="source.md" ln',
+  { mode: 'literal' },
+)
+```
+
+这里 `prepared.processedCode` 与输入完全相同，`prepared.title` 为 `'source.md'`，`prepared.containLineNumbers` 为 `true`。`prepared.noErrors` 保持为 `false`，因为字面量模式会保留 `@noErrors`，而不会把它作为指令处理。
+:::
+
 ## Typescript
 
 您需要在 src/app.d.ts 文件中包含 `@sveltepress/vite/types` 来获得相关的类型提示

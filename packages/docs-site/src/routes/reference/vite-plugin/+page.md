@@ -235,6 +235,24 @@ code
 data
 ```
 
+:::since[Literal code-block preparation]{version="2026-08-31" id="literal-code-preparation" summary="Preserve code commands and @noErrors while still parsing title and line-number metadata."}
+### `@sveltepress/vite/highlight`
+
+Import `prepareCodeBlock` from `@sveltepress/vite/highlight` and pass `{ mode: 'literal' }` as its third argument when the source must not be transformed. Code commands such as `// [svp! hl]` and a leading `// @noErrors` remain unchanged in `processedCode`, while metadata parsing still resolves `title` and `ln`.
+
+```ts
+import { prepareCodeBlock } from '@sveltepress/vite/highlight'
+
+const prepared = prepareCodeBlock(
+  '// @noErrors\nconst value = 1 // [svp! hl]',
+  'title="source.md" ln',
+  { mode: 'literal' },
+)
+```
+
+Here `prepared.processedCode` equals the input, `prepared.title` is `'source.md'`, and `prepared.containLineNumbers` is `true`. `prepared.noErrors` remains `false` because literal mode preserves `@noErrors` instead of processing it as a directive.
+:::
+
 ## Working with TypeScript
 
 You need to include `@sveltepress/vite/types` in your `src/app.d.ts` to get plugin options and virtual module's type tips

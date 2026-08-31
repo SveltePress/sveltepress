@@ -102,6 +102,7 @@ function hello() {
 使用 `// [svp! fc]` or `// [svp! !!]` 来聚焦当前行
 使用 `// [svp! fc:num]` or `// [svp! !!:num]` 来聚焦从当前行开始的总共 num 行
 
+:::since[多个聚焦范围]{version="2026-08-31" id="multiple-focus-ranges" summary="在同一个代码块中使用多个不连续的聚焦指令或范围。"}
 同一个代码块中可以使用多个聚焦指令。每个指定的行或行范围都会保持聚焦，其余行会变暗。
 
 ````md live
@@ -127,9 +128,11 @@ function hello() {
 </div>
 ```
 ````
+:::
 
 ## Markdown 可折叠代码块
 
+:::since[保留 Markdown live 原始源码]{version="2026-08-31" id="literal-markdown-live-source" summary="Markdown live 源码保持原样，转换仅在预览中执行。"}
 使用 `md` 语言和 `live` 属性会渲染 Markdown 预览，并在下方显示可折叠的源代码。源代码区域仅进行 Markdown 语法高亮；代码指令和其他转换只在预览中生效，源代码中的原始 Markdown 保持不变。
 
 **输入**
@@ -140,7 +143,7 @@ function hello() {
 * item1
 * item2
 ```js
-const foo = 'bar'
+const foo = 'bar' // [svp! hl]
 ```
 ````
 `````
@@ -151,9 +154,10 @@ const foo = 'bar'
 * item1
 * item2
 ```js
-const foo = 'bar'
+const foo = 'bar' // [svp! hl]
 ```
 ````
+:::
 
 ## Svelte 可折叠代码块
 

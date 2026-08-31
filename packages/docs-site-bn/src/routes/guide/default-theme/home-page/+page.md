@@ -17,6 +17,7 @@ Home frontmatter এরকম হতে পারে।
 
 হোম পেজের লোগো। হাই কোয়ালিটির ইমেজ ব্যবহার করা উত্তম। Landing page-এর সম্পূর্ণ width content-এর জন্য রাখতে এবং default hero illustration লুকাতে এটিকে `false` করুন।
 
+:::since[ডিফল্ট Hero visual localize করা]{version="2026-08-31" id="hero-code-localization" summary="i18n.heroCode দিয়ে ডিফল্ট দুই-প্যানেলের Hero preview localize করুন।"}
 `heroImage` বাদ দিলে default theme একটি দুই-প্যানেলের code preview দেখায়। Theme-এর `i18n.heroCode` option দিয়ে visual-এর লেখাগুলো localize করা যায়:
 
 ```ts
@@ -37,6 +38,7 @@ defaultTheme({
 ```
 
 `messageBefore`, `messageStrong`, এবং `messageAfter` source pane-এর Markdown বাক্য তৈরি করে। `tipLabel` ও `counterLabel` rendered pane-এর লেখা বদলায়।
+:::
 
 ### `tagline`
 

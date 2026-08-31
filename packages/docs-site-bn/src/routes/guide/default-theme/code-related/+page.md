@@ -101,6 +101,7 @@ function hello() {
 লাইন ফোকাস করতে `// [svp! fc]` or `// [svp! !!]` ব্যবহার করুন।
 একাধিক লাইন ফোকাস করতে `// [svp! fc:num]` or `// [svp! !!:num]` ব্যবহার করুন।
 
+:::since[একাধিক focus range]{version="2026-08-31" id="multiple-focus-ranges" summary="একই code block-এ একাধিক বিচ্ছিন্ন focus command বা range ব্যবহার করুন।"}
 একই কোড ব্লকে একাধিক ফোকাস নির্দেশনা ব্যবহার করা যায়। নির্দেশিত প্রতিটি লাইন বা লাইন-পরিসর ফোকাসে থাকবে, আর বাকি লাইনগুলো ম্লান হবে।
 
 ````md live
@@ -126,9 +127,11 @@ function hello() {
 </div>
 ```
 ````
+:::
 
 ## Markdown লাইভ কোড
 
+:::since[অপরিবর্তিত Markdown live source]{version="2026-08-31" id="literal-markdown-live-source" summary="Markdown live source অপরিবর্তিত থাকে; transform কেবল preview-তে চলে।"}
 `md` language এবং `live` prop ব্যবহার করলে Markdown preview এবং তার নিচে source code দেখাবে। Source panel-এ শুধু Markdown syntax highlighting প্রয়োগ হয়; code command ও অন্য transform শুধু preview-তে কাজ করে, আর source-এ মূল Markdown অপরিবর্তিত থাকে।
 
 **Input**
@@ -139,7 +142,7 @@ function hello() {
 * item1
 * item2
 ```js
-const foo = 'bar'
+const foo = 'bar' // [svp! hl]
 ```
 ````
 `````
@@ -150,9 +153,10 @@ const foo = 'bar'
 * item1
 * item2
 ```js
-const foo = 'bar'
+const foo = 'bar' // [svp! hl]
 ```
 ````
+:::
 
 ## Svelte লাইভ কোড
 

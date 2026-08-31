@@ -16,6 +16,7 @@ title: 主页
 
 首页的大 Logo 图片，推荐使用质量较高的图片。如果落地页需要把完整宽度留给正文、不显示默认 Hero 插图，可设置为 `false`。
 
+:::since[本地化默认 Hero 视觉]{version="2026-08-31" id="hero-code-localization" summary="通过 i18n.heroCode 本地化默认双面板 Hero 预览。"}
 省略 `heroImage` 时，默认主题会显示双面板代码预览。可以通过主题的 `i18n.heroCode` 配置本地化其中的文字：
 
 ```ts
@@ -36,6 +37,7 @@ defaultTheme({
 ```
 
 `messageBefore`、`messageStrong` 和 `messageAfter` 会组合成源码面板中的 Markdown 句子；`tipLabel` 和 `counterLabel` 用于自定义渲染结果面板。
+:::
 
 ### `tagline`
 

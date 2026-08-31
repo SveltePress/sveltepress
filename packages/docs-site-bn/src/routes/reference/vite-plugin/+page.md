@@ -208,6 +208,24 @@ code
 data
 ```
 
+:::since[Literal code প্রস্তুতি]{version="2026-08-31" id="literal-code-preparation" summary="Code command ও @noErrors অপরিবর্তিত রেখে title ও ln metadata parse করুন।"}
+### `@sveltepress/vite/highlight`
+
+`@sveltepress/vite/highlight` থেকে `prepareCodeBlock` import করে তৃতীয় argument-এ `{ mode: 'literal' }` দিন। এই mode source transform করে না: `// [svp! ...]` code command এবং প্রথম লাইনের `// @noErrors` হুবহু `processedCode`-এ থাকে। তবে metadata parsing চালু থাকে, তাই `title` ও `ln` যথাক্রমে title এবং line-number state নির্ধারণ করে।
+
+```ts
+import { prepareCodeBlock } from '@sveltepress/vite/highlight'
+
+const prepared = prepareCodeBlock(
+  '// @noErrors\nconst value = 1 // [svp! hl]',
+  'title="source.md" ln',
+  { mode: 'literal' },
+)
+```
+
+এখানে `prepared.processedCode` input-এর সমান, `prepared.title` হলো `'source.md'`, এবং `prepared.containLineNumbers` হলো `true`। `prepared.noErrors` থাকে `false`, কারণ literal mode-এ `@noErrors` সংরক্ষিত হলেও directive হিসেবে process হয় না।
+:::
+
 ## Typescript এর ব্যবহার
 
 প্লাগিন অপশন এবং ভার্চুয়াল মডিউল টাইপ টিপসের জন্য src/app.d.ts তে `@sveltepress/vite/types` যুক্ত করতে হবে

@@ -169,13 +169,21 @@ Default Theme-এর LiveCode component-সহ generated page module তার �
 
 ## Release snapshot তৈরি
 
-Manifest এগোনোর আগে outgoing current version build করুন:
+:::since[নতুন current version-এর documentation workflow]{version="2026-08-31" id="next-version-doc-workflow" summary="Outgoing docs freeze করার পর নতুন current docs edit ও since marker যোগ করুন।"}
+পরবর্তী documentation version শুরু করতে outgoing docs clean ও সম্পূর্ণ থাকা অবস্থায় প্রথমে `versions build`, তারপর `versions create <new-current-id>` চালান। `create` outgoing current version-কে freeze করে নতুন ID-কে current করে। কেবল এরপর নতুন current docs edit করুন এবং সেই current ID দিয়ে `:::since` marker যোগ করুন; শেষে আবার `versions build` ও `versions validate` চালান।
 
 ```sh
 pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2"
+
+# 8.2 এখন current: docs edit করুন এবং version="8.2" marker যোগ করুন
+
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions validate
 ```
+
+আগেই edit করা next-version docs-এর ওপর কখনও `versions create` চালাবেন না। এতে edit-গুলো নতুন current version-এর পরিবর্তে outgoing version-এর মধ্যে freeze হয়ে যাবে। Edit ইতিমধ্যে থাকলে clean outgoing state ফিরিয়ে এনে create/advance করুন, তারপর edit-গুলো নতুন current version-এ পুনরায় প্রয়োগ করুন।
+:::
 
 `create` current draft manifest publish করে, কেবল বদলানো page ও tombstone `version-deltas/8.1/`-এ লেখে, route/sidebar/change metadata freeze করে, `8.1`-কে history-তে রাখে এবং `8.2`-কে current করে। Stale draft, duplicate ID, symbolic link, dirty Git worktree এবং frozen boundary-এর বাইরের dependency প্রত্যাখ্যাত হয়। Uncommitted state-ই release source হলে শুধু তখন `--allow-dirty` ব্যবহার করুন। Failed preflight কোনো অসম্পূর্ণ delta বা manifest change রেখে যায় না।
 

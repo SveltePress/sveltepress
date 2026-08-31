@@ -6,6 +6,10 @@ title: হেডিংস এবং অ্যাঙ্কর
 যা আপনি বর্তমানে সকল পেজে দেখতে পাচ্ছেন।
 এবং একাধিক লেভেল সাপোর্ট করে।
 
+:::since[ধাপভিত্তিক সূচীপত্র]{version="2026-08-31" id="toc-heading-hierarchy" summary="নেস্টেড হেডিংয়ের indentation, depth guide এবং viewport-সক্রিয় segment hierarchy স্পষ্ট করে।"}
+সূচীপত্র এখন হেডিংগুলোর hierarchy ধাপে ধাপে দেখায়। নেস্টেড হেডিং তার parent হেডিংয়ের তুলনায় ভেতরের দিকে indented থাকে; depth বদলালে guide line-টি পরবর্তী স্তরের দিকে মোড় নেয়। পেজ scroll করার সময় viewport-এ থাকা হেডিং অনুযায়ী active guide segment-ও বদলায়, তাই বর্তমানে কোন section ও nesting level পড়া হচ্ছে তা এক নজরে বোঝা যায়।
+:::
+
 # লেভেল ১ হেডিং
 
 ```md live

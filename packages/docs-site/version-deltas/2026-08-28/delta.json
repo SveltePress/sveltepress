@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 2,
+  "siteId": "sveltepress-docs-en",
+  "versionId": "2026-08-28",
+  "parentVersionId": "2026-08-27",
+  "metadataHash": "07a85ba4925cc4cbd0bb974f38bcf6f9422e2e3d76cb25bc79dccd557308ad59",
+  "pages": [
+    {
+      "route": "/",
+      "files": [
+        "src/routes/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/admonitions/",
+      "files": [
+        "src/routes/guide/default-theme/admonitions/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/home-page/",
+      "files": [
+        "src/routes/+page.md",
+        "src/routes/guide/default-theme/home-page/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/version-management/",
+      "files": [
+        "src/routes/guide/version-management/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/default-theme/",
+      "files": [
+        "src/routes/reference/default-theme/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/vite-plugin/",
+      "files": [
+        "src/routes/reference/vite-plugin/+page.md"
+      ]
+    },
+    {
+      "route": "/whats-new/",
+      "files": [
+        "src/routes/whats-new/+page.md"
+      ]
+    }
+  ],
+  "removedRoutes": []
+}

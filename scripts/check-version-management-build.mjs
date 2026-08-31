@@ -6,6 +6,20 @@ const root = process.cwd()
 const official = join(root, 'packages/docs-site/dist')
 const historicalId = '2026-08-27'
 const historicalRoot = join(official, 'v', historicalId)
+const previousId = '2026-08-28'
+const previousRoot = join(official, 'v', previousId)
+const currentId = '2026-08-31'
+const versionIds = [currentId, previousId, historicalId]
+const currentChanges = [
+  { route: 'guide/default-theme/code-related', id: 'literal-markdown-live-source' },
+  { route: 'guide/default-theme/code-related', id: 'multiple-focus-ranges' },
+  { route: 'guide/default-theme/headings-and-anchors', id: 'toc-heading-hierarchy' },
+  { route: 'guide/default-theme/home-page', id: 'hero-code-localization' },
+  { route: 'guide/version-management', id: 'next-version-doc-workflow' },
+  { route: 'reference/vite-plugin', id: 'literal-code-preparation' },
+]
+const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)
+const currentChangeRoutes = [...new Set(currentChanges.map(({ route }) => `/${route}/`))]
 
 function assert(condition, message) {
   if (!condition)
@@ -22,40 +36,129 @@ function files(directory) {
     .map(entry => join(entry.parentPath, entry.name))
 }
 
+function assertSameStrings(actual, expected, message) {
+  const actualSorted = [...actual].sort()
+  const expectedSorted = [...expected].sort()
+  assert(
+    JSON.stringify(actualSorted) === JSON.stringify(expectedSorted),
+    `${message}. Expected ${expectedSorted.join(', ')}, received ${actualSorted.join(', ')}`,
+  )
+}
+
+function linksWithClass(html, className) {
+  return [...html.matchAll(new RegExp(`<a class="${className}[^\"]*" href="([^\"]+)"`, 'g'))]
+    .map(match => match[1])
+}
+
+function assertVersionSelectorLabel(html, versionId, message) {
+  const start = html.indexOf('class="version-selector')
+  const end = html.indexOf('</div>', start)
+  assert(
+    start >= 0
+    && end > start
+    && html.slice(start, end).includes(`>${versionId}</span>`),
+    message,
+  )
+}
+
+function versionPickerIds(html) {
+  const start = html.indexOf('<select id="version-changes-selector"')
+  const end = html.indexOf('</select>', start)
+  assert(start >= 0 && end > start, 'What’s New version picker is missing')
+  return [...html.slice(start, end).matchAll(/<option value="([^"]+)"/g)]
+    .map(match => match[1])
+}
+
+function assertCurrentDocumentationChanges(site, siteRoot) {
+  const whatsNewHtml = read(join(siteRoot, 'whats-new/index.html'))
+  assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), `${site} What’s New groups are missing`)
+  assertSameStrings(
+    linksWithClass(whatsNewHtml, 'section-link'),
+    currentChangeLinks,
+    `${site} What’s New section links are not the exact ${currentId} change set`,
+  )
+  assertSameStrings(
+    linksWithClass(whatsNewHtml, 'change-card-link'),
+    currentChangeRoutes,
+    `${site} What’s New page links are not the exact ${currentId} change set`,
+  )
+  assertSameStrings(
+    versionPickerIds(whatsNewHtml),
+    versionIds,
+    `${site} What’s New version picker does not expose every documentation version`,
+  )
+
+  for (const { route, id } of currentChanges) {
+    const currentPage = join(siteRoot, route, 'index.html')
+    const previousPage = join(siteRoot, 'v', previousId, route, 'index.html')
+    const historicalPage = join(siteRoot, 'v', historicalId, route, 'index.html')
+    for (const required of [currentPage, previousPage])
+      assert(existsSync(required), `${site} documentation change artifact is missing: ${required}`)
+
+    const currentPageHtml = read(currentPage)
+    assert(
+      currentPageHtml.includes(`id="${id}"`)
+      && currentPageHtml.includes(`data-sveltepress-introduced-in="${currentId}"`),
+      `${site} current documentation marker is missing or has the wrong version: ${id}`,
+    )
+    assert(
+      !read(previousPage).includes(`id="${id}"`),
+      `${site} ${currentId} marker leaked into ${previousId}: ${id}`,
+    )
+
+    if (route === 'guide/version-management') {
+      assert(!existsSync(historicalPage), `${site} post-${historicalId} page leaked into ${historicalId}: ${route}`)
+    }
+    else {
+      assert(existsSync(historicalPage), `${site} ${historicalId} documentation page is missing: ${route}`)
+      assert(
+        !read(historicalPage).includes(`id="${id}"`),
+        `${site} ${currentId} marker leaked into ${historicalId}: ${id}`,
+      )
+    }
+  }
+
+  const previousViteReference = read(join(siteRoot, 'v', previousId, 'reference/vite-plugin/index.html'))
+  assert(
+    previousViteReference.includes('id="version-change-discovery"')
+    && previousViteReference.includes(`data-sveltepress-introduced-in="${previousId}"`),
+    `${site} ${previousId} Vite reference did not preserve its frozen change marker`,
+  )
+  assert(
+    !read(join(siteRoot, 'v', historicalId, 'reference/vite-plugin/index.html')).includes('id="version-change-discovery"'),
+    `${site} ${previousId} Vite marker leaked into ${historicalId}`,
+  )
+}
+
 const currentHome = join(official, 'index.html')
 const historicalHome = join(historicalRoot, 'index.html')
+const previousHome = join(previousRoot, 'index.html')
 const currentFeature = join(official, 'guide/version-management/index.html')
 const historicalFeature = join(historicalRoot, 'guide/version-management/index.html')
+const previousFeature = join(previousRoot, 'guide/version-management/index.html')
 const currentWhatsNew = join(official, 'whats-new/index.html')
-const currentViteReference = join(official, 'reference/vite-plugin/index.html')
 
-for (const required of [currentHome, historicalHome, currentFeature, currentWhatsNew, currentViteReference, join(official, 'llms.txt'), join(historicalRoot, 'llms.txt'), join(official, 'sitemap.xml'), join(official, 'sw.js')])
+for (const required of [currentHome, historicalHome, previousHome, currentFeature, previousFeature, currentWhatsNew, join(official, 'llms.txt'), join(historicalRoot, 'llms.txt'), join(previousRoot, 'llms.txt'), join(official, 'sitemap.xml'), join(official, 'sw.js')])
   assert(existsSync(required), `Missing production artifact: ${required}`)
 assert(!existsSync(historicalFeature), 'A page added after the snapshot leaked into historical routes')
 
 const historicalHtml = read(historicalHome)
+const previousHtml = read(previousHome)
 const currentHtml = read(currentHome)
 const currentFeatureHtml = read(currentFeature)
 assert(historicalHtml.includes('<link rel="canonical" href="/v/2026-08-27/"'), 'Historical home is not self-canonical')
 assert(historicalHtml.includes('You are viewing an older version of this site. Some features may not work as expected.'), 'Historical lifecycle message is missing')
 assert(historicalHtml.includes('Current version'), 'Historical current-version link is missing')
 assert(historicalHtml.includes('Search is not available for this documentation version.'), 'Historical search did not fail closed')
-assert(currentHtml.includes('2026-08-28') && historicalHtml.includes('2026-08-27'), 'Version selector labels are missing')
+assertVersionSelectorLabel(currentHtml, currentId, 'Current version selector label is missing')
+assertVersionSelectorLabel(previousHtml, previousId, 'Previous version selector label is missing')
+assertVersionSelectorLabel(historicalHtml, historicalId, 'Historical version selector label is missing')
 assert(
   currentFeatureHtml.includes('data-version-artifact-live-code')
   && currentFeatureHtml.includes('Artifact self-check passed'),
   'The version-management LiveCode artifact self-check was not server-rendered',
 )
-const whatsNewHtml = read(currentWhatsNew)
-assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), 'What’s New groups are missing')
-assert(whatsNewHtml.includes('/guide/version-management/') && whatsNewHtml.includes('/reference/vite-plugin/#version-change-discovery'), 'What’s New links do not cover new and updated documentation')
-const viteReferenceHtml = read(currentViteReference)
-assert(
-  viteReferenceHtml.includes('id="version-change-discovery"')
-  && viteReferenceHtml.includes('data-sveltepress-introduced-in="2026-08-28"')
-  && viteReferenceHtml.includes('data-sveltepress-version-label-template="New in __SVELTEPRESS_VERSION__"'),
-  'The real since marker was not rendered',
-)
+assertCurrentDocumentationChanges('docs-site', official)
 
 const currentLlms = read(join(official, 'llms.txt'))
 const historicalLlms = read(join(historicalRoot, 'llms.txt'))
@@ -63,10 +166,12 @@ assert(currentLlms.includes('Document version management'), 'Current llms.txt om
 assert(historicalLlms.includes('Quick Start'), 'Historical llms.txt omits frozen documentation pages')
 assert(!historicalLlms.includes('Document version management'), 'Historical llms.txt contains post-snapshot content')
 assert(read(join(official, 'sitemap.xml')).includes(`/v/${historicalId}/`), 'Historical stable/deprecated routes are absent from sitemap.xml')
+assert(read(join(official, 'sitemap.xml')).includes(`/v/${previousId}/`), 'Previous stable routes are absent from sitemap.xml')
 
 const serviceWorker = read(join(official, 'sw.js'))
 assert(serviceWorker.includes('sveltepress-version-pages'), 'Historical runtime cache is absent from the service worker')
 assert(!serviceWorker.includes(`v/${historicalId}/index.html`), 'Historical HTML was added to the precache')
+assert(!serviceWorker.includes(`v/${previousId}/index.html`), 'Previous-version HTML was added to the precache')
 
 const versionRuntimeMarkers = [
   'Documentation version',
@@ -88,16 +193,20 @@ for (const site of ['docs-site-zh', 'docs-site-bn']) {
 
   const historicalRoot = join(siteRoot, 'v', historicalId)
   const historicalHome = join(historicalRoot, 'index.html')
+  const previousRoot = join(siteRoot, 'v', previousId)
+  const previousHome = join(previousRoot, 'index.html')
   assert(existsSync(historicalHome), `${site} historical snapshot did not build: ${historicalHome}`)
+  assert(existsSync(previousHome), `${site} previous snapshot did not build: ${previousHome}`)
   const historicalHtml = read(historicalHome)
+  const currentHtml = read(join(siteRoot, 'index.html'))
+  const previousHtml = read(previousHome)
   assert(historicalHtml.includes(`rel="canonical" href="/v/${historicalId}/"`), `${site} historical home is not self-canonical`)
   assert(historicalHtml.includes('version-lifecycle'), `${site} historical lifecycle banner is missing`)
-  assert(historicalHtml.includes('version-selector'), `${site} historical version selector is missing`)
+  assertVersionSelectorLabel(currentHtml, currentId, `${site} current version selector label is missing`)
+  assertVersionSelectorLabel(previousHtml, previousId, `${site} previous version selector label is missing`)
+  assertVersionSelectorLabel(historicalHtml, historicalId, `${site} historical version selector label is missing`)
   assert(historicalHtml.includes('Search is not available for this documentation version'), `${site} historical search did not fail closed`)
-
-  const currentWhatsNew = read(join(siteRoot, 'whats-new/index.html'))
-  assert(currentWhatsNew.includes('New pages') && currentWhatsNew.includes('Updated pages'), `${site} What's New groups are missing`)
-  assert(currentWhatsNew.includes('/guide/version-management/') && currentWhatsNew.includes('/reference/vite-plugin/#version-change-discovery'), `${site} What's New links do not cover new and updated documentation`)
+  assertCurrentDocumentationChanges(site, siteRoot)
 }
 
 console.log('Version-management production artifacts verified.')

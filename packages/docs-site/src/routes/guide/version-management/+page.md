@@ -176,13 +176,21 @@ This page dogfoods that behavior. The interactive component below is generated f
 
 ## Create a release snapshot
 
-Build the outgoing current version before advancing the manifest:
+:::since[Advance before editing the next version]{version="2026-08-31" id="next-version-doc-workflow" summary="Freeze outgoing docs before editing and marking the new current version."}
+Start from clean, complete outgoing documentation. Build and create the next version before editing its pages or adding its `:::since` markers. `create` freezes the outgoing current version and makes the supplied ID current; only then should new documentation use that ID.
 
 ```sh
 pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2"
+
+# 8.2 is now current: edit docs and add version="8.2" markers
+
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions validate
 ```
+
+Never run `versions create` over documentation that already contains the next version's edits. Those edits would be frozen into the outgoing version. If work started early, restore the known clean outgoing state, build and advance it, then reapply the edits to the new current version.
+:::
 
 `create` publishes the current draft manifest, writes only changed source pages and tombstones to `version-deltas/8.1/`, freezes route/sidebar/change metadata, moves `8.1` into history, and makes `8.2` current. It refuses stale drafts, duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.
 

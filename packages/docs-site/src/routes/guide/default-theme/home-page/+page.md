@@ -17,6 +17,7 @@ And you can see [Home page](/) for result
 
 The home page logo image. It is recommended to use an image with high quality. Set it to `false` when a landing page should use the full content width without the default hero illustration.
 
+:::since[Localized default hero visual]{version="2026-08-31" id="hero-code-localization" summary="Localize the default two-pane hero preview with i18n.heroCode."}
 When `heroImage` is omitted, the default theme shows a two-pane code preview. Localize the text inside this visual with the theme's `i18n.heroCode` option:
 
 ```ts
@@ -37,6 +38,7 @@ defaultTheme({
 ```
 
 `messageBefore`, `messageStrong`, and `messageAfter` compose the Markdown sentence shown in the source pane. `tipLabel` and `counterLabel` customize the rendered pane.
+:::
 
 ### `tagline`
 
