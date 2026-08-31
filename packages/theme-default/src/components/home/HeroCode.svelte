@@ -3,6 +3,24 @@
   "+page.md → rendered page" split that tells the product story
   (markdown-centered, full SvelteKit power). Pure CSS, no assets.
 -->
+<script lang="ts">
+  const {
+    title = 'Hello',
+    messageBefore = 'Svelte in ',
+    messageStrong = 'markdown',
+    messageAfter = '',
+    tipLabel = 'TIP',
+    counterLabel = 'Count: 1',
+  }: {
+    title?: string
+    messageBefore?: string
+    messageStrong?: string
+    messageAfter?: string
+    tipLabel?: string
+    counterLabel?: string
+  } = $props()
+</script>
+
 <div class="hero-code" aria-hidden="true">
   <div class="pane pane-md">
     <div class="pane-bar">
@@ -13,14 +31,14 @@
     </div>
     <pre class="code"><span class="c-dim">---</span>
 <span class="c-key">title</span><span class="c-dim">:</span> <span class="c-str"
-        >Hello</span
+        >{title}</span
       >
 <span class="c-dim">---</span>
 
-<span class="c-head"># Hello</span>
+<span class="c-head"># {title}</span>
 
 <span class="c-tip">:::tip</span>
-Svelte in <span class="c-bold">**markdown**</span>
+{messageBefore}<span class="c-bold">**{messageStrong}**</span>{messageAfter}
 <span class="c-tip">:::</span>
 
 <span class="c-tag">&lt;Counter /&gt;</span></pre>
@@ -33,14 +51,14 @@ Svelte in <span class="c-bold">**markdown**</span>
       <span class="pane-name">localhost:5173</span>
     </div>
     <div class="render-body">
-      <div class="r-title">Hello</div>
+      <div class="r-title">{title}</div>
       <div class="r-line w-9/10"></div>
       <div class="r-line w-7/10"></div>
       <div class="r-tip">
-        <div class="r-tip-label">TIP</div>
+        <div class="r-tip-label">{tipLabel}</div>
         <div class="r-line r-tip-line w-8/10"></div>
       </div>
-      <div class="r-btn">Count: 1</div>
+      <div class="r-btn">{counterLabel}</div>
     </div>
   </div>
 </div>

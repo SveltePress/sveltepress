@@ -258,6 +258,63 @@ describe('rendered documentation version UI', () => {
     expect(get(anchors)).toEqual([])
   })
 
+  it('localizes the default hero code visual through theme options', () => {
+    setPage('/')
+    const view = render(PageLayout, {
+      fm: {
+        title: 'SveltePress',
+        description: '构建文档站点。',
+        pageType: 'md',
+      },
+    })
+
+    const hero = view.container.querySelector('.hero-code')
+    const source = hero?.querySelector('.code')
+
+    expect(hero).not.toBeNull()
+    expect(hero?.querySelectorAll('.c-str')).toHaveLength(1)
+    expect(hero?.querySelector('.c-str')?.textContent).toBe('你好')
+    expect(source?.textContent).toContain('在 **Markdown** 中使用 Svelte')
+    expect(hero?.querySelector('.r-title')?.textContent).toBe('你好')
+    expect(hero?.querySelector('.r-tip-label')?.textContent).toBe('提示')
+    expect(hero?.querySelector('.r-btn')?.textContent).toBe('计数：1')
+  })
+
+  it('keeps English defaults for partially localized hero code content', () => {
+    const configuredHeroCode = { ...themeOptions.i18n.heroCode }
+    themeOptions.i18n.heroCode.title = 'Bonjour'
+    for (const key of [
+      'messageBefore',
+      'messageStrong',
+      'messageAfter',
+      'tipLabel',
+      'counterLabel',
+    ])
+      Reflect.deleteProperty(themeOptions.i18n.heroCode, key)
+
+    try {
+      setPage('/')
+      const view = render(PageLayout, {
+        fm: {
+          title: 'SveltePress',
+          description: 'Build documentation sites.',
+          pageType: 'md',
+        },
+      })
+      const hero = view.container.querySelector('.hero-code')
+
+      expect(hero?.querySelector('.c-str')?.textContent).toBe('Bonjour')
+      expect(hero?.querySelector('.code')?.textContent).toContain(
+        'Svelte in **markdown**',
+      )
+      expect(hero?.querySelector('.r-tip-label')?.textContent).toBe('TIP')
+      expect(hero?.querySelector('.r-btn')?.textContent).toBe('Count: 1')
+    }
+    finally {
+      Object.assign(themeOptions.i18n.heroCode, configuredHeroCode)
+    }
+  })
+
   it('renders a historical root snapshot with the home page layout', () => {
     setPage('/v/2026-08-27/')
 

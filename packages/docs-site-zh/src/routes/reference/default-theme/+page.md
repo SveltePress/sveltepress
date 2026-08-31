@@ -176,6 +176,7 @@ const defaultGradient = {
 * `nextPage` - "Next"
 * `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
 * `expandCode` - 长代码块展开栏的文本
+* `heroCode` - 默认首页代码预览中的本地化文字，包括 `title`、`messageBefore`、`messageStrong`、`messageAfter`、`tipLabel` 和 `counterLabel`
 * `versionDeprecated` / `versionEol` - 全局旧版生命周期横条中的提示文本
 * `versionDeprecatedLabel` / `versionEolLabel` - 生命周期状态的紧凑标签
 * `versionViewCurrent` - 打开同一逻辑页面最新版的链接文本

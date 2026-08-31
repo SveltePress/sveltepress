@@ -17,6 +17,27 @@ And you can see [Home page](/) for result
 
 The home page logo image. It is recommended to use an image with high quality. Set it to `false` when a landing page should use the full content width without the default hero illustration.
 
+When `heroImage` is omitted, the default theme shows a two-pane code preview. Localize the text inside this visual with the theme's `i18n.heroCode` option:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  i18n: {
+    heroCode: {
+      title: 'Hello',
+      messageBefore: 'Svelte in ',
+      messageStrong: 'markdown',
+      messageAfter: '',
+      tipLabel: 'TIP',
+      counterLabel: 'Count: 1',
+    },
+  },
+})
+```
+
+`messageBefore`, `messageStrong`, and `messageAfter` compose the Markdown sentence shown in the source pane. `tipLabel` and `counterLabel` customize the rendered pane.
+
 ### `tagline`
 
 The small description text under site title and description

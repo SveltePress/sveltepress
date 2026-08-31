@@ -158,6 +158,7 @@ const defaultGradient = {
 * `nextPage` - "পরবর্তী" এর লেখা
 * `expansionTitle` - markdown বা svelte live code এর "কোড দেখতে বা হাইড করতে ক্লিক করুন" এর লেখা
 * `expandCode` - সংকুচিত লম্বা কোড ব্লকের expand bar-এর লেখা
+* `heroCode` - default home page code preview-এর localizable text: `title`, `messageBefore`, `messageStrong`, `messageAfter`, `tipLabel`, এবং `counterLabel`
 * `versionDeprecated` / `versionEol` - global old-version lifecycle bar-এর message
 * `versionDeprecatedLabel` / `versionEolLabel` - compact lifecycle status label
 * `versionViewCurrent` - একই logical page-এর current version link-এর label

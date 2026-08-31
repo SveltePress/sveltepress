@@ -82,6 +82,14 @@ declare module 'virtual:sveltepress/theme-default' {
     }
     i18n?: {
       navbarMenu?: string
+      heroCode?: {
+        title?: string
+        messageBefore?: string
+        messageStrong?: string
+        messageAfter?: string
+        tipLabel?: string
+        counterLabel?: string
+      }
       onThisPage?: string
       suggestChangesToThisPage?: string
       lastUpdateAt?: string

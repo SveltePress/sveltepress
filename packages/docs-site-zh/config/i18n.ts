@@ -1,5 +1,13 @@
 export default {
   suggestChangesToThisPage: '在 Github 上编辑此页',
+  heroCode: {
+    title: '你好',
+    messageBefore: '在 ',
+    messageStrong: 'Markdown',
+    messageAfter: ' 中使用 Svelte',
+    tipLabel: '提示',
+    counterLabel: '计数：1',
+  },
   lastUpdateAt: '最后更新于：',
   previousPage: '上一页',
   nextPage: '下一页',

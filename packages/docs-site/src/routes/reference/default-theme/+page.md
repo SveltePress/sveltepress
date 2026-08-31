@@ -181,6 +181,7 @@ The fixed text contents that can be replaced by your config.
 * `nextPage` - The text for "Next"
 * `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
 * `expandCode` - The label on the expand bar for collapsed long code blocks
+* `heroCode` - The localized text inside the default home page code preview: `title`, `messageBefore`, `messageStrong`, `messageAfter`, `tipLabel`, and `counterLabel`
 * `versionDeprecated` / `versionEol` - The message in the global old-version lifecycle bar
 * `versionDeprecatedLabel` / `versionEolLabel` - The compact lifecycle status label
 * `versionViewCurrent` - The link label that opens the current version of the same logical page

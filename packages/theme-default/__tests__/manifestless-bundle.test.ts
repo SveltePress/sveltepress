@@ -13,7 +13,7 @@ const reviewedManifestlessHashes = {
   'NavItem.svelte': '9278590e13404cffd0dfb5a5dc40f19fd7524b45bdcb99639ed9018f7d4fea03',
   'Navbar.svelte': 'ca365c97d23cde2b729d3da572ea929b42a54eefdb9e4f42c2458b38b7d4f87a',
   'NavbarMobile.svelte': 'b257abd92d303544f61e918657a9029fe0d307686444eceda6ce7562cc9d8d23',
-  'PageLayout.svelte': 'c51bd40ec9b39059ad4cac521d1997d5dd7dc22c2cd4a3c0e793cf0443cc8991',
+  'PageLayout.svelte': '02afbff9ca3953b0ed074129fd48474a8c13f11c63ef8d18df8426eb69d862bf',
   'SidebarGroup.svelte': 'dcd7ea9b49d67184ebd282513b6237cd4646e92404ceff8a1921894115da4537',
   'Toc.svelte': 'e09d889fc09b315cdb8151de6d026048d7ec9a22eb6f873b307cdcc137615502',
   'layout.ts': '14406f3500c45be5085c3e7f5bc156542aa896cf9f7a6cc0acfafa1ae8f994b5',

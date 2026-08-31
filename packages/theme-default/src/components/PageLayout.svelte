@@ -98,7 +98,7 @@
     {#if fmHeroImage}
       <HeroImage heroImage={fmHeroImage} />
     {:else}
-      <HeroCode />
+      <HeroCode {...themeOptions.i18n?.heroCode} />
     {/if}
   {/snippet}
   {#if !isHome}

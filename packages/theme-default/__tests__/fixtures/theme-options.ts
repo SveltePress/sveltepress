@@ -15,6 +15,14 @@ export default {
   search: Search,
   i18n: {
     navbarMenu: '打开导航菜单',
+    heroCode: {
+      title: '你好',
+      messageBefore: '在 ',
+      messageStrong: 'Markdown',
+      messageAfter: ' 中使用 Svelte',
+      tipLabel: '提示',
+      counterLabel: '计数：1',
+    },
     versionSelector: '文档版本',
     versionPageUnavailable: '所选版本没有此页面，已返回版本首页。',
     versionDeprecated: '当前访问的是旧版站点，无法保证所有功能可用性，请切换至',

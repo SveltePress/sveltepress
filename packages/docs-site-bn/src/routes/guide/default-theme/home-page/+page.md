@@ -17,6 +17,27 @@ Home frontmatter এরকম হতে পারে।
 
 হোম পেজের লোগো। হাই কোয়ালিটির ইমেজ ব্যবহার করা উত্তম। Landing page-এর সম্পূর্ণ width content-এর জন্য রাখতে এবং default hero illustration লুকাতে এটিকে `false` করুন।
 
+`heroImage` বাদ দিলে default theme একটি দুই-প্যানেলের code preview দেখায়। Theme-এর `i18n.heroCode` option দিয়ে visual-এর লেখাগুলো localize করা যায়:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  i18n: {
+    heroCode: {
+      title: 'হ্যালো',
+      messageBefore: '',
+      messageStrong: 'Markdown',
+      messageAfter: '-এ Svelte',
+      tipLabel: 'পরামর্শ',
+      counterLabel: 'গণনা: ১',
+    },
+  },
+})
+```
+
+`messageBefore`, `messageStrong`, এবং `messageAfter` source pane-এর Markdown বাক্য তৈরি করে। `tipLabel` ও `counterLabel` rendered pane-এর লেখা বদলায়।
+
 ### `tagline`
 
 সাইটের টাইটেল এবং ডেসক্রিপশনের নিচে থাকা ছোট ডেসক্রিপশন

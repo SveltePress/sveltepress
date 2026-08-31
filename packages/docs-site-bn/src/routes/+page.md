@@ -1,7 +1,6 @@
 ---
 title: একটি কন্টেন্ট-কেন্দ্রিক সাইট বিল্ড টুল
 description: Sveltekit-এর সম্পূর্ণ শক্তিসহ একটি জটিলতামুক্ত, সহজে ব্যবহারযোগ্য, কন্টেন্ট-কেন্দ্রিক সাইট বিল্ড টুল।
-heroImage: /android-chrome-192x192.png
 actions:
   - label: ডক্‌স পড়ুন
     to: /guide/introduction/

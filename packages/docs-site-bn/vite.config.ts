@@ -1,6 +1,7 @@
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
+import i18n from './config/i18n.ts'
 import navbar from './config/navbar.ts'
 import pwa from './config/pwa.ts'
 import sidebar from './config/sidebar.ts'
@@ -26,6 +27,7 @@ const config = defineConfig({
           light: '#f2f2f2',
           dark: '#18181b',
         },
+        i18n,
         preBuildIconifyIcons: {
           'vscode-icons': ['file-type-svelte', 'file-type-markdown', 'file-type-vite'],
           'logos': ['typescript-icon', 'svelte-kit'],
