@@ -1,5 +1,30 @@
 # @sveltepress/theme-default
 
+## 8.5.0
+
+### Minor Changes
+
+- [`38c2225`](https://github.com/Blackman99/sveltepress/commit/38c2225ddc00882146324d3eba5d0c1e298e85b8) Thanks [@Blackman99](https://github.com/Blackman99)! - Add content-addressed incremental document version builds. Historical releases are stored as immutable source deltas and reusable page artifacts, while the stable SveltePress shell composes current and historical routes without recompiling unchanged pages.
+
+- [`a8cbc30`](https://github.com/Blackman99/sveltepress/commit/a8cbc3030e05c81be94b5361f6ccf3dc8e41360b) Thanks [@Blackman99](https://github.com/Blackman99)! - Allow the default home page code hero content to be localized through the theme i18n options.
+
+### Patch Changes
+
+- [`098f952`](https://github.com/Blackman99/sveltepress/commit/098f9527d0dd1af101be8030be684df16765b387) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b103daa`](https://github.com/Blackman99/sveltepress/commit/b103daa1b560eb9a8a731bd3b47b404bbece4bee) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`37c4784`](https://github.com/Blackman99/sveltepress/commit/37c4784116cbac743a304296947ac0bdc561be4b) Thanks [@Blackman99](https://github.com/Blackman99)! - Automatically associate `:::since` markers with contained headings or the nearest preceding heading in the same Markdown container, including multiple markers for one heading, and invalidate cached page artifacts so version badges render in production builds.
+
+- [`77f2d01`](https://github.com/Blackman99/sveltepress/commit/77f2d01b3492bfc334a6b117dcb79dc87e420813) Thanks [@Blackman99](https://github.com/Blackman99)! - Embed generated LiveCode modules in reusable page artifacts so incremental version builds can restore pages without a separate live-code cache.
+
+- [`89eb53b`](https://github.com/Blackman99/sveltepress/commit/89eb53ba387ac2907df7ee08871ae06e5cfdb798) Thanks [@Blackman99](https://github.com/Blackman99)! - Add a literal code-block preparation mode so Markdown live-code source panels receive only Markdown syntax highlighting while transforms apply only to the rendered preview.
+
+- [`8016fad`](https://github.com/Blackman99/sveltepress/commit/8016fada8e0313dd19a72e0b7452fd79ec92f806) Thanks [@Blackman99](https://github.com/Blackman99)! - Show table-of-contents heading hierarchy with a stepped guide line, including the active section indicator.
+
+- Updated dependencies [[`098f952`](https://github.com/Blackman99/sveltepress/commit/098f9527d0dd1af101be8030be684df16765b387), [`b103daa`](https://github.com/Blackman99/sveltepress/commit/b103daa1b560eb9a8a731bd3b47b404bbece4bee)]:
+  - @sveltepress/twoslash@1.3.19
+
 ## 8.4.1
 
 ### Patch Changes
