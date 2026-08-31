@@ -18,6 +18,17 @@
   }
 
   /**
+   * @param {import('../markdown/anchors').Anchor} anchor
+   * @param {Set<string>} changedSectionIds
+   */
+  export function hasTocVersionChange(anchor, changedSectionIds) {
+    const versionChangeIds =
+      anchor.versionChangeIds ??
+      (anchor.versionChangeId ? [anchor.versionChangeId] : [])
+    return versionChangeIds.some(id => changedSectionIds.has(id))
+  }
+
+  /**
    * @param {Array<import('../markdown/anchors').Anchor>} anchors
    */
   export function createTocCircuit(anchors) {
@@ -163,7 +174,7 @@
           style="--heading-level: {getTocHeadingLevel(an.depth)};"
         >
           <span class="item-label">{an.title}</span>
-          {#if an.versionChangeId && $changedSectionIds.has(an.versionChangeId)}<VersionNavigationBadge
+          {#if hasTocVersionChange(an, $changedSectionIds)}<VersionNavigationBadge
               label={newBadgeLabel}
             />{/if}
         </a>

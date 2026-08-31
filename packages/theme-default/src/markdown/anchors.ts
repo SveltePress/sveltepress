@@ -6,6 +6,7 @@ export interface Anchor {
   title: string
   depth: number
   versionChangeId?: string
+  versionChangeIds?: string[]
 }
 
 const anchors: Plugin<any[], any> = () => {
@@ -25,10 +26,17 @@ const anchors: Plugin<any[], any> = () => {
         let slugId = title.replace(/[&#$?* :/]/g, '-')
         while (anchors.some(an => an.slugId === slugId))
           slugId += '_'
-        const versionChangeId = parent.type === 'versionChangeSection'
+        const containedVersionChangeId = parent.type === 'versionChangeSection'
           && typeof parent.data?.hProperties?.id === 'string'
           ? parent.data.hProperties.id
           : undefined
+        const inheritedVersionChangeIds = Array.isArray(node.data?.versionChangeIds)
+          ? node.data.versionChangeIds.filter((value: unknown): value is string => typeof value === 'string')
+          : []
+        const versionChangeIds = [
+          ...inheritedVersionChangeIds,
+          ...(containedVersionChangeId ? [containedVersionChangeId] : []),
+        ].filter((id, index, ids) => ids.indexOf(id) === index)
 
         node.children.unshift({
           type: 'Anchor',
@@ -59,7 +67,8 @@ const anchors: Plugin<any[], any> = () => {
           slugId,
           title,
           depth: node.depth,
-          ...(versionChangeId ? { versionChangeId } : {}),
+          ...(versionChangeIds.length === 1 ? { versionChangeId: versionChangeIds[0] } : {}),
+          ...(versionChangeIds.length > 1 ? { versionChangeIds } : {}),
         })
       }
     })

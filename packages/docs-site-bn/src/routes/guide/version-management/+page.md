@@ -253,6 +253,10 @@ versionChanges:
 আগের Markdown page-এ গুরুত্বপূর্ণ নতুন section স্পষ্টভাবে চিহ্নিত করুন। Version, title এবং page-এর মধ্যে unique stable ID—তিনটিই আবশ্যক:
 
 ```md
+### Hot reload
+
+আগের documentation content।
+
 :::since[Hot reload configuration]{version="8.2" id="hot-reload" summary="Restart লাগে না"}
 নতুন documentation content।
 :::
@@ -262,7 +266,7 @@ Unknown version, duplicate ID, unknown field বা ভুল type development s
 
 Default Theme page ও section badge শুধু সেই version-এ দেখায় যেখানে content প্রথম এসেছে। Site নিজের পছন্দের route-এ overview component রাখতে পারে:
 
-Sidebar নতুন ও updated page-এর পাশে compact **New** badge দেখায়। **On this page** কেবল `:::since` দিয়ে স্পষ্টভাবে চিহ্নিত section-এ একই badge দেখায়। Compact text বদলাতে `i18n.versionNavigationNewLabel` ব্যবহার করুন।
+Sidebar নতুন ও updated page-এর পাশে compact **New** badge দেখায়। কোনো `:::since` marker-এর নিজের heading না থাকলে Default Theme একই Markdown container-এর নিকটতম আগের heading-এর সঙ্গে marker-টি স্বয়ংক্রিয়ভাবে যুক্ত করে এবং **On this page**-এ একই badge দেখায়। Marker-এর ভেতরের heading সরাসরি যুক্ত হয়। একই heading-এর সঙ্গে একাধিক marker যুক্ত থাকতে পারে; active version যেকোনো একটির সঙ্গে মিললে মাত্র একটি badge render হয়। Compact text বদলাতে `i18n.versionNavigationNewLabel` ব্যবহার করুন।
 
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>

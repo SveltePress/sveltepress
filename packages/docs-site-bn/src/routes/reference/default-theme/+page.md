@@ -162,7 +162,7 @@ const defaultGradient = {
 * `versionDeprecated` / `versionEol` - global old-version lifecycle bar-এর message
 * `versionDeprecatedLabel` / `versionEolLabel` - compact lifecycle status label
 * `versionViewCurrent` - একই logical page-এর current version link-এর label
-* `versionNavigationNewLabel` - পরিবর্তিত sidebar page ও table-of-contents section-এর পাশের compact badge text। Default `"New"`
+* `versionNavigationNewLabel` - পরিবর্তিত sidebar page এবং `:::since` marker-এর সঙ্গে স্বয়ংক্রিয়ভাবে যুক্ত table-of-contents heading-এর পাশের compact badge text। Default `"New"`
 * `pwa` - pwa prompt এর relative টেক্সট কন্টেন্ট. নিচের সব ফিল্ডই pwa prompt এর মতই
   * `tip`
   * `reload`

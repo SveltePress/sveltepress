@@ -254,6 +254,10 @@ versionChanges:
 已有 Markdown 页面中的重点新增段落使用显式标记；版本、标题和页面内唯一的稳定 ID 都是必填项：
 
 ```md
+### 热更新
+
+已有的文档内容。
+
 :::since[热更新配置]{version="8.2" id="hot-reload" summary="无需重启"}
 这里是新增的文档内容。
 :::
@@ -263,7 +267,7 @@ versionChanges:
 
 默认主题只在浏览内容首次引入的版本时显示页面和段落标签。站点可以自行决定变化总览 URL：
 
-侧边栏会为新增页面和更新页面显示紧凑的“新”徽章；“当前页面”目录只为通过 `:::since` 显式声明的段落显示同一徽章。可通过 `i18n.versionNavigationNewLabel` 覆盖紧凑文案。
+侧边栏会为新增页面和更新页面显示紧凑的“新”徽章。如果 `:::since` 标记自身不含标题，默认主题会自动把它关联到同一 Markdown 容器中最近的前置标题，并在“当前页面”目录中为该标题显示同一徽章；标记内部的标题则直接与该标记关联。同一个标题可以关联多个标记，只要当前版本匹配其中任意一个，目录中就只显示一个徽章。可通过 `i18n.versionNavigationNewLabel` 覆盖紧凑文案。
 
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>

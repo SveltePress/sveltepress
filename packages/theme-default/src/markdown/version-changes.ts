@@ -8,6 +8,26 @@ interface VersionChangesOptions {
   newLabel?: string
 }
 
+function collectHeadings(nodes: any[]): any[] {
+  return nodes.flatMap((node) => {
+    if (node.type === 'heading')
+      return [node]
+    if (node.type === 'liveCode')
+      return []
+    return Array.isArray(node.children) ? collectHeadings(node.children) : []
+  })
+}
+
+function addVersionChangeId(heading: any, id: string): void {
+  heading.data ??= {}
+  const versionChangeIds = Array.isArray(heading.data.versionChangeIds)
+    ? heading.data.versionChangeIds.filter((value: unknown): value is string => typeof value === 'string')
+    : []
+  heading.data.versionChangeIds = versionChangeIds.includes(id)
+    ? versionChangeIds
+    : [...versionChangeIds, id]
+}
+
 export default function versionChanges(options: VersionChangesOptions): Plugin {
   return () => (tree) => {
     const manifest = options.getManifest?.() ?? options.manifest
@@ -23,6 +43,22 @@ export default function versionChanges(options: VersionChangesOptions): Plugin {
         : ''
       const introducedIn = node.attributes?.version
       const id = node.attributes?.id
+      const sectionContent = label?.data?.directiveLabel ? content : node.children ?? []
+      if (typeof id === 'string') {
+        const containedHeadings = collectHeadings(sectionContent)
+        if (containedHeadings.length) {
+          containedHeadings.forEach(heading => addVersionChangeId(heading, id))
+        }
+        else {
+          for (let siblingIndex = index - 1; siblingIndex >= 0; siblingIndex--) {
+            const sibling = parent.children[siblingIndex]
+            if (sibling.type !== 'heading')
+              continue
+            addVersionChangeId(sibling, id)
+            break
+          }
+        }
+      }
       const headingChildren: any[] = [
         {
           type: 'versionChangeBadge',
@@ -64,7 +100,7 @@ export default function versionChanges(options: VersionChangesOptions): Plugin {
             },
             children: headingChildren,
           },
-          ...(label?.data?.directiveLabel ? content : node.children),
+          ...sectionContent,
         ],
       })
     })

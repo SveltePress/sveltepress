@@ -1,13 +1,16 @@
+import type { VersionManifest } from '@sveltepress/vite/versioning'
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { mdToSvelte } from '@sveltepress/vite'
 import { compilePageArtifactModule } from '@sveltepress/vite/versioning'
 import { describe, expect, it } from 'vitest'
+import anchors from '../src/markdown/anchors'
 import componentImports from '../src/markdown/component-imports'
 import highlighter, { initHighlighter } from '../src/markdown/highlighter'
 import installPkg from '../src/markdown/install-pkg'
 import liveCode from '../src/markdown/live-code'
+import versionChanges from '../src/markdown/version-changes'
 
 const md = `
 ### title level 3
@@ -105,6 +108,66 @@ describe('live code', async () => {
     expect(code.match(/<Expansion codeType="md"/g)).toHaveLength(1)
     expect(code.match(/svp-code-block--hl/g)).toHaveLength(1)
     expect(code).toContain('svp! hl')
+  })
+
+  it('associates a version marker after a live-code example with its preceding heading', async () => {
+    const manifest: VersionManifest = {
+      basePath: '/v',
+      current: { id: '2026-08-31', label: '2026-08-31' },
+      versions: [{ id: '2026-08-28', label: '2026-08-28' }],
+      content: { include: ['**'], exclude: [], shared: [] },
+    }
+    const source = [
+      '## Focus',
+      '',
+      'Use focus commands in code blocks.',
+      '',
+      ':::since[Multiple focus ranges]{version="2026-08-31" id="multiple-focus-ranges"}',
+      'Multiple focus commands can appear in one code block.',
+      '',
+      '````md live',
+      '```html',
+      '<h1>Focused</h1>',
+      '```',
+      '````',
+      ':::',
+      '',
+      '## Markdown live code',
+      '',
+      ':::since[Literal Markdown source]{version="2026-08-31" id="literal-markdown-live-source"}',
+      '````md live',
+      '### Title',
+      '````',
+      ':::',
+    ].join('\n')
+
+    const { data } = await mdToSvelte({
+      filename: 'versioned-live-code.md',
+      mdContent: source,
+      remarkPlugins: [liveCode, versionChanges({ manifest }), anchors],
+      rehypePlugins: [componentImports],
+      highlighter,
+    })
+
+    expect(data.anchors).toEqual([
+      {
+        slugId: 'Focus',
+        title: 'Focus',
+        depth: 2,
+        versionChangeId: 'multiple-focus-ranges',
+      },
+      {
+        slugId: 'Markdown-live-code',
+        title: 'Markdown live code',
+        depth: 2,
+        versionChangeId: 'literal-markdown-live-source',
+      },
+      {
+        slugId: 'Title',
+        title: 'Title',
+        depth: 3,
+      },
+    ])
   })
 
   it('does not compile nested svelte live blocks from markdown live code', async () => {

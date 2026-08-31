@@ -11,6 +11,7 @@ import {
   artifactManifestHash,
   collectPageArtifactInputs,
   createVersionArtifactManifest,
+  PAGE_ARTIFACT_MODULE_SCHEMA,
   planVersionBuild,
   validateVersionArtifactManifest,
 } from '../src/versioning'
@@ -131,6 +132,28 @@ describe('incremental version artifacts', () => {
       'artifact schema changed',
       'page compiler fingerprint changed',
     ])
+  })
+
+  it('invalidates v3 page modules after version-navigation anchor semantics change', () => {
+    const pages = [page('/guide/', 'guide')]
+    const previous = baseline(pages, {
+      fingerprints: { ...fingerprints, artifactSchema: 'page-module-v3' },
+    })
+    const plan = planVersionBuild({
+      siteId: 'docs-en',
+      versionId: 'v2',
+      previous,
+      pages,
+      fingerprints: {
+        ...fingerprints,
+        artifactSchema: PAGE_ARTIFACT_MODULE_SCHEMA,
+      },
+    })
+
+    expect(plan.compiledRoutes).toEqual(['/guide/'])
+    expect(plan.reusedRoutes).toEqual([])
+    expect(plan.fullRebuild).toBe(true)
+    expect(plan.invalidationReasons).toContain('artifact schema changed')
   })
 
   it('hashes manifests deterministically and validates the parent content hash', () => {

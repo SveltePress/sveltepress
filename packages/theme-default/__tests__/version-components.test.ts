@@ -1,5 +1,6 @@
 // @vitest-environment happy-dom
 
+import { mdToSvelte } from '@sveltepress/vite'
 import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { compile } from 'svelte/compiler'
@@ -19,8 +20,11 @@ import VersionFallbackNotice from '../src/components/VersionFallbackNotice.svelt
 import VersionLifecycleBanner from '../src/components/VersionLifecycleBanner.svelte'
 import VersionSelector from '../src/components/VersionSelector.svelte'
 import versionSelectorSource from '../src/components/VersionSelector.svelte?raw'
+import anchorHeadings from '../src/markdown/anchors'
+import versionChanges from '../src/markdown/version-changes'
 import { setPage } from './fixtures/app-state.svelte'
 import { gotoCalls, resetNavigation } from './fixtures/navigation'
+import { manifest as versionManifest } from './fixtures/versions'
 
 vi.mock('svelte/transition', () => ({
   slide: () => ({ duration: 0 }),
@@ -221,6 +225,49 @@ describe('rendered documentation version UI', () => {
     })
 
     expect(view.getByRole('link', { name: 'Hot reload 新' }).getAttribute('href')).toBe('#hot-reload-options')
+    expect(view.getByRole('link', { name: 'Existing section' })).toBeTruthy()
+    expect(view.container.querySelectorAll('.version-navigation-new-badge')).toHaveLength(1)
+  })
+
+  it('automatically marks the preceding table-of-contents heading for a version change', async () => {
+    const compiled = await mdToSvelte({
+      filename: '/site/src/routes/guide/+page.md',
+      mdContent: `## Focus
+
+Use focus commands in code blocks.
+
+:::since[Multiple focus ranges]{version="2026-08-28" id="hot-reload"}
+Multiple focus commands can appear in one code block.
+:::
+
+:::since[Earlier focus update]{version="2026-08-27" id="earlier-focus-update"}
+An earlier version also changed this section.
+:::
+
+## Existing section
+
+Existing content.`,
+      remarkPlugins: [versionChanges({ manifest: versionManifest }), anchorHeadings],
+    })
+    expect(compiled.data.anchors).toEqual([
+      {
+        slugId: 'Focus',
+        title: 'Focus',
+        depth: 2,
+        versionChangeIds: ['hot-reload', 'earlier-focus-update'],
+      },
+      {
+        slugId: 'Existing-section',
+        title: 'Existing section',
+        depth: 2,
+      },
+    ])
+    setPage('/guide/')
+    resolveSidebar('/guide/')
+
+    const view = render(Toc, { anchors: compiled.data.anchors })
+
+    expect(view.getByRole('link', { name: 'Focus 新' }).getAttribute('href')).toBe('#Focus')
     expect(view.getByRole('link', { name: 'Existing section' })).toBeTruthy()
     expect(view.container.querySelectorAll('.version-navigation-new-badge')).toHaveLength(1)
   })

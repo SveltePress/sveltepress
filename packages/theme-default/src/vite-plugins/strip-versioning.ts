@@ -83,8 +83,9 @@ const transforms: Record<string, SourceTransform> = {
   },
   'Toc.svelte': (source) => {
     let result = replaceRequired(source, `  import { changedSectionIds, tocCollapsed } from './layout'\n  import VersionNavigationBadge from './VersionNavigationBadge.svelte'\n`, `  import { tocCollapsed } from './layout'\n`)
+    result = replaceRequired(result, `  /**\n   * @param {import('../markdown/anchors').Anchor} anchor\n   * @param {Set<string>} changedSectionIds\n   */\n  export function hasTocVersionChange(anchor, changedSectionIds) {\n    const versionChangeIds =\n      anchor.versionChangeIds ??\n      (anchor.versionChangeId ? [anchor.versionChangeId] : [])\n    return versionChangeIds.some(id => changedSectionIds.has(id))\n  }\n\n`)
     result = replaceRequired(result, `  const newBadgeLabel = $derived(\n    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',\n  )\n`)
-    result = replaceRequired(result, `          <span class="item-label">{an.title}</span>\n          {#if an.versionChangeId && $changedSectionIds.has(an.versionChangeId)}<VersionNavigationBadge\n              label={newBadgeLabel}\n            />{/if}`, `          {an.title}`)
+    result = replaceRequired(result, `          <span class="item-label">{an.title}</span>\n          {#if hasTocVersionChange(an, $changedSectionIds)}<VersionNavigationBadge\n              label={newBadgeLabel}\n            />{/if}`, `          {an.title}`)
     return replaceRequired(result, `  .item {\n    --at-apply: 'relative z-3 flex min-w-0 items-center cursor-pointer';\n    padding-left: calc(2.625rem + var(--heading-level) * 0.75rem);\n  }\n  .item-label {\n    --at-apply: 'min-w-0 truncate';\n  }`, `  .item {\n    --at-apply: 'relative z-3 block truncate cursor-pointer';\n    padding-left: calc(2.625rem + var(--heading-level) * 0.75rem);\n  }`)
   },
   'sw.js': (source) => {

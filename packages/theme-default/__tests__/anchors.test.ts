@@ -52,7 +52,7 @@ describe('anchors', () => {
     `)
   })
 
-  it('associates a heading slug with its containing version change ID', async () => {
+  it('associates a contained heading without marking the preceding heading', async () => {
     const manifest: VersionManifest = {
       basePath: '/v',
       current: { id: 'v9', label: '9.x' },
@@ -61,15 +61,78 @@ describe('anchors', () => {
     }
     const result = await mdToSvelte({
       filename: '/site/src/routes/guide/+page.md',
-      mdContent: `:::since[Version change discovery]{version="v9" id="stable-change-id"}\n### versions\nNew content.\n:::`,
+      mdContent: `## Existing section\n\nExisting content.\n\n:::since[Version change discovery]{version="v9" id="stable-change-id"}\n### versions\nNew content.\n:::`,
       remarkPlugins: [versionChanges({ manifest }), anchors],
     })
 
-    expect(result.data.anchors).toEqual([{
-      slugId: 'versions',
-      title: 'versions',
-      depth: 3,
-      versionChangeId: 'stable-change-id',
-    }])
+    expect(result.data.anchors).toEqual([
+      {
+        slugId: 'Existing-section',
+        title: 'Existing section',
+        depth: 2,
+      },
+      {
+        slugId: 'versions',
+        title: 'versions',
+        depth: 3,
+        versionChangeId: 'stable-change-id',
+      },
+    ])
+  })
+
+  it('associates a nested heading with its containing version change ID', async () => {
+    const manifest: VersionManifest = {
+      basePath: '/v',
+      current: { id: 'v9', label: '9.x' },
+      versions: [{ id: 'v8', label: '8.x' }],
+      content: { include: ['**'], exclude: [], shared: [] },
+    }
+    const result = await mdToSvelte({
+      filename: '/site/src/routes/guide/+page.md',
+      mdContent: `## Existing section\n\n:::since[Nested change]{version="v9" id="nested-change"}\n> ### Nested heading\n> New content.\n:::`,
+      remarkPlugins: [versionChanges({ manifest }), anchors],
+    })
+
+    expect(result.data.anchors).toEqual([
+      {
+        slugId: 'Existing-section',
+        title: 'Existing section',
+        depth: 2,
+      },
+      {
+        slugId: 'Nested-heading',
+        title: 'Nested heading',
+        depth: 3,
+        versionChangeId: 'nested-change',
+      },
+    ])
+  })
+
+  it('associates a marker with the nearest preceding heading in the same container', async () => {
+    const manifest: VersionManifest = {
+      basePath: '/v',
+      current: { id: 'v9', label: '9.x' },
+      versions: [{ id: 'v8', label: '8.x' }],
+      content: { include: ['**'], exclude: [], shared: [] },
+    }
+    const result = await mdToSvelte({
+      filename: '/site/src/routes/guide/+page.md',
+      mdContent: `## Parent section\n\n### Nearest subsection\n\nExisting content.\n\n:::since[Subsection change]{version="v9" id="subsection-change"}\nNew content.\n:::`,
+      remarkPlugins: [versionChanges({ manifest }), anchors],
+    })
+
+    expect(result.data.anchors).toEqual([
+      {
+        slugId: 'Parent-section',
+        title: 'Parent section',
+        depth: 2,
+      },
+      {
+        slugId: 'Nearest-subsection',
+        title: 'Nearest subsection',
+        depth: 3,
+        versionChangeId: 'subsection-change',
+      },
+    ])
   })
 })

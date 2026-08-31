@@ -20,6 +20,11 @@ const currentChanges = [
 ]
 const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)
 const currentChangeRoutes = [...new Set(currentChanges.map(({ route }) => `/${route}/`))]
+const changedCodeRelatedTocSlugs = {
+  'docs-site': ['Focus', 'Markdown-live-code'],
+  'docs-site-zh': ['聚焦', 'Markdown-可折叠代码块'],
+  'docs-site-bn': ['ফোকাস', 'Markdown-লাইভ-কোড'],
+}
 
 function assert(condition, message) {
   if (!condition)
@@ -67,6 +72,21 @@ function versionPickerIds(html) {
   assert(start >= 0 && end > start, 'What’s New version picker is missing')
   return [...html.slice(start, end).matchAll(/<option value="([^"]+)"/g)]
     .map(match => match[1])
+}
+
+function tableOfContentsLink(html, slug, message) {
+  const start = html.indexOf(`<a href="#${slug}" class="item`)
+  const end = html.indexOf('</a>', start)
+  assert(start >= 0 && end > start, message)
+  return html.slice(start, end)
+}
+
+function assertTableOfContentsBadge(html, slug, expected, message) {
+  const link = tableOfContentsLink(html, slug, `${message}: table-of-contents link is missing`)
+  assert(
+    link.includes('version-navigation-new-badge') === expected,
+    message,
+  )
 }
 
 function assertCurrentDocumentationChanges(site, siteRoot) {
@@ -128,6 +148,31 @@ function assertCurrentDocumentationChanges(site, siteRoot) {
     !read(join(siteRoot, 'v', historicalId, 'reference/vite-plugin/index.html')).includes('id="version-change-discovery"'),
     `${site} ${previousId} Vite marker leaked into ${historicalId}`,
   )
+
+  const codeRelatedPath = join('guide', 'default-theme', 'code-related', 'index.html')
+  const currentCodeRelated = read(join(siteRoot, codeRelatedPath))
+  const previousCodeRelated = read(join(siteRoot, 'v', previousId, codeRelatedPath))
+  const historicalCodeRelated = read(join(siteRoot, 'v', historicalId, codeRelatedPath))
+  for (const slug of changedCodeRelatedTocSlugs[site]) {
+    assertTableOfContentsBadge(
+      currentCodeRelated,
+      slug,
+      true,
+      `${site} current ${slug} table-of-contents heading is missing its New badge`,
+    )
+    assertTableOfContentsBadge(
+      previousCodeRelated,
+      slug,
+      false,
+      `${site} current ${slug} table-of-contents badge leaked into ${previousId}`,
+    )
+    assertTableOfContentsBadge(
+      historicalCodeRelated,
+      slug,
+      false,
+      `${site} current ${slug} table-of-contents badge leaked into ${historicalId}`,
+    )
+  }
 }
 
 const currentHome = join(official, 'index.html')

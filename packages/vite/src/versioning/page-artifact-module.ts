@@ -10,7 +10,7 @@ import { createPageArtifactFileCollector } from './page-artifact-generated.js'
 
 export const PAGE_ARTIFACT_VIRTUAL_PREFIX = 'virtual:sveltepress/page-artifact/'
 export const PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX = 'virtual:sveltepress/page-artifact-source/'
-export const PAGE_ARTIFACT_MODULE_SCHEMA = 'page-module-v3'
+export const PAGE_ARTIFACT_MODULE_SCHEMA = 'page-module-v4'
 
 export interface PageArtifactMetadata {
   route: string

@@ -270,6 +270,10 @@ versionChanges:
 For an existing Markdown page, mark only the important new section. The version, title, and page-unique stable ID are required:
 
 ```md
+### Hot reload
+
+Existing documentation content.
+
 :::since[Hot reload configuration]{version="8.2" id="hot-reload" summary="No restart required"}
 New documentation content.
 :::
@@ -279,7 +283,7 @@ Unknown versions, duplicate IDs, unknown fields, and invalid field types stop de
 
 The Default Theme displays page and section badges only while browsing the version that introduced them. Add a changelog route wherever it fits your site:
 
-The sidebar adds a compact **New** badge to both new and updated pages. **On this page** adds the same badge only to sections declared with `:::since`. Override the compact text with `i18n.versionNavigationNewLabel`.
+The sidebar adds a compact **New** badge to both new and updated pages. When a `:::since` marker has no heading of its own, the Default Theme automatically associates it with the nearest preceding heading in the same Markdown container and adds the same badge in **On this page**. Headings contained inside a marker are associated directly. Multiple markers can belong to one heading; the active version renders one badge when any associated marker matches. Override the compact text with `i18n.versionNavigationNewLabel`.
 
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>
