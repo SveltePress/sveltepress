@@ -85,7 +85,7 @@ const transforms: Record<string, SourceTransform> = {
     let result = replaceRequired(source, `  import { changedSectionIds, tocCollapsed } from './layout'\n  import VersionNavigationBadge from './VersionNavigationBadge.svelte'\n`, `  import { tocCollapsed } from './layout'\n`)
     result = replaceRequired(result, `  const newBadgeLabel = $derived(\n    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',\n  )\n`)
     result = replaceRequired(result, `          <span class="item-label">{an.title}</span>\n          {#if an.versionChangeId && $changedSectionIds.has(an.versionChangeId)}<VersionNavigationBadge\n              label={newBadgeLabel}\n            />{/if}`, `          {an.title}`)
-    return replaceRequired(result, `  .item {\n    --at-apply: 'relative z-3 flex min-w-0 items-center cursor-pointer';\n    padding-left: calc(1rem + (var(--heading-depth) - 2) * 1.2em);\n  }\n  .item-label {\n    --at-apply: 'min-w-0 truncate';\n  }`, `  .item {\n    --at-apply: 'pl-4 relative z-3 block truncate cursor-pointer';\n    text-indent: calc((var(--heading-depth) - 2) * 1.2em);\n  }`)
+    return replaceRequired(result, `  .item {\n    --at-apply: 'relative z-3 flex min-w-0 items-center cursor-pointer';\n    padding-left: calc(2.625rem + var(--heading-level) * 0.75rem);\n  }\n  .item-label {\n    --at-apply: 'min-w-0 truncate';\n  }`, `  .item {\n    --at-apply: 'relative z-3 block truncate cursor-pointer';\n    padding-left: calc(2.625rem + var(--heading-level) * 0.75rem);\n  }`)
   },
   'sw.js': (source) => {
     const result = replaceRequired(source, `import { NetworkFirst } from 'workbox-strategies'\n`)
