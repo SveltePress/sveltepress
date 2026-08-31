@@ -1,5 +1,11 @@
 # @sveltepress/theme-blog
 
+## 1.0.3
+
+### Patch Changes
+
+- [`8fa7647`](https://github.com/Blackman99/sveltepress/commit/8fa76476de7a47f23a785d02892dfa33c886d7da) Thanks [@Blackman99](https://github.com/Blackman99)! - Prefix site-absolute image sources and links in Markdown post bodies with SvelteKit's configured base path, and include that base in the post parse cache identity so root and subpath builds cannot reuse incompatible HTML.
+
 ## 1.0.2
 
 ### Patch Changes
