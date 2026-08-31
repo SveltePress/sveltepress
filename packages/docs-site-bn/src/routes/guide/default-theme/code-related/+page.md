@@ -101,9 +101,7 @@ function hello() {
 লাইন ফোকাস করতে `// [svp! fc]` or `// [svp! !!]` ব্যবহার করুন।
 একাধিক লাইন ফোকাস করতে `// [svp! fc:num]` or `// [svp! !!:num]` ব্যবহার করুন।
 
-:::warning[সাপোর্ট করবে না]
-এক কোড ব্লকে একাধিক `// [svp! fc]` সাপোর্ট করবে না।
-:::
+একই কোড ব্লকে একাধিক ফোকাস নির্দেশনা ব্যবহার করা যায়। নির্দেশিত প্রতিটি লাইন বা লাইন-পরিসর ফোকাসে থাকবে, আর বাকি লাইনগুলো ম্লান হবে।
 
 ````md live
 ```html
@@ -119,6 +117,10 @@ function hello() {
 <div>
   this would be blur
 </div>
+<div>
+  this would be blur
+</div>
+<p>this would also be focus</p> // [svp! fc]
 <div>
   this would be blur
 </div>

@@ -35,6 +35,73 @@ describe('prepareCodeBlock', () => {
     expect(result.commandDoms[0]).toContain('svp-code-block--hl')
   })
 
+  it('keeps multiple focus ranges clear within one code block', () => {
+    const code = [
+      'dimmed before',
+      'focused first // [svp! fc]',
+      'dimmed between one',
+      'dimmed between two',
+      'focused second // [svp! !!:2]',
+      'focused second continued',
+      'dimmed after',
+    ].join('\n')
+
+    const result = prepareCodeBlock(code)
+
+    expect(result.processedCode).toBe([
+      'dimmed before',
+      'focused first ',
+      'dimmed between one',
+      'dimmed between two',
+      'focused second ',
+      'focused second continued',
+      'dimmed after',
+    ].join('\n'))
+    expect(result.commandDoms).toEqual([
+      '<div class="svp-code-block--focus" style="top: 0;height: calc(12px + 1.5em);"></div>',
+      '<div class="svp-code-block--focus" style="top: calc(12px + 3em);height: 3em;"></div>',
+      '<div class="svp-code-block--focus" style="top: calc(12px + 9em);height: calc(12px + 1.5em);"></div>',
+    ])
+  })
+
+  it('merges adjacent focus ranges and clamps them to the code block', () => {
+    const code = [
+      'dimmed before',
+      'focused first // [svp! fc:2]',
+      'focused first continued',
+      'focused second // [svp! !!:10]',
+      'focused second continued',
+    ].join('\n')
+
+    const result = prepareCodeBlock(code)
+
+    expect(result.commandDoms).toEqual([
+      '<div class="svp-code-block--focus" style="top: 0;height: calc(12px + 1.5em);"></div>',
+      '<div class="svp-code-block--focus" style="top: calc(12px + 7.5em);height: calc(12px + 0em);"></div>',
+    ])
+  })
+
+  it('merges overlapping focus ranges alongside other code commands', () => {
+    const code = [
+      'focused first // [svp! fc:3] // [svp! ++]',
+      'focused first continued',
+      'focused overlap // [svp! !!:3] // [svp! ~~]',
+      'focused overlap continued',
+      'focused through the end',
+    ].join('\n')
+
+    const result = prepareCodeBlock(code)
+
+    expect(result.processedCode).not.toContain('// [svp!')
+    expect(result.commandDoms).toHaveLength(4)
+    expect(result.commandDoms[0]).toContain('svp-code-block--diff-bg-add')
+    expect(result.commandDoms[1]).toContain('svp-code-block--hl')
+    expect(result.commandDoms.slice(2)).toEqual([
+      '<div class="svp-code-block--focus" style="top: 0;height: calc(12px + 0em);"></div>',
+      '<div class="svp-code-block--focus" style="top: calc(12px + 7.5em);height: calc(12px + 0em);"></div>',
+    ])
+  })
+
   it('handles @noErrors first line', () => {
     const code = '// @noErrors\nconst x: string = 1'
     const result = prepareCodeBlock(code)

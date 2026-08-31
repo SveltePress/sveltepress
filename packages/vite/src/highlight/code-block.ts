@@ -1,4 +1,5 @@
-import { processCommands } from './commands.js'
+import type { FocusRange } from './commands.js'
+import { processCommands, renderFocusRanges } from './commands.js'
 
 export interface PreparedCodeBlock {
   /** Code with commands stripped, ready for Shiki. Includes @noErrors line if present. */
@@ -40,6 +41,7 @@ export function prepareCodeBlock(code: string, meta?: string): PreparedCodeBlock
     title = titleMeta.split('=')[1].replace(/(^")|("$)/g, '')
 
   const commandDoms: string[] = []
+  const focusRanges: FocusRange[] = []
   const lines = code.split('\n')
 
   let noErrors = false
@@ -49,10 +51,11 @@ export function prepareCodeBlock(code: string, meta?: string): PreparedCodeBlock
   }
 
   const processedLines = lines.map((line, i) => {
-    const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length)
+    const [commandDomsInOneLine, newLine] = processCommands(line, i, lines.length, { focusRanges })
     commandDoms.push(...commandDomsInOneLine)
     return newLine
   })
+  commandDoms.push(...renderFocusRanges(focusRanges, lines.length))
 
   let processedCode = processedLines.join('\n')
   if (noErrors)

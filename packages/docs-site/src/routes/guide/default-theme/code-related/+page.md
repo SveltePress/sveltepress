@@ -101,9 +101,7 @@ function hello() {
 Use `// [svp! fc]` or `// [svp! !!]` to focus line
 Use `// [svp! fc:num]` or `// [svp! !!:num]` to focus num lines from current line
 
-:::warning[Not Supported]
-Multi `// [svp! fc]` in one single code block is not supported
-:::
+You can use multiple focus commands in the same code block. Each selected line or range stays focused, while the remaining lines are dimmed.
 
 ````md live
 ```html
@@ -119,6 +117,10 @@ Multi `// [svp! fc]` in one single code block is not supported
 <div>
   this would be blur
 </div>
+<div>
+  this would be blur
+</div>
+<p>this would also be focus</p> // [svp! fc]
 <div>
   this would be blur
 </div>

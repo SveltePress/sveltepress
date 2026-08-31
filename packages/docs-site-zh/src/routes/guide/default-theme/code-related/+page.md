@@ -102,9 +102,7 @@ function hello() {
 使用 `// [svp! fc]` or `// [svp! !!]` 来聚焦当前行
 使用 `// [svp! fc:num]` or `// [svp! !!:num]` 来聚焦从当前行开始的总共 num 行
 
-:::warning[Not Supported]
-Multi `// [svp! fc]` in one single code block is not supported
-:::
+同一个代码块中可以使用多个聚焦指令。每个指定的行或行范围都会保持聚焦，其余行会变暗。
 
 ````md live
 ```html
@@ -120,6 +118,10 @@ Multi `// [svp! fc]` in one single code block is not supported
 <div>
   this would be blur
 </div>
+<div>
+  this would be blur
+</div>
+<p>this would also be focus</p> // [svp! fc]
 <div>
   this would be blur
 </div>

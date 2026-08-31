@@ -1,5 +1,14 @@
 type Command = (params: string, lineIndex: number, lines: number) => string | string[]
 
+export interface FocusRange {
+  start: number
+  end: number
+}
+
+interface ProcessCommandsOptions {
+  focusRanges?: FocusRange[]
+}
+
 export const COMMAND_RE = /\/\/ \[svp! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(!!))(:\S+)?\]/
 
 export const highlightLine: Command = (linesNumberToHighlight, idx, lines) => {
@@ -24,15 +33,44 @@ export const diff: Command = (addOrCut, idx) => {
 }
 
 export const focus: Command = (linesNumberToFocus, idx, lines) => {
-  const num = Number(linesNumberToFocus)
-  const wrapFocus = (top: string, height: string) =>
-    `<div class="svp-code-block--focus" style="top: ${top};height: ${height};"></div>`
-  const start = (Number.isNaN(num) || num < 1) ? idx : idx + num - 1
-  const res = [
-    wrapFocus('0', `calc(12px + ${idx * 1.5}em)`),
+  return renderFocusRanges([toFocusRange(linesNumberToFocus, idx, lines)], lines).join('\n')
+}
+
+export function renderFocusRanges(ranges: FocusRange[], lines: number): string[] {
+  if (!ranges.length)
+    return []
+
+  const mergedRanges = ranges
+    .toSorted((a, b) => a.start - b.start)
+    .reduce<FocusRange[]>((merged, range) => {
+      const previous = merged.at(-1)
+      if (previous && range.start <= previous.end + 1)
+        previous.end = Math.max(previous.end, range.end)
+      else
+        merged.push({ ...range })
+      return merged
+    }, [])
+
+  const overlays = [
+    wrapFocus('0', `calc(12px + ${mergedRanges[0].start * 1.5}em)`),
   ]
-  res.push(wrapFocus(`calc(12px + ${(start + 1) * 1.5}em)`, `calc(12px + ${(lines - start - 1) * 1.5}em)`))
-  return res.join('\n')
+
+  for (let i = 1; i < mergedRanges.length; i++) {
+    const previous = mergedRanges[i - 1]
+    const current = mergedRanges[i]
+    const gapLines = current.start - previous.end - 1
+    overlays.push(wrapFocus(
+      `calc(12px + ${(previous.end + 1) * 1.5}em)`,
+      `${gapLines * 1.5}em`,
+    ))
+  }
+
+  const lastRange = mergedRanges.at(-1)!
+  overlays.push(wrapFocus(
+    `calc(12px + ${(lastRange.end + 1) * 1.5}em)`,
+    `calc(12px + ${(lines - lastRange.end - 1) * 1.5}em)`,
+  ))
+  return overlays
 }
 
 export const COMMAND_CHEAT_LIST: Record<string, Command> = {
@@ -54,7 +92,8 @@ export const processCommands: (
   line: string,
   lineIndex: number,
   lineLength: number,
-) => [string[], string] = (line, lineIndex, lineLength) => {
+  options?: ProcessCommandsOptions,
+) => [string[], string] = (line, lineIndex, lineLength, options = {}) => {
   const commandDoms: string[] = []
   let newLine = line
   const re = /\/\/ \[svp! ((hl)|(~~)|(\+\+)|(--)|(df)|(fc)|(!!))(:\S+)?\]/g
@@ -66,11 +105,16 @@ export const processCommands: (
     const [name, params] = command.split(':')
     const commandExecutor = COMMAND_CHEAT_LIST[name]
     if (commandExecutor) {
-      const result = commandExecutor(params, lineIndex, lineLength)
-      if (Array.isArray(result))
-        commandDoms.push(...result)
-      else
-        commandDoms.push(result)
+      if (commandExecutor === focus && options.focusRanges) {
+        options.focusRanges.push(toFocusRange(params, lineIndex, lineLength))
+      }
+      else {
+        const result = commandExecutor(params, lineIndex, lineLength)
+        if (Array.isArray(result))
+          commandDoms.push(...result)
+        else
+          commandDoms.push(result)
+      }
     }
 
     const idx = newLine.indexOf(commandRaw)
@@ -79,6 +123,19 @@ export const processCommands: (
     matches = re.exec(line)
   }
   return [commandDoms, newLine]
+}
+
+function toFocusRange(linesNumberToFocus: string, idx: number, lines: number): FocusRange {
+  const num = Number(linesNumberToFocus)
+  const count = (Number.isNaN(num) || num < 1) ? 1 : num
+  return {
+    start: idx,
+    end: Math.min(idx + count - 1, lines - 1),
+  }
+}
+
+function wrapFocus(top: string, height: string) {
+  return `<div class="svp-code-block--focus" style="top: ${top};height: ${height};"></div>`
 }
 
 function warpLine(classes: string, idx: number, content = '') {
