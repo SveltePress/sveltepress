@@ -129,7 +129,7 @@ function hello() {
 
 ## Markdown লাইভ কোড
 
-md lang এবং live prop ব্যবহার করলে কোডের রেজাল্ট এবং তার নিচে Markdown এর সোর্স কোড দেখাবে।
+`md` language এবং `live` prop ব্যবহার করলে Markdown preview এবং তার নিচে source code দেখাবে। Source panel-এ শুধু Markdown syntax highlighting প্রয়োগ হয়; code command ও অন্য transform শুধু preview-তে কাজ করে, আর source-এ মূল Markdown অপরিবর্তিত থাকে।
 
 **Input**
 

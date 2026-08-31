@@ -2,7 +2,7 @@ import type { FocusRange } from './commands.js'
 import { processCommands, renderFocusRanges } from './commands.js'
 
 export interface PreparedCodeBlock {
-  /** Code with commands stripped, ready for Shiki. Includes @noErrors line if present. */
+  /** Code ready for Shiki. Commands are stripped unless literal mode is requested. */
   processedCode: string
   /** Command overlay HTML divs */
   commandDoms: string[]
@@ -10,10 +10,15 @@ export interface PreparedCodeBlock {
   title?: string
   /** Whether line numbers were requested (ln in meta) */
   containLineNumbers: boolean
-  /** Original lines array (commands stripped, @noErrors removed) — used for line number count */
+  /** Lines used for line number count. Literal mode preserves them unchanged. */
   lines: string[]
-  /** Whether @noErrors was present as first line */
+  /** Whether @noErrors was processed as the first line */
   noErrors: boolean
+}
+
+export interface PrepareCodeBlockOptions {
+  /** Use literal mode to skip code commands and @noErrors processing. */
+  mode?: 'commands' | 'literal'
 }
 
 export interface WrapCodeBlockOptions {
@@ -31,7 +36,11 @@ export interface WrapCodeBlockOptions {
  * Parse code block metadata and process code commands.
  * Call BEFORE Shiki highlighting.
  */
-export function prepareCodeBlock(code: string, meta?: string): PreparedCodeBlock {
+export function prepareCodeBlock(
+  code: string,
+  meta?: string,
+  options: PrepareCodeBlockOptions = {},
+): PreparedCodeBlock {
   const metaArray = (meta || '').split(' ')
   const containLineNumbers = metaArray.some(item => item.trim() === 'ln')
   const titleMeta = metaArray.find(item => item.startsWith('title='))
@@ -43,6 +52,17 @@ export function prepareCodeBlock(code: string, meta?: string): PreparedCodeBlock
   const commandDoms: string[] = []
   const focusRanges: FocusRange[] = []
   const lines = code.split('\n')
+
+  if (options.mode === 'literal') {
+    return {
+      processedCode: code,
+      commandDoms,
+      title,
+      containLineNumbers,
+      lines,
+      noErrors: false,
+    }
+  }
 
   let noErrors = false
   if (lines[0] === '// @noErrors') {

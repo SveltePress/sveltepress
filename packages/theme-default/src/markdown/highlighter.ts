@@ -56,7 +56,13 @@ const highlighter: Highlighter = async (code, lang, meta) => {
       return cached
   }
 
-  const prepared = prepareCodeBlock(code, meta)
+  const prepared = prepareCodeBlock(
+    code,
+    meta,
+    lang === 'md' && meta?.split(' ').includes('live')
+      ? { mode: 'literal' }
+      : undefined,
+  )
 
   const themeOptions = themeOptionsRef.value
   const collapseAfterLines = themeOptions?.highlighter?.codeCollapseLines ?? 30

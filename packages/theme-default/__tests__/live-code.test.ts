@@ -84,6 +84,74 @@ describe('live code', async () => {
     expect(code).toMatchSnapshot()
   }, 10000)
 
+  it('keeps markdown live source as markdown-only highlighting', async () => {
+    const source = [
+      '````md live',
+      '```js',
+      'const value = 1 // [svp! hl]',
+      '```',
+      '````',
+    ].join('\n')
+
+    const { code } = await mdToSvelte({
+      filename: 'markdown-live.md',
+      mdContent: source,
+      remarkPlugins: [liveCode],
+      rehypePlugins: [componentImports],
+      highlighter,
+    })
+
+    expect(code.match(/svp-live-code--container/g)).toHaveLength(1)
+    expect(code.match(/<Expansion codeType="md"/g)).toHaveLength(1)
+    expect(code.match(/svp-code-block--hl/g)).toHaveLength(1)
+    expect(code).toContain('svp! hl')
+  })
+
+  it('does not compile nested svelte live blocks from markdown live code', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-markdown-live-source-'))
+    const filename = join(root, 'src/routes/guide/+page.md')
+    const source = [
+      '````md live',
+      '```svelte live',
+      '<button>Nested demo</button>',
+      '```',
+      '````',
+    ].join('\n')
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    writeFileSync(filename, source)
+
+    const artifact = await compilePageArtifactModule({
+      filename,
+      source,
+      remarkPlugins: [liveCode],
+      rehypePlugins: [componentImports],
+    })
+
+    expect(Object.keys(artifact.files).filter(path => path.startsWith('generated/live-code/'))).toEqual([])
+    expect(String(artifact.files['client.js'])).not.toContain('page-artifact-generated/live-code/')
+  })
+
+  it('keeps no-ast markdown live source as markdown-only highlighting', async () => {
+    const source = [
+      '````md live no-ast',
+      '```js',
+      'const value = 1 // [svp! hl]',
+      '```',
+      '````',
+    ].join('\n')
+
+    const { code } = await mdToSvelte({
+      filename: 'markdown-live-no-ast.md',
+      mdContent: source,
+      remarkPlugins: [liveCode],
+      rehypePlugins: [componentImports],
+      highlighter,
+    })
+
+    expect(code.match(/svp-code-block--hl/g)).toHaveLength(1)
+    expect(code).toContain('svp! hl')
+  })
+
   it('async svelte live code', async () => {
     const source = `---
 title: Test Page

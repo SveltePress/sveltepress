@@ -113,6 +113,18 @@ describe('prepareCodeBlock', () => {
     const result = prepareCodeBlock('a\nb\nc')
     expect(result.lines).toEqual(['a', 'b', 'c'])
   })
+
+  it('preserves literal source without processing code commands', () => {
+    const code = '// @noErrors\nconst value = 1 // [svp! hl]'
+    const result = prepareCodeBlock(code, 'title="source.md" ln', { mode: 'literal' })
+
+    expect(result.processedCode).toBe(code)
+    expect(result.commandDoms).toEqual([])
+    expect(result.lines).toEqual(code.split('\n'))
+    expect(result.noErrors).toBe(false)
+    expect(result.title).toBe('source.md')
+    expect(result.containLineNumbers).toBe(true)
+  })
 })
 
 describe('wrapCodeBlock', () => {

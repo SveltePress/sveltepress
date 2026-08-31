@@ -129,7 +129,7 @@ You can use multiple focus commands in the same code block. Each selected line o
 
 ## Markdown live code
 
-Use md lang and live prop would render the result and the markdown source codes under the result.
+Use the `md` language with the `live` prop to render the Markdown preview and show its source below. The source panel only applies Markdown syntax highlighting: code commands and other transforms run in the preview, while the original Markdown remains unchanged in the source.
 
 **Input**
 
