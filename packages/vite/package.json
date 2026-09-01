@@ -36,6 +36,10 @@
       "types": "./dist/versioning/runtime.d.ts",
       "import": "./dist/versioning/runtime.mjs"
     },
+    "./locale": {
+      "types": "./dist/locale.d.ts",
+      "import": "./dist/locale.mjs"
+    },
     "./types": {
       "types": "./types.d.ts"
     }

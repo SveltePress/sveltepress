@@ -53,6 +53,41 @@ export interface PageInfo {
   frontmatter: Record<string, unknown>
 }
 
+/**
+ * A single locale of a multi-locale site. Keyed by its URL prefix (`'/'` for
+ * the default locale, `'/zh/'`, `'/bn/'`, ...).
+ */
+export interface LocaleConfig<ThemeOptions = any> {
+  /** BCP 47 language tag, e.g. `'en'`, `'zh-CN'`, `'bn'`. */
+  lang: string
+  /** User-facing label rendered in the language switcher. */
+  label: string
+  /** The locale's full theme options. */
+  theme: ThemeOptions
+  /**
+   * Logical routes available in this locale (no locale prefix). Populated by
+   * the core plugin from the routes directory; only needed explicitly when
+   * constructing configs directly.
+   */
+  routes?: string[]
+}
+
+/** Multi-locale site configuration keyed by URL prefix. */
+export type LocalesConfig<ThemeOptions = any> = Record<string, LocaleConfig<ThemeOptions>>
+
+/** A locale resolved from a route: the locale config plus its matched prefix. */
+export interface ResolvedLocale<ThemeOptions = any> extends LocaleConfig<ThemeOptions> {
+  /** The locale's URL prefix, e.g. `'/'`, `'/zh/'`. */
+  prefix: string
+}
+
+/** The target of a locale switch. */
+export interface LocaleSwitchTarget {
+  href: string
+  /** Whether the target locale lacks the logical page and the href falls back to its home. */
+  fallback: boolean
+}
+
 export interface LlmsConfig {
   enabled?: boolean
   title?: string
@@ -70,6 +105,14 @@ export interface SveltepressVitePluginOptions {
   remarkPlugins?: Plugin[] | RemarkPluginsOrderer
   rehypePlugins?: Plugin[] | RehypePluginsOrderer
   llms?: LlmsConfig
+  /**
+   * Multi-locale site configuration keyed by URL prefix (`'/'` for the default
+   * locale, `'/zh/'`, `'/bn/'`, ...). Each entry carries that locale's `lang`,
+   * a user-facing `label` for the switcher, and its full theme options.
+   *
+   * When omitted the site stays single-locale and behavior is unchanged.
+   */
+  locales?: LocalesConfig
   /**
    * Enable document version management by discovering
    * `sveltepress.versions.json`, override its location, or disable discovery.

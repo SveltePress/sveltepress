@@ -6,6 +6,7 @@ import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { basename, dirname, extname, resolve } from 'node:path'
 import process from 'node:process'
 import { generateLlmsTxt } from './llms.js'
+import { resolveLocalesConfig } from './locale.js'
 import { wrapPage } from './utils/wrap-page.js'
 import {
   compilePageArtifactModule,
@@ -27,6 +28,7 @@ export const BASE_PATH = resolve(process.cwd(), '.sveltepress')
 // virtual modules
 const SVELTEPRESS_SITE_CONFIG_MODULE = 'virtual:sveltepress/site'
 const SVELTEPRESS_VERSIONS_MODULE = 'virtual:sveltepress/versions'
+const SVELTEPRESS_LOCALE_MODULE = 'virtual:sveltepress/locale'
 const PAGE_ARTIFACT_TEXT_EXTENSIONS = new Set([
   '',
   '.cjs',
@@ -63,12 +65,16 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   remarkPlugins,
   llms,
   versions,
+  locales,
 }) => {
   const siteRoot = process.cwd()
   const manifestFile = versions?.manifest
   let versionManifest = versions === false
     ? null
     : loadVersionManifest(siteRoot, manifestFile)
+  const resolvedLocales = locales && Object.keys(locales).length > 0
+    ? resolveLocalesConfig(locales, siteRoot, versionManifest?.basePath)
+    : null
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
 
@@ -182,6 +188,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         return SVELTEPRESS_SITE_CONFIG_MODULE
       if (id === SVELTEPRESS_VERSIONS_MODULE)
         return SVELTEPRESS_VERSIONS_MODULE
+      if (id === SVELTEPRESS_LOCALE_MODULE)
+        return SVELTEPRESS_LOCALE_MODULE
       return null
     },
     async load(id, options) {
@@ -248,6 +256,29 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
           export const resolveVersionedPath = runtime.resolveVersionedPath
           export const resolveVersionSwitch = runtime.resolveVersionSwitch
           export default runtime
+        `
+      }
+      if (id === SVELTEPRESS_LOCALE_MODULE) {
+        if (!resolvedLocales) {
+          return `
+            export const locales = null
+            export const resolveLocale = () => null
+            export const resolveLocalizedPath = value => value
+            export const resolveLocaleSwitch = () => null
+            export default { locales, resolveLocale, resolveLocalizedPath, resolveLocaleSwitch }
+          `
+        }
+        return `
+          import {
+            resolveLocale as resolveLocaleHelper,
+            resolveLocalizedPath as resolveLocalizedPathHelper,
+            resolveLocaleSwitch as resolveLocaleSwitchHelper,
+          } from '@sveltepress/vite/locale'
+          export const locales = ${JSON.stringify(resolvedLocales)}
+          export const resolveLocale = pathname => resolveLocaleHelper(pathname, locales)
+          export const resolveLocalizedPath = (to, locale) => resolveLocalizedPathHelper(to, locale, locales)
+          export const resolveLocaleSwitch = (pathname, targetPrefix) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales)
+          export default { locales, resolveLocale, resolveLocalizedPath, resolveLocaleSwitch }
         `
       }
     },

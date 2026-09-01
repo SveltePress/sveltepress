@@ -1,5 +1,5 @@
 import type { PluginOption } from 'vite'
-import type { Highlighter, LlmsConfig, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
+import type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
 import { enhancedImages } from '@sveltejs/enhanced-img'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
@@ -18,6 +18,7 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
   llms,
   versions,
   svelteKitOptions,
+  locales,
 } = {
   addInspect: false,
 }) => {
@@ -33,6 +34,7 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
       rehypePlugins,
       llms,
       versions,
+      locales,
     }),
     // must come before sveltekit, and after sveltepress
     enhancedImages(),
@@ -59,6 +61,6 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
 }
 
 export { mdToSvelte, sveltepress }
-export type { Highlighter, LlmsConfig, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
+export type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
 export * as log from './utils/log.js'
 export * from './versioning/index.js'
