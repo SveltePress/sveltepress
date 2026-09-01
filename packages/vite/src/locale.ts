@@ -1,11 +1,14 @@
 import type { LocalesConfig, LocaleSwitchTarget, ResolvedLocale } from './types.js'
-import { existsSync, readdirSync, statSync } from 'node:fs'
-import { join, relative, resolve } from 'node:path'
 
 /**
  * Resolve the locale for a route path. Prefix-based matching: the default
  * locale (`'/'`) matches every path, and longer prefixes win for everything
  * else. Returns `null` when no locales are configured or no locale matches.
+ *
+ * This module is imported from client code through the
+ * `virtual:sveltepress/locale` virtual module, so it must stay free of any
+ * Node.js built-in imports. Build-time filesystem scanning lives in
+ * `locale-scan.ts`.
  */
 export function resolveLocale(
   pathname: string,
@@ -71,78 +74,6 @@ export function resolveLocaleSwitch(
     href: joinLocalePath(targetPrefix, routeExists ? logicalPath : '/'),
     fallback: !routeExists,
   }
-}
-
-/**
- * Resolve a `locales` config into its final form by scanning each locale's
- * routes directory and embedding the discovered route inventory.
- */
-export function resolveLocalesConfig(
-  locales: LocalesConfig,
-  siteRoot: string,
-  versionBasePath?: string,
-): LocalesConfig {
-  const resolved: LocalesConfig = {}
-  for (const [prefix, config] of Object.entries(locales))
-    resolved[prefix] = { ...config, routes: scanLocaleRoutes(siteRoot, prefix, locales, versionBasePath) }
-  return resolved
-}
-
-/**
- * Scan one locale's routes directory for current pages (`+page.md` /
- * `+page.svelte`) and derive their logical routes (no locale prefix). Other
- * locales' directories and the version base path are excluded.
- */
-export function scanLocaleRoutes(
-  siteRoot: string,
-  prefix: string,
-  locales: LocalesConfig,
-  versionBasePath?: string,
-): string[] {
-  const routesRoot = localeRoutesDir(siteRoot, prefix)
-  const excludedRoots = [
-    ...Object.keys(locales)
-      .filter(other => other !== prefix)
-      .map(other => localeRoutesDir(siteRoot, other))
-      .filter(other => other !== routesRoot),
-    ...(versionBasePath ? [join(routesRoot, versionBasePath.replace(/^\/+|\/+$/g, ''))] : []),
-  ]
-  const files = collectPageFiles(routesRoot, excludedRoots)
-  return [...new Set(files.map(filePath => deriveRoute(filePath, routesRoot)))].sort()
-}
-
-function localeRoutesDir(siteRoot: string, prefix: string): string {
-  if (prefix === '/' || prefix === '')
-    return join(siteRoot, 'src/routes')
-  return join(siteRoot, 'src/routes', prefix.replace(/^\/+|\/+$/g, ''))
-}
-
-function collectPageFiles(dir: string, excludedRoots: string[]): string[] {
-  if (!existsSync(dir))
-    return []
-  const results: string[] = []
-  for (const entry of readdirSync(dir)) {
-    const full = join(dir, entry)
-    if (excludedRoots.some(root => resolve(full) === resolve(root)))
-      continue
-    const stat = statSync(full)
-    if (stat.isDirectory()) {
-      results.push(...collectPageFiles(full, excludedRoots))
-    }
-    else if (entry === '+page.md' || entry === '+page.svelte') {
-      results.push(full)
-    }
-  }
-  return results
-}
-
-function deriveRoute(filePath: string, routesRoot: string): string {
-  const rel = relative(routesRoot, filePath)
-  const dir = rel.replace(/[/\\]\+page\.(?:md|svelte)$/, '').replace(/^\+page\.(?:md|svelte)$/, '')
-  if (!dir)
-    return '/'
-  const parts = dir.split(/[/\\]/).filter(p => !/^\(.*\)$/.test(p))
-  return normalizeRoute(`/${parts.join('/')}`)
 }
 
 function matchesLocalePrefix(pathname: string, prefix: string): boolean {

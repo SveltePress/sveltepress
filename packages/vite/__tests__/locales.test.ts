@@ -5,7 +5,8 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import process from 'node:process'
 import { afterEach, describe, expect, it } from 'vitest'
-import { resolveLocale, resolveLocalesConfig, resolveLocaleSwitch, resolveLocalizedPath } from '../src/locale'
+import { resolveLocale, resolveLocaleSwitch, resolveLocalizedPath } from '../src/locale'
+import { resolveLocalesConfig } from '../src/locale-scan'
 import sveltepress from '../src/plugin'
 
 const originalCwd = process.cwd()

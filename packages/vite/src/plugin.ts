@@ -6,7 +6,7 @@ import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { basename, dirname, extname, resolve } from 'node:path'
 import process from 'node:process'
 import { generateLlmsTxt, generateLlmsTxtForLocales } from './llms.js'
-import { resolveLocalesConfig } from './locale.js'
+import { resolveLocalesConfig } from './locale-scan.js'
 import { generateLocaleSitemap } from './sitemap.js'
 import { wrapPage } from './utils/wrap-page.js'
 import {
