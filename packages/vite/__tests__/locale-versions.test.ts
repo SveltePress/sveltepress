@@ -91,6 +91,24 @@ describe('locale-aware version runtime', () => {
     expect(runtime.resolveVersionSwitch('/guide/', 'v8')).toEqual({ href: '/v/v8/guide/', fallback: false })
   })
 
+  it('keeps the locale prefix when switching from a historical localized route to the current version', () => {
+    expect(runtime.resolveVersionSwitch('/zh/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/zh/guide/', fallback: false })
+    expect(runtime.resolveVersionSwitch('/zh/v/2026-08-27/', '2026-08-28')).toEqual({ href: '/zh/', fallback: false })
+  })
+
+  it('falls back within the active locale when the current route is missing', () => {
+    const partial = {
+      '/': enManifest(),
+      '/zh/': {
+        ...zhManifest(),
+        current: { id: '2026-08-28', label: '2026-08-28', routes: ['/'] },
+      },
+      '/bn/': null,
+    }
+    const localized = createLocaleVersionRuntime(partial, pathname => (pathname.startsWith('/zh/') || pathname === '/zh') ? '/zh/' : '/')
+    expect(localized.resolveVersionSwitch('/zh/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/zh/', fallback: true })
+  })
+
   it('exposes changes per manifest and a default current change lookup', () => {
     expect(runtime.resolveVersionChanges('2026-08-27')).toBeNull()
     expect(runtime.resolveVersionChanges('v8')).toBeNull()

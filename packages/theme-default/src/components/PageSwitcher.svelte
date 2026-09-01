@@ -3,7 +3,11 @@
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'
   import { pages } from './layout'
-  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
+  import {
+    resolveLocaleLink,
+    resolveLocaleOptions,
+    resolveLogicalRoute,
+  } from './locale'
   import { getPathFromBase, isLinkActive } from './utils'
 
   const routeId = page.route.id
@@ -26,7 +30,12 @@
   <div class:switcher={hasPrevPage}>
     {#if hasPrevPage}
       {@const prevPage = $pages[activeIdx - 1]}
-      <a href={getPathFromBase(prevPage.to)} class="trigger">
+      <a
+        href={getPathFromBase(
+          resolveLocaleLink(prevPage.to, page.url.pathname),
+        )}
+        class="trigger"
+      >
         <div class="hint">
           {localeOptions.i18n?.previousPage || DEFAULT_PREVIOUS_TEXT}
         </div>
@@ -44,7 +53,12 @@
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
-      <a href={getPathFromBase(nextPage.to)} class="trigger">
+      <a
+        href={getPathFromBase(
+          resolveLocaleLink(nextPage.to, page.url.pathname),
+        )}
+        class="trigger"
+      >
         <div class="hint">
           {localeOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
         </div>

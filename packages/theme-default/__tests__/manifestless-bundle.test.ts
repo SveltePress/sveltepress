@@ -7,7 +7,7 @@ import { stripVersioningForManifestlessSite } from '../src/vite-plugins/strip-ve
 const reviewedManifestlessHashes = {
   'ActionButton.svelte': 'bca18b81ffc519b9c94abfe42ead195b79c0d5176f6318989dd33176cff7bd29',
   'EditPage.svelte': '37cb8f0bffd3abb9df65db87f7730dd7528f7c95cdd30af762703d765bf663fb',
-  'GlobalLayout.svelte': '1e4ae5370711370f4c58290959f34a7192907eea63e62ff05a89564dad1dd7ec',
+  'GlobalLayout.svelte': 'f471a31a701f065a35d959afcc00d496abe950b44422f62335b59cc484dd72c4',
   'Link.svelte': '8c109b2b40606e9667ebd3e5aa026c3169c2db72bebd1c994df1f778f5560877',
   'Logo.svelte': 'd2074801f9c08eb1e934cf304ac14e7d0845012d99ccd0e023a8be372f07aedc',
   'NavItem.svelte': 'ecd90633c65dbdd4261dcb36beb62c90de9130ec5f79a551773d36f6526f6fd2',

@@ -3,11 +3,14 @@
 import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import GlobalLayout from '../src/components/GlobalLayout.svelte'
+import { resolveSidebar } from '../src/components/layout'
 import Link from '../src/components/Link.svelte'
 import LocaleFallbackNotice from '../src/components/LocaleFallbackNotice.svelte'
 import LocaleSelector from '../src/components/LocaleSelector.svelte'
 import Navbar from '../src/components/Navbar.svelte'
 import NavbarMobile from '../src/components/NavbarMobile.svelte'
+import PageSwitcher from '../src/components/PageSwitcher.svelte'
 import { setPage } from './fixtures/app-state.svelte'
 import { localeFixture, setLocaleFixtures } from './fixtures/locale'
 import { gotoCalls, resetNavigation } from './fixtures/navigation'
@@ -26,6 +29,7 @@ beforeEach(() => {
 afterEach(() => {
   cleanup()
   setLocaleFixtures(null)
+  document.documentElement.lang = ''
 })
 
 describe('language switcher', () => {
@@ -141,5 +145,65 @@ describe('locale-aware navigation chrome', () => {
   it('shows no fallback notice without locales or a fallback marker', () => {
     const view = render(LocaleFallbackNotice)
     expect(view.queryByRole('status')).toBeNull()
+  })
+})
+
+describe('locale-scoped page switcher', () => {
+  it('resolves previous and next page links within the active locale', () => {
+    setPage('/zh/guide/new/')
+    resolveSidebar('/zh/guide/new/')
+    const view = render(PageSwitcher)
+    const prev = view.getByRole('link', { name: /Guide/ })
+    const next = view.getByRole('link', { name: /Unchanged/ })
+    expect(prev.getAttribute('href')).toBe('/zh/guide/')
+    expect(next.getAttribute('href')).toBe('/zh/guide/unchanged/')
+  })
+
+  it('resolves previous and next page links within the Bengali locale', () => {
+    setPage('/bn/guide/new/')
+    resolveSidebar('/bn/guide/new/')
+    const view = render(PageSwitcher)
+    const prev = view.getByRole('link', { name: /Guide/ })
+    const next = view.getByRole('link', { name: /Unchanged/ })
+    expect(prev.getAttribute('href')).toBe('/bn/guide/')
+    expect(next.getAttribute('href')).toBe('/bn/guide/unchanged/')
+  })
+
+  it('keeps default-locale page switcher links unprefixed', () => {
+    setPage('/guide/new/')
+    resolveSidebar('/guide/new/')
+    const view = render(PageSwitcher)
+    const prev = view.getByRole('link', { name: /Guide/ })
+    const next = view.getByRole('link', { name: /Unchanged/ })
+    expect(prev.getAttribute('href')).toBe('/guide/')
+    expect(next.getAttribute('href')).toBe('/guide/unchanged/')
+  })
+})
+
+describe('document language', () => {
+  it('emits the active locale language on the document element during SSR', () => {
+    document.documentElement.lang = 'en'
+    setPage('/guide/')
+    render(GlobalLayout)
+    expect(document.documentElement.lang).toBe('en')
+  })
+
+  it('updates the document language to the Chinese locale on the client', () => {
+    setPage('/zh/guide/')
+    render(GlobalLayout)
+    expect(document.documentElement.lang).toBe('zh')
+  })
+
+  it('updates the document language to the Bengali locale on the client', () => {
+    setPage('/bn/guide/')
+    render(GlobalLayout)
+    expect(document.documentElement.lang).toBe('bn')
+  })
+
+  it('keeps the default language without locales', () => {
+    setLocaleFixtures(null)
+    setPage('/guide/')
+    render(GlobalLayout)
+    expect(document.documentElement.lang).toBe('')
   })
 })

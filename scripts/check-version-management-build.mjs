@@ -220,6 +220,10 @@ const historicalFeature = join(historicalRoot, 'guide/version-management/index.h
 const previousFeature = join(previousRoot, 'guide/version-management/index.html')
 const currentWhatsNew = join(official, 'whats-new/index.html')
 
+function assertDocumentLang(html, expected, message) {
+  assert(html.includes(`<html lang="${expected}">`), `${message}: expected <html lang="${expected}">`)
+}
+
 for (const required of [currentHome, historicalHome, previousHome, currentFeature, previousFeature, currentWhatsNew, join(official, 'llms.txt'), join(historicalRoot, 'llms.txt'), join(previousRoot, 'llms.txt'), join(official, 'sitemap.xml'), join(official, 'sw.js')])
   assert(existsSync(required), `Missing production artifact: ${required}`)
 assert(!existsSync(historicalFeature), 'A page added after the snapshot leaked into historical routes')
@@ -228,6 +232,7 @@ const historicalHtml = read(historicalHome)
 const previousHtml = read(previousHome)
 const currentHtml = read(currentHome)
 const currentFeatureHtml = read(currentFeature)
+assertDocumentLang(currentHtml, 'en', 'English current home SSR language')
 assert(historicalHtml.includes('<link rel="canonical" href="/v/2026-08-27/"'), 'Historical home is not self-canonical')
 assert(historicalHtml.includes('You are viewing an older version of this site. Some features may not work as expected.'), 'Historical lifecycle message is missing')
 assert(historicalHtml.includes('Current version'), 'Historical current-version link is missing')
@@ -289,6 +294,8 @@ for (const locale of ['zh', 'bn']) {
   const historicalHtml = read(historicalHome)
   const currentHtml = read(join(siteRoot, 'index.html'))
   const previousHtml = read(previousHome)
+  const expectedLang = locale === 'zh' ? 'zh' : 'bn'
+  assertDocumentLang(currentHtml, expectedLang, `/${locale}/ current home SSR language`)
   assert(historicalHtml.includes(`rel="canonical" href="/${locale}/v/${historicalId}/"`), `/${locale}/ historical home is not self-canonical`)
   assert(historicalHtml.includes('version-lifecycle'), `/${locale}/ historical lifecycle banner is missing`)
   assertVersionSelectorLabel(currentHtml, currentId, `/${locale}/ current version selector label is missing`)

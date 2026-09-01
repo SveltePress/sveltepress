@@ -94,8 +94,20 @@ describe('locale-aware link resolution', () => {
     expect(resolveLocalizedPath('//cdn.example.com/app.js', zh, locales())).toBe('//cdn.example.com/app.js')
   })
 
+  it('preserves query and hash suffixes byte-for-byte when localizing', () => {
+    expect(resolveLocalizedPath('/guide/?tab=api', zh, locales())).toBe('/zh/guide/?tab=api')
+    expect(resolveLocalizedPath('/guide/#install', zh, locales())).toBe('/zh/guide/#install')
+    expect(resolveLocalizedPath('/guide/?tab=api#install', zh, locales())).toBe('/zh/guide/?tab=api#install')
+  })
+
+  it('does not add a synthetic trailing slash after the suffix', () => {
+    expect(resolveLocalizedPath('/guide/?tab=api', zh, locales())).not.toMatch(/\?tab=api\//)
+    expect(resolveLocalizedPath('/guide/#install', zh, locales())).not.toMatch(/#install\//)
+  })
+
   it('leaves links untouched in the default locale', () => {
     expect(resolveLocalizedPath('/guide/install/', en, locales())).toBe('/guide/install/')
+    expect(resolveLocalizedPath('/guide/?tab=api', en, locales())).toBe('/guide/?tab=api')
   })
 })
 
@@ -112,6 +124,18 @@ describe('locale switch targets', () => {
   it('switches from a prefixed locale back to the default locale', () => {
     expect(resolveLocaleSwitch('/zh/guide/install/', '/', locales())).toEqual({ href: '/guide/install/', fallback: false })
     expect(resolveLocaleSwitch('/zh/', '/', locales())).toEqual({ href: '/', fallback: false })
+  })
+
+  it('recognizes concrete dynamic paths as translated routes', () => {
+    const dynamic = {
+      '/': { lang: 'en', label: 'English', theme: {}, routes: ['/', '/posts/[slug]/', '/guide/[[section]]/', '/docs/[...rest]/'] },
+      '/zh/': { lang: 'zh', label: '中文', theme: {}, routes: ['/', '/posts/[slug]/', '/guide/[[section]]/', '/docs/[...rest]/'] },
+    }
+    expect(resolveLocaleSwitch('/posts/hello/', '/zh/', dynamic)).toEqual({ href: '/zh/posts/hello/', fallback: false })
+    expect(resolveLocaleSwitch('/posts/hello/comments/', '/zh/', dynamic)).toEqual({ href: '/zh/', fallback: true })
+    expect(resolveLocaleSwitch('/guide/', '/zh/', dynamic)).toEqual({ href: '/zh/guide/', fallback: false })
+    expect(resolveLocaleSwitch('/docs/a/b/c/', '/zh/', dynamic)).toEqual({ href: '/zh/docs/a/b/c/', fallback: false })
+    expect(resolveLocaleSwitch('/unrelated/route/', '/zh/', dynamic)).toEqual({ href: '/zh/', fallback: true })
   })
 
   it('returns null without locales or for an unknown target prefix', () => {

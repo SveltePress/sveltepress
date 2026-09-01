@@ -28,6 +28,7 @@
     sidebar,
     sidebarCollapsed,
   } from './layout'
+  import { resolveLocaleForPath } from './locale'
   import Navbar from './Navbar.svelte'
   import Sidebar from './Sidebar.svelte'
   import Toc from './Toc.svelte'
@@ -53,6 +54,17 @@
     updateVersionChangeBadges(document, context?.version)
   }
 
+  /**
+   * Keep `document.documentElement.lang` in sync with the active locale so
+   * assistive technology and the browser see the real document language after
+   * client-side locale navigation. SSR HTML carries the language from the
+   * site-level `transformPageChunk` hook; this only updates the live document.
+   */
+  function syncDocumentLang() {
+    const lang = resolveLocaleForPath(page.url.pathname)?.lang
+    if (lang) document.documentElement.lang = lang
+  }
+
   let ajaxBar = $state()
 
   beforeNavigate(() => {
@@ -64,6 +76,7 @@
     resolveSidebar(page.route.id)
     $sidebarCollapsed = true
     $navCollapsed = true
+    syncDocumentLang()
     tick().then(refreshVersionChangeBadges)
   })
 
@@ -101,6 +114,7 @@
 
   onMount(async () => {
     refreshVersionChangeBadges()
+    syncDocumentLang()
     if (themeOptions.pwa)
       pwaComponent = (await import('./pwa/Pwa.svelte')).default
   })

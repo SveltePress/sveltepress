@@ -1,13 +1,13 @@
 import type { Plugin } from 'unified'
 import type { PluginOption } from 'vite'
 import type { RehypePluginsOrderer, RemarkPluginsOrderer, SveltepressVitePluginOptions } from './types.js'
-import { existsSync, mkdirSync, readFileSync, renameSync, rmdirSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 
 import { basename, dirname, extname, join, resolve } from 'node:path'
 import process from 'node:process'
 import { generateLlmsTxt, generateLlmsTxtForLocales } from './llms.js'
 import { resolveLocalesConfig } from './locale-scan.js'
-import { generateLocaleSitemap } from './sitemap.js'
+import { generateLocaleVersionSitemap } from './sitemap.js'
 import { wrapPage } from './utils/wrap-page.js'
 import {
   compilePageArtifactModule,
@@ -159,6 +159,52 @@ async function mountDevVersionShellRoutes(input: {
   }
 }
 
+/**
+ * Remove dev-mounted historical version shells that a hard-killed dev server
+ * left behind. Marker-scoped: only directories carrying the
+ * `.sveltepress-dev-shell.json` marker are removed, so a real user directory
+ * at the same path is never touched. Called on every config resolution —
+ * including sync-only resolutions (`svelte-kit sync`, `svelte-check`) that
+ * never start a server — so warm caches cannot leak shell routes into
+ * typechecking or builds.
+ */
+function removeResidualDevShells(siteRoot: string): void {
+  const routesRoot = join(siteRoot, 'src/routes')
+  if (!existsSync(routesRoot))
+    return
+  const removedRoots: string[] = []
+  const visit = (dir: string): void => {
+    for (const entry of readdirSync(dir)) {
+      const full = join(dir, entry)
+      if (!statSync(full).isDirectory())
+        continue
+      if (existsSync(join(full, '.sveltepress-dev-shell.json'))) {
+        rmSync(full, { recursive: true, force: true })
+        removedRoots.push(full)
+      }
+      else {
+        visit(full)
+      }
+    }
+  }
+  visit(routesRoot)
+  // Remove the now-empty base directories the shells lived in (e.g.
+  // src/routes/v). rmdirSync only succeeds on empty directories, so a
+  // directory with real content is never touched.
+  for (const root of removedRoots) {
+    let parent = dirname(root)
+    while (parent.startsWith(routesRoot)) {
+      try {
+        rmdirSync(parent)
+        parent = dirname(parent)
+      }
+      catch {
+        break
+      }
+    }
+  }
+}
+
 const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   theme,
   siteConfig,
@@ -273,12 +319,12 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       assertSingleSvelteKit(config.plugins)
       devMountedVersionShells = []
       devMountedBaseRoots = []
-      // In dev, mount historical version routes before SvelteKit's own
-      // configResolved runs `sync.all` (this plugin precedes `sveltekit()` in
-      // the plugin array), so the dev server can serve /v/<id>/... routes.
-      if (config.command === 'serve') {
-        await mountDevVersionShellRoutes({ siteRoot, versionManifest, localeManifests, theme })
-      }
+      // Never mount here. `config.command === 'serve'` also matches sync-only
+      // resolutions — `svelte-kit sync` and `svelte-check` resolve the Vite
+      // config as a dev server to read plugin options but never start one and
+      // have no shutdown lifecycle, so mounting here leaks shell routes onto
+      // warm caches. A real dev server mounts in `configureServer`.
+      removeResidualDevShells(siteRoot)
     },
     config: () => ({
       define: {
@@ -298,6 +344,11 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     configureServer(server) {
       if (versionManifest)
         server.watcher.add(resolve(siteRoot, manifestFile ?? 'sveltepress.versions.json'))
+      // A real dev server lifecycle reaches configureServer; sync-only Vite
+      // resolutions do not. Mount historical version shells here so the dev
+      // server can serve /v/<id>/... routes without leaking them into
+      // svelte-check typechecking.
+      return mountDevVersionShellRoutes({ siteRoot, versionManifest, localeManifests, theme })
     },
     async closeBundle() {
       // Vite calls closeBundle on `server.close()` (graceful shutdown) and
@@ -509,9 +560,18 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         }
       }
       if (isBuild && resolvedLocales) {
-        generateLocaleSitemap(resolvedLocales, process.cwd(), llms?.baseUrl)
+        // One combined sitemap: current locale routes with hreflang plus
+        // every eligible historical version route per locale manifest.
+        const combinedManifests: Record<string, import('./versioning/index.js').VersionManifest | null> = {}
+        if (versionManifest)
+          combinedManifests['/'] = versionManifest
+        for (const [prefix, manifest] of Object.entries(localeManifests ?? {})) {
+          if (manifest)
+            combinedManifests[prefix] = manifest
+        }
+        generateLocaleVersionSitemap(resolvedLocales, combinedManifests, process.cwd(), llms?.baseUrl)
         if (bundleDirectory)
-          generateLocaleSitemap(resolvedLocales, siteRoot, llms?.baseUrl, bundleDirectory)
+          generateLocaleVersionSitemap(resolvedLocales, combinedManifests, siteRoot, llms?.baseUrl, bundleDirectory)
       }
       else if (isBuild && versionManifest) {
         generateVersionSitemap(versionManifest, process.cwd(), llms?.baseUrl)

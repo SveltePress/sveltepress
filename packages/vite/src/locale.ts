@@ -69,7 +69,7 @@ export function resolveLocaleSwitch(
   if (!current || !target)
     return null
   const logicalPath = stripLocalePrefix(pathname, current.prefix)
-  const routeExists = !target.routes?.length || target.routes.includes(logicalPath)
+  const routeExists = !target.routes?.length || target.routes.some(route => matchesRoutePattern(route, logicalPath))
   return {
     href: joinLocalePath(targetPrefix, routeExists ? logicalPath : '/'),
     fallback: !routeExists,
@@ -94,11 +94,12 @@ function stripLocalePrefix(pathname: string, prefix: string): string {
 }
 
 function joinLocalePath(prefix: string, path: string): string {
-  const normalizedPath = normalizeRoute(path)
+  const { pathname, suffix } = splitPathSuffix(path)
+  const normalizedPath = normalizeRoute(pathname)
   if (prefix === '/' || prefix === '')
-    return normalizedPath
+    return `${normalizedPath}${suffix}`
   const normalizedPrefix = prefix.replace(/\/+$/, '')
-  return normalizeRoute(`${normalizedPrefix}${normalizedPath}`)
+  return `${normalizeRoute(`${normalizedPrefix}${normalizedPath}`)}${suffix}`
 }
 
 function normalizeRoute(route: string): string {
@@ -108,4 +109,41 @@ function normalizeRoute(route: string): string {
 
 function stripQueryAndHash(value: string): string {
   return value.split(/[?#]/, 1)[0]
+}
+
+function splitPathSuffix(value: string): { pathname: string, suffix: string } {
+  const index = value.search(/[?#]/)
+  return index === -1 ? { pathname: value, suffix: '' } : { pathname: value.slice(0, index), suffix: value.slice(index) }
+}
+
+/**
+ * Match a concrete pathname against a scanned SvelteKit route pattern such as
+ * `/posts/[slug]/`. Static segments match literally; `[param]` matches one
+ * segment, `[[optional]]` matches zero or one, and `[...rest]` matches zero or
+ * more. Segment counts must line up — a route with more or fewer segments than
+ * the pattern never matches.
+ */
+export function matchesRoutePattern(pattern: string, pathname: string): boolean {
+  if (!pattern)
+    return false
+  const segments = pattern.split('/').filter(Boolean)
+  if (segments.length === 0)
+    return normalizeRoute(pathname) === '/'
+  let source = '^/'
+  for (const segment of segments) {
+    if (segment.startsWith('[...'))
+      source += '(?:[^/]+(?:/[^/]+)*)?/'
+    else if (segment.startsWith('[['))
+      source += '(?:[^/]+)?/'
+    else if (segment.startsWith('['))
+      source += '[^/]+/'
+    else
+      source += `${escapeRegex(segment)}/`
+  }
+  source = `${source.replace(/\/$/, '')}/?$`
+  return new RegExp(source).test(pathname)
+}
+
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }

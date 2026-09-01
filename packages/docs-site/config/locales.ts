@@ -9,9 +9,13 @@ import zhI18n from './zh/i18n.ts'
 import zhNavbar from './zh/navbar.ts'
 import zhSidebar from './zh/sidebar.ts'
 
-const enEditLink = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route'
-const zhEditLink = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/zh/:route'
-const bnEditLink = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/bn/:route'
+/**
+ * The shared root edit-link template for every locale. `page.route.id` already
+ * carries the locale prefix (`/zh/...`, `/bn/...`), so prefixing the template
+ * per locale would duplicate the segment (`/zh/zh/...`). One template keeps
+ * all three locales pointing at their real merged-site source paths.
+ */
+const editLink = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route'
 
 const enDocsearch = {
   apiKey: 'fbed412316ec83ff28e9a916161bf715',
@@ -37,7 +41,7 @@ export const locales: LocalesConfig = {
     theme: {
       navbar,
       sidebar,
-      editLink: enEditLink,
+      editLink,
       docsearch: enDocsearch,
     },
   },
@@ -47,7 +51,7 @@ export const locales: LocalesConfig = {
     theme: {
       navbar: zhNavbar,
       sidebar: zhSidebar,
-      editLink: zhEditLink,
+      editLink,
       docsearch: zhDocsearch,
       i18n: zhI18n,
     },
@@ -58,7 +62,7 @@ export const locales: LocalesConfig = {
     theme: {
       navbar: bnNavbar,
       sidebar: bnSidebar,
-      editLink: bnEditLink,
+      editLink,
       docsearch: bnDocsearch,
       i18n: bnI18n,
     },

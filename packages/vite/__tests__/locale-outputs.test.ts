@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite'
 import type { LocalesConfig } from '../src/types'
+import type { VersionManifest } from '../src/versioning'
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -7,7 +8,7 @@ import process from 'node:process'
 import { afterEach, describe, expect, it } from 'vitest'
 import { generateLlmsTxtForLocales } from '../src/llms'
 import sveltepress from '../src/plugin'
-import { generateLocaleSitemap } from '../src/sitemap'
+import { generateLocaleSitemap, generateLocaleVersionSitemap } from '../src/sitemap'
 
 const originalCwd = process.cwd()
 
@@ -90,6 +91,92 @@ describe('hreflang sitemap output', () => {
     const output = join(root, 'build-client')
     generateLocaleSitemap(locales, root, 'https://docs.example.com', output)
     expect(readFileSync(join(output, 'sitemap.xml'), 'utf8')).toContain('hreflang="zh"')
+  })
+})
+
+describe('combined locale and version sitemap output', () => {
+  function versionFixture() {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-locale-version-sitemap-'))
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    mkdirSync(join(root, 'src/routes/zh/guide'), { recursive: true })
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), '---\ntitle: Guide\n---\nEnglish guide')
+    writeFileSync(join(root, 'src/routes/zh/+page.md'), '---\ntitle: 首页\n---\n中文首页')
+    writeFileSync(join(root, 'src/routes/zh/guide/+page.md'), '---\ntitle: 指南\n---\n中文指南')
+    const locales: LocalesConfig = {
+      '/': { lang: 'en', label: 'English', theme: {}, routes: ['/', '/guide/'] },
+      '/zh/': { lang: 'zh', label: '中文', theme: {}, routes: ['/', '/guide/'] },
+    }
+    const manifests: Record<string, VersionManifest | null> = {
+      '/': {
+        basePath: '/v',
+        current: { id: 'v9', label: '9.x', routes: ['/', '/guide/'] },
+        versions: [
+          { id: 'v8', label: '8.x', status: 'stable', routes: ['/', '/guide/'] },
+          { id: 'v7', label: '7.x', status: 'eol', routes: ['/'] },
+        ],
+        content: { include: ['**'], exclude: [], shared: [] },
+      },
+      '/zh/': {
+        basePath: '/zh/v',
+        current: { id: 'v9', label: '9.x', routes: ['/', '/guide/'] },
+        versions: [
+          { id: 'v8', label: '8.x', status: 'stable', routes: ['/', '/guide/'] },
+          { id: 'v7', label: '7.x', status: 'eol', routes: ['/'] },
+        ],
+        content: { include: ['**'], exclude: [], shared: [] },
+      },
+    }
+    return { root, locales, manifests }
+  }
+
+  it('writes one combined sitemap with current locale entries, hreflang, and historical version URLs', () => {
+    const { root, locales, manifests } = versionFixture()
+    generateLocaleVersionSitemap(locales, manifests, root, 'https://docs.example.com')
+    const sitemap = readFileSync(join(root, 'static/sitemap.xml'), 'utf8')
+    expect(sitemap).toContain('<loc>https://docs.example.com/guide/</loc>')
+    expect(sitemap).toContain('<loc>https://docs.example.com/zh/guide/</loc>')
+    expect(sitemap).toContain('hreflang="zh" href="https://docs.example.com/zh/guide/"')
+    expect(sitemap).toContain('<loc>https://docs.example.com/v/v8/guide/</loc>')
+    expect(sitemap).toContain('<loc>https://docs.example.com/zh/v/v8/guide/</loc>')
+    expect(sitemap).toContain('<loc>https://docs.example.com/v/v8/</loc>')
+    expect(sitemap).toContain('<loc>https://docs.example.com/zh/v/v8/</loc>')
+  })
+
+  it('excludes EOL history by default and includes it when noIndex is disabled', () => {
+    const { root, locales, manifests } = versionFixture()
+    generateLocaleVersionSitemap(locales, manifests, root, 'https://docs.example.com')
+    let sitemap = readFileSync(join(root, 'static/sitemap.xml'), 'utf8')
+    expect(sitemap).not.toContain('/v/v7/')
+    expect(sitemap).not.toContain('/zh/v/v7/')
+    manifests['/']!.versions[1].noIndex = false
+    manifests['/zh/']!.versions[1].noIndex = false
+    generateLocaleVersionSitemap(locales, manifests, root, 'https://docs.example.com')
+    sitemap = readFileSync(join(root, 'static/sitemap.xml'), 'utf8')
+    expect(sitemap).toContain('<loc>https://docs.example.com/v/v7/</loc>')
+    expect(sitemap).toContain('<loc>https://docs.example.com/zh/v/v7/</loc>')
+  })
+
+  it('only alternates historical locales that share the version and route', () => {
+    const { root, locales, manifests } = versionFixture()
+    manifests['/zh/'] = {
+      ...manifests['/zh/']!,
+      versions: [{ id: 'v8', label: '8.x', status: 'stable', routes: ['/'] }],
+    }
+    generateLocaleVersionSitemap(locales, manifests, root, 'https://docs.example.com')
+    const sitemap = readFileSync(join(root, 'static/sitemap.xml'), 'utf8')
+    const enEntry = sitemap.match(/<url>\s*<loc>https:\/\/docs\.example\.com\/v\/v8\/guide\/<\/loc>[\s\S]*?<\/url>/)?.[0]
+    expect(enEntry).toBeTruthy()
+    // zh v8 has no /guide/ route, so no zh alternate may connect to it.
+    expect(enEntry).not.toContain('hreflang="zh" href="https://docs.example.com/zh/v/v8/guide/"')
+  })
+
+  it('writes the combined sitemap to a custom build directory', () => {
+    const { root, locales, manifests } = versionFixture()
+    const output = join(root, 'build-client')
+    generateLocaleVersionSitemap(locales, manifests, root, 'https://docs.example.com', output)
+    const sitemap = readFileSync(join(output, 'sitemap.xml'), 'utf8')
+    expect(sitemap).toContain('<loc>https://docs.example.com/v/v8/guide/</loc>')
+    expect(sitemap).toContain('<loc>https://docs.example.com/zh/v/v8/guide/</loc>')
   })
 })
 

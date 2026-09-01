@@ -83,7 +83,7 @@ function writeDraft(store: string) {
 }
 
 describe('dev historical version route mounting', () => {
-  it('mounts historical shell routes under src/routes/<basePath> with markers and env', async () => {
+  function shellFixture() {
     const root = mkdtempSync(join(tmpdir(), 'sveltepress-dev-shells-'))
     const routesDir = join(root, 'src/routes')
     mkdirSync(join(routesDir, 'guide'), { recursive: true })
@@ -93,17 +93,27 @@ describe('dev historical version route mounting', () => {
     writeArtifactManifest(store, 'v7')
     writeDraft(store)
     writeFileSync(join(root, 'sveltepress.versions.json'), JSON.stringify(manifestWithArtifacts()))
+    return { root, routesDir, store }
+  }
 
+  it('mounts historical shell routes only when a real dev server starts', async () => {
+    const { root, routesDir, store } = shellFixture()
     process.chdir(root)
     const watcherAdd = vi.fn()
     const plugin = sveltepress({
       versions: {},
       theme: { pageLayout: '@sveltepress/theme-default/PageLayout.svelte' } as never,
     }) as Plugin
-    await (plugin.configResolved as (config: unknown) => void | Promise<void>)({ command: 'serve', build: {}, plugins: [] })
-    ;(plugin.configureServer as (server: unknown) => void)({ watcher: { add: watcherAdd }, httpServer: { on: vi.fn() } })
 
-    // Historical shells mounted with markers; the current version is not.
+    // Sync-only resolution (svelte-kit sync / svelte-check load-config) resolves
+    // Vite with command 'serve' but never starts a server: nothing may mount.
+    await (plugin.configResolved as (config: unknown) => void | Promise<void>)({ command: 'serve', build: {}, plugins: [] })
+    expect(existsSync(join(routesDir, 'v/v8'))).toBe(false)
+    expect(process.env.SVELTEPRESS_ARTIFACT_STORE).toBeUndefined()
+    expect(process.env.SVELTEPRESS_ARTIFACT_SITE_ID).toBeUndefined()
+
+    // A real dev server lifecycle (configureServer) mounts the shells.
+    await (plugin.configureServer as (server: unknown) => void | Promise<void>)({ watcher: { add: watcherAdd }, httpServer: { on: vi.fn() } })
     expect(readFileSync(join(routesDir, 'v/v8/guide/+page.svelte'), 'utf8')).toContain('sveltepress:artifact-shell')
     expect(readFileSync(join(routesDir, 'v/v7/guide/+page.svelte'), 'utf8')).toContain('sveltepress:artifact-shell')
     expect(readFileSync(join(routesDir, 'v/v8/.sveltepress-dev-shell.json'), 'utf8')).toContain('"versionId":"v8"')
@@ -117,6 +127,21 @@ describe('dev historical version route mounting', () => {
     await (plugin.closeBundle as () => void | Promise<void>)()
     expect(existsSync(join(routesDir, 'v/v8'))).toBe(false)
     expect(existsSync(join(routesDir, 'v/v7'))).toBe(false)
+  })
+
+  it('removes residual marker-scoped shells on sync-only config resolution', async () => {
+    const { root, routesDir } = shellFixture()
+    // Simulate shells left behind by a hard-killed dev server.
+    mkdirSync(join(routesDir, 'v/v8/guide'), { recursive: true })
+    writeFileSync(join(routesDir, 'v/v8/.sveltepress-dev-shell.json'), JSON.stringify({ siteId: 'demo-site', versionId: 'v8' }))
+    process.chdir(root)
+    const plugin = sveltepress({
+      versions: {},
+      theme: { pageLayout: '@sveltepress/theme-default/PageLayout.svelte' } as never,
+    }) as Plugin
+    await (plugin.configResolved as (config: unknown) => void | Promise<void>)({ command: 'serve', build: {}, plugins: [] })
+    expect(existsSync(join(routesDir, 'v/v8'))).toBe(false)
+    expect(process.env.SVELTEPRESS_ARTIFACT_STORE).toBeUndefined()
   })
 
   it('does not mount anything without incremental artifacts', async () => {

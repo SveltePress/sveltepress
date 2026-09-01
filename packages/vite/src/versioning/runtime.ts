@@ -145,7 +145,7 @@ export function createLocaleVersionRuntime(
       const routeExists = !target.routes?.length || target.routes.includes(normalizeRoute(logicalPath))
       const resolvedPath = routeExists ? logicalPath : '/'
       const href = target.id === manifest.current.id
-        ? normalizeRoute(resolvedPath)
+        ? joinLocalePrefix(prefix, resolvedPath)
         : joinRoute(manifest.basePath, target.id, resolvedPath)
       return { href, fallback: !routeExists }
     },
@@ -161,6 +161,18 @@ function joinRoute(basePath: string, versionId: string, logicalPath: string): st
   const normalized = normalizeRoute(logicalPath)
   const suffix = normalized === '/' ? '' : normalized.slice(1)
   return normalizeRoute(`${basePath}/${versionId}/${suffix}`)
+}
+
+/**
+ * Compose a current-version target within the active locale: the locale
+ * prefix must be preserved so `/zh/v/<old>/guide/` switches to `/zh/guide/`
+ * (and missing pages fall back to `/zh/`), while the unprefixed default
+ * locale keeps plain `/guide/` behavior.
+ */
+function joinLocalePrefix(prefix: string | null, logicalPath: string): string {
+  if (!prefix || prefix === '/')
+    return normalizeRoute(logicalPath)
+  return normalizeRoute(`${prefix.replace(/\/+$/, '')}${normalizeRoute(logicalPath)}`)
 }
 
 function stripQueryAndHash(value: string): string {
