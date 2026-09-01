@@ -3,6 +3,7 @@ import type {
   VersionChangeSection,
   VersionChangeSet,
   VersionManifest,
+  VersionManifestLocaleOptions,
 } from './index.js'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
@@ -10,6 +11,7 @@ import remarkDirective from 'remark-directive'
 import remarkParse from 'remark-parse'
 import { unified } from 'unified'
 import { parse } from 'yaml'
+import { stripLocaleBasePath } from './index.js'
 
 interface PageChangeMetadata {
   exclude: boolean
@@ -22,6 +24,7 @@ export function computeVersionChangeSet(
   siteRoot: string,
   manifest: VersionManifest,
   versionId = manifest.current.id,
+  options?: VersionManifestLocaleOptions,
 ): VersionChangeSet {
   const version = versionId === manifest.current.id
     ? manifest.current
@@ -31,22 +34,22 @@ export function computeVersionChangeSet(
   if (versionId !== manifest.current.id && version.changes)
     return version.changes
 
-  return deriveVersionChangeSet(siteRoot, manifest, versionId)
+  return deriveVersionChangeSet(siteRoot, manifest, versionId, options)
 }
 
-export function validateFrozenVersionChangeSets(siteRoot: string, manifest: VersionManifest): void {
+export function validateFrozenVersionChangeSets(siteRoot: string, manifest: VersionManifest, options?: VersionManifestLocaleOptions): void {
   for (const version of manifest.versions) {
-    const derived = deriveVersionChangeSet(siteRoot, manifest, version.id)
+    const derived = deriveVersionChangeSet(siteRoot, manifest, version.id, options)
     if (version.changes && stableJson(version.changes) !== stableJson(derived)) {
       throw new Error(
         `[sveltepress:versions] Frozen changes for ${version.id} and snapshot content have drifted. Recreate or repair the snapshot metadata.`,
       )
     }
   }
-  deriveVersionChangeSet(siteRoot, manifest, manifest.current.id)
+  deriveVersionChangeSet(siteRoot, manifest, manifest.current.id, options)
 }
 
-function deriveVersionChangeSet(siteRoot: string, manifest: VersionManifest, versionId: string): VersionChangeSet {
+function deriveVersionChangeSet(siteRoot: string, manifest: VersionManifest, versionId: string, options?: VersionManifestLocaleOptions): VersionChangeSet {
   const version = versionId === manifest.current.id
     ? manifest.current
     : manifest.versions.find(candidate => candidate.id === versionId)
@@ -57,7 +60,7 @@ function deriveVersionChangeSet(siteRoot: string, manifest: VersionManifest, ver
   const baseline = versionId === manifest.current.id
     ? manifest.versions[0]
     : manifest.versions[historicalIndex + 1]
-  const pages = scanPages(siteRoot, manifest, versionId)
+  const pages = scanPages(siteRoot, manifest, versionId, options)
   const result: VersionChangeSet = {
     versionId,
     baselineVersionId: baseline?.id ?? null,
@@ -135,20 +138,27 @@ export function validateVersionChangeSet(
     throw new Error(errors.join('\n- '))
 }
 
-function scanPages(siteRoot: string, manifest: VersionManifest, versionId: string): Map<string, PageChangeMetadata> {
+function scanPages(siteRoot: string, manifest: VersionManifest, versionId: string, options?: VersionManifestLocaleOptions): Map<string, PageChangeMetadata> {
   const current = versionId === manifest.current.id
+  const localeDir = options?.localeDir
+  const baseSegment = localeDir
+    ? stripLocaleBasePath(manifest.basePath, `/${localeDir}`).slice(1)
+    : manifest.basePath.slice(1)
   const root = current
-    ? join(siteRoot, 'src/routes')
-    : join(siteRoot, 'src/routes', manifest.basePath.slice(1), versionId)
+    ? join(siteRoot, 'src/routes', localeDir ?? '')
+    : join(siteRoot, 'src/routes', localeDir ?? '', baseSegment, versionId)
   const knownVersions = new Set([manifest.current.id, ...manifest.versions.map(version => version.id)])
   const pages = new Map<string, PageChangeMetadata>()
   if (!existsSync(root))
     return pages
+  const excludedSegments = current
+    ? [baseSegment, ...(options?.excludeDirs ?? [])]
+    : []
   visitFiles(root, (path) => {
     if (!/\+page(?:@[\w-]+)?\.(?:md|svelte)$/.test(path))
       return
     const relativePath = relative(root, path).split(sep).join('/')
-    if (current && (relativePath === manifest.basePath.slice(1) || relativePath.startsWith(`${manifest.basePath.slice(1)}/`)))
+    if (excludedSegments.some(segment => relativePath === segment || relativePath.startsWith(`${segment}/`)))
       return
     const route = toRoute(relativePath)
     const source = readFileSync(path, 'utf8')

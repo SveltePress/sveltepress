@@ -20,3 +20,6 @@ dist
 .history
 node-jiti
 .worktrees
+
+# pnpm content-addressable store (local cache)
+.pnpm-store

@@ -268,7 +268,7 @@ const versionRuntimeMarkers = [
 // those builds have run; the default-locale build always produces them.
 for (const locale of ['zh', 'bn']) {
   const siteRoot = join(official, locale)
-  if (!existsSync(join(siteRoot, 'v')))
+  if (!existsSync(join(siteRoot, 'v', historicalId, 'index.html')))
     continue
   const currentFeature = join(siteRoot, 'guide/version-management/index.html')
   const appRoot = join(siteRoot, '_app')

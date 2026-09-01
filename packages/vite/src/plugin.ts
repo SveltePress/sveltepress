@@ -79,10 +79,18 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     : null
   const localeManifests = resolvedLocales
     ? Object.fromEntries(
-        Object.keys(resolvedLocales).map(prefix => [
-          prefix,
-          loadVersionManifest(siteRoot, localeVersionManifestName(prefix, manifestFile)),
-        ]),
+        Object.keys(resolvedLocales).map((prefix) => {
+          const localeDir = prefix === '/' ? undefined : prefix.replace(/^\/+|\/+$/g, '')
+          return [
+            prefix,
+            loadVersionManifest(siteRoot, localeVersionManifestName(prefix, manifestFile), {
+              localeDir,
+              excludeDirs: Object.keys(resolvedLocales)
+                .filter(other => other !== prefix && other !== '/')
+                .map(other => other.replace(/^\/+|\/+$/g, '')),
+            }),
+          ]
+        }),
       )
     : null
   const allRemarkPlugins: Plugin[] = []
@@ -334,8 +342,15 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       if (versionSourceChanged) {
         versionManifest = loadVersionManifest(siteRoot, manifestFile)
         if (localeManifests) {
-          for (const prefix of Object.keys(localeManifests))
-            localeManifests[prefix] = loadVersionManifest(siteRoot, localeVersionManifestName(prefix, manifestFile))
+          for (const prefix of Object.keys(localeManifests)) {
+            const localeDir = prefix === '/' ? undefined : prefix.replace(/^\/+|\/+$/g, '')
+            localeManifests[prefix] = loadVersionManifest(siteRoot, localeVersionManifestName(prefix, manifestFile), {
+              localeDir,
+              excludeDirs: Object.keys(resolvedLocales ?? {})
+                .filter(other => other !== prefix && other !== '/')
+                .map(other => other.replace(/^\/+|\/+$/g, '')),
+            })
+          }
         }
         const virtualModule = ctx.server.moduleGraph.getModuleById(SVELTEPRESS_VERSIONS_MODULE)
         if (virtualModule)
