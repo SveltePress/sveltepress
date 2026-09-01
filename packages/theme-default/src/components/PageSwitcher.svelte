@@ -3,12 +3,15 @@
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'
   import { pages } from './layout'
-  import { resolveLocaleOptions } from './locale'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import { getPathFromBase, isLinkActive } from './utils'
 
   const routeId = page.route.id
+  const logicalRouteId = $derived(resolveLogicalRoute(routeId))
 
-  const activeIdx = $derived($pages.findIndex(p => isLinkActive(p.to, routeId)))
+  const activeIdx = $derived(
+    $pages.findIndex(p => isLinkActive(p.to, logicalRouteId)),
+  )
 
   const hasActivePage = $derived(activeIdx !== -1)
   const hasPrevPage = $derived(hasActivePage && activeIdx > 0)

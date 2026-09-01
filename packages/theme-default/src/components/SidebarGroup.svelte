@@ -4,12 +4,13 @@
   import ArrowDown from './icons/ArrowDown.svelte'
   import { changedPageRoutes, normalizeNavigationRoute } from './layout'
   import Link from './Link.svelte'
-  import { resolveLocaleOptions } from './locale'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import SidebarGroup from './SidebarGroup.svelte'
   import { isLinkActive } from './utils'
   import VersionNavigationBadge from './VersionNavigationBadge.svelte'
 
   const routeId = $derived(page.route.id)
+  const logicalRouteId = $derived(resolveLogicalRoute(routeId))
 
   /**
    * @typedef {object} Props
@@ -61,7 +62,7 @@
   {#if !collapsed}
     <div class="links" transition:slide>
       {#each items as item}
-        {@const active = isLinkActive(item.to, routeId)}
+        {@const active = isLinkActive(item.to, logicalRouteId)}
         {@const changed =
           item.to && $changedPageRoutes.has(normalizeNavigationRoute(item.to))}
         {#if Array.isArray(item.items) && item.items.length}

@@ -26,3 +26,17 @@ export function resolveLocaleLink(to: string, pathname: string): string {
   const locale = resolveLocale(pathname)
   return resolveLocalizedPath(to, locale)
 }
+
+/**
+ * Strip the active locale's prefix from a route id, returning the logical
+ * route shared across locales (e.g. `/zh/guide/introduction` →
+ * `/guide/introduction`). Sidebar keys, link targets, and active-state
+ * comparisons all live in logical space while the page route id carries the
+ * locale prefix.
+ */
+export function resolveLogicalRoute(routeId: string): string {
+  const locale = resolveLocale(routeId)
+  if (locale && locale.prefix !== '/' && routeId.startsWith(locale.prefix))
+    return `/${routeId.slice(locale.prefix.length)}`
+  return routeId
+}

@@ -7,7 +7,7 @@ import {
   resolveVersionedPath,
   resolveVersionManifest,
 } from 'virtual:sveltepress/versions'
-import { resolveLocaleForPath, resolveLocaleOptions } from './locale'
+import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
 
 export const MOBILE_EDGE_WIDTH = 950
 
@@ -75,12 +75,9 @@ export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
   resolveVersionNavigationChanges(routeId)
-  const locale = resolveLocaleForPath(routeId)
-  // The version runtime is single-manifest for now; compose with it by
-  // matching sidebar keys against the locale-local logical path.
-  const logicalRoute = locale && locale.prefix !== '/' && routeId.startsWith(locale.prefix)
-    ? `/${routeId.slice(locale.prefix.length)}`
-    : routeId
+  // Sidebar keys live in logical (locale-free) route space, so compare
+  // against the locale-local path of the current route.
+  const logicalRoute = resolveLogicalRoute(routeId)
   resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])
 }
 
