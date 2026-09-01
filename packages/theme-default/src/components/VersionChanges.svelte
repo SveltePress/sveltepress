@@ -25,7 +25,9 @@
       ? requested!
       : (routeVersion ?? localeManifest?.current.id ?? '')
   })
-  const changes = $derived(resolveVersionChanges(selectedVersionId))
+  const changes = $derived(
+    resolveVersionChanges(selectedVersionId, page.url.pathname),
+  )
   const selectedVersionLabel = $derived(versionLabel(selectedVersionId))
   const newPageCount = $derived(changes?.newPages.length ?? 0)
   const updatedPageCount = $derived(changes?.updatedPages.length ?? 0)

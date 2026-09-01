@@ -5,11 +5,17 @@ import themeOptions from 'virtual:sveltepress/theme-default'
 
 /**
  * Resolve the theme options for the current route: the matched locale's theme
- * options when locales are configured, otherwise the site-level theme options.
+ * options **merged over** the site-level theme options when locales are
+ * configured, otherwise the site-level theme options. The site-level options
+ * carry shared chrome config (logo, github, discord, ga, themeColor, pwa, ...)
+ * that every locale inherits; the locale theme only overrides the per-locale
+ * parts (navbar, sidebar, editLink, docsearch, i18n, ...).
  */
 export function resolveLocaleOptions(pathname: string): DefaultThemeOptions {
   const locale = resolveLocale(pathname)
-  return (locale?.theme ?? themeOptions) as DefaultThemeOptions
+  return locale?.theme
+    ? { ...themeOptions, ...locale.theme }
+    : themeOptions
 }
 
 /**

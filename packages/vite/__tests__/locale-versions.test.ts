@@ -96,6 +96,34 @@ describe('locale-aware version runtime', () => {
     expect(runtime.resolveVersionChanges('v8')).toBeNull()
     expect(runtime.changeSets).toEqual({})
   })
+
+  it('resolves changes from the locale matched by the current route, not a merged map', () => {
+    const enChanges = {
+      versionId: 'v8',
+      baselineVersionId: 'v7',
+      newPages: [{ route: '/guide/introduction/', title: 'Introduction', sections: [] }],
+      updatedPages: [],
+    }
+    const zhChanges = {
+      versionId: '2026-08-27',
+      baselineVersionId: '2026-08-26',
+      newPages: [{ route: '/guide/introduction/', title: '介绍', sections: [] }],
+      updatedPages: [],
+    }
+    const localized = createLocaleVersionRuntime({
+      '/': { ...enManifest(), versions: [{ ...enManifest().versions[0], changes: enChanges }] },
+      '/zh/': { ...zhManifest(), versions: [{ ...zhManifest().versions[0], changes: zhChanges }] },
+      '/bn/': null,
+    }, pathname => (pathname.startsWith('/zh/') || pathname === '/zh') ? '/zh/' : '/')
+
+    // Same version id on every locale must resolve to that locale's own changes.
+    expect(localized.resolveVersionChanges('v8', '/guide/introduction/')?.newPages[0].title).toBe('Introduction')
+    expect(localized.resolveVersionChanges('v8', '/zh/guide/introduction/')).toBeNull()
+    expect(localized.resolveVersionChanges('2026-08-27', '/zh/guide/introduction/')?.newPages[0].title).toBe('介绍')
+    expect(localized.resolveVersionChanges('2026-08-27', '/guide/introduction/')).toBeNull()
+    // Without a pathname the default locale is used.
+    expect(localized.resolveVersionChanges('v8')?.newPages[0].title).toBe('Introduction')
+  })
 })
 
 describe('versions virtual module with locales', () => {

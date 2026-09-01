@@ -137,7 +137,12 @@ export interface VersionSwitchTarget {
 export interface VersionRuntime {
   manifest: VersionManifest | null
   changeSets: Record<string, VersionChangeSet>
-  resolveVersionChanges: (versionId?: string) => VersionChangeSet | null
+  /**
+   * Resolve the version change set for a version id. On multi-locale sites
+   * the optional `pathname` selects the locale's own manifest so each
+   * locale reads its own changes; without it the default locale is used.
+   */
+  resolveVersionChanges: (versionId?: string, pathname?: string) => VersionChangeSet | null
   resolveVersionContext: (pathname: string) => VersionContext | null
   resolveVersionedPath: (to: string, context: VersionContext | null) => string
   resolveVersionSwitch: (pathname: string, targetVersionId: string) => VersionSwitchTarget | null

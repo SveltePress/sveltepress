@@ -83,7 +83,7 @@ export function resolveSidebar(routeId: string) {
 
 function resolveVersionNavigationChanges(routeId: string) {
   const context = resolveVersionContext(routeId)
-  const changes = resolveVersionChanges(context?.versionId)
+  const changes = resolveVersionChanges(context?.versionId, routeId)
   if (!context || !changes) {
     changedPageRoutes.set(new Set())
     changedSectionIds.set(new Set())

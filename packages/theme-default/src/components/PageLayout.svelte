@@ -20,7 +20,7 @@
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const versionChanges = $derived(
-    resolveVersionChanges(versionContext?.versionId),
+    resolveVersionChanges(versionContext?.versionId, page.url.pathname),
   )
   const newPage = $derived(
     versionChanges?.newPages.find(

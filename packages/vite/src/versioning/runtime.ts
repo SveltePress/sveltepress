@@ -71,7 +71,7 @@ export function createVersionRuntime(manifest: VersionManifest | null): VersionR
   return {
     manifest,
     changeSets,
-    resolveVersionChanges: versionId => manifest ? changeSets[versionId ?? manifest.current.id] ?? null : null,
+    resolveVersionChanges: (versionId, _pathname) => manifest ? changeSets[versionId ?? manifest.current.id] ?? null : null,
     resolveVersionContext: pathname => resolveVersionContext(pathname, manifest),
     resolveVersionedPath: (to, context) => resolveVersionedPath(to, context, manifest),
     resolveVersionSwitch: (pathname, targetVersionId) => manifest ? resolveVersionSwitch(pathname, targetVersionId, manifest) : null,
@@ -109,10 +109,15 @@ export function createLocaleVersionRuntime(
     manifests,
     changeSets,
     resolveVersionManifest: resolveManifest,
-    resolveVersionChanges: (versionId?: string) => {
-      if (versionId)
-        return changeSets[versionId] ?? null
-      return defaultManifest ? changeSets[defaultManifest.current.id] ?? null : null
+    resolveVersionChanges: (versionId?: string, pathname?: string) => {
+      const prefix = pathname ? resolvePrefix(pathname) : null
+      const manifest = prefix ? (manifests[prefix] ?? null) : defaultManifest
+      if (!manifest)
+        return null
+      const target = versionId
+        ? [manifest.current, ...manifest.versions].find(version => version.id === versionId)
+        : manifest.current
+      return target?.changes ?? null
     },
     resolveVersionContext: (pathname) => {
       const prefix = resolvePrefix(pathname)
