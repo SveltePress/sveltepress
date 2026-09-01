@@ -106,6 +106,10 @@ declare module 'virtual:sveltepress/theme-default' {
         newContentAvailable?: string
       }
       footnoteLabel?: string
+      /** Label of the language switcher trigger. */
+      localeSwitcher?: string
+      /** Notice shown after switching locale fell back to that locale's home. */
+      localePageUnavailable?: string
       versionSelector?: string
       versionPageUnavailable?: string
       versionDeprecated?: string

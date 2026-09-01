@@ -2,7 +2,9 @@
   import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
   import { page } from '$app/state'
   import { onMount, setContext, tick } from 'svelte'
+  import { locales } from 'virtual:sveltepress/locale'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import LocaleFallbackNotice from 'virtual:sveltepress/theme-default/LocaleFallbackNotice.svelte'
   import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
   import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
   import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
@@ -127,6 +129,9 @@
     class:with-mobile-subnav={$sidebar || $anchors.length}
   >
     <AjaxBar bind:this={ajaxBar} />
+    {#if locales}
+      <LocaleFallbackNotice />
+    {/if}
     {#if manifest}
       <VersionFallbackNotice />
     {/if}

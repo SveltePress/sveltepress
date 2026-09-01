@@ -3,7 +3,6 @@
   import { page } from '$app/state'
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import {
     manifest,
     resolveVersionChanges,
@@ -15,9 +14,11 @@
   import HeroImage from './home/HeroImage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages, showHeader, showLayout, sidebar } from './layout'
+  import { resolveLocaleOptions } from './locale'
   import PageSwitcher from './PageSwitcher.svelte'
 
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const versionChanges = $derived(
     resolveVersionChanges(versionContext?.versionId),
   )
@@ -27,7 +28,7 @@
     ),
   )
   const newPageLabel = $derived(
-    (themeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(
+    (localeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(
       '{version}',
       versionContext?.version.label ?? versionContext?.versionId ?? '',
     ),
@@ -98,7 +99,7 @@
     {#if fmHeroImage}
       <HeroImage heroImage={fmHeroImage} />
     {:else}
-      <HeroCode {...themeOptions.i18n?.heroCode} />
+      <HeroCode {...localeOptions.i18n?.heroCode} />
     {/if}
   {/snippet}
   {#if !isHome}
@@ -114,8 +115,8 @@
           </h1>
         {/if}
         {@render children?.()}
-        <div class="meta" class:without-edit-link={!themeOptions.editLink}>
-          {#if themeOptions.editLink}
+        <div class="meta" class:without-edit-link={!localeOptions.editLink}>
+          {#if localeOptions.editLink}
             <EditPage {pageType} />
           {/if}
           <LastUpdate {lastUpdate} />

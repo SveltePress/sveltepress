@@ -6,6 +6,7 @@
   } from 'virtual:sveltepress/versions'
   import External from './icons/External.svelte'
   import NavArrowDown from './icons/NavArrowDown.svelte'
+  import { resolveLocaleLink } from './locale'
   import Self from './NavItem.svelte'
   import { getPathFromBase } from './utils'
 
@@ -36,7 +37,12 @@
 
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const resolvedTo = $derived(
-    external ? to : resolveVersionedPath(to, versionContext),
+    external
+      ? to
+      : resolveVersionedPath(
+          resolveLocaleLink(to, page.url.pathname),
+          versionContext,
+        ),
   )
   const normalizedTo = $derived(
     resolvedTo.endsWith('/') ? resolvedTo.slice(0, -1) : resolvedTo,

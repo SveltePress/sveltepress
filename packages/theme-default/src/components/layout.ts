@@ -1,6 +1,5 @@
 import type { LinkItem } from 'virtual:sveltepress/theme-default'
 import { get, writable } from 'svelte/store'
-import themeOptions from 'virtual:sveltepress/theme-default'
 import { resolveVersionSidebar } from 'virtual:sveltepress/theme-default/versioning'
 import {
   resolveVersionChanges,
@@ -8,6 +7,7 @@ import {
   resolveVersionedPath,
   manifest as versionManifest,
 } from 'virtual:sveltepress/versions'
+import { resolveLocaleForPath, resolveLocaleOptions } from './locale'
 
 export const MOBILE_EDGE_WIDTH = 950
 
@@ -38,7 +38,7 @@ export const sidebar = writable(true)
 export const showHeader = writable(true)
 export const showLayout = writable(true)
 
-export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
+export const resolvedSidebar = writable(Object.entries((resolveLocaleOptions('/').sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
 
 function flattenPages(items: LinkItem[]): LinkItem[] {
   const result: LinkItem[] = []
@@ -75,7 +75,13 @@ export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
   resolveVersionNavigationChanges(routeId)
-  resolvedSidebar.set(resolveVersionSidebar(routeId, themeOptions.sidebar || {}, versionManifest) as LinkItem[])
+  const locale = resolveLocaleForPath(routeId)
+  // The version runtime is single-manifest for now; compose with it by
+  // matching sidebar keys against the locale-local logical path.
+  const logicalRoute = locale && locale.prefix !== '/' && routeId.startsWith(locale.prefix)
+    ? `/${routeId.slice(locale.prefix.length)}`
+    : routeId
+  resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, versionManifest) as LinkItem[])
 }
 
 function resolveVersionNavigationChanges(routeId: string) {

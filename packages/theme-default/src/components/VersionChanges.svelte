@@ -2,12 +2,12 @@
   import { browser } from '$app/environment'
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import {
     manifest,
     resolveVersionChanges,
     resolveVersionContext,
   } from 'virtual:sveltepress/versions'
+  import { resolveLocaleOptions } from './locale'
   import { getPathFromBase } from './utils'
 
   const defaultNoBaseline =
@@ -16,6 +16,7 @@
   const versions = $derived(
     manifest ? [manifest.current, ...manifest.versions] : [],
   )
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const selectedVersionId = $derived.by(() => {
     const requested = browser ? page.url.searchParams.get('version') : null
     const routeVersion = resolveVersionContext(page.url.pathname)?.versionId
@@ -28,18 +29,20 @@
   const newPageCount = $derived(changes?.newPages.length ?? 0)
   const updatedPageCount = $derived(changes?.updatedPages.length ?? 0)
   const selectorLabel = $derived(
-    themeOptions.i18n?.versionChangesSelector ?? 'View changes for version',
+    localeOptions.i18n?.versionChangesSelector ?? 'View changes for version',
   )
   const newPagesLabel = $derived(
-    themeOptions.i18n?.versionChangesNewPages ?? 'New pages',
+    localeOptions.i18n?.versionChangesNewPages ?? 'New pages',
   )
   const updatedPagesLabel = $derived(
-    themeOptions.i18n?.versionChangesUpdatedPages ?? 'Updated pages',
+    localeOptions.i18n?.versionChangesUpdatedPages ?? 'Updated pages',
   )
   const noBaseline = $derived(
-    themeOptions.i18n?.versionChangesNoBaseline ?? defaultNoBaseline,
+    localeOptions.i18n?.versionChangesNoBaseline ?? defaultNoBaseline,
   )
-  const empty = $derived(themeOptions.i18n?.versionChangesEmpty ?? defaultEmpty)
+  const empty = $derived(
+    localeOptions.i18n?.versionChangesEmpty ?? defaultEmpty,
+  )
 
   function versionHref(route: string, versionId: string, sectionId?: string) {
     if (!manifest) return route

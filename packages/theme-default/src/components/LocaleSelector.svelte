@@ -1,11 +1,15 @@
 <script lang="ts">
-  import type { VersionSwitchTarget } from '@sveltepress/vite/versioning'
+  import type { LocaleSwitchTarget } from '@sveltepress/vite'
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
   import { tick } from 'svelte'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    locales,
+    resolveLocale,
+    resolveLocaleSwitch,
+  } from 'virtual:sveltepress/locale'
   import { resolveLocaleOptions } from './locale'
-  import { getVersionOptions, nextVersionMenuIndex } from './versioning'
+  import { nextVersionMenuIndex } from './versioning'
 
   let { mobile = false }: { mobile?: boolean } = $props()
   let open = $state(false)
@@ -13,28 +17,18 @@
   let menu = $state<HTMLDivElement>()
   let trigger = $state<HTMLButtonElement>()
 
-  const context = $derived(resolveVersionContext(page.url.pathname))
-  const options = $derived(getVersionOptions(page.url.pathname, manifest))
-  const label = $derived(
-    context?.version.label ?? manifest?.current.label ?? '',
-  )
-  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
+  const locale = $derived(resolveLocale(page.url.pathname))
+  const localeEntries = $derived(Object.entries(locales ?? {}))
+  const label = $derived(locale?.label ?? '')
   const selectorLabel = $derived(
-    localeOptions.i18n?.versionSelector ?? 'Documentation version',
+    resolveLocaleOptions(page.url.pathname).i18n?.localeSwitcher ?? 'Language',
   )
-
-  function statusLabel(status: string | undefined) {
-    if (status === 'deprecated')
-      return localeOptions.i18n?.versionDeprecatedLabel ?? 'Deprecated'
-    if (status === 'eol') return localeOptions.i18n?.versionEolLabel ?? 'EOL'
-    return ''
-  }
 
   async function openMenu() {
     open = true
     activeIndex = Math.max(
       0,
-      options.findIndex(option => option.id === context?.versionId),
+      localeEntries.findIndex(([prefix]) => prefix === locale?.prefix),
     )
     await tick()
     const items = menu?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
@@ -59,7 +53,11 @@
       trigger?.focus()
       return
     }
-    const next = nextVersionMenuIndex(activeIndex, event.key, options.length)
+    const next = nextVersionMenuIndex(
+      activeIndex,
+      event.key,
+      localeEntries.length,
+    )
     if (next !== activeIndex) {
       event.preventDefault()
       activeIndex = next
@@ -79,22 +77,22 @@
     }
   }
 
-  async function selectVersion(target: VersionSwitchTarget | null) {
+  async function selectLocale(target: LocaleSwitchTarget | null) {
     if (!target) return
     closeMenu()
     const fallback = target.fallback
-      ? `${target.href.includes('?') ? '&' : '?'}svp-version-fallback=1`
+      ? `${target.href.includes('?') ? '&' : '?'}svp-locale-fallback=1`
       : ''
     await goto(`${target.href}${fallback}`)
   }
 </script>
 
-{#if manifest}
-  <div class:mobile class="version-selector" onfocusout={handleFocusOut}>
+{#if locales}
+  <div class:mobile class="locale-selector" onfocusout={handleFocusOut}>
     <button
       bind:this={trigger}
       type="button"
-      class="version-trigger"
+      class="locale-trigger"
       aria-label={selectorLabel}
       aria-haspopup="menu"
       aria-expanded={open}
@@ -107,29 +105,23 @@
     {#if open}
       <div
         bind:this={menu}
-        class="version-menu"
+        class="locale-menu"
         role="menu"
         tabindex="-1"
         aria-label={selectorLabel}
         onkeydown={handleMenuKeydown}
       >
-        {#each options as option, index}
+        {#each localeEntries as [prefix, entry], index}
           <button
             type="button"
             role="menuitem"
-            class:active={option.id === context?.versionId}
+            class:active={prefix === locale?.prefix}
             tabindex={index === activeIndex ? 0 : -1}
-            onclick={() => selectVersion(option.target)}
+            onclick={() =>
+              selectLocale(resolveLocaleSwitch(page.url.pathname, prefix))}
           >
-            <span
-              class="version-option-label"
-              style="white-space: nowrap; flex-shrink: 0">{option.label}</span
-            >
-            {#if statusLabel(option.status)}<small class="version-status-badge"
-                >{statusLabel(option.status)}</small
-              >{/if}
-            {#if option.id === context?.versionId}<span aria-hidden="true"
-                >✓</span
+            <span class="locale-option-label">{entry.label}</span>
+            {#if prefix === locale?.prefix}<span aria-hidden="true">✓</span
               >{/if}
           </button>
         {/each}
@@ -139,36 +131,32 @@
 {/if}
 
 <style>
-  .version-selector {
+  .locale-selector {
     --at-apply: 'relative hidden sm:flex items-center';
   }
-  .version-selector.mobile {
+  .locale-selector.mobile {
     --at-apply: 'px-4 py-2';
     display: flex;
   }
-  .version-trigger {
+  .locale-trigger {
     --at-apply: 'bg-transparent b-0 px-3 py-2 text-sm font-600 text-zinc-7 dark:text-zinc-2 cursor-pointer flex items-center gap-1 rounded hover:bg-black/4 dark:hover:bg-white/6';
   }
-  .mobile .version-trigger {
+  .mobile .locale-trigger {
     --at-apply: 'w-full justify-between b-1 b-solid b-black/8 dark:b-white/8';
   }
-  .version-trigger .open {
+  .locale-trigger .open {
     transform: rotate(180deg);
   }
-  .version-menu {
-    --at-apply: 'absolute top-[calc(100%-8px)] right-0 min-w-52 bg-white dark:bg-zinc-8 rounded-md shadow-lg b-1 b-solid b-black/8 dark:b-white/8 p-1 z-999';
+  .locale-menu {
+    --at-apply: 'absolute top-[calc(100%-8px)] right-0 min-w-36 bg-white dark:bg-zinc-8 rounded-md shadow-lg b-1 b-solid b-black/8 dark:b-white/8 p-1 z-999';
   }
-  .mobile .version-menu {
+  .mobile .locale-menu {
     --at-apply: 'top-full left-4 right-4';
   }
-  .version-menu button {
+  .locale-menu button {
     --at-apply: 'w-full b-0 bg-transparent text-left px-3 py-2 rounded flex items-center justify-between gap-2 cursor-pointer text-zinc-7 dark:text-zinc-2 hover:bg-black/5 dark:hover:bg-white/7';
   }
-  .version-menu button.active {
+  .locale-menu button.active {
     --at-apply: 'text-svp-primary-deep dark:text-svp-primary font-600';
-  }
-  .version-status-badge {
-    white-space: nowrap;
-    --at-apply: 'ml-auto rounded-full bg-black/6 dark:bg-white/10 px-2 py-1 text-[10px] leading-none uppercase tracking-wide text-zinc-500 dark:text-zinc-300';
   }
 </style>

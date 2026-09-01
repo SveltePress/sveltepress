@@ -1,10 +1,10 @@
 <script>
   import { page } from '$app/state'
   import { slide } from 'svelte/transition'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import ArrowDown from './icons/ArrowDown.svelte'
   import { changedPageRoutes, normalizeNavigationRoute } from './layout'
   import Link from './Link.svelte'
+  import { resolveLocaleOptions } from './locale'
   import SidebarGroup from './SidebarGroup.svelte'
   import { isLinkActive } from './utils'
   import VersionNavigationBadge from './VersionNavigationBadge.svelte'
@@ -28,8 +28,9 @@
   } = $props()
 
   let collapsed = $state(false)
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const newBadgeLabel = $derived(
-    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',
+    localeOptions.i18n?.versionNavigationNewLabel ?? 'New',
   )
 
   function handleToggle() {

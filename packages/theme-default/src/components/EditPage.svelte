@@ -1,9 +1,9 @@
 <script>
   import { page } from '$app/state'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import { resolveHistoricalEditLink } from 'virtual:sveltepress/theme-default/versioning'
   import { manifest } from 'virtual:sveltepress/versions'
   import Edit from './icons/Edit.svelte'
+  import { resolveLocaleOptions } from './locale'
 
   const routeId = $derived(page.route.id)
 
@@ -16,9 +16,10 @@
   const { pageType = 'md' } = $props()
 
   const DEFAULT_TEXT = 'Suggest changes to this page'
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const resolvedEditLink = $derived(
     resolveHistoricalEditLink(
-      themeOptions.editLink,
+      localeOptions.editLink,
       routeId,
       pageType,
       manifest,
@@ -42,7 +43,7 @@
       <Edit />
     </div>
     <div class="edit-text">
-      {themeOptions.i18n?.suggestChangesToThisPage || DEFAULT_TEXT}
+      {localeOptions.i18n?.suggestChangesToThisPage || DEFAULT_TEXT}
     </div>
   </div>
 {/if}

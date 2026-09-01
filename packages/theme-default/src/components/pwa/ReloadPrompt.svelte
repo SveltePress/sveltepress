@@ -1,7 +1,8 @@
 <script>
+  import { page } from '$app/state'
   import { useRegisterSW } from 'virtual:pwa-register/svelte'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import Refresh from '../icons/Refresh.svelte'
+  import { resolveLocaleOptions } from '../locale'
   import Btn from './Btn.svelte'
   import Prompt from './Prompt.svelte'
 
@@ -18,10 +19,11 @@
     offlineReady.set(false)
     needRefresh.set(false)
   }
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const appReadyToWorkOffline =
-    themeOptions?.i18n?.pwa?.appReadyToWorkOffline || DEFAULT_WORK_OFFLINE
+    localeOptions?.i18n?.pwa?.appReadyToWorkOffline || DEFAULT_WORK_OFFLINE
   const newContentAvailable =
-    themeOptions?.i18n?.pwa?.newContentAvailable ||
+    localeOptions?.i18n?.pwa?.newContentAvailable ||
     DEFAULT_NEW_CONTENT_AVAILABLE
   const toast = $derived($offlineReady || $needRefresh)
   const message = $derived(
@@ -33,7 +35,7 @@
   <Prompt {message} on:close={close}>
     {#if $needRefresh}
       <Btn onclick={() => updateServiceWorker(true)}>
-        {themeOptions?.i18n?.pwa?.reload || DEFAULT_RELOAD}
+        {localeOptions?.i18n?.pwa?.reload || DEFAULT_RELOAD}
         <Refresh />
       </Btn>
     {/if}
