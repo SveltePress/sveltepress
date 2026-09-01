@@ -1,13 +1,18 @@
 <script>
   import { page } from '$app/state'
-  import { manifest } from 'virtual:sveltepress/versions'
+  import { resolveVersionManifest } from 'virtual:sveltepress/versions'
   import Link from './Link.svelte'
   import { resolveLocaleOptions } from './locale'
   import { getLifecycleBanner } from './versioning'
 
   const defaultOldVersionMessage =
     'You are viewing an older version of this site. Some features may not work as expected.'
-  const banner = $derived(getLifecycleBanner(page.url.pathname, manifest))
+  const banner = $derived(
+    getLifecycleBanner(
+      page.url.pathname,
+      resolveVersionManifest(page.url.pathname),
+    ),
+  )
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const defaultMessage = $derived(
     banner?.status === 'eol'

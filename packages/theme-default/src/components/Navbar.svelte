@@ -5,7 +5,10 @@
   import LocaleSelector from 'virtual:sveltepress/theme-default/LocaleSelector.svelte'
   import { resolveVersionSearch } from 'virtual:sveltepress/theme-default/versioning'
   import VersionSelector from 'virtual:sveltepress/theme-default/VersionSelector.svelte'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionContext,
+    resolveVersionManifest,
+  } from 'virtual:sveltepress/versions'
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
   import { scrollDirection, sidebar } from './layout'
@@ -22,7 +25,10 @@
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const versionSearch = $derived(
-    resolveVersionSearch(page.url.pathname, manifest),
+    resolveVersionSearch(
+      page.url.pathname,
+      resolveVersionManifest(page.url.pathname),
+    ),
   )
   const hasConfiguredSearch = $derived(
     Boolean(localeOptions.search || localeOptions.docsearch),
@@ -152,7 +158,9 @@
         {#if locales}<div class="desktop-locale-selector">
             <LocaleSelector />
           </div>{/if}
-        {#if manifest}<div class="desktop-version-selector">
+        {#if resolveVersionManifest(page.url.pathname)}<div
+            class="desktop-version-selector"
+          >
             <VersionSelector />
           </div>{/if}
         {#if localeOptions.github}

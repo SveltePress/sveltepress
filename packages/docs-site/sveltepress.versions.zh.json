@@ -280,7 +280,7 @@
   "artifacts": {
     "mode": "incremental",
     "siteId": "sveltepress-docs-zh",
-    "store": ".sveltepress/version-artifacts-zh",
+    "store": ".sveltepress/version-artifacts",
     "sources": "version-deltas-zh"
   }
 }

@@ -3,18 +3,19 @@
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
   import {
-    manifest,
     resolveVersionChanges,
     resolveVersionContext,
+    resolveVersionManifest,
   } from 'virtual:sveltepress/versions'
-  import { resolveLocaleOptions } from './locale'
+  import { resolveLocaleForPath, resolveLocaleOptions } from './locale'
   import { getPathFromBase } from './utils'
 
   const defaultNoBaseline =
     'This is the first version, so there is no earlier baseline to compare.'
   const defaultEmpty = 'No changes were recorded for this version.'
+  const localeManifest = $derived(resolveVersionManifest(page.url.pathname))
   const versions = $derived(
-    manifest ? [manifest.current, ...manifest.versions] : [],
+    localeManifest ? [localeManifest.current, ...localeManifest.versions] : [],
   )
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const selectedVersionId = $derived.by(() => {
@@ -22,7 +23,7 @@
     const routeVersion = resolveVersionContext(page.url.pathname)?.versionId
     return versions.some(version => version.id === requested)
       ? requested!
-      : (routeVersion ?? manifest?.current.id ?? '')
+      : (routeVersion ?? localeManifest?.current.id ?? '')
   })
   const changes = $derived(resolveVersionChanges(selectedVersionId))
   const selectedVersionLabel = $derived(versionLabel(selectedVersionId))
@@ -45,11 +46,15 @@
   )
 
   function versionHref(route: string, versionId: string, sectionId?: string) {
-    if (!manifest) return route
+    const localeManifest = resolveVersionManifest(page.url.pathname)
+    if (!localeManifest) return route
+    const locale = resolveLocaleForPath(page.url.pathname)
+    const localePrefix =
+      locale && locale.prefix !== '/' ? locale.prefix.replace(/\/+$/, '') : ''
     const path =
-      versionId === manifest.current.id
-        ? route
-        : `${manifest.basePath}/${versionId}${route}`
+      versionId === localeManifest.current.id
+        ? `${localePrefix}${route}`
+        : `${localeManifest.basePath}/${versionId}${route}`
     return `${getPathFromBase(path)}${sectionId ? `#${sectionId}` : ''}`
   }
 
@@ -67,7 +72,7 @@
   }
 </script>
 
-{#if manifest}
+{#if resolveVersionManifest(page.url.pathname)}
   <div class="version-changes">
     <section class="release-summary" aria-label={selectedVersionLabel}>
       <div class="release-heading">

@@ -275,17 +275,21 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         if (!versionManifest) {
           return `
             export const manifest = null
+            export const manifests = { '/': null }
+            export const resolveVersionManifest = () => null
             export const changeSets = {}
             export const resolveVersionChanges = () => null
             export const resolveVersionContext = () => null
             export const resolveVersionedPath = value => value
             export const resolveVersionSwitch = () => null
-            export default { manifest, changeSets, resolveVersionChanges, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch }
+            export default { manifest, manifests, resolveVersionManifest, changeSets, resolveVersionChanges, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch }
           `
         }
         return `
           import { createVersionRuntime } from '@sveltepress/vite/versioning/runtime'
           export const manifest = ${JSON.stringify(versionManifest)}
+          export const manifests = { '/': manifest }
+          export const resolveVersionManifest = () => manifest
           const runtime = createVersionRuntime(manifest)
           export const changeSets = runtime.changeSets
           export const resolveVersionChanges = runtime.resolveVersionChanges
@@ -462,8 +466,10 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       throw new Error(`[sveltepress:versions] Missing artifact draft for site ${siteId}.`)
     const route = routeFromPageFilename(id)
     const page = draft.pages[route]
+    // On a multi-locale build the draft covers only the active locale's
+    // current pages; sibling-locale pages render live.
     if (!page)
-      throw new Error(`[sveltepress:versions] Artifact draft ${siteId}/${draft.versionId} has no current route ${route}.`)
+      return null
     const metadata = await readPageArtifactMetadata(storeRoot, page.artifactHash)
     return createArtifactPageWrapper({
       artifactHash: page.artifactHash,

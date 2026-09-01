@@ -4,9 +4,9 @@
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
   import {
-    manifest,
     resolveVersionChanges,
     resolveVersionContext,
+    resolveVersionManifest,
   } from 'virtual:sveltepress/versions'
   import EditPage from './EditPage.svelte'
   import Home from './Home.svelte'
@@ -33,7 +33,9 @@
       versionContext?.version.label ?? versionContext?.versionId ?? '',
     ),
   )
-  const canonical = $derived(manifest ? page.url.pathname : null)
+  const canonical = $derived(
+    resolveVersionManifest(page.url.pathname) ? page.url.pathname : null,
+  )
   const noIndex = $derived.by(() => {
     if (!versionContext?.historical) return false
     return (

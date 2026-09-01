@@ -7,7 +7,10 @@
   import LocaleFallbackNotice from 'virtual:sveltepress/theme-default/LocaleFallbackNotice.svelte'
   import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
   import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionContext,
+    resolveVersionManifest,
+  } from 'virtual:sveltepress/versions'
   import { SVELTEPRESS_CONTEXT_KEY } from '../context'
   import AjaxBar from './AjaxBar.svelte'
   import Backdrop from './Backdrop.svelte'
@@ -113,7 +116,7 @@
   onkeyup={handleCodeExpand}
 />
 
-{#if manifest}
+{#if resolveVersionManifest(page.url.pathname)}
   <VersionLifecycleBanner />
 {/if}
 {#if $showHeader}
@@ -132,7 +135,7 @@
     {#if locales}
       <LocaleFallbackNotice />
     {/if}
-    {#if manifest}
+    {#if resolveVersionManifest(page.url.pathname)}
       <VersionFallbackNotice />
     {/if}
     {#if $sidebar}

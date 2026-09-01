@@ -3,7 +3,10 @@
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
   import { tick } from 'svelte'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionContext,
+    resolveVersionManifest,
+  } from 'virtual:sveltepress/versions'
   import { resolveLocaleOptions } from './locale'
   import { getVersionOptions, nextVersionMenuIndex } from './versioning'
 
@@ -14,9 +17,15 @@
   let trigger = $state<HTMLButtonElement>()
 
   const context = $derived(resolveVersionContext(page.url.pathname))
-  const options = $derived(getVersionOptions(page.url.pathname, manifest))
+  const options = $derived(
+    getVersionOptions(
+      page.url.pathname,
+      resolveVersionManifest(page.url.pathname),
+    ),
+  )
+  const currentManifest = $derived(resolveVersionManifest(page.url.pathname))
   const label = $derived(
-    context?.version.label ?? manifest?.current.label ?? '',
+    context?.version.label ?? currentManifest?.current.label ?? '',
   )
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const selectorLabel = $derived(
@@ -89,7 +98,7 @@
   }
 </script>
 
-{#if manifest}
+{#if resolveVersionManifest(page.url.pathname)}
   <div class:mobile class="version-selector" onfocusout={handleFocusOut}>
     <button
       bind:this={trigger}

@@ -19,6 +19,12 @@ const enDocsearch = {
   indexName: 'sveltepress',
 }
 
+const bnDocsearch = {
+  apiKey: 'fbed412316ec83ff28e9a916161bf715',
+  appId: '4D30VFIAMG',
+  indexName: 'sveltepress',
+}
+
 /**
  * The merged documentation site's locales. Each locale carries its full
  * theme options; the theme resolves them per route via
@@ -53,6 +59,7 @@ export const locales: LocalesConfig = {
       navbar: bnNavbar,
       sidebar: bnSidebar,
       editLink: bnEditLink,
+      docsearch: bnDocsearch,
       i18n: bnI18n,
     },
   },

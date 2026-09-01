@@ -1,7 +1,7 @@
 <script>
   import { page } from '$app/state'
   import { resolveHistoricalEditLink } from 'virtual:sveltepress/theme-default/versioning'
-  import { manifest } from 'virtual:sveltepress/versions'
+  import { resolveVersionManifest } from 'virtual:sveltepress/versions'
   import Edit from './icons/Edit.svelte'
   import { resolveLocaleOptions } from './locale'
 
@@ -22,7 +22,7 @@
       localeOptions.editLink,
       routeId,
       pageType,
-      manifest,
+      resolveVersionManifest(page.url.pathname),
     ),
   )
 

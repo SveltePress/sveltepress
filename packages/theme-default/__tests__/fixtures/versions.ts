@@ -44,6 +44,9 @@ export const manifest: VersionManifest = {
   content: { include: ['**'], exclude: [], shared: [] },
 }
 
+export const manifests = { '/': manifest }
+export const resolveVersionManifest = () => manifest
+
 const runtime = createVersionRuntime(manifest)
 
 export const resolveVersionContext = runtime.resolveVersionContext

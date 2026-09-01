@@ -271,7 +271,7 @@ for (const locale of ['zh', 'bn']) {
   if (!existsSync(join(siteRoot, 'v', historicalId, 'index.html')))
     continue
   const currentFeature = join(siteRoot, 'guide/version-management/index.html')
-  const appRoot = join(siteRoot, '_app')
+  const appRoot = join(official, '_app')
   const bundled = existsSync(appRoot) ? files(appRoot).map(read).join('\n') : ''
   assert(
     read(currentFeature).includes('data-version-artifact-live-code'),

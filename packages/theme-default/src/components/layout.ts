@@ -5,7 +5,7 @@ import {
   resolveVersionChanges,
   resolveVersionContext,
   resolveVersionedPath,
-  manifest as versionManifest,
+  resolveVersionManifest,
 } from 'virtual:sveltepress/versions'
 import { resolveLocaleForPath, resolveLocaleOptions } from './locale'
 
@@ -81,7 +81,7 @@ export function resolveSidebar(routeId: string) {
   const logicalRoute = locale && locale.prefix !== '/' && routeId.startsWith(locale.prefix)
     ? `/${routeId.slice(locale.prefix.length)}`
     : routeId
-  resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, versionManifest) as LinkItem[])
+  resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])
 }
 
 function resolveVersionNavigationChanges(routeId: string) {
