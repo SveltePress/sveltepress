@@ -5,8 +5,9 @@ import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 
 import { basename, dirname, extname, resolve } from 'node:path'
 import process from 'node:process'
-import { generateLlmsTxt } from './llms.js'
+import { generateLlmsTxt, generateLlmsTxtForLocales } from './llms.js'
 import { resolveLocalesConfig } from './locale.js'
+import { generateLocaleSitemap } from './sitemap.js'
 import { wrapPage } from './utils/wrap-page.js'
 import {
   compilePageArtifactModule,
@@ -315,11 +316,23 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     writeBundle(outputOptions) {
       const bundleDirectory = outputOptions.dir ? resolve(siteRoot, outputOptions.dir) : null
       if (isBuild && llms?.enabled) {
-        generateLlmsTxt(llms, siteConfig ?? {}, versionManifest)
-        if (bundleDirectory)
-          generateLlmsTxt(llms, siteConfig ?? {}, versionManifest, siteRoot, bundleDirectory)
+        if (resolvedLocales) {
+          generateLlmsTxtForLocales(llms, siteConfig ?? {}, resolvedLocales, versionManifest)
+          if (bundleDirectory)
+            generateLlmsTxtForLocales(llms, siteConfig ?? {}, resolvedLocales, versionManifest, siteRoot, bundleDirectory)
+        }
+        else {
+          generateLlmsTxt(llms, siteConfig ?? {}, versionManifest)
+          if (bundleDirectory)
+            generateLlmsTxt(llms, siteConfig ?? {}, versionManifest, siteRoot, bundleDirectory)
+        }
       }
-      if (isBuild && versionManifest) {
+      if (isBuild && resolvedLocales) {
+        generateLocaleSitemap(resolvedLocales, process.cwd(), llms?.baseUrl)
+        if (bundleDirectory)
+          generateLocaleSitemap(resolvedLocales, siteRoot, llms?.baseUrl, bundleDirectory)
+      }
+      else if (isBuild && versionManifest) {
         generateVersionSitemap(versionManifest, process.cwd(), llms?.baseUrl)
         if (bundleDirectory)
           generateVersionSitemap(versionManifest, siteRoot, llms?.baseUrl, bundleDirectory)
