@@ -1,22 +1,22 @@
 export default [
   {
-    title: 'Guide',
+    title: '指南',
     to: '/guide/introduction/',
   },
   {
-    title: 'What\'s new',
+    title: '最新内容',
     to: '/whats-new/',
   },
   {
-    title: 'Reference',
+    title: '参考',
     to: '/reference/vite-plugin/',
   },
   {
-    title: 'Blog theme',
+    title: '博客主题',
     to: '/guide/blog-theme/getting-started/',
   },
   {
-    title: 'Blog demo',
+    title: '博客示例',
     to: 'https://sveltepress.github.io/sveltepress/blog-demo/',
     external: true,
   },

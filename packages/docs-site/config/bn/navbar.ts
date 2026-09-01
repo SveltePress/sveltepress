@@ -1,22 +1,22 @@
 export default [
   {
-    title: 'Guide',
+    title: 'নির্দেশনা',
     to: '/guide/introduction/',
   },
   {
-    title: 'What\'s new',
+    title: 'নতুন কী',
     to: '/whats-new/',
   },
   {
-    title: 'Reference',
+    title: 'রেফারেন্স',
     to: '/reference/vite-plugin/',
   },
   {
-    title: 'Blog theme',
+    title: 'ব্লগ থিম',
     to: '/guide/blog-theme/getting-started/',
   },
   {
-    title: 'Blog demo',
+    title: 'ব্লগ ডেমো',
     to: 'https://sveltepress.github.io/sveltepress/blog-demo/',
     external: true,
   },

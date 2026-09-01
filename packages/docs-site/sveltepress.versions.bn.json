@@ -1,0 +1,286 @@
+{
+  "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
+  "basePath": "/bn/v",
+  "current": {
+    "id": "2026-08-31",
+    "label": "2026-08-31"
+  },
+  "versions": [
+    {
+      "id": "2026-08-28",
+      "label": "2026-08-28",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/guide/version-management/",
+        "/reference/default-theme/",
+        "/reference/vite-plugin/",
+        "/whats-new/"
+      ],
+      "changes": {
+        "versionId": "2026-08-28",
+        "baselineVersionId": "2026-08-27",
+        "newPages": [
+          {
+            "route": "/guide/version-management/",
+            "title": "\u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f \u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09ac\u09cd\u09af\u09ac\u09b8\u09cd\u09a5\u09be\u09aa\u09a8\u09be",
+            "sections": []
+          }
+        ],
+        "updatedPages": [
+          {
+            "route": "/reference/vite-plugin/",
+            "title": "Vite \u09aa\u09cd\u09b2\u09be\u0997\u09bf\u09a8",
+            "sections": [
+              {
+                "id": "version-change-discovery",
+                "title": "Version change discovery",
+                "summary": "Build-time change catalogs are available to themes and custom pages.",
+                "introducedIn": "2026-08-28"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "stable",
+      "sourceHash": "d250db62f5d66747910f2b74d1639fd62afac40d0b8ba84c8ed5dd052c280ed8"
+    },
+    {
+      "id": "2026-08-27",
+      "label": "2026-08-27",
+      "sourceHash": "3c28c75d831dfea889219eb8b72b3455a3ed9afbaaf1077f981df26160083b49",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/reference/default-theme/",
+        "/reference/vite-plugin/"
+      ],
+      "status": "deprecated",
+      "message": "\u0986\u09aa\u09a8\u09bf \u098f\u0987 \u09b8\u09be\u0987\u099f\u09c7\u09b0 \u09aa\u09c1\u09b0\u09cb\u09a8\u09cb \u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a6\u09c7\u0996\u099b\u09c7\u09a8\u0964 \u0995\u09bf\u099b\u09c1 \u09ab\u09bf\u099a\u09be\u09b0 \u09aa\u09cd\u09b0\u09a4\u09cd\u09af\u09be\u09b6\u09be\u09ae\u09a4\u09cb \u0995\u09be\u099c \u09a8\u09be\u0993 \u0995\u09b0\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u0964",
+      "sidebar": {
+        "/guide/": [
+          {
+            "title": "\u09aa\u09b0\u09bf\u099a\u09bf\u09a4\u09bf",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Svelte \u0995\u09c0?",
+                "to": "/guide/introduction/"
+              },
+              {
+                "title": "\u09a6\u09cd\u09b0\u09c1\u09a4 \u09b6\u09c1\u09b0\u09c1",
+                "to": "/guide/quick-start/"
+              },
+              {
+                "title": "\u09a5\u09bf\u09ae",
+                "to": "/guide/themes/"
+              },
+              {
+                "title": "Typescript \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0",
+                "to": "/guide/typescript/"
+              }
+            ]
+          },
+          {
+            "title": "Markdown \u098f\u09b0 \u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+            "items": [
+              {
+                "title": "\u09b9\u09be\u09a4\u09c7\u0996\u09dc\u09bf",
+                "to": "/guide/markdown/basic-writing/"
+              },
+              {
+                "title": "Frontmatter",
+                "to": "/guide/markdown/frontmatter/"
+              },
+              {
+                "title": "Markdown \u098f Svelte",
+                "to": "/guide/markdown/svelte-in-markdown/"
+              }
+            ]
+          },
+          {
+            "title": "\u09a1\u09bf\u09ab\u09b2\u09cd\u099f \u09a5\u09bf\u09ae\u09c7\u09b0 \u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "Frontmatter",
+                "to": "/guide/default-theme/frontmatter/"
+              },
+              {
+                "title": "\u09a8\u09cd\u09af\u09be\u09ad\u09ac\u09be\u09b0",
+                "to": "/guide/default-theme/navbar/"
+              },
+              {
+                "title": "\u09b8\u09be\u0987\u09a1\u09ac\u09be\u09b0",
+                "to": "/guide/default-theme/sidebar/"
+              },
+              {
+                "title": "\u09b9\u09cb\u09ae\u09aa\u09c7\u099c",
+                "to": "/guide/default-theme/home-page/"
+              },
+              {
+                "title": "\u09ac\u09bf\u09b2\u09cd\u099f-\u0987\u09a8 \u0995\u09ae\u09cd\u09aa\u09cb\u09a8\u09c7\u09a8\u09cd\u099f",
+                "to": "/guide/default-theme/builtin-components/"
+              },
+              {
+                "title": "\u09b9\u09c7\u09a1\u09bf\u0982\u09b8 \u098f\u09ac\u0982 \u0985\u09cd\u09af\u09be\u0999\u09cd\u0995\u09b0",
+                "to": "/guide/default-theme/headings-and-anchors/"
+              },
+              {
+                "title": "\u0985\u09cd\u09af\u09be\u09a1\u09ae\u09a8\u09bf\u09b6\u09a8",
+                "to": "/guide/default-theme/admonitions/"
+              },
+              {
+                "title": "\u0995\u09cb\u09a1 \u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09bf\u09a4",
+                "to": "/guide/default-theme/code-related/"
+              },
+              {
+                "title": "Twoslash",
+                "to": "/guide/default-theme/twoslash/"
+              },
+              {
+                "title": "Unocss",
+                "to": "/guide/default-theme/unocss/"
+              },
+              {
+                "title": "\u09b8\u09be\u09b0\u09cd\u099a",
+                "to": "/guide/default-theme/search/"
+              },
+              {
+                "title": "PWA",
+                "to": "/guide/default-theme/pwa/"
+              },
+              {
+                "title": "Google Analytics",
+                "to": "/guide/default-theme/google-analytics/"
+              }
+            ]
+          },
+          {
+            "title": "\u09ac\u09cd\u09b2\u0997 \u09a5\u09bf\u09ae\u09c7\u09b0 \u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+            "collapsible": true,
+            "items": [
+              {
+                "title": "\u09b6\u09c1\u09b0\u09c1 \u0995\u09b0\u09be",
+                "to": "/guide/blog-theme/getting-started/"
+              },
+              {
+                "title": "\u0995\u09a8\u09ab\u09bf\u0997\u09be\u09b0\u09c7\u09b6\u09a8",
+                "to": "/guide/blog-theme/configuration/"
+              },
+              {
+                "title": "\u09aa\u09cb\u09b8\u09cd\u099f \u09b2\u09c7\u0996\u09be",
+                "to": "/guide/blog-theme/writing-posts/"
+              },
+              {
+                "title": "\u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+                "to": "/guide/blog-theme/features/"
+              },
+              {
+                "title": "\u0995\u09be\u09b8\u09cd\u099f\u09ae\u09be\u0987\u099c\u09c7\u09b6\u09a8",
+                "to": "/guide/blog-theme/customization/"
+              }
+            ]
+          }
+        ],
+        "/reference/": [
+          {
+            "title": "\u09b0\u09c7\u09ab\u09be\u09b0\u09c7\u09a8\u09cd\u09b8",
+            "items": [
+              {
+                "title": "Vite \u09aa\u09cd\u09b2\u09be\u0997\u09bf\u09a8",
+                "to": "/reference/vite-plugin/"
+              },
+              {
+                "title": "\u09a1\u09bf\u09ab\u09b2\u09cd\u099f \u09a5\u09bf\u09ae",
+                "to": "/reference/default-theme/"
+              }
+            ]
+          }
+        ]
+      },
+      "sharedDependencies": [
+        "$lib/MyGrid.svelte",
+        "../theme-default/types.d.ts",
+        "../vite/src/types.ts",
+        "config/pwa.ts",
+        "static/layout-hierarchy.png",
+        "vite.config.ts"
+      ],
+      "changes": {
+        "versionId": "2026-08-27",
+        "baselineVersionId": null,
+        "newPages": [],
+        "updatedPages": []
+      }
+    }
+  ],
+  "content": {
+    "include": [
+      "**"
+    ],
+    "exclude": [],
+    "shared": [
+      "$lib/**",
+      "../vite/**",
+      "../theme-default/**",
+      "config/**",
+      "static/**",
+      "vite.config.ts"
+    ]
+  },
+  "artifacts": {
+    "mode": "incremental",
+    "siteId": "sveltepress-docs-bn",
+    "store": ".sveltepress/version-artifacts-bn",
+    "sources": "version-deltas-bn"
+  }
+}
