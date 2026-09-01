@@ -31,13 +31,13 @@ export async function generateVersionShellRoutes(input: {
   const parentDirectory = dirname(outputDirectory)
   const staging = join(parentDirectory, `.sveltepress-shell-${basename(outputDirectory)}-${randomUUID()}`)
   const backup = join(parentDirectory, `.sveltepress-shell-backup-${basename(outputDirectory)}-${randomUUID()}`)
-  const versionBaseSegment = normalizeBasePath(input.basePath)
+  const versionBaseSegments = normalizeBasePath(input.basePath)
   let movedExisting = false
   let copiedSupportFiles = 0
   let historicalRoutes = 0
   try {
     mkdirSync(staging, { recursive: true })
-    copiedSupportFiles = copyRouteSupportFiles(sourceRoutes, staging, versionBaseSegment)
+    copiedSupportFiles = copyRouteSupportFiles(sourceRoutes, staging, versionBaseSegments)
     await writeManifestWrappers({
       destinationRoot: staging,
       routePrefix: [],
@@ -48,7 +48,7 @@ export async function generateVersionShellRoutes(input: {
     for (const historical of input.historical) {
       await writeManifestWrappers({
         destinationRoot: staging,
-        routePrefix: [versionBaseSegment, safeSegment(historical.versionId)],
+        routePrefix: [...versionBaseSegments, safeSegment(historical.versionId)],
         manifest: historical,
         storeRoot: input.storeRoot,
         pageLayout: input.pageLayout,
@@ -108,15 +108,16 @@ async function writeManifestWrappers(input: {
   }
 }
 
-function copyRouteSupportFiles(sourceRoot: string, destinationRoot: string, excludedSegment: string): number {
+function copyRouteSupportFiles(sourceRoot: string, destinationRoot: string, excludedSegments: string[]): number {
   if (!existsSync(sourceRoot))
     throw new Error(`[sveltepress:versions] Routes directory does not exist: ${sourceRoot}`)
+  const excludedPath = excludedSegments.join(sep)
   let copied = 0
   const visit = (sourceDirectory: string) => {
     for (const entry of readdirSync(sourceDirectory, { withFileTypes: true })) {
       const source = join(sourceDirectory, entry.name)
       const routeRelative = relative(sourceRoot, source)
-      if (routeRelative === excludedSegment || routeRelative.startsWith(`${excludedSegment}${sep}`))
+      if (routeRelative === excludedPath || routeRelative.startsWith(`${excludedPath}${sep}`))
         continue
       if (entry.isSymbolicLink())
         throw new Error(`[sveltepress:versions] Shell routes cannot contain symbolic links: ${routeRelative}`)
@@ -145,11 +146,11 @@ function routeSegmentsFromPath(route: string): string[] {
   return segments
 }
 
-function normalizeBasePath(basePath: string): string {
+function normalizeBasePath(basePath: string): string[] {
   const segments = basePath.split('/').filter(Boolean)
-  if (segments.length !== 1)
-    throw new Error(`[sveltepress:versions] Version base path must contain one segment: ${basePath}`)
-  return safeSegment(segments[0])
+  if (segments.length === 0)
+    throw new Error(`[sveltepress:versions] Version base path must contain at least one segment: ${basePath}`)
+  return segments.map(safeSegment)
 }
 
 function safeSegment(value: string): string {

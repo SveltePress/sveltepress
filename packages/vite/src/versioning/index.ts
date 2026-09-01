@@ -5,6 +5,18 @@ import { computeVersionChangeSet, validateVersionChangeSet } from './changes.js'
 
 export const DEFAULT_VERSION_MANIFEST = 'sveltepress.versions.json'
 
+/**
+ * The manifest file name for a locale prefix. The default locale (`'/'`)
+ * keeps the given manifest file; other locales get a locale-scoped suffix,
+ * e.g. `/zh/` → `sveltepress.versions.zh.json`.
+ */
+export function localeVersionManifestName(prefix: string, defaultFile = DEFAULT_VERSION_MANIFEST): string {
+  if (prefix === '/' || prefix === '')
+    return defaultFile
+  const slug = prefix.replace(/^\/+|\/+$/g, '')
+  return defaultFile.replace(/\.json$/, `.${slug}.json`)
+}
+
 export * from './artifact-store.js'
 export * from './artifacts.js'
 export { computeVersionChangeSet, validateFrozenVersionChangeSets, validateVersionChangeSet } from './changes.js'
@@ -99,6 +111,11 @@ export interface VersionContext {
   version: DocumentationVersion
   logicalPath: string
   historical: boolean
+  /**
+   * The manifest the context was resolved from. Attached by the locale-aware
+   * runtime so path helpers can compose locale-prefixed version routes.
+   */
+  manifest?: VersionManifest | null
 }
 
 export interface VersionSwitchTarget {
@@ -127,8 +144,8 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
 
   const manifest = value as Partial<VersionManifest>
   rejectUnknownKeys(manifest, ['$schema', 'basePath', 'current', 'versions', 'content', 'artifacts'], 'manifest', errors)
-  if (typeof manifest.basePath !== 'string' || !/^\/[a-z0-9-]+$/.test(manifest.basePath))
-    errors.push('basePath must be one lowercase absolute route segment such as "/v".')
+  if (typeof manifest.basePath !== 'string' || !/^\/[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(manifest.basePath))
+    errors.push('basePath must be one or more lowercase absolute route segments such as "/v" or "/zh/v".')
 
   if (!manifest.current || typeof manifest.current !== 'object')
     errors.push('current must describe the unprefixed documentation version.')

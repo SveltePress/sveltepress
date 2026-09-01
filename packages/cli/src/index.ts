@@ -52,29 +52,29 @@ export async function runCli(args: string[], io: CliIO = DEFAULT_IO): Promise<nu
       await createVersion(io, options)
     }
     else if (command === 'list') {
-      listVersions(io)
+      listVersions(io, options.locale)
     }
     else if (command === 'validate') {
-      await validateSite(io)
+      await validateSite(io, options.locale)
     }
     else if (command === 'plan') {
-      await printIncrementalPlan(io, requireManifest(io.cwd))
+      await printIncrementalPlan(io, requireManifest(io.cwd, options.locale))
     }
     else if (command === 'build') {
-      await buildIncrementalSite(io, requireManifest(io.cwd), options)
+      await buildIncrementalSite(io, requireManifest(io.cwd, options.locale), options)
     }
     else if (command === 'compose') {
-      await composeIncrementalSite(io, requireManifest(io.cwd), options)
+      await composeIncrementalSite(io, requireManifest(io.cwd, options.locale), options)
     }
     else if (command === 'publish') {
-      publishIncrementalStatus(io, requireManifest(io.cwd), options)
+      publishIncrementalStatus(io, requireManifest(io.cwd, options.locale), options)
     }
     else if (command === 'migrate') {
-      const manifest = requireManifest(io.cwd)
-      await migrateIncrementalSite(io, manifest, options, next => commitManifest(io, next))
+      const manifest = requireManifest(io.cwd, options.locale)
+      await migrateIncrementalSite(io, manifest, options, next => commitManifest(io, next, options.locale))
     }
     else if (command === 'gc') {
-      garbageCollectIncrementalArtifacts(io, requireManifest(io.cwd), options)
+      garbageCollectIncrementalArtifacts(io, requireManifest(io.cwd, options.locale), options)
     }
     else {
       throw new Error('Usage: sveltepress versions <init|create|list|validate|plan|build|compose|publish|migrate|gc>')
@@ -92,6 +92,7 @@ interface ParsedArgs {
   current?: string
   label?: string
   basePath?: string
+  locale?: string
   allowDirty: boolean
   siteId?: string
   store?: string
@@ -117,13 +118,15 @@ function parseArgs(args: string[]): ParsedArgs {
         ? 'label'
         : arg === '--base-path'
           ? 'basePath'
-          : arg === '--site-id'
-            ? 'siteId'
-            : arg === '--store'
-              ? 'store'
-              : arg === '--output'
-                ? 'output'
-                : null
+          : arg === '--locale'
+            ? 'locale'
+            : arg === '--site-id'
+              ? 'siteId'
+              : arg === '--store'
+                ? 'store'
+                : arg === '--output'
+                  ? 'output'
+                  : null
     if (key) {
       const value = args[index + 1]
       if (!value || value.startsWith('--'))
@@ -139,17 +142,25 @@ function parseArgs(args: string[]): ParsedArgs {
   return parsed
 }
 
+function manifestFileFor(locale?: string): string {
+  return locale ? `sveltepress.versions.${locale}.json` : 'sveltepress.versions.json'
+}
+
 function initializeVersions(io: CliIO, options: ParsedArgs) {
-  const manifestPath = join(io.cwd, 'sveltepress.versions.json')
+  const manifestPath = join(io.cwd, manifestFileFor(options.locale))
   if (existsSync(manifestPath))
-    throw new Error('sveltepress.versions.json already exists.')
+    throw new Error(`${basename(manifestPath)} already exists.`)
   const currentId = options.current
   if (!currentId || !validateVersionId(currentId))
     throw new Error('--current must be a safe lowercase version ID.')
-  const basePath = options.basePath ?? '/v'
-  if (!/^\/[a-z0-9-]+$/.test(basePath))
-    throw new Error('--base-path must be one lowercase absolute route segment such as "/v".')
-  assertVersionBaseAvailable(join(io.cwd, 'src/routes'), basePath.slice(1))
+  const basePath = options.basePath ?? (options.locale ? `/${options.locale}/v` : '/v')
+  if (!/^\/[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(basePath))
+    throw new Error('--base-path must be one or more lowercase absolute route segments such as "/v" or "/zh/v".')
+  const routesRoot = join(io.cwd, 'src/routes')
+  const baseSegment = options.locale
+    ? stripLocalePrefix(basePath, `/${options.locale}`).slice(1)
+    : basePath.slice(1)
+  assertVersionBaseAvailable(routesRoot, options.locale ? `${options.locale}/${baseSegment}` : baseSegment)
 
   const manifest: VersionManifest = {
     $schema: './node_modules/@sveltepress/cli/schema/versions.schema.json',
@@ -160,7 +171,14 @@ function initializeVersions(io: CliIO, options: ParsedArgs) {
   }
   validateVersionManifest(manifest)
   writeJsonAtomic(manifestPath, manifest)
-  io.stdout(`Initialized document versions with current ${currentId}.`)
+  io.stdout(`Initialized document versions with current ${currentId}${options.locale ? ` for locale /${options.locale}/` : ''}.`)
+}
+
+function stripLocalePrefix(pathname: string, prefix: string): string {
+  const normalized = prefix.replace(/\/+$/, '')
+  if (pathname === normalized)
+    return '/'
+  return pathname.startsWith(`${normalized}/`) ? pathname.slice(normalized.length) : pathname
 }
 
 function assertVersionBaseAvailable(routesRoot: string, baseSegment: string) {
@@ -196,7 +214,7 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
   const nextId = options.positional[0]
   if (!nextId || !validateVersionId(nextId))
     throw new Error('versions create requires a safe lowercase new current version ID.')
-  const manifest = requireManifest(io.cwd)
+  const manifest = requireManifest(io.cwd, options.locale)
   if ([manifest.current.id, ...manifest.versions.map(version => version.id)].includes(nextId))
     throw new Error(`Version ${nextId} already exists.`)
   if (!options.allowDirty)
@@ -208,13 +226,17 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
       manifest,
       nextId,
       label: options.label ?? nextId,
-      writeManifest: next => commitManifest(io, next),
+      writeManifest: next => commitManifest(io, next, options.locale),
     })
     return
   }
 
-  const routesRoot = join(io.cwd, 'src/routes')
-  const baseSegment = manifest.basePath.slice(1)
+  const routesRoot = options.locale
+    ? join(io.cwd, 'src/routes', options.locale)
+    : join(io.cwd, 'src/routes')
+  const baseSegment = options.locale
+    ? stripLocalePrefix(manifest.basePath, `/${options.locale}`).slice(1)
+    : manifest.basePath.slice(1)
   const baseRoot = join(routesRoot, baseSegment)
   const target = join(baseRoot, manifest.current.id)
   if (existsSync(target))
@@ -234,7 +256,7 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
   const baseRootExisted = existsSync(baseRoot)
   mkdirSync(baseRoot, { recursive: true })
   const staging = join(baseRoot, `.sveltepress-${manifest.current.id}-${randomUUID()}`)
-  const manifestPath = join(io.cwd, 'sveltepress.versions.json')
+  const manifestPath = join(io.cwd, manifestFileFor(options.locale))
   let snapshotCommitted = false
   try {
     mkdirSync(staging)
@@ -277,26 +299,31 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
   io.stdout(`Created ${manifest.current.id} snapshot and advanced current to ${nextId}.`)
 }
 
-function listVersions(io: CliIO) {
-  const manifest = requireManifest(io.cwd)
+function listVersions(io: CliIO, locale?: string) {
+  const manifest = requireManifest(io.cwd, locale)
   io.stdout(`current\t${manifest.current.id}\t${manifest.current.label}`)
   for (const version of manifest.versions)
     io.stdout(`${version.status ?? 'stable'}\t${version.id}\t${version.label}`)
 }
 
-async function validateSite(io: CliIO) {
-  const manifest = requireManifest(io.cwd)
+async function validateSite(io: CliIO, locale?: string) {
+  const manifest = requireManifest(io.cwd, locale)
   if (manifest.artifacts) {
     await validateIncrementalArtifacts(io, manifest)
     return
   }
   validateFrozenVersionChangeSets(io.cwd, manifest)
-  const routesRoot = join(io.cwd, 'src/routes')
-  const baseRoot = join(io.cwd, 'src/routes', manifest.basePath.slice(1))
+  const routesRoot = locale
+    ? join(io.cwd, 'src/routes', locale)
+    : join(io.cwd, 'src/routes')
+  const baseSegment = locale
+    ? stripLocalePrefix(manifest.basePath, `/${locale}`).slice(1)
+    : manifest.basePath.slice(1)
+  const baseRoot = join(routesRoot, baseSegment)
   const reports = [analyzeDependencies(
     io.cwd,
     routesRoot,
-    collectSnapshotFiles(routesRoot, manifest.basePath.slice(1), manifest.content),
+    collectSnapshotFiles(routesRoot, baseSegment, manifest.content),
     manifest.content.shared,
   )]
   for (const version of manifest.versions) {
@@ -326,9 +353,9 @@ async function validateSite(io: CliIO) {
   io.stdout(`Version manifest is valid (${manifest.versions.length} historical version${manifest.versions.length === 1 ? '' : 's'}).`)
 }
 
-async function commitManifest(io: CliIO, manifest: VersionManifest) {
+async function commitManifest(io: CliIO, manifest: VersionManifest, locale?: string) {
   validateVersionManifest(manifest)
-  const path = join(io.cwd, 'sveltepress.versions.json')
+  const path = join(io.cwd, manifestFileFor(locale))
   if (io.writeManifest)
     await io.writeManifest(path, manifest)
   else
@@ -352,10 +379,11 @@ function collectDependencyFiles(root: string): string[] {
   return files.sort()
 }
 
-function requireManifest(siteRoot: string): VersionManifest {
-  const manifest = loadVersionManifest(siteRoot)
+function requireManifest(siteRoot: string, locale?: string): VersionManifest {
+  const manifestFile = manifestFileFor(locale)
+  const manifest = loadVersionManifest(siteRoot, manifestFile)
   if (!manifest)
-    throw new Error('No sveltepress.versions.json found. Run `sveltepress versions init --current <id>` first.')
+    throw new Error(`No ${manifestFile} found. Run \`sveltepress versions init --current <id>${locale ? ` --locale ${locale}` : ''}\` first.`)
   return manifest
 }
 

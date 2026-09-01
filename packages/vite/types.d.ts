@@ -11,6 +11,10 @@ declare module 'virtual:sveltepress/versions' {
   import type { VersionManifest, VersionRuntime } from '@sveltepress/vite/versioning'
 
   export const manifest: VersionManifest | null
+  /** Manifests keyed by locale prefix; only present on a multi-locale site. */
+  export const manifests: Record<string, VersionManifest | null> | undefined
+  /** Resolve the version manifest for a route by its locale. */
+  export const resolveVersionManifest: ((pathname: string) => VersionManifest | null) | undefined
   export const changeSets: VersionRuntime['changeSets']
   export const resolveVersionChanges: VersionRuntime['resolveVersionChanges']
   export const resolveVersionContext: VersionRuntime['resolveVersionContext']

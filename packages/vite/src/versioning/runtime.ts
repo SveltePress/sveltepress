@@ -5,6 +5,13 @@ import type {
   VersionSwitchTarget,
 } from './index.js'
 
+export interface LocaleVersionRuntime extends VersionRuntime {
+  /** Manifests keyed by locale prefix. */
+  manifests: Record<string, VersionManifest | null>
+  /** Resolve the manifest for a route by its locale. */
+  resolveVersionManifest: (pathname: string) => VersionManifest | null
+}
+
 export function resolveVersionContext(
   pathname: string,
   manifest: VersionManifest | null,
@@ -71,6 +78,75 @@ export function createVersionRuntime(manifest: VersionManifest | null): VersionR
   }
 }
 
+/**
+ * A version runtime over per-locale manifests: every route resolves its
+ * manifest by locale, version routes compose with the locale prefix, current
+ * logical paths are stripped of the locale prefix, and resolved contexts
+ * carry their manifest so path helpers stay consistent.
+ */
+export function createLocaleVersionRuntime(
+  manifests: Record<string, VersionManifest | null>,
+  resolvePrefix: (pathname: string) => string | null,
+): LocaleVersionRuntime {
+  const defaultManifest = Object.values(manifests).find(manifest => manifest) ?? null
+  const changeSets = Object.fromEntries(
+    Object.values(manifests)
+      .flatMap(manifest => manifest ? [manifest.current, ...manifest.versions] : [])
+      .filter(version => version.changes)
+      .map(version => [version.id, version.changes!]),
+  )
+  const resolveManifest = (pathname: string): VersionManifest | null => {
+    const prefix = resolvePrefix(pathname)
+    return prefix ? (manifests[prefix] ?? null) : null
+  }
+  const logicalPathFor = (pathname: string, context: VersionContext, prefix: string | null): string => {
+    if (context.historical || !prefix || prefix === '/')
+      return context.logicalPath
+    return stripLocalePrefix(pathname, prefix)
+  }
+  return {
+    manifest: defaultManifest,
+    manifests,
+    changeSets,
+    resolveVersionManifest: resolveManifest,
+    resolveVersionChanges: (versionId?: string) => {
+      if (versionId)
+        return changeSets[versionId] ?? null
+      return defaultManifest ? changeSets[defaultManifest.current.id] ?? null : null
+    },
+    resolveVersionContext: (pathname) => {
+      const prefix = resolvePrefix(pathname)
+      const manifest = prefix ? (manifests[prefix] ?? null) : null
+      const context = resolveVersionContext(pathname, manifest)
+      if (context) {
+        context.logicalPath = logicalPathFor(pathname, context, prefix)
+        context.manifest = manifest
+      }
+      return context
+    },
+    resolveVersionedPath: (to, context) => resolveVersionedPath(to, context, context?.manifest ?? defaultManifest),
+    resolveVersionSwitch: (pathname, targetVersionId) => {
+      const prefix = resolvePrefix(pathname)
+      const manifest = prefix ? (manifests[prefix] ?? null) : null
+      if (!manifest)
+        return null
+      const target = targetVersionId === manifest.current.id
+        ? manifest.current
+        : manifest.versions.find(version => version.id === targetVersionId)
+      const context = resolveVersionContext(pathname, manifest)
+      if (!context || !target)
+        return null
+      const logicalPath = logicalPathFor(pathname, context, prefix)
+      const routeExists = !target.routes?.length || target.routes.includes(normalizeRoute(logicalPath))
+      const resolvedPath = routeExists ? logicalPath : '/'
+      const href = target.id === manifest.current.id
+        ? normalizeRoute(resolvedPath)
+        : joinRoute(manifest.basePath, target.id, resolvedPath)
+      return { href, fallback: !routeExists }
+    },
+  }
+}
+
 function normalizeRoute(route: string): string {
   const withLeading = route.startsWith('/') ? route : `/${route}`
   return withLeading === '/' ? '/' : `${withLeading.replace(/\/+$/, '')}/`
@@ -84,6 +160,14 @@ function joinRoute(basePath: string, versionId: string, logicalPath: string): st
 
 function stripQueryAndHash(value: string): string {
   return value.split(/[?#]/, 1)[0]
+}
+
+function stripLocalePrefix(pathname: string, prefix: string): string {
+  const cleanPath = stripQueryAndHash(pathname)
+  const normalized = prefix.replace(/\/+$/, '')
+  if (cleanPath === normalized)
+    return '/'
+  return normalizeRoute(cleanPath.slice(normalized.length))
 }
 
 function splitPathSuffix(value: string): { pathname: string, suffix: string } {

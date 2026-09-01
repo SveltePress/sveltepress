@@ -14,6 +14,7 @@ import {
   createArtifactPageWrapper,
   generateVersionSitemap,
   loadVersionManifest,
+  localeVersionManifestName,
   PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX,
   PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX,
   PAGE_ARTIFACT_VIRTUAL_PREFIX,
@@ -75,6 +76,14 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     : loadVersionManifest(siteRoot, manifestFile)
   const resolvedLocales = locales && Object.keys(locales).length > 0
     ? resolveLocalesConfig(locales, siteRoot, versionManifest?.basePath)
+    : null
+  const localeManifests = resolvedLocales
+    ? Object.fromEntries(
+        Object.keys(resolvedLocales).map(prefix => [
+          prefix,
+          loadVersionManifest(siteRoot, localeVersionManifestName(prefix, manifestFile)),
+        ]),
+      )
     : null
   const allRemarkPlugins: Plugin[] = []
   const allRehypePlugins: Plugin[] = []
@@ -236,6 +245,25 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       if (id === SVELTEPRESS_SITE_CONFIG_MODULE)
         return `export default ${JSON.stringify(siteConfig)}`
       if (id === SVELTEPRESS_VERSIONS_MODULE) {
+        if (localeManifests && Object.values(localeManifests).some(Boolean)) {
+          return `
+            import { createLocaleVersionRuntime } from '@sveltepress/vite/versioning/runtime'
+            import { resolveLocale as resolveLocaleHelper } from 'virtual:sveltepress/locale'
+            export const manifest = ${JSON.stringify(localeManifests['/'] ?? null)}
+            export const manifests = ${JSON.stringify(localeManifests)}
+            const runtime = createLocaleVersionRuntime(manifests, pathname => {
+              const locale = resolveLocaleHelper(pathname)
+              return locale ? locale.prefix : null
+            })
+            export const changeSets = runtime.changeSets
+            export const resolveVersionChanges = runtime.resolveVersionChanges
+            export const resolveVersionContext = runtime.resolveVersionContext
+            export const resolveVersionedPath = runtime.resolveVersionedPath
+            export const resolveVersionSwitch = runtime.resolveVersionSwitch
+            export const resolveVersionManifest = runtime.resolveVersionManifest
+            export default runtime
+          `
+        }
         if (!versionManifest) {
           return `
             export const manifest = null
@@ -297,11 +325,18 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     async handleHotUpdate(ctx) {
       const { file } = ctx
       const manifestPath = resolve(siteRoot, manifestFile ?? 'sveltepress.versions.json')
-      const versionSourceChanged = Boolean(versionManifest) && (
-        PAGE_OR_LAYOUT_RE.test(file) || file === manifestPath
+      const localeManifestPaths = localeManifests
+        ? Object.keys(localeManifests).map(prefix => resolve(siteRoot, localeVersionManifestName(prefix, manifestFile)))
+        : []
+      const versionSourceChanged = (Boolean(versionManifest) || localeManifests) && (
+        PAGE_OR_LAYOUT_RE.test(file) || file === manifestPath || localeManifestPaths.includes(file)
       )
       if (versionSourceChanged) {
         versionManifest = loadVersionManifest(siteRoot, manifestFile)
+        if (localeManifests) {
+          for (const prefix of Object.keys(localeManifests))
+            localeManifests[prefix] = loadVersionManifest(siteRoot, localeVersionManifestName(prefix, manifestFile))
+        }
         const virtualModule = ctx.server.moduleGraph.getModuleById(SVELTEPRESS_VERSIONS_MODULE)
         if (virtualModule)
           ctx.server.moduleGraph.invalidateModule(virtualModule)
@@ -317,9 +352,9 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
       const bundleDirectory = outputOptions.dir ? resolve(siteRoot, outputOptions.dir) : null
       if (isBuild && llms?.enabled) {
         if (resolvedLocales) {
-          generateLlmsTxtForLocales(llms, siteConfig ?? {}, resolvedLocales, versionManifest)
+          generateLlmsTxtForLocales(llms, siteConfig ?? {}, resolvedLocales, localeManifests)
           if (bundleDirectory)
-            generateLlmsTxtForLocales(llms, siteConfig ?? {}, resolvedLocales, versionManifest, siteRoot, bundleDirectory)
+            generateLlmsTxtForLocales(llms, siteConfig ?? {}, resolvedLocales, localeManifests, siteRoot, bundleDirectory)
         }
         else {
           generateLlmsTxt(llms, siteConfig ?? {}, versionManifest)

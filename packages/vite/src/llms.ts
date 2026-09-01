@@ -127,7 +127,7 @@ export function generateLlmsTxtForLocales(
   config: LlmsConfig,
   siteConfig: { title?: string, description?: string },
   locales: LocalesConfig,
-  manifest?: VersionManifest | null,
+  manifests?: Record<string, VersionManifest | null> | null,
   siteRoot = process.cwd(),
   outputRoot = resolve(siteRoot, 'static'),
 ) {
@@ -139,14 +139,42 @@ export function generateLlmsTxtForLocales(
       : resolve(siteRoot, baseRoutesDir)
     const outputDir = localeDir ? join(outputRoot, localeDir) : outputRoot
     const routePrefix = prefix === '/' ? '' : prefix.replace(/\/+$/, '')
+    const localeManifest = manifests?.[prefix] ?? null
+    const localeRelativeBasePath = localeManifest
+      ? stripLocaleBasePath(localeManifest.basePath, prefix)
+      : undefined
+    const versionRoutesRoot = localeRelativeBasePath
+      ? join(routesDir, localeRelativeBasePath.slice(1))
+      : undefined
     const excludedRoots = [
       ...Object.keys(locales)
         .filter(other => other !== prefix)
         .map(other => other === '/' ? undefined : join(routesDir, other.replace(/^\/+|\/+$/g, ''))),
-      manifest ? join(routesDir, manifest.basePath.slice(1)) : undefined,
+      versionRoutesRoot,
     ]
     generateLlmsFiles(config, siteConfig, routesDir, outputDir, routePrefix, siteRoot, excludedRoots)
+    if (localeManifest && localeRelativeBasePath) {
+      for (const version of localeManifest.versions) {
+        generateLlmsFiles(
+          config,
+          siteConfig,
+          join(versionRoutesRoot!, version.id),
+          join(outputDir, localeRelativeBasePath.slice(1), version.id),
+          `${localeManifest.basePath}/${version.id}`,
+          siteRoot,
+        )
+      }
+    }
   }
+}
+
+function stripLocaleBasePath(basePath: string, prefix: string): string {
+  const normalizedPrefix = prefix.replace(/\/+$/, '')
+  if (normalizedPrefix === '/')
+    return basePath
+  if (basePath.startsWith(`${normalizedPrefix}/`))
+    return basePath.slice(normalizedPrefix.length)
+  return basePath
 }
 
 function generateLlmsFiles(
