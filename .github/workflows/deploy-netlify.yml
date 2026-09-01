@@ -35,8 +35,8 @@ jobs:
         with:
           path: |
             packages/docs-site/.sveltepress/version-artifacts
-            packages/docs-site-zh/.sveltepress/version-artifacts
-            packages/docs-site-bn/.sveltepress/version-artifacts
+            packages/docs-site/.sveltepress/version-artifacts-zh
+            packages/docs-site/.sveltepress/version-artifacts-bn
           key: sveltepress-page-artifacts-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
             sveltepress-page-artifacts-${{ runner.os }}-
@@ -62,33 +62,10 @@ jobs:
       - name: Check Netlify CLI
         run: pnpm --package=netlify-cli@27.4.1 dlx netlify deploy --help > /dev/null
 
-      - name: Deploy Bengali documentation
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
-            --no-build \
-            --prod \
-            --filter @sveltepress/docs-site-bn \
-            --dir packages/docs-site-bn/dist \
-            --site sveltepress-docs-site-bn \
-            --auth "${NETLIFY_AUTH_TOKEN}" \
-            --message "GitHub Actions ${GITHUB_SHA}"
-
-      - name: Deploy Chinese documentation
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          pnpm --package=netlify-cli@27.4.1 dlx netlify deploy \
-            --no-build \
-            --prod \
-            --filter @sveltepress/docs-site-zh \
-            --dir packages/docs-site-zh/dist \
-            --site sveltepress-docs-site-zh \
-            --auth "${NETLIFY_AUTH_TOKEN}" \
-            --message "GitHub Actions ${GITHUB_SHA}"
-
-      - name: Deploy English documentation
+      # The merged site serves all three locales (/ for English, /zh/, /bn/).
+      # Old cn.sveltepress.site and bn.sveltepress.site domains redirect into
+      # the matching locale via the site's Netlify redirect rules.
+      - name: Deploy merged documentation site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |

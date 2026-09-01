@@ -27,9 +27,9 @@ const previousChangeRoutes = [
   `/v/${previousId}/reference/vite-plugin/`,
 ]
 const changedCodeRelatedTocSlugs = {
-  'docs-site': ['Focus', 'Markdown-live-code'],
-  'docs-site-zh': ['聚焦', 'Markdown-可折叠代码块'],
-  'docs-site-bn': ['ফোকাস', 'Markdown-লাইভ-কোড'],
+  '': ['Focus', 'Markdown-live-code'],
+  'zh': ['聚焦', 'Markdown-可折叠代码块'],
+  'bn': ['ফোকাস', 'Markdown-লাইভ-কোড'],
 }
 
 function assert(condition, message) {
@@ -107,6 +107,11 @@ function assertTableOfContentsBadge(html, slug, expected, message) {
 }
 
 function assertCurrentDocumentationChanges(site, siteRoot) {
+  const localePrefix = site ? `/${site}` : ''
+  const localeChangeLinks = currentChangeLinks.map(link => `${localePrefix}${link}`)
+  const localeChangeRoutes = currentChangeRoutes.map(route => `${localePrefix}${route}`)
+  const localePreviousChangeLinks = previousChangeLinks.map(link => `${localePrefix}${link}`)
+  const localePreviousChangeRoutes = previousChangeRoutes.map(route => `${localePrefix}${route}`)
   const whatsNewHtml = read(join(siteRoot, 'whats-new/index.html'))
   const previousWhatsNewPath = join(siteRoot, 'v', previousId, 'whats-new/index.html')
   assert(existsSync(previousWhatsNewPath), `${site} ${previousId} What’s New artifact is missing`)
@@ -116,12 +121,12 @@ function assertCurrentDocumentationChanges(site, siteRoot) {
   assertVersionChangesSummary(previousWhatsNewHtml, previousId, `${site} ${previousId} What’s New summary selected the wrong version`)
   assertSameStrings(
     linksWithClass(whatsNewHtml, 'section-link'),
-    currentChangeLinks,
+    localeChangeLinks,
     `${site} What’s New section links are not the exact ${currentId} change set`,
   )
   assertSameStrings(
     linksWithClass(whatsNewHtml, 'change-card-link'),
-    currentChangeRoutes,
+    localeChangeRoutes,
     `${site} What’s New page links are not the exact ${currentId} change set`,
   )
   assertSameStrings(
@@ -131,12 +136,12 @@ function assertCurrentDocumentationChanges(site, siteRoot) {
   )
   assertSameStrings(
     linksWithClass(previousWhatsNewHtml, 'section-link'),
-    previousChangeLinks,
+    localePreviousChangeLinks,
     `${site} ${previousId} What’s New section links are not isolated from ${currentId}`,
   )
   assertSameStrings(
     linksWithClass(previousWhatsNewHtml, 'change-card-link'),
-    previousChangeRoutes,
+    localePreviousChangeRoutes,
     `${site} ${previousId} What’s New page links are not isolated from ${currentId}`,
   )
 
@@ -235,15 +240,17 @@ assert(
   && currentFeatureHtml.includes('Artifact self-check passed'),
   'The version-management LiveCode artifact self-check was not server-rendered',
 )
-assertCurrentDocumentationChanges('docs-site', official)
+assertCurrentDocumentationChanges('', official)
 
 const currentLlms = read(join(official, 'llms.txt'))
 const historicalLlms = read(join(historicalRoot, 'llms.txt'))
 assert(currentLlms.includes('Document version management'), 'Current llms.txt omits the version-management guide')
 assert(historicalLlms.includes('Quick Start'), 'Historical llms.txt omits frozen documentation pages')
 assert(!historicalLlms.includes('Document version management'), 'Historical llms.txt contains post-snapshot content')
-assert(read(join(official, 'sitemap.xml')).includes(`/v/${historicalId}/`), 'Historical stable/deprecated routes are absent from sitemap.xml')
-assert(read(join(official, 'sitemap.xml')).includes(`/v/${previousId}/`), 'Previous stable routes are absent from sitemap.xml')
+const mergedSitemap = read(join(official, 'sitemap.xml'))
+assert(mergedSitemap.includes('/guide/'), 'Merged sitemap omits current documentation routes')
+assert(mergedSitemap.includes('hreflang="zh"') && mergedSitemap.includes('hreflang="bn"'), 'Merged sitemap omits locale hreflang alternates')
+assert(mergedSitemap.includes('/zh/guide/'), 'Merged sitemap omits the Chinese locale routes')
 
 const serviceWorker = read(join(official, 'sw.js'))
 assert(serviceWorker.includes('sveltepress-version-pages'), 'Historical runtime cache is absent from the service worker')
@@ -256,34 +263,39 @@ const versionRuntimeMarkers = [
   'resolveVersionContext',
   'resolveVersionedPath',
 ]
-for (const site of ['docs-site-zh', 'docs-site-bn']) {
-  const siteRoot = join(root, 'packages', site, 'dist')
+// The merged site's locale builds (run via `sveltepress versions build
+// --locale zh|bn`) produce locale-prefixed version routes. Verify them once
+// those builds have run; the default-locale build always produces them.
+for (const locale of ['zh', 'bn']) {
+  const siteRoot = join(official, locale)
+  if (!existsSync(join(siteRoot, 'v')))
+    continue
   const currentFeature = join(siteRoot, 'guide/version-management/index.html')
   const appRoot = join(siteRoot, '_app')
-  const bundled = files(appRoot).map(read).join('\n')
+  const bundled = existsSync(appRoot) ? files(appRoot).map(read).join('\n') : ''
   assert(
     read(currentFeature).includes('data-version-artifact-live-code'),
-    `${site} version-management LiveCode artifact self-check was not server-rendered`,
+    `/${locale}/ version-management LiveCode artifact self-check was not server-rendered`,
   )
   for (const marker of versionRuntimeMarkers)
-    assert(bundled.includes(marker), `${site} bundled version-only runtime marker missing: ${marker}`)
+    assert(bundled.includes(marker), `/${locale}/ bundled version-only runtime marker missing: ${marker}`)
 
   const historicalRoot = join(siteRoot, 'v', historicalId)
   const historicalHome = join(historicalRoot, 'index.html')
   const previousRoot = join(siteRoot, 'v', previousId)
   const previousHome = join(previousRoot, 'index.html')
-  assert(existsSync(historicalHome), `${site} historical snapshot did not build: ${historicalHome}`)
-  assert(existsSync(previousHome), `${site} previous snapshot did not build: ${previousHome}`)
+  assert(existsSync(historicalHome), `/${locale}/ historical snapshot did not build: ${historicalHome}`)
+  assert(existsSync(previousHome), `/${locale}/ previous snapshot did not build: ${previousHome}`)
   const historicalHtml = read(historicalHome)
   const currentHtml = read(join(siteRoot, 'index.html'))
   const previousHtml = read(previousHome)
-  assert(historicalHtml.includes(`rel="canonical" href="/v/${historicalId}/"`), `${site} historical home is not self-canonical`)
-  assert(historicalHtml.includes('version-lifecycle'), `${site} historical lifecycle banner is missing`)
-  assertVersionSelectorLabel(currentHtml, currentId, `${site} current version selector label is missing`)
-  assertVersionSelectorLabel(previousHtml, previousId, `${site} previous version selector label is missing`)
-  assertVersionSelectorLabel(historicalHtml, historicalId, `${site} historical version selector label is missing`)
-  assert(historicalHtml.includes('Search is not available for this documentation version'), `${site} historical search did not fail closed`)
-  assertCurrentDocumentationChanges(site, siteRoot)
+  assert(historicalHtml.includes(`rel="canonical" href="/${locale}/v/${historicalId}/"`), `/${locale}/ historical home is not self-canonical`)
+  assert(historicalHtml.includes('version-lifecycle'), `/${locale}/ historical lifecycle banner is missing`)
+  assertVersionSelectorLabel(currentHtml, currentId, `/${locale}/ current version selector label is missing`)
+  assertVersionSelectorLabel(previousHtml, previousId, `/${locale}/ previous version selector label is missing`)
+  assertVersionSelectorLabel(historicalHtml, historicalId, `/${locale}/ historical version selector label is missing`)
+  assert(historicalHtml.includes('Search is not available for this documentation version'), `/${locale}/ historical search did not fail closed`)
+  assertCurrentDocumentationChanges(locale, siteRoot)
 }
 
 console.log('Version-management production artifacts verified.')

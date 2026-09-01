@@ -17,6 +17,8 @@ const THEME_VERSIONING_MODULE = 'virtual:sveltepress/theme-default/versioning'
 const VERSION_SELECTOR_MODULE = 'virtual:sveltepress/theme-default/VersionSelector.svelte'
 const VERSION_FALLBACK_MODULE = 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
 const VERSION_LIFECYCLE_MODULE = 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
+const LOCALE_SELECTOR_MODULE = 'virtual:sveltepress/theme-default/LocaleSelector.svelte'
+const LOCALE_FALLBACK_MODULE = 'virtual:sveltepress/theme-default/LocaleFallbackNotice.svelte'
 
 const VERSIONING_PATH = fileURLToPath(new URL('../components/versioning.js', import.meta.url))
 const VERSIONING_DISABLED_PATH = fileURLToPath(new URL('../components/versioning-disabled.js', import.meta.url))
@@ -24,6 +26,8 @@ const VERSION_SELECTOR_PATH = fileURLToPath(new URL('../components/VersionSelect
 const VERSION_FALLBACK_PATH = fileURLToPath(new URL('../components/VersionFallbackNotice.svelte', import.meta.url))
 const VERSION_LIFECYCLE_PATH = fileURLToPath(new URL('../components/VersionLifecycleBanner.svelte', import.meta.url))
 const VERSION_COMPONENT_DISABLED_PATH = fileURLToPath(new URL('../components/VersioningDisabled.svelte', import.meta.url))
+const LOCALE_SELECTOR_PATH = fileURLToPath(new URL('../components/LocaleSelector.svelte', import.meta.url))
+const LOCALE_FALLBACK_PATH = fileURLToPath(new URL('../components/LocaleFallbackNotice.svelte', import.meta.url))
 
 // One gradient family across the theme: deep rose → amber. The button fill
 // ends at amber-700 so white label text stays AA-readable across the pill.
@@ -143,6 +147,10 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
           return versionManifest ? VERSION_FALLBACK_PATH : VERSION_COMPONENT_DISABLED_PATH
         if (id === VERSION_LIFECYCLE_MODULE)
           return versionManifest ? VERSION_LIFECYCLE_PATH : VERSION_COMPONENT_DISABLED_PATH
+        if (id === LOCALE_SELECTOR_MODULE)
+          return LOCALE_SELECTOR_PATH
+        if (id === LOCALE_FALLBACK_MODULE)
+          return LOCALE_FALLBACK_PATH
       },
       load(id) {
         if (id === THEME_OPTIONS_MODULE)

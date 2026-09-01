@@ -1,2 +1,27 @@
 [build.environment]
 NODE_VERSION = "22"
+
+# Old per-language domains redirect into the matching locale of the merged
+# site so existing bookmarks keep working (Grill Decision 4).
+[[redirects]]
+from = "https://cn.sveltepress.site/*"
+to = "/zh/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://bn.sveltepress.site/*"
+to = "/bn/:splat"
+status = 301
+force = true
+
+# Locale roots fall back to their home pages.
+[[redirects]]
+from = "/zh"
+to = "/zh/"
+status = 301
+
+[[redirects]]
+from = "/bn"
+to = "/bn/"
+status = 301
