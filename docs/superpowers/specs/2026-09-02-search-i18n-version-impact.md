@@ -1,6 +1,6 @@
 # DocSearch & Meilisearch Impact of i18n + Version Routing
 
-**Status:** planned
+**Status:** landing
 
 ## Requirement
 
@@ -87,6 +87,20 @@ Recorded seams (three, kept minimal):
 - New search features beyond making the existing DocSearch/Meilisearch integrations correct and accurately documented.
 - Closing out the unrelated `2026-09-02-local-search` spec (Status `approved`, all tickets ticked) — noted here as left open for a separate /ship.
 
+## Findings
+
+### F3 — Crawler-facing sitemap surface (claim C3)
+
+**Verdict:** no impact — correct as shipped; already covered by existing tests.
+**Evidence:** `packages/vite/__tests__/locale-outputs.test.ts` ("combined locale and version sitemap output") asserts current `/zh/…` entries, historical `/v/v8/guide/` and `/zh/v/v8/guide/` entries, hreflang alternates only across locales sharing the same version and route, EOL exclusion by default, and EOL inclusion when `noIndex: false`. Baseline `pnpm test` (vite: 27 files / 168 tests) green.
+**Action:** none (no new core test file; coverage already exists).
+
+### F4 — Canonical and robots per page (claim C4)
+
+**Verdict:** no impact — correct as shipped.
+**Evidence:** new `packages/theme-default/__tests__/seo-meta.test.ts` (4/4 green): `rel="canonical"` on current and historical pages, `noindex,follow` on EOL history by default, and no `noindex` when the EOL version sets `noIndex: false`.
+**Action:** regression coverage added for the versioned runtime (ticket T1); the no-manifest path is covered by the existing manifestless bundle transform tests.
+
 ## Acceptance Criteria
 
 Each criterion names the exact command that proves it and the output that counts as passing. All commands run from the repository root on branch `feat/i18n`.
@@ -102,7 +116,7 @@ Each criterion names the exact command that proves it and the output that counts
 
 ## Plan
 
-- [ ] **T1 — SEO & sitemap surface audit (claims C3, C4).** Delivers: `packages/theme-default/__tests__/seo-meta.test.ts` asserting PageLayout `rel="canonical"` and `noindex` output for current, historical stable, and EOL pages (with opt-out); the sitemap half of C3 is proven by the existing `locale-outputs.test.ts` combined locale+version coverage (no new core file); findings `### F3`, `### F4` recorded in this spec with verdicts. Blocked by: nothing.
+- [x] **T1 — SEO & sitemap surface audit (claims C3, C4).** Delivers: `packages/theme-default/__tests__/seo-meta.test.ts` asserting PageLayout `rel="canonical"` and `noindex` output for current, historical stable, and EOL pages (with opt-out); the sitemap half of C3 is proven by the existing `locale-outputs.test.ts` combined locale+version coverage (no new core file); findings `### F3`, `### F4` recorded in this spec with verdicts. Blocked by: nothing.
 - [ ] **T2 — Theme search runtime audit (claims C1, C2, C5).** Delivers: `packages/theme-default/__tests__/search-routing.test.ts` covering per-locale `docsearch` resolution and remount keys, the historical-version search gate and "unavailable" notice, per-version `facetFilters`/overrides merge, and the custom-search props contract (`version`, `versionSearch`); findings `### F1`, `### F2`, `### F5` recorded. Blocked by: nothing.
 - [ ] **T3 — Custom-search production bundling (claim C6).** Delivers: reproduction of the documented production-bundling gap for custom `search` wrappers; if confirmed, a build-time fix so the wrapper is part of the production client bundle, plus `packages/theme-default/__tests__/custom-search-bundle.test.ts` regression at the bundle seam and a changeset; finding `### F6` recorded. If the fix's scope balloons beyond the bundle seam, the spec is updated and the user consulted. Blocked by: nothing.
 - [ ] **T4 — Guide updates across locales (claim C7; C5 responsibilities).** Delivers: en/zh/bn `guide/default-theme/search` updated to the locale/version-aware model (per-locale DocSearch index + per-version `search` metadata; historical-version gate; Meilisearch record URL prefixes and wrapper responsibilities for `version`/`versionSearch`), keeping the documentation parity check green; finding `### F7` recorded. Blocked by: T2, T3 (guide wording depends on their evidence).
