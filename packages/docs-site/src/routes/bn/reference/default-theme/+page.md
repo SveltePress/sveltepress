@@ -111,8 +111,8 @@ defaultTheme({
 })
 ```
 
-:::warning[Known production build bug]
-এই public API এবং M Search integration supported, কিন্তু বর্তমান default-theme runtime source `.svelte` path-কে static production output-এ bundle করে না। সরাসরি component দিলেও theme-option serialization সেটি বাদ দেয়। এটি production bundling bug, unsupported feature নয়। Wrapper setup এবং deployment caveat-এর জন্য [search guide](/guide/default-theme/search/) দেখুন।
+:::note[Production build]
+এই public API এবং M Search integration supported। `search`-এ দেওয়া source `.svelte` path static production build-এ bundle হয় — theme build-এর সময় path-টি resolve করে lazy chunk হিসেবে লোড করে। সরাসরি component object দেওয়া সমর্থিত নয়, কারণ theme options client-এ JSON-এ serialized হয়। Wrapper setup-এর জন্য [search guide](/guide/default-theme/search/) দেখুন।
 :::
 
 ### `docsearch`

@@ -130,8 +130,8 @@ defaultTheme({
 })
 ```
 
-:::warning[已知生产构建缺陷]
-该公开 API 和 M Search 接入均受支持，但当前默认主题运行时不会把源码 `.svelte` 路径打包进静态生产产物；直接传入组件也会在主题配置序列化时丢失。这是生产构建缺陷，并非功能不受支持。包装组件用法和部署注意事项见[搜索指南](/guide/default-theme/search/)。
+:::note[生产构建]
+该公开 API 与 M Search 接入均受支持。通过 `search` 配置的源码 `.svelte` 路径会被打进静态生产构建——主题在构建期解析该路径并以懒加载 chunk 加载。直接传组件对象不受支持，因为主题选项会以 JSON 序列化到客户端。包装组件用法见[搜索指南](/guide/default-theme/search/)。
 :::
 
 ### `docsearch`

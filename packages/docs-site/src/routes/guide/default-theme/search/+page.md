@@ -108,8 +108,91 @@ defaultTheme({
 
 The component queries an existing Meilisearch index; it does not build the index for you. Each record should provide `id`, `title`, `content`, and either `url` or `path`. Use a search-only API key in browser code.
 
-:::warning[Known production build bug]
-The custom-search API and `@sveltepress/meilisearch` component are supported, and the source-path setup above works in development. However, the current default-theme runtime leaves the `.svelte` path as a browser import, so a static production build does not bundle that wrapper. Passing a component object directly is also ineffective because theme-option serialization removes it. This is a default-theme bundling bug, not a lack of M Search support. Verify the production deployment until the runtime integration is fixed.
+:::note[Production builds]
+A custom `search` source path is bundled into static production builds: the theme resolves the configured `.svelte` path at build time and loads it as a lazy chunk, so no extra runtime configuration is needed. Configure the wrapper as a source path (as above). Passing a component object directly is not supported — theme options are serialized to JSON for the client, so objects are dropped. If a production deployment shows no search, make sure `search` is a source-path string.
 :::
 
 For another search provider, implement the same `search` hook with your own Svelte wrapper. Search precedence is: custom `search` component > explicit `docsearch` > default `LocalSearch`.
+
+## Search across locales and versions
+
+When your site combines i18n locales with version management, search stays per-locale and per-version, and the crawler-facing outputs follow the same URL scheme the site serves (`/`, `/zh/`, `/bn/`, `/v/<id>/…`, `/zh/v/<id>/…`).
+
+### Locale-aware search
+
+Each locale carries its own theme options, so give each locale its own DocSearch index — the pre-i18n documentation site used one index per language:
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        // Site-level options shared by every locale (logo, github, pwa, ...)
+      }),
+      locales: {
+        '/': {
+          lang: 'en',
+          label: 'English',
+          theme: {
+            docsearch: {
+              appId: 'YOUR_APP_ID',
+              apiKey: 'YOUR_SEARCH_API_KEY',
+              indexName: 'sveltepress',
+            },
+          },
+        },
+        '/zh/': {
+          lang: 'zh',
+          label: '中文',
+          theme: {
+            docsearch: {
+              appId: 'YOUR_APP_ID',
+              apiKey: 'YOUR_SEARCH_API_KEY',
+              indexName: 'cn',
+            },
+          },
+        },
+      },
+    }),
+  ],
+})
+```
+
+The Navbar remounts the DocSearch widget whenever the active index or version changes, so switching locale or version queries the right index.
+
+### Version-aware search
+
+A version in the manifest may carry `search` metadata. While a reader is on that historical version's pages (`/v/<id>/…`), the theme switches DocSearch to the configured `indexName` and merges `facetFilters` into the query:
+
+```json title="sveltepress.versions.json"
+{
+  "versions": [
+    {
+      "id": "2026-08-28",
+      "search": {
+        "indexName": "sveltepress-v2026-08-28",
+        "facetFilters": ["version:2026-08-28"]
+      }
+    }
+  ]
+}
+```
+
+Keep the crawler's facet tags in sync with this metadata. Historical versions without `search` show "Search is not available for this documentation version." — for DocSearch, custom search, and the built-in Local Search alike.
+
+### Crawling and result URLs
+
+The generated `sitemap.xml` lists every locale's current pages and every eligible historical version page with hreflang alternates; EOL history is excluded unless the version opts out (`noIndex: false`), and every version page emits its own `rel="canonical"` link. Index records must point at these real, prefixed URLs — a Chinese record's `url` is `/zh/guide/…`, a frozen version's is `/v/2026-08-28/guide/…`.
+
+### Custom search components
+
+The Navbar renders a custom `search` component only when search is available for the current route, remounts it per version, and passes it two props:
+
+- `version` — the active version object (`{ id, label, status, … }`), or the current version on unprefixed pages.
+- `versionSearch` — the version's `search` metadata (`{ indexName?, facetFilters? }`), or `null`.
+
+When your index stores multiple versions, filter results by the facets in `versionSearch`. Record URLs must be the full prefixed routes. No locale prop is passed: if you keep one index per locale, read the locale from `location.pathname` yourself.

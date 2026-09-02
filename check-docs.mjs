@@ -212,7 +212,7 @@ for (const path of activeFiles) {
 const defaultThemeSearchDocs = {
   '': {
     label: 'Default theme',
-    caveatMarker: 'production build bug',
+    productionMarker: 'bundled into static production builds',
     guideSupportMarker: 'supports **Algolia DocSearch** through `docsearch` and custom search components through `search`, including `@sveltepress/meilisearch`',
     referenceSupportMarker: 'The supported custom-search hook, with type `Component | string`. Use it to integrate a Svelte search component such as `@sveltepress/meilisearch`.',
     staleClaimPatterns: [
@@ -223,14 +223,14 @@ const defaultThemeSearchDocs = {
   },
   'zh': {
     label: '默认主题',
-    caveatMarker: '生产构建缺陷',
+    productionMarker: '被打进静态生产构建',
     guideSupportMarker: '默认主题支持通过 `docsearch` 接入 **Algolia DocSearch**，也支持通过 `search` 接入自定义搜索组件，包括 `@sveltepress/meilisearch`',
     referenceSupportMarker: '受支持的自定义搜索入口，类型为 `Component | string`，可用于接入 `@sveltepress/meilisearch` 等 Svelte 搜索组件。',
     staleClaimPatterns: [/尚不能用于生产|暂时不要配置|并不是可用的生产合同/],
   },
   'bn': {
     label: 'Default theme',
-    caveatMarker: 'production build bug',
+    productionMarker: 'static production build-এ bundle',
     guideSupportMarker: 'Default theme `docsearch` দিয়ে **Algolia DocSearch** এবং `search` দিয়ে custom search component সমর্থন করে, যার মধ্যে `@sveltepress/meilisearch`-ও আছে',
     referenceSupportMarker: 'Supported custom-search hook; type `Component | string`। `@sveltepress/meilisearch`-এর মতো Svelte search component integrate করতে এটি ব্যবহার করুন।',
     staleClaimPatterns: [/production-ready নয়|কার্যকর production contract নয়/],
@@ -280,7 +280,7 @@ for (const locale of locales) {
       docsPage.path,
       [
         [docsPage.supportMarker, 'a positive Meilisearch support statement'],
-        [docsConfig.caveatMarker, 'the known production build caveat'],
+        [docsConfig.productionMarker, 'a production source-path statement'],
       ],
       `${localeLabel} ${docsPage.label}`,
     )

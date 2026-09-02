@@ -108,8 +108,91 @@ defaultTheme({
 
 Component-টি আগে থেকে তৈরি Meilisearch index query করে; এটি index তৈরি করে না। প্রতিটি record-এ `id`, `title`, `content`, এবং `url` অথবা `path` থাকা উচিত। Browser code-এ search-only API key ব্যবহার করুন।
 
-:::warning[Known production build bug]
-Custom-search API এবং `@sveltepress/meilisearch` component supported, এবং উপরের source-path setup development-এ কাজ করে। তবে বর্তমান default-theme runtime `.svelte` path-টিকে browser import হিসেবে রেখে দেয়, তাই static production build wrapper-টি bundle করে না। সরাসরি component object দিলেও theme-option serialization সেটি বাদ দেয়। এটি default-theme bundling-এর production build bug, M Search support না থাকার প্রমাণ নয়। Runtime integration fix না হওয়া পর্যন্ত production deployment যাচাই করুন।
+:::note[Production build]
+কাস্টম `search` source path এখন static production build-এ bundle হয়: theme build-এর সময় নির্দিষ্ট `.svelte` path-টি resolve করে lazy chunk হিসেবে লোড করে, তাই আলাদা runtime configuration দরকার হয় না। উপরের মতো source path দিয়ে wrapper কনফিগার করুন। সরাসরি component object দেওয়া সমর্থিত নয় — theme options client-এ JSON-এ serialized হয়, তাই object বাদ পড়ে যায়। Production deployment-এ কাস্টম সার্চ না দেখালে নিশ্চিত করুন `search`-এ source-path string দেওয়া আছে।
 :::
 
 অন্য search provider-এর জন্য একই `search` hook-এ নিজস্ব Svelte wrapper দিন। অগ্রাধিকার ক্রম: custom `search` component > explicit `docsearch` > default `LocalSearch`।
+
+## বহুভাষিক ও সংস্করণ-ভিত্তিক সাইটে সার্চ
+
+যখন আপনার সাইটে i18n লোকেল এবং version management একসাথে থাকে, সার্চ লোকেল ও সংস্করণ অনুযায়ী আলাদা থাকে এবং crawler-এর জন্য তৈরি আউটপুটও সাইটের প্রকৃত URL কাঠামো অনুসরণ করে (`/`, `/zh/`, `/bn/`, `/v/<id>/…`, `/zh/v/<id>/…`)।
+
+### লোকেল অনুযায়ী সার্চ
+
+প্রতিটি লোকেলের নিজস্ব theme options থাকে, তাই প্রতিটি লোকেলের জন্য আলাদা DocSearch index দেওয়া যায় — i18n-এর আগের documentation site-এ প্রতি ভাষায় একটি index ছিল:
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        // Site-level options যা সব লোকেল ভাগ করে (logo, github, pwa, ...)
+      }),
+      locales: {
+        '/': {
+          lang: 'en',
+          label: 'English',
+          theme: {
+            docsearch: {
+              appId: 'YOUR_APP_ID',
+              apiKey: 'YOUR_SEARCH_API_KEY',
+              indexName: 'sveltepress',
+            },
+          },
+        },
+        '/zh/': {
+          lang: 'zh',
+          label: '中文',
+          theme: {
+            docsearch: {
+              appId: 'YOUR_APP_ID',
+              apiKey: 'YOUR_SEARCH_API_KEY',
+              indexName: 'cn',
+            },
+          },
+        },
+      },
+    }),
+  ],
+})
+```
+
+Navbar সক্রিয় index বা version বদলালে DocSearch widget নতুন করে তৈরি করে, তাই লোকেল বা version পরিবর্তন করলে সঠিক index-এ সার্চ হয়।
+
+### সংস্করণ অনুযায়ী সার্চ
+
+Manifest-এর প্রতিটি version-এ `search` metadata থাকতে পারে। পাঠক কোনো historical version-এর পৃষ্ঠায় (`/v/<id>/…`) থাকলে theme DocSearch-কে নির্দিষ্ট `indexName`-এ স্যুইচ করে এবং query-তে `facetFilters` যোগ করে:
+
+```json title="sveltepress.versions.json"
+{
+  "versions": [
+    {
+      "id": "2026-08-28",
+      "search": {
+        "indexName": "sveltepress-v2026-08-28",
+        "facetFilters": ["version:2026-08-28"]
+      }
+    }
+  ]
+}
+```
+
+Crawler-এর facet ট্যাগগুলো এই metadata-এর সঙ্গে সামঞ্জস্য রাখুন। `search` কনফিগার না থাকা historical version-এ দেখায় "Search is not available for this documentation version." — DocSearch, custom search এবং বিল্ট-ইন লোকাল সার্চ—সব ক্ষেত্রেই একই।
+
+### Crawling এবং result URL
+
+তৈরি হওয়া `sitemap.xml` প্রতিটি লোকেলের বর্তমান পৃষ্ঠা এবং প্রতিটি eligible historical version পৃষ্ঠা hreflang alternate-সহ তালিকাভুক্ত করে; EOL history ডিফল্টভাবে বাদ থাকে (যদি না version `noIndex: false` দেয়), এবং প্রতিটি version পৃষ্ঠা নিজস্ব `rel="canonical"` link দেয়। Index record-গুলোকে অবশ্যই প্রকৃত prefixed URL-এ নির্দেশ করতে হবে — চীনা record-এর `url` হবে `/zh/guide/…`, আর সংস্করণ-ফ্রোজেন পৃষ্ঠার `/v/2026-08-28/guide/…`।
+
+### Custom search component
+
+Navbar তখনই custom `search` component রেন্ডার করে যখন বর্তমান রুটে সার্চ উপলব্ধ থাকে, version বদলালে এটি নতুন করে তৈরি হয় এবং দুটি prop পাঠায়:
+
+- `version` — সক্রিয় version অবজেক্ট (`{ id, label, status, … }`), অথবা unprefixed পৃষ্ঠায় current version।
+- `versionSearch` — ঐ version-এর `search` metadata (`{ indexName?, facetFilters? }`), না থাকলে `null`।
+
+আপনার index-এ একাধিক version থাকলে `versionSearch`-এর facets অনুযায়ী ফলাফল ফিল্টার করুন। Record URL অবশ্যই সম্পূর্ণ prefixed রুট হতে হবে। Framework কোনো locale prop পাঠায় না: প্রতি ভাষায় আলাদা index রাখলে `location.pathname` থেকে নিজেই লোকেল পড়ুন।
