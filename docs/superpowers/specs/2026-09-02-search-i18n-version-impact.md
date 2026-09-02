@@ -101,6 +101,24 @@ Recorded seams (three, kept minimal):
 **Evidence:** new `packages/theme-default/__tests__/seo-meta.test.ts` (4/4 green): `rel="canonical"` on current and historical pages, `noindex,follow` on EOL history by default, and no `noindex` when the EOL version sets `noIndex: false`.
 **Action:** regression coverage added for the versioned runtime (ticket T1); the no-manifest path is covered by the existing manifestless bundle transform tests.
 
+### F1 — Per-locale DocSearch configuration (claim C1)
+
+**Verdict:** no impact — works as designed.
+**Evidence:** `packages/theme-default/__tests__/search-routing.test.ts` (docsearch tests, 7/7 suite green): the site-level `docsearch` config mounts the widget; a locale whose theme options set a different `docsearch.indexName` takes over on its prefixed routes (Navbar keys the widget by `${versionId}:${indexName}`, so the locale switch remounts it with the new index).
+**Action:** none in code; guide (ticket T4) should tell authors to give each locale its own `indexName` (or accept the remount on index change).
+
+### F2 — Historical-version search gate (claim C2)
+
+**Verdict:** no impact — as designed; the gate is real and must be documented.
+**Evidence:** `search-routing.test.ts`: on `/v/2026-08-27/guide/` (no per-version `search` metadata) the Navbar shows the "unavailable" notice and mounts neither DocSearch nor custom search; a version whose manifest carries `search: { indexName, facetFilters }` gets those merged over the locale's docsearch config (widget re-keys to the override index with the facet filter).
+**Action:** none in code; note that none of the three docs-site manifests carries `search` metadata today, so every historical route on the official site shows the notice; guide (T4) documents how to configure per-version search.
+
+### F5 — Custom search component contract (claim C5)
+
+**Verdict:** no code impact — the contract works; responsibilities are under-documented and the shipped Meilisearch component is not version/locale aware.
+**Evidence:** `search-routing.test.ts`: custom components are gated by `versionSearch.available`, remounted per version, and receive `version` + per-version `search` metadata; a custom component takes precedence over `docsearch`. The Navbar passes **no locale prop** — a custom engine must read the pathname itself — and `@sveltepress/meilisearch` consumes neither prop.
+**Action:** guide (T4) states the wrapper responsibilities (apply version facets / locale filtering from `versionSearch`, use prefixed record URLs).
+
 ## Acceptance Criteria
 
 Each criterion names the exact command that proves it and the output that counts as passing. All commands run from the repository root on branch `feat/i18n`.
@@ -117,7 +135,7 @@ Each criterion names the exact command that proves it and the output that counts
 ## Plan
 
 - [x] **T1 — SEO & sitemap surface audit (claims C3, C4).** Delivers: `packages/theme-default/__tests__/seo-meta.test.ts` asserting PageLayout `rel="canonical"` and `noindex` output for current, historical stable, and EOL pages (with opt-out); the sitemap half of C3 is proven by the existing `locale-outputs.test.ts` combined locale+version coverage (no new core file); findings `### F3`, `### F4` recorded in this spec with verdicts. Blocked by: nothing.
-- [ ] **T2 — Theme search runtime audit (claims C1, C2, C5).** Delivers: `packages/theme-default/__tests__/search-routing.test.ts` covering per-locale `docsearch` resolution and remount keys, the historical-version search gate and "unavailable" notice, per-version `facetFilters`/overrides merge, and the custom-search props contract (`version`, `versionSearch`); findings `### F1`, `### F2`, `### F5` recorded. Blocked by: nothing.
+- [x] **T2 — Theme search runtime audit (claims C1, C2, C5).** Delivers: `packages/theme-default/__tests__/search-routing.test.ts` covering per-locale `docsearch` resolution and remount keys, the historical-version search gate and "unavailable" notice, per-version `facetFilters`/overrides merge, and the custom-search props contract (`version`, `versionSearch`); findings `### F1`, `### F2`, `### F5` recorded. Blocked by: nothing.
 - [ ] **T3 — Custom-search production bundling (claim C6).** Delivers: reproduction of the documented production-bundling gap for custom `search` wrappers; if confirmed, a build-time fix so the wrapper is part of the production client bundle, plus `packages/theme-default/__tests__/custom-search-bundle.test.ts` regression at the bundle seam and a changeset; finding `### F6` recorded. If the fix's scope balloons beyond the bundle seam, the spec is updated and the user consulted. Blocked by: nothing.
 - [ ] **T4 — Guide updates across locales (claim C7; C5 responsibilities).** Delivers: en/zh/bn `guide/default-theme/search` updated to the locale/version-aware model (per-locale DocSearch index + per-version `search` metadata; historical-version gate; Meilisearch record URL prefixes and wrapper responsibilities for `version`/`versionSearch`), keeping the documentation parity check green; finding `### F7` recorded. Blocked by: T2, T3 (guide wording depends on their evidence).
 
