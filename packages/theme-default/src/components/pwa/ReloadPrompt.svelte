@@ -20,11 +20,15 @@
     needRefresh.set(false)
   }
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
-  const appReadyToWorkOffline =
-    localeOptions?.i18n?.pwa?.appReadyToWorkOffline || DEFAULT_WORK_OFFLINE
-  const newContentAvailable =
-    localeOptions?.i18n?.pwa?.newContentAvailable ||
-    DEFAULT_NEW_CONTENT_AVAILABLE
+  const appReadyToWorkOffline = $derived(
+    localeOptions?.i18n?.pwa?.appReadyToWorkOffline || DEFAULT_WORK_OFFLINE,
+  )
+  const newContentAvailable = $derived.by(() => {
+    return (
+      localeOptions?.i18n?.pwa?.newContentAvailable ||
+      DEFAULT_NEW_CONTENT_AVAILABLE
+    )
+  })
   const toast = $derived($offlineReady || $needRefresh)
   const message = $derived(
     $offlineReady ? appReadyToWorkOffline : newContentAvailable,

@@ -12,21 +12,45 @@
     localeOptions.i18n?.localePageUnavailable ?? defaultMessage,
   )
 
+  function dismiss() {
+    show = false
+  }
+
   afterNavigate(() => {
-    const fallback = new URL(window.location.href).searchParams.get(
-      'svp-locale-fallback',
-    )
-    show = locales !== null && fallback === '1'
+    if (typeof window === 'undefined') return
+    const url = new URL(window.location.href)
+    const fallback = url.searchParams.get('svp-locale-fallback')
+    if (locales !== null && fallback === '1') {
+      show = true
+      url.searchParams.delete('svp-locale-fallback')
+      const cleanUrl = url.pathname + (url.search ? url.search : '') + url.hash
+      window.history.replaceState(window.history.state, '', cleanUrl)
+    } else {
+      show = false
+    }
   })
 </script>
 
 {#if show}
-  <div class="locale-fallback" role="status">{message}</div>
+  <div class="locale-fallback" role="status">
+    <span>{message}</span>
+    <button
+      type="button"
+      class="locale-fallback-close"
+      aria-label="Close"
+      onclick={dismiss}
+    >
+      ✕
+    </button>
+  </div>
 {/if}
 
 <style>
   .locale-fallback {
-    --at-apply: 'mx-auto mb-4 max-w-[1120px] box-border rounded-md b-1 b-solid b-amber-500/40 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-900 dark:text-amber-200';
+    --at-apply: 'mx-auto mb-4 max-w-[1120px] box-border rounded-md b-1 b-solid b-amber-500/40 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-900 dark:text-amber-200 flex items-center justify-between gap-3';
+  }
+  .locale-fallback-close {
+    --at-apply: 'bg-transparent b-0 p-1 cursor-pointer text-amber-900/60 dark:text-amber-200/60 hover:text-amber-900 dark:hover:text-amber-200 flex items-center justify-center rounded leading-none text-base';
   }
   @media (min-width: 950px) {
     .locale-fallback {

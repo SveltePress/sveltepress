@@ -4,11 +4,12 @@
   import Backdrop from './Backdrop.svelte'
   import Close from './icons/Close.svelte'
   import { resolvedSidebar, resolveSidebar, sidebarCollapsed } from './layout'
+  import { resolveLogicalRoute } from './locale'
   import Logo from './Logo.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
 
   const routeId = $derived(page.route.id)
-  const isHome = $derived(routeId === '/')
+  const isHome = $derived(resolveLogicalRoute(routeId) === '/')
 
   afterNavigate(() => {
     resolveSidebar(routeId)

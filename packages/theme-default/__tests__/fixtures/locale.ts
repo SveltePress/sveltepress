@@ -18,9 +18,9 @@ export function setLocaleFixtures(value: LocalesConfig | null) {
   locales = value
 }
 
-export const resolveLocale = (pathname: string) => resolveLocaleHelper(pathname, locales)
-export const resolveLocalizedPath = (to: string, locale: ResolvedLocale | null) => resolveLocalizedPathHelper(to, locale, locales)
-export const resolveLocaleSwitch = (pathname: string, targetPrefix: string) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales)
+export const resolveLocale = (pathname: string, base?: string) => resolveLocaleHelper(pathname, locales, base)
+export const resolveLocalizedPath = (to: string, locale: ResolvedLocale | null, base?: string) => resolveLocalizedPathHelper(to, locale, locales, base)
+export const resolveLocaleSwitch = (pathname: string, targetPrefix: string, base?: string) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base)
 
 /** A three-locale site fixture mirroring the merged documentation site. */
 export function localeFixture(): LocalesConfig {

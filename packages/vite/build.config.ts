@@ -7,6 +7,7 @@ export default defineBuildConfig({
     'src/highlight/index',
     'src/locale',
     'src/locale-scan',
+    'src/hooks',
     'src/versioning/index',
     'src/versioning/runtime',
     'src/theme-snapshot',

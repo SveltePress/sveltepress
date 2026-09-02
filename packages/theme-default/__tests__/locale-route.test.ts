@@ -15,6 +15,8 @@ describe('resolveLogicalRoute', () => {
     expect(resolveLogicalRoute('/zh/guide/introduction')).toBe('/guide/introduction')
     expect(resolveLogicalRoute('/bn/guide/introduction')).toBe('/guide/introduction')
     expect(resolveLogicalRoute('/zh/')).toBe('/')
+    expect(resolveLogicalRoute('/zh')).toBe('/')
+    expect(resolveLogicalRoute('/bn')).toBe('/')
   })
 
   it('strips only the longest matching locale prefix', () => {

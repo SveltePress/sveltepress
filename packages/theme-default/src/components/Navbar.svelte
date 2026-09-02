@@ -12,7 +12,7 @@
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
   import { scrollDirection, sidebar } from './layout'
-  import { resolveLocaleOptions } from './locale'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import Logo from './Logo.svelte'
   import MobileSubNav from './MobileSubNav.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
@@ -20,7 +20,7 @@
   import ToggleDark from './ToggleDark.svelte'
 
   const routeId = $derived(page.route.id)
-  const isHome = $derived(routeId === '/')
+  const isHome = $derived(resolveLogicalRoute(routeId) === '/')
   const hasError = $derived(page.error)
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
@@ -139,7 +139,7 @@
         class:move={!isHome && !hasError && $sidebar}
         class="doc-search"
       >
-        {#key versionContext?.versionId}
+        {#key `${versionContext?.versionId || ''}:${versionedDocsearch?.indexName || ''}`}
           {#if docsearchComponent}
             {@const DocsearchComponent = docsearchComponent}
             <DocsearchComponent {...versionedDocsearch} />

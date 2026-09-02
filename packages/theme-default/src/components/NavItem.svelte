@@ -1,5 +1,6 @@
 <script>
   import { page } from '$app/state'
+  import { resolveLocale } from 'virtual:sveltepress/locale'
   import {
     resolveVersionContext,
     resolveVersionedPath,
@@ -47,8 +48,14 @@
   const normalizedTo = $derived(
     resolvedTo.endsWith('/') ? resolvedTo.slice(0, -1) : resolvedTo,
   )
-  const isExactMatch = p => p === resolvedTo
-  const isChildMatch = p => p.startsWith(`${normalizedTo}/`)
+  const isRoot = $derived.by(() => {
+    if (normalizedTo === '') return true
+    const prefix = resolveLocale(resolvedTo)?.prefix.replace(/\/+$/, '')
+    return prefix === normalizedTo
+  })
+  const isExactMatch = p =>
+    p === resolvedTo || (normalizedTo !== '' && p === normalizedTo)
+  const isChildMatch = p => !isRoot && p.startsWith(`${normalizedTo}/`)
   let active = $derived(
     isExactMatch(page.url.pathname) || isChildMatch(page.url.pathname),
   )

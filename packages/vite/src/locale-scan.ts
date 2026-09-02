@@ -36,10 +36,19 @@ export function scanLocaleRoutes(
       .filter(other => other !== prefix)
       .map(other => localeRoutesDir(siteRoot, other))
       .filter(other => other !== routesRoot),
-    ...(versionBasePath ? [join(routesRoot, versionBasePath.replace(/^\/+|\/+$/g, ''))] : []),
+    ...(versionBasePath ? [join(routesRoot, relativeVersionDir(versionBasePath, prefix))] : []),
   ]
   const files = collectPageFiles(routesRoot, excludedRoots)
   return [...new Set(files.map(filePath => deriveRoute(filePath, routesRoot)))].sort()
+}
+
+function relativeVersionDir(versionBasePath: string, prefix: string): string {
+  const cleanBase = versionBasePath.replace(/^\/+|\/+$/g, '')
+  const cleanPrefix = prefix.replace(/^\/+|\/+$/g, '')
+  if (cleanPrefix && (cleanBase === cleanPrefix || cleanBase.startsWith(`${cleanPrefix}/`))) {
+    return cleanBase.slice(cleanPrefix.length).replace(/^\/+/, '')
+  }
+  return cleanBase
 }
 
 function localeRoutesDir(siteRoot: string, prefix: string): string {

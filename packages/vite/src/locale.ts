@@ -13,10 +13,11 @@ import type { LocalesConfig, LocaleSwitchTarget, ResolvedLocale } from './types.
 export function resolveLocale(
   pathname: string,
   locales?: LocalesConfig | null,
+  base?: string,
 ): ResolvedLocale | null {
   if (!locales || Object.keys(locales).length === 0)
     return null
-  const cleanPath = stripQueryAndHash(pathname)
+  const cleanPath = stripBase(stripQueryAndHash(pathname), base)
   if (!cleanPath.startsWith('/'))
     return null
   let best: ResolvedLocale | null = null
@@ -42,38 +43,78 @@ export function resolveLocalizedPath(
   to: string,
   locale: ResolvedLocale | null,
   locales?: LocalesConfig | null,
+  base?: string,
 ): string {
-  if (!locale || !to || !to.startsWith('/') || to.startsWith('//'))
+  const strippedTo = stripBase(to, base)
+  if (!locale || !strippedTo || !strippedTo.startsWith('/') || strippedTo.startsWith('//'))
     return to
-  if (locale.prefix !== '/' && matchesLocalePrefix(to, locale.prefix))
+  const prefix = locale.prefix ?? '/'
+  if (prefix !== '/' && matchesLocalePrefix(strippedTo, prefix))
     return to
-  for (const [prefix] of Object.entries(locales ?? {})) {
-    if (prefix !== '/' && prefix !== locale.prefix && matchesLocalePrefix(to, prefix))
+  for (const [p] of Object.entries(locales ?? {})) {
+    if (p !== '/' && p !== prefix && matchesLocalePrefix(strippedTo, p))
       return to
   }
-  return joinLocalePath(locale.prefix, to)
+  return joinLocalePath(prefix, strippedTo)
 }
 
 /**
  * Compute the target of switching the current route to another locale:
  * preserve the logical page when the target locale has that route, fall back
- * to the target locale's home otherwise.
+ * to the target locale's current version of the page if viewing a historical
+ * version, or fall back to the target locale's home otherwise.
  */
 export function resolveLocaleSwitch(
   pathname: string,
   targetPrefix: string,
   locales?: LocalesConfig | null,
+  base?: string,
 ): LocaleSwitchTarget | null {
-  const current = resolveLocale(pathname, locales)
+  const cleanPath = stripBase(pathname, base)
+  const current = resolveLocale(cleanPath, locales)
   const target = locales?.[targetPrefix]
   if (!current || !target)
     return null
-  const logicalPath = stripLocalePrefix(pathname, current.prefix)
+  const logicalPath = stripLocalePrefix(cleanPath, current.prefix)
   const routeExists = !target.routes?.length || target.routes.some(route => matchesRoutePattern(route, logicalPath))
-  return {
-    href: joinLocalePath(targetPrefix, routeExists ? logicalPath : '/'),
-    fallback: !routeExists,
+  if (routeExists) {
+    return {
+      href: joinLocalePath(targetPrefix, logicalPath),
+      fallback: false,
+    }
   }
+
+  // Tiered fallback: if currently on a versioned route (/v/<id>/<path>),
+  // attempt to fall back to the current version of the same logical page
+  // in the target locale rather than kicking the user to the home page.
+  const versionMatch = logicalPath.match(/^\/v\/[^/]+(\/.*)?$/)
+  if (versionMatch) {
+    const versionSubPath = normalizeRoute(versionMatch[1] || '/')
+    const targetHasCurrentPage = !target.routes?.length
+      || target.routes.some(route => matchesRoutePattern(route, versionSubPath))
+    if (targetHasCurrentPage) {
+      return {
+        href: joinLocalePath(targetPrefix, versionSubPath),
+        fallback: false,
+      }
+    }
+  }
+
+  return {
+    href: joinLocalePath(targetPrefix, '/'),
+    fallback: true,
+  }
+}
+
+export function stripBase(pathname: string, base?: string): string {
+  if (!base || base === '/' || base === '')
+    return pathname
+  const normalizedBase = base.replace(/\/+$/, '')
+  if (pathname === normalizedBase)
+    return '/'
+  if (pathname.startsWith(`${normalizedBase}/`))
+    return pathname.slice(normalizedBase.length)
+  return pathname
 }
 
 function matchesLocalePrefix(pathname: string, prefix: string): boolean {

@@ -42,7 +42,12 @@ export function resolveLocaleLink(to: string, pathname: string): string {
  */
 export function resolveLogicalRoute(routeId: string): string {
   const locale = resolveLocale(routeId)
-  if (locale && locale.prefix !== '/' && routeId.startsWith(locale.prefix))
-    return `/${routeId.slice(locale.prefix.length)}`
+  if (locale && locale.prefix !== '/') {
+    const normalizedPrefix = locale.prefix.replace(/\/+$/, '')
+    if (routeId === normalizedPrefix)
+      return '/'
+    if (routeId.startsWith(`${normalizedPrefix}/`))
+      return `/${routeId.slice(normalizedPrefix.length + 1)}`
+  }
   return routeId
 }

@@ -116,7 +116,17 @@ function assertCurrentDocumentationChanges(site, siteRoot) {
   const previousWhatsNewPath = join(siteRoot, 'v', previousId, 'whats-new/index.html')
   assert(existsSync(previousWhatsNewPath), `${site} ${previousId} What’s New artifact is missing`)
   const previousWhatsNewHtml = read(previousWhatsNewPath)
-  assert(whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'), `${site} What’s New groups are missing`)
+  const expectedGroupHeaders = {
+    '': ['New pages', 'Updated pages'],
+    'zh': ['新增页面', '更新页面'],
+    'bn': ['নতুন পৃষ্ঠা', 'আপডেট করা পৃষ্ঠা'],
+  }
+  const [expectedNewPages, expectedUpdatedPages] = expectedGroupHeaders[site] || ['New pages', 'Updated pages']
+  assert(
+    (whatsNewHtml.includes('New pages') && whatsNewHtml.includes('Updated pages'))
+    || (whatsNewHtml.includes(expectedNewPages) && whatsNewHtml.includes(expectedUpdatedPages)),
+    `${site} What’s New groups are missing`,
+  )
   assertVersionChangesSummary(whatsNewHtml, currentId, `${site} current What’s New summary selected the wrong version`)
   assertVersionChangesSummary(previousWhatsNewHtml, previousId, `${site} ${previousId} What’s New summary selected the wrong version`)
   assertSameStrings(
@@ -301,7 +311,16 @@ for (const locale of ['zh', 'bn']) {
   assertVersionSelectorLabel(currentHtml, currentId, `/${locale}/ current version selector label is missing`)
   assertVersionSelectorLabel(previousHtml, previousId, `/${locale}/ previous version selector label is missing`)
   assertVersionSelectorLabel(historicalHtml, historicalId, `/${locale}/ historical version selector label is missing`)
-  assert(historicalHtml.includes('Search is not available for this documentation version'), `/${locale}/ historical search did not fail closed`)
+  // Accept both the English fallback and locale-translated variants of the search-unavailable notice
+  const searchUnavailableStrings = {
+    zh: '当前文档版本不支持搜索功能',
+    bn: 'এই ডকুমেন্টেশন সংস্করণের জন্য অনুসন্ধান উপলব্ধ নয়',
+  }
+  const searchUnavailableText = searchUnavailableStrings[locale] || 'Search is not available for this documentation version'
+  assert(
+    historicalHtml.includes(searchUnavailableText) || historicalHtml.includes('Search is not available for this documentation version'),
+    `/${locale}/ historical search did not fail closed`,
+  )
   assertCurrentDocumentationChanges(locale, siteRoot)
 }
 

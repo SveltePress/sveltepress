@@ -135,11 +135,16 @@ describe('locale-aware navigation chrome', () => {
     expect(link.getAttribute('href')).toBe('/zh/guide/')
   })
 
-  it('shows the locale fallback notice with the active locale message', () => {
+  it('shows the locale fallback notice, cleans up URL parameter, and supports dismissal', async () => {
     setPage('/zh/')
     window.history.replaceState({}, '', '/zh/?svp-locale-fallback=1')
     const view = render(LocaleFallbackNotice)
-    expect(view.getByRole('status').textContent).toBe('此页面没有中文版本，已返回中文首页。')
+    expect(view.getByRole('status').textContent).toContain('此页面没有中文版本，已返回中文首页。')
+    expect(window.location.search).not.toContain('svp-locale-fallback')
+
+    const closeBtn = view.getByRole('button', { name: 'Close' })
+    await fireEvent.click(closeBtn)
+    expect(view.queryByRole('status')).toBeNull()
   })
 
   it('shows no fallback notice without locales or a fallback marker', () => {

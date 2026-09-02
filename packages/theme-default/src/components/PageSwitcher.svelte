@@ -10,7 +10,7 @@
   } from './locale'
   import { getPathFromBase, isLinkActive } from './utils'
 
-  const routeId = page.route.id
+  const routeId = $derived(page.route.id)
   const logicalRouteId = $derived(resolveLogicalRoute(routeId))
 
   const activeIdx = $derived(

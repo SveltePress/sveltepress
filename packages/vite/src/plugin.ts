@@ -494,9 +494,9 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
             resolveLocaleSwitch as resolveLocaleSwitchHelper,
           } from '@sveltepress/vite/locale'
           export const locales = ${JSON.stringify(resolvedLocales)}
-          export const resolveLocale = pathname => resolveLocaleHelper(pathname, locales)
-          export const resolveLocalizedPath = (to, locale) => resolveLocalizedPathHelper(to, locale, locales)
-          export const resolveLocaleSwitch = (pathname, targetPrefix) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales)
+          export const resolveLocale = (pathname, base) => resolveLocaleHelper(pathname, locales, base)
+          export const resolveLocalizedPath = (to, locale, base) => resolveLocalizedPathHelper(to, locale, locales, base)
+          export const resolveLocaleSwitch = (pathname, targetPrefix, base) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base)
           export default { locales, resolveLocale, resolveLocalizedPath, resolveLocaleSwitch }
         `
       }

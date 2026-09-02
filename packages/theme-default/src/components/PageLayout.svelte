@@ -14,7 +14,7 @@
   import HeroImage from './home/HeroImage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages, showHeader, showLayout, sidebar } from './layout'
-  import { resolveLocaleOptions } from './locale'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import PageSwitcher from './PageSwitcher.svelte'
 
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
@@ -59,8 +59,10 @@
   } = fm
 
   function resolveHomeLayout() {
+    const logical = resolveLogicalRoute(page.route.id)
     return (
-      (versionContext?.logicalPath === '/' && home !== false) || home === true
+      ((versionContext?.logicalPath ?? logical) === '/' && home !== false) ||
+      home === true
     )
   }
 

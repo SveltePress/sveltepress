@@ -138,6 +138,32 @@ describe('locale switch targets', () => {
     expect(resolveLocaleSwitch('/unrelated/route/', '/zh/', dynamic)).toEqual({ href: '/zh/', fallback: true })
   })
 
+  it('supports base path in resolveLocale, resolveLocalizedPath, and resolveLocaleSwitch', () => {
+    const loc = locales()
+    expect(resolveLocale('/docs/zh/guide/', loc, '/docs')?.prefix).toBe('/zh/')
+    expect(resolveLocale('/docs/guide/', loc, '/docs')?.prefix).toBe('/')
+    expect(resolveLocalizedPath('/docs/guide/', resolveLocale('/zh/', loc), loc, '/docs')).toBe('/zh/guide/')
+    expect(resolveLocaleSwitch('/docs/zh/guide/', '/', loc, '/docs')).toEqual({ href: '/guide/', fallback: false })
+  })
+
+  it('performs tiered fallback when switching from historical version routes', () => {
+    const loc = locales()
+    // Target has current version of the page -> falls back to current version without warning
+    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/', '/', loc)).toEqual({
+      href: '/guide/',
+      fallback: false,
+    })
+    expect(resolveLocaleSwitch('/v/2026-08-28/guide/install/', '/zh/', loc)).toEqual({
+      href: '/zh/guide/install/',
+      fallback: false,
+    })
+    // Target lacks the page completely -> falls back to target home with warning
+    expect(resolveLocaleSwitch('/v/2026-08-28/reference/new-api/', '/zh/', loc)).toEqual({
+      href: '/zh/',
+      fallback: true,
+    })
+  })
+
   it('returns null without locales or for an unknown target prefix', () => {
     expect(resolveLocaleSwitch('/guide/', '/zh/', null)).toBeNull()
     expect(resolveLocaleSwitch('/guide/', '/fr/', locales())).toBeNull()
@@ -172,6 +198,9 @@ describe('locale route inventories', () => {
     expect(resolved['/'].routes).toEqual(['/', '/guide/'])
     expect(resolved['/zh/'].routes).toEqual(['/', '/guide/', '/reference/'])
     expect(resolved['/bn/'].routes).toEqual(['/'])
+
+    const resolvedZhPrefixed = resolveLocalesConfig(raw, root, '/zh/v')
+    expect(resolvedZhPrefixed['/zh/'].routes).toEqual(['/', '/guide/', '/reference/'])
   })
 })
 

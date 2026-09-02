@@ -40,6 +40,10 @@
       "types": "./dist/locale.d.ts",
       "import": "./dist/locale.mjs"
     },
+    "./hooks": {
+      "types": "./dist/hooks.d.ts",
+      "import": "./dist/hooks.mjs"
+    },
     "./types": {
       "types": "./types.d.ts"
     }
