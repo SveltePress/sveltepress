@@ -38,4 +38,7 @@ export default {
   versionChangesNoBaseline: '首个版本，无更早的历史版本对比。',
   versionChangesEmpty: '该版本暂无变更记录。',
   footnoteLabel: '脚注',
+  searchPlaceholder: '搜索文档...',
+  searchNoResults: '未找到与 "{query}" 相关的结果',
+  searchDevNotice: '本地搜索索引在生产构建后生成，开发模式下不可用。',
 }

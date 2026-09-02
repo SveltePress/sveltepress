@@ -324,4 +324,9 @@ for (const locale of ['zh', 'bn']) {
   assertCurrentDocumentationChanges(locale, siteRoot)
 }
 
+assert(
+  existsSync(join(official, 'pagefind/pagefind.js')),
+  `Expected Pagefind local search bundle to exist at ${join(official, 'pagefind/pagefind.js')}`,
+)
+
 console.log('Version-management production artifacts verified.')

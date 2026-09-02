@@ -31,9 +31,7 @@
       resolveVersionManifest(page.url.pathname),
     ),
   )
-  const hasConfiguredSearch = $derived(
-    Boolean(localeOptions.search || localeOptions.docsearch),
-  )
+  const hasConfiguredSearch = $derived(localeOptions.search !== false)
   const versionedDocsearch = $derived.by(() => {
     if (!localeOptions.docsearch) return null
     const metadata = versionSearch.metadata

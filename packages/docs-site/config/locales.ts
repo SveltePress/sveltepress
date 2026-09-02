@@ -4,7 +4,6 @@ import bnNavbar from './bn/navbar.ts'
 import bnSidebar from './bn/sidebar.ts'
 import navbar from './navbar.ts'
 import sidebar from './sidebar.ts'
-import zhDocsearch from './zh/docsearch.ts'
 import zhI18n from './zh/i18n.ts'
 import zhNavbar from './zh/navbar.ts'
 import zhSidebar from './zh/sidebar.ts'
@@ -16,18 +15,6 @@ import zhSidebar from './zh/sidebar.ts'
  * all three locales pointing at their real merged-site source paths.
  */
 const editLink = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route'
-
-const enDocsearch = {
-  apiKey: 'fbed412316ec83ff28e9a916161bf715',
-  appId: '4D30VFIAMG',
-  indexName: 'sveltepress',
-}
-
-const bnDocsearch = {
-  apiKey: 'fbed412316ec83ff28e9a916161bf715',
-  appId: '4D30VFIAMG',
-  indexName: 'sveltepress',
-}
 
 /**
  * The merged documentation site's locales. Each locale carries its full
@@ -42,7 +29,6 @@ export const locales: LocalesConfig = {
       navbar,
       sidebar,
       editLink,
-      docsearch: enDocsearch,
     },
   },
   '/zh/': {
@@ -52,7 +38,6 @@ export const locales: LocalesConfig = {
       navbar: zhNavbar,
       sidebar: zhSidebar,
       editLink,
-      docsearch: zhDocsearch,
       i18n: zhI18n,
     },
   },
@@ -63,7 +48,6 @@ export const locales: LocalesConfig = {
       navbar: bnNavbar,
       sidebar: bnSidebar,
       editLink,
-      docsearch: bnDocsearch,
       i18n: bnI18n,
     },
   },

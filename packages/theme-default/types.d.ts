@@ -51,7 +51,7 @@ declare module 'virtual:sveltepress/theme-default' {
       darkManifest?: string
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
-    search?: Component | string
+    search?: Component | string | boolean
     themeColor?: {
       light: string
       dark: string

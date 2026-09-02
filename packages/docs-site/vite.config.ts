@@ -17,11 +17,6 @@ const config = defineConfig({
         logo: '/sveltepress.svg',
         discord: 'https://discord.gg/MeYRrGGxbE',
         ga: 'G-J2W78BKCHB',
-        docsearch: {
-          apiKey: 'fbed412316ec83ff28e9a916161bf715',
-          appId: '4D30VFIAMG',
-          indexName: 'sveltepress',
-        },
         pwa,
         themeColor: {
           light: '#f2f2f2',
