@@ -1,6 +1,6 @@
 # DocSearch & Meilisearch Impact of i18n + Version Routing
 
-**Status:** landing
+**Status:** shipped
 
 ## Requirement
 
@@ -136,9 +136,9 @@ Recorded seams (three, kept minimal):
 Each criterion names the exact command that proves it and the output that counts as passing. All commands run from the repository root on branch `feat/i18n`.
 
 1. **Audit findings recorded.** Command: `test "$(grep -cE '^### F[0-9]+ — ' docs/superpowers/specs/2026-09-02-search-i18n-version-impact.md)" -ge 7 && echo "findings: $(grep -cE '^### F[0-9]+ — ' docs/superpowers/specs/2026-09-02-search-i18n-version-impact.md)"`. Passing: prints `findings: 7` or more, with each `### F1`–`### F7` entry carrying a verdict line (`Verdict:`).
-2. **SEO meta coverage passes.** Command: `pnpm --dir packages/theme-default test seo-meta.test.ts`. Passing: vitest exits 0; the suite asserts `rel="canonical"` on current and historical pages and `noindex` on EOL history unless the version opts out. (The sitemap half of C3 is proven by the existing `locale-outputs.test.ts` combined sitemap coverage, cited in finding F3; the no-manifest case is the manifestless bundle path covered by `manifestless-bundle.test.ts`.)
-3. **Theme search runtime coverage passes.** Command: `pnpm --dir packages/theme-default test search-routing.test.ts`. Passing: vitest exits 0; the suite asserts DocSearch/custom/Local resolution, per-version `facetFilters` merge and overrides, remount keys, the historical "unavailable" notice, and the custom-search props contract.
-4. **Custom-search production bundling regression passes.** Command: `pnpm --dir packages/theme-default test custom-search-bundle.test.ts`. Passing: vitest exits 0; the suite asserts the theme plugin resolves a string `search` path to the site root and emits a custom-search module whose loader contains a **literal** dynamic `import(<resolved file>)` — the specifier a static production build bundles into a lazy chunk — and that an unconfigured site emits a `null` loader. (The mechanism was verified in a real Vite production build during landing; recorded in F6.)
+2. **SEO meta coverage passes.** Command: `pnpm --dir packages/theme-default exec vitest run seo-meta.test.ts`. Passing: vitest exits 0; the suite asserts `rel="canonical"` on current and historical pages and `noindex` on EOL history unless the version opts out. (The sitemap half of C3 is proven by the existing `locale-outputs.test.ts` combined sitemap coverage, cited in finding F3; the no-manifest case is the manifestless bundle path covered by `manifestless-bundle.test.ts`.)
+3. **Theme search runtime coverage passes.** Command: `pnpm --dir packages/theme-default exec vitest run search-routing.test.ts`. Passing: vitest exits 0; the suite asserts DocSearch/custom/Local resolution, per-version `facetFilters` merge and overrides, remount keys, the historical "unavailable" notice, and the custom-search props contract.
+4. **Custom-search production bundling regression passes.** Command: `pnpm --dir packages/theme-default exec vitest run custom-search-bundle.test.ts`. Passing: vitest exits 0; the suite asserts the theme plugin resolves a string `search` path to the site root and emits a custom-search module whose loader contains a **literal** dynamic `import(<resolved file>)` — the specifier a static production build bundles into a lazy chunk — and that an unconfigured site emits a `null` loader. (The mechanism was verified in a real Vite production build during landing; recorded in F6.)
 5. **Vite suite green.** Command: `pnpm test:vite`. Passing: vitest exits 0 with all tests passing.
 6. **Theme suite green.** Command: `pnpm test:theme-default`. Passing: vitest exits 0 with all tests passing.
 7. **Documentation parity green.** Command: `pnpm check:docs:content`. Passing: exits 0 with no failures; the en/zh/bn search guides mirror each other and describe the locale/version-aware model.
