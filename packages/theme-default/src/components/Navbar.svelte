@@ -17,6 +17,7 @@
   import MobileSubNav from './MobileSubNav.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
   import NavItem from './NavItem.svelte'
+  import LocalSearch from './search/LocalSearch.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
   const routeId = $derived(page.route.id)
@@ -144,6 +145,16 @@
             {@const DocsearchComponent = docsearchComponent}
             <DocsearchComponent {...versionedDocsearch} />
           {/if}
+        {/key}
+      </div>
+    {:else if localeOptions.search !== false}
+      <div
+        class:is-home={isHome || !$sidebar}
+        class:move={!isHome && !hasError && $sidebar}
+        class="doc-search"
+      >
+        {#key versionContext?.versionId}
+          <LocalSearch />
         {/key}
       </div>
     {/if}

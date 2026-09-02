@@ -2,22 +2,28 @@
 
 import { cleanup, fireEvent, render } from '@testing-library/svelte'
 import { tick } from 'svelte'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import Navbar from '../src/components/Navbar.svelte'
 import LocalSearch from '../src/components/search/LocalSearch.svelte'
 import { setPage } from './fixtures/app-state.svelte'
 import { localeFixture, setLocaleFixtures } from './fixtures/locale'
 import { resetNavigation } from './fixtures/navigation'
+import themeOptions from './fixtures/theme-options'
+
+const originalThemeSearch = themeOptions.search
 
 beforeEach(() => {
   setPage('/guide/')
   window.history.replaceState({}, '', '/guide/')
   resetNavigation()
   setLocaleFixtures(localeFixture())
+  themeOptions.search = undefined
 })
 
 afterEach(() => {
   cleanup()
   setLocaleFixtures(null)
+  themeOptions.search = originalThemeSearch
 })
 
 describe('localSearch component', () => {
@@ -85,14 +91,12 @@ describe('localSearch component', () => {
     const view = render(LocalSearch)
     const trigger = view.getByRole('button', { name: 'Search documentation...' })
     await fireEvent.click(trigger)
-    await tick()
 
-    // In happy-dom test environment, pagefind.js import will fail and trigger dev notice
-    // Wait for the async loadPagefind() catch block
-    await new Promise(resolve => setTimeout(resolve, 50))
-    await tick()
-
-    expect(view.container.textContent).toContain('Local search index is generated during production build.')
+    await vi.waitFor(() => {
+      expect(view.container.textContent).toContain(
+        'Local search index is generated during production build.',
+      )
+    })
   })
 
   it('clears query when clear button is clicked', async () => {
@@ -111,5 +115,36 @@ describe('localSearch component', () => {
     await tick()
 
     expect(input.value).toBe('')
+  })
+
+  it('mounts LocalSearch in Navbar when custom search is not provided', () => {
+    const fixture = localeFixture()
+    delete fixture['/'].theme.search
+    setLocaleFixtures(fixture)
+
+    setPage('/guide/')
+    const view = render(Navbar)
+    expect(view.getByRole('button', { name: 'Search documentation...' })).toBeDefined()
+  })
+
+  it('mounts localized LocalSearch in Navbar when custom search is not provided on a non-default locale', () => {
+    const fixture = localeFixture()
+    delete fixture['/'].theme.search
+    delete fixture['/zh/'].theme.search
+    setLocaleFixtures(fixture)
+
+    setPage('/zh/guide/')
+    const view = render(Navbar)
+    expect(view.getByRole('button', { name: '搜索文档...' })).toBeDefined()
+  })
+
+  it('hides search in Navbar when search is disabled with search: false', () => {
+    const fixture = localeFixture()
+    fixture['/'].theme.search = false
+    setLocaleFixtures(fixture)
+
+    setPage('/guide/')
+    const view = render(Navbar)
+    expect(view.queryByRole('button', { name: 'Search documentation...' })).toBeNull()
   })
 })
