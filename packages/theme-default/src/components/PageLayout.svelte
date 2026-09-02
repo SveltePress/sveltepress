@@ -108,7 +108,7 @@
   {/snippet}
   {#if !isHome}
     <div pb-4 class="theme-default--page-layout">
-      <div class="content">
+      <div class="content" data-pagefind-body>
         {#if fm.title}
           <h1 class="page-title">
             {fm.title}

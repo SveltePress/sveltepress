@@ -797,6 +797,9 @@ importers:
       lru-cache:
         specifier: 'catalog:'
         version: 11.5.2
+      pagefind:
+        specifier: 'catalog:'
+        version: 1.5.2
       picocolors:
         specifier: 'catalog:'
         version: 1.1.1

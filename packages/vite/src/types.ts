@@ -132,6 +132,11 @@ export interface SveltepressVitePluginOptions {
    * When omitted, SvelteKit reads its config from `svelte.config.js` as before.
    */
   svelteKitOptions?: SvelteKitOptions
+  /**
+   * Options for Pagefind static local search indexing.
+   * Set to `false` to disable automatic post-build indexing.
+   */
+  pagefind?: boolean | import('./pagefind.js').PagefindOptions
 }
 
 export type LoadTheme<ThemeOptions = any> = (themeOptions?: ThemeOptions) => ResolvedTheme
