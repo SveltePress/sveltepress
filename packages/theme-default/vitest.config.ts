@@ -13,6 +13,7 @@ export default defineConfig({
       { find: 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte', replacement: resolve(import.meta.dirname, 'src/components/VersionLifecycleBanner.svelte') },
       { find: 'virtual:sveltepress/theme-default/LocaleSelector.svelte', replacement: resolve(import.meta.dirname, 'src/components/LocaleSelector.svelte') },
       { find: 'virtual:sveltepress/theme-default/LocaleFallbackNotice.svelte', replacement: resolve(import.meta.dirname, 'src/components/LocaleFallbackNotice.svelte') },
+      { find: 'virtual:sveltepress/theme-default/custom-search', replacement: resolve(import.meta.dirname, '__tests__/fixtures/custom-search.ts') },
       { find: 'virtual:sveltepress/theme-default', replacement: resolve(import.meta.dirname, '__tests__/fixtures/theme-options.ts') },
       { find: 'virtual:sveltepress/locale', replacement: resolve(import.meta.dirname, '__tests__/fixtures/locale.ts') },
       { find: 'virtual:sveltepress/versions', replacement: resolve(import.meta.dirname, '__tests__/fixtures/versions.ts') },

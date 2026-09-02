@@ -2,6 +2,7 @@
   import type { Component } from 'svelte'
   import { page } from '$app/state'
   import { locales } from 'virtual:sveltepress/locale'
+  import { loadCustomSearch } from 'virtual:sveltepress/theme-default/custom-search'
   import LocaleSelector from 'virtual:sveltepress/theme-default/LocaleSelector.svelte'
   import { resolveVersionSearch } from 'virtual:sveltepress/theme-default/versioning'
   import VersionSelector from 'virtual:sveltepress/theme-default/VersionSelector.svelte'
@@ -55,16 +56,19 @@
   let searchComponent = $state<Component | undefined>()
 
   async function loadSearch() {
-    // Load custom search component if it's a string path
+    // Load custom search if it is a source-path component. The path is bundled
+    // for production through the theme plugin's custom-search virtual module
+    // (a literal dynamic import); component objects cannot survive theme-option
+    // JSON serialization, so `search` must be a source path or a component only
+    // in non-serialized contexts.
     if (
       versionSearch.available &&
       localeOptions.search &&
       typeof localeOptions.search === 'string'
     ) {
       try {
-        searchComponent = (
-          await import(/* @vite-ignore */ localeOptions.search)
-        ).default
+        const module = await loadCustomSearch()
+        searchComponent = module?.default ?? undefined
       } catch (e) {
         console.error(
           '[sveltepress] Failed to load custom search component:',

@@ -119,6 +119,15 @@ describe('historical-version search gate (claim C2)', () => {
 })
 
 describe('custom search contract (claim C5)', () => {
+  it('loads a string source-path search through the bundled custom-search module', async () => {
+    themeOptions.search = '/src/lib/MeilisearchSearch.svelte'
+    const view = render(Navbar)
+    await waitFor(() => expect(view.queryByTestId('custom-search')).not.toBeNull())
+    // The fixture loader stands in for the plugin-generated virtual module; the
+    // component still receives the version context through the public contract.
+    expect((view.getByTestId('custom-search') as HTMLElement).dataset.version).toBe('2026-08-28')
+  })
+
   it('passes the active version and per-version metadata to the custom component', async () => {
     themeOptions.search = CustomSearchProbe
     manifest.versions[0].search = { facetFilters: ['version:2026-08-27'] }

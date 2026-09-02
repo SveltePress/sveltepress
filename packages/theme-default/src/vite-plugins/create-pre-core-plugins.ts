@@ -10,6 +10,7 @@ import Unocss from 'unocss/vite'
 import { generateSidebar, isAutoSidebarOptions } from '../auto-sidebar.js'
 import { SERVICE_WORKER_PATH } from '../constants.js'
 import { initHighlighter } from '../markdown/highlighter.js'
+import { buildCustomSearchModule, CUSTOM_SEARCH_MODULE, resolveCustomSearchFile } from './custom-search-module.js'
 import { stripVersioningForManifestlessSite } from './strip-versioning.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
@@ -91,6 +92,12 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
   }
   const iconSafelist = getIconSafelist(options)
 
+  // Resolve the configured custom-search source path lazily (the site root is
+  // only known after the config resolves) and serve it through a lazy literal
+  // dynamic import so a static production build bundles the wrapper.
+  let customSearchFile: string | null = null
+  let customSearchRoot = process.cwd()
+
   const vitePluginsPre: PluginOption = [
     Unocss({
       extractors: [
@@ -139,6 +146,8 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
       resolveId(id) {
         if (id === THEME_OPTIONS_MODULE)
           return THEME_OPTIONS_MODULE
+        if (id === CUSTOM_SEARCH_MODULE)
+          return CUSTOM_SEARCH_MODULE
         if (id === THEME_VERSIONING_MODULE)
           return versionManifest ? VERSIONING_PATH : VERSIONING_DISABLED_PATH
         if (id === VERSION_SELECTOR_MODULE)
@@ -155,6 +164,12 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
       load(id) {
         if (id === THEME_OPTIONS_MODULE)
           return `export default ${JSON.stringify(resolvedOptions || {})}`
+        if (id === CUSTOM_SEARCH_MODULE)
+          return buildCustomSearchModule(customSearchFile)
+      },
+      configResolved(config) {
+        customSearchRoot = config.root
+        customSearchFile = resolveCustomSearchFile(options?.search, customSearchRoot)
       },
       transform(source, id) {
         if (!versionManifest)
