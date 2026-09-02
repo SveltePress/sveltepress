@@ -78,8 +78,21 @@ SveltePress introduces an integrated, zero-config **Local Search** powered by **
   - Verify `dist/pagefind/pagefind.js` and index chunks are created during `pnpm check:versioning-build`.
   - Verify docs-site builds successfully and produces valid pagefind assets.
 
-## Out of Scope
+## Acceptance Criteria
 
-- Search in `@sveltepress/theme-blog` (blog theme continues using its existing search mechanism).
-- Server-side dynamic database search (Elasticsearch / Meilisearch / Algolia Crawler management).
-- Cloud search proxying or telemetry tracking.
+Each criterion names the exact command that proves it and the output that counts as passing. All commands run from the repository root on branch `feat/i18n` unless noted.
+
+1. **Pagefind indexer test passes.** Command: `pnpm --dir packages/vite test pagefind.test.ts`. Passing: vitest exits 0 with all indexer tests passing.
+2. **Local search modal test passes.** Command: `pnpm --dir packages/theme-default test local-search.test.ts`. Passing: vitest exits 0 with all search component tests passing.
+3. **Theme suite green.** Command: `pnpm test:theme-default`. Passing: vitest exits 0 with all tests passing, including manifestless bundle checks.
+4. **Core suite green.** Command: `pnpm test:vite`. Passing: vitest exits 0 with all tests passing.
+5. **Docs site builds with Pagefind assets.** Command: `pnpm --dir packages/docs-site build`. Passing: exits 0, `dist/pagefind/pagefind.js` exists.
+6. **Version management build verification passes.** Command: `pnpm check:versioning-build`. Passing: exits 0 and asserts valid Pagefind assets across locales.
+7. **Full suite green.** Command: `pnpm test`. Passing: all suites pass with 0 errors.
+
+## Plan
+
+- [ ] **T1 — Core indexer pipeline and build integration.** ([#436](https://github.com/SveltePress/sveltepress/issues/436)) Delivers: `pagefind` dependency, `indexSiteWithPagefind` helper, automated post-build indexing hook in `@sveltepress/vite`, layout attribute tagging (`data-pagefind-body` / `data-pagefind-ignore`), and unit tests. Blocked by: nothing.
+- [ ] **T2 — Native Svelte 5 Local Search modal with multi-locale.** ([#437](https://github.com/SveltePress/sveltepress/issues/437)) Delivers: `LocalSearch.svelte` modal, UnoCSS styling, dark mode sync, `Cmd+K` keyboard navigation, dynamic runtime `pagefind.js` loader, active locale `lang` filter, dev mode fallback notice, and component tests. Blocked by: T1.
+- [ ] **T3 — Wire LocalSearch as default in Navbar with DocSearch fallback.** ([#438](https://github.com/SveltePress/sveltepress/issues/438)) Delivers: `Navbar.svelte` & `NavbarMobile.svelte` wiring, fallback precedence (`docsearch` -> custom `search` -> default `LocalSearch`), `strip-versioning.ts` update, manifestless hash refresh, and rendering tests. Blocked by: T2.
+- [ ] **T4 — Migrate docs-site to Local Search, verify production builds and update guides.** ([#439](https://github.com/SveltePress/sveltepress/issues/439)) Delivers: remove Algolia keys from docs-site, update `check-version-management-build.mjs` assertions, update user docs in `guide/default-theme/search/+page.md`, and add changeset. Blocked by: T3.
