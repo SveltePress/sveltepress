@@ -189,12 +189,23 @@ export async function composeIncrementalSite(
   })
   // The default-locale build also composes every locale manifest's version
   // shells so the single merged output carries /v/, /zh/v/, and /bn/v/.
+  // A locale-scoped build (`--locale zh`) composes only the requested
+  // locale's history; sibling locales whose drafts do not exist yet (cold
+  // cache, or a CI job building locales in sequence) are skipped and are
+  // composed by their own build or the final default build.
+  const discoveredLocales = discoverLocaleManifests(io)
+  const isLocaleScopedBuild = discoveredLocales.some(locale => locale.manifest.basePath === manifest.basePath)
   const extraMounts: { routesDirectory: string, basePath: string }[] = []
-  for (const locale of discoverLocaleManifests(io, manifest)) {
+  for (const locale of discoveredLocales) {
     const localeStore = resolveArtifactStore(io.cwd, locale.manifest)
     const localeCurrent = readDraftVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId)
-    if (!localeCurrent || localeCurrent.versionId !== locale.manifest.current.id)
-      throw new Error(`No built artifact draft exists for locale /${locale.slug}/ current ${locale.manifest.current.id}. Run \`sveltepress versions build --locale ${locale.slug}\` first.`)
+    if (!localeCurrent || localeCurrent.versionId !== locale.manifest.current.id) {
+      if (!isLocaleScopedBuild) {
+        throw new Error(`No built artifact draft exists for locale /${locale.slug}/ current ${locale.manifest.current.id}. Run \`sveltepress versions build --locale ${locale.slug}\` first.`)
+      }
+      io.stdout(`Skipping /${locale.slug}/ historical shells: no built draft exists yet. Run \`sveltepress versions build --locale ${locale.slug}\` to compose it.`)
+      continue
+    }
     const localeHistorical = locale.manifest.versions.map((version) => {
       const artifact = readVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId, version.id)
       if (!artifact)
