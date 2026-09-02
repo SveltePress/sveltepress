@@ -127,6 +127,11 @@ declare module 'virtual:sveltepress/theme-default' {
       versionChangesUpdatedPages?: string
       versionChangesNoBaseline?: string
       versionChangesEmpty?: string
+      searchPlaceholder?: string
+      searchNoResults?: string
+      searchDevNotice?: string
+      searchClose?: string
+      searchClear?: string
     }
     preBuildIconifyIcons?: {
       [iconSetName: string]: string[]

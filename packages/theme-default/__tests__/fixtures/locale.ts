@@ -39,6 +39,9 @@ export function localeFixture(): LocalesConfig {
         navbar: [{ title: '指南', to: '/guide/' }],
         i18n: {
           ...themeOptions.i18n,
+          searchPlaceholder: '搜索文档...',
+          searchNoResults: '未找到 "{query}" 的相关结果',
+          searchDevNotice: '本地搜索索引在生产构建后生成。',
           localeSwitcher: '切换语言',
           localePageUnavailable: '此页面没有中文版本，已返回中文首页。',
         },
