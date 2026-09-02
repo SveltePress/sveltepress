@@ -2,7 +2,7 @@
 title: Search
 ---
 
-SveltePress default theme provides built-in **Local Search** powered by [Pagefind](https://pagefind.app/) out of the box with zero configuration, while retaining full support for **Algolia DocSearch** through `docsearch` and custom search components through `search`.
+SveltePress default theme provides built-in **Local Search** powered by [Pagefind](https://pagefind.app/) out of the box with zero configuration. In addition, the default theme supports **Algolia DocSearch** through `docsearch` and custom search components through `search`, including `@sveltepress/meilisearch`.
 
 ## Local Search (Default)
 

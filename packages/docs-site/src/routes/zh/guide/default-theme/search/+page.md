@@ -2,7 +2,7 @@
 title: 搜索
 ---
 
-SveltePress 默认主题开箱即用内置了基于 [Pagefind](https://pagefind.app/) 的**本地搜索**，无需任何额外配置；同时完整保留了通过 `docsearch` 接入 **Algolia DocSearch** 以及通过 `search` 接入自定义搜索组件的能力。
+SveltePress 默认主题开箱即用内置了基于 [Pagefind](https://pagefind.app/) 的**本地搜索**，无需任何额外配置。此外，默认主题支持通过 `docsearch` 接入 **Algolia DocSearch**，也支持通过 `search` 接入自定义搜索组件，包括 `@sveltepress/meilisearch`。
 
 ## 本地搜索（默认推荐）
 

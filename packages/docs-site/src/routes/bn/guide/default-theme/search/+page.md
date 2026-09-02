@@ -2,7 +2,7 @@
 title: সার্চ
 ---
 
-SveltePress default theme-এ কোনো অতিরিক্ত কনফিগারেশন ছাড়াই [Pagefind](https://pagefind.app/)-এর ওপর ভিত্তি করে অন্তর্নির্মিত **লোকাল সার্চ** সুবিধা রয়েছে, পাশাপাশি `docsearch` দিয়ে **Algolia DocSearch** এবং `search` দিয়ে কাস্টম সার্চ উপাদান ব্যবহারের সম্পূর্ণ সমর্থনও বজায় রাখা হয়েছে।
+SveltePress default theme-এ কোনো অতিরিক্ত কনফিগারেশন ছাড়াই [Pagefind](https://pagefind.app/)-এর ওপর ভিত্তি করে অন্তর্নির্মিত **লোকাল সার্চ** সুবিধা রয়েছে। এছাড়া, Default theme `docsearch` দিয়ে **Algolia DocSearch** এবং `search` দিয়ে custom search component সমর্থন করে, যার মধ্যে `@sveltepress/meilisearch`-ও আছে।
 
 ## লোকাল সার্চ (ডিফল্ট)
 
