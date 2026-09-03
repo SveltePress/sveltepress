@@ -1,6 +1,6 @@
 # Fix Local Search Multi-Locale Switching and Historical Version Indexing
 
-**Status:** landing
+**Status:** shipped
 
 ## Requirement
 
@@ -89,7 +89,7 @@ Tests must assert observable behavior at public seams without testing implementa
 
 - [x] **T1 — Historical Pagefind body exclusion.** Delivers: In `PageLayout.svelte` (and `strip-versioning.ts`), condition `data-pagefind-body` on `!versionContext?.historical`; add regression test in `version-components.test.ts`. Blocked by: nothing.
 - [x] **T2 — Locale-aware LocalSearch lifecycle and Navbar keying.** Delivers: In `Navbar.svelte` (and manifestless transform), key `LocalSearch` by `${versionContext?.versionId || ''}:${localeOptions.lang || ''}`; in `LocalSearch.svelte`, manage Pagefind instance via `createInstance({ basePath, language })` with teardown; add regression test in `local-search.test.ts`. Blocked by: T1.
-- [ ] **T3 — Mark prior spec shipped & verify.** Delivers: Mark `docs/superpowers/specs/2026-09-02-local-search.md` status as `shipped`; run all acceptance criteria commands and ensure clean verification. Blocked by: T2.
+- [x] **T3 — Mark prior spec shipped & verify.** Delivers: Mark `docs/superpowers/specs/2026-09-02-local-search.md` status as `shipped`; run all acceptance criteria commands and ensure clean verification. Blocked by: T2.
 
 ## Baseline
 

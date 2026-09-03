@@ -1,6 +1,6 @@
 # Built-in Pagefind Local Search with Multi-Locale Support
 
-**Status:** approved
+**Status:** shipped
 
 ## Requirement
 
