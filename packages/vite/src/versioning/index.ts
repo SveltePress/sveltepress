@@ -122,6 +122,7 @@ export interface VersionContext {
   version: DocumentationVersion
   logicalPath: string
   historical: boolean
+  basePath?: string
   /**
    * The manifest the context was resolved from. Attached by the locale-aware
    * runtime so path helpers can compose locale-prefixed version routes.

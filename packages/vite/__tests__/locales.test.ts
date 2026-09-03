@@ -64,6 +64,17 @@ describe('locale resolution', () => {
     expect(resolveLocale('/zh-extra/guide/', locales())?.prefix).toBe('/')
   })
 
+  it('handles null, undefined, or empty pathnames safely without throwing', () => {
+    expect(resolveLocale(null as any, locales())).toBeNull()
+    expect(resolveLocale(undefined as any, locales())).toBeNull()
+    expect(resolveLocale('', locales())).toBeNull()
+  })
+
+  it('supports base path prefix stripping during locale resolution', () => {
+    expect(resolveLocale('/docs/zh/guide/', locales(), '/docs')).toMatchObject({ prefix: '/zh/', lang: 'zh' })
+    expect(resolveLocale('/docs/guide/', locales(), '/docs')).toMatchObject({ prefix: '/', lang: 'en' })
+  })
+
   it('returns null when the path matches no configured locale', () => {
     const only = { '/zh/': locales()['/zh/'] }
     expect(resolveLocale('/guide/', only)).toBeNull()
@@ -112,6 +123,16 @@ describe('locale-aware link resolution', () => {
 })
 
 describe('locale switch targets', () => {
+  it('handles null, undefined, or empty pathnames safely in resolveLocaleSwitch', () => {
+    expect(resolveLocaleSwitch(null as any, '/zh/', locales())).toBeNull()
+    expect(resolveLocaleSwitch(undefined as any, '/zh/', locales())).toBeNull()
+    expect(resolveLocaleSwitch('', '/zh/', locales())).toBeNull()
+  })
+
+  it('supports base path in resolveLocaleSwitch', () => {
+    expect(resolveLocaleSwitch('/docs/guide/install/', '/zh/', locales(), '/docs')).toEqual({ href: '/zh/guide/install/', fallback: false })
+  })
+
   it('preserves the logical page when the target locale has that route', () => {
     expect(resolveLocaleSwitch('/guide/install/', '/zh/', locales())).toEqual({ href: '/zh/guide/install/', fallback: false })
   })

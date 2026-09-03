@@ -196,33 +196,33 @@ export async function composeIncrementalSite(
   const discoveredLocales = discoverLocaleManifests(io)
   const isLocaleScopedBuild = discoveredLocales.some(locale => locale.manifest.basePath === manifest.basePath)
   const extraMounts: { routesDirectory: string, basePath: string }[] = []
-  for (const locale of discoveredLocales) {
-    const localeStore = resolveArtifactStore(io.cwd, locale.manifest)
-    const localeCurrent = readDraftVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId)
-    if (!localeCurrent || localeCurrent.versionId !== locale.manifest.current.id) {
-      if (!isLocaleScopedBuild) {
+  if (!isLocaleScopedBuild) {
+    for (const locale of discoveredLocales) {
+      if (locale.manifest.basePath === manifest.basePath)
+        continue
+      const localeStore = resolveArtifactStore(io.cwd, locale.manifest)
+      const localeCurrent = readDraftVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId)
+      if (!localeCurrent || localeCurrent.versionId !== locale.manifest.current.id) {
         throw new Error(`No built artifact draft exists for locale /${locale.slug}/ current ${locale.manifest.current.id}. Run \`sveltepress versions build --locale ${locale.slug}\` first.`)
       }
-      io.stdout(`Skipping /${locale.slug}/ historical shells: no built draft exists yet. Run \`sveltepress versions build --locale ${locale.slug}\` to compose it.`)
-      continue
+      const localeHistorical = locale.manifest.versions.map((version) => {
+        const artifact = readVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId, version.id)
+        if (!artifact)
+          throw new Error(`Missing published artifact manifest for /${locale.slug}/ ${version.id}.`)
+        return artifact
+      })
+      const localeRoutesDirectory = join(io.cwd, `.sveltepress/version-shell-routes-${locale.slug}`)
+      await generateVersionShellRoutes({
+        siteRoot: io.cwd,
+        storeRoot: localeStore,
+        outputDirectory: localeRoutesDirectory,
+        basePath: locale.manifest.basePath,
+        pageLayout,
+        current: localeCurrent,
+        historical: localeHistorical,
+      })
+      extraMounts.push({ routesDirectory: localeRoutesDirectory, basePath: locale.manifest.basePath })
     }
-    const localeHistorical = locale.manifest.versions.map((version) => {
-      const artifact = readVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId, version.id)
-      if (!artifact)
-        throw new Error(`Missing published artifact manifest for /${locale.slug}/ ${version.id}.`)
-      return artifact
-    })
-    const localeRoutesDirectory = join(io.cwd, `.sveltepress/version-shell-routes-${locale.slug}`)
-    await generateVersionShellRoutes({
-      siteRoot: io.cwd,
-      storeRoot: localeStore,
-      outputDirectory: localeRoutesDirectory,
-      basePath: locale.manifest.basePath,
-      pageLayout,
-      current: localeCurrent,
-      historical: localeHistorical,
-    })
-    extraMounts.push({ routesDirectory: localeRoutesDirectory, basePath: locale.manifest.basePath })
   }
   await runViteBuild(io, routesDirectory, storeRoot, config.siteId, manifest.basePath, extraMounts)
   io.stdout(`Composed ${report.currentRoutes} current and ${report.historicalRoutes} historical routes from reusable page artifacts.`)

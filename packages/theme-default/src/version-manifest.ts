@@ -1,5 +1,5 @@
 import type { VersionManifest, VersionPluginOptions } from '@sveltepress/vite'
-import { existsSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { loadVersionManifest } from '@sveltepress/vite/versioning'
 
@@ -15,14 +15,33 @@ export function createVersionManifestReader(
       return null
     const manifestFile = options?.manifest ?? 'sveltepress.versions.json'
     const path = resolve(siteRoot, manifestFile)
-    const nextFingerprint = existsSync(path)
-      ? fileFingerprint(path)
-      : 'missing'
-    if (nextFingerprint !== fingerprint) {
-      fingerprint = nextFingerprint
-      manifest = loadVersionManifest(siteRoot, manifestFile)
+    if (existsSync(path)) {
+      const nextFingerprint = fileFingerprint(path)
+      if (nextFingerprint !== fingerprint) {
+        fingerprint = nextFingerprint
+        manifest = loadVersionManifest(siteRoot, manifestFile)
+      }
+      return manifest
     }
-    return manifest
+    try {
+      if (existsSync(siteRoot)) {
+        const files = readdirSync(siteRoot)
+        const localeManifest = files.find(file => /^sveltepress\.versions\.[a-z0-9-]+\.json$/.test(file))
+        if (localeManifest) {
+          const localePath = resolve(siteRoot, localeManifest)
+          const nextFingerprint = fileFingerprint(localePath)
+          if (nextFingerprint !== fingerprint) {
+            fingerprint = nextFingerprint
+            manifest = loadVersionManifest(siteRoot, localeManifest)
+          }
+          return manifest
+        }
+      }
+    }
+    catch {
+      // ignore directory read errors
+    }
+    return null
   }
 }
 

@@ -41,6 +41,8 @@ export function resolveLocaleLink(to: string, pathname: string): string {
  * locale prefix.
  */
 export function resolveLogicalRoute(routeId: string): string {
+  if (!routeId || typeof routeId !== 'string')
+    return ''
   const locale = resolveLocale(routeId)
   if (locale && locale.prefix !== '/') {
     const normalizedPrefix = locale.prefix.replace(/\/+$/, '')

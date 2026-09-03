@@ -1,10 +1,5 @@
 // @vitest-environment happy-dom
 
-// Theme search-runtime audit (spec: 2026-09-02-search-i18n-version-impact.md,
-// claims C1, C2, C5): Navbar must resolve DocSearch per locale, gate search on
-// the version's `search` metadata (merging facetFilters/indexName overrides),
-// show the "unavailable" notice on history without a search configuration, and
-// hand custom search components the active version and version metadata.
 import { cleanup, render, waitFor } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'

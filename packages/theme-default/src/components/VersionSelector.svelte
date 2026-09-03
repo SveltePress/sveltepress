@@ -8,6 +8,7 @@
     resolveVersionManifest,
   } from 'virtual:sveltepress/versions'
   import { resolveLocaleOptions } from './locale'
+  import { getPathFromBase } from './utils'
   import { getVersionOptions, nextVersionMenuIndex } from './versioning'
 
   let { mobile = false }: { mobile?: boolean } = $props()
@@ -94,7 +95,7 @@
     const fallback = target.fallback
       ? `${target.href.includes('?') ? '&' : '?'}svp-version-fallback=1`
       : ''
-    await goto(`${target.href}${fallback}`)
+    await goto(getPathFromBase(`${target.href}${fallback}`))
   }
 </script>
 

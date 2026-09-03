@@ -183,6 +183,16 @@ describe('locale-scoped page switcher', () => {
     expect(prev.getAttribute('href')).toBe('/guide/')
     expect(next.getAttribute('href')).toBe('/guide/unchanged/')
   })
+
+  it('resolves previous and next page links within historical version routes', () => {
+    setPage('/v/2026-08-27/guide/new/')
+    resolveSidebar('/v/2026-08-27/guide/new/')
+    const view = render(PageSwitcher)
+    const prev = view.getByRole('link', { name: /Guide/ })
+    const next = view.getByRole('link', { name: /Unchanged/ })
+    expect(prev.getAttribute('href')).toBe('/v/2026-08-27/guide/')
+    expect(next.getAttribute('href')).toBe('/guide/unchanged/')
+  })
 })
 
 describe('document language', () => {

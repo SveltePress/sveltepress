@@ -169,6 +169,17 @@ describe('localSearch component', () => {
     expect(view.queryByRole('status')).toBeNull()
   })
 
+  it('renders LocalSearch on historical version route with localized placeholder and open modal', async () => {
+    setPage('/v/2026-08-27/guide/')
+    const view = render(LocalSearch)
+    const trigger = view.getByRole('button', { name: 'Search documentation...' })
+    await fireEvent.click(trigger)
+    await tick()
+
+    const modal = view.getByRole('dialog', { name: 'Search documentation...' })
+    expect(modal).toBeDefined()
+  })
+
   it('hides search in Navbar when search is disabled with search: false', () => {
     const fixture = localeFixture()
     fixture['/'].theme.search = false

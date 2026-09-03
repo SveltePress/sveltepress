@@ -15,6 +15,8 @@ export function resolveLocale(
   locales?: LocalesConfig | null,
   base?: string,
 ): ResolvedLocale | null {
+  if (!pathname || typeof pathname !== 'string')
+    return null
   if (!locales || Object.keys(locales).length === 0)
     return null
   const cleanPath = stripBase(stripQueryAndHash(pathname), base)
@@ -70,6 +72,8 @@ export function resolveLocaleSwitch(
   locales?: LocalesConfig | null,
   base?: string,
 ): LocaleSwitchTarget | null {
+  if (!pathname || typeof pathname !== 'string')
+    return null
   const cleanPath = stripBase(pathname, base)
   const current = resolveLocale(cleanPath, locales)
   const target = locales?.[targetPrefix]
@@ -107,6 +111,8 @@ export function resolveLocaleSwitch(
 }
 
 export function stripBase(pathname: string, base?: string): string {
+  if (!pathname || typeof pathname !== 'string')
+    return ''
   if (!base || base === '/' || base === '')
     return pathname
   const normalizedBase = base.replace(/\/+$/, '')
@@ -149,6 +155,8 @@ function normalizeRoute(route: string): string {
 }
 
 function stripQueryAndHash(value: string): string {
+  if (!value || typeof value !== 'string')
+    return ''
   return value.split(/[?#]/, 1)[0]
 }
 

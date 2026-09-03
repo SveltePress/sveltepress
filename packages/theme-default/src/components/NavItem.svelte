@@ -33,7 +33,6 @@
     builtInIcon = false,
     brand = false,
     children,
-    ...rest
   } = $props()
 
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
@@ -45,22 +44,23 @@
           versionContext,
         ),
   )
+  const targetPath = $derived(getPathFromBase(resolvedTo))
   const normalizedTo = $derived(
-    resolvedTo.endsWith('/') ? resolvedTo.slice(0, -1) : resolvedTo,
+    targetPath.endsWith('/') ? targetPath.slice(0, -1) : targetPath,
   )
   const isRoot = $derived.by(() => {
     if (normalizedTo === '') return true
-    const prefix = resolveLocale(resolvedTo)?.prefix.replace(/\/+$/, '')
+    const prefix = getPathFromBase(
+      resolveLocale(resolvedTo)?.prefix || '/',
+    ).replace(/\/+$/, '')
     return prefix === normalizedTo
   })
   const isExactMatch = p =>
-    p === resolvedTo || (normalizedTo !== '' && p === normalizedTo)
+    p === targetPath || (normalizedTo !== '' && p === normalizedTo)
   const isChildMatch = p => !isRoot && p.startsWith(`${normalizedTo}/`)
   let active = $derived(
     isExactMatch(page.url.pathname) || isChildMatch(page.url.pathname),
   )
-  // eslint-disable-next-line no-unused-expressions
-  rest
 </script>
 
 {#if items && items.length}

@@ -1,5 +1,9 @@
 <script>
   import { page } from '$app/state'
+  import {
+    resolveVersionContext,
+    resolveVersionedPath,
+  } from 'virtual:sveltepress/versions'
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'
   import { pages } from './layout'
@@ -11,7 +15,12 @@
   import { getPathFromBase, isLinkActive } from './utils'
 
   const routeId = $derived(page.route.id)
-  const logicalRouteId = $derived(resolveLogicalRoute(routeId))
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const logicalRouteId = $derived(
+    resolveLogicalRoute(
+      versionContext?.historical ? versionContext.logicalPath : routeId,
+    ),
+  )
 
   const activeIdx = $derived(
     $pages.findIndex(p => isLinkActive(p.to, logicalRouteId)),
@@ -32,7 +41,10 @@
       {@const prevPage = $pages[activeIdx - 1]}
       <a
         href={getPathFromBase(
-          resolveLocaleLink(prevPage.to, page.url.pathname),
+          resolveVersionedPath(
+            resolveLocaleLink(prevPage.to, page.url.pathname),
+            versionContext,
+          ),
         )}
         class="trigger"
       >
@@ -55,7 +67,10 @@
       {@const nextPage = $pages[activeIdx + 1]}
       <a
         href={getPathFromBase(
-          resolveLocaleLink(nextPage.to, page.url.pathname),
+          resolveVersionedPath(
+            resolveLocaleLink(nextPage.to, page.url.pathname),
+            versionContext,
+          ),
         )}
         class="trigger"
       >

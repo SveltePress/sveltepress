@@ -1,9 +1,3 @@
-// Custom-search production bundling regression (spec:
-// 2026-09-02-search-i18n-version-impact.md, claim C6): a string `search` path
-// must be bundled into static production builds. The theme plugin serves the
-// resolved source file through a virtual module whose loader is a literal
-// dynamic import — the specifier Vite bundles into a lazy chunk — instead of a
-// runtime `import(/* @vite-ignore */ path)` that the browser can never fetch.
 import { describe, expect, it } from 'vitest'
 import {
   buildCustomSearchModule,

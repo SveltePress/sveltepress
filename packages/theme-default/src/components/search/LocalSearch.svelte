@@ -5,6 +5,7 @@
   import { onDestroy, tick } from 'svelte'
   import { resolveVersionContext } from 'virtual:sveltepress/versions'
   import { resolveLocaleOptions } from '../locale.js'
+  import { getPathFromBase } from '../utils.js'
 
   interface SearchResultItem {
     url: string
@@ -22,6 +23,7 @@
   let selectedIndex = $state(0)
   let loading = $state(false)
   let isDevNotice = $state(false)
+  let isLoadError = $state(false)
   let inputEl = $state<HTMLInputElement | null>(null)
   let pagefind = $state<any>(null)
 
@@ -29,7 +31,9 @@
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const targetSearchPath = $derived.by(() => {
     if (versionContext?.historical) {
-      return `${base}${versionContext.basePath}/${versionContext.versionId}/pagefind/`.replace(
+      const versionBasePath =
+        versionContext.basePath ?? versionContext.manifest?.basePath ?? '/v'
+      return `${base}${versionBasePath}/${versionContext.versionId}/pagefind/`.replace(
         /\/+/g,
         '/',
       )
@@ -43,6 +47,12 @@
     localeOptions.i18n?.searchNoResults || 'No results found for "{query}"',
   )
   const devNotice = $derived.by(() => {
+    if (isLoadError) {
+      return (
+        localeOptions.i18n?.searchUnavailable ||
+        'Search index is currently unavailable.'
+      )
+    }
     return (
       localeOptions.i18n?.searchDevNotice ||
       'Local search index is generated during production build.'
@@ -84,9 +94,14 @@
       }
       pagefind = instance
       isDevNotice = false
+      isLoadError = false
       return instance
     } catch {
-      isDevNotice = true
+      if (import.meta.env?.DEV) {
+        isDevNotice = true
+      } else {
+        isLoadError = true
+      }
       return null
     } finally {
       loading = false
@@ -188,7 +203,17 @@
   async function navigateTo(url: string) {
     closeModal()
     if (url.startsWith('/')) {
-      await goto(url)
+      let targetUrl = url
+      if (versionContext?.historical) {
+        const versionBasePath =
+          versionContext.basePath ?? versionContext.manifest?.basePath ?? '/v'
+        const versionPrefix =
+          `${versionBasePath}/${versionContext.versionId}`.replace(/\/+/g, '/')
+        if (!targetUrl.startsWith(versionPrefix)) {
+          targetUrl = `${versionPrefix}${targetUrl}`.replace(/\/+/g, '/')
+        }
+      }
+      await goto(getPathFromBase(targetUrl))
     } else {
       window.location.href = url
     }
@@ -302,7 +327,7 @@
       </div>
 
       <div class="search-body">
-        {#if isDevNotice}
+        {#if isDevNotice || isLoadError}
           <div class="dev-notice">
             <div class="notice-icon">
               <svg

@@ -24,7 +24,7 @@ function buildCurrentLocaleEntries(
   for (const [route, prefixes] of [...routes.entries()].sort(([a], [b]) => a.localeCompare(b))) {
     for (const prefix of prefixes) {
       const href = `${origin}${joinLocalePath(prefix, route)}`
-      entries.push(buildUrlEntry(href, buildAlternates(prefixes, other => locales[other]?.lang ?? other, other => `${origin}${joinLocalePath(other, route)}`)))
+      entries.push(buildUrlEntry(href, buildAlternates(prefixes, other => locales[other]?.lang ?? (other === '/' ? 'en' : other.replace(/^\/+|\/+$/g, '')), other => `${origin}${joinLocalePath(other, route)}`)))
     }
   }
   return entries
@@ -86,7 +86,7 @@ export function generateLocaleVersionSitemap(
         const href = `${origin}${normalizeRoute(`${manifest.basePath}/${versionId}${route === '/' ? '' : route}`)}`
         entries.push(buildUrlEntry(
           href,
-          buildAlternates(group, other => locales[other.prefix]?.lang ?? other.prefix, other => `${origin}${normalizeRoute(`${other.manifest.basePath}/${versionId}${route === '/' ? '' : route}`)}`),
+          buildAlternates(group, other => locales[other.prefix]?.lang ?? (other.prefix === '/' ? 'en' : other.prefix.replace(/^\/+|\/+$/g, '')), other => `${origin}${normalizeRoute(`${other.manifest.basePath}/${versionId}${route === '/' ? '' : route}`)}`),
         ))
       }
     }

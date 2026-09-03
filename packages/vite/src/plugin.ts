@@ -193,7 +193,7 @@ function removeResidualDevShells(siteRoot: string): void {
   // directory with real content is never touched.
   for (const root of removedRoots) {
     let parent = dirname(root)
-    while (parent.startsWith(routesRoot)) {
+    while (parent.startsWith(routesRoot) && parent !== routesRoot) {
       try {
         rmdirSync(parent)
         parent = dirname(parent)
@@ -488,15 +488,16 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
           `
         }
         return `
+          import { base as appBase } from '$app/paths'
           import {
             resolveLocale as resolveLocaleHelper,
             resolveLocalizedPath as resolveLocalizedPathHelper,
             resolveLocaleSwitch as resolveLocaleSwitchHelper,
           } from '@sveltepress/vite/locale'
           export const locales = ${JSON.stringify(resolvedLocales)}
-          export const resolveLocale = (pathname, base) => resolveLocaleHelper(pathname, locales, base)
-          export const resolveLocalizedPath = (to, locale, base) => resolveLocalizedPathHelper(to, locale, locales, base)
-          export const resolveLocaleSwitch = (pathname, targetPrefix, base) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base)
+          export const resolveLocale = (pathname, base = appBase) => resolveLocaleHelper(pathname, locales, base)
+          export const resolveLocalizedPath = (to, locale, base = appBase) => resolveLocalizedPathHelper(to, locale, locales, base)
+          export const resolveLocaleSwitch = (pathname, targetPrefix, base = appBase) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base)
           export default { locales, resolveLocale, resolveLocalizedPath, resolveLocaleSwitch }
         `
       }

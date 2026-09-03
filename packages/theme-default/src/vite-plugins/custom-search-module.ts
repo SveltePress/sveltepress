@@ -1,18 +1,7 @@
 /**
- * Custom-search module generation (spec: 2026-09-02-search-i18n-version-impact.md,
- * claim C6).
- *
- * A custom `search` option configured as a component object cannot survive the
- * JSON serialization of theme options, and a source-path string loaded with a
- * runtime `import(/* @vite-ignore *\/ path)` is never bundled into a static
- * production build. The fix: the theme plugin resolves the configured source
- * path and serves it through a virtual module whose loader performs a
- * **literal** dynamic import. Vite bundles literal dynamic-import specifiers
- * (as a lazy chunk), so the wrapper ships inside the production client.
- *
- * The module contract is a single `loadCustomSearch(): Promise<Module | null>`
- * export. When no source path is configured the loader resolves to `null` and
- * the Navbar keeps its docsearch / LocalSearch fallbacks.
+ * Virtual module generator for custom search components.
+ * Serves the resolved custom search component via a literal dynamic import
+ * so that Vite bundles it into a chunk in static production builds.
  */
 import { join } from 'node:path'
 import process from 'node:process'

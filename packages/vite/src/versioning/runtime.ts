@@ -24,9 +24,9 @@ export function resolveVersionContext(
   if (historical) {
     const prefix = `${base}/${historical.id}`
     const logicalPath = normalizeRoute(cleanPath.slice(prefix.length) || '/')
-    return { versionId: historical.id, version: historical, logicalPath, historical: true }
+    return { versionId: historical.id, version: historical, logicalPath, historical: true, basePath: manifest.basePath, manifest }
   }
-  return { versionId: manifest.current.id, version: manifest.current, logicalPath: cleanPath, historical: false }
+  return { versionId: manifest.current.id, version: manifest.current, logicalPath: cleanPath, historical: false, basePath: manifest.basePath, manifest }
 }
 
 export function resolveVersionSwitch(
@@ -126,6 +126,8 @@ export function createLocaleVersionRuntime(
       if (context) {
         context.logicalPath = logicalPathFor(pathname, context, prefix)
         context.manifest = manifest
+        if (manifest)
+          context.basePath = manifest.basePath
       }
       return context
     },
