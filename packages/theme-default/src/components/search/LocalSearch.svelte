@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation'
   import { base } from '$app/paths'
   import { page } from '$app/state'
-  import { tick } from 'svelte'
+  import { onDestroy, tick } from 'svelte'
   import { resolveLocaleOptions } from '../locale.js'
 
   interface SearchResultItem {
@@ -55,14 +55,25 @@
         typeof document !== 'undefined'
           ? document.documentElement.lang || 'en'
           : 'en'
-      await pf.options?.({
-        basePath: `${base}/pagefind/`.replace(/\/+/g, '/'),
-        language: currentLang,
-      })
-      await pf.init?.()
-      pagefind = pf
+      const basePath = `${base}/pagefind/`.replace(/\/+/g, '/')
+      let instance: any
+      if (typeof pf.createInstance === 'function') {
+        instance = await pf.createInstance({
+          basePath,
+          language: currentLang,
+        })
+        await instance.init?.()
+      } else {
+        await pf.options?.({
+          basePath,
+          language: currentLang,
+        })
+        await pf.init?.()
+        instance = pf
+      }
+      pagefind = instance
       isDevNotice = false
-      return pf
+      return instance
     } catch {
       isDevNotice = true
       return null
@@ -70,6 +81,13 @@
       loading = false
     }
   }
+
+  onDestroy(() => {
+    if (pagefind) {
+      void pagefind.destroy?.()
+      pagefind = null
+    }
+  })
 
   async function openModal() {
     isOpen = true

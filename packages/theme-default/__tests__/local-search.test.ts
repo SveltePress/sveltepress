@@ -138,6 +138,26 @@ describe('localSearch component', () => {
     expect(view.getByRole('button', { name: '搜索文档...' })).toBeDefined()
   })
 
+  it('re-keys LocalSearch in Navbar when navigating across locales', async () => {
+    const fixture = localeFixture()
+    delete fixture['/'].theme.search
+    delete fixture['/zh/'].theme.search
+    setLocaleFixtures(fixture)
+
+    setPage('/guide/')
+    const view = render(Navbar)
+    const enButton = view.getByRole('button', { name: 'Search documentation...' })
+    expect(enButton).toBeDefined()
+
+    // Navigating to /zh/guide/ switches the locale and remounts LocalSearch with the new key
+    setPage('/zh/guide/')
+    await tick()
+
+    const zhButton = view.getByRole('button', { name: '搜索文档...' })
+    expect(zhButton).toBeDefined()
+    expect(zhButton).not.toBe(enButton)
+  })
+
   it('hides search in Navbar when search is disabled with search: false', () => {
     const fixture = localeFixture()
     fixture['/'].theme.search = false

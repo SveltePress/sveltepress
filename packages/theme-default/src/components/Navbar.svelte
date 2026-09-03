@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Component } from 'svelte'
   import { page } from '$app/state'
-  import { locales } from 'virtual:sveltepress/locale'
+  import { locales, resolveLocale } from 'virtual:sveltepress/locale'
   import { loadCustomSearch } from 'virtual:sveltepress/theme-default/custom-search'
   import LocaleSelector from 'virtual:sveltepress/theme-default/LocaleSelector.svelte'
   import { resolveVersionSearch } from 'virtual:sveltepress/theme-default/versioning'
@@ -26,6 +26,8 @@
   const hasError = $derived(page.error)
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
+  const activeLocale = $derived(resolveLocale(page.url.pathname))
+  const activeLang = $derived(activeLocale?.lang ?? '')
   const versionSearch = $derived(
     resolveVersionSearch(
       page.url.pathname,
@@ -155,7 +157,7 @@
         class:move={!isHome && !hasError && $sidebar}
         class="doc-search"
       >
-        {#key versionContext?.versionId}
+        {#key `${versionContext?.versionId || ''}:${activeLang}`}
           <LocalSearch />
         {/key}
       </div>
