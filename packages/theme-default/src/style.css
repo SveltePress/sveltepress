@@ -323,7 +323,8 @@ html.dark .twoslash-popup-container span {
 
 /* Outrank @docsearch/css's own `z-index: 400` (loads later, equal
    specificity) — the modal must sit above the sidebar (999) and navbar */
-html .DocSearch-Container {
+html .DocSearch-Container,
+html .local-search-backdrop {
   z-index: 9999;
 }
 

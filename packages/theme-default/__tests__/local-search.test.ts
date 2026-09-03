@@ -93,7 +93,7 @@ describe('localSearch component', () => {
     await fireEvent.click(trigger)
 
     await vi.waitFor(() => {
-      expect(view.container.textContent).toContain(
+      expect(document.body.textContent).toContain(
         'Local search index is generated during production build.',
       )
     })
@@ -188,5 +188,37 @@ describe('localSearch component', () => {
     setPage('/guide/')
     const view = render(Navbar)
     expect(view.queryByRole('button', { name: 'Search documentation...' })).toBeNull()
+  })
+
+  it('portals the overlay to document.body so it covers the sidebar and navbar', async () => {
+    const fixture = localeFixture()
+    delete fixture['/'].theme.search
+    setLocaleFixtures(fixture)
+
+    const view = render(Navbar)
+    await fireEvent.click(view.getByRole('button', { name: 'Search documentation...' }))
+    await tick()
+
+    const backdrop = document.querySelector('.local-search-backdrop')
+    expect(backdrop).not.toBeNull()
+    expect(backdrop?.parentElement).toBe(document.body)
+
+    const header = view.container.querySelector('header')
+    expect(header).not.toBeNull()
+    expect(header?.contains(backdrop)).toBe(false)
+
+    const dialog = view.getByRole('dialog', { name: 'Search documentation...' })
+    expect(backdrop?.contains(dialog)).toBe(true)
+  })
+
+  it('removes the portaled overlay from document.body when closed', async () => {
+    const view = render(LocalSearch)
+    await fireEvent.click(view.getByRole('button', { name: 'Search documentation...' }))
+    await tick()
+    expect(document.querySelector('.local-search-backdrop')).not.toBeNull()
+
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+    await tick()
+    expect(document.querySelector('.local-search-backdrop')).toBeNull()
   })
 })

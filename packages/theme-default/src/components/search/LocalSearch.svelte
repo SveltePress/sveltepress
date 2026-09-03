@@ -4,6 +4,7 @@
   import { page } from '$app/state'
   import { onDestroy, tick } from 'svelte'
   import { resolveVersionContext } from 'virtual:sveltepress/versions'
+  import portal from '../actions/portal'
   import { resolveLocaleOptions } from '../locale.js'
   import { getPathFromBase } from '../utils.js'
 
@@ -259,6 +260,7 @@
 {#if isOpen}
   <div
     class="local-search-backdrop"
+    use:portal
     onclick={handleBackdropClick}
     onkeydown={e => {
       if (e.key === 'Escape') closeModal()
@@ -427,7 +429,8 @@
   .local-search-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    /* Portaled to body; must outrank sidebar (999) and navbar (888). */
+    z-index: 9999;
     display: flex;
     align-items: flex-start;
     justify-content: center;
