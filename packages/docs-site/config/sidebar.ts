@@ -128,17 +128,19 @@ export default {
       ],
     },
   ],
-  '/reference/': [{
-    title: 'Reference',
-    items: [
-      {
-        title: 'Vite plugin',
-        to: '/reference/vite-plugin/',
-      },
-      {
-        title: 'Default theme',
-        to: '/reference/default-theme/',
-      },
-    ],
-  }],
+  '/reference/': [
+    {
+      title: 'Reference',
+      items: [
+        {
+          title: 'Vite plugin',
+          to: '/reference/vite-plugin/',
+        },
+        {
+          title: 'Default theme',
+          to: '/reference/default-theme/',
+        },
+      ],
+    },
+  ],
 }

@@ -162,4 +162,19 @@ describe('dev historical version route mounting', () => {
     expect(process.env.SVELTEPRESS_ARTIFACT_SITE_ID).toBeUndefined()
     expect(generateVersionShellRoutes).not.toHaveBeenCalled()
   })
+
+  it('does not replace current source pages with artifact wrappers in dev mode', async () => {
+    const { root, routesDir } = shellFixture()
+    process.chdir(root)
+    const plugin = sveltepress({
+      versions: {},
+      theme: { pageLayout: '@sveltepress/theme-default/PageLayout.svelte' } as never,
+    }) as Plugin
+    await (plugin.configResolved as (config: unknown) => void | Promise<void>)({ command: 'serve', build: {}, plugins: [] })
+    process.env.SVELTEPRESS_ARTIFACT_STORE = root
+    process.env.SVELTEPRESS_ARTIFACT_SITE_ID = 'demo-site'
+    const transformed = await (plugin.transform as any)('# Live source content', join(routesDir, 'guide/+page.md'))
+    expect(transformed).not.toContain('<!-- sveltepress:artifact-shell -->')
+    expect(transformed).toContain('Live source content')
+  })
 })

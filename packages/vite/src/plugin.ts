@@ -289,6 +289,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
   })).wrappedCode
 
   let isBuild = false
+  let isDev = false
 
   return {
     name: '@sveltepress/vite',
@@ -316,6 +317,7 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     enforce: 'pre',
     async configResolved(config) {
       isBuild = config.command === 'build' && !config.build.ssr
+      isDev = config.command === 'serve'
       assertSingleSvelteKit(config.plugins)
       devMountedVersionShells = []
       devMountedBaseRoots = []
@@ -642,6 +644,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
 
   async function resolveCurrentArtifactWrapper(id: string): Promise<string | null> {
     if (!isPage(id))
+      return null
+    if (isDev)
       return null
     const storeRoot = process.env.SVELTEPRESS_ARTIFACT_STORE
     const siteId = process.env.SVELTEPRESS_ARTIFACT_SITE_ID

@@ -381,7 +381,8 @@ html.svp-nav-vt .doc-search {
 }
 
 @media (min-width: 950px) {
-  html.svp-nav-vt .DocSearch-Button {
+  html.svp-nav-vt .DocSearch-Button,
+  html.svp-nav-vt .local-search-trigger {
     view-transition-name: svp-search;
   }
 

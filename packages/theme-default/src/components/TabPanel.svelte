@@ -1,5 +1,5 @@
 <script>
-  import { getContext } from 'svelte'
+  import { getContext, untrack } from 'svelte'
   import { activeNameContextKey, itemsKey } from './Tabs.svelte'
 
   const {
@@ -12,13 +12,15 @@
   const current = getContext(activeNameContextKey)
   const items = getContext(itemsKey)
 
-  $items.push({
-    name,
-    activeIcon,
-    inactiveIcon,
+  untrack(() => {
+    $items.push({
+      name,
+      activeIcon,
+      inactiveIcon,
+    })
+    // eslint-disable-next-line no-self-assign
+    $items = $items
   })
-  // eslint-disable-next-line no-self-assign
-  $items = $items
 </script>
 
 {#if name === $current}

@@ -44,7 +44,11 @@ Sveltepress sveltekit এর পূর্ণ শক্তি অক্ষুণ�
 
 আপনাকে বুঝতে সাহায্য করার জন্য এখানে একটি গ্রাফ
 
-<img src="/layout-hierarchy.png" style="width:100%;" alt="" />
+<script>
+  import LayoutHierarchy from '$lib/components/LayoutHierarchy.svelte'
+</script>
+
+<LayoutHierarchy />
 
 ## কনফিগারেশন
 

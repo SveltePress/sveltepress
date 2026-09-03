@@ -128,17 +128,19 @@ export default {
       ],
     },
   ],
-  '/reference/': [{
-    title: '参考',
-    items: [
-      {
-        title: 'Vite 插件',
-        to: '/reference/vite-plugin/',
-      },
-      {
-        title: '默认主题',
-        to: '/reference/default-theme/',
-      },
-    ],
-  }],
+  '/reference/': [
+    {
+      title: '参考',
+      items: [
+        {
+          title: 'Vite 插件',
+          to: '/reference/vite-plugin/',
+        },
+        {
+          title: '默认主题',
+          to: '/reference/default-theme/',
+        },
+      ],
+    },
+  ],
 }

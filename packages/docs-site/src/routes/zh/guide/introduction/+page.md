@@ -43,7 +43,11 @@ Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态
 
 这里有一个图表帮助你理解：
 
-<img src="/layout-hierarchy.png" style="width:100%;" alt="" />
+<script>
+  import LayoutHierarchy from '$lib/components/LayoutHierarchy.svelte'
+</script>
+
+<LayoutHierarchy />
 
 ## 配置
 

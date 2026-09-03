@@ -4,7 +4,7 @@
 </script>
 
 <script>
-  import { setContext, tick } from 'svelte'
+  import { setContext, tick, untrack } from 'svelte'
 
   import { flip } from 'svelte/animate'
   import { cubicInOut } from 'svelte/easing'
@@ -25,7 +25,11 @@
   /** @type {Props} */
   const { activeName, bodyPadding = true, children } = $props()
 
-  const current = writable(activeName)
+  const current = writable(untrack(() => activeName))
+
+  $effect(() => {
+    if (activeName !== undefined) $current = activeName
+  })
 
   setContext(activeNameContextKey, current)
   setContext(itemsKey, items)

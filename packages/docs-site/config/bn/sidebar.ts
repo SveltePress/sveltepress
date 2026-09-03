@@ -128,17 +128,19 @@ export default {
       ],
     },
   ],
-  '/reference/': [{
-    title: 'রেফারেন্স',
-    items: [
-      {
-        title: 'Vite প্লাগিন',
-        to: '/reference/vite-plugin/',
-      },
-      {
-        title: 'ডিফল্ট থিম',
-        to: '/reference/default-theme/',
-      },
-    ],
-  }],
+  '/reference/': [
+    {
+      title: 'রেফারেন্স',
+      items: [
+        {
+          title: 'Vite প্লাগিন',
+          to: '/reference/vite-plugin/',
+        },
+        {
+          title: 'ডিফল্ট থিম',
+          to: '/reference/default-theme/',
+        },
+      ],
+    },
+  ],
 }

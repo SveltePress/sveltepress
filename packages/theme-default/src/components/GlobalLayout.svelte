@@ -41,7 +41,7 @@
    */
 
   /** @type {Props & { [key: string]: any }} */
-  const { children, ...rest } = $props()
+  const { children } = $props()
 
   setContext(SVELTEPRESS_CONTEXT_KEY, {
     isDark,
@@ -118,9 +118,6 @@
     if (themeOptions.pwa)
       pwaComponent = (await import('./pwa/Pwa.svelte')).default
   })
-
-  // eslint-disable-next-line no-unused-expressions
-  rest
 </script>
 
 <svelte:window

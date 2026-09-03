@@ -14,7 +14,8 @@ import zhSidebar from './zh/sidebar.ts'
  * per locale would duplicate the segment (`/zh/zh/...`). One template keeps
  * all three locales pointing at their real merged-site source paths.
  */
-const editLink = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route'
+const editLink
+  = 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route'
 
 /**
  * The merged documentation site's locales. Each locale carries its full

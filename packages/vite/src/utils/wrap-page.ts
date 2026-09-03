@@ -105,9 +105,10 @@ export function wrapSvelteCode({
 
   const parts = extractSvelteComponentParts(svelteCode)
   injectInstanceScript(parts.scripts, preamble)
+  const body = suppressPreTabindex(parts.body)
   return `${parts.scripts.join('\n')}
 ${parts.svelteBuiltinTags.join('\n')}
-<PageLayout {fm}>${parts.body}</PageLayout>
+<PageLayout {fm}>${body}</PageLayout>
 ${parts.styleCode}
 `
 }
@@ -121,11 +122,23 @@ export function prepareSvelteContentComponent({
 }) {
   const parts = extractSvelteComponentParts(svelteCode)
   injectInstanceScript(parts.scripts, `const fm = ${JSON.stringify(fm)}`)
+  const body = suppressPreTabindex(parts.body)
   return `${parts.scripts.join('\n')}
 ${parts.svelteBuiltinTags.join('\n')}
-${parts.body}
+${body}
 ${parts.styleCode}
 `
+}
+
+function suppressPreTabindex(code: string): string {
+  return code.replace(
+    /(<!--\s*svelte-ignore\s+(?:[^\s>][^\n>]*)?a11y_no_noninteractive_tabindex[^\n>]*-->\s*)?(<pre\s[^>]*tabindex=["']0["'][^>]*>)/g,
+    (_match, existingIgnore, preTag) => {
+      if (existingIgnore)
+        return _match
+      return `<!-- svelte-ignore a11y_no_noninteractive_tabindex -->\n${preTag}`
+    },
+  )
 }
 
 function extractSvelteComponentParts(initialCode: string) {

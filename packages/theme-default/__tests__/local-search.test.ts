@@ -190,6 +190,12 @@ describe('localSearch component', () => {
     expect(view.queryByRole('button', { name: 'Search documentation...' })).toBeNull()
   })
 
+  it('renders .local-search-trigger on the search button for view-transition styling', () => {
+    const view = render(LocalSearch)
+    const trigger = view.getByRole('button', { name: 'Search documentation...' })
+    expect(trigger.classList.contains('local-search-trigger')).toBe(true)
+  })
+
   it('portals the overlay to document.body so it covers the sidebar and navbar', async () => {
     const fixture = localeFixture()
     delete fixture['/'].theme.search

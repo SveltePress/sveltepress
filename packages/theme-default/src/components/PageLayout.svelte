@@ -47,16 +47,14 @@
   // The frontmatter info. This would be injected by sveltepress
   const { fm, children, heroImage } = $props()
 
-  const {
-    pageType,
-    lastUpdate,
-    anchors: fmAnchors = [],
-    sidebar: fmSidebar = true,
-    home,
-    heroImage: fmHeroImage,
-    header = true,
-    layout = true,
-  } = fm
+  const pageType = $derived(fm?.pageType)
+  const lastUpdate = $derived(fm?.lastUpdate)
+  const fmAnchors = $derived(fm?.anchors ?? [])
+  const fmSidebar = $derived(fm?.sidebar ?? true)
+  const home = $derived(fm?.home)
+  const fmHeroImage = $derived(fm?.heroImage)
+  const header = $derived(fm?.header ?? true)
+  const layout = $derived(fm?.layout ?? true)
 
   function resolveHomeLayout() {
     const logical = resolveLogicalRoute(page.route.id)
@@ -68,11 +66,12 @@
 
   const isHome = $derived(resolveHomeLayout())
 
-  $sidebar = resolveHomeLayout() ? false : fmSidebar
-  $showHeader = header
-  $showLayout = layout
-
-  anchors.set(resolveHomeLayout() ? [] : fmAnchors)
+  $effect(() => {
+    $sidebar = resolveHomeLayout() ? false : fmSidebar
+    $showHeader = header
+    $showLayout = layout
+    anchors.set(resolveHomeLayout() ? [] : fmAnchors)
+  })
 
   let ready = $state(false)
 
