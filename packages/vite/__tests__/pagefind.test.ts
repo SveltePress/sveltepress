@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { indexSiteWithPagefind } from '../src/pagefind'
+import { indexSiteWithPagefind, syncHistoricalPagefind } from '../src/pagefind'
 
 describe('pagefind indexing in vite', () => {
   let tempDir: string
@@ -100,5 +100,46 @@ describe('pagefind indexing in vite', () => {
     expect(result.success).toBe(true)
     expect(result.outputPath).toBe(customOut)
     expect(existsSync(join(customOut, 'pagefind.js'))).toBe(true)
+  })
+
+  it('syncs and persists historical version pagefind search assets', async () => {
+    const siteRoot = join(tempDir, 'site')
+    const outputDir = join(tempDir, 'dist')
+    mkdirSync(siteRoot, { recursive: true })
+    mkdirSync(join(outputDir, 'v', '2026-08-27'), { recursive: true })
+
+    const manifest = {
+      basePath: '/v',
+      current: { id: '2026-08-31' },
+      versions: [{ id: '2026-08-27' }],
+    }
+    writeFileSync(join(siteRoot, 'sveltepress.versions.json'), JSON.stringify(manifest), 'utf-8')
+
+    const historicalHtml = '<!DOCTYPE html><html lang="en"><head><title>Old</title></head><body><div class="content"><h1>Historical Guide</h1><p>Historical documentation content.</p></div></body></html>'
+    writeFileSync(join(outputDir, 'v', '2026-08-27', 'index.html'), historicalHtml, 'utf-8')
+
+    // First run: builds and freezes into version-deltas
+    const firstRun = await syncHistoricalPagefind(siteRoot, outputDir)
+    expect(firstRun).toHaveLength(1)
+    expect(firstRun[0].versionId).toBe('2026-08-27')
+    expect(firstRun[0].cached).toBe(false)
+    expect(firstRun[0].success).toBe(true)
+
+    const distPagefind = join(outputDir, 'v', '2026-08-27', 'pagefind')
+    const frozenPagefind = join(siteRoot, 'version-deltas', '2026-08-27', 'pagefind')
+    expect(existsSync(join(distPagefind, 'pagefind.js'))).toBe(true)
+    expect(existsSync(join(frozenPagefind, 'pagefind.js'))).toBe(true)
+
+    // Remove dist output to simulate a clean build
+    rmSync(distPagefind, { recursive: true, force: true })
+    expect(existsSync(distPagefind)).toBe(false)
+
+    // Second run: copies directly from frozen storage without re-indexing
+    const secondRun = await syncHistoricalPagefind(siteRoot, outputDir)
+    expect(secondRun).toHaveLength(1)
+    expect(secondRun[0].versionId).toBe('2026-08-27')
+    expect(secondRun[0].cached).toBe(true)
+    expect(secondRun[0].success).toBe(true)
+    expect(existsSync(join(distPagefind, 'pagefind.js'))).toBe(true)
   })
 })

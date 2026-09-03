@@ -7,7 +7,7 @@ import { enhancedImages } from '@sveltejs/enhanced-img'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import mdToSvelte from './markdown/md-to-svelte.js'
-import { indexSiteWithPagefind } from './pagefind.js'
+import { indexSiteWithPagefind, syncHistoricalPagefind } from './pagefind.js'
 import SveltepressVitePlugin from './plugin.js'
 import { resolveSvelteKitOptions } from './utils/resolve-svelte-kit-options.js'
 
@@ -70,6 +70,7 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
               for (const candidate of candidates) {
                 if (existsSync(candidate)) {
                   await indexSiteWithPagefind(candidate, opts)
+                  await syncHistoricalPagefind(process.cwd(), candidate, opts)
                   break
                 }
               }
