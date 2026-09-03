@@ -202,6 +202,8 @@ sveltepress versions validate --locale zh
 ```
 
 See [Internationalization](/guide/i18n/) for how locales and version bases compose (`/zh/v`, `/bn/v`).
+
+Each locale freeze is independent: run `build` then `create` per locale (default, then `--locale zh`, `--locale bn`, …). A default-locale create must only capture unprefixed English routes — never `src/routes/zh/` or `src/routes/bn/`. Locale creates write logical routes into `version-deltas-<locale>/` (no double `/zh/v/.../zh/...` prefixes). If a freeze accidentally included sibling locale trees, recreate it with the locale-scoped CLI rather than hand-editing deltas.
 :::
 
 `create` publishes the current draft manifest, writes only changed source pages and tombstones to `version-deltas/8.1/`, freezes route/sidebar/change metadata, moves `8.1` into history, and makes `8.2` current. It refuses stale drafts, duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.

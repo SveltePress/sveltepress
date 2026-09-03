@@ -200,11 +200,14 @@ export function validateVersionArtifactManifest(
 
 export function collectPageArtifactInputs(
   siteRoot: string,
-  options: { basePath: string, routesDir?: string },
+  options: { basePath: string, routesDir?: string, excludeDirs?: string[] },
 ): PageArtifactInput[] {
   const routesRoot = resolve(siteRoot, options.routesDir ?? 'src/routes')
-  const excludedRoot = join(routesRoot, options.basePath.replace(/^\//, ''))
-  const pages = collectPageFiles(routesRoot, excludedRoot)
+  const excludedRoots = [
+    join(routesRoot, options.basePath.replace(/^\//, '')),
+    ...(options.excludeDirs ?? []).map(dir => join(routesRoot, dir)),
+  ]
+  const pages = collectPageFiles(routesRoot, excludedRoots)
   return pages.map((pagePath) => {
     const route = routeFromPagePath(routesRoot, pagePath)
     const ownedFiles = collectPageOwnedFiles(pagePath)
@@ -219,14 +222,15 @@ export function collectPageArtifactInputs(
   }).sort((a, b) => a.route.localeCompare(b.route))
 }
 
-function collectPageFiles(root: string, excludedRoot: string): string[] {
+function collectPageFiles(root: string, excludedRoots: string[]): string[] {
   if (!existsSync(root))
     return []
+  const excluded = new Set(excludedRoots.map(path => resolve(path)))
   const files: string[] = []
   const visit = (directory: string) => {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       const path = join(directory, entry.name)
-      if (resolve(path) === resolve(excludedRoot))
+      if (excluded.has(resolve(path)))
         continue
       if (entry.isDirectory())
         visit(path)

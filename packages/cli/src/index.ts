@@ -242,7 +242,8 @@ async function createVersion(io: CliIO, options: ParsedArgs) {
   if (existsSync(target))
     throw new Error(`Version snapshot already exists: ${target}`)
 
-  const snapshotFiles = collectSnapshotFiles(routesRoot, baseSegment, manifest.content)
+  const snapshotExclude = options.locale ? [] : discoverLocaleSlugs(io.cwd)
+  const snapshotFiles = collectSnapshotFiles(routesRoot, baseSegment, manifest.content, snapshotExclude)
   const dependencyReport = analyzeDependencies(io.cwd, routesRoot, snapshotFiles, manifest.content.shared)
   if (dependencyReport.unsafe.length) {
     throw new Error(
@@ -323,7 +324,7 @@ async function validateSite(io: CliIO, locale?: string) {
   const reports = [analyzeDependencies(
     io.cwd,
     routesRoot,
-    collectSnapshotFiles(routesRoot, baseSegment, manifest.content),
+    collectSnapshotFiles(routesRoot, baseSegment, manifest.content, locale ? [] : discoverLocaleSlugs(io.cwd)),
     manifest.content.shared,
   )]
   for (const version of manifest.versions) {
@@ -379,9 +380,22 @@ function collectDependencyFiles(root: string): string[] {
   return files.sort()
 }
 
+function discoverLocaleSlugs(siteRoot: string): string[] {
+  if (!existsSync(siteRoot))
+    return []
+  return readdirSync(siteRoot)
+    .filter(name => /^sveltepress\.versions\.[a-z0-9-]+\.json$/.test(name))
+    .map(name => name.replace(/^sveltepress\.versions\./, '').replace(/\.json$/, ''))
+    .sort()
+}
+
 function requireManifest(siteRoot: string, locale?: string): VersionManifest {
   const manifestFile = manifestFileFor(locale)
-  const manifest = loadVersionManifest(siteRoot, manifestFile)
+  const excludeDirs = discoverLocaleSlugs(siteRoot).filter(slug => slug !== locale)
+  const manifest = loadVersionManifest(siteRoot, manifestFile, {
+    ...(locale ? { localeDir: locale } : {}),
+    excludeDirs,
+  })
   if (!manifest)
     throw new Error(`No ${manifestFile} found. Run \`sveltepress versions init --current <id>${locale ? ` --locale ${locale}` : ''}\` first.`)
   return manifest
@@ -399,15 +413,17 @@ function assertCleanGit(cwd: string) {
     throw new Error(`Git worktree is dirty. Commit changes or rerun with --allow-dirty.\n${status}`)
 }
 
-function collectSnapshotFiles(routesRoot: string, baseSegment: string, content: VersionManifest['content']): string[] {
+function collectSnapshotFiles(routesRoot: string, baseSegment: string, content: VersionManifest['content'], excludeTopLevel: string[] = []): string[] {
   if (!existsSync(routesRoot))
     throw new Error(`Routes directory does not exist: ${routesRoot}`)
+  const excluded = new Set([baseSegment, ...excludeTopLevel])
   const files: string[] = []
   const visit = (directory: string) => {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       const source = join(directory, entry.name)
       const routeRelative = relative(routesRoot, source).split(sep).join('/')
-      if (routeRelative === baseSegment || routeRelative.startsWith(`${baseSegment}/`))
+      const top = routeRelative.split('/')[0]
+      if (excluded.has(top) || routeRelative === baseSegment || routeRelative.startsWith(`${baseSegment}/`))
         continue
       if (entry.isSymbolicLink())
         throw new Error(`Snapshot content cannot contain symbolic links: ${routeRelative}`)

@@ -83,7 +83,11 @@ export async function planIncrementalBuild(
   const config = requireIncrementalConfig(manifest)
   const storeRoot = resolveArtifactStore(io.cwd, manifest)
   const ctx = localeContext(io, manifest)
-  const pages = collectPageArtifactInputs(io.cwd, { basePath: ctx.basePath, routesDir: ctx.routesDir })
+  const pages = collectPageArtifactInputs(io.cwd, {
+    basePath: ctx.basePath,
+    routesDir: ctx.routesDir,
+    excludeDirs: siblingLocaleDirs(io, ctx.localeDir),
+  })
   const fingerprints = resolveFingerprints(io.cwd, manifest)
   const draft = readDraftVersionArtifactManifest(storeRoot, config.siteId)
   const latestFrozen = manifest.versions[0]
@@ -228,6 +232,21 @@ export async function composeIncrementalSite(
   io.stdout(`Composed ${report.currentRoutes} current and ${report.historicalRoutes} historical routes from reusable page artifacts.`)
 }
 
+function discoverLocaleSlugs(siteRoot: string): string[] {
+  return readdirSync(siteRoot)
+    .filter(name => /^sveltepress\.versions\.[a-z0-9-]+\.json$/.test(name))
+    .map(name => name.replace(/^sveltepress\.versions\./, '').replace(/\.json$/, ''))
+    .sort()
+}
+
+function siblingLocaleDirs(io: IncrementalCliIO, localeDir: string): string[] {
+  // Default-locale scans of src/routes must skip sibling locale trees.
+  // Locale-scoped scans already root under src/routes/<locale>.
+  if (localeDir)
+    return []
+  return discoverLocaleSlugs(io.cwd)
+}
+
 function discoverLocaleManifests(io: IncrementalCliIO): Array<{ slug: string, manifest: VersionManifest }> {
   const results: Array<{ slug: string, manifest: VersionManifest }> = []
   for (const entry of readdirSync(io.cwd, { withFileTypes: true })) {
@@ -236,7 +255,7 @@ function discoverLocaleManifests(io: IncrementalCliIO): Array<{ slug: string, ma
     const slug = entry.name.replace(/^sveltepress\.versions\./, '').replace(/\.json$/, '')
     const localeManifest = loadVersionManifest(io.cwd, entry.name, {
       localeDir: slug,
-      excludeDirs: [],
+      excludeDirs: discoverLocaleSlugs(io.cwd).filter(other => other !== slug),
     })
     if (localeManifest?.artifacts)
       results.push({ slug, manifest: localeManifest })
@@ -520,7 +539,11 @@ function assertDraftMatchesSource(siteRoot: string, manifest: VersionManifest, d
     basePath: localeDir ? `/${segments.slice(1).join('/')}` : manifest.basePath,
     routesDir: localeDir ? `src/routes/${localeDir}` : 'src/routes',
   }
-  const pages = collectPageArtifactInputs(siteRoot, { basePath: ctx.basePath, routesDir: ctx.routesDir })
+  const pages = collectPageArtifactInputs(siteRoot, {
+    basePath: ctx.basePath,
+    routesDir: ctx.routesDir,
+    excludeDirs: localeDir ? [] : discoverLocaleSlugs(siteRoot),
+  })
   const current = Object.fromEntries(pages.map(page => [page.route, page.inputHash]))
   const built = Object.fromEntries(Object.values(draft.pages).map(page => [page.route, page.inputHash]))
   if (JSON.stringify(current) !== JSON.stringify(built))

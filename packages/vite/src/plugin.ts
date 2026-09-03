@@ -216,9 +216,17 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
 }) => {
   const siteRoot = process.cwd()
   const manifestFile = versions?.manifest
+  const resolvedLocalesEarly = locales && Object.keys(locales).length > 0
+    ? locales
+    : null
+  const defaultExcludeDirs = resolvedLocalesEarly
+    ? Object.keys(resolvedLocalesEarly)
+        .filter(prefix => prefix !== '/')
+        .map(prefix => prefix.replace(/^\/+|\/+$/g, ''))
+    : []
   let versionManifest = versions === false
     ? null
-    : loadVersionManifest(siteRoot, manifestFile)
+    : loadVersionManifest(siteRoot, manifestFile, { excludeDirs: defaultExcludeDirs })
   const resolvedLocales = locales && Object.keys(locales).length > 0
     ? resolveLocalesConfig(locales, siteRoot, versionManifest?.basePath)
     : null
@@ -523,7 +531,11 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         PAGE_OR_LAYOUT_RE.test(file) || file === manifestPath || localeManifestPaths.includes(file)
       )
       if (versionSourceChanged) {
-        versionManifest = loadVersionManifest(siteRoot, manifestFile)
+        versionManifest = loadVersionManifest(siteRoot, manifestFile, {
+          excludeDirs: Object.keys(resolvedLocales ?? {})
+            .filter(other => other !== '/')
+            .map(other => other.replace(/^\/+|\/+$/g, '')),
+        })
         if (localeManifests) {
           for (const prefix of Object.keys(localeManifests)) {
             const localeDir = prefix === '/' ? undefined : prefix.replace(/^\/+|\/+$/g, '')

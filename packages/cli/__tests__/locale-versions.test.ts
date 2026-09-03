@@ -73,6 +73,21 @@ describe('locale-selected versions commands', () => {
     expect(existsSync(join(root, 'sveltepress.versions.zh.json'))).toBe(false)
   })
 
+  it('default-locale create excludes sibling locale route trees', async () => {
+    // English freezes must not capture /zh or /bn trees; those belong to
+    // sveltepress.versions.zh.json / .bn.json and their own deltas.
+    const root = localeSite()
+    expect(await invoke(root, ['versions', 'init', '--current', '2026-08-28'])).toMatchObject({ code: 0 })
+    expect(await invoke(root, ['versions', 'init', '--locale', 'zh', '--current', '2026-08-28'])).toMatchObject({ code: 0 })
+    // Legacy (non-incremental) create for the default locale should skip zh/.
+    expect(await invoke(root, ['versions', 'create', '2026-08-29', '--allow-dirty'])).toMatchObject({ code: 0 })
+    const manifest = JSON.parse(readFileSync(join(root, 'sveltepress.versions.json'), 'utf8'))
+    const frozen = manifest.versions.find((version: { id: string }) => version.id === '2026-08-28')
+    expect(frozen.routes.every((route: string) => !route.startsWith('/zh/'))).toBe(true)
+    expect(existsSync(join(root, 'src/routes/v/2026-08-28/zh'))).toBe(false)
+    expect(existsSync(join(root, 'src/routes/v/2026-08-28/guide'))).toBe(true)
+  })
+
   it('builds one locale without requiring sibling locale drafts to exist', async () => {
     // A cold cache (or a CI job) has no published drafts for sibling locales
     // yet: `versions build --locale zh` must succeed before `--locale bn` has
