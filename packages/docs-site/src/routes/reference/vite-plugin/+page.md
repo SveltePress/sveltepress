@@ -111,6 +111,25 @@ sveltepress({
 When enabled, `virtual:sveltepress/versions` exports `changeSets` and `resolveVersionChanges(versionId?)` alongside the manifest and route helpers. See [Document version management](/guide/version-management/) for snapshot and What’s New usage.
 :::
 
+
+:::since[Locales, Pagefind, and locale hooks]{version="2026-09-03" id="vite-locales-pagefind-hooks" summary="Document locales, pagefind, virtual:sveltepress/locale, and createLocaleHandle."}
+### `locales`
+
+Opt-in multi-locale configuration keyed by URL prefix (`'/'`, `'/zh/'`, …). Each entry provides `lang`, `label`, and that locale's theme options. When omitted, the site stays single-locale. See [Internationalization](/guide/i18n/).
+
+### `pagefind`
+
+Controls post-build Pagefind indexing for Local Search. Defaults to enabled; set `pagefind: false` to disable, or pass a `PagefindOptions` object (`rootSelector`, `excludeSelectors`, `forceLanguage`, `outputPath`, …). Historical version indexes are frozen with `syncHistoricalPagefind` when document versions are enabled.
+
+### `virtual:sveltepress/locale`
+
+When `locales` is set, this virtual module exports `locales`, `resolveLocale`, `resolveLocalizedPath`, and `resolveLocaleSwitch`. Without `locales`, `locales` is `null` and the helpers no-op.
+
+### `createLocaleHandle`
+
+Import from `/vite/hooks` to set `<html lang>` during SSR from the active locale. Pair it with `src/hooks.server.js` as shown in the [i18n guide](/guide/i18n/).
+:::
+
 ## ResolvedTheme
 
 ### `name`

@@ -185,6 +185,18 @@ pnpm exec sveltepress versions validate
 আগেই edit করা next-version docs-এর ওপর কখনও `versions create` চালাবেন না। এতে edit-গুলো নতুন current version-এর পরিবর্তে outgoing version-এর মধ্যে freeze হয়ে যাবে। Edit ইতিমধ্যে থাকলে clean outgoing state ফিরিয়ে এনে create/advance করুন, তারপর edit-গুলো নতুন current version-এ পুনরায় প্রয়োগ করুন।
 :::
 
+:::since[CLI --locale for per-locale manifests]{version="2026-09-03" id="versions-cli-locale" summary="Pass --locale to target sveltepress.versions.<locale>.json for zh, bn, and other locales."}
+Multi-locale site-এ প্রতি লোকেলের আলাদা versions manifest থাকে। `init`, `build`, `create`, `validate` ইত্যাদি versions subcommand-এ `--locale <id>` দিন।
+
+```sh
+sveltepress versions build --locale bn
+sveltepress versions create 8.2 --label "8.2" --locale bn
+sveltepress versions validate --locale bn
+```
+
+বিস্তারিত: [আন্তর্জাতিকীকরণ](/guide/i18n/)।
+:::
+
 `create` current draft manifest publish করে, কেবল বদলানো page ও tombstone `version-deltas/8.1/`-এ লেখে, route/sidebar/change metadata freeze করে, `8.1`-কে history-তে রাখে এবং `8.2`-কে current করে। Stale draft, duplicate ID, symbolic link, dirty Git worktree এবং frozen boundary-এর বাইরের dependency প্রত্যাখ্যাত হয়। Uncommitted state-ই release source হলে শুধু তখন `--allow-dirty` ব্যবহার করুন। Failed preflight কোনো অসম্পূর্ণ delta বা manifest change রেখে যায় না।
 
 Published version-এ generated `sourceHash` লেখা হয় এবং প্রতিটি delta metadata hash দিয়ে frozen route, sidebar ও change catalog bind করে। `versions validate` প্রতিটি committed delta reconstruct করে দুই hash-ই পরীক্ষা করে, তাই artifact cache খালি থাকলেও source বা metadata drift ধরা পড়ে। Hash বা delta file হাতে edit করবেন না।
@@ -229,7 +241,11 @@ Version ID URL-safe lowercase হতে হবে; dot ও hyphen ব্যব�
 
 Default Theme নিজে থেকেই keyboard-accessible version selector যোগ করে। Historical internal link ও frozen sidebar একই version-এ থাকে। Version বদলালে একই logical page রাখা হয়; page না থাকলে সেই version-এর home page খুলে একটি notice দেখায়।
 
-Historical search স্পষ্ট `search` configuration ছাড়া বন্ধ থাকে। Custom search component selected version ও metadata পায়; DocSearch configured facet filter ব্যবহার করে। এতে current result-কে ভুলভাবে historical result হিসেবে দেখানো হয় না।
+:::since[Historical Local Search vs DocSearch]{version="2026-09-03" id="version-historical-pagefind-search" summary="Pagefind historical indexes freeze on version release; DocSearch still needs search metadata."}
+Built-in **Local Search** (Pagefind) historical version-এ কাজ করে: production build `syncHistoricalPagefind` দিয়ে প্রতি version-এর Pagefind asset freeze করে, আর theme `/v/{id}/pagefind/` (বা locale-prefixed সমতুল্য) লোড করে। Local Search-এর জন্য version-এ `search` object লাগে না।
+
+**DocSearch** ও custom `search` component-এর জন্য সেই historical version-এ স্পষ্ট `search` object লাগে। না থাকলে navbar জানায় search unavailable, যাতে current remote result historical বলে ভুল না হয়।
+:::
 
 Build প্রতিটি page-এর canonical, version-aware `sitemap.xml`, এবং `/v/{id}/llms.txt` তৈরি করে; root LLM file শুধু current docs রাখে। PWA historical HTML precache করে না এবং historical page-এর জন্য network-first strategy ব্যবহার করে। Custom theme `virtual:sveltepress/versions` থেকে manifest ও path resolver নিতে পারে।
 

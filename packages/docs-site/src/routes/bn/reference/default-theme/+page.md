@@ -99,6 +99,11 @@ export default config
 
 সাইট-হেডে gtag স্ক্রিপ্ট যুক্ত করে।
 
+
+:::since[Language switcher and default Local Search]{version="2026-09-03" id="theme-locale-switcher-localsearch" summary="Locales enable the navbar language switcher; Local Search remains the default when docsearch/search are unset."}
+`sveltepress({ locales })` থাকলে Default Theme navbar-এ language switcher দেখায়। `docsearch` বা custom `search` না থাকলে built-in Local Search (Pagefind) ব্যবহার হয়। দেখুন [আন্তর্জাতিকীকরণ](/guide/i18n/) ও [সার্চ](/guide/default-theme/search/)।
+:::
+
 ### `search`
 
 Supported custom-search hook; type `Component | string`। `@sveltepress/meilisearch`-এর মতো Svelte search component integrate করতে এটি ব্যবহার করুন। String value wrapper component-এর source path নির্দেশ করে:

@@ -1,0 +1,132 @@
+---
+title: অ্যাডমনিশন
+---
+
+## গ্রামার
+
+এই ফিচারটি [remark-directive](https://github.com/remarkjs/remark-directive) সমন্বয় করেছে।
+
+:::important[Icon pre-build required]{icon=tabler:icons}
+এই iconify আইকনটি [প্রি-বিল্ড iconify আইকন কনফিগ](/reference/default-theme/#preBuildIconifyIcons) এ থাকতে হবে।
+:::
+
+```md
+:::tip|info|note|warning|important|caution|danger[Title]{icon=icon-collection:icon-name}
+Some admonition content
+:::
+```
+
+## টিপ
+
+```md live no-ast
+:::tip[টিপ টাইটেল]
+টিপের বর্ণনা
+:::
+
+:::tip[কাস্টম আইকনযুক্ত টিপ]{icon=ph:smiley}
+টিপের বর্ণনা
+:::
+```
+
+## ইনফো
+
+```md live no-ast
+:::info[ইনফোর শিরোনাম]
+বিস্তারিত বর্ণনা
+:::
+
+:::info[কাস্টম আইকনযুক্ত ইনফোর শিরোনাম]{icon=ph:smiley}
+বিস্তারিত বর্ণনা
+:::
+```
+
+## নোট
+
+```md live no-ast
+:::note[নোট টাইটেল]
+নোটের বিস্তারিত
+:::
+
+:::note[কাস্টম আইকনযুক্ত নোট টাইটেল]{icon=ph:smiley}
+নোটের বিস্তারিত
+:::
+```
+
+## ওয়ার্নিং
+
+```md live no-ast
+:::warning[ওয়ার্নিং শিরোনাম]
+সতর্কতার বর্ণনা
+:::
+
+:::warning[কাস্টম আইকনযুক্ত ওয়ার্নিং শিরোনাম]{icon=ph:smiley}
+সতর্কতার বর্ণনা
+:::
+```
+## ইমপর্ট্যান্ট
+
+```md live no-ast
+:::important[ইমপর্ট্যান্ট শিরোনাম]
+কিছু গুরুত্বপূর্ণ তথ্য
+:::
+
+:::important[কাস্টম আইকনযুক্ত ইমপর্ট্যান্ট শিরোনাম]{icon=ph:smiley}
+কিছু গুরুত্বপূর্ণ তথ্য
+:::
+```
+
+## সতর্কতা
+```md live no-ast
+:::caution[সতর্কতার শিরোনাম]
+সতর্কতার বিষয়বস্তু
+:::
+
+:::caution[কাস্টম আইকনযুক্ত সতর্কতার শিরোনাম]{icon=ph:smiley}
+সতর্কতার বিষয়বস্তু
+:::
+```
+
+## বিপদ
+```md live no-ast
+:::danger[বিপদের শিরোনাম]
+বিপদের বিষয়বস্তু
+:::
+
+:::danger[কাস্টম আইকনযুক্ত বিপদের শিরোনাম]{icon=ph:smiley}
+বিপদের বিষয়বস্তু
+:::
+```
+
+## লিংক ও ইনলাইন কোড
+
+অ্যাডমনিশনের ভেতরের লিংক ও ইনলাইন কোড অ্যাডমনিশনের থিম রঙ ও ব্যাকগ্রাউন্ড উত্তরাধিকার সূত্রে পায়:
+
+```md live no-ast
+:::tip[টিপ টাইটেল]
+একটি [টিপ লিংক](/guide/introduction/) ও `tip` উভয়ই টিপের রঙের সাথে মেলে
+:::
+
+:::info[ইনফোর শিরোনাম]
+একটি [ইনফো লিংক](/guide/introduction/) ও `info` উভয়ই ইনফোর রঙের সাথে মেলে
+:::
+
+:::note[নোট টাইটেল]
+একটি [নোট লিংক](/guide/introduction/) ও `note` উভয়ই নোটের রঙের সাথে মেলে
+:::
+
+:::warning[ওয়ার্নিং শিরোনাম]
+একটি [ওয়ার্নিং লিংক](/guide/introduction/) ও `warning` উভয়ই ওয়ার্নিংয়ের রঙের সাথে মেলে
+:::
+
+:::important[ইমপর্ট্যান্ট শিরোনাম]
+একটি [ইমপর্ট্যান্ট লিংক](/guide/introduction/) ও `important` উভয়ই ইমপর্ট্যান্টের রঙের সাথে মেলে
+:::
+
+:::caution[সতর্কতার শিরোনাম]
+একটি [সতর্কতা লিংক](/guide/introduction/) ও `caution` উভয়ই সতর্কতার রঙের সাথে মেলে
+:::
+
+:::danger[বিপদের শিরোনাম]
+একটি [বিপদ লিংক](/guide/introduction/) ও `danger` উভয়ই বিপদের রঙের সাথে মেলে
+:::
+```

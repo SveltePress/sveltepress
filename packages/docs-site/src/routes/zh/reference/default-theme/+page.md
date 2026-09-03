@@ -118,6 +118,13 @@ Logo 图片
 
 配置该项将会自动添加 gtag 相关脚本
 
+
+:::since[语言切换器与默认本地搜索]{version="2026-09-03" id="theme-locale-switcher-localsearch" summary="配置 locales 后导航栏显示语言切换器；未设置 docsearch/search 时默认使用本地搜索。"}
+配置 `sveltepress({ locales })` 后，默认主题会在导航栏显示语言切换器（文案可用 `i18n.localeSwitcher` / `i18n.localePageUnavailable`）。详见[国际化](/guide/i18n/)。
+
+未设置 `docsearch` 或自定义 `search` 时，主题使用内置**本地搜索**（Pagefind）。`search: false` 可完全关闭搜索。详见[搜索](/guide/default-theme/search/)。
+:::
+
 ### `search`
 
 受支持的自定义搜索入口，类型为 `Component | string`，可用于接入 `@sveltepress/meilisearch` 等 Svelte 搜索组件。字符串用于指定包装组件的源码路径：

@@ -108,6 +108,25 @@ sveltepress({
 启用后，`virtual:sveltepress/versions` 会在清单与路由辅助函数之外，额外导出 `changeSets` 和 `resolveVersionChanges(versionId?)`。快照与变化总览用法请参阅[文档版本管理](/guide/version-management/)。
 :::
 
+
+:::since[多语言、Pagefind 与 locale hooks]{version="2026-09-03" id="vite-locales-pagefind-hooks" summary="补充 locales、pagefind、virtual:sveltepress/locale 与 createLocaleHandle。"}
+### `locales`
+
+按需启用的多语言配置，键为 URL 前缀（`'/'`、`'/zh/'` 等）。每个条目提供 `lang`、`label` 以及该语言的主题选项。省略时站点保持单语言。详见[国际化](/guide/i18n/)。
+
+### `pagefind`
+
+控制生产构建后的 Pagefind 索引（本地搜索）。默认启用；设为 `pagefind: false` 可关闭，或传入 `PagefindOptions`。启用文档版本时，历史索引由 `syncHistoricalPagefind` 冻结。
+
+### `virtual:sveltepress/locale`
+
+配置 `locales` 后，该虚拟模块导出 `locales`、`resolveLocale`、`resolveLocalizedPath`、`resolveLocaleSwitch`。未配置时 `locales` 为 `null`。
+
+### `createLocaleHandle`
+
+从 `/vite/hooks` 导入，在 SSR 阶段按当前语言设置 `<html lang>`。用法见[国际化指南](/guide/i18n/)。
+:::
+
 ## `ResolvedTheme`
 
 @code(/../vite/src/types.ts,13,25)

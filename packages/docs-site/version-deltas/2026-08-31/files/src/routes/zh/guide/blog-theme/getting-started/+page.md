@@ -1,0 +1,149 @@
+---
+title: 快速上手
+---
+
+:::tip[先看在线效果]{icon=noto:rocket}
+动手搭建之前，强烈建议**先打开在线 Demo：[sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**。本页介绍的一切特性都已经在这里跑起来了。
+
+源码在 monorepo 中的 [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)。克隆仓库后，在仓库根目录执行 `pnpm install` 和 `pnpm --filter @sveltepress/example-blog dev`，Demo 会启动在 `http://localhost:36739`。
+:::
+
+`@sveltepress/theme-blog` 是一款杂志风格的博客主题，自带左侧边栏、瀑布流文章网格、自动生成的单篇 OG 图片、RSS、Pagefind 搜索和 Giscus 评论。本页演示如何从零搭建一个可运行的博客。
+
+## 安装
+
+@install-pkg(@sveltepress/theme-blog)
+
+主题由 Sveltepress Vite 插件加载：
+
+@install-pkg(@sveltepress/vite)
+
+主题依赖 `@sveltejs/adapter-static`，因为它会生成完全静态的站点（预渲染 HTML、JSON、RSS 与 OG 图片）。
+
+@install-pkg(@sveltejs/adapter-static)
+
+Vite 构建完成后，由 Pagefind 创建本地搜索索引：
+
+@install-pkg(pagefind)
+
+## 配置 Vite
+
+```ts title="vite.config.ts"
+// @noErrors
+import { blogTheme } from '@sveltepress/theme-blog'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: blogTheme({
+        title: 'My Blog',
+        description: 'Thoughts on Svelte and the web.',
+        base: 'https://example.com',
+        author: {
+          name: 'Your Name',
+          avatar: '/avatar.png',
+          bio: '侧边栏展示的简短介绍。',
+          socials: {
+            github: 'your-handle',
+            twitter: 'your-handle',
+            rss: '/rss.xml',
+          },
+        },
+        navbar: [
+          { title: '首页', to: '/' },
+          { title: '时间线', to: '/timeline/' },
+          { title: '标签', to: '/tags/' },
+        ],
+      }),
+    }),
+  ],
+})
+```
+
+## 配置 SvelteKit
+
+```js title="svelte.config.js"
+import adapter from '@sveltejs/adapter-static'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+
+export default {
+  extensions: ['.svelte'],
+  preprocess: [vitePreprocess()],
+  kit: {
+    adapter: adapter({
+      pages: 'dist',
+      assets: 'dist',
+      fallback: '404.html',
+    }),
+    prerender: {
+      handleMissingId: 'ignore',
+      handleUnseenRoutes: 'ignore',
+    },
+    paths: {
+      base: process.env.BASE_PATH ?? '',
+      relative: false,
+    },
+  },
+  compilerOptions: {
+    runes: true,
+  },
+}
+```
+
+`BASE_PATH` 用于在子路径下部署（例如 GitHub Pages 的项目站点）。根路径部署时保持该环境变量未设置即可。
+
+## 写第一篇文章
+
+新建 `src/posts/hello-world.md`：
+
+```md title="src/posts/hello-world.md"
+---
+title: Hello world
+date: 2026-04-17
+tags: [intro]
+category: meta
+excerpt: 博客的第一篇文章。
+---
+
+# Hello
+
+欢迎来到我的博客。一切都是 Markdown。
+```
+
+## 自动生成的路由
+
+下次执行 `vite dev` 或 `vite build` 时，主题会在这些文件不存在时写入它们。你可以自由编辑——脚手架只创建缺失的文件。
+
+| 路径 | 作用 |
+|---|---|
+| `src/routes/+layout.ts` | 启用预渲染并设置 `trailingSlash: 'always'` |
+| `src/routes/+layout.svelte` | 用 `GlobalLayout` 包裹所有页面 |
+| `src/routes/+page.{server.ts,svelte}` | 分页的首页 |
+| `src/routes/page/[n]/...` | 第 2 页及之后的列表 |
+| `src/routes/posts/[slug]/...` | 单篇文章页 |
+| `src/routes/tags/+page.svelte` | 标签索引 |
+| `src/routes/tags/[tag]/...` | 按标签过滤的文章 |
+| `src/routes/categories/[cat]/...` | 按分类过滤的文章 |
+| `src/routes/timeline/+page.svelte` | 归档时间线 |
+
+## 构建
+
+在 `package.json` 中把 Pagefind 加到构建脚本：
+
+```txt title="package.json"
+{
+  "scripts": {
+    "build": "vite build && pagefind --site dist"
+  }
+}
+```
+
+```bash
+pnpm build
+```
+
+Pagefind 会为构建产物建立索引，让内置搜索弹窗（`⌘K` / `Ctrl+K`）正常工作。当前版本始终渲染 Pagefind 搜索，因此请保留这个构建后步骤。
+
+最终的 `dist/` 是一个可以部署到任意静态主机的静态站点。

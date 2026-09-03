@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "siteId": "sveltepress-docs-zh",
+  "versionId": "2026-08-31",
+  "parentVersionId": "2026-08-28",
+  "metadataHash": "72ce5751f3bd6ed5f225d3e33f02edf56f40755a0d85dbdfdd8cb34d9e9baba1",
+  "pages": [
+    {
+      "route": "/",
+      "files": [
+        "src/routes/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/writing-posts/",
+      "files": [
+        "src/routes/guide/blog-theme/writing-posts/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/code-related/",
+      "files": [
+        "src/routes/guide/default-theme/code-related/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/headings-and-anchors/",
+      "files": [
+        "src/routes/guide/default-theme/headings-and-anchors/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/home-page/",
+      "files": [
+        "src/routes/+page.md",
+        "src/routes/guide/default-theme/home-page/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/search/",
+      "files": [
+        "src/routes/guide/default-theme/search/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/version-management/",
+      "files": [
+        "src/routes/guide/version-management/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/default-theme/",
+      "files": [
+        "src/routes/reference/default-theme/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/vite-plugin/",
+      "files": [
+        "src/routes/reference/vite-plugin/+page.md"
+      ]
+    }
+  ],
+  "removedRoutes": []
+}

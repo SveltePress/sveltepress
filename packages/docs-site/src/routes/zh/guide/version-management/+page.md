@@ -185,6 +185,18 @@ pnpm exec sveltepress versions validate
 不要在已经写入下一版内容的文档上直接运行 `versions create`，否则这些改动会被错误地冻结到 outgoing 版本中。如果已经提前开始编辑，应先恢复已知的干净 outgoing 状态，完成构建和版本推进，再把改动重新应用到新的 current。
 :::
 
+:::since[CLI --locale 按语言选择清单]{version="2026-09-03" id="versions-cli-locale" summary="通过 --locale 指向 sveltepress.versions.<locale>.json（如 zh、bn）。"}
+多语言站点为每种语言保留独立的版本清单（`sveltepress.versions.json`、`sveltepress.versions.zh.json`、`sveltepress.versions.bn.json` 等）。在 `init`、`build`、`create`、`validate` 等 versions 子命令上传入 `--locale <id>`，即可读写该语言的清单与增量（例如 `version-deltas-zh/`）。默认语言省略 `--locale`。
+
+```sh
+sveltepress versions build --locale zh
+sveltepress versions create 8.2 --label "8.2" --locale zh
+sveltepress versions validate --locale zh
+```
+
+语言与版本基路径如何组合（`/zh/v`、`/bn/v`）见[国际化](/guide/i18n/)。
+:::
+
 `create` 会发布当前草稿清单，只把变化页面和 tombstone 写入 `version-deltas/8.1/`，冻结路由、侧栏和变化元数据，把 `8.1` 移入历史版本，并将 `8.2` 设为当前版本。过期草稿、重复 ID、符号链接、脏 Git 工作区和冻结边界外的依赖都会被拒绝。只有当未提交内容就是本次发版来源时才使用 `--allow-dirty`。
 
 已发布版本还会获得自动生成的 `sourceHash`，每个 delta 还会用元数据哈希绑定冻结的路由、侧栏和变化目录。`versions validate` 会重建每个已提交 delta 并检查这两个哈希，因此即使产物缓存为空也能发现源码或元数据漂移。不要手工修改哈希或 delta 文件。
@@ -230,7 +242,11 @@ pnpm exec sveltepress versions validate
 
 默认主题会自动加入可键盘操作的版本选择器。历史版本中的内部链接和冻结侧栏会留在同一版本；切换时优先保留当前逻辑页面，目标版本不存在该页面时则进入其首页并显示说明。
 
-历史搜索默认不可用，只有为该版本明确配置 `search` 后才启用。自定义搜索组件会收到当前版本及搜索元数据，DocSearch 会使用配置的 facet 过滤，避免把最新版结果误认为历史文档。
+:::since[历史本地搜索与 DocSearch]{version="2026-09-03" id="version-historical-pagefind-search" summary="版本发布时冻结 Pagefind 历史索引；DocSearch 仍需要 search 元数据。"}
+内置**本地搜索**（Pagefind）在历史版本上仍然可用：生产构建通过 `syncHistoricalPagefind` 冻结各版本的 Pagefind 资源，主题在浏览该快照时加载 `/v/{id}/pagefind/`（或带语言前缀的等价路径）。本地搜索**不需要**在版本上配置 `search` 对象。
+
+**DocSearch** 与自定义 `search` 组件仍要求该历史版本带有显式 `search` 对象（例如 `indexName` / `facetFilters`）。否则导航栏会提示此文档版本不提供搜索，以免把当前远程结果误认为历史文档。默认主题会把选中版本与搜索元数据传给自定义搜索组件，并合并配置的 DocSearch facet 过滤。
+:::
 
 版本构建还会输出页面 canonical、版本化 `sitemap.xml` 和 `/v/{id}/llms.txt`，根目录 LLM 文件只包含当前文档。PWA 不预缓存历史 HTML，并对历史页面使用 network-first 策略。
 

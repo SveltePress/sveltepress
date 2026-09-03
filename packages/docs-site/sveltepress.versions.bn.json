@@ -2,10 +2,420 @@
   "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
   "basePath": "/bn/v",
   "current": {
-    "id": "2026-08-31",
-    "label": "2026-08-31"
+    "id": "2026-09-03",
+    "label": "2026-09-03"
   },
   "versions": [
+    {
+      "id": "2026-08-31",
+      "label": "2026-08-31",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/guide/version-management/",
+        "/reference/default-theme/",
+        "/reference/vite-plugin/",
+        "/whats-new/"
+      ],
+      "changes": {
+        "versionId": "2026-08-31",
+        "baselineVersionId": "2026-08-28",
+        "newPages": [
+          {
+            "route": "/bn/",
+            "title": "একটি কন্টেন্ট-কেন্দ্রিক সাইট বিল্ড টুল",
+            "summary": "Sveltekit-এর সম্পূর্ণ শক্তিসহ একটি জটিলতামুক্ত, সহজে ব্যবহারযোগ্য, কন্টেন্ট-কেন্দ্রিক সাইট বিল্ড টুল।",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/blog-theme/configuration/",
+            "title": "কনফিগারেশন",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/blog-theme/customization/",
+            "title": "কাস্টমাইজেশন",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/blog-theme/features/",
+            "title": "ফিচারসমূহ",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/blog-theme/getting-started/",
+            "title": "শুরু করা",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/blog-theme/writing-posts/",
+            "title": "পোস্ট লেখা",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/admonitions/",
+            "title": "অ্যাডমনিশন",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/builtin-components/",
+            "title": "বিল্ট-ইন কম্পোনেন্ট",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/code-related/",
+            "title": "কোড সম্পর্কিত",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/frontmatter/",
+            "title": "Frontmatter in default theme",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/google-analytics/",
+            "title": "Google Analytics",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/headings-and-anchors/",
+            "title": "হেডিংস এবং অ্যাঙ্কর",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/home-page/",
+            "title": "হোম পেজ",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/navbar/",
+            "title": "ন্যাভবার",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/pwa/",
+            "title": "PWA",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/search/",
+            "title": "সার্চ",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/sidebar/",
+            "title": "সাইডবার",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/twoslash/",
+            "title": "Twoslash",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/default-theme/unocss/",
+            "title": "Unocss",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/introduction/",
+            "title": "পরিচিতি",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/markdown/basic-writing/",
+            "title": "হাতেখড়ি",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/markdown/frontmatter/",
+            "title": "Frontmatter",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/markdown/svelte-in-markdown/",
+            "title": "Markdown এ Svelte",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/quick-start/",
+            "title": "দ্রুত শুরু",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/themes/",
+            "title": "থিম",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/typescript/",
+            "title": "Typescript ব্যবহার",
+            "sections": []
+          },
+          {
+            "route": "/bn/guide/version-management/",
+            "title": "ডকুমেন্ট সংস্করণ ব্যবস্থাপনা",
+            "sections": []
+          },
+          {
+            "route": "/bn/reference/default-theme/",
+            "title": "ডিফল্ট থিম",
+            "sections": []
+          },
+          {
+            "route": "/bn/reference/vite-plugin/",
+            "title": "Vite প্লাগিন",
+            "sections": []
+          },
+          {
+            "route": "/zh/",
+            "title": "一个以内容为中心的站点构建工具",
+            "summary": "一个简单、易用、保留了 SvelteKit 的完整能力的站点构建工具",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/blog-theme/configuration/",
+            "title": "配置",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/blog-theme/customization/",
+            "title": "自定义",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/blog-theme/features/",
+            "title": "特性",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/blog-theme/getting-started/",
+            "title": "快速上手",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/blog-theme/writing-posts/",
+            "title": "写文章",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/admonitions/",
+            "title": "高亮块",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/builtin-components/",
+            "title": "内置组件",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/code-related/",
+            "title": "代码相关",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/frontmatter/",
+            "title": "默认主题中的 frontmatter",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/google-analytics/",
+            "title": "Google Analytics",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/headings-and-anchors/",
+            "title": "标题与页内导航",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/home-page/",
+            "title": "主页",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/navbar/",
+            "title": "导航栏",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/pwa/",
+            "title": "PWA",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/search/",
+            "title": "搜索",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/sidebar/",
+            "title": "侧边栏",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/twoslash/",
+            "title": "Twoslash",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/default-theme/unocss/",
+            "title": "Unocss",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/introduction/",
+            "title": "介绍",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/markdown/basic-writing/",
+            "title": "写作基础",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/markdown/frontmatter/",
+            "title": "Frontmatter",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/markdown/svelte-in-markdown/",
+            "title": "Svelte in markdown",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/quick-start/",
+            "title": "快速开始",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/themes/",
+            "title": "主题",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/typescript/",
+            "title": "Working with Typescript",
+            "sections": []
+          },
+          {
+            "route": "/zh/guide/version-management/",
+            "title": "文档版本管理",
+            "sections": []
+          },
+          {
+            "route": "/zh/reference/default-theme/",
+            "title": "Default theme",
+            "sections": []
+          },
+          {
+            "route": "/zh/reference/vite-plugin/",
+            "title": "Vite 插件",
+            "sections": []
+          }
+        ],
+        "updatedPages": [
+          {
+            "route": "/guide/default-theme/code-related/",
+            "title": "Code related",
+            "sections": [
+              {
+                "id": "multiple-focus-ranges",
+                "title": "Multiple focus ranges",
+                "summary": "Use multiple non-contiguous focus commands or ranges in one code block.",
+                "introducedIn": "2026-08-31"
+              },
+              {
+                "id": "literal-markdown-live-source",
+                "title": "Literal Markdown live source",
+                "summary": "Keep Markdown live-code source literal while transforms run only in the preview.",
+                "introducedIn": "2026-08-31"
+              }
+            ]
+          },
+          {
+            "route": "/guide/default-theme/headings-and-anchors/",
+            "title": "Headings & Anchors",
+            "sections": [
+              {
+                "id": "toc-heading-hierarchy",
+                "title": "Stepped TOC heading hierarchy",
+                "summary": "Show nested heading depth and the active viewport section with a stepped guide.",
+                "introducedIn": "2026-08-31"
+              }
+            ]
+          },
+          {
+            "route": "/guide/default-theme/home-page/",
+            "title": "Home Page",
+            "sections": [
+              {
+                "id": "hero-code-localization",
+                "title": "Localized default hero visual",
+                "summary": "Localize the default two-pane hero preview with i18n.heroCode.",
+                "introducedIn": "2026-08-31"
+              }
+            ]
+          },
+          {
+            "route": "/guide/version-management/",
+            "title": "Document version management",
+            "sections": [
+              {
+                "id": "next-version-doc-workflow",
+                "title": "Advance before editing the next version",
+                "summary": "Freeze outgoing docs before editing and marking the new current version.",
+                "introducedIn": "2026-08-31"
+              },
+              {
+                "id": "version-scoped-whats-new",
+                "title": "Route-scoped What's New catalogs",
+                "summary": "Keep each What's New route bound to its own frozen preceding-version comparison.",
+                "introducedIn": "2026-08-31"
+              }
+            ]
+          },
+          {
+            "route": "/reference/vite-plugin/",
+            "title": "Vite plugin",
+            "sections": [
+              {
+                "id": "literal-code-preparation",
+                "title": "Literal code-block preparation",
+                "summary": "Preserve code commands and @noErrors while still parsing title and line-number metadata.",
+                "introducedIn": "2026-08-31"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "stable",
+      "sourceHash": "f49c5f1c667b20b41ab52066493d523b1e8ace9068d1eecbb9fc1a7a901b62ba"
+    },
     {
       "id": "2026-08-28",
       "label": "2026-08-28",
@@ -47,14 +457,14 @@
         "newPages": [
           {
             "route": "/guide/version-management/",
-            "title": "\u09a1\u0995\u09c1\u09ae\u09c7\u09a8\u09cd\u099f \u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09ac\u09cd\u09af\u09ac\u09b8\u09cd\u09a5\u09be\u09aa\u09a8\u09be",
+            "title": "ডকুমেন্ট সংস্করণ ব্যবস্থাপনা",
             "sections": []
           }
         ],
         "updatedPages": [
           {
             "route": "/reference/vite-plugin/",
-            "title": "Vite \u09aa\u09cd\u09b2\u09be\u0997\u09bf\u09a8",
+            "title": "Vite প্লাগিন",
             "sections": [
               {
                 "id": "version-change-discovery",
@@ -104,36 +514,36 @@
         "/reference/vite-plugin/"
       ],
       "status": "deprecated",
-      "message": "\u0986\u09aa\u09a8\u09bf \u098f\u0987 \u09b8\u09be\u0987\u099f\u09c7\u09b0 \u09aa\u09c1\u09b0\u09cb\u09a8\u09cb \u09b8\u0982\u09b8\u09cd\u0995\u09b0\u09a3 \u09a6\u09c7\u0996\u099b\u09c7\u09a8\u0964 \u0995\u09bf\u099b\u09c1 \u09ab\u09bf\u099a\u09be\u09b0 \u09aa\u09cd\u09b0\u09a4\u09cd\u09af\u09be\u09b6\u09be\u09ae\u09a4\u09cb \u0995\u09be\u099c \u09a8\u09be\u0993 \u0995\u09b0\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u0964",
+      "message": "আপনি এই সাইটের পুরোনো সংস্করণ দেখছেন। কিছু ফিচার প্রত্যাশামতো কাজ নাও করতে পারে।",
       "sidebar": {
         "/guide/": [
           {
-            "title": "\u09aa\u09b0\u09bf\u099a\u09bf\u09a4\u09bf",
+            "title": "পরিচিতি",
             "collapsible": true,
             "items": [
               {
-                "title": "Svelte \u0995\u09c0?",
+                "title": "Svelte কী?",
                 "to": "/guide/introduction/"
               },
               {
-                "title": "\u09a6\u09cd\u09b0\u09c1\u09a4 \u09b6\u09c1\u09b0\u09c1",
+                "title": "দ্রুত শুরু",
                 "to": "/guide/quick-start/"
               },
               {
-                "title": "\u09a5\u09bf\u09ae",
+                "title": "থিম",
                 "to": "/guide/themes/"
               },
               {
-                "title": "Typescript \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0",
+                "title": "Typescript ব্যবহার",
                 "to": "/guide/typescript/"
               }
             ]
           },
           {
-            "title": "Markdown \u098f\u09b0 \u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+            "title": "Markdown এর ফিচারসমূহ",
             "items": [
               {
-                "title": "\u09b9\u09be\u09a4\u09c7\u0996\u09dc\u09bf",
+                "title": "হাতেখড়ি",
                 "to": "/guide/markdown/basic-writing/"
               },
               {
@@ -141,13 +551,13 @@
                 "to": "/guide/markdown/frontmatter/"
               },
               {
-                "title": "Markdown \u098f Svelte",
+                "title": "Markdown এ Svelte",
                 "to": "/guide/markdown/svelte-in-markdown/"
               }
             ]
           },
           {
-            "title": "\u09a1\u09bf\u09ab\u09b2\u09cd\u099f \u09a5\u09bf\u09ae\u09c7\u09b0 \u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+            "title": "ডিফল্ট থিমের ফিচারসমূহ",
             "collapsible": true,
             "items": [
               {
@@ -155,31 +565,31 @@
                 "to": "/guide/default-theme/frontmatter/"
               },
               {
-                "title": "\u09a8\u09cd\u09af\u09be\u09ad\u09ac\u09be\u09b0",
+                "title": "ন্যাভবার",
                 "to": "/guide/default-theme/navbar/"
               },
               {
-                "title": "\u09b8\u09be\u0987\u09a1\u09ac\u09be\u09b0",
+                "title": "সাইডবার",
                 "to": "/guide/default-theme/sidebar/"
               },
               {
-                "title": "\u09b9\u09cb\u09ae\u09aa\u09c7\u099c",
+                "title": "হোমপেজ",
                 "to": "/guide/default-theme/home-page/"
               },
               {
-                "title": "\u09ac\u09bf\u09b2\u09cd\u099f-\u0987\u09a8 \u0995\u09ae\u09cd\u09aa\u09cb\u09a8\u09c7\u09a8\u09cd\u099f",
+                "title": "বিল্ট-ইন কম্পোনেন্ট",
                 "to": "/guide/default-theme/builtin-components/"
               },
               {
-                "title": "\u09b9\u09c7\u09a1\u09bf\u0982\u09b8 \u098f\u09ac\u0982 \u0985\u09cd\u09af\u09be\u0999\u09cd\u0995\u09b0",
+                "title": "হেডিংস এবং অ্যাঙ্কর",
                 "to": "/guide/default-theme/headings-and-anchors/"
               },
               {
-                "title": "\u0985\u09cd\u09af\u09be\u09a1\u09ae\u09a8\u09bf\u09b6\u09a8",
+                "title": "অ্যাডমনিশন",
                 "to": "/guide/default-theme/admonitions/"
               },
               {
-                "title": "\u0995\u09cb\u09a1 \u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09bf\u09a4",
+                "title": "কোড সম্পর্কিত",
                 "to": "/guide/default-theme/code-related/"
               },
               {
@@ -191,7 +601,7 @@
                 "to": "/guide/default-theme/unocss/"
               },
               {
-                "title": "\u09b8\u09be\u09b0\u09cd\u099a",
+                "title": "সার্চ",
                 "to": "/guide/default-theme/search/"
               },
               {
@@ -205,27 +615,27 @@
             ]
           },
           {
-            "title": "\u09ac\u09cd\u09b2\u0997 \u09a5\u09bf\u09ae\u09c7\u09b0 \u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+            "title": "ব্লগ থিমের ফিচারসমূহ",
             "collapsible": true,
             "items": [
               {
-                "title": "\u09b6\u09c1\u09b0\u09c1 \u0995\u09b0\u09be",
+                "title": "শুরু করা",
                 "to": "/guide/blog-theme/getting-started/"
               },
               {
-                "title": "\u0995\u09a8\u09ab\u09bf\u0997\u09be\u09b0\u09c7\u09b6\u09a8",
+                "title": "কনফিগারেশন",
                 "to": "/guide/blog-theme/configuration/"
               },
               {
-                "title": "\u09aa\u09cb\u09b8\u09cd\u099f \u09b2\u09c7\u0996\u09be",
+                "title": "পোস্ট লেখা",
                 "to": "/guide/blog-theme/writing-posts/"
               },
               {
-                "title": "\u09ab\u09bf\u099a\u09be\u09b0\u09b8\u09ae\u09c2\u09b9",
+                "title": "ফিচারসমূহ",
                 "to": "/guide/blog-theme/features/"
               },
               {
-                "title": "\u0995\u09be\u09b8\u09cd\u099f\u09ae\u09be\u0987\u099c\u09c7\u09b6\u09a8",
+                "title": "কাস্টমাইজেশন",
                 "to": "/guide/blog-theme/customization/"
               }
             ]
@@ -233,14 +643,14 @@
         ],
         "/reference/": [
           {
-            "title": "\u09b0\u09c7\u09ab\u09be\u09b0\u09c7\u09a8\u09cd\u09b8",
+            "title": "রেফারেন্স",
             "items": [
               {
-                "title": "Vite \u09aa\u09cd\u09b2\u09be\u0997\u09bf\u09a8",
+                "title": "Vite প্লাগিন",
                 "to": "/reference/vite-plugin/"
               },
               {
-                "title": "\u09a1\u09bf\u09ab\u09b2\u09cd\u099f \u09a5\u09bf\u09ae",
+                "title": "ডিফল্ট থিম",
                 "to": "/reference/default-theme/"
               }
             ]
