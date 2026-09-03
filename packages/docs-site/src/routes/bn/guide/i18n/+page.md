@@ -10,6 +10,7 @@ SveltePress একই সাইটে একাধিক লোকেল পর�
 `sveltepress()`-এ একটি `locales` ম্যাপ দিন। কী হলো URL prefix (`'/'` ডিফল্ট লোকেলের জন্য, `'/zh/'`, `'/bn/'`, …)। প্রতিটি এন্ট্রিতে BCP 47 `lang`, ভাষা সুইচারের জন্য `label`, এবং সেই লোকেলের সম্পূর্ণ theme options থাকতে হবে:
 
 ```ts title="vite.config.ts"
+// @noErrors
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
@@ -46,11 +47,12 @@ export default defineConfig({
 ## `virtual:sveltepress/locale`
 
 ```ts
+// @noErrors
 import {
   locales,
   resolveLocale,
-  resolveLocalizedPath,
   resolveLocaleSwitch,
+  resolveLocalizedPath,
 } from 'virtual:sveltepress/locale'
 ```
 
@@ -62,6 +64,7 @@ import {
 ## SSR `<html lang>`
 
 ```js title="src/hooks.server.js"
+// @noErrors
 import { createLocaleHandle } from '@sveltepress/vite/hooks'
 import { locales } from '../config/locales'
 

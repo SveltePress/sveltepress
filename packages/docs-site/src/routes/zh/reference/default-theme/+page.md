@@ -118,7 +118,6 @@ Logo 图片
 
 配置该项将会自动添加 gtag 相关脚本
 
-
 :::since[语言切换器与默认本地搜索]{version="2026-09-03" id="theme-locale-switcher-localsearch" summary="配置 locales 后导航栏显示语言切换器；未设置 docsearch/search 时默认使用本地搜索。"}
 配置 `sveltepress({ locales })` 后，默认主题会在导航栏显示语言切换器（文案可用 `i18n.localeSwitcher` / `i18n.localePageUnavailable`）。详见[国际化](/guide/i18n/)。
 

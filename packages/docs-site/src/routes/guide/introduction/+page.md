@@ -51,7 +51,6 @@ Sveltepress's config is passed to `@sveltepress/vite` vite plugin, all options a
 
 Read [Vite plugins options](/reference/vite-plugin/) for more details.
 
-
 :::since[Internationalization guide]{version="2026-09-03" id="intro-link-i18n" summary="Link to the new multi-locale guide."}
 Building a multi-language site? See [Internationalization](/guide/i18n/).
 :::

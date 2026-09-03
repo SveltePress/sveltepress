@@ -122,7 +122,6 @@ Something like `G-XXXXXXX`.
 
 Would add gtag script in site head if provided.
 
-
 :::since[Language switcher and default Local Search]{version="2026-09-03" id="theme-locale-switcher-localsearch" summary="Locales enable the navbar language switcher; Local Search remains the default when docsearch/search are unset."}
 When `sveltepress({ locales })` is configured, the Default Theme shows a language switcher in the navbar (customize copy with `i18n.localeSwitcher` / `i18n.localePageUnavailable`). See [Internationalization](/guide/i18n/).
 

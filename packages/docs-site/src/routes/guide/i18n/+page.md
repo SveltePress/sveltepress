@@ -10,6 +10,7 @@ SveltePress can serve multiple locales from one site. Internationalization is op
 Pass a `locales` map to `sveltepress()`. Keys are URL prefixes (`'/'` for the default locale, `'/zh/'`, `'/bn/'`, …). Each entry needs a BCP 47 `lang`, a user-facing `label` for the language switcher, and that locale's full theme options:
 
 ```ts title="vite.config.ts"
+// @noErrors
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
@@ -28,6 +29,7 @@ export default defineConfig({
 ```
 
 ```ts title="config/locales.ts"
+// @noErrors
 import type { LocalesConfig } from '@sveltepress/vite'
 import navbar from './navbar'
 import sidebar from './sidebar'
@@ -85,11 +87,12 @@ Customize switcher and notice copy with theme `i18n.localeSwitcher` and `i18n.lo
 Themes and custom layouts can import locale helpers from the virtual module:
 
 ```ts
+// @noErrors
 import {
   locales,
   resolveLocale,
-  resolveLocalizedPath,
   resolveLocaleSwitch,
+  resolveLocalizedPath,
 } from 'virtual:sveltepress/locale'
 
 const active = resolveLocale('/zh/guide/introduction/')
@@ -109,6 +112,7 @@ const target = resolveLocaleSwitch('/zh/guide/introduction/', '/')
 Use `createLocaleHandle` from `@sveltepress/vite/hooks` so the initial HTML carries the correct language for crawlers and assistive technology. The Default Theme keeps `document.documentElement.lang` in sync after client-side navigation.
 
 ```js title="src/hooks.server.js"
+// @noErrors
 import { createLocaleHandle } from '@sveltepress/vite/hooks'
 import { locales } from '../config/locales'
 

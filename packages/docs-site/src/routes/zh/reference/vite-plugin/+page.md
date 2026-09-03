@@ -108,7 +108,6 @@ sveltepress({
 启用后，`virtual:sveltepress/versions` 会在清单与路由辅助函数之外，额外导出 `changeSets` 和 `resolveVersionChanges(versionId?)`。快照与变化总览用法请参阅[文档版本管理](/guide/version-management/)。
 :::
 
-
 :::since[多语言、Pagefind 与 locale hooks]{version="2026-09-03" id="vite-locales-pagefind-hooks" summary="补充 locales、pagefind、virtual:sveltepress/locale 与 createLocaleHandle。"}
 ### `locales`
 

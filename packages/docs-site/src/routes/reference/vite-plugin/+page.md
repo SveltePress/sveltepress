@@ -111,7 +111,6 @@ sveltepress({
 When enabled, `virtual:sveltepress/versions` exports `changeSets` and `resolveVersionChanges(versionId?)` alongside the manifest and route helpers. See [Document version management](/guide/version-management/) for snapshot and What’s New usage.
 :::
 
-
 :::since[Locales, Pagefind, and locale hooks]{version="2026-09-03" id="vite-locales-pagefind-hooks" summary="Document locales, pagefind, virtual:sveltepress/locale, and createLocaleHandle."}
 ### `locales`
 

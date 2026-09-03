@@ -261,7 +261,6 @@ Built-in **Local Search** (Pagefind) keeps working on historical versions: produ
 **DocSearch** and custom `search` components still require an explicit `search` object on that historical version (for example `indexName` / `facetFilters`). Without it, the navbar shows that search is unavailable for the documentation version, so current remote results are not mistaken for historical docs. The Default Theme passes the selected version and search metadata to custom search components and merges configured DocSearch facet filters.
 :::
 
-
 Version-aware builds also:
 
 * emit canonical links for every page and `noindex` for configured versions;

@@ -84,7 +84,6 @@ sveltepress({
 সক্রিয় হলে `virtual:sveltepress/versions` manifest ও route helper-এর পাশাপাশি `changeSets` ও `resolveVersionChanges(versionId?)` export করে। Snapshot ও What’s New ব্যবহারের জন্য[ডকুমেন্ট সংস্করণ ব্যবস্থাপনা](/guide/version-management/) দেখুন।
 :::
 
-
 :::since[Locales, Pagefind, and locale hooks]{version="2026-09-03" id="vite-locales-pagefind-hooks" summary="Document locales, pagefind, virtual:sveltepress/locale, and createLocaleHandle."}
 ### `locales`
 

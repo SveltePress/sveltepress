@@ -10,6 +10,7 @@ SveltePress 可以在同一个站点中提供多种语言。国际化是可选�
 向 `sveltepress()` 传入 `locales` 映射。键是 URL 前缀（默认语言为 `/`，其余如 `/zh/`、`/bn/`）。每个条目需要 BCP 47 的 `lang`、语言切换器展示用的 `label`，以及该语言完整的主题选项：
 
 ```ts title="vite.config.ts"
+// @noErrors
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
@@ -28,6 +29,7 @@ export default defineConfig({
 ```
 
 ```ts title="config/locales.ts"
+// @noErrors
 import type { LocalesConfig } from '@sveltepress/vite'
 import navbar from './navbar'
 import sidebar from './sidebar'
@@ -85,11 +87,12 @@ src/routes/
 主题与自定义布局可从该虚拟模块导入语言相关辅助函数：
 
 ```ts
+// @noErrors
 import {
   locales,
   resolveLocale,
-  resolveLocalizedPath,
   resolveLocaleSwitch,
+  resolveLocalizedPath,
 } from 'virtual:sveltepress/locale'
 
 const active = resolveLocale('/zh/guide/introduction/')
@@ -109,6 +112,7 @@ const target = resolveLocaleSwitch('/zh/guide/introduction/', '/')
 使用 `@sveltepress/vite/hooks` 中的 `createLocaleHandle`，让首屏 HTML 带上正确的语言属性，方便爬虫与辅助技术。默认主题会在客户端路由切换后同步 `document.documentElement.lang`。
 
 ```js title="src/hooks.server.js"
+// @noErrors
 import { createLocaleHandle } from '@sveltepress/vite/hooks'
 import { locales } from '../config/locales'
 
