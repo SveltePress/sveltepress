@@ -246,7 +246,7 @@ assertDocumentLang(currentHtml, 'en', 'English current home SSR language')
 assert(historicalHtml.includes('<link rel="canonical" href="/v/2026-08-27/"'), 'Historical home is not self-canonical')
 assert(historicalHtml.includes('You are viewing an older version of this site. Some features may not work as expected.'), 'Historical lifecycle message is missing')
 assert(historicalHtml.includes('Current version'), 'Historical current-version link is missing')
-assert(historicalHtml.includes('Search is not available for this documentation version.'), 'Historical search did not fail closed')
+assert(historicalHtml.includes('local-search-trigger'), 'Historical search button is missing')
 assertVersionSelectorLabel(currentHtml, currentId, 'Current version selector label is missing')
 assertVersionSelectorLabel(previousHtml, previousId, 'Previous version selector label is missing')
 assertVersionSelectorLabel(historicalHtml, historicalId, 'Historical version selector label is missing')
@@ -311,15 +311,9 @@ for (const locale of ['zh', 'bn']) {
   assertVersionSelectorLabel(currentHtml, currentId, `/${locale}/ current version selector label is missing`)
   assertVersionSelectorLabel(previousHtml, previousId, `/${locale}/ previous version selector label is missing`)
   assertVersionSelectorLabel(historicalHtml, historicalId, `/${locale}/ historical version selector label is missing`)
-  // Accept both the English fallback and locale-translated variants of the search-unavailable notice
-  const searchUnavailableStrings = {
-    zh: '当前文档版本不支持搜索功能',
-    bn: 'এই ডকুমেন্টেশন সংস্করণের জন্য অনুসন্ধান উপলব্ধ নয়',
-  }
-  const searchUnavailableText = searchUnavailableStrings[locale] || 'Search is not available for this documentation version'
   assert(
-    historicalHtml.includes(searchUnavailableText) || historicalHtml.includes('Search is not available for this documentation version'),
-    `/${locale}/ historical search did not fail closed`,
+    historicalHtml.includes('local-search-trigger'),
+    `/${locale}/ historical search button is missing`,
   )
   assertCurrentDocumentationChanges(locale, siteRoot)
 }
@@ -328,5 +322,16 @@ assert(
   existsSync(join(official, 'pagefind/pagefind.js')),
   `Expected Pagefind local search bundle to exist at ${join(official, 'pagefind/pagefind.js')}`,
 )
+
+for (const loc of ['', 'zh', 'bn']) {
+  for (const ver of [previousId, historicalId]) {
+    const locPrefix = loc ? `${loc}/` : ''
+    const pfAsset = join(official, `${locPrefix}v`, ver, 'pagefind/pagefind.js')
+    assert(
+      existsSync(pfAsset),
+      `Expected historical Pagefind search bundle to exist at ${pfAsset}`,
+    )
+  }
+}
 
 console.log('Version-management production artifacts verified.')
