@@ -64,7 +64,7 @@ catalog:
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.23.0
   fs-extra: ^11.4.0
-  happy-dom: ^20.12.2
+  happy-dom: ^20.13.2
   husky: ^9.1.7
   lint-staged: ^16.4.0
   lru-cache: ^11.5.2
