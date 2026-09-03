@@ -90,7 +90,7 @@ Tests must assert observable external behavior at public seams:
 ## Plan
 
 - [x] **T1 — Historical Version Pagefind Pipeline & Persistence.** Delivers: In `@sveltepress/vite`, extend Pagefind post-build indexing to handle historical version directories and persistence to version delta stores; add unit tests in `pagefind.test.ts`. Blocked by: nothing.
-- [ ] **T2 — Frontend Navbar & LocalSearch Version Scoping.** Delivers: In `Navbar.svelte`, keep LocalSearch enabled on historical versions; in `LocalSearch.svelte`, dynamically compute Pagefind asset path based on `versionContext`; add regression tests in `local-search.test.ts`. Blocked by: T1.
+- [x] **T2 — Frontend Navbar & LocalSearch Version Scoping.** Delivers: In `Navbar.svelte`, keep LocalSearch enabled on historical versions; in `LocalSearch.svelte`, dynamically compute Pagefind asset path based on `versionContext`; add regression tests in `local-search.test.ts`. Blocked by: T1.
 - [ ] **T3 — Production Build Verification, Docs & Changeset.** Delivers: Update `check-version-management-build.mjs` to assert historical Pagefind assets; author `.changeset/frozen-historical-version-search.md`; run full test suites and mark spec as `shipped`. Blocked by: T2.
 
 ## Baseline

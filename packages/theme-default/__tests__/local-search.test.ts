@@ -158,6 +158,17 @@ describe('localSearch component', () => {
     expect(zhButton).not.toBe(enButton)
   })
 
+  it('mounts LocalSearch in Navbar on historical version routes', () => {
+    const fixture = localeFixture()
+    delete fixture['/'].theme.search
+    setLocaleFixtures(fixture)
+
+    setPage('/v/2026-08-27/guide/')
+    const view = render(Navbar)
+    expect(view.getByRole('button', { name: 'Search documentation...' })).toBeDefined()
+    expect(view.queryByRole('status')).toBeNull()
+  })
+
   it('hides search in Navbar when search is disabled with search: false', () => {
     const fixture = localeFixture()
     fixture['/'].theme.search = false

@@ -35,6 +35,14 @@
     ),
   )
   const hasConfiguredSearch = $derived(localeOptions.search !== false)
+  function checkLocalSearch(options: any): boolean {
+    return (
+      options.search !== false &&
+      !options.docsearch &&
+      typeof options.search === 'undefined'
+    )
+  }
+  const isLocalSearch = $derived(checkLocalSearch(localeOptions))
   const versionedDocsearch = $derived.by(() => {
     if (!localeOptions.docsearch) return null
     const metadata = versionSearch.metadata
@@ -114,7 +122,7 @@
         <Logo />
       </div>
     </div>
-    {#if hasConfiguredSearch && !versionSearch.available}
+    {#if !isLocalSearch && hasConfiguredSearch && !versionSearch.available}
       <div
         class:is-home={isHome || !$sidebar}
         class:move={!isHome && !hasError && $sidebar}

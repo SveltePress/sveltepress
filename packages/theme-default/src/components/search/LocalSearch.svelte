@@ -3,6 +3,7 @@
   import { base } from '$app/paths'
   import { page } from '$app/state'
   import { onDestroy, tick } from 'svelte'
+  import { resolveVersionContext } from 'virtual:sveltepress/versions'
   import { resolveLocaleOptions } from '../locale.js'
 
   interface SearchResultItem {
@@ -25,6 +26,16 @@
   let pagefind = $state<any>(null)
 
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const targetSearchPath = $derived.by(() => {
+    if (versionContext?.historical) {
+      return `${base}${versionContext.basePath}/${versionContext.versionId}/pagefind/`.replace(
+        /\/+/g,
+        '/',
+      )
+    }
+    return `${base}/pagefind/`.replace(/\/+/g, '/')
+  })
   const placeholder = $derived(
     localeOptions.i18n?.searchPlaceholder || 'Search documentation...',
   )
@@ -49,13 +60,13 @@
     if (pagefind) return pagefind
     loading = true
     try {
-      const pagefindUrl = `${base}/pagefind/pagefind.js`.replace(/\/+/g, '/')
+      const pagefindUrl = `${targetSearchPath}pagefind.js`
       const pf = await import(/* @vite-ignore */ pagefindUrl)
       const currentLang =
         typeof document !== 'undefined'
           ? document.documentElement.lang || 'en'
           : 'en'
-      const basePath = `${base}/pagefind/`.replace(/\/+/g, '/')
+      const basePath = targetSearchPath
       let instance: any
       if (typeof pf.createInstance === 'function') {
         instance = await pf.createInstance({
