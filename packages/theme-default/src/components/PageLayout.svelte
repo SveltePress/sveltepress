@@ -108,7 +108,10 @@
   {/snippet}
   {#if !isHome}
     <div pb-4 class="theme-default--page-layout">
-      <div class="content" data-pagefind-body>
+      <div
+        class="content"
+        data-pagefind-body={!versionContext?.historical ? true : undefined}
+      >
         {#if fm.title}
           <h1 class="page-title">
             {fm.title}

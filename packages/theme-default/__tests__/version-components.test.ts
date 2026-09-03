@@ -380,6 +380,32 @@ Existing content.`,
     expect(get(anchors)).toEqual([])
   })
 
+  it('excludes data-pagefind-body from historical pages while keeping it on current pages', () => {
+    setPage('/guide/install/')
+    const currentView = render(PageLayout, {
+      fm: {
+        title: 'Installation',
+        pageType: 'md',
+      },
+    })
+    const currentContent = currentView.container.querySelector('.content')
+    expect(currentContent).not.toBeNull()
+    expect(currentContent?.hasAttribute('data-pagefind-body')).toBe(true)
+
+    cleanup()
+
+    setPage('/v/2026-08-27/guide/install/')
+    const historicalView = render(PageLayout, {
+      fm: {
+        title: 'Installation',
+        pageType: 'md',
+      },
+    })
+    const historicalContent = historicalView.container.querySelector('.content')
+    expect(historicalContent).not.toBeNull()
+    expect(historicalContent?.hasAttribute('data-pagefind-body')).toBe(false)
+  })
+
   it('omits the mobile docs subnav when a landing page has no docs controls', () => {
     sidebar.set(false)
     anchors.set([])
