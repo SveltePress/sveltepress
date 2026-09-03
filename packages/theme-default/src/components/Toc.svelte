@@ -78,9 +78,9 @@
   import { afterNavigate } from '$app/navigation'
   import { page } from '$app/state'
   import { onMount, tick } from 'svelte'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import Backdrop from './Backdrop.svelte'
   import { changedSectionIds, tocCollapsed } from './layout'
+  import { resolveLocaleOptions } from './locale'
   import VersionNavigationBadge from './VersionNavigationBadge.svelte'
 
   /**
@@ -90,8 +90,9 @@
 
   /** @type {Props} */
   const { anchors = [] } = $props()
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const newBadgeLabel = $derived(
-    themeOptions.i18n?.versionNavigationNewLabel ?? 'New',
+    localeOptions.i18n?.versionNavigationNewLabel ?? 'New',
   )
   const circuit = $derived(createTocCircuit(anchors))
 
@@ -159,7 +160,7 @@
 {#if anchors.length}
   <div class="toc" class:collapsed={$tocCollapsed}>
     <div class="title">
-      {themeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
+      {localeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
     </div>
     <div
       class="anchors"

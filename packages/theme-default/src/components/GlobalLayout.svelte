@@ -2,10 +2,15 @@
   import { afterNavigate, beforeNavigate, onNavigate } from '$app/navigation'
   import { page } from '$app/state'
   import { onMount, setContext, tick } from 'svelte'
+  import { locales } from 'virtual:sveltepress/locale'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import LocaleFallbackNotice from 'virtual:sveltepress/theme-default/LocaleFallbackNotice.svelte'
   import VersionFallbackNotice from 'virtual:sveltepress/theme-default/VersionFallbackNotice.svelte'
   import VersionLifecycleBanner from 'virtual:sveltepress/theme-default/VersionLifecycleBanner.svelte'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionContext,
+    resolveVersionManifest,
+  } from 'virtual:sveltepress/versions'
   import { SVELTEPRESS_CONTEXT_KEY } from '../context'
   import AjaxBar from './AjaxBar.svelte'
   import Backdrop from './Backdrop.svelte'
@@ -23,6 +28,7 @@
     sidebar,
     sidebarCollapsed,
   } from './layout'
+  import { resolveLocaleForPath } from './locale'
   import Navbar from './Navbar.svelte'
   import Sidebar from './Sidebar.svelte'
   import Toc from './Toc.svelte'
@@ -48,6 +54,17 @@
     updateVersionChangeBadges(document, context?.version)
   }
 
+  /**
+   * Keep `document.documentElement.lang` in sync with the active locale so
+   * assistive technology and the browser see the real document language after
+   * client-side locale navigation. SSR HTML carries the language from the
+   * site-level `transformPageChunk` hook; this only updates the live document.
+   */
+  function syncDocumentLang() {
+    const lang = resolveLocaleForPath(page.url.pathname)?.lang
+    if (lang) document.documentElement.lang = lang
+  }
+
   let ajaxBar = $state()
 
   beforeNavigate(() => {
@@ -59,6 +76,7 @@
     resolveSidebar(page.route.id)
     $sidebarCollapsed = true
     $navCollapsed = true
+    syncDocumentLang()
     tick().then(refreshVersionChangeBadges)
   })
 
@@ -96,6 +114,7 @@
 
   onMount(async () => {
     refreshVersionChangeBadges()
+    syncDocumentLang()
     if (themeOptions.pwa)
       pwaComponent = (await import('./pwa/Pwa.svelte')).default
   })
@@ -111,7 +130,7 @@
   onkeyup={handleCodeExpand}
 />
 
-{#if manifest}
+{#if resolveVersionManifest(page.url.pathname)}
   <VersionLifecycleBanner />
 {/if}
 {#if $showHeader}
@@ -127,7 +146,10 @@
     class:with-mobile-subnav={$sidebar || $anchors.length}
   >
     <AjaxBar bind:this={ajaxBar} />
-    {#if manifest}
+    {#if locales}
+      <LocaleFallbackNotice />
+    {/if}
+    {#if resolveVersionManifest(page.url.pathname)}
       <VersionFallbackNotice />
     {/if}
     {#if $sidebar}

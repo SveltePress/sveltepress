@@ -1,5 +1,6 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { page } from '$app/state'
+  import { resolveLocaleOptions } from './locale'
 
   /**
    * @typedef {object} Props
@@ -10,11 +11,12 @@
   const { lastUpdate = '' } = $props()
 
   const DEFAULT_TEXT = 'Last update at:'
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
 </script>
 
 {#if lastUpdate}
   <div class="last-update">
-    {themeOptions.i18n?.lastUpdateAt || DEFAULT_TEXT}
+    {localeOptions.i18n?.lastUpdateAt || DEFAULT_TEXT}
     {lastUpdate.replace(/:\d{2}$/, '')}
   </div>
 {/if}

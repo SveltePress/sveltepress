@@ -1,4 +1,4 @@
-import type { LlmsConfig, PageInfo } from './types.js'
+import type { LlmsConfig, LocalesConfig, PageInfo } from './types.js'
 import type { VersionManifest } from './versioning/index.js'
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { extname, join, relative, resolve, sep } from 'node:path'
@@ -39,17 +39,17 @@ function deriveRoutePath(filePath: string, routesDir: string): string {
   return `/${parts.join('/')}`
 }
 
-function collectPages(dir: string, excludedRoot?: string): string[] {
+function collectPages(dir: string, excludedRoots: string[] = []): string[] {
   const results: string[] = []
   if (!existsSync(dir))
     return results
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry)
-    if (excludedRoot && resolve(full) === resolve(excludedRoot))
+    if (excludedRoots.some(root => root && resolve(full) === resolve(root)))
       continue
     const stat = statSync(full)
     if (stat.isDirectory()) {
-      results.push(...collectPages(full, excludedRoot))
+      results.push(...collectPages(full, excludedRoots))
     }
     else if (entry === '+page.md' || (entry === '+page.svelte' && isArtifactShell(full))) {
       results.push(full)
@@ -104,7 +104,7 @@ export function generateLlmsTxt(
   const routesDir = resolve(cwd, config.routesDir ?? 'src/routes')
   const versionRoutesRoot = manifest ? join(routesDir, manifest.basePath.slice(1)) : undefined
 
-  generateLlmsFiles(config, siteConfig, routesDir, outputRoot, '', siteRoot, versionRoutesRoot)
+  generateLlmsFiles(config, siteConfig, routesDir, outputRoot, '', siteRoot, [versionRoutesRoot])
   if (manifest) {
     for (const version of manifest.versions) {
       generateLlmsFiles(
@@ -119,6 +119,64 @@ export function generateLlmsTxt(
   }
 }
 
+/**
+ * Generate one llms pair per locale at that locale's output root, listing only
+ * that locale's pages with locale-prefixed URLs.
+ */
+export function generateLlmsTxtForLocales(
+  config: LlmsConfig,
+  siteConfig: { title?: string, description?: string },
+  locales: LocalesConfig,
+  manifests?: Record<string, VersionManifest | null> | null,
+  siteRoot = process.cwd(),
+  outputRoot = resolve(siteRoot, 'static'),
+) {
+  const baseRoutesDir = config.routesDir ?? 'src/routes'
+  for (const [prefix] of Object.entries(locales)) {
+    const localeDir = prefix === '/' ? '' : prefix.replace(/^\/+|\/+$/g, '')
+    const routesDir = localeDir
+      ? resolve(siteRoot, baseRoutesDir, localeDir)
+      : resolve(siteRoot, baseRoutesDir)
+    const outputDir = localeDir ? join(outputRoot, localeDir) : outputRoot
+    const routePrefix = prefix === '/' ? '' : prefix.replace(/\/+$/, '')
+    const localeManifest = manifests?.[prefix] ?? null
+    const localeRelativeBasePath = localeManifest
+      ? stripLocaleBasePath(localeManifest.basePath, prefix)
+      : undefined
+    const versionRoutesRoot = localeRelativeBasePath
+      ? join(routesDir, localeRelativeBasePath.slice(1))
+      : undefined
+    const excludedRoots = [
+      ...Object.keys(locales)
+        .filter(other => other !== prefix)
+        .map(other => other === '/' ? undefined : join(routesDir, other.replace(/^\/+|\/+$/g, ''))),
+      versionRoutesRoot,
+    ]
+    generateLlmsFiles(config, siteConfig, routesDir, outputDir, routePrefix, siteRoot, excludedRoots)
+    if (localeManifest && localeRelativeBasePath) {
+      for (const version of localeManifest.versions) {
+        generateLlmsFiles(
+          config,
+          siteConfig,
+          join(versionRoutesRoot!, version.id),
+          join(outputDir, localeRelativeBasePath.slice(1), version.id),
+          `${localeManifest.basePath}/${version.id}`,
+          siteRoot,
+        )
+      }
+    }
+  }
+}
+
+function stripLocaleBasePath(basePath: string, prefix: string): string {
+  const normalizedPrefix = prefix.replace(/\/+$/, '')
+  if (normalizedPrefix === '/')
+    return basePath
+  if (basePath.startsWith(`${normalizedPrefix}/`))
+    return basePath.slice(normalizedPrefix.length)
+  return basePath
+}
+
 function generateLlmsFiles(
   config: LlmsConfig,
   siteConfig: { title?: string, description?: string },
@@ -126,9 +184,9 @@ function generateLlmsFiles(
   outputDir: string,
   routePrefix: string,
   siteRoot: string,
-  excludedRoot?: string,
+  excludedRoots: Array<string | undefined> = [],
 ) {
-  const files = collectPages(routesDir, excludedRoot)
+  const files = collectPages(routesDir, excludedRoots.filter((root): root is string => Boolean(root)))
   const configuredBaseUrl = config.baseUrl?.replace(/\/$/, '') ?? ''
   const baseUrl = `${configuredBaseUrl}${routePrefix}`
 

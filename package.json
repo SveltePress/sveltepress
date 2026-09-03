@@ -4,8 +4,8 @@
   "scripts": {
     "capture:site-screenshot": "node scripts/capture-site-screenshot.mjs",
     "check:docs:content": "vitest run --config vitest.docs.config.ts && node check-docs.mjs",
-    "check:docs": "pnpm check:docs:content && pnpm --dir packages/docs-site check && pnpm --dir packages/docs-site-zh check && pnpm --dir packages/docs-site-bn check",
-    "check:versioning-build": "pnpm --filter @sveltepress/docs-site build && pnpm --filter docs-site-zh build && pnpm --filter docs-site-bn build && node scripts/check-version-management-build.mjs",
+    "check:docs": "pnpm check:docs:content && pnpm --dir packages/docs-site check",
+    "check:versioning-build": "pnpm --dir packages/docs-site exec sveltepress versions build --locale zh && pnpm --dir packages/docs-site exec sveltepress versions build --locale bn && pnpm --filter @sveltepress/docs-site build && node scripts/check-version-management-build.mjs",
     "lint": "eslint",
     "format": "prettier \"./**/*.svelte\" --check",
     "release": "changeset publish",

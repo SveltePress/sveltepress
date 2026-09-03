@@ -1,12 +1,14 @@
 <script>
   import { afterNavigate } from '$app/navigation'
-  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { page } from '$app/state'
+  import { resolveLocaleOptions } from './locale'
 
   let show = $state(false)
   const defaultMessage =
     'This page is not available in the selected documentation version. You are viewing that version’s home page instead.'
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const message = $derived(
-    themeOptions.i18n?.versionPageUnavailable ?? defaultMessage,
+    localeOptions.i18n?.versionPageUnavailable ?? defaultMessage,
   )
 
   afterNavigate(() => {

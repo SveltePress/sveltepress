@@ -1,14 +1,30 @@
 <script>
   import { page } from '$app/state'
-  import themOptions from 'virtual:sveltepress/theme-default'
+  import {
+    resolveVersionContext,
+    resolveVersionedPath,
+  } from 'virtual:sveltepress/versions'
   import Next from './icons/Next.svelte'
   import Prev from './icons/Prev.svelte'
   import { pages } from './layout'
+  import {
+    resolveLocaleLink,
+    resolveLocaleOptions,
+    resolveLogicalRoute,
+  } from './locale'
   import { getPathFromBase, isLinkActive } from './utils'
 
-  const routeId = page.route.id
+  const routeId = $derived(page.route.id)
+  const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const logicalRouteId = $derived(
+    resolveLogicalRoute(
+      versionContext?.historical ? versionContext.logicalPath : routeId,
+    ),
+  )
 
-  const activeIdx = $derived($pages.findIndex(p => isLinkActive(p.to, routeId)))
+  const activeIdx = $derived(
+    $pages.findIndex(p => isLinkActive(p.to, logicalRouteId)),
+  )
 
   const hasActivePage = $derived(activeIdx !== -1)
   const hasPrevPage = $derived(hasActivePage && activeIdx > 0)
@@ -16,15 +32,24 @@
 
   const DEFAULT_PREVIOUS_TEXT = 'Previous'
   const DEFAULT_NEXT_TEXT = 'Next'
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
 </script>
 
 <div class="page-switcher">
   <div class:switcher={hasPrevPage}>
     {#if hasPrevPage}
       {@const prevPage = $pages[activeIdx - 1]}
-      <a href={getPathFromBase(prevPage.to)} class="trigger">
+      <a
+        href={getPathFromBase(
+          resolveVersionedPath(
+            resolveLocaleLink(prevPage.to, page.url.pathname),
+            versionContext,
+          ),
+        )}
+        class="trigger"
+      >
         <div class="hint">
-          {themOptions.i18n?.previousPage || DEFAULT_PREVIOUS_TEXT}
+          {localeOptions.i18n?.previousPage || DEFAULT_PREVIOUS_TEXT}
         </div>
         <div class="title">
           <div class="switch-icon">
@@ -40,9 +65,17 @@
   <div class="right" class:switcher={hasNextPage}>
     {#if hasNextPage}
       {@const nextPage = $pages[activeIdx + 1]}
-      <a href={getPathFromBase(nextPage.to)} class="trigger">
+      <a
+        href={getPathFromBase(
+          resolveVersionedPath(
+            resolveLocaleLink(nextPage.to, page.url.pathname),
+            versionContext,
+          ),
+        )}
+        class="trigger"
+      >
         <div class="hint">
-          {themOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
+          {localeOptions.i18n?.nextPage || DEFAULT_NEXT_TEXT}
         </div>
         <div class="title">
           <div class="title-label">

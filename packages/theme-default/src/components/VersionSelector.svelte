@@ -3,8 +3,12 @@
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
   import { tick } from 'svelte'
-  import themeOptions from 'virtual:sveltepress/theme-default'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionContext,
+    resolveVersionManifest,
+  } from 'virtual:sveltepress/versions'
+  import { resolveLocaleOptions } from './locale'
+  import { getPathFromBase } from './utils'
   import { getVersionOptions, nextVersionMenuIndex } from './versioning'
 
   let { mobile = false }: { mobile?: boolean } = $props()
@@ -14,18 +18,25 @@
   let trigger = $state<HTMLButtonElement>()
 
   const context = $derived(resolveVersionContext(page.url.pathname))
-  const options = $derived(getVersionOptions(page.url.pathname, manifest))
-  const label = $derived(
-    context?.version.label ?? manifest?.current.label ?? '',
+  const options = $derived(
+    getVersionOptions(
+      page.url.pathname,
+      resolveVersionManifest(page.url.pathname),
+    ),
   )
+  const currentManifest = $derived(resolveVersionManifest(page.url.pathname))
+  const label = $derived(
+    context?.version.label ?? currentManifest?.current.label ?? '',
+  )
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const selectorLabel = $derived(
-    themeOptions.i18n?.versionSelector ?? 'Documentation version',
+    localeOptions.i18n?.versionSelector ?? 'Documentation version',
   )
 
   function statusLabel(status: string | undefined) {
     if (status === 'deprecated')
-      return themeOptions.i18n?.versionDeprecatedLabel ?? 'Deprecated'
-    if (status === 'eol') return themeOptions.i18n?.versionEolLabel ?? 'EOL'
+      return localeOptions.i18n?.versionDeprecatedLabel ?? 'Deprecated'
+    if (status === 'eol') return localeOptions.i18n?.versionEolLabel ?? 'EOL'
     return ''
   }
 
@@ -84,11 +95,11 @@
     const fallback = target.fallback
       ? `${target.href.includes('?') ? '&' : '?'}svp-version-fallback=1`
       : ''
-    await goto(`${target.href}${fallback}`)
+    await goto(getPathFromBase(`${target.href}${fallback}`))
   }
 </script>
 
-{#if manifest}
+{#if resolveVersionManifest(page.url.pathname)}
   <div class:mobile class="version-selector" onfocusout={handleFocusOut}>
     <button
       bind:this={trigger}

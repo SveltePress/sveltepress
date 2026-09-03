@@ -5,6 +5,7 @@
     resolveVersionedPath,
   } from 'virtual:sveltepress/versions'
   import External from './icons/External.svelte'
+  import { resolveLocaleLink } from './locale'
   import { getPathFromBase } from './utils'
 
   /**
@@ -15,6 +16,7 @@
    * @property {boolean} [active] - Whether the link is active
    * @property {boolean} [highlight] - Whether the link should be highlighted
    * @property {boolean} [withBase] - Whether the link should have the base URL
+   * @property {boolean} [withLocale] - Whether the active locale should be applied
    * @property {boolean} [withVersion] - Whether the active documentation version should be applied
    * @property {string} [target] - Link target attribute (e.g., '_blank', '_self')
    * @property {import('svelte').Snippet} [labelRenderer] - Prepend content
@@ -30,6 +32,7 @@
     active = false,
     highlight = true,
     withBase = true,
+    withLocale = true,
     withVersion = true,
     target,
     pre,
@@ -39,8 +42,13 @@
 
   let isExternal = $derived(/^https?|mailto:/.test(to))
   let versionContext = $derived(resolveVersionContext(page.url.pathname))
+  let localizedTo = $derived(
+    withLocale ? resolveLocaleLink(to, page.url.pathname) : to,
+  )
   let versionedTo = $derived(
-    withVersion ? resolveVersionedPath(to, versionContext) : to,
+    withVersion
+      ? resolveVersionedPath(localizedTo, versionContext)
+      : localizedTo,
   )
   let toWithBase = $derived(isExternal ? to : getPathFromBase(versionedTo))
 </script>

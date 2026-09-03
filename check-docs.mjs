@@ -6,26 +6,42 @@ import ts from 'typescript'
 import { isHistoricalVersionRoute } from './check-utils.mjs'
 
 const root = dirname(fileURLToPath(import.meta.url))
-const docsSites = ['docs-site', 'docs-site-zh', 'docs-site-bn']
+const docsPackage = 'docs-site'
+const locales = [
+  { dir: '', name: 'en', manifest: 'sveltepress.versions.json' },
+  { dir: 'zh', name: 'zh', manifest: 'sveltepress.versions.zh.json' },
+  { dir: 'bn', name: 'bn', manifest: 'sveltepress.versions.bn.json' },
+]
 const failures = []
 
-function versionManifest(site) {
-  const path = join(root, 'packages', site, 'sveltepress.versions.json')
+function localeRoutesDir(locale) {
+  return locale
+    ? join(root, 'packages', docsPackage, 'src', 'routes', locale)
+    : join(root, 'packages', docsPackage, 'src', 'routes')
+}
+
+function versionManifest(locale) {
+  const path = join(root, 'packages', docsPackage, locale.manifest)
   return existsSync(path) ? JSON.parse(read(path)) : null
 }
 
-function activeRouteFiles(site) {
-  const routesDir = join(root, 'packages', site, 'src', 'routes')
-  const manifest = versionManifest(site)
+function activeRouteFiles(locale) {
+  const routesDir = localeRoutesDir(locale.dir)
+  const manifest = versionManifest(locale)
+  const localeDirs = locales.map(other => other.dir).filter(Boolean)
   return walk(routesDir).filter((path) => {
     if (!manifest)
       return true
     const routePath = relative(routesDir, path).split('\\').join('/')
+    if (!locale.dir && localeDirs.some(dir => routePath === dir || routePath.startsWith(`${dir}/`)))
+      return false
     return !isHistoricalVersionRoute(routePath, manifest.basePath, manifest.versions.map(version => version.id))
   })
 }
 
 function walk(dir) {
+  if (!existsSync(dir))
+    return []
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const path = join(dir, entry.name)
     return entry.isDirectory() ? walk(path) : [path]
@@ -41,6 +57,10 @@ function fail(message) {
 }
 
 function expectTokens(path, tokens, label) {
+  if (!existsSync(path)) {
+    fail(`${label} is missing its page: ${relative(root, path)}`)
+    return
+  }
   const content = read(path)
   for (const token of tokens) {
     if (!content.includes(`\`${token}\``))
@@ -130,26 +150,24 @@ function interfaceKeys(path, interfaceName) {
   return keys
 }
 
-const pageSets = new Map()
-for (const site of docsSites) {
-  const routesDir = join(root, 'packages', site, 'src', 'routes')
-  const pages = activeRouteFiles(site)
+// The merged site's locale directories must mirror each other: the English
+// (canonical) page set must equal the Chinese and Bengali page sets.
+const canonicalPages = activeRouteFiles(locales[0])
+  .filter(path => path.endsWith('+page.md'))
+  .map(path => relative(localeRoutesDir(''), path))
+  .sort()
+for (const locale of locales.slice(1)) {
+  const translatedPages = activeRouteFiles(locale)
     .filter(path => path.endsWith('+page.md'))
-    .map(path => relative(routesDir, path))
+    .map(path => relative(localeRoutesDir(locale.dir), path))
     .sort()
-  pageSets.set(site, pages)
-}
-
-const canonicalPages = pageSets.get('docs-site')
-for (const site of docsSites.slice(1)) {
-  const translatedPages = new Set(pageSets.get(site))
   const canonicalSet = new Set(canonicalPages)
-  const missing = canonicalPages.filter(page => !translatedPages.has(page))
-  const extra = pageSets.get(site).filter(page => !canonicalSet.has(page))
+  const missing = canonicalPages.filter(page => !translatedPages.includes(page))
+  const extra = translatedPages.filter(page => !canonicalSet.has(page))
   if (missing.length)
-    fail(`${site} is missing pages: ${missing.join(', ')}`)
+    fail(`locale /${locale.dir}/ is missing pages: ${missing.join(', ')}`)
   if (extra.length)
-    fail(`${site} has extra pages: ${extra.join(', ')}`)
+    fail(`locale /${locale.dir}/ has extra pages: ${extra.join(', ')}`)
 }
 
 const packagesDir = join(root, 'packages')
@@ -158,6 +176,7 @@ const packageManifests = readdirSync(packagesDir, { withFileTypes: true })
   .map(entry => join(packagesDir, entry.name, 'package.json'))
   .filter(existsSync)
 
+const mergedConfigDir = join(root, 'packages', docsPackage, 'config')
 const activeFiles = [
   join(root, 'README.md'),
   join(root, 'CONTRIBUTING.md'),
@@ -165,13 +184,11 @@ const activeFiles = [
   ...packageManifests,
   ...walk(join(root, 'packages', 'create', 'template-js')),
   ...walk(join(root, 'packages', 'create', 'template-ts')),
-  ...docsSites.flatMap(site => [
-    ...activeRouteFiles(site),
-    ...walk(join(root, 'packages', site, 'config')),
-    join(root, 'packages', site, 'vite.config.ts'),
-    join(root, 'packages', site, 'package.json'),
-    join(root, 'packages', site, 'tsconfig.json'),
-  ]),
+  ...locales.flatMap(locale => activeRouteFiles(locale)),
+  ...walk(mergedConfigDir),
+  join(root, 'packages', docsPackage, 'vite.config.ts'),
+  join(root, 'packages', docsPackage, 'package.json'),
+  join(root, 'packages', docsPackage, 'tsconfig.json'),
 ].filter(path => ['.js', '.json', '.md', '.ts'].includes(extname(path)))
 
 const forbidden = [
@@ -181,6 +198,7 @@ const forbidden = [
   [/pnpm vite build && pnpm pagefind --site dist/, 'unrepeatable blog build command'],
   [/pnpm install && pnpm dev/, 'ambiguous monorepo demo command'],
   [/search:\s*['"]@sveltepress\/meilisearch\/Search\.svelte['"]/, 'Meilisearch component without required props'],
+  [/cn\.sveltepress\.site|bn\.sveltepress\.site/, 'stale per-language domain link; the LocaleSelector replaces it'],
 ]
 
 for (const path of activeFiles) {
@@ -192,9 +210,9 @@ for (const path of activeFiles) {
 }
 
 const defaultThemeSearchDocs = {
-  'docs-site': {
+  '': {
     label: 'Default theme',
-    caveatMarker: 'production build bug',
+    productionMarker: 'bundled into static production builds',
     guideSupportMarker: 'supports **Algolia DocSearch** through `docsearch` and custom search components through `search`, including `@sveltepress/meilisearch`',
     referenceSupportMarker: 'The supported custom-search hook, with type `Component | string`. Use it to integrate a Svelte search component such as `@sveltepress/meilisearch`.',
     staleClaimPatterns: [
@@ -203,62 +221,73 @@ const defaultThemeSearchDocs = {
       /Do not use either through `defaultTheme\(\{ search \}\)` in production yet/i,
     ],
   },
-  'docs-site-zh': {
+  'zh': {
     label: '默认主题',
-    caveatMarker: '生产构建缺陷',
+    productionMarker: '被打进静态生产构建',
     guideSupportMarker: '默认主题支持通过 `docsearch` 接入 **Algolia DocSearch**，也支持通过 `search` 接入自定义搜索组件，包括 `@sveltepress/meilisearch`',
     referenceSupportMarker: '受支持的自定义搜索入口，类型为 `Component | string`，可用于接入 `@sveltepress/meilisearch` 等 Svelte 搜索组件。',
     staleClaimPatterns: [/尚不能用于生产|暂时不要配置|并不是可用的生产合同/],
   },
-  'docs-site-bn': {
+  'bn': {
     label: 'Default theme',
-    caveatMarker: 'production build bug',
+    productionMarker: 'static production build-এ bundle',
     guideSupportMarker: 'Default theme `docsearch` দিয়ে **Algolia DocSearch** এবং `search` দিয়ে custom search component সমর্থন করে, যার মধ্যে `@sveltepress/meilisearch`-ও আছে',
     referenceSupportMarker: 'Supported custom-search hook; type `Component | string`। `@sveltepress/meilisearch`-এর মতো Svelte search component integrate করতে এটি ব্যবহার করুন।',
     staleClaimPatterns: [/production-ready নয়|কার্যকর production contract নয়/],
   },
 }
 
-for (const [site, docsConfig] of Object.entries(defaultThemeSearchDocs)) {
-  const path = join(root, 'packages', site, 'src', 'routes', 'guide', 'themes', '+page.md')
+for (const locale of locales) {
+  const routes = localeRoutesDir(locale.dir)
+  const docsConfig = defaultThemeSearchDocs[locale.dir]
+  const localeLabel = locale.dir ? `/${locale.dir}/` : '/'
+  const path = join(routes, 'guide', 'themes', '+page.md')
+  if (!existsSync(path)) {
+    fail(`${localeLabel} theme comparison is missing: ${relative(root, path)}`)
+    continue
+  }
   const defaultThemeRow = read(path)
     .split('\n')
     .find(line => line.startsWith(`| ${docsConfig.label} |`))
 
   if (!defaultThemeRow) {
-    fail(`${site} theme comparison is missing its default-theme row`)
+    fail(`${localeLabel} theme comparison is missing its default-theme row`)
     continue
   }
   for (const integration of ['Algolia DocSearch', 'Meilisearch']) {
     if (!defaultThemeRow.includes(integration))
-      fail(`${site} default-theme row must list ${integration} support`)
+      fail(`${localeLabel} default-theme row must list ${integration} support`)
   }
 
   const docsPages = [
     {
       label: 'search guide',
-      path: join(root, 'packages', site, 'src', 'routes', 'guide', 'default-theme', 'search', '+page.md'),
+      path: join(routes, 'guide', 'default-theme', 'search', '+page.md'),
       supportMarker: docsConfig.guideSupportMarker,
     },
     {
       label: 'default-theme reference',
-      path: join(root, 'packages', site, 'src', 'routes', 'reference', 'default-theme', '+page.md'),
+      path: join(routes, 'reference', 'default-theme', '+page.md'),
       supportMarker: docsConfig.referenceSupportMarker,
     },
   ]
   for (const docsPage of docsPages) {
+    if (!existsSync(docsPage.path)) {
+      fail(`${localeLabel} ${docsPage.label} is missing: ${relative(root, docsPage.path)}`)
+      continue
+    }
     expectSubstrings(
       docsPage.path,
       [
         [docsPage.supportMarker, 'a positive Meilisearch support statement'],
-        [docsConfig.caveatMarker, 'the known production build caveat'],
+        [docsConfig.productionMarker, 'a production source-path statement'],
       ],
-      `${site} ${docsPage.label}`,
+      `${localeLabel} ${docsPage.label}`,
     )
     rejectPatterns(
       docsPage.path,
       docsConfig.staleClaimPatterns,
-      `${site} ${docsPage.label}`,
+      `${localeLabel} ${docsPage.label}`,
     )
   }
 }
@@ -267,22 +296,23 @@ const llmsOptions = interfaceKeys(join(root, 'packages', 'vite', 'src', 'types.t
 const defaultThemeOptions = interfaceKeys(join(root, 'packages', 'theme-default', 'types.d.ts'), 'DefaultThemeOptions')
 const blogThemeOptions = interfaceKeys(join(root, 'packages', 'theme-blog', 'src', 'types.ts'), 'BlogThemeOptions')
 
-for (const site of docsSites) {
-  const routes = join(root, 'packages', site, 'src', 'routes')
+for (const locale of locales) {
+  const routes = localeRoutesDir(locale.dir)
+  const localeLabel = locale.dir ? `/${locale.dir}/` : '/'
   expectTokens(
     join(routes, 'reference', 'vite-plugin', '+page.md'),
     llmsOptions,
-    `${site} llms reference`,
+    `${localeLabel} llms reference`,
   )
   expectTokens(
     join(routes, 'reference', 'default-theme', '+page.md'),
     [...defaultThemeOptions, 'themeDark', 'codeCollapseLines', 'primaryDeep', 'expandCode'],
-    `${site} default-theme reference`,
+    `${localeLabel} default-theme reference`,
   )
   expectTokens(
     join(routes, 'guide', 'blog-theme', 'configuration', '+page.md'),
     blogThemeOptions,
-    `${site} blog-theme reference`,
+    `${localeLabel} blog-theme reference`,
   )
 }
 
@@ -291,37 +321,41 @@ const publicComponents = Object.keys(blogPackage.exports)
   .filter(key => key.endsWith('.svelte'))
   .map(key => `@sveltepress/theme-blog/${key.replace(/^\.\//, '')}`)
 
-for (const site of docsSites) {
-  const path = join(root, 'packages', site, 'src', 'routes', 'guide', 'blog-theme', 'customization', '+page.md')
+for (const locale of locales) {
+  const routes = localeRoutesDir(locale.dir)
+  const localeLabel = locale.dir ? `/${locale.dir}/` : '/'
+  const path = join(routes, 'guide', 'blog-theme', 'customization', '+page.md')
   const content = read(path)
   for (const component of publicComponents) {
     if (!content.includes(component))
-      fail(`${site} public component reference is missing ${component}`)
+      fail(`${localeLabel} public component reference is missing ${component}`)
   }
 }
 
 const versionManagementFeatures = {
-  'docs-site': {
+  '': {
     title: 'Document version management',
     description: 'Keep current docs at clean URLs while publishing immutable historical snapshots with built-in version navigation and release change catalogs.',
   },
-  'docs-site-zh': {
+  'zh': {
     title: '文档版本管理',
     description: '让当前文档保持简洁 URL，同时发布不可变的历史快照，并提供内置版本导航和发布变化总览。',
   },
-  'docs-site-bn': {
+  'bn': {
     title: 'ডকুমেন্টেশন ভার্সন ম্যানেজমেন্ট',
     description: 'বর্তমান ডকুমেন্টেশনকে পরিচ্ছন্ন URL-এ রেখে অপরিবর্তনীয় ঐতিহাসিক স্ন্যাপশট প্রকাশ করুন; সঙ্গে পান অন্তর্নির্মিত ভার্সন নেভিগেশন ও রিলিজ পরিবর্তনের তালিকা।',
   },
 }
 
-for (const [site, expected] of Object.entries(versionManagementFeatures)) {
-  const homePath = join(root, 'packages', site, 'src', 'routes', '+page.md')
+for (const locale of locales) {
+  const localeLabel = locale.dir ? `/${locale.dir}/` : '/'
+  const expected = versionManagementFeatures[locale.dir]
+  const homePath = join(localeRoutesDir(locale.dir), '+page.md')
   if (/^tagline:/m.test(read(homePath)))
-    fail(`${site} home page must not repeat its hero description as a tagline: ${relative(root, homePath)}`)
+    fail(`${localeLabel} home page must not repeat its hero description as a tagline: ${relative(root, homePath)}`)
   const feature = homeFeatureCards(homePath).find(card => card.title === expected.title)
   if (!feature) {
-    fail(`${site} home page is missing the localized version-management feature card`)
+    fail(`${localeLabel} home page is missing the localized version-management feature card`)
   }
   else {
     const expectedFeature = {
@@ -334,21 +368,14 @@ for (const [site, expected] of Object.entries(versionManagementFeatures)) {
       link: '/guide/version-management/',
     }
     if (JSON.stringify(feature) !== JSON.stringify(expectedFeature))
-      fail(`${site} version-management feature card does not match ${JSON.stringify(expectedFeature)}: ${relative(root, homePath)}`)
+      fail(`${localeLabel} version-management feature card does not match ${JSON.stringify(expectedFeature)}: ${relative(root, homePath)}`)
   }
   expectSubstrings(
-    join(root, 'packages', site, 'vite.config.ts'),
+    join(root, 'packages', docsPackage, 'vite.config.ts'),
     [[`'material-symbols': ['history']`, 'the prebuilt version-management icon']],
-    `${site} icon config`,
+    `${localeLabel} icon config`,
   )
 }
-
-const packageNames = docsSites.map((site) => {
-  const path = join(root, 'packages', site, 'package.json')
-  return JSON.parse(read(path)).name
-})
-if (new Set(packageNames).size !== packageNames.length)
-  fail(`documentation package names must be unique: ${packageNames.join(', ')}`)
 
 if (failures.length) {
   console.error('Documentation checks failed:')
@@ -357,5 +384,5 @@ if (failures.length) {
   process.exitCode = 1
 }
 else {
-  console.warn(`Documentation checks passed for ${canonicalPages.length} pages across ${docsSites.length} locales.`)
+  console.warn(`Documentation checks passed for ${canonicalPages.length} pages across ${locales.length} locales.`)
 }

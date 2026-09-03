@@ -1,0 +1,277 @@
+---
+title: Default theme
+---
+
+## 安装
+
+@install-pkg(@sveltepress/theme-default)
+
+### 在 vite.config.(js|ts) 中配置
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
+import { sveltepress } from '@sveltepress/vite'
+
+import { defineConfig } from 'vite'
+
+const config = defineConfig({
+  plugins: [
+    sveltepress({/** 配置 */}), // [svp! --]
+    sveltepress({ // [svp! ++]
+      theme: defaultTheme(/** 主题配置 */) // [svp! ++]
+    }) // [svp! ++]
+  ],
+})
+
+export default config
+```
+
+## 主题配置
+
+### 类型一览
+
+<Expansion title="类型一览">
+
+@code(/../theme-default/types.d.ts)
+
+</Expansion>
+
+### `navbar`
+
+* `title`
+  标题
+* `to`
+  链接地址
+* `icon`
+  自定义展示 HTML 内容，通常用于展示自定义图标内容
+* `external`
+  如果设置为 `true`，将会展示一个标记外部链接的图标
+* `items`
+  子项，如果配置会展示下拉导航
+
+### `discord`
+Discord 链接，如果提供将会展示一个 Discord 图标
+
+### `github`
+GitHub 仓库链接，如果提供将会展示一个 GitHub 图标
+
+### `logo`
+
+Logo 图片
+
+### `sidebar`
+
+侧边栏可以通过两种方式配置：
+
+#### 自动生成侧边栏
+
+传入一个包含 `enabled: true` 的对象，即可从路由目录自动生成侧边栏。
+
+* `enabled` - 设为 `true` 启用自动侧边栏生成
+* `routesDir` - 自定义路由目录路径。默认为 `'src/routes'`
+* `roots` - 生成侧边栏的根路径，如 `['/guide/', '/reference/']`。未指定时从顶级路由目录自动检测
+
+页面可以通过 frontmatter 控制其在侧边栏中的显示：
+
+* `title` - 页面标题，同时用作侧边栏标签
+* `sidebarTitle` - 覆盖侧边栏标签（优先级高于 `title`）
+* `order` - 同级排序。数字越小越靠前。默认为 `100`
+* `sidebar` - 设为 `false` 可将此页面从侧边栏中排除
+* `collapsible` - 侧边栏分组是否可折叠
+
+#### 手动配置侧边栏
+
+传入一个对象，键为分组路由前缀，值为侧边栏项数组：
+
+* `title`
+  组标题
+* `collapsible`
+  组是否可折叠
+* `to`
+  链接地址
+* `items`
+  子链接，若配置该属性，则 `to` 将会失效，展示一个分组链接
+
+### `highlighter`
+
+一个包含如下属性的代码块高亮相关配置：
+
+* `languages` - 自定义支持的语言列表，默认为：`['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
+* `themeLight` - 日间模式所使用的高亮主题，默认为：`vitesse-light`
+* `themeDark` - 夜间模式所使用的高亮主题，默认为：`night-owl`
+* `twoslash` - 设置为 `true` 可以开启 [Twoslash](/guide/default-theme/twoslash/) 功能. 默认为 `false`
+* `codeCollapseLines` - 超过该行数的代码块会默认折叠，默认为 `30`；设为 `0` 可关闭折叠。
+
+:::important[TIP]
+你可以在 [Shiki Repo](https://github.com/shikijs/shiki) 获得所有支持的语言以及主题
+:::
+
+### `editLink`
+
+页面底部展示的“在 Github 上编辑此页”链接，例如本站使用：`https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site-zh/src/routes/:route`
+
+`:route` 代表路由，例如 src/routes/foo/bar/+page.md => /foo/bar
+
+### `ga`
+
+提供自 [Google Analytics](https://analytics.google.com/)，形如 `G-XXXXXXX`
+
+配置该项将会自动添加 gtag 相关脚本
+
+### `search`
+
+受支持的自定义搜索入口，类型为 `Component | string`，可用于接入 `@sveltepress/meilisearch` 等 Svelte 搜索组件。字符串用于指定包装组件的源码路径：
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  search: '/src/lib/MeilisearchSearch.svelte',
+})
+```
+
+:::note[生产构建]
+该公开 API 与 M Search 接入均受支持。通过 `search` 配置的源码 `.svelte` 路径会被打进静态生产构建——主题在构建期解析该路径并以懒加载 chunk 加载。直接传组件对象不受支持，因为主题选项会以 JSON 序列化到客户端。包装组件用法见[搜索指南](/guide/default-theme/search/)。
+:::
+
+### `docsearch`
+
+* appId
+* apiKey
+* indexName
+
+阅读 [Docsearch](https://docsearch.algolia.com/) 来获得更多信息
+
+> 仅当未提供 `search` 时，才会使用 `docsearch`。
+
+### `pwa`
+
+阅读 [PWA 章节](/guide/default-theme/pwa/) 来获得更多信息
+
+### `themeColor`
+
+主题色相关
+
+* `light` - 日间模式主题色，也会应用在 pwa 顶部窗口导航
+* `dark` - 夜间模式主题色，也会应用在 pwa 顶部窗口导航
+* `gradient` - 全站使用到的渐变色，如：首页标题，首页按钮，链接高亮文字
+```js
+const defaultGradient = {
+  start: '#fa709a',
+  end: '#fee140',
+}
+```
+* `primary` - 站点主色
+* `primaryDeep` - 浅色背景上用于保证对比度的深主色
+* `hover` - 鼠标上浮时主色
+
+### `i18n`
+
+一些固定的文本内容，可以被您的配置所覆盖，方便站点国际化
+
+* `onThisPage` - "On this page"
+* `suggestChangesToThisPage` - "Suggest changes to this page"
+* `lastUpdateAt` - "Last update at:"
+* `previousPage` - "Previous"
+* `nextPage` - "Next"
+* `expansionTitle` - 在 Markdown 以及 Svelte 可折叠代码块上的折叠面板标题："Click to expand/fold code"
+* `expandCode` - 长代码块展开栏的文本
+* `heroCode` - 默认首页代码预览中的本地化文字，包括 `title`、`messageBefore`、`messageStrong`、`messageAfter`、`tipLabel` 和 `counterLabel`
+* `versionDeprecated` / `versionEol` - 全局旧版生命周期横条中的提示文本
+* `versionDeprecatedLabel` / `versionEolLabel` - 生命周期状态的紧凑标签
+* `versionViewCurrent` - 打开同一逻辑页面最新版的链接文本
+* `versionNavigationNewLabel` - 侧边栏变化页面，以及自动关联到 `:::since` 标记的当前页面目录标题旁所显示的紧凑徽章文本，默认为 `"New"`
+* `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本
+  * `tip`
+  * `reload`
+  * `close`
+  * `appReadyToWorkOffline`
+  * `newContentAvailable`
+* `footnoteLabel` - 自动生成的脚注标题，默认为 `"Footnotes"`
+
+### `preBuildIconifyIcons`
+一些你可能在编写文档过程中用到的 [Iconify](https://iconify.design/) 图标
+
+为一个对象，键是分类名称，值是该分类下需要预构建的图标集合，下面是此站点的配置
+
+@code(/vite.config.ts,29,39)
+
+这些图标看起来像这样：
+```svelte live
+<script lang="ts">
+  import { IconifyIcon } from '@sveltepress/theme-default/components'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+</script>
+<div class="flex items-center gap-4 text-[48px] flex-wrap">
+  {#each Object.entries(themeOptions.preBuildIconifyIcons || []) as [collection, names]}
+    {#each names as name}
+      <div>
+        <IconifyIcon {collection} {name} />
+      </div>
+    {/each}
+  {/each}
+</div>
+```
+
+## 全局上下文
+
+全局上下文的键在模块 `@sveltepress/theme-default/context` 中，你可以通过 [`getContext`](https://svelte.dev/docs/svelte#getcontext) API 来获取所有的上下文，下面是一个示例：
+
+```svelte live
+<script lang="ts">
+  import type { SveltepressContext } from '@sveltepress/theme-default/context'
+  import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+  import { getContext } from 'svelte'
+
+  const { isDark } = getContext<SveltepressContext>(SVELTEPRESS_CONTEXT_KEY)
+</script>
+
+<div class:dark-text={$isDark} class="text-10">
+  isDark: {$isDark}
+</div>
+<style>
+  .dark-text {
+    --at-apply: 'text-red';
+  }
+</style>
+```
+
+上下文属性一览：
+
+* `$isDark` - 用来表示当前的主题是否为暗色，是一个响应式的 [svelte store](https://svelte.dev/docs/svelte-store)
+
+## 虚拟模块
+
+### `virtual:sveltepress/theme-default`
+
+这个模块默认导出所有传递给 `defaultTheme()` 函数的选项
+
+这是当前站点所使用的配置：
+
+```svelte live
+<script>
+  import themeOptions from 'virtual:sveltepress/theme-default'
+</script>
+<div class="viewer">
+  <pre>
+    {JSON.stringify(themeOptions, null, 2)}
+  </pre>
+</div>
+<style>
+  .viewer {
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+</style>
+```
+
+## Typescript
+
+您需要在 src/app.d.ts 文件中添加 `@sveltepress/theme-default/types` 来获得默认主题相关类型提示
+
+```ts title="/src/app.d.ts"
+/// <reference types="@sveltepress/theme-default/types" />
+
+// Your other types
+```

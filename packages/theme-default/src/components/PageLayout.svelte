@@ -3,11 +3,10 @@
   import { page } from '$app/state'
   import { tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import {
-    manifest,
     resolveVersionChanges,
     resolveVersionContext,
+    resolveVersionManifest,
   } from 'virtual:sveltepress/versions'
   import EditPage from './EditPage.svelte'
   import Home from './Home.svelte'
@@ -15,11 +14,13 @@
   import HeroImage from './home/HeroImage.svelte'
   import LastUpdate from './LastUpdate.svelte'
   import { anchors, pages, showHeader, showLayout, sidebar } from './layout'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import PageSwitcher from './PageSwitcher.svelte'
 
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const versionChanges = $derived(
-    resolveVersionChanges(versionContext?.versionId),
+    resolveVersionChanges(versionContext?.versionId, page.url.pathname),
   )
   const newPage = $derived(
     versionChanges?.newPages.find(
@@ -27,12 +28,14 @@
     ),
   )
   const newPageLabel = $derived(
-    (themeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(
+    (localeOptions.i18n?.versionNewLabel ?? 'New in {version}').replace(
       '{version}',
       versionContext?.version.label ?? versionContext?.versionId ?? '',
     ),
   )
-  const canonical = $derived(manifest ? page.url.pathname : null)
+  const canonical = $derived(
+    resolveVersionManifest(page.url.pathname) ? page.url.pathname : null,
+  )
   const noIndex = $derived.by(() => {
     if (!versionContext?.historical) return false
     return (
@@ -56,8 +59,10 @@
   } = fm
 
   function resolveHomeLayout() {
+    const logical = resolveLogicalRoute(page.route.id)
     return (
-      (versionContext?.logicalPath === '/' && home !== false) || home === true
+      ((versionContext?.logicalPath ?? logical) === '/' && home !== false) ||
+      home === true
     )
   }
 
@@ -98,12 +103,15 @@
     {#if fmHeroImage}
       <HeroImage heroImage={fmHeroImage} />
     {:else}
-      <HeroCode {...themeOptions.i18n?.heroCode} />
+      <HeroCode {...localeOptions.i18n?.heroCode} />
     {/if}
   {/snippet}
   {#if !isHome}
     <div pb-4 class="theme-default--page-layout">
-      <div class="content">
+      <div
+        class="content"
+        data-pagefind-body={!versionContext?.historical ? true : undefined}
+      >
         {#if fm.title}
           <h1 class="page-title">
             {fm.title}
@@ -114,8 +122,8 @@
           </h1>
         {/if}
         {@render children?.()}
-        <div class="meta" class:without-edit-link={!themeOptions.editLink}>
-          {#if themeOptions.editLink}
+        <div class="meta" class:without-edit-link={!localeOptions.editLink}>
+          {#if localeOptions.editLink}
             <EditPage {pageType} />
           {/if}
           <LastUpdate {lastUpdate} />

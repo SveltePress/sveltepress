@@ -1,25 +1,31 @@
 <script>
   import { page } from '$app/state'
-  import themeOptions from 'virtual:sveltepress/theme-default'
-  import { manifest } from 'virtual:sveltepress/versions'
+  import { resolveVersionManifest } from 'virtual:sveltepress/versions'
   import Link from './Link.svelte'
+  import { resolveLocaleOptions } from './locale'
   import { getLifecycleBanner } from './versioning'
 
   const defaultOldVersionMessage =
     'You are viewing an older version of this site. Some features may not work as expected.'
-  const banner = $derived(getLifecycleBanner(page.url.pathname, manifest))
+  const banner = $derived(
+    getLifecycleBanner(
+      page.url.pathname,
+      resolveVersionManifest(page.url.pathname),
+    ),
+  )
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const defaultMessage = $derived(
     banner?.status === 'eol'
-      ? (themeOptions.i18n?.versionEol ?? defaultOldVersionMessage)
-      : (themeOptions.i18n?.versionDeprecated ?? defaultOldVersionMessage),
+      ? (localeOptions.i18n?.versionEol ?? defaultOldVersionMessage)
+      : (localeOptions.i18n?.versionDeprecated ?? defaultOldVersionMessage),
   )
   const currentLabel = $derived(
-    themeOptions.i18n?.versionViewCurrent ?? 'Current version',
+    localeOptions.i18n?.versionViewCurrent ?? 'Current version',
   )
   const statusLabel = $derived(
     banner?.status === 'eol'
-      ? (themeOptions.i18n?.versionEolLabel ?? 'EOL')
-      : (themeOptions.i18n?.versionDeprecatedLabel ?? 'Deprecated'),
+      ? (localeOptions.i18n?.versionEolLabel ?? 'EOL')
+      : (localeOptions.i18n?.versionDeprecatedLabel ?? 'Deprecated'),
   )
 </script>
 

@@ -5,6 +5,29 @@ import { computeVersionChangeSet, validateVersionChangeSet } from './changes.js'
 
 export const DEFAULT_VERSION_MANIFEST = 'sveltepress.versions.json'
 
+/**
+ * The manifest file name for a locale prefix. The default locale (`'/'`)
+ * keeps the given manifest file; other locales get a locale-scoped suffix,
+ * e.g. `/zh/` → `sveltepress.versions.zh.json`.
+ */
+export function localeVersionManifestName(prefix: string, defaultFile = DEFAULT_VERSION_MANIFEST): string {
+  if (prefix === '/' || prefix === '')
+    return defaultFile
+  const slug = prefix.replace(/^\/+|\/+$/g, '')
+  return defaultFile.replace(/\.json$/, `.${slug}.json`)
+}
+
+/**
+ * Strip a locale prefix from a composed path such as a version base path:
+ * `/zh/v` minus `/zh` → `/v`.
+ */
+export function stripLocaleBasePath(pathname: string, prefix: string): string {
+  const normalized = prefix.replace(/\/+$/, '')
+  if (pathname === normalized)
+    return '/'
+  return pathname.startsWith(`${normalized}/`) ? pathname.slice(normalized.length) : pathname
+}
+
 export * from './artifact-store.js'
 export * from './artifacts.js'
 export { computeVersionChangeSet, validateFrozenVersionChangeSets, validateVersionChangeSet } from './changes.js'
@@ -99,6 +122,12 @@ export interface VersionContext {
   version: DocumentationVersion
   logicalPath: string
   historical: boolean
+  basePath?: string
+  /**
+   * The manifest the context was resolved from. Attached by the locale-aware
+   * runtime so path helpers can compose locale-prefixed version routes.
+   */
+  manifest?: VersionManifest | null
 }
 
 export interface VersionSwitchTarget {
@@ -109,7 +138,12 @@ export interface VersionSwitchTarget {
 export interface VersionRuntime {
   manifest: VersionManifest | null
   changeSets: Record<string, VersionChangeSet>
-  resolveVersionChanges: (versionId?: string) => VersionChangeSet | null
+  /**
+   * Resolve the version change set for a version id. On multi-locale sites
+   * the optional `pathname` selects the locale's own manifest so each
+   * locale reads its own changes; without it the default locale is used.
+   */
+  resolveVersionChanges: (versionId?: string, pathname?: string) => VersionChangeSet | null
   resolveVersionContext: (pathname: string) => VersionContext | null
   resolveVersionedPath: (to: string, context: VersionContext | null) => string
   resolveVersionSwitch: (pathname: string, targetVersionId: string) => VersionSwitchTarget | null
@@ -127,8 +161,8 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
 
   const manifest = value as Partial<VersionManifest>
   rejectUnknownKeys(manifest, ['$schema', 'basePath', 'current', 'versions', 'content', 'artifacts'], 'manifest', errors)
-  if (typeof manifest.basePath !== 'string' || !/^\/[a-z0-9-]+$/.test(manifest.basePath))
-    errors.push('basePath must be one lowercase absolute route segment such as "/v".')
+  if (typeof manifest.basePath !== 'string' || !/^\/[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(manifest.basePath))
+    errors.push('basePath must be one or more lowercase absolute route segments such as "/v" or "/zh/v".')
 
   if (!manifest.current || typeof manifest.current !== 'object')
     errors.push('current must describe the unprefixed documentation version.')
@@ -234,7 +268,18 @@ export function validateVersionManifest(value: unknown): asserts value is Versio
     throw new Error(`[sveltepress:versions] Invalid manifest:\n- ${errors.join('\n- ')}`)
 }
 
-export function loadVersionManifest(siteRoot = process.cwd(), manifestFile = DEFAULT_VERSION_MANIFEST): VersionManifest | null {
+export interface VersionManifestLocaleOptions {
+  /** Locale routes dir segment, e.g. `'zh'` — scan `src/routes/zh` instead of `src/routes`. */
+  localeDir?: string
+  /** Route dir segments excluded from the default-locale scan (other locales). */
+  excludeDirs?: string[]
+}
+
+export function loadVersionManifest(
+  siteRoot = process.cwd(),
+  manifestFile = DEFAULT_VERSION_MANIFEST,
+  options?: VersionManifestLocaleOptions,
+): VersionManifest | null {
   const manifestPath = resolve(siteRoot, manifestFile)
   if (!existsSync(manifestPath))
     return null
@@ -248,16 +293,25 @@ export function loadVersionManifest(siteRoot = process.cwd(), manifestFile = DEF
   }
   validateVersionManifest(manifest)
 
-  const routesRoot = join(siteRoot, 'src/routes')
-  const baseSegment = manifest.basePath.slice(1)
-  manifest.current.routes = normalizeRoutes(manifest.current.routes ?? scanRoutes(routesRoot, join(routesRoot, baseSegment)))
+  const localeDir = options?.localeDir
+  const routesRoot = localeDir
+    ? join(siteRoot, 'src/routes', localeDir)
+    : join(siteRoot, 'src/routes')
+  const baseSegment = localeDir
+    ? stripLocaleBasePath(manifest.basePath, `/${localeDir}`).slice(1)
+    : manifest.basePath.slice(1)
+  const excludedRoots = [
+    join(routesRoot, baseSegment),
+    ...(options?.excludeDirs ?? []).map(dir => join(routesRoot, dir)),
+  ]
+  manifest.current.routes = normalizeRoutes(manifest.current.routes ?? scanRoutes(routesRoot, excludedRoots))
   manifest.versions = manifest.versions.map((version) => {
     const snapshotRoot = join(routesRoot, baseSegment, version.id)
     const metadata = readSnapshotMetadata(snapshotRoot)
     return {
       ...version,
       status: version.status ?? 'stable',
-      routes: normalizeRoutes(version.routes ?? metadata?.routes ?? scanRoutes(snapshotRoot)),
+      routes: normalizeRoutes(version.routes ?? metadata?.routes ?? scanRoutes(snapshotRoot, [])),
       sidebar: version.sidebar ?? metadata?.sidebar,
       sharedDependencies: metadata?.sharedDependencies ?? version.sharedDependencies,
       changes: metadata?.changes ?? version.changes,
@@ -268,21 +322,33 @@ export function loadVersionManifest(siteRoot = process.cwd(), manifestFile = DEF
     if (version.changes)
       validateVersionChangeSet(version.changes, `version "${version.id}" changes`, version.id, knownVersions)
   }
-  manifest.current.changes = computeVersionChangeSet(siteRoot, manifest)
+  manifest.current.changes = computeVersionChangeSet(siteRoot, manifest, undefined, options)
   return manifest
 }
 
-function scanRoutes(root: string, excludedRoot?: string): string[] {
+function scanRoutes(root: string, excludedRoots: string[]): string[] {
   if (!existsSync(root))
     return []
   const files: string[] = []
-  walk(root, files, excludedRoot)
+  walk(root, files, excludedRoots)
   return files
     .filter(file => /\+page(?:@[\w-]+)?\.(?:md|svelte)$/.test(file))
     .map((file) => {
       const directory = relative(root, file).split(sep).slice(0, -1).filter(segment => !/^\(.*\)$/.test(segment))
       return normalizeRoute(`/${directory.join('/')}`)
     })
+}
+
+function walk(dir: string, files: string[], excludedRoots: string[]) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name)
+    if (excludedRoots.some(root => resolve(full) === resolve(root)))
+      continue
+    if (entry.isDirectory())
+      walk(full, files, excludedRoots)
+    else
+      files.push(full)
+  }
 }
 
 function readSnapshotMetadata(snapshotRoot: string): Pick<DocumentationVersion, 'routes' | 'sidebar' | 'sharedDependencies' | 'changes'> | null {
@@ -375,18 +441,6 @@ function validateNavigationItem(value: unknown, context: string, errors: string[
       errors.push(`${context}.items must be an array.`)
     else
       item.items.forEach((child, index) => validateNavigationItem(child, `${context}.items[${index}]`, errors))
-  }
-}
-
-function walk(directory: string, files: string[], excludedRoot?: string) {
-  if (excludedRoot && resolve(directory) === resolve(excludedRoot))
-    return
-  for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    const path = join(directory, entry.name)
-    if (entry.isDirectory())
-      walk(path, files, excludedRoot)
-    else if (entry.isFile())
-      files.push(path)
   }
 }
 

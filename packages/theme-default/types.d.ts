@@ -51,7 +51,7 @@ declare module 'virtual:sveltepress/theme-default' {
       darkManifest?: string
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
-    search?: Component | string
+    search?: Component | string | boolean
     themeColor?: {
       light: string
       dark: string
@@ -106,6 +106,10 @@ declare module 'virtual:sveltepress/theme-default' {
         newContentAvailable?: string
       }
       footnoteLabel?: string
+      /** Label of the language switcher trigger. */
+      localeSwitcher?: string
+      /** Notice shown after switching locale fell back to that locale's home. */
+      localePageUnavailable?: string
       versionSelector?: string
       versionPageUnavailable?: string
       versionDeprecated?: string
@@ -123,6 +127,11 @@ declare module 'virtual:sveltepress/theme-default' {
       versionChangesUpdatedPages?: string
       versionChangesNoBaseline?: string
       versionChangesEmpty?: string
+      searchPlaceholder?: string
+      searchNoResults?: string
+      searchDevNotice?: string
+      searchClose?: string
+      searchClear?: string
     }
     preBuildIconifyIcons?: {
       [iconSetName: string]: string[]

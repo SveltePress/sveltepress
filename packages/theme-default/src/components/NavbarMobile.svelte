@@ -1,13 +1,18 @@
 <script>
+  import { page } from '$app/state'
   import { slide } from 'svelte/transition'
-  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { locales } from 'virtual:sveltepress/locale'
+  import LocaleSelector from 'virtual:sveltepress/theme-default/LocaleSelector.svelte'
   import VersionSelector from 'virtual:sveltepress/theme-default/VersionSelector.svelte'
   import Expansion from './Expansion.svelte'
   import TocClose from './icons/TocClose.svelte'
   import TocMenu from './icons/TocMenu.svelte'
   import { navCollapsed, sidebar } from './layout'
+  import { resolveLocaleOptions } from './locale'
   import Logo from './Logo.svelte'
   import NavItem from './NavItem.svelte'
+
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
 
   function toggleNav() {
     $navCollapsed = !$navCollapsed
@@ -18,7 +23,7 @@
   type="button"
   class="nav-trigger"
   onclick={toggleNav}
-  aria-label={themeOptions.i18n?.navbarMenu ?? 'Toggle navigation menu'}
+  aria-label={localeOptions.i18n?.navbarMenu ?? 'Toggle navigation menu'}
   aria-expanded={!$navCollapsed}
   aria-controls="sveltepress-mobile-navigation"
 >
@@ -38,8 +43,11 @@
     aria-label="Menu"
   >
     <Logo />
+    {#if locales}
+      <LocaleSelector mobile />
+    {/if}
     <VersionSelector mobile />
-    {#each themeOptions.navbar as navItem}
+    {#each localeOptions.navbar as navItem}
       {#if navItem.items}
         <Expansion title={navItem.title} showIcon={false}>
           {#snippet customTitle()}

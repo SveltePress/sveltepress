@@ -1,8 +1,11 @@
 <script>
-  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { page } from '$app/state'
   import MenuOpen from './icons/MenuOpen.svelte'
   import { anchors, sidebar, sidebarCollapsed, tocCollapsed } from './layout'
+  import { resolveLocaleOptions } from './locale'
   import { DEFAULT_ON_THIS_PAGE } from './Toc.svelte'
+
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
 
   function openSidebar() {
     $sidebarCollapsed = false
@@ -28,7 +31,7 @@
     {/if}
     {#if $anchors.length}
       <div role="button" tabindex="0" onclick={openToc} onkeypress={openToc}>
-        {themeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
+        {localeOptions?.i18n?.onThisPage || DEFAULT_ON_THIS_PAGE}
       </div>
     {/if}
   </nav>

@@ -1,41 +1,60 @@
 <script lang="ts">
   import type { Component } from 'svelte'
   import { page } from '$app/state'
-  import themeOptions from 'virtual:sveltepress/theme-default'
+  import { locales, resolveLocale } from 'virtual:sveltepress/locale'
+  import { loadCustomSearch } from 'virtual:sveltepress/theme-default/custom-search'
+  import LocaleSelector from 'virtual:sveltepress/theme-default/LocaleSelector.svelte'
   import { resolveVersionSearch } from 'virtual:sveltepress/theme-default/versioning'
   import VersionSelector from 'virtual:sveltepress/theme-default/VersionSelector.svelte'
-  import { manifest, resolveVersionContext } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionContext,
+    resolveVersionManifest,
+  } from 'virtual:sveltepress/versions'
   import Discord from './icons/Discord.svelte'
   import Github from './icons/Github.svelte'
   import { scrollDirection, sidebar } from './layout'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import Logo from './Logo.svelte'
   import MobileSubNav from './MobileSubNav.svelte'
   import NavbarMobile from './NavbarMobile.svelte'
   import NavItem from './NavItem.svelte'
+  import LocalSearch from './search/LocalSearch.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
   const routeId = $derived(page.route.id)
-  const isHome = $derived(routeId === '/')
+  const isHome = $derived(resolveLogicalRoute(routeId) === '/')
   const hasError = $derived(page.error)
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
+  const activeLocale = $derived(resolveLocale(page.url.pathname))
+  const activeLang = $derived(activeLocale?.lang ?? '')
   const versionSearch = $derived(
-    resolveVersionSearch(page.url.pathname, manifest),
+    resolveVersionSearch(
+      page.url.pathname,
+      resolveVersionManifest(page.url.pathname),
+    ),
   )
-  const hasConfiguredSearch = $derived(
-    Boolean(themeOptions.search || themeOptions.docsearch),
-  )
+  const hasConfiguredSearch = $derived(localeOptions.search !== false)
+  function checkLocalSearch(options: any): boolean {
+    return (
+      options.search !== false &&
+      !options.docsearch &&
+      typeof options.search === 'undefined'
+    )
+  }
+  const isLocalSearch = $derived(checkLocalSearch(localeOptions))
   const versionedDocsearch = $derived.by(() => {
-    if (!themeOptions.docsearch) return null
+    if (!localeOptions.docsearch) return null
     const metadata = versionSearch.metadata
-    if (!metadata) return themeOptions.docsearch
+    if (!metadata) return localeOptions.docsearch
     const { facetFilters, ...overrides } = metadata
     return {
-      ...themeOptions.docsearch,
+      ...localeOptions.docsearch,
       ...overrides,
       ...(facetFilters
         ? {
             searchParameters: {
-              ...themeOptions.docsearch.searchParameters,
+              ...localeOptions.docsearch.searchParameters,
               facetFilters,
             },
           }
@@ -47,15 +66,19 @@
   let searchComponent = $state<Component | undefined>()
 
   async function loadSearch() {
-    // Load custom search component if it's a string path
+    // Load custom search if it is a source-path component. The path is bundled
+    // for production through the theme plugin's custom-search virtual module
+    // (a literal dynamic import); component objects cannot survive theme-option
+    // JSON serialization, so `search` must be a source path or a component only
+    // in non-serialized contexts.
     if (
       versionSearch.available &&
-      themeOptions.search &&
-      typeof themeOptions.search === 'string'
+      localeOptions.search &&
+      typeof localeOptions.search === 'string'
     ) {
       try {
-        searchComponent = (await import(/* @vite-ignore */ themeOptions.search))
-          .default
+        const module = await loadCustomSearch()
+        searchComponent = module?.default ?? undefined
       } catch (e) {
         console.error(
           '[sveltepress] Failed to load custom search component:',
@@ -67,8 +90,8 @@
     // Load docsearch if no custom search is provided
     if (
       versionSearch.available &&
-      themeOptions.docsearch &&
-      !themeOptions.search
+      localeOptions.docsearch &&
+      !localeOptions.search
     ) {
       try {
         docsearchComponent = (
@@ -99,24 +122,24 @@
         <Logo />
       </div>
     </div>
-    {#if hasConfiguredSearch && !versionSearch.available}
+    {#if !isLocalSearch && hasConfiguredSearch && !versionSearch.available}
       <div
         class:is-home={isHome || !$sidebar}
         class:move={!isHome && !hasError && $sidebar}
         class="doc-search search-unavailable"
         role="status"
       >
-        {themeOptions.i18n?.versionSearchUnavailable ??
+        {localeOptions.i18n?.versionSearchUnavailable ??
           'Search is not available for this documentation version.'}
       </div>
-    {:else if searchComponent || (themeOptions.search && typeof themeOptions.search !== 'string')}
+    {:else if searchComponent || (localeOptions.search && typeof localeOptions.search !== 'string')}
       <div
         class:is-home={isHome || !$sidebar}
         class:move={!isHome && !hasError && $sidebar}
         class="doc-search"
       >
         {#key versionContext?.versionId}
-          {@const SearchComponent = searchComponent || themeOptions.search}
+          {@const SearchComponent = searchComponent || localeOptions.search}
           <SearchComponent
             version={versionContext?.version}
             versionSearch={versionSearch.metadata}
@@ -129,11 +152,21 @@
         class:move={!isHome && !hasError && $sidebar}
         class="doc-search"
       >
-        {#key versionContext?.versionId}
+        {#key `${versionContext?.versionId || ''}:${versionedDocsearch?.indexName || ''}`}
           {#if docsearchComponent}
             {@const DocsearchComponent = docsearchComponent}
             <DocsearchComponent {...versionedDocsearch} />
           {/if}
+        {/key}
+      </div>
+    {:else if localeOptions.search !== false}
+      <div
+        class:is-home={isHome || !$sidebar}
+        class:move={!isHome && !hasError && $sidebar}
+        class="doc-search"
+      >
+        {#key `${versionContext?.versionId || ''}:${activeLang}`}
+          <LocalSearch />
         {/key}
       </div>
     {/if}
@@ -141,16 +174,21 @@
     <nav class="nav-links" aria-label="Menu">
       <div class="navbar-pc">
         <div class="desktop-nav-items">
-          {#each themeOptions.navbar as navItem}
+          {#each localeOptions.navbar as navItem}
             <NavItem {...navItem} />
           {/each}
         </div>
-        {#if manifest}<div class="desktop-version-selector">
+        {#if locales}<div class="desktop-locale-selector">
+            <LocaleSelector />
+          </div>{/if}
+        {#if resolveVersionManifest(page.url.pathname)}<div
+            class="desktop-version-selector"
+          >
             <VersionSelector />
           </div>{/if}
-        {#if themeOptions.github}
+        {#if localeOptions.github}
           <NavItem
-            to={themeOptions.github}
+            to={localeOptions.github}
             external
             icon
             builtInIcon
@@ -160,9 +198,9 @@
           </NavItem>
         {/if}
 
-        {#if themeOptions.discord}
+        {#if localeOptions.discord}
           <NavItem
-            to={themeOptions.discord}
+            to={localeOptions.discord}
             external
             icon
             builtInIcon
@@ -233,6 +271,7 @@
   }
 
   .desktop-nav-items,
+  .desktop-locale-selector,
   .desktop-version-selector {
     display: none;
   }
@@ -257,6 +296,7 @@
       margin-left: min(25vw, 288px);
     }
     .desktop-nav-items,
+    .desktop-locale-selector,
     .desktop-version-selector {
       display: flex;
     }

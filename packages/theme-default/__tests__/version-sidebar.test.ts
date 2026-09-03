@@ -69,6 +69,34 @@ describe('historical sidebar', () => {
     expect(resolveHistoricalEditLink('https://example.com/:route', '/v/v8/', 'md', withRef)).toBeNull()
   })
 
+  it('never duplicates the locale segment in localized edit links', () => {
+    const sharedTemplate = 'https://github.com/acme/docs/edit/main/packages/docs-site/src/routes/:route'
+    const zh = resolveHistoricalEditLink(sharedTemplate, '/zh/guide/install', 'md', null)
+    const bn = resolveHistoricalEditLink(sharedTemplate, '/bn/guide/introduction', 'md', null)
+    const en = resolveHistoricalEditLink(sharedTemplate, '/guide/install', 'md', null)
+    expect(zh).toBe('https://github.com/acme/docs/edit/main/packages/docs-site/src/routes/zh/guide/install/+page.md')
+    expect(bn).toBe('https://github.com/acme/docs/edit/main/packages/docs-site/src/routes/bn/guide/introduction/+page.md')
+    expect(en).toBe('https://github.com/acme/docs/edit/main/packages/docs-site/src/routes/guide/install/+page.md')
+    expect(zh).not.toContain('/zh/zh/')
+    expect(bn).not.toContain('/bn/bn/')
+    expect((zh!.match(/\/zh\//g) ?? []).length).toBe(1)
+    expect((bn!.match(/\/bn\//g) ?? []).length).toBe(1)
+  })
+
+  it('keeps locale-prefixed historical source refs pointing at the frozen ref', () => {
+    const withRef = structuredClone(manifest)
+    withRef.basePath = '/zh/v'
+    withRef.versions[0].sourceRef = 'docs-v8'
+    const link = resolveHistoricalEditLink(
+      'https://github.com/acme/docs/edit/main/src/routes/:route',
+      '/zh/v/v8/guide/install',
+      'md',
+      withRef,
+    )
+    expect(link).toBe('https://github.com/acme/docs/edit/docs-v8/src/routes/zh/v/v8/guide/install/+page.md')
+    expect(link).not.toContain('/zh/zh/')
+  })
+
   it('requires explicit historical search metadata', () => {
     expect(resolveVersionSearch('/guide/install/', manifest)).toMatchObject({ available: true, historical: false })
     expect(resolveVersionSearch('/v/v8/guide/install/', manifest)).toMatchObject({ available: false, historical: true })

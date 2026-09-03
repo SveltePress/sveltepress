@@ -1,12 +1,17 @@
 import type { PluginOption } from 'vite'
-import type { Highlighter, LlmsConfig, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
+import type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
+import { existsSync } from 'node:fs'
+import { resolve } from 'node:path'
+import process from 'node:process'
 import { enhancedImages } from '@sveltejs/enhanced-img'
 import { sveltekit } from '@sveltejs/kit/vite'
 import vitePluginInspect from 'vite-plugin-inspect'
 import mdToSvelte from './markdown/md-to-svelte.js'
+import { indexSiteWithPagefind, syncHistoricalPagefind } from './pagefind.js'
 import SveltepressVitePlugin from './plugin.js'
 import { resolveSvelteKitOptions } from './utils/resolve-svelte-kit-options.js'
 
+export * from './pagefind.js'
 export * from './theme-snapshot.js'
 
 const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = async ({
@@ -18,6 +23,8 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
   llms,
   versions,
   svelteKitOptions,
+  locales,
+  pagefind,
 } = {
   addInspect: false,
 }) => {
@@ -33,6 +40,7 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
       rehypePlugins,
       llms,
       versions,
+      locales,
     }),
     // must come before sveltekit, and after sveltepress
     enhancedImages(),
@@ -42,6 +50,33 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
     // on the newer layout — where config lives inline in `vite.config.ts` and
     // there is no `svelte.config.js` — forward their config here instead.
     sveltekit(resolveSvelteKitOptions(svelteKitOptions)),
+    ...(pagefind === false
+      ? []
+      : [{
+          name: 'sveltepress:pagefind',
+          apply: 'build',
+          enforce: 'post',
+          closeBundle: {
+            sequential: true,
+            order: 'post',
+            async handler() {
+              if (process.env.SVELTEPRESS_SKIP_PAGEFIND)
+                return
+              const opts = typeof pagefind === 'object' ? pagefind : undefined
+              const candidates = [
+                resolve(process.cwd(), 'dist'),
+                resolve(process.cwd(), 'build'),
+              ]
+              for (const candidate of candidates) {
+                if (existsSync(candidate)) {
+                  await indexSiteWithPagefind(candidate, opts)
+                  await syncHistoricalPagefind(process.cwd(), candidate, opts)
+                  break
+                }
+              }
+            },
+          },
+        }] as PluginOption[]),
   ]
 
   theme?.configureVersions?.(versions)
@@ -59,6 +94,6 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
 }
 
 export { mdToSvelte, sveltepress }
-export type { Highlighter, LlmsConfig, LoadTheme, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
+export type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
 export * as log from './utils/log.js'
 export * from './versioning/index.js'

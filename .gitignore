@@ -10,6 +10,10 @@ vite.config.ts.timestamp-*
 .sveltepress
 !packages/theme-default/.sveltepress
 dist
+# Dev-mounted historical version shell routes (created by the vite plugin on
+# `pnpm dev`, removed on server shutdown)
+**/src/routes/v/
+**/src/routes/*/v/
 # Generated llms.txt files
 **/static/llms.txt
 **/static/llms-full.txt
@@ -20,3 +24,6 @@ dist
 .history
 node-jiti
 .worktrees
+
+# pnpm content-addressable store (local cache)
+.pnpm-store

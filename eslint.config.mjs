@@ -35,6 +35,7 @@ export default antfu({
     '**/__tests__/**/*.json',
     '**/__tests__/**/*.tsx',
     '**/.sveltepress/**/*',
+    '**/pagefind/**/*',
     'packages/create/template-*/**/*',
     'docs/superpowers/**/*',
   ],

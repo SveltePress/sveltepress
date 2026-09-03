@@ -2,51 +2,61 @@
   import { browser } from '$app/environment'
   import { goto } from '$app/navigation'
   import { page } from '$app/state'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import {
-    manifest,
     resolveVersionChanges,
     resolveVersionContext,
+    resolveVersionManifest,
   } from 'virtual:sveltepress/versions'
+  import { resolveLocaleForPath, resolveLocaleOptions } from './locale'
   import { getPathFromBase } from './utils'
 
   const defaultNoBaseline =
     'This is the first version, so there is no earlier baseline to compare.'
   const defaultEmpty = 'No changes were recorded for this version.'
+  const localeManifest = $derived(resolveVersionManifest(page.url.pathname))
   const versions = $derived(
-    manifest ? [manifest.current, ...manifest.versions] : [],
+    localeManifest ? [localeManifest.current, ...localeManifest.versions] : [],
   )
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
   const selectedVersionId = $derived.by(() => {
     const requested = browser ? page.url.searchParams.get('version') : null
     const routeVersion = resolveVersionContext(page.url.pathname)?.versionId
     return versions.some(version => version.id === requested)
       ? requested!
-      : (routeVersion ?? manifest?.current.id ?? '')
+      : (routeVersion ?? localeManifest?.current.id ?? '')
   })
-  const changes = $derived(resolveVersionChanges(selectedVersionId))
+  const changes = $derived(
+    resolveVersionChanges(selectedVersionId, page.url.pathname),
+  )
   const selectedVersionLabel = $derived(versionLabel(selectedVersionId))
   const newPageCount = $derived(changes?.newPages.length ?? 0)
   const updatedPageCount = $derived(changes?.updatedPages.length ?? 0)
   const selectorLabel = $derived(
-    themeOptions.i18n?.versionChangesSelector ?? 'View changes for version',
+    localeOptions.i18n?.versionChangesSelector ?? 'View changes for version',
   )
   const newPagesLabel = $derived(
-    themeOptions.i18n?.versionChangesNewPages ?? 'New pages',
+    localeOptions.i18n?.versionChangesNewPages ?? 'New pages',
   )
   const updatedPagesLabel = $derived(
-    themeOptions.i18n?.versionChangesUpdatedPages ?? 'Updated pages',
+    localeOptions.i18n?.versionChangesUpdatedPages ?? 'Updated pages',
   )
   const noBaseline = $derived(
-    themeOptions.i18n?.versionChangesNoBaseline ?? defaultNoBaseline,
+    localeOptions.i18n?.versionChangesNoBaseline ?? defaultNoBaseline,
   )
-  const empty = $derived(themeOptions.i18n?.versionChangesEmpty ?? defaultEmpty)
+  const empty = $derived(
+    localeOptions.i18n?.versionChangesEmpty ?? defaultEmpty,
+  )
 
   function versionHref(route: string, versionId: string, sectionId?: string) {
-    if (!manifest) return route
+    const localeManifest = resolveVersionManifest(page.url.pathname)
+    if (!localeManifest) return route
+    const locale = resolveLocaleForPath(page.url.pathname)
+    const localePrefix =
+      locale && locale.prefix !== '/' ? locale.prefix.replace(/\/+$/, '') : ''
     const path =
-      versionId === manifest.current.id
-        ? route
-        : `${manifest.basePath}/${versionId}${route}`
+      versionId === localeManifest.current.id
+        ? `${localePrefix}${route}`
+        : `${localeManifest.basePath}/${versionId}${route}`
     return `${getPathFromBase(path)}${sectionId ? `#${sectionId}` : ''}`
   }
 
@@ -64,7 +74,7 @@
   }
 </script>
 
-{#if manifest}
+{#if resolveVersionManifest(page.url.pathname)}
   <div class="version-changes">
     <section class="release-summary" aria-label={selectedVersionLabel}>
       <div class="release-heading">

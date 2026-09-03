@@ -1,13 +1,13 @@
 import type { LinkItem } from 'virtual:sveltepress/theme-default'
 import { get, writable } from 'svelte/store'
-import themeOptions from 'virtual:sveltepress/theme-default'
 import { resolveVersionSidebar } from 'virtual:sveltepress/theme-default/versioning'
 import {
   resolveVersionChanges,
   resolveVersionContext,
   resolveVersionedPath,
-  manifest as versionManifest,
+  resolveVersionManifest,
 } from 'virtual:sveltepress/versions'
+import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
 
 export const MOBILE_EDGE_WIDTH = 950
 
@@ -38,7 +38,7 @@ export const sidebar = writable(true)
 export const showHeader = writable(true)
 export const showLayout = writable(true)
 
-export const resolvedSidebar = writable(Object.entries((themeOptions.sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
+export const resolvedSidebar = writable(Object.entries((resolveLocaleOptions('/').sidebar || {})).reduce<LinkItem[]>((all, [, item]) => [...all, ...item], []))
 
 function flattenPages(items: LinkItem[]): LinkItem[] {
   const result: LinkItem[] = []
@@ -75,12 +75,15 @@ export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
   resolveVersionNavigationChanges(routeId)
-  resolvedSidebar.set(resolveVersionSidebar(routeId, themeOptions.sidebar || {}, versionManifest) as LinkItem[])
+  // Sidebar keys live in logical (locale-free) route space, so compare
+  // against the locale-local path of the current route.
+  const logicalRoute = resolveLogicalRoute(routeId)
+  resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])
 }
 
 function resolveVersionNavigationChanges(routeId: string) {
   const context = resolveVersionContext(routeId)
-  const changes = resolveVersionChanges(context?.versionId)
+  const changes = resolveVersionChanges(context?.versionId, routeId)
   if (!context || !changes) {
     changedPageRoutes.set(new Set())
     changedSectionIds.set(new Set())

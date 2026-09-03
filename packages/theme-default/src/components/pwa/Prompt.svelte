@@ -1,8 +1,9 @@
 <script>
+  import { page } from '$app/state'
   import { createEventDispatcher } from 'svelte'
   import { fade } from 'svelte/transition'
-  import themeOptions from 'virtual:sveltepress/theme-default'
   import Close from '../icons/Close.svelte'
+  import { resolveLocaleOptions } from '../locale'
   import Btn from './Btn.svelte'
 
   const { message, children } = $props()
@@ -15,17 +16,18 @@
 
   const DEFAULT_TIP = 'Tip'
   const DEFAULT_CLOSE = 'Close'
+  const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))
 </script>
 
 <div class="pwa-toast" role="alert" in:fade>
-  <div class="pwa-title">{themeOptions?.i18n?.pwa?.tip || DEFAULT_TIP}</div>
+  <div class="pwa-title">{localeOptions?.i18n?.pwa?.tip || DEFAULT_TIP}</div>
   <div class="message">
     <span> {message} </span>
   </div>
   <div class="actions">
     {@render children?.()}
     <Btn onclick={handleClose} flat>
-      {themeOptions?.i18n?.pwa?.close || DEFAULT_CLOSE}
+      {localeOptions?.i18n?.pwa?.close || DEFAULT_CLOSE}
       <Close />
     </Btn>
   </div>

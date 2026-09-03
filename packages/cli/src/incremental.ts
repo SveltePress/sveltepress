@@ -25,6 +25,7 @@ import {
   buildVersionArtifacts,
   collectPageArtifactInputs,
   generateVersionShellRoutes,
+  loadVersionManifest,
   materializeVersionSourceDeltas,
   PAGE_ARTIFACT_MODULE_SCHEMA,
   planVersionBuild,
@@ -81,7 +82,8 @@ export async function planIncrementalBuild(
 ): Promise<{ previous: VersionArtifactManifest | null, plan: ReturnType<typeof planVersionBuild> | null, pages: PageArtifactInput[], fingerprints: VersionArtifactFingerprints }> {
   const config = requireIncrementalConfig(manifest)
   const storeRoot = resolveArtifactStore(io.cwd, manifest)
-  const pages = collectPageArtifactInputs(io.cwd, { basePath: manifest.basePath })
+  const ctx = localeContext(io, manifest)
+  const pages = collectPageArtifactInputs(io.cwd, { basePath: ctx.basePath, routesDir: ctx.routesDir })
   const fingerprints = resolveFingerprints(io.cwd, manifest)
   const draft = readDraftVersionArtifactManifest(storeRoot, config.siteId)
   const latestFrozen = manifest.versions[0]
@@ -141,7 +143,7 @@ export async function buildIncrementalSite(
   const compile = await resolvePageCompiler(io)
   await ensureHistoricalArtifacts(io, manifest, compile)
   const { previous, plan, pages, fingerprints } = await planIncrementalBuild(io, manifest)
-  const compileInput = (page: PageArtifactInput) => compileArtifactPage(io.cwd, page, join(io.cwd, 'src/routes'), compile)
+  const compileInput = (page: PageArtifactInput) => compileArtifactPage(io.cwd, page, localeContext(io, manifest).sourceRoutesDirectory, compile)
   const result = previous && plan
     ? await buildVersionArtifacts({ storeRoot, previous, plan, compile: compileInput, persist: false })
     : await buildInitialVersionArtifacts({
@@ -185,8 +187,61 @@ export async function composeIncrementalSite(
     current,
     historical,
   })
-  await runViteBuild(io, routesDirectory, storeRoot, config.siteId, manifest.basePath)
+  // The default-locale build also composes every locale manifest's version
+  // shells so the single merged output carries /v/, /zh/v/, and /bn/v/.
+  // A locale-scoped build (`--locale zh`) composes only the requested
+  // locale's history; sibling locales whose drafts do not exist yet (cold
+  // cache, or a CI job building locales in sequence) are skipped and are
+  // composed by their own build or the final default build.
+  const discoveredLocales = discoverLocaleManifests(io)
+  const isLocaleScopedBuild = discoveredLocales.some(locale => locale.manifest.basePath === manifest.basePath)
+  const extraMounts: { routesDirectory: string, basePath: string }[] = []
+  if (!isLocaleScopedBuild) {
+    for (const locale of discoveredLocales) {
+      if (locale.manifest.basePath === manifest.basePath)
+        continue
+      const localeStore = resolveArtifactStore(io.cwd, locale.manifest)
+      const localeCurrent = readDraftVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId)
+      if (!localeCurrent || localeCurrent.versionId !== locale.manifest.current.id) {
+        throw new Error(`No built artifact draft exists for locale /${locale.slug}/ current ${locale.manifest.current.id}. Run \`sveltepress versions build --locale ${locale.slug}\` first.`)
+      }
+      const localeHistorical = locale.manifest.versions.map((version) => {
+        const artifact = readVersionArtifactManifest(localeStore, locale.manifest.artifacts!.siteId, version.id)
+        if (!artifact)
+          throw new Error(`Missing published artifact manifest for /${locale.slug}/ ${version.id}.`)
+        return artifact
+      })
+      const localeRoutesDirectory = join(io.cwd, `.sveltepress/version-shell-routes-${locale.slug}`)
+      await generateVersionShellRoutes({
+        siteRoot: io.cwd,
+        storeRoot: localeStore,
+        outputDirectory: localeRoutesDirectory,
+        basePath: locale.manifest.basePath,
+        pageLayout,
+        current: localeCurrent,
+        historical: localeHistorical,
+      })
+      extraMounts.push({ routesDirectory: localeRoutesDirectory, basePath: locale.manifest.basePath })
+    }
+  }
+  await runViteBuild(io, routesDirectory, storeRoot, config.siteId, manifest.basePath, extraMounts)
   io.stdout(`Composed ${report.currentRoutes} current and ${report.historicalRoutes} historical routes from reusable page artifacts.`)
+}
+
+function discoverLocaleManifests(io: IncrementalCliIO): Array<{ slug: string, manifest: VersionManifest }> {
+  const results: Array<{ slug: string, manifest: VersionManifest }> = []
+  for (const entry of readdirSync(io.cwd, { withFileTypes: true })) {
+    if (!entry.isFile() || !/^sveltepress\.versions\.[a-z0-9-]+\.json$/.test(entry.name))
+      continue
+    const slug = entry.name.replace(/^sveltepress\.versions\./, '').replace(/\.json$/, '')
+    const localeManifest = loadVersionManifest(io.cwd, entry.name, {
+      localeDir: slug,
+      excludeDirs: [],
+    })
+    if (localeManifest?.artifacts)
+      results.push({ slug, manifest: localeManifest })
+  }
+  return results
 }
 
 export async function createIncrementalVersion(input: {
@@ -228,7 +283,7 @@ export async function createIncrementalVersion(input: {
     writeVersionSourceDelta({
       siteRoot: input.io.cwd,
       sourceRoot,
-      sourceRoutesDirectory: join(input.io.cwd, 'src/routes'),
+      sourceRoutesDirectory: localeContext(input.io, input.manifest).sourceRoutesDirectory,
       manifest: published,
       previous,
       metadata: frozen,
@@ -369,11 +424,12 @@ export async function validateIncrementalArtifacts(io: IncrementalCliIO, manifes
         throw new Error(`[sveltepress:versions] Source delta ${version.id} belongs to site ${delta.siteId}, not ${config.siteId}.`)
       if (delta.metadataHash !== versionMetadataHash(version))
         throw new Error(`[sveltepress:versions] Source delta ${version.id} frozen metadata drifted from its immutable hash.`)
-      materializeVersionSourceDeltas({ sourceRoot, versionIds, outputDirectory: reconstructionRoot })
-      const inputs = collectPageArtifactInputs(reconstructionRoot, { basePath: manifest.basePath })
+      const ctx = localeContext(io, manifest)
+      materializeVersionSourceDeltas({ sourceRoot, versionIds, outputDirectory: reconstructionRoot, localeDir: ctx.localeDir || undefined })
+      const inputs = collectPageArtifactInputs(reconstructionRoot, { basePath: ctx.basePath, routesDir: ctx.routesDir })
       if (versionSourceHash(inputs) !== version.sourceHash)
         throw new Error(`[sveltepress:versions] Source delta ${version.id} drifted from its frozen source hash.`)
-      validateSourceDeltaInventory(delta, previousInputs, inputs)
+      validateSourceDeltaInventory(delta, previousInputs, inputs, ctx.localeDir || undefined)
 
       const artifact = readVersionArtifactManifest(storeRoot, config.siteId, version.id)
       if (artifact) {
@@ -444,8 +500,27 @@ function requireIncrementalConfig(manifest: VersionManifest) {
   return manifest.artifacts
 }
 
+function localeContext(io: IncrementalCliIO, manifest: VersionManifest): { localeDir: string, routesDir: string, basePath: string, sourceRoutesDirectory: string } {
+  const segments = manifest.basePath.split('/').filter(Boolean)
+  const localeDir = segments.length > 1 ? segments[0] : ''
+  if (!localeDir)
+    return { localeDir: '', routesDir: 'src/routes', basePath: manifest.basePath, sourceRoutesDirectory: join(io.cwd, 'src/routes') }
+  return {
+    localeDir,
+    routesDir: `src/routes/${localeDir}`,
+    basePath: `/${segments.slice(1).join('/')}`,
+    sourceRoutesDirectory: join(io.cwd, 'src/routes', localeDir),
+  }
+}
+
 function assertDraftMatchesSource(siteRoot: string, manifest: VersionManifest, draft: VersionArtifactManifest) {
-  const pages = collectPageArtifactInputs(siteRoot, { basePath: manifest.basePath })
+  const segments = manifest.basePath.split('/').filter(Boolean)
+  const localeDir = segments.length > 1 ? segments[0] : ''
+  const ctx = {
+    basePath: localeDir ? `/${segments.slice(1).join('/')}` : manifest.basePath,
+    routesDir: localeDir ? `src/routes/${localeDir}` : 'src/routes',
+  }
+  const pages = collectPageArtifactInputs(siteRoot, { basePath: ctx.basePath, routesDir: ctx.routesDir })
   const current = Object.fromEntries(pages.map(page => [page.route, page.inputHash]))
   const built = Object.fromEntries(Object.values(draft.pages).map(page => [page.route, page.inputHash]))
   if (JSON.stringify(current) !== JSON.stringify(built))
@@ -465,14 +540,21 @@ function validateSourceDeltaInventory(
   delta: ReturnType<typeof readVersionSourceDelta>,
   previous: PageArtifactInput[],
   current: PageArtifactInput[],
+  localeDir?: string,
 ) {
+  const canonicalize = (file: string) => {
+    if (!localeDir)
+      return file
+    const prefix = `src/routes/${localeDir}/`
+    return file.startsWith(prefix) ? `src/routes/${file.slice(prefix.length)}` : file
+  }
   const previousByRoute = new Map(previous.map(page => [page.route, page]))
   const currentRoutes = new Set(current.map(page => page.route))
   const expectedPages = current
     .filter(page => previousByRoute.get(page.route)?.inputHash !== page.inputHash)
     .map(page => ({
       route: page.route,
-      files: [...new Set([...page.files, ...page.dependencies])].sort(),
+      files: [...new Set([...page.files, ...page.dependencies].map(canonicalize))].sort(),
     }))
     .sort((left, right) => left.route.localeCompare(right.route))
   const expectedRemoved = previous
@@ -537,15 +619,16 @@ async function ensureHistoricalArtifacts(
   try {
     for (const version of chronological) {
       ids.push(version.id)
-      materializeVersionSourceDeltas({ sourceRoot, versionIds: ids, outputDirectory: reconstructionRoot })
-      const routesDirectory = join(reconstructionRoot, 'src/routes')
-      const pages = collectPageArtifactInputs(reconstructionRoot, { basePath: manifest.basePath })
+      const ctx = localeContext(io, manifest)
+      materializeVersionSourceDeltas({ sourceRoot, versionIds: ids, outputDirectory: reconstructionRoot, localeDir: ctx.localeDir || undefined })
+      const routesDirectory = join(reconstructionRoot, ctx.routesDir)
+      const pages = collectPageArtifactInputs(reconstructionRoot, { basePath: ctx.basePath, routesDir: ctx.routesDir })
       const delta = readVersionSourceDelta(sourceRoot, version.id)
       if (versionSourceHash(pages) !== version.sourceHash)
         throw new Error(`[sveltepress:versions] Source delta ${version.id} drifted from its frozen source hash.`)
       if (delta.metadataHash !== versionMetadataHash(version))
         throw new Error(`[sveltepress:versions] Source delta ${version.id} frozen metadata drifted from its immutable hash.`)
-      validateSourceDeltaInventory(delta, previousInputs, pages)
+      validateSourceDeltaInventory(delta, previousInputs, pages, ctx.localeDir || undefined)
 
       const existing = readCachedArtifactManifest(storeRoot, config.siteId, version.id)
       if (existing && await cachedArtifactIsReusable(storeRoot, existing, previous, version, fingerprints)) {
@@ -638,19 +721,33 @@ async function resolveSiteViteConfig(siteRoot: string): Promise<any> {
   return resolveConfig({ root: siteRoot }, 'build')
 }
 
-async function runViteBuild(io: IncrementalCliIO, routesDirectory: string, storeRoot: string, siteId: string, basePath: string) {
-  const baseSegment = basePath.split('/').filter(Boolean)[0]
-  const generatedHistoryRoutes = join(routesDirectory, baseSegment)
-  const mountedHistoryRoutes = join(io.cwd, 'src/routes', baseSegment)
-  const generatedMarker = join(mountedHistoryRoutes, '.sveltepress-generated-shells.json')
-  if (existsSync(generatedMarker))
-    rmSync(mountedHistoryRoutes, { recursive: true, force: true })
-  if (existsSync(mountedHistoryRoutes))
-    throw new Error(`[sveltepress:versions] Cannot compose incremental routes because ${mountedHistoryRoutes} already exists.`)
-  if (!existsSync(generatedHistoryRoutes))
-    throw new Error('[sveltepress:versions] Generated historical route shells are missing.')
-  renameSync(generatedHistoryRoutes, mountedHistoryRoutes)
-  writeFileSync(generatedMarker, `${JSON.stringify({ siteId, generated: true })}\n`, { flag: 'wx' })
+async function runViteBuild(
+  io: IncrementalCliIO,
+  routesDirectory: string,
+  storeRoot: string,
+  siteId: string,
+  basePath: string,
+  extraMounts: { routesDirectory: string, basePath: string }[] = [],
+) {
+  // The version base may be locale-composed (e.g. `/zh/v`): mount every
+  // segment under `src/routes` so historical routes land inside the locale.
+  const mounts = [{ routesDirectory, basePath }, ...extraMounts]
+  const mountedHistoryRoutes: string[] = []
+  for (const mount of mounts) {
+    const baseSegments = mount.basePath.split('/').filter(Boolean)
+    const generatedHistoryRoutes = join(mount.routesDirectory, ...baseSegments)
+    const mountedHistoryRoute = join(io.cwd, 'src/routes', ...baseSegments)
+    const generatedMarker = join(mountedHistoryRoute, '.sveltepress-generated-shells.json')
+    if (existsSync(generatedMarker))
+      rmSync(mountedHistoryRoute, { recursive: true, force: true })
+    if (existsSync(mountedHistoryRoute))
+      throw new Error(`[sveltepress:versions] Cannot compose incremental routes because ${mountedHistoryRoute} already exists.`)
+    if (!existsSync(generatedHistoryRoutes))
+      throw new Error('[sveltepress:versions] Generated historical route shells are missing.')
+    renameSync(generatedHistoryRoutes, mountedHistoryRoute)
+    writeFileSync(generatedMarker, `${JSON.stringify({ siteId, generated: true })}\n`, { flag: 'wx' })
+    mountedHistoryRoutes.push(mountedHistoryRoute)
+  }
   const previousStore = process.env.SVELTEPRESS_ARTIFACT_STORE
   const previousSiteId = process.env.SVELTEPRESS_ARTIFACT_SITE_ID
   process.env.SVELTEPRESS_ARTIFACT_STORE = storeRoot
@@ -662,7 +759,8 @@ async function runViteBuild(io: IncrementalCliIO, routesDirectory: string, store
     await build({ root: io.cwd })
   }
   finally {
-    rmSync(mountedHistoryRoutes, { recursive: true, force: true })
+    for (const mountedHistoryRoute of mountedHistoryRoutes)
+      rmSync(mountedHistoryRoute, { recursive: true, force: true })
     restoreEnvironment('SVELTEPRESS_ARTIFACT_STORE', previousStore)
     restoreEnvironment('SVELTEPRESS_ARTIFACT_SITE_ID', previousSiteId)
   }

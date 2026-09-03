@@ -2,7 +2,7 @@ import type { VersionArtifactManifest } from './artifacts.js'
 import type { DocumentationVersion } from './index.js'
 import { createHash, randomUUID } from 'node:crypto'
 import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
-import { dirname, join, relative, resolve, sep } from 'node:path'
+import { basename, dirname, join, relative, resolve, sep } from 'node:path'
 
 export const VERSION_SOURCE_DELTA_SCHEMA = 2
 
@@ -126,6 +126,8 @@ export function materializeVersionSourceDeltas(input: {
   sourceRoot: string
   versionIds: string[]
   outputDirectory: string
+  /** Locale routes dir (e.g. `'zh'`): remap delta `src/routes/**` paths under the locale. */
+  localeDir?: string
 }): void {
   const output = resolve(input.outputDirectory)
   rmSync(output, { recursive: true, force: true })
@@ -136,8 +138,8 @@ export function materializeVersionSourceDeltas(input: {
     if (delta.parentVersionId !== previous)
       throw new Error(`[sveltepress:versions] Source delta ${versionId} expects parent ${delta.parentVersionId ?? 'none'}, not ${previous ?? 'none'}.`)
     for (const route of delta.removedRoutes)
-      removeRoutePage(output, route)
-    copyTree(join(resolve(input.sourceRoot), safeSegment(versionId), 'files'), output)
+      removeRoutePage(output, route, input.localeDir)
+    copyTree(join(resolve(input.sourceRoot), safeSegment(versionId), 'files'), output, input.localeDir)
     previous = versionId
   }
 }
@@ -172,8 +174,9 @@ function canonicalSourcePath(siteRoot: string, sourceRoutesDirectory: string, fi
   return siteRelative
 }
 
-function removeRoutePage(root: string, route: string) {
-  const directory = join(root, 'src/routes', ...route.split('/').filter(Boolean))
+function removeRoutePage(root: string, route: string, localeDir?: string) {
+  const localeSegments = localeDir ? [localeDir] : []
+  const directory = join(root, 'src/routes', ...localeSegments, ...route.split('/').filter(Boolean))
   if (!existsSync(directory))
     return
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
@@ -182,15 +185,19 @@ function removeRoutePage(root: string, route: string) {
   }
 }
 
-function copyTree(source: string, destination: string) {
+function copyTree(source: string, destination: string, localeDir?: string) {
   if (!existsSync(source))
     return
   for (const entry of readdirSync(source, { withFileTypes: true })) {
     const from = join(source, entry.name)
-    const to = join(destination, entry.name)
+    let to = join(destination, entry.name)
+    // Delta sources are stored canonically under `src/routes/**`; a locale
+    // delta materializes into `src/routes/<locale>/**` in the merged site.
+    if (localeDir && entry.isDirectory() && entry.name === 'routes' && basename(source) === 'src')
+      to = join(destination, 'routes', localeDir)
     if (entry.isDirectory()) {
       mkdirSync(to, { recursive: true })
-      copyTree(from, to)
+      copyTree(from, to, localeDir)
     }
     else if (entry.isFile()) {
       mkdirSync(dirname(to), { recursive: true })

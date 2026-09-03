@@ -36,6 +36,18 @@
       "types": "./dist/versioning/runtime.d.ts",
       "import": "./dist/versioning/runtime.mjs"
     },
+    "./locale": {
+      "types": "./dist/locale.d.ts",
+      "import": "./dist/locale.mjs"
+    },
+    "./hooks": {
+      "types": "./dist/hooks.d.ts",
+      "import": "./dist/hooks.mjs"
+    },
+    "./pagefind": {
+      "types": "./dist/pagefind.d.ts",
+      "import": "./dist/pagefind.mjs"
+    },
     "./types": {
       "types": "./types.d.ts"
     }
@@ -62,6 +74,7 @@
     "cross-spawn": "catalog:",
     "fs-extra": "catalog:",
     "lru-cache": "catalog:",
+    "pagefind": "catalog:",
     "picocolors": "catalog:",
     "rehype-stringify": "catalog:",
     "remark-directive": "catalog:",

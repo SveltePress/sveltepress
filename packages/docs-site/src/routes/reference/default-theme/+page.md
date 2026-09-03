@@ -134,8 +134,8 @@ defaultTheme({
 })
 ```
 
-:::warning[Known production build bug]
-This public API and M Search integration are supported, but the current default-theme runtime does not bundle a source `.svelte` path into static production output. Passing a component directly is also lost during theme-option serialization. This is a production bundling bug, not an unsupported feature. See the [search guide](/guide/default-theme/search/) for the wrapper setup and deployment caveat.
+:::note[Production builds]
+This public API and the M Search integration are supported. A source `.svelte` path configured through `search` is bundled into static production builds — the theme resolves it at build time and loads it as a lazy chunk. Passing a component object directly is not supported, because theme options are serialized to JSON for the client. See the [search guide](/guide/default-theme/search/) for the wrapper setup.
 :::
 
 ### `docsearch`

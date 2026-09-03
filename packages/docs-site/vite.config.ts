@@ -1,6 +1,7 @@
 import { defaultTheme } from '@sveltepress/theme-default'
 import { sveltepress } from '@sveltepress/vite'
 import { defineConfig } from 'vite'
+import { locales } from './config/locales.ts'
 import navbar from './config/navbar.ts'
 import pwa from './config/pwa.ts'
 import sidebar from './config/sidebar.ts'
@@ -16,11 +17,6 @@ const config = defineConfig({
         logo: '/sveltepress.svg',
         discord: 'https://discord.gg/MeYRrGGxbE',
         ga: 'G-J2W78BKCHB',
-        docsearch: {
-          apiKey: 'fbed412316ec83ff28e9a916161bf715',
-          appId: '4D30VFIAMG',
-          indexName: 'sveltepress',
-        },
         pwa,
         themeColor: {
           light: '#f2f2f2',
@@ -39,12 +35,14 @@ const config = defineConfig({
           'tabler': ['icons'],
           'mdi': ['theme-light-dark'],
           'bi': ['list-nested'],
+          'openmoji': ['red-apple'],
         },
         highlighter: {
           twoslash: true,
           languages: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss', 'json', 'yaml'],
         },
       }),
+      locales,
       siteConfig: {
         title: 'Sveltepress',
         description: 'A content centered site build tool',
