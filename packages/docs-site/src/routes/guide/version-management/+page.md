@@ -192,6 +192,20 @@ pnpm exec sveltepress versions validate
 Never run `versions create` over documentation that already contains the next version's edits. Those edits would be frozen into the outgoing version. If work started early, restore the known clean outgoing state, build and advance it, then reapply the edits to the new current version.
 :::
 
+:::since[CLI --locale for per-locale manifests]{version="2026-09-03" id="versions-cli-locale" summary="Pass --locale to target sveltepress.versions.<locale>.json for zh, bn, and other locales."}
+Multi-locale sites keep one versions manifest per locale (`sveltepress.versions.json`, `sveltepress.versions.zh.json`, `sveltepress.versions.bn.json`, …). Pass `--locale <id>` to `init`, `build`, `create`, `validate`, and other versions subcommands so they read and write that locale's manifest and deltas (for example `version-deltas-zh/`). Default locale commands omit `--locale`.
+
+```sh
+sveltepress versions build --locale zh
+sveltepress versions create 8.2 --label "8.2" --locale zh
+sveltepress versions validate --locale zh
+```
+
+See [Internationalization](/guide/i18n/) for how locales and version bases compose (`/zh/v`, `/bn/v`).
+
+Each locale freeze is independent: run `build` then `create` per locale (default, then `--locale zh`, `--locale bn`, …). A default-locale create must only capture unprefixed English routes — never `src/routes/zh/` or `src/routes/bn/`. Locale creates write logical routes into `version-deltas-<locale>/` (no double `/zh/v/.../zh/...` prefixes). If a freeze accidentally included sibling locale trees, recreate it with the locale-scoped CLI rather than hand-editing deltas.
+:::
+
 `create` publishes the current draft manifest, writes only changed source pages and tombstones to `version-deltas/8.1/`, freezes route/sidebar/change metadata, moves `8.1` into history, and makes `8.2` current. It refuses stale drafts, duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.
 
 Published versions also receive a generated `sourceHash`. Each delta binds the frozen route, sidebar, and change catalog with a metadata hash. `versions validate` reconstructs every committed delta and checks both hashes, so source or metadata drift is detected even when the artifact cache is empty. Do not edit the hashes or delta files by hand.
@@ -243,7 +257,11 @@ Browser code that imports these helpers directly from the package should use `@s
 
 ## Search, PWA, and generated files
 
-Historical search is disabled unless that version has an explicit `search` object. The Default Theme passes the selected version and search metadata to custom search components, and applies configured DocSearch facet filters. This prevents current results from being presented as historical documentation.
+:::since[Historical Local Search vs DocSearch]{version="2026-09-03" id="version-historical-pagefind-search" summary="Pagefind historical indexes freeze on version release; DocSearch still needs search metadata."}
+Built-in **Local Search** (Pagefind) keeps working on historical versions: production builds freeze each version's Pagefind assets via `syncHistoricalPagefind`, and the theme loads `/v/{id}/pagefind/` (or the locale-prefixed equivalent) while you browse that snapshot. You do **not** need a `search` object on the version for Local Search.
+
+**DocSearch** and custom `search` components still require an explicit `search` object on that historical version (for example `indexName` / `facetFilters`). Without it, the navbar shows that search is unavailable for the documentation version, so current remote results are not mistaken for historical docs. The Default Theme passes the selected version and search metadata to custom search components and merges configured DocSearch facet filters.
+:::
 
 Version-aware builds also:
 

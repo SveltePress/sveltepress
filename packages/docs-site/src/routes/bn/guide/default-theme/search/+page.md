@@ -182,7 +182,11 @@ Manifest-এর প্রতিটি version-এ `search` metadata থাকত
 }
 ```
 
-Crawler-এর facet ট্যাগগুলো এই metadata-এর সঙ্গে সামঞ্জস্য রাখুন। `search` কনফিগার না থাকা historical version-এ দেখায় "Search is not available for this documentation version." — DocSearch, custom search এবং বিল্ট-ইন লোকাল সার্চ—সব ক্ষেত্রেই একই।
+Crawler-এর facet ট্যাগগুলো এই metadata-এর সঙ্গে সামঞ্জস্য রাখুন।
+
+:::since[Historical Local Search vs DocSearch]{version="2026-09-03" id="search-historical-pagefind-vs-docsearch" summary="Pagefind historical indexes stay available; DocSearch/custom search still need version search metadata."}
+`search` object না থাকলে "Search is not available…" কেবল **DocSearch** ও custom `search`-এর জন্য দেখায়। Built-in **Local Search** ঐ version-এর frozen Pagefind index (`syncHistoricalPagefind`) লোড করে এবং `search` metadata চায় না।
+:::
 
 ### Crawling এবং result URL
 

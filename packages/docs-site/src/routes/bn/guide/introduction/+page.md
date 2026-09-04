@@ -56,6 +56,10 @@ Sveltepress এর কনফিগ `@sveltepress/vite` ভিট প্লাগ
 
 আরো বিস্তারিত জানার জন্য [ভিট প্লাগিন অপশন](/reference/vite-plugin/) পড়ুন।
 
+:::since[Internationalization guide]{version="2026-09-03" id="intro-link-i18n" summary="Link to the new multi-locale guide."}
+মাল্টি-ল্যাঙ্গুয়েজ সাইট? দেখুন [আন্তর্জাতিকীকরণ](/guide/i18n/)।
+:::
+
 ## ডিপ্লয়মেন্ট
 প্রথমেই [Adapters - SvelteKit](https://kit.svelte.dev/docs/adapters) পড়া জরুরী।
 যদি আপনি `npm/yarn/pnpm create @sveltepress` ব্যবহার করে থাকেন তাহলে [Adapter Static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) ডিফল্ট হিসেবে ব্যবহৃত হবে।

@@ -17,6 +17,10 @@ export default {
           to: '/guide/version-management/',
         },
         {
+          title: 'Internationalization',
+          to: '/guide/i18n/',
+        },
+        {
           title: 'Themes',
           to: '/guide/themes/',
         },

@@ -17,6 +17,10 @@ export default {
           to: '/guide/version-management/',
         },
         {
+          title: 'আন্তর্জাতিকীকরণ',
+          to: '/guide/i18n/',
+        },
+        {
           title: 'থিম',
           to: '/guide/themes/',
         },

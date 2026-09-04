@@ -17,6 +17,10 @@ export default {
           to: '/guide/version-management/',
         },
         {
+          title: '国际化',
+          to: '/guide/i18n/',
+        },
+        {
           title: '主题',
           to: '/guide/themes/',
         },

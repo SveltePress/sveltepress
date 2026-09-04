@@ -182,7 +182,11 @@ A version in the manifest may carry `search` metadata. While a reader is on that
 }
 ```
 
-Keep the crawler's facet tags in sync with this metadata. Historical versions without `search` show "Search is not available for this documentation version." — for DocSearch, custom search, and the built-in Local Search alike.
+Keep the crawler's facet tags in sync with this metadata.
+
+:::since[Historical Local Search vs DocSearch]{version="2026-09-03" id="search-historical-pagefind-vs-docsearch" summary="Pagefind historical indexes stay available; DocSearch/custom search still need version search metadata."}
+Historical versions without a `search` object show "Search is not available for this documentation version." for **DocSearch** and custom `search` components only. Built-in **Local Search** still loads the frozen Pagefind index under that version's `/pagefind/` path (via `syncHistoricalPagefind` on release) and does not require `search` metadata.
+:::
 
 ### Crawling and result URLs
 

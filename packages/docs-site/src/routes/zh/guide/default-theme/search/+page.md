@@ -182,7 +182,11 @@ manifest 中的每个版本都可以携带 `search` 元数据。当读者停留�
 }
 ```
 
-请让爬虫侧的 facet 标记与此元数据保持一致。没有配置 `search` 的历史版本会显示「此文档版本不提供搜索。」——DocSearch、自定义搜索与内置本地搜索一致。
+请让爬虫侧的 facet 标记与此元数据保持一致。
+
+:::since[历史本地搜索与 DocSearch]{version="2026-09-03" id="search-historical-pagefind-vs-docsearch" summary="Pagefind 历史索引仍然可用；DocSearch/自定义搜索仍需要版本 search 元数据。"}
+没有配置 `search` 对象的历史版本，只会让 **DocSearch** 与自定义 `search` 组件显示「此文档版本不提供搜索。」内置**本地搜索**仍会加载该版本下冻结的 Pagefind 索引（发版时由 `syncHistoricalPagefind` 写入），**不需要** `search` 元数据。
+:::
 
 ### 抓取与结果 URL
 

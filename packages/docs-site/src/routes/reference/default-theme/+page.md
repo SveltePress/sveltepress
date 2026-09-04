@@ -122,6 +122,12 @@ Something like `G-XXXXXXX`.
 
 Would add gtag script in site head if provided.
 
+:::since[Language switcher and default Local Search]{version="2026-09-03" id="theme-locale-switcher-localsearch" summary="Locales enable the navbar language switcher; Local Search remains the default when docsearch/search are unset."}
+When `sveltepress({ locales })` is configured, the Default Theme shows a language switcher in the navbar (customize copy with `i18n.localeSwitcher` / `i18n.localePageUnavailable`). See [Internationalization](/guide/i18n/).
+
+If neither `docsearch` nor a custom `search` component is set, the theme uses built-in **Local Search** (Pagefind). Set `search: false` to hide search entirely. Details: [Search](/guide/default-theme/search/).
+:::
+
 ### `search`
 
 The supported custom-search hook, with type `Component | string`. Use it to integrate a Svelte search component such as `@sveltepress/meilisearch`. A string identifies the wrapper component's source path:

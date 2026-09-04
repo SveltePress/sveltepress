@@ -53,6 +53,10 @@ Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态
 
 配置项传递给 @sveltepress/vite 插件，你可以阅读[Vite 插件选项 - 参考](/reference/vite-plugin/) 来获得更多信息
 
+:::since[国际化指南]{version="2026-09-03" id="intro-link-i18n" summary="链向新的多语言指南。"}
+需要多语言站点？请阅读[国际化](/guide/i18n/)。
+:::
+
 ## 部署
 
 推荐先阅读 [适配器 - SvelteKit](https://kit.svelte.dev/docs/adapters) 章节
