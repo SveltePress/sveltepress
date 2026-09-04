@@ -29,8 +29,8 @@ jobs:
         with:
           path: |
             packages/docs-site/.sveltepress/version-artifacts
-            packages/docs-site-zh/.sveltepress/version-artifacts
-            packages/docs-site-bn/.sveltepress/version-artifacts
+            packages/docs-site/.sveltepress/version-artifacts-zh
+            packages/docs-site/.sveltepress/version-artifacts-bn
           key: sveltepress-page-artifacts-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
             sveltepress-page-artifacts-${{ runner.os }}-
