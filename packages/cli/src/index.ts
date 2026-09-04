@@ -406,14 +406,33 @@ function requireManifest(siteRoot: string, locale?: string): VersionManifest {
   return manifest
 }
 
+/**
+ * Drop git variables inherited from a parent `git commit` / hook. Otherwise
+ * `git add` in a nested worktree writes into the caller's index, which shows
+ * up as `invalid object ... for 'src/routes/guide/+page.md'` when the parent
+ * commit later builds its tree.
+ */
+export function isolatedGitEnv(): NodeJS.ProcessEnv {
+  const env = { ...process.env }
+  delete env.GIT_DIR
+  delete env.GIT_WORK_TREE
+  delete env.GIT_INDEX_FILE
+  delete env.GIT_OBJECT_DIRECTORY
+  delete env.GIT_ALTERNATE_OBJECT_DIRECTORIES
+  delete env.GIT_PREFIX
+  delete env.GIT_COMMON_DIR
+  return env
+}
+
 function assertCleanGit(cwd: string) {
+  const env = isolatedGitEnv()
   try {
-    execFileSync('git', ['rev-parse', '--is-inside-work-tree'], { cwd, stdio: 'ignore' })
+    execFileSync('git', ['rev-parse', '--is-inside-work-tree'], { cwd, env, stdio: 'ignore' })
   }
   catch {
     return
   }
-  const status = execFileSync('git', ['status', '--porcelain'], { cwd, encoding: 'utf8' }).trim()
+  const status = execFileSync('git', ['status', '--porcelain'], { cwd, env, encoding: 'utf8' }).trim()
   if (status)
     throw new Error(`Git worktree is dirty. Commit changes or rerun with --allow-dirty.\n${status}`)
 }

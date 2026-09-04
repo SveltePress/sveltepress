@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { dirname, join, relative, sep } from 'node:path'
 import { PAGE_ARTIFACT_MODULE_SCHEMA, readVersionArtifactManifest } from '@sveltepress/vite/versioning'
 import { describe, expect, it } from 'vitest'
-import { runCli } from '../src/index'
+import { isolatedGitEnv, runCli } from '../src/index'
 
 function site() {
   const root = mkdtempSync(join(tmpdir(), 'sveltepress-cli-'))
@@ -364,12 +364,32 @@ describe('sveltepress versions CLI', () => {
 
   it('rejects a dirty git worktree unless explicitly allowed', async () => {
     const root = site()
-    execFileSync('git', ['init', '-q'], { cwd: root })
-    execFileSync('git', ['add', '.'], { cwd: root })
-    execFileSync('git', ['-c', 'user.name=Test', '-c', 'user.email=test@example.com', 'commit', '-qm', 'initial'], { cwd: root })
+    const env = isolatedGitEnv()
+    execFileSync('git', ['init', '-q'], { cwd: root, env })
+    execFileSync('git', ['add', '.'], { cwd: root, env })
+    execFileSync('git', ['-c', 'user.name=Test', '-c', 'user.email=test@example.com', 'commit', '-qm', 'initial'], { cwd: root, env })
     await invoke(root, ['versions', 'init', '--current', 'v8'])
     expect((await invoke(root, ['versions', 'create', 'v9'])).stderr).toMatch(/dirty/)
     expect(await invoke(root, ['versions', 'create', 'v9', '--allow-dirty'])).toMatchObject({ code: 0 })
+  })
+
+  it('does not write nested git adds into an inherited GIT_INDEX_FILE', () => {
+    const root = site()
+    const inheritedIndex = join(root, 'inherited.index')
+    writeFileSync(inheritedIndex, '')
+    const env = isolatedGitEnv()
+    process.env.GIT_INDEX_FILE = inheritedIndex
+    try {
+      execFileSync('git', ['init', '-q'], { cwd: root, env })
+      execFileSync('git', ['add', '.'], { cwd: root, env })
+      execFileSync('git', ['-c', 'user.name=Test', '-c', 'user.email=test@example.com', 'commit', '-qm', 'initial'], { cwd: root, env })
+      expect(readFileSync(inheritedIndex, 'utf8')).toBe('')
+      const staged = execFileSync('git', ['ls-files'], { cwd: root, env, encoding: 'utf8' })
+      expect(staged).toContain('src/routes/guide/+page.md')
+    }
+    finally {
+      delete process.env.GIT_INDEX_FILE
+    }
   })
 
   it('enforces include, exclude, and shared dependency boundaries', async () => {
