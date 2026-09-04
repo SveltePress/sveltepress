@@ -125,6 +125,14 @@ describe('locale-aware links', () => {
     const view = render(Link, { props: { to: '/guide/install/', label: 'Install' } })
     expect(view.getByRole('link', { name: 'Install' }).getAttribute('href')).toBe('/guide/install/')
   })
+
+  it('keeps already versioned localized sidebar links on historical pages', () => {
+    setPage('/zh/v/2026-08-27/guide/')
+    const view = render(Link, { props: { to: '/zh/v/2026-08-27/guide/install/', label: 'Install' } })
+    expect(view.getByRole('link', { name: 'Install' }).getAttribute('href')).toBe(
+      '/zh/v/2026-08-27/guide/install/',
+    )
+  })
 })
 
 describe('locale-aware home actions', () => {
@@ -224,6 +232,34 @@ describe('locale-aware home feature cards', () => {
     finally {
       open.mockRestore()
     }
+  })
+
+  it('supports Enter key navigation on clickable feature cards', async () => {
+    setPage('/zh/')
+    const view = render(Feature, {
+      props: {
+        i: 0,
+        title: 'i18n',
+        description: 'Multi-language docs',
+        link: '/guide/i18n/',
+      },
+    })
+    const card = view.getByRole('link')
+    await fireEvent.keyDown(card, { key: 'Enter' })
+    expect(gotoCalls).toEqual(['/zh/guide/i18n/'])
+  })
+
+  it('renders non-clickable cards without link role when link is omitted', () => {
+    const view = render(Feature, {
+      props: {
+        i: 0,
+        title: 'Static Feature',
+        description: 'Informational only',
+      },
+    })
+    expect(view.queryByRole('link')).toBeNull()
+    expect(view.container.querySelector('.feature-item')).not.toBeNull()
+    expect(view.container.querySelector('.feature-item')?.classList.contains('clickable')).toBe(false)
   })
 })
 

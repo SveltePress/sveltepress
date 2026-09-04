@@ -93,6 +93,12 @@ describe('locale-aware version runtime', () => {
     expect(runtime.resolveVersionedPath('/bn/guide/', context)).toBe('/bn/guide/')
   })
 
+  it('keeps already composed locale-version paths unchanged', () => {
+    const context = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
+    expect(runtime.resolveVersionedPath('/zh/v/2026-08-27/guide/', context)).toBe('/zh/v/2026-08-27/guide/')
+    expect(runtime.resolveVersionedPath('/zh/v/2026-08-27/guide/install/', context)).toBe('/zh/v/2026-08-27/guide/install/')
+  })
+
   it('leaves localized current-version links unchanged', () => {
     const context = runtime.resolveVersionContext('/zh/guide/')!
     expect(runtime.resolveVersionedPath('/zh/guide/install/', context)).toBe('/zh/guide/install/')

@@ -62,7 +62,10 @@
   {#if !collapsed}
     <div class="links" transition:slide>
       {#each items as item}
-        {@const active = isLinkActive(item.to, logicalRouteId)}
+        {@const active = isLinkActive(
+          resolveLogicalRoute(item.to || ''),
+          logicalRouteId,
+        )}
         {@const changed =
           item.to && $changedPageRoutes.has(normalizeNavigationRoute(item.to))}
         {#if Array.isArray(item.items) && item.items.length}

@@ -136,6 +136,8 @@ export function createLocaleVersionRuntime(
       if (!context?.historical)
         return resolveVersionedPath(to, context, manifest)
       const { pathname, suffix } = splitPathSuffix(to)
+      if (manifest && (pathname === manifest.basePath || pathname.startsWith(`${manifest.basePath}/`)))
+        return to
       const prefix = manifest ? resolvePrefix(`${manifest.basePath}/`) : null
       const logicalTo = prefix && prefix !== '/' && matchesLocalePrefix(pathname, prefix)
         ? `${stripLocalePrefix(pathname, prefix)}${suffix}`
