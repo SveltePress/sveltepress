@@ -100,9 +100,13 @@ function homeFeatureCards(path) {
     if (!card)
       continue
 
-    const field = line.match(/^ {4}(description|link): (.+)$/)
+    const field = line.match(/^ {4}(description|link|tag): (.+)$/)
     if (field) {
       card[field[1]] = field[2]
+      continue
+    }
+    if (/^ {4}spotlight: true$/.test(line)) {
+      card.spotlight = true
       continue
     }
     const iconField = line.match(/^ {6}(type|collection|name): (.+)$/)
@@ -334,16 +338,19 @@ for (const locale of locales) {
 
 const versionManagementFeatures = {
   '': {
-    title: 'Document version management',
+    title: 'Immutable Document Versioning',
     description: 'Keep current docs at clean URLs while publishing immutable historical snapshots with built-in version navigation and release change catalogs.',
+    tag: 'Enterprise',
   },
   'zh': {
-    title: '文档版本管理',
-    description: '让当前文档保持简洁 URL，同时发布不可变的历史快照，并提供内置版本导航和发布变化总览。',
+    title: '企业级不可变文档版本管理',
+    description: '让当前文档保持简洁直观的 URL，同时发布不可变的历史快照，并提供内置版本导航和发布变化总览。',
+    tag: '核心优势',
   },
   'bn': {
-    title: 'ডকুমেন্টেশন ভার্সন ম্যানেজমেন্ট',
-    description: 'বর্তমান ডকুমেন্টেশনকে পরিচ্ছন্ন URL-এ রেখে অপরিবর্তনীয় ঐতিহাসিক স্ন্যাপশট প্রকাশ করুন; সঙ্গে পান অন্তর্নির্মিত ভার্সন নেভিগেশন ও রিলিজ পরিবর্তনের তালিকা।',
+    title: 'অপরিবর্তনীয় ডকুমেন্টেশন ভার্সন ম্যানেজমেন্ট',
+    description: 'বর্তমান ডকুমেন্টেশনকে পরিচ্ছন্ন URL-এ রেখে অপরিবর্তনীয় ঐতিহাসিক স্ন্যাপশট প্রকাশ করুন; সঙ্গে পান অন্তর্নির্মিত ভার্সন নেভিগেশন।',
+    tag: 'এন্টারপ্রাইজ',
   },
 }
 
@@ -353,13 +360,16 @@ for (const locale of locales) {
   const homePath = join(localeRoutesDir(locale.dir), '+page.md')
   if (/^tagline:/m.test(read(homePath)))
     fail(`${localeLabel} home page must not repeat its hero description as a tagline: ${relative(root, homePath)}`)
-  const feature = homeFeatureCards(homePath).find(card => card.title === expected.title)
+  const feature = homeFeatureCards(homePath).find(card => card.link === '/guide/version-management/')
   if (!feature) {
     fail(`${localeLabel} home page is missing the localized version-management feature card`)
   }
   else {
     const expectedFeature = {
-      ...expected,
+      title: expected.title,
+      description: expected.description,
+      spotlight: true,
+      tag: expected.tag,
       icon: {
         type: 'iconify',
         collection: 'material-symbols',
