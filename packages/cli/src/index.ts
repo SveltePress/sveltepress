@@ -98,10 +98,11 @@ interface ParsedArgs {
   store?: string
   output?: string
   dryRun: boolean
+  draftOnly: boolean
 }
 
 function parseArgs(args: string[]): ParsedArgs {
-  const parsed: ParsedArgs = { positional: [], allowDirty: false, dryRun: false }
+  const parsed: ParsedArgs = { positional: [], allowDirty: false, dryRun: false, draftOnly: false }
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index]
     if (arg === '--allow-dirty') {
@@ -110,6 +111,10 @@ function parseArgs(args: string[]): ParsedArgs {
     }
     if (arg === '--dry-run') {
       parsed.dryRun = true
+      continue
+    }
+    if (arg === '--draft-only') {
+      parsed.draftOnly = true
       continue
     }
     const key = arg === '--current'

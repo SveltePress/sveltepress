@@ -66,6 +66,7 @@ export interface IncrementalOptions {
   store?: string
   output?: string
   dryRun: boolean
+  draftOnly?: boolean
 }
 
 export function resolveArtifactStore(siteRoot: string, manifest: VersionManifest): string {
@@ -161,6 +162,8 @@ export async function buildIncrementalSite(
       })
   writeDraftVersionArtifactManifest(storeRoot, result.manifest)
   io.stdout(JSON.stringify(result.report, null, 2))
+  if (options.draftOnly)
+    return
   await composeIncrementalSite(io, manifest, options)
 }
 
