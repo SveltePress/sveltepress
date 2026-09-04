@@ -38,7 +38,39 @@ export function resolveLocaleSwitch(pathname: string, targetPrefix: string, base
   )
 }
 
-/** A three-locale site fixture mirroring the merged documentation site. */
+const prefixedGuideRoutes = ['/', '/guide/', '/guide/install/', '/guide/new/', '/guide/unchanged/', '/guide/i18n/']
+
+function prefixedLocale(
+  lang: string,
+  label: string,
+  titles: { group: string, guide: string, next: string, unchanged: string, localeSwitcher: string },
+): LocalesConfig[string] {
+  return {
+    lang,
+    label,
+    theme: {
+      ...themeOptions,
+      navbar: [{ title: titles.guide, to: '/guide/' }],
+      sidebar: {
+        '/guide/': [{
+          title: titles.group,
+          items: [
+            { title: titles.guide, to: '/guide/' },
+            { title: titles.next, to: '/guide/new/' },
+            { title: titles.unchanged, to: '/guide/unchanged/' },
+          ],
+        }],
+      },
+      i18n: {
+        ...themeOptions.i18n,
+        localeSwitcher: titles.localeSwitcher,
+      },
+    },
+    routes: prefixedGuideRoutes,
+  }
+}
+
+/** A multi-locale site fixture. Adding a prefix here is enough for theme tests to cover it. */
 export function localeFixture(): LocalesConfig {
   return {
     '/': {
@@ -47,56 +79,63 @@ export function localeFixture(): LocalesConfig {
       theme: { ...themeOptions },
       routes: ['/', '/guide/', '/guide/install/', '/reference/new-api/'],
     },
-    '/zh/': {
-      lang: 'zh',
-      label: '中文',
-      theme: {
-        ...themeOptions,
-        navbar: [{ title: '指南', to: '/guide/' }],
-        sidebar: {
-          '/guide/': [{
-            title: '指南',
-            items: [
-              { title: '指南', to: '/guide/' },
-              { title: '新指南', to: '/guide/new/' },
-              { title: '未变', to: '/guide/unchanged/' },
-            ],
-          }],
+    '/zh/': (() => {
+      const locale = prefixedLocale('zh', '中文', {
+        group: '指南',
+        guide: '指南',
+        next: '新指南',
+        unchanged: '未变',
+        localeSwitcher: '切换语言',
+      })
+      return {
+        ...locale,
+        theme: {
+          ...locale.theme,
+          i18n: {
+            ...themeOptions.i18n,
+            searchPlaceholder: '搜索文档...',
+            searchNoResults: '未找到 "{query}" 的相关结果',
+            searchDevNotice: '本地搜索索引在生产构建后生成。',
+            localeSwitcher: '切换语言',
+            localePageUnavailable: '此页面没有中文版本，已返回中文首页。',
+          },
         },
-        i18n: {
-          ...themeOptions.i18n,
-          searchPlaceholder: '搜索文档...',
-          searchNoResults: '未找到 "{query}" 的相关结果',
-          searchDevNotice: '本地搜索索引在生产构建后生成。',
-          localeSwitcher: '切换语言',
-          localePageUnavailable: '此页面没有中文版本，已返回中文首页。',
-        },
-      },
-      routes: ['/', '/guide/', '/guide/install/', '/guide/new/', '/guide/unchanged/', '/guide/i18n/'],
-    },
-    '/bn/': {
-      lang: 'bn',
-      label: 'বাংলা',
-      theme: {
-        ...themeOptions,
-        navbar: [{ title: 'গাইড', to: '/guide/' }],
-        sidebar: {
-          '/guide/': [{
-            title: 'গাইড',
-            items: [
-              { title: 'গাইড', to: '/guide/' },
-              { title: 'নতুন গাইড', to: '/guide/new/' },
-              { title: 'অপরিবর্তিত', to: '/guide/unchanged/' },
-            ],
-          }],
-        },
-        i18n: {
-          ...themeOptions.i18n,
-          localeSwitcher: 'ভাষা',
-          localePageUnavailable: 'এই পৃষ্ঠাটি এই ভাষায় উপলব্ধ নয়। আপনাকে হোম পেজে নিয়ে যাওয়া হয়েছে।',
-        },
-      },
-      routes: ['/', '/guide/', '/guide/install/', '/guide/new/', '/guide/unchanged/', '/guide/i18n/'],
-    },
+      }
+    })(),
+    '/bn/': prefixedLocale('bn', 'বাংলা', {
+      group: 'গাইড',
+      guide: 'গাইড',
+      next: 'নতুন গাইড',
+      unchanged: 'অপরিবর্তিত',
+      localeSwitcher: 'ভাষা',
+    }),
+    '/ja/': prefixedLocale('ja', '日本語', {
+      group: 'ガイド',
+      guide: 'ガイド',
+      next: '新しいガイド',
+      unchanged: '変更なし',
+      localeSwitcher: '言語',
+    }),
   }
+}
+
+export function prefixedLocaleCases() {
+  return Object.entries(localeFixture())
+    .filter(([prefix]) => prefix !== '/')
+    .map(([prefix, config]) => {
+      const sidebar = config.theme?.sidebar as Record<string, Array<{ title: string, items?: Array<{ title: string, to?: string }> }>> | undefined
+      const group = sidebar?.['/guide/']?.[0]
+      const items = group?.items ?? []
+      return {
+        prefix,
+        lang: config.lang,
+        label: config.label,
+        historicalGuide: `${prefix}v/2026-08-27/guide/`,
+        historicalPrefix: `${prefix}v/2026-08-27/`,
+        currentI18n: `${prefix}guide/i18n/`,
+        sidebarTitle: group?.title ?? '',
+        prevTitle: items[0]?.title ?? '',
+        nextTitle: items[2]?.title ?? '',
+      }
+    })
 }

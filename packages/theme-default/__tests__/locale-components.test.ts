@@ -16,7 +16,7 @@ import NavbarMobile from '../src/components/NavbarMobile.svelte'
 import PageSwitcher from '../src/components/PageSwitcher.svelte'
 import VersionSelector from '../src/components/VersionSelector.svelte'
 import { setPage } from './fixtures/app-state.svelte'
-import { localeFixture, setLocaleFixtures } from './fixtures/locale'
+import { localeFixture, prefixedLocaleCases, setLocaleFixtures } from './fixtures/locale'
 import { gotoCalls, resetNavigation } from './fixtures/navigation'
 
 vi.mock('svelte/transition', () => ({
@@ -51,13 +51,17 @@ describe('language switcher', () => {
     expect(gotoCalls).toEqual(['/zh/guide/install/'])
   })
 
-  it('switches to Bengali while preserving the page', async () => {
-    setPage('/guide/install/')
-    const view = render(LocaleSelector)
-    await fireEvent.click(view.getByRole('button', { name: 'Language' }))
-    await tick()
-    await fireEvent.click(view.getByRole('menuitem', { name: 'বাংলা' }))
-    expect(gotoCalls).toEqual(['/bn/guide/install/'])
+  it('switches to every configured locale while preserving the page', async () => {
+    for (const { prefix, label } of prefixedLocaleCases()) {
+      resetNavigation()
+      setPage('/guide/install/')
+      const view = render(LocaleSelector)
+      await fireEvent.click(view.getByRole('button', { name: 'Language' }))
+      await tick()
+      await fireEvent.click(view.getByRole('menuitem', { name: label }))
+      expect(gotoCalls).toEqual([`${prefix}guide/install/`])
+      view.unmount()
+    }
   })
 
   it('keeps the frozen version and heading hash when switching locales', async () => {
@@ -69,13 +73,17 @@ describe('language switcher', () => {
     expect(gotoCalls).toEqual(['/v/2026-08-27/guide/#hot-reload'])
   })
 
-  it('keeps the frozen version when switching to Bengali', async () => {
-    setPage('/v/2026-08-27/guide/#hot-reload')
-    const view = render(LocaleSelector)
-    await fireEvent.click(view.getByRole('button', { name: 'Language' }))
-    await tick()
-    await fireEvent.click(view.getByRole('menuitem', { name: 'বাংলা' }))
-    expect(gotoCalls).toEqual(['/bn/v/2026-08-27/guide/#hot-reload'])
+  it('keeps the frozen version when switching to every configured locale', async () => {
+    for (const { prefix, label } of prefixedLocaleCases()) {
+      resetNavigation()
+      setPage('/v/2026-08-27/guide/#hot-reload')
+      const view = render(LocaleSelector)
+      await fireEvent.click(view.getByRole('button', { name: 'Language' }))
+      await tick()
+      await fireEvent.click(view.getByRole('menuitem', { name: label }))
+      expect(gotoCalls).toEqual([`${prefix}v/2026-08-27/guide/#hot-reload`])
+      view.unmount()
+    }
   })
 
   it('falls back to the target locale home when the translation is missing', async () => {
@@ -145,21 +153,21 @@ describe('locale-aware links', () => {
   })
 
   it('keeps already versioned localized sidebar links on historical pages', () => {
-    setPage('/zh/v/2026-08-27/guide/')
-    const view = render(Link, { props: { to: '/zh/v/2026-08-27/guide/install/', label: 'Install' } })
-    expect(view.getByRole('link', { name: 'Install' }).getAttribute('href')).toBe(
-      '/zh/v/2026-08-27/guide/install/',
-    )
+    for (const { historicalGuide, historicalPrefix } of prefixedLocaleCases()) {
+      setPage(historicalGuide)
+      const view = render(Link, { props: { to: `${historicalPrefix}guide/install/`, label: 'Install' } })
+      expect(view.getByRole('link', { name: 'Install' }).getAttribute('href')).toBe(
+        `${historicalPrefix}guide/install/`,
+      )
+      view.unmount()
+    }
   })
 
   it('keeps current-locale links on every historical locale when the frozen version lacks the route', () => {
-    for (const [page, href] of [
-      ['/zh/v/2026-08-27/guide/', '/zh/guide/i18n/'],
-      ['/bn/v/2026-08-27/guide/', '/bn/guide/i18n/'],
-    ] as const) {
-      setPage(page)
+    for (const { historicalGuide, currentI18n } of prefixedLocaleCases()) {
+      setPage(historicalGuide)
       const view = render(Link, { props: { to: '/guide/i18n/', label: 'i18n' } })
-      expect(view.getByRole('link', { name: 'i18n' }).getAttribute('href')).toBe(href)
+      expect(view.getByRole('link', { name: 'i18n' }).getAttribute('href')).toBe(currentI18n)
       view.unmount()
     }
   })
@@ -345,24 +353,17 @@ describe('locale-aware navigation chrome', () => {
 })
 
 describe('locale-scoped page switcher', () => {
-  it('resolves previous and next page links within the active locale', () => {
-    setPage('/zh/guide/new/')
-    resolveSidebar('/zh/guide/new/')
-    const view = render(PageSwitcher)
-    const prev = view.getByRole('link', { name: /指南/ })
-    const next = view.getByRole('link', { name: /未变/ })
-    expect(prev.getAttribute('href')).toBe('/zh/guide/')
-    expect(next.getAttribute('href')).toBe('/zh/guide/unchanged/')
-  })
-
-  it('resolves previous and next page links within the Bengali locale', () => {
-    setPage('/bn/guide/new/')
-    resolveSidebar('/bn/guide/new/')
-    const view = render(PageSwitcher)
-    const prev = view.getByRole('link', { name: /গাইড/ })
-    const next = view.getByRole('link', { name: /অপরিবর্তিত/ })
-    expect(prev.getAttribute('href')).toBe('/bn/guide/')
-    expect(next.getAttribute('href')).toBe('/bn/guide/unchanged/')
+  it('resolves previous and next page links within every prefixed locale', () => {
+    for (const { prefix, prevTitle, nextTitle } of prefixedLocaleCases()) {
+      setPage(`${prefix}guide/new/`)
+      resolveSidebar(`${prefix}guide/new/`)
+      const view = render(PageSwitcher)
+      const prev = view.getByRole('link', { name: new RegExp(prevTitle) })
+      const next = view.getByRole('link', { name: new RegExp(nextTitle) })
+      expect(prev.getAttribute('href')).toBe(`${prefix}guide/`)
+      expect(next.getAttribute('href')).toBe(`${prefix}guide/unchanged/`)
+      view.unmount()
+    }
   })
 
   it('keeps default-locale page switcher links unprefixed', () => {
@@ -386,16 +387,13 @@ describe('locale-scoped page switcher', () => {
   })
 
   it('keeps the sidebar on every localized historical version page', () => {
-    for (const [route, prefix, title] of [
-      ['/zh/v/2026-08-27/guide/', '/zh/v/2026-08-27/', '指南'],
-      ['/bn/v/2026-08-27/guide/', '/bn/v/2026-08-27/', 'গাইড'],
-    ] as const) {
-      setPage(route)
-      resolveSidebar(route)
+    for (const { historicalGuide, historicalPrefix, sidebarTitle } of prefixedLocaleCases()) {
+      setPage(historicalGuide)
+      resolveSidebar(historicalGuide)
       const items = get(resolvedSidebar)
       expect(items.length).toBeGreaterThan(0)
-      expect(items[0]?.title).toBe(title)
-      expect(items[0]?.items?.some(item => item.to?.startsWith(prefix))).toBe(true)
+      expect(items[0]?.title).toBe(sidebarTitle)
+      expect(items[0]?.items?.some(item => item.to?.startsWith(historicalPrefix))).toBe(true)
     }
   })
 })
@@ -408,16 +406,13 @@ describe('document language', () => {
     expect(document.documentElement.lang).toBe('en')
   })
 
-  it('updates the document language to the Chinese locale on the client', () => {
-    setPage('/zh/guide/')
-    render(GlobalLayout)
-    expect(document.documentElement.lang).toBe('zh')
-  })
-
-  it('updates the document language to the Bengali locale on the client', () => {
-    setPage('/bn/guide/')
-    render(GlobalLayout)
-    expect(document.documentElement.lang).toBe('bn')
+  it('updates the document language to every prefixed locale on the client', () => {
+    for (const { prefix, lang } of prefixedLocaleCases()) {
+      setPage(`${prefix}guide/`)
+      const view = render(GlobalLayout)
+      expect(document.documentElement.lang).toBe(lang)
+      view.unmount()
+    }
   })
 
   it('keeps the default language without locales', () => {

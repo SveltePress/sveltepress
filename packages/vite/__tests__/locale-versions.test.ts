@@ -6,6 +6,7 @@ import { join } from 'node:path'
 import process from 'node:process'
 import { afterEach, describe, expect, it } from 'vitest'
 import { generateLlmsTxtForLocales } from '../src/llms'
+import { resolveLocale } from '../src/locale'
 import sveltepress from '../src/plugin'
 import { localeVersionManifestName, validateVersionManifest } from '../src/versioning'
 import { createLocaleVersionRuntime } from '../src/versioning/runtime'
@@ -25,34 +26,24 @@ function enManifest(): VersionManifest {
   }
 }
 
+function localeManifest(basePath: string): VersionManifest {
+  return {
+    basePath,
+    current: { id: '2026-08-28', label: '2026-08-28', routes: ['/', '/guide/', '/guide/i18n/'] },
+    versions: [
+      { id: '2026-08-27', label: '2026-08-27', status: 'stable', routes: ['/', '/guide/'] },
+    ],
+    content: { include: ['**'], exclude: [], shared: [] },
+  }
+}
+
 function zhManifest(): VersionManifest {
-  return {
-    basePath: '/zh/v',
-    current: { id: '2026-08-28', label: '2026-08-28', routes: ['/', '/guide/', '/guide/i18n/'] },
-    versions: [
-      { id: '2026-08-27', label: '2026-08-27', status: 'stable', routes: ['/', '/guide/'] },
-    ],
-    content: { include: ['**'], exclude: [], shared: [] },
-  }
+  return localeManifest('/zh/v')
 }
 
-function bnManifest(): VersionManifest {
-  return {
-    basePath: '/bn/v',
-    current: { id: '2026-08-28', label: '2026-08-28', routes: ['/', '/guide/', '/guide/i18n/'] },
-    versions: [
-      { id: '2026-08-27', label: '2026-08-27', status: 'stable', routes: ['/', '/guide/'] },
-    ],
-    content: { include: ['**'], exclude: [], shared: [] },
-  }
-}
-
-function localePrefix(pathname: string) {
-  if (pathname.startsWith('/zh/') || pathname === '/zh')
-    return '/zh/'
-  if (pathname.startsWith('/bn/') || pathname === '/bn')
-    return '/bn/'
-  return '/'
+function prefixResolver(prefixes: string[]) {
+  const locales = Object.fromEntries(prefixes.map(prefix => [prefix, { lang: prefix, label: prefix, theme: {} }]))
+  return (pathname: string) => resolveLocale(pathname, locales)?.prefix ?? '/'
 }
 
 describe('locale-scoped version manifests', () => {
@@ -70,6 +61,8 @@ describe('locale-scoped version manifests', () => {
     expect(localeVersionManifestName('/')).toBe('sveltepress.versions.json')
     expect(localeVersionManifestName('/zh/')).toBe('sveltepress.versions.zh.json')
     expect(localeVersionManifestName('/bn/')).toBe('sveltepress.versions.bn.json')
+    expect(localeVersionManifestName('/ja/')).toBe('sveltepress.versions.ja.json')
+    expect(localeVersionManifestName('/zh-tw/')).toBe('sveltepress.versions.zh-tw.json')
     expect(localeVersionManifestName('/zh/', 'custom.versions.json')).toBe('custom.versions.zh.json')
   })
 })
@@ -77,34 +70,32 @@ describe('locale-scoped version manifests', () => {
 describe('locale-aware version runtime', () => {
   const manifests = {
     '/': enManifest(),
-    '/zh/': zhManifest(),
-    '/bn/': bnManifest(),
+    '/zh/': localeManifest('/zh/v'),
+    '/bn/': localeManifest('/bn/v'),
+    '/ja/': localeManifest('/ja/v'),
   }
+  const localePrefix = prefixResolver(Object.keys(manifests))
   const runtime = createLocaleVersionRuntime(manifests, localePrefix)
+  const prefixed = Object.keys(manifests).filter(prefix => prefix !== '/')
 
   it('resolves the manifest by the current route locale', () => {
-    expect(runtime.resolveVersionManifest('/zh/guide/')?.basePath).toBe('/zh/v')
     expect(runtime.resolveVersionManifest('/guide/')?.basePath).toBe('/v')
-    expect(runtime.resolveVersionContext('/zh/guide/')?.versionId).toBe('2026-08-28')
     expect(runtime.resolveVersionContext('/guide/')?.versionId).toBe('v9')
-    expect(runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')).toMatchObject({
-      versionId: '2026-08-27',
-      logicalPath: '/guide/',
-      historical: true,
-    })
-    expect(runtime.resolveVersionManifest('/bn/guide/')?.basePath).toBe('/bn/v')
-    expect(runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')).toMatchObject({
-      versionId: '2026-08-27',
-      logicalPath: '/guide/',
-      historical: true,
-    })
+    for (const prefix of prefixed) {
+      expect(runtime.resolveVersionManifest(`${prefix}guide/`)?.basePath).toBe(`${prefix}v`)
+      expect(runtime.resolveVersionContext(`${prefix}v/2026-08-27/guide/`)).toMatchObject({
+        versionId: '2026-08-27',
+        logicalPath: '/guide/',
+        historical: true,
+      })
+    }
   })
 
   it('composes versioned paths with the locale prefix', () => {
-    const context = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
-    expect(runtime.resolveVersionedPath('/guide/', context)).toBe('/zh/v/2026-08-27/guide/')
-    const bnContext = runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')!
-    expect(runtime.resolveVersionedPath('/guide/', bnContext)).toBe('/bn/v/2026-08-27/guide/')
+    for (const prefix of prefixed) {
+      const context = runtime.resolveVersionContext(`${prefix}v/2026-08-27/guide/`)!
+      expect(runtime.resolveVersionedPath('/guide/', context)).toBe(`${prefix}v/2026-08-27/guide/`)
+    }
     const enContext = runtime.resolveVersionContext('/v/v8/guide/')!
     expect(runtime.resolveVersionedPath('/guide/', enContext)).toBe('/v/v8/guide/')
   })
@@ -117,21 +108,19 @@ describe('locale-aware version runtime', () => {
   })
 
   it('keeps already composed locale-version paths unchanged', () => {
-    const context = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
-    expect(runtime.resolveVersionedPath('/zh/v/2026-08-27/guide/', context)).toBe('/zh/v/2026-08-27/guide/')
-    expect(runtime.resolveVersionedPath('/zh/v/2026-08-27/guide/install/', context)).toBe('/zh/v/2026-08-27/guide/install/')
-    const bnContext = runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')!
-    expect(runtime.resolveVersionedPath('/bn/v/2026-08-27/guide/', bnContext)).toBe('/bn/v/2026-08-27/guide/')
+    for (const prefix of prefixed) {
+      const context = runtime.resolveVersionContext(`${prefix}v/2026-08-27/guide/`)!
+      expect(runtime.resolveVersionedPath(`${prefix}v/2026-08-27/guide/`, context)).toBe(`${prefix}v/2026-08-27/guide/`)
+      expect(runtime.resolveVersionedPath(`${prefix}v/2026-08-27/guide/install/`, context)).toBe(`${prefix}v/2026-08-27/guide/install/`)
+    }
   })
 
   it('keeps localized current-version links when the frozen version lacks the route', () => {
-    const zhContext = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
-    expect(runtime.resolveVersionedPath('/zh/guide/i18n/', zhContext)).toBe('/zh/guide/i18n/')
-    expect(runtime.resolveVersionedPath('/zh/guide/', zhContext)).toBe('/zh/v/2026-08-27/guide/')
-
-    const bnContext = runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')!
-    expect(runtime.resolveVersionedPath('/bn/guide/i18n/', bnContext)).toBe('/bn/guide/i18n/')
-    expect(runtime.resolveVersionedPath('/bn/guide/', bnContext)).toBe('/bn/v/2026-08-27/guide/')
+    for (const prefix of prefixed) {
+      const context = runtime.resolveVersionContext(`${prefix}v/2026-08-27/guide/`)!
+      expect(runtime.resolveVersionedPath(`${prefix}guide/i18n/`, context)).toBe(`${prefix}guide/i18n/`)
+      expect(runtime.resolveVersionedPath(`${prefix}guide/`, context)).toBe(`${prefix}v/2026-08-27/guide/`)
+    }
   })
 
   it('leaves localized current-version links unchanged', () => {
@@ -140,15 +129,16 @@ describe('locale-aware version runtime', () => {
   })
 
   it('switches versions within the active locale', () => {
-    expect(runtime.resolveVersionSwitch('/zh/guide/', '2026-08-27')).toEqual({ href: '/zh/v/2026-08-27/guide/', fallback: false })
-    expect(runtime.resolveVersionSwitch('/bn/guide/', '2026-08-27')).toEqual({ href: '/bn/v/2026-08-27/guide/', fallback: false })
+    for (const prefix of prefixed)
+      expect(runtime.resolveVersionSwitch(`${prefix}guide/`, '2026-08-27')).toEqual({ href: `${prefix}v/2026-08-27/guide/`, fallback: false })
     expect(runtime.resolveVersionSwitch('/guide/', 'v8')).toEqual({ href: '/v/v8/guide/', fallback: false })
   })
 
   it('keeps the locale prefix when switching from a historical localized route to the current version', () => {
-    expect(runtime.resolveVersionSwitch('/zh/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/zh/guide/', fallback: false })
-    expect(runtime.resolveVersionSwitch('/zh/v/2026-08-27/', '2026-08-28')).toEqual({ href: '/zh/', fallback: false })
-    expect(runtime.resolveVersionSwitch('/bn/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/bn/guide/', fallback: false })
+    for (const prefix of prefixed) {
+      expect(runtime.resolveVersionSwitch(`${prefix}v/2026-08-27/guide/`, '2026-08-28')).toEqual({ href: `${prefix}guide/`, fallback: false })
+      expect(runtime.resolveVersionSwitch(`${prefix}v/2026-08-27/`, '2026-08-28')).toEqual({ href: prefix, fallback: false })
+    }
   })
 
   it('falls back within the active locale when the current route is missing', () => {
@@ -186,7 +176,7 @@ describe('locale-aware version runtime', () => {
     const localized = createLocaleVersionRuntime({
       '/': { ...enManifest(), versions: [{ ...enManifest().versions[0], changes: enChanges }] },
       '/zh/': { ...zhManifest(), versions: [{ ...zhManifest().versions[0], changes: zhChanges }] },
-      '/bn/': bnManifest(),
+      '/bn/': localeManifest('/bn/v'),
     }, localePrefix)
 
     // Same version id on every locale must resolve to that locale's own changes.
@@ -196,6 +186,29 @@ describe('locale-aware version runtime', () => {
     expect(localized.resolveVersionChanges('2026-08-27', '/guide/introduction/')).toBeNull()
     // Without a pathname the default locale is used.
     expect(localized.resolveVersionChanges('v8')?.newPages[0].title).toBe('Introduction')
+  })
+
+  it('prefers the default-locale manifest as the runtime fallback regardless of key order', () => {
+    const ordered = createLocaleVersionRuntime({
+      '/ja/': localeManifest('/ja/v'),
+      '/': enManifest(),
+    }, prefixResolver(['/ja/', '/']))
+    expect(ordered.manifest?.basePath).toBe('/v')
+  })
+
+  it('keeps a newly added locale working without special-casing its prefix', () => {
+    const added = {
+      '/': enManifest(),
+      '/ja/': localeManifest('/ja/v'),
+    }
+    const addedRuntime = createLocaleVersionRuntime(added, prefixResolver(Object.keys(added)))
+    const context = addedRuntime.resolveVersionContext('/ja/v/2026-08-27/guide/')!
+    expect(addedRuntime.resolveVersionedPath('/ja/guide/i18n/', context)).toBe('/ja/guide/i18n/')
+    expect(addedRuntime.resolveVersionedPath('/guide/', context)).toBe('/ja/v/2026-08-27/guide/')
+    expect(addedRuntime.resolveVersionSwitch('/ja/guide/', '2026-08-27')).toEqual({
+      href: '/ja/v/2026-08-27/guide/',
+      fallback: false,
+    })
   })
 })
 

@@ -1,4 +1,5 @@
 import type { VersionManifest } from '@sveltepress/vite/versioning'
+import { resolveLocale } from '@sveltepress/vite/locale'
 import { createLocaleVersionRuntime } from '@sveltepress/vite/versioning/runtime'
 
 export const manifest: VersionManifest = {
@@ -57,14 +58,14 @@ export const manifests = {
   '/': manifest,
   '/zh/': withBasePath('/zh/v'),
   '/bn/': withBasePath('/bn/v'),
+  '/ja/': withBasePath('/ja/v'),
 }
 
 function localePrefix(pathname: string) {
-  if (pathname.startsWith('/zh/') || pathname === '/zh')
-    return '/zh/'
-  if (pathname.startsWith('/bn/') || pathname === '/bn')
-    return '/bn/'
-  return '/'
+  const locales = Object.fromEntries(
+    Object.keys(manifests).map(prefix => [prefix, { lang: prefix, label: prefix, theme: {} }]),
+  )
+  return resolveLocale(pathname, locales)?.prefix ?? '/'
 }
 
 const runtime = createLocaleVersionRuntime(manifests, localePrefix)

@@ -131,15 +131,16 @@ export const handle = createLocaleHandle(locales)
 :::since[按语言的文档版本管理]{version="2026-09-03" id="i18n-locale-versioning" summary="每种语言有独立的版本清单；CLI --locale 选择 sveltepress.versions.<locale>.json。"}
 ## 按语言的文档版本管理
 
+新增语言不需要改 SveltePress 的包代码。在 `locales` 中加上前缀，把页面放到 `src/routes/<slug>/`；若启用文档版本，再运行 `sveltepress versions init --locale <slug>`。语言切换、侧边栏本地化和历史 URL 都会按这个前缀工作。
+
 每种语言可以维护自己的文档版本清单：
 
-| 语言 | 清单文件 | 版本基路径 |
+| 语言前缀 | 清单文件 | 版本基路径 |
 | --- | --- | --- |
-| 默认（`/`） | `sveltepress.versions.json` | `/v` |
-| `zh` | `sveltepress.versions.zh.json` | `/zh/v` |
-| `bn` | `sveltepress.versions.bn.json` | `/bn/v` |
+| `/`（默认） | `sveltepress.versions.json` | `/v` |
+| `/<slug>/`（例如 `/zh/`、`/bn/`、`/ja/`） | `sveltepress.versions.<slug>.json` | `/<slug>/v` |
 
-默认的 `sveltepress versions build` 会为每种语言生成草稿，并把 `/v/`、`/zh/v/`、`/bn/v/` 写入同一份产物。`init`、`create`、`validate` 以及只处理某一种语言的任务才需要 `--locale`：
+默认的 `sveltepress versions build` 会为配置中的每种语言生成草稿，并把各语言的 `/v/` 树写入同一份产物。`init`、`create`、`validate` 以及只处理某一种语言的任务才需要 `--locale`：
 
 ```sh
 sveltepress versions build

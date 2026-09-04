@@ -64,6 +64,16 @@ describe('locale resolution', () => {
     expect(resolveLocale('/zh-extra/guide/', locales())?.prefix).toBe('/')
   })
 
+  it('prefers the longest configured prefix when one locale prefix contains another', () => {
+    const loc = {
+      '/': { lang: 'en', label: 'English', theme: {} },
+      '/zh/': { lang: 'zh', label: '中文', theme: {} },
+      '/zh-tw/': { lang: 'zh-TW', label: '繁體中文', theme: {} },
+    }
+    expect(resolveLocale('/zh-tw/guide/', loc)?.prefix).toBe('/zh-tw/')
+    expect(resolveLocale('/zh/guide/', loc)?.prefix).toBe('/zh/')
+  })
+
   it('handles null, undefined, or empty pathnames safely without throwing', () => {
     expect(resolveLocale(null as any, locales())).toBeNull()
     expect(resolveLocale(undefined as any, locales())).toBeNull()
@@ -241,17 +251,30 @@ describe('locale switch targets', () => {
           { id: '2026-08-28', routes: ['/', '/guide/'] },
         ],
       },
+      '/ja/': {
+        basePath: '/ja/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/'] },
+        ],
+      },
     }
-    expect(resolveLocaleSwitch('/v/2026-08-28/guide/', '/zh/', loc, undefined, manifests)).toEqual({
-      href: '/zh/v/2026-08-28/guide/',
-      fallback: false,
-    })
-    expect(resolveLocaleSwitch('/v/2026-08-28/guide/', '/bn/', loc, undefined, manifests)).toEqual({
+    const withJa = {
+      ...loc,
+      '/ja/': { lang: 'ja', label: '日本語', theme: {}, routes: ['/', '/guide/'] },
+    }
+    for (const prefix of ['/zh/', '/bn/', '/ja/'] as const) {
+      expect(resolveLocaleSwitch('/v/2026-08-28/guide/', prefix, withJa, undefined, manifests)).toEqual({
+        href: `${prefix}v/2026-08-28/guide/`,
+        fallback: false,
+      })
+    }
+    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/', '/bn/', withJa, undefined, manifests)).toEqual({
       href: '/bn/v/2026-08-28/guide/',
       fallback: false,
     })
-    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/', '/bn/', loc, undefined, manifests)).toEqual({
-      href: '/bn/v/2026-08-28/guide/',
+    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/', '/ja/', withJa, undefined, manifests)).toEqual({
+      href: '/ja/v/2026-08-28/guide/',
       fallback: false,
     })
   })

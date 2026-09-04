@@ -81,7 +81,9 @@ export const handle = createLocaleHandle(locales)
 :::since[Locale-aware versioning]{version="2026-09-03" id="i18n-locale-versioning" summary="Each locale has its own versions manifest; CLI --locale selects sveltepress.versions.<locale>.json."}
 ## Locale-aware versioning
 
-প্রতি লোকেলের আলাদা manifest থাকতে পারে (`sveltepress.versions.json`, `sveltepress.versions.zh.json`, `sveltepress.versions.bn.json`)। ডিফল্ট `sveltepress versions build` সব লোকেল draft করে এক output-এ compose করে। `init` / `create` / `validate` এবং এক-লোকেল draft-এ `--locale` দিন:
+নতুন ভাষা যোগ করতে SveltePress প্যাকেজ কোড বদলাতে হয় না। `locales`-এ প্রিফিক্স দিন, পেজ রাখুন `src/routes/<slug>/`-এ; ডকুমেন্ট ভার্সন ব্যবহার করলে `sveltepress versions init --locale <slug>` চালান। ভাষা পরিবর্তন, সাইডবার এবং ঐতিহাসিক URL সেই প্রিফিক্স অনুসরণ করে।
+
+প্রতি লোকেলের আলাদা manifest থাকতে পারে: `/` → `sveltepress.versions.json` (`/v`), `/<slug>/` → `sveltepress.versions.<slug>.json` (`/<slug>/v`)। ডিফল্ট `sveltepress versions build` কনফিগার করা সব লোকেল draft করে এক output-এ compose করে। `init` / `create` / `validate` এবং এক-লোকেল draft-এ `--locale` দিন:
 
 ```sh
 sveltepress versions build

@@ -131,15 +131,16 @@ With `llms` enabled, production builds write locale-scoped `llms.txt` / `llms-fu
 :::since[Locale-aware versioning]{version="2026-09-03" id="i18n-locale-versioning" summary="Each locale has its own versions manifest; CLI --locale selects sveltepress.versions.<locale>.json."}
 ## Locale-aware versioning
 
+Adding a locale does not require changes to SveltePress packages. Configure the prefix in `locales`, put pages under `src/routes/<slug>/`, and if you use document versions run `sveltepress versions init --locale <slug>`. Language switching, sidebar localization, and historical URLs follow that prefix automatically.
+
 Each locale can keep its own document-version manifest:
 
-| Locale | Manifest | Version base |
+| Locale prefix | Manifest | Version base |
 | --- | --- | --- |
-| default (`/`) | `sveltepress.versions.json` | `/v` |
-| `zh` | `sveltepress.versions.zh.json` | `/zh/v` |
-| `bn` | `sveltepress.versions.bn.json` | `/bn/v` |
+| `/` (default) | `sveltepress.versions.json` | `/v` |
+| `/<slug>/` (for example `/zh/`, `/bn/`, `/ja/`) | `sveltepress.versions.<slug>.json` | `/<slug>/v` |
 
-A default `sveltepress versions build` drafts every locale and composes `/v/`, `/zh/v/`, `/bn/v/` into one output. Pass `--locale` to `init`, `create`, `validate`, and single-locale draft jobs:
+A default `sveltepress versions build` drafts every configured locale and composes each locale's `/v/` tree into one output. Pass `--locale` to `init`, `create`, `validate`, and single-locale draft jobs:
 
 ```sh
 pnpm exec sveltepress versions build

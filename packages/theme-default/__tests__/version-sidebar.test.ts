@@ -29,7 +29,7 @@ describe('historical sidebar', () => {
   })
 
   it('uses the locale version base for every localized historical route', () => {
-    for (const basePath of ['/zh/v', '/bn/v']) {
+    for (const basePath of ['/zh/v', '/bn/v', '/ja/v']) {
       const localized = structuredClone(manifest)
       localized.basePath = basePath
       expect(resolveVersionSidebar(`${basePath}/v8/guide/install/`, currentSidebar, localized)).toEqual([
