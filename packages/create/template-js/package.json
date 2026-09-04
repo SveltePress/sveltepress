@@ -13,8 +13,8 @@
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.70.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
-    "@sveltepress/theme-default": "^8.5.1",
-    "@sveltepress/vite": "^1.7.0",
+    "@sveltepress/theme-default": "^8.6.0",
+    "@sveltepress/vite": "^1.8.0",
     "@types/node": "^24.13.3",
     "svelte": "^5.57.0",
     "vite": "^8.2.2"
