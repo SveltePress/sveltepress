@@ -3,7 +3,7 @@ import { dirname, extname, join, relative } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
-import { isHistoricalVersionRoute } from './check-utils.mjs'
+import { hasPrebuiltIconifyIcon, isHistoricalVersionRoute } from './check-utils.mjs'
 
 const root = dirname(fileURLToPath(import.meta.url))
 const docsPackage = 'docs-site'
@@ -370,11 +370,18 @@ for (const locale of locales) {
     if (JSON.stringify(feature) !== JSON.stringify(expectedFeature))
       fail(`${localeLabel} version-management feature card does not match ${JSON.stringify(expectedFeature)}: ${relative(root, homePath)}`)
   }
-  expectSubstrings(
-    join(root, 'packages', docsPackage, 'vite.config.ts'),
-    [[`'material-symbols': ['history']`, 'the prebuilt version-management icon']],
-    `${localeLabel} icon config`,
-  )
+}
+
+const viteConfigPath = join(root, 'packages', docsPackage, 'vite.config.ts')
+const viteConfig = read(viteConfigPath)
+const requiredHomeIcons = [
+  ['history', 'the prebuilt version-management icon'],
+  ['translate', 'the prebuilt i18n icon'],
+  ['search', 'the prebuilt local-search icon'],
+]
+for (const [name, description] of requiredHomeIcons) {
+  if (!hasPrebuiltIconifyIcon(viteConfig, 'material-symbols', name))
+    fail(`icon config is missing ${description}: ${relative(root, viteConfigPath)}`)
 }
 
 if (failures.length) {

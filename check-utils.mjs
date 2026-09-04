@@ -10,3 +10,14 @@ export function isHistoricalVersionRoute(relativePath, basePath, versionIds) {
   const baseSegment = basePath.replace(/^\//, '').replace(/\/$/, '')
   return versionIds.some(versionId => relativePath === `${baseSegment}/${versionId}` || relativePath.startsWith(`${baseSegment}/${versionId}/`))
 }
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+export function hasPrebuiltIconifyIcon(source, collection, name) {
+  const match = source.match(new RegExp(`['"]${escapeRegExp(collection)}['"]\\s*:\\s*\\[([^\\]]*)]`))
+  if (!match)
+    return false
+  return new RegExp(`['"]${escapeRegExp(name)}['"]`).test(match[1])
+}
