@@ -14,6 +14,8 @@
    * @property {any} [link] Link to navigate to when the card is clicked
    * @property {(e: any) => any} [onkeypress] Function to call when the card is pressed
    * @property {import('./types').CustomIcon} [icon] Custom icon to display in the card
+   * @property {boolean} [spotlight] Whether this is a spotlight bento card
+   * @property {string} [tag] Category or status tag badge
    */
 
   /** @type {Props} */
@@ -23,6 +25,8 @@
     description,
     link = undefined,
     icon = undefined,
+    spotlight = false,
+    tag = '',
   } = $props()
 
   const external = $derived(/^https?/.test(link))
@@ -51,18 +55,21 @@
 
 {#snippet cardContent()}
   <div class="feature-header">
-    {#if icon?.type}
-      <div class="icon">
-        {#if icon.type === 'svg'}
-          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-          {@html icon.value}
-        {:else if icon.type === 'iconify'}
-          <IconifyIcon {...icon} />
-        {/if}
-      </div>
-    {:else}
-      <div></div>
-    {/if}
+    <div class="feature-header-left">
+      {#if icon?.type}
+        <div class="icon">
+          {#if icon.type === 'svg'}
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            {@html icon.value}
+          {:else if icon.type === 'iconify'}
+            <IconifyIcon {...icon} />
+          {/if}
+        </div>
+      {/if}
+      {#if tag}
+        <span class="feature-tag">{tag}</span>
+      {/if}
+    </div>
 
     {#if external}
       <div class="feature-badge" aria-hidden="true">
@@ -97,6 +104,7 @@
 {#if link}
   <div
     class="feature-item clickable"
+    class:spotlight
     onclick={handleFeatureCardClick}
     onkeydown={handleKeyDown}
     role="link"
@@ -105,7 +113,7 @@
     {@render cardContent()}
   </div>
 {:else}
-  <div class="feature-item">
+  <div class="feature-item" class:spotlight>
     {@render cardContent()}
   </div>
 {/if}
@@ -135,6 +143,36 @@
 
   .feature-header {
     --at-apply: 'flex items-center justify-between w-full mb-4';
+  }
+
+  .feature-header-left {
+    --at-apply: 'flex items-center gap-2.5';
+  }
+
+  .feature-tag {
+    --at-apply: 'text-11px font-600 px-2 py-0.5 rounded-full bg-svp-primary/10 text-svp-primary-deep dark:text-svp-primary b-1 b-solid b-svp-primary/20 leading-tight select-none';
+  }
+
+  .spotlight {
+    --at-apply: 'b-black/10 dark:b-white/14';
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.75)
+    );
+  }
+
+  :global(.dark) .spotlight {
+    background: linear-gradient(
+      135deg,
+      rgba(32, 32, 36, 0.92),
+      rgba(24, 24, 27, 0.85)
+    );
+    box-shadow: 0 0 24px -6px rgba(251, 113, 133, 0.12);
+  }
+
+  .spotlight .feature-title {
+    --at-apply: 'text-lg sm:text-xl font-700';
   }
 
   .icon {
