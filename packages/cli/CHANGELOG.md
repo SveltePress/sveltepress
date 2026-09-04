@@ -1,5 +1,16 @@
 # @sveltepress/cli
 
+## 0.4.1
+
+### Patch Changes
+
+- [`8aa6cea`](https://github.com/Blackman99/sveltepress/commit/8aa6cead36697d120fe6d9f2034a00bf296a866f) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the documentation version and heading when switching languages, and include every locale's version history in a default `versions build`
+
+- [`12d546f`](https://github.com/Blackman99/sveltepress/commit/12d546feb8ffd922d524fd3ce591d6b765baa77d) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep CLI git checks and tests from writing into a parent commit's index
+
+- Updated dependencies [[`da3899c`](https://github.com/Blackman99/sveltepress/commit/da3899cad7ac3962ee7a6b2f80661e901ae462cf), [`8aa6cea`](https://github.com/Blackman99/sveltepress/commit/8aa6cead36697d120fe6d9f2034a00bf296a866f), [`fa66877`](https://github.com/Blackman99/sveltepress/commit/fa668777de53e9812370cac9f24103d6feeafef3), [`f47493a`](https://github.com/Blackman99/sveltepress/commit/f47493aaea7f17cafb9b2a654a9817052ae39933), [`e4425ca`](https://github.com/Blackman99/sveltepress/commit/e4425cad5176b8e07dcfce7faed9716ddf9b3a8e)]:
+  - @sveltepress/vite@1.8.1
+
 ## 0.4.0
 
 ### Minor Changes

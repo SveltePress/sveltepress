@@ -1,5 +1,11 @@
 # @sveltepress/twoslash
 
+## 1.3.21
+
+### Patch Changes
+
+- [`da3899c`](https://github.com/Blackman99/sveltepress/commit/da3899cad7ac3962ee7a6b2f80661e901ae462cf) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.20
 
 ### Patch Changes

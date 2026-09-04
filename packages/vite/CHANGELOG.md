@@ -1,5 +1,19 @@
 # @sveltepress/vite
 
+## 1.8.1
+
+### Patch Changes
+
+- [`da3899c`](https://github.com/Blackman99/sveltepress/commit/da3899cad7ac3962ee7a6b2f80661e901ae462cf) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8aa6cea`](https://github.com/Blackman99/sveltepress/commit/8aa6cead36697d120fe6d9f2034a00bf296a866f) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the documentation version and heading when switching languages, and include every locale's version history in a default `versions build`
+
+- [`fa66877`](https://github.com/Blackman99/sveltepress/commit/fa668777de53e9812370cac9f24103d6feeafef3) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep localized historical sidebar links and highlight on the matching translated page
+
+- [`f47493a`](https://github.com/Blackman99/sveltepress/commit/f47493aaea7f17cafb9b2a654a9817052ae39933) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep locale versioning on the default-locale manifest and any newly configured prefix, without special-casing individual languages
+
+- [`e4425ca`](https://github.com/Blackman99/sveltepress/commit/e4425cad5176b8e07dcfce7faed9716ddf9b3a8e) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the active locale on current-version links from historical pages when the frozen snapshot does not contain that route
+
 ## 1.8.0
 
 ### Minor Changes
