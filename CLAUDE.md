@@ -41,16 +41,13 @@ This is a pnpm monorepo workspace containing multiple packages:
 - **`packages/twoslash/`** - TypeScript Twoslash integration
   - Provides TypeScript hover information in code blocks
 
-### Documentation Sites
+### Documentation Site
 
-- **`packages/docs-site/`** - Main English documentation
-- **`packages/docs-site-zh/`** - Chinese (中文) documentation
-- **`packages/docs-site-bn/`** - Bengali documentation
-
-Each docs site includes:
-- `config/` - Navigation, sidebar, PWA, and search configurations
-- `src/routes/` - SvelteKit routes and markdown content
-- `static/` - Static assets (manifests, robots.txt)
+- **`packages/docs-site/`** — merged documentation site for English (`/`), Chinese (`/zh/`), and Bengali (`/bn/`)
+  - `config/` — shared and per-locale navigation, sidebar, PWA, and search
+  - `src/routes/` — English pages; `src/routes/zh/` and `src/routes/bn/` hold translations
+  - `sveltepress.versions.json`, `.zh.json`, `.bn.json` — per-locale version manifests
+  - `static/` — static assets (manifests, robots.txt)
 
 ## Development Workflow
 
@@ -189,9 +186,10 @@ The project uses a `catalog:` system in package.json for dependency management. 
 3. **Follow the monorepo structure** - changes often affect multiple packages
 4. **Read snapshot tests** - they provide excellent examples of expected outputs
 5. **Markdown processing** is a core feature - be careful when modifying transformations
-6. **Multiple doc sites** exist - consider whether changes need to be reflected across all language versions
+6. **Documentation is locale × version.** Update EN/ZH/BN together; freeze every locale if a new docs version is required. See [`docs/agents/implementation.md`](./docs/agents/implementation.md)
 7. **Type safety matters** - this project uses TypeScript throughout
 8. **Performance is important** - Sveltepress aims for excellent Lighthouse scores
+9. **Functional UI must stay compatible** with responsive layout and light/dark theme
 
 ## Getting Help
 
