@@ -28,12 +28,14 @@ describe('historical sidebar', () => {
     ])
   })
 
-  it('uses the locale version base for a localized historical route', () => {
-    const zh = structuredClone(manifest)
-    zh.basePath = '/zh/v'
-    expect(resolveVersionSidebar('/zh/v/v8/guide/install/', currentSidebar, zh)).toEqual([
-      { title: 'Historical', items: [{ title: 'Install 8', to: '/zh/v/v8/guide/install/' }] },
-    ])
+  it('uses the locale version base for every localized historical route', () => {
+    for (const basePath of ['/zh/v', '/bn/v']) {
+      const localized = structuredClone(manifest)
+      localized.basePath = basePath
+      expect(resolveVersionSidebar(`${basePath}/v8/guide/install/`, currentSidebar, localized)).toEqual([
+        { title: 'Historical', items: [{ title: 'Install 8', to: `${basePath}/v8/guide/install/` }] },
+      ])
+    }
   })
 
   it('uses the live sidebar for current routes', () => {

@@ -139,10 +139,15 @@ export function createLocaleVersionRuntime(
       if (manifest && (pathname === manifest.basePath || pathname.startsWith(`${manifest.basePath}/`)))
         return to
       const prefix = manifest ? resolvePrefix(`${manifest.basePath}/`) : null
-      const logicalTo = prefix && prefix !== '/' && matchesLocalePrefix(pathname, prefix)
-        ? `${stripLocalePrefix(pathname, prefix)}${suffix}`
-        : to
-      return resolveVersionedPath(logicalTo, context, manifest)
+      if (prefix && prefix !== '/' && matchesLocalePrefix(pathname, prefix)) {
+        const logicalTo = `${stripLocalePrefix(pathname, prefix)}${suffix}`
+        const versioned = resolveVersionedPath(logicalTo, context, manifest)
+        // The frozen version does not contain this page. Keep the localized
+        // current-version path (`/bn/guide/i18n/`) instead of dropping back
+        // to the default-locale logical path (`/guide/i18n/`).
+        return versioned === logicalTo ? to : versioned
+      }
+      return resolveVersionedPath(to, context, manifest)
     },
     resolveVersionSwitch: (pathname, targetVersionId) => {
       const prefix = resolvePrefix(pathname)

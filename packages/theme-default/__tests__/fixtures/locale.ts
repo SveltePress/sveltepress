@@ -53,6 +53,16 @@ export function localeFixture(): LocalesConfig {
       theme: {
         ...themeOptions,
         navbar: [{ title: '指南', to: '/guide/' }],
+        sidebar: {
+          '/guide/': [{
+            title: '指南',
+            items: [
+              { title: '指南', to: '/guide/' },
+              { title: '新指南', to: '/guide/new/' },
+              { title: '未变', to: '/guide/unchanged/' },
+            ],
+          }],
+        },
         i18n: {
           ...themeOptions.i18n,
           searchPlaceholder: '搜索文档...',
@@ -62,13 +72,31 @@ export function localeFixture(): LocalesConfig {
           localePageUnavailable: '此页面没有中文版本，已返回中文首页。',
         },
       },
-      routes: ['/', '/guide/', '/guide/install/'],
+      routes: ['/', '/guide/', '/guide/install/', '/guide/new/', '/guide/unchanged/', '/guide/i18n/'],
     },
     '/bn/': {
       lang: 'bn',
       label: 'বাংলা',
-      theme: { ...themeOptions },
-      routes: ['/'],
+      theme: {
+        ...themeOptions,
+        navbar: [{ title: 'গাইড', to: '/guide/' }],
+        sidebar: {
+          '/guide/': [{
+            title: 'গাইড',
+            items: [
+              { title: 'গাইড', to: '/guide/' },
+              { title: 'নতুন গাইড', to: '/guide/new/' },
+              { title: 'অপরিবর্তিত', to: '/guide/unchanged/' },
+            ],
+          }],
+        },
+        i18n: {
+          ...themeOptions.i18n,
+          localeSwitcher: 'ভাষা',
+          localePageUnavailable: 'এই পৃষ্ঠাটি এই ভাষায় উপলব্ধ নয়। আপনাকে হোম পেজে নিয়ে যাওয়া হয়েছে।',
+        },
+      },
+      routes: ['/', '/guide/', '/guide/install/', '/guide/new/', '/guide/unchanged/', '/guide/i18n/'],
     },
   }
 }

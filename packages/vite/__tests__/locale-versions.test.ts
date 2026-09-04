@@ -28,12 +28,31 @@ function enManifest(): VersionManifest {
 function zhManifest(): VersionManifest {
   return {
     basePath: '/zh/v',
-    current: { id: '2026-08-28', label: '2026-08-28', routes: ['/', '/guide/'] },
+    current: { id: '2026-08-28', label: '2026-08-28', routes: ['/', '/guide/', '/guide/i18n/'] },
     versions: [
       { id: '2026-08-27', label: '2026-08-27', status: 'stable', routes: ['/', '/guide/'] },
     ],
     content: { include: ['**'], exclude: [], shared: [] },
   }
+}
+
+function bnManifest(): VersionManifest {
+  return {
+    basePath: '/bn/v',
+    current: { id: '2026-08-28', label: '2026-08-28', routes: ['/', '/guide/', '/guide/i18n/'] },
+    versions: [
+      { id: '2026-08-27', label: '2026-08-27', status: 'stable', routes: ['/', '/guide/'] },
+    ],
+    content: { include: ['**'], exclude: [], shared: [] },
+  }
+}
+
+function localePrefix(pathname: string) {
+  if (pathname.startsWith('/zh/') || pathname === '/zh')
+    return '/zh/'
+  if (pathname.startsWith('/bn/') || pathname === '/bn')
+    return '/bn/'
+  return '/'
 }
 
 describe('locale-scoped version manifests', () => {
@@ -59,13 +78,9 @@ describe('locale-aware version runtime', () => {
   const manifests = {
     '/': enManifest(),
     '/zh/': zhManifest(),
-    '/bn/': null,
+    '/bn/': bnManifest(),
   }
-  const runtime = createLocaleVersionRuntime(manifests, (pathname) => {
-    if (pathname.startsWith('/zh/') || pathname === '/zh')
-      return '/zh/'
-    return '/'
-  })
+  const runtime = createLocaleVersionRuntime(manifests, localePrefix)
 
   it('resolves the manifest by the current route locale', () => {
     expect(runtime.resolveVersionManifest('/zh/guide/')?.basePath).toBe('/zh/v')
@@ -77,11 +92,19 @@ describe('locale-aware version runtime', () => {
       logicalPath: '/guide/',
       historical: true,
     })
+    expect(runtime.resolveVersionManifest('/bn/guide/')?.basePath).toBe('/bn/v')
+    expect(runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')).toMatchObject({
+      versionId: '2026-08-27',
+      logicalPath: '/guide/',
+      historical: true,
+    })
   })
 
   it('composes versioned paths with the locale prefix', () => {
     const context = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
     expect(runtime.resolveVersionedPath('/guide/', context)).toBe('/zh/v/2026-08-27/guide/')
+    const bnContext = runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')!
+    expect(runtime.resolveVersionedPath('/guide/', bnContext)).toBe('/bn/v/2026-08-27/guide/')
     const enContext = runtime.resolveVersionContext('/v/v8/guide/')!
     expect(runtime.resolveVersionedPath('/guide/', enContext)).toBe('/v/v8/guide/')
   })
@@ -97,6 +120,18 @@ describe('locale-aware version runtime', () => {
     const context = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
     expect(runtime.resolveVersionedPath('/zh/v/2026-08-27/guide/', context)).toBe('/zh/v/2026-08-27/guide/')
     expect(runtime.resolveVersionedPath('/zh/v/2026-08-27/guide/install/', context)).toBe('/zh/v/2026-08-27/guide/install/')
+    const bnContext = runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')!
+    expect(runtime.resolveVersionedPath('/bn/v/2026-08-27/guide/', bnContext)).toBe('/bn/v/2026-08-27/guide/')
+  })
+
+  it('keeps localized current-version links when the frozen version lacks the route', () => {
+    const zhContext = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
+    expect(runtime.resolveVersionedPath('/zh/guide/i18n/', zhContext)).toBe('/zh/guide/i18n/')
+    expect(runtime.resolveVersionedPath('/zh/guide/', zhContext)).toBe('/zh/v/2026-08-27/guide/')
+
+    const bnContext = runtime.resolveVersionContext('/bn/v/2026-08-27/guide/')!
+    expect(runtime.resolveVersionedPath('/bn/guide/i18n/', bnContext)).toBe('/bn/guide/i18n/')
+    expect(runtime.resolveVersionedPath('/bn/guide/', bnContext)).toBe('/bn/v/2026-08-27/guide/')
   })
 
   it('leaves localized current-version links unchanged', () => {
@@ -106,12 +141,14 @@ describe('locale-aware version runtime', () => {
 
   it('switches versions within the active locale', () => {
     expect(runtime.resolveVersionSwitch('/zh/guide/', '2026-08-27')).toEqual({ href: '/zh/v/2026-08-27/guide/', fallback: false })
+    expect(runtime.resolveVersionSwitch('/bn/guide/', '2026-08-27')).toEqual({ href: '/bn/v/2026-08-27/guide/', fallback: false })
     expect(runtime.resolveVersionSwitch('/guide/', 'v8')).toEqual({ href: '/v/v8/guide/', fallback: false })
   })
 
   it('keeps the locale prefix when switching from a historical localized route to the current version', () => {
     expect(runtime.resolveVersionSwitch('/zh/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/zh/guide/', fallback: false })
     expect(runtime.resolveVersionSwitch('/zh/v/2026-08-27/', '2026-08-28')).toEqual({ href: '/zh/', fallback: false })
+    expect(runtime.resolveVersionSwitch('/bn/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/bn/guide/', fallback: false })
   })
 
   it('falls back within the active locale when the current route is missing', () => {
@@ -123,7 +160,7 @@ describe('locale-aware version runtime', () => {
       },
       '/bn/': null,
     }
-    const localized = createLocaleVersionRuntime(partial, pathname => (pathname.startsWith('/zh/') || pathname === '/zh') ? '/zh/' : '/')
+    const localized = createLocaleVersionRuntime(partial, localePrefix)
     expect(localized.resolveVersionSwitch('/zh/v/2026-08-27/guide/', '2026-08-28')).toEqual({ href: '/zh/', fallback: true })
   })
 
@@ -149,8 +186,8 @@ describe('locale-aware version runtime', () => {
     const localized = createLocaleVersionRuntime({
       '/': { ...enManifest(), versions: [{ ...enManifest().versions[0], changes: enChanges }] },
       '/zh/': { ...zhManifest(), versions: [{ ...zhManifest().versions[0], changes: zhChanges }] },
-      '/bn/': null,
-    }, pathname => (pathname.startsWith('/zh/') || pathname === '/zh') ? '/zh/' : '/')
+      '/bn/': bnManifest(),
+    }, localePrefix)
 
     // Same version id on every locale must resolve to that locale's own changes.
     expect(localized.resolveVersionChanges('v8', '/guide/introduction/')?.newPages[0].title).toBe('Introduction')

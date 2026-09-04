@@ -51,6 +51,15 @@ describe('language switcher', () => {
     expect(gotoCalls).toEqual(['/zh/guide/install/'])
   })
 
+  it('switches to Bengali while preserving the page', async () => {
+    setPage('/guide/install/')
+    const view = render(LocaleSelector)
+    await fireEvent.click(view.getByRole('button', { name: 'Language' }))
+    await tick()
+    await fireEvent.click(view.getByRole('menuitem', { name: 'বাংলা' }))
+    expect(gotoCalls).toEqual(['/bn/guide/install/'])
+  })
+
   it('keeps the frozen version and heading hash when switching locales', async () => {
     setPage('/zh/v/2026-08-27/guide/#hot-reload')
     const view = render(LocaleSelector)
@@ -58,6 +67,15 @@ describe('language switcher', () => {
     await tick()
     await fireEvent.click(view.getByRole('menuitem', { name: 'English' }))
     expect(gotoCalls).toEqual(['/v/2026-08-27/guide/#hot-reload'])
+  })
+
+  it('keeps the frozen version when switching to Bengali', async () => {
+    setPage('/v/2026-08-27/guide/#hot-reload')
+    const view = render(LocaleSelector)
+    await fireEvent.click(view.getByRole('button', { name: 'Language' }))
+    await tick()
+    await fireEvent.click(view.getByRole('menuitem', { name: 'বাংলা' }))
+    expect(gotoCalls).toEqual(['/bn/v/2026-08-27/guide/#hot-reload'])
   })
 
   it('falls back to the target locale home when the translation is missing', async () => {
@@ -132,6 +150,18 @@ describe('locale-aware links', () => {
     expect(view.getByRole('link', { name: 'Install' }).getAttribute('href')).toBe(
       '/zh/v/2026-08-27/guide/install/',
     )
+  })
+
+  it('keeps current-locale links on every historical locale when the frozen version lacks the route', () => {
+    for (const [page, href] of [
+      ['/zh/v/2026-08-27/guide/', '/zh/guide/i18n/'],
+      ['/bn/v/2026-08-27/guide/', '/bn/guide/i18n/'],
+    ] as const) {
+      setPage(page)
+      const view = render(Link, { props: { to: '/guide/i18n/', label: 'i18n' } })
+      expect(view.getByRole('link', { name: 'i18n' }).getAttribute('href')).toBe(href)
+      view.unmount()
+    }
   })
 })
 
@@ -319,8 +349,8 @@ describe('locale-scoped page switcher', () => {
     setPage('/zh/guide/new/')
     resolveSidebar('/zh/guide/new/')
     const view = render(PageSwitcher)
-    const prev = view.getByRole('link', { name: /Guide/ })
-    const next = view.getByRole('link', { name: /Unchanged/ })
+    const prev = view.getByRole('link', { name: /指南/ })
+    const next = view.getByRole('link', { name: /未变/ })
     expect(prev.getAttribute('href')).toBe('/zh/guide/')
     expect(next.getAttribute('href')).toBe('/zh/guide/unchanged/')
   })
@@ -329,8 +359,8 @@ describe('locale-scoped page switcher', () => {
     setPage('/bn/guide/new/')
     resolveSidebar('/bn/guide/new/')
     const view = render(PageSwitcher)
-    const prev = view.getByRole('link', { name: /Guide/ })
-    const next = view.getByRole('link', { name: /Unchanged/ })
+    const prev = view.getByRole('link', { name: /গাইড/ })
+    const next = view.getByRole('link', { name: /অপরিবর্তিত/ })
     expect(prev.getAttribute('href')).toBe('/bn/guide/')
     expect(next.getAttribute('href')).toBe('/bn/guide/unchanged/')
   })
@@ -355,12 +385,18 @@ describe('locale-scoped page switcher', () => {
     expect(next.getAttribute('href')).toBe('/guide/unchanged/')
   })
 
-  it('keeps the sidebar on a localized historical version page', () => {
-    setPage('/zh/v/2026-08-27/guide/')
-    resolveSidebar('/zh/v/2026-08-27/guide/')
-    const items = get(resolvedSidebar)
-    expect(items.length).toBeGreaterThan(0)
-    expect(items[0]?.items?.some(item => item.to?.startsWith('/zh/v/2026-08-27/'))).toBe(true)
+  it('keeps the sidebar on every localized historical version page', () => {
+    for (const [route, prefix, title] of [
+      ['/zh/v/2026-08-27/guide/', '/zh/v/2026-08-27/', '指南'],
+      ['/bn/v/2026-08-27/guide/', '/bn/v/2026-08-27/', 'গাইড'],
+    ] as const) {
+      setPage(route)
+      resolveSidebar(route)
+      const items = get(resolvedSidebar)
+      expect(items.length).toBeGreaterThan(0)
+      expect(items[0]?.title).toBe(title)
+      expect(items[0]?.items?.some(item => item.to?.startsWith(prefix))).toBe(true)
+    }
   })
 })
 

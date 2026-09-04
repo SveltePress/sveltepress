@@ -217,6 +217,45 @@ describe('locale switch targets', () => {
     })
   })
 
+  it('keeps the frozen version for every locale that publishes that snapshot', () => {
+    const loc = locales()
+    const manifests = {
+      '/': {
+        basePath: '/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/'] },
+        ],
+      },
+      '/zh/': {
+        basePath: '/zh/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/'] },
+        ],
+      },
+      '/bn/': {
+        basePath: '/bn/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/'] },
+        ],
+      },
+    }
+    expect(resolveLocaleSwitch('/v/2026-08-28/guide/', '/zh/', loc, undefined, manifests)).toEqual({
+      href: '/zh/v/2026-08-28/guide/',
+      fallback: false,
+    })
+    expect(resolveLocaleSwitch('/v/2026-08-28/guide/', '/bn/', loc, undefined, manifests)).toEqual({
+      href: '/bn/v/2026-08-28/guide/',
+      fallback: false,
+    })
+    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/', '/bn/', loc, undefined, manifests)).toEqual({
+      href: '/bn/v/2026-08-28/guide/',
+      fallback: false,
+    })
+  })
+
   it('falls back to the target current page when that frozen version is missing', () => {
     const loc = locales()
     const manifests = {
