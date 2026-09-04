@@ -2,15 +2,19 @@
 
 import { cleanup, fireEvent, render, within } from '@testing-library/svelte'
 import { tick } from 'svelte'
+import { get } from 'svelte/store'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import ActionButton from '../src/components/ActionButton.svelte'
 import GlobalLayout from '../src/components/GlobalLayout.svelte'
-import { resolveSidebar } from '../src/components/layout'
+import Feature from '../src/components/home/Feature.svelte'
+import { resolvedSidebar, resolveSidebar } from '../src/components/layout'
 import Link from '../src/components/Link.svelte'
 import LocaleFallbackNotice from '../src/components/LocaleFallbackNotice.svelte'
 import LocaleSelector from '../src/components/LocaleSelector.svelte'
 import Navbar from '../src/components/Navbar.svelte'
 import NavbarMobile from '../src/components/NavbarMobile.svelte'
 import PageSwitcher from '../src/components/PageSwitcher.svelte'
+import VersionSelector from '../src/components/VersionSelector.svelte'
 import { setPage } from './fixtures/app-state.svelte'
 import { localeFixture, setLocaleFixtures } from './fixtures/locale'
 import { gotoCalls, resetNavigation } from './fixtures/navigation'
@@ -45,6 +49,15 @@ describe('language switcher', () => {
     const zh = within(menu).getByRole('menuitem', { name: '中文' })
     await fireEvent.click(zh)
     expect(gotoCalls).toEqual(['/zh/guide/install/'])
+  })
+
+  it('keeps the frozen version and heading hash when switching locales', async () => {
+    setPage('/zh/v/2026-08-27/guide/#hot-reload')
+    const view = render(LocaleSelector)
+    await fireEvent.click(view.getByRole('button', { name: '切换语言' }))
+    await tick()
+    await fireEvent.click(view.getByRole('menuitem', { name: 'English' }))
+    expect(gotoCalls).toEqual(['/v/2026-08-27/guide/#hot-reload'])
   })
 
   it('falls back to the target locale home when the translation is missing', async () => {
@@ -111,6 +124,118 @@ describe('locale-aware links', () => {
     setPage('/guide/')
     const view = render(Link, { props: { to: '/guide/install/', label: 'Install' } })
     expect(view.getByRole('link', { name: 'Install' }).getAttribute('href')).toBe('/guide/install/')
+  })
+})
+
+describe('locale-aware home actions', () => {
+  it('resolves home action buttons within the active locale', () => {
+    setPage('/zh/')
+    const view = render(ActionButton, {
+      props: { to: '/guide/introduction/', label: '阅读文档', type: 'primary' },
+    })
+    expect(view.getByRole('link', { name: '阅读文档' }).getAttribute('href')).toBe(
+      '/zh/guide/introduction/',
+    )
+  })
+
+  it('resolves home action buttons within the Bengali locale', () => {
+    setPage('/bn/')
+    const view = render(ActionButton, {
+      props: { to: '/guide/introduction/', label: 'ডক্‌স পড়ুন', type: 'primary' },
+    })
+    expect(view.getByRole('link', { name: 'ডক্‌স পড়ুন' }).getAttribute('href')).toBe(
+      '/bn/guide/introduction/',
+    )
+  })
+
+  it('keeps default-locale home action links unprefixed', () => {
+    setPage('/')
+    const view = render(ActionButton, {
+      props: { to: '/guide/introduction/', label: 'Read the docs', type: 'primary' },
+    })
+    expect(view.getByRole('link', { name: 'Read the docs' }).getAttribute('href')).toBe(
+      '/guide/introduction/',
+    )
+  })
+
+  it('keeps external home action links unchanged', () => {
+    setPage('/zh/')
+    const view = render(ActionButton, {
+      props: {
+        to: 'https://github.com/SveltePress/sveltepress',
+        label: 'GitHub',
+        external: true,
+      },
+    })
+    expect(view.getByRole('link', { name: 'GitHub' }).getAttribute('href')).toBe(
+      'https://github.com/SveltePress/sveltepress',
+    )
+  })
+})
+
+describe('locale-aware home feature cards', () => {
+  it('navigates feature cards within the active locale', async () => {
+    setPage('/zh/')
+    const view = render(Feature, {
+      props: {
+        i: 0,
+        title: 'Markdown',
+        description: 'Write docs',
+        link: '/guide/markdown/frontmatter/',
+      },
+    })
+    await fireEvent.click(view.getByRole('link'))
+    expect(gotoCalls).toEqual(['/zh/guide/markdown/frontmatter/'])
+  })
+
+  it('keeps default-locale feature card links unprefixed', async () => {
+    setPage('/')
+    const view = render(Feature, {
+      props: {
+        i: 0,
+        title: 'Markdown',
+        description: 'Write docs',
+        link: '/guide/markdown/frontmatter/',
+      },
+    })
+    await fireEvent.click(view.getByRole('link'))
+    expect(gotoCalls).toEqual(['/guide/markdown/frontmatter/'])
+  })
+
+  it('opens external feature card links without rewriting', async () => {
+    setPage('/zh/')
+    const open = vi.spyOn(window, 'open').mockImplementation(() => null)
+    try {
+      const view = render(Feature, {
+        props: {
+          i: 0,
+          title: 'GitHub',
+          description: 'Repo',
+          link: 'https://github.com/SveltePress/sveltepress',
+        },
+      })
+      await fireEvent.click(view.getByRole('link'))
+      expect(open).toHaveBeenCalledWith(
+        'https://github.com/SveltePress/sveltepress',
+        '_blank',
+      )
+      expect(gotoCalls).toEqual([])
+    }
+    finally {
+      open.mockRestore()
+    }
+  })
+})
+
+describe('locale-aware version selector', () => {
+  it('switches historical versions within the active locale', async () => {
+    setPage('/zh/guide/')
+    const view = render(VersionSelector)
+    const trigger = view.getByRole('button', { name: '文档版本' })
+    await fireEvent.click(trigger)
+    await tick()
+    await fireEvent.click(view.getByRole('menuitem', { name: /2026-08-27/ }))
+    expect(gotoCalls).toEqual(['/zh/v/2026-08-27/guide/'])
   })
 })
 
@@ -192,6 +317,14 @@ describe('locale-scoped page switcher', () => {
     const next = view.getByRole('link', { name: /Unchanged/ })
     expect(prev.getAttribute('href')).toBe('/v/2026-08-27/guide/')
     expect(next.getAttribute('href')).toBe('/guide/unchanged/')
+  })
+
+  it('keeps the sidebar on a localized historical version page', () => {
+    setPage('/zh/v/2026-08-27/guide/')
+    resolveSidebar('/zh/v/2026-08-27/guide/')
+    const items = get(resolvedSidebar)
+    expect(items.length).toBeGreaterThan(0)
+    expect(items[0]?.items?.some(item => item.to?.startsWith('/zh/v/2026-08-27/'))).toBe(true)
   })
 })
 

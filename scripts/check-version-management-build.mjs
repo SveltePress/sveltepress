@@ -292,13 +292,12 @@ const versionRuntimeMarkers = [
   'resolveVersionContext',
   'resolveVersionedPath',
 ]
-// The merged site's locale builds (run via `sveltepress versions build
-// --locale zh|bn`) produce locale-prefixed version routes. Verify them once
-// those builds have run; the default-locale build always produces them.
 for (const locale of ['zh', 'bn']) {
   const siteRoot = join(official, locale)
-  if (!existsSync(join(siteRoot, 'v', historicalId, 'index.html')))
-    continue
+  assert(
+    existsSync(join(siteRoot, 'v', historicalId, 'index.html')),
+    `/${locale}/ historical snapshot is missing from the production build: ${join(siteRoot, 'v', historicalId, 'index.html')}`,
+  )
   const currentFeature = join(siteRoot, 'guide/version-management/index.html')
   const appRoot = join(official, '_app')
   const bundled = existsSync(appRoot) ? files(appRoot).map(read).join('\n') : ''

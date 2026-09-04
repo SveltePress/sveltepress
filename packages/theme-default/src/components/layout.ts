@@ -75,10 +75,12 @@ export function resolveSidebar(routeId: string) {
   if (!routeId)
     return
   resolveVersionNavigationChanges(routeId)
-  // Sidebar keys live in logical (locale-free) route space, so compare
-  // against the locale-local path of the current route.
-  const logicalRoute = resolveLogicalRoute(routeId)
-  resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])
+  // Historical routes must keep the locale+version prefix so the locale
+  // manifest's basePath (`/zh/v`) can match. Current routes compare sidebar
+  // keys in logical (locale-free) space.
+  const context = resolveVersionContext(routeId)
+  const pathForSidebar = context?.historical ? routeId : resolveLogicalRoute(routeId)
+  resolvedSidebar.set(resolveVersionSidebar(pathForSidebar, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])
 }
 
 function resolveVersionNavigationChanges(routeId: string) {

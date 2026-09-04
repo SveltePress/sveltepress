@@ -10,14 +10,11 @@ function replaceRequired(source: string, search: string, replacement = ''): stri
 }
 
 const transforms: Record<string, SourceTransform> = {
-  'ActionButton.svelte': source => replaceRequired(
-    replaceRequired(
-      replaceRequired(source, `  import { page } from '$app/state'\n  import {\n    resolveVersionContext,\n    resolveVersionedPath,\n  } from 'virtual:sveltepress/versions'\n`),
-      `  const versionContext = $derived(resolveVersionContext(page.url.pathname))\n  const resolvedTo = $derived(\n    external ? to : resolveVersionedPath(to, versionContext),\n  )\n`,
-    ),
-    'href={external ? to : getPathFromBase(resolvedTo)}',
-    'href={external ? to : getPathFromBase(to)}',
-  ),
+  'ActionButton.svelte': (source) => {
+    let result = replaceRequired(source, `  import {\n    resolveVersionContext,\n    resolveVersionedPath,\n  } from 'virtual:sveltepress/versions'\n`)
+    result = replaceRequired(result, `  const versionContext = $derived(resolveVersionContext(page.url.pathname))\n  const resolvedTo = $derived(\n    external\n      ? to\n      : resolveVersionedPath(\n          resolveLocaleLink(to, page.url.pathname),\n          versionContext,\n        ),\n  )`, `  const resolvedTo = $derived(\n    external ? to : resolveLocaleLink(to, page.url.pathname),\n  )`)
+    return result
+  },
   'EditPage.svelte': (source) => {
     let result = replaceRequired(source, `  import { resolveHistoricalEditLink } from 'virtual:sveltepress/theme-default/versioning'\n  import { resolveVersionManifest } from 'virtual:sveltepress/versions'\n`)
     result = replaceRequired(result, '  const routeId = $derived(page.route.id)', '  const routeId = page.route.id')
@@ -71,7 +68,7 @@ const transforms: Record<string, SourceTransform> = {
     result = replaceRequired(result, `export const changedPageRoutes = writable<Set<string>>(new Set())\n\nexport const changedSectionIds = writable<Set<string>>(new Set())\n\n`)
     result = replaceRequired(result, `  resolveVersionNavigationChanges(routeId)\n`)
     result = replaceRequired(result, `\nfunction resolveVersionNavigationChanges(routeId: string) {\n  const context = resolveVersionContext(routeId)\n  const changes = resolveVersionChanges(context?.versionId, routeId)\n  if (!context || !changes) {\n    changedPageRoutes.set(new Set())\n    changedSectionIds.set(new Set())\n    return\n  }\n\n  changedPageRoutes.set(new Set(\n    [...changes.newPages, ...changes.updatedPages].map(changedPage =>\n      normalizeNavigationRoute(resolveVersionedPath(changedPage.route, context)),\n    ),\n  ))\n  const currentPageChanges = changes.updatedPages.find(changedPage =>\n    normalizeNavigationRoute(changedPage.route) === normalizeNavigationRoute(context.logicalPath),\n  )\n  changedSectionIds.set(new Set(currentPageChanges?.sections.map(section => section.id) ?? []))\n}\n\nexport function normalizeNavigationRoute(route: string): string {\n  return route === '/' ? route : route.replace(/\\/+$/, '')\n}\n`)
-    return replaceRequired(result, `  resolvedSidebar.set(resolveVersionSidebar(logicalRoute, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])`, `  const normalizedRouteId = resolveLogicalRoute(routeId).replace(/\\/$/, '')\n  const localeOptions = resolveLocaleOptions(routeId)\n  const key = Object.keys(localeOptions.sidebar || {}).find(key =>\n    normalizedRouteId.startsWith(key.replace(/\\/$/, '')),\n  )\n  // If no matching key found, clear the sidebar\n  if (!key) {\n    resolvedSidebar.set([])\n    return\n  }\n  resolvedSidebar.set(localeOptions.sidebar?.[key] || [])`)
+    return replaceRequired(result, `  const context = resolveVersionContext(routeId)\n  const pathForSidebar = context?.historical ? routeId : resolveLogicalRoute(routeId)\n  resolvedSidebar.set(resolveVersionSidebar(pathForSidebar, resolveLocaleOptions(routeId).sidebar || {}, resolveVersionManifest(routeId)) as LinkItem[])`, `  const normalizedRouteId = resolveLogicalRoute(routeId).replace(/\\/$/, '')\n  const localeOptions = resolveLocaleOptions(routeId)\n  const key = Object.keys(localeOptions.sidebar || {}).find(key =>\n    normalizedRouteId.startsWith(key.replace(/\\/$/, '')),\n  )\n  // If no matching key found, clear the sidebar\n  if (!key) {\n    resolvedSidebar.set([])\n    return\n  }\n  resolvedSidebar.set(localeOptions.sidebar?.[key] || [])`)
   },
   'SidebarGroup.svelte': (source) => {
     let result = replaceRequired(source, `  import { changedPageRoutes, normalizeNavigationRoute } from './layout'\n`)

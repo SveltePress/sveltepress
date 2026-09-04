@@ -133,4 +133,41 @@ describe('locale-selected versions commands', () => {
     expect(builds).toBe(1)
     expect(compiled.length).toBeGreaterThan(0)
   })
+
+  it('default build drafts every locale before composing the merged site', async () => {
+    const root = localeSite()
+    expect(await invoke(root, ['versions', 'init', '--current', '2026-08-28'])).toMatchObject({ code: 0 })
+    expect(await invoke(root, ['versions', 'init', '--locale', 'zh', '--current', '2026-08-28'])).toMatchObject({ code: 0 })
+    const compiled: string[] = []
+    const stderr: string[] = []
+    let builds = 0
+    const io = {
+      cwd: root,
+      stdout: () => {},
+      stderr: (value: string) => stderr.push(value),
+      compilePage: async (filename: string, source: string, options: { routesDirectory: string, siteRoot: string }) => {
+        const segments = relative(options.routesDirectory, dirname(filename)).split(sep).filter(Boolean)
+        const route = segments.length ? `/${segments.join('/')}/` : '/'
+        compiled.push(`${options.routesDirectory}:${route}`)
+        return {
+          files: {
+            'client.js': `export default ${JSON.stringify(`client:${source}`)}`,
+            'server.js': `export default ${JSON.stringify(`server:${source}`)}`,
+            'metadata.json': JSON.stringify({ route, fm: { title: route } }),
+          },
+        }
+      },
+      runBuild: async () => {
+        builds += 1
+      },
+    }
+    expect(await runCli(['versions', 'migrate', '--site-id', 'docs-en'], io)).toBe(0)
+    expect(await runCli(['versions', 'migrate', '--locale', 'zh', '--site-id', 'docs-zh'], io)).toBe(0)
+    const code = await runCli(['versions', 'build'], io)
+    expect({ code, stderr: stderr.join('\n') }).toEqual({ code: 0, stderr: '' })
+    expect(builds).toBe(1)
+    expect(compiled.some(entry => entry.includes(`${sep}zh`))).toBe(true)
+    expect(existsSync(join(root, '.sveltepress/version-artifacts/drafts/docs-zh.json'))).toBe(true)
+    expect(existsSync(join(root, '.sveltepress/version-artifacts/drafts/docs-en.json'))).toBe(true)
+  })
 })

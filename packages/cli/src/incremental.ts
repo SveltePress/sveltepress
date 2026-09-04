@@ -164,6 +164,15 @@ export async function buildIncrementalSite(
   io.stdout(JSON.stringify(result.report, null, 2))
   if (options.draftOnly)
     return
+  const discoveredLocales = discoverLocaleManifests(io)
+  const isLocaleScopedBuild = discoveredLocales.some(locale => locale.manifest.basePath === manifest.basePath)
+  if (!isLocaleScopedBuild) {
+    for (const locale of discoveredLocales) {
+      if (locale.manifest.basePath === manifest.basePath)
+        continue
+      await buildIncrementalSite(io, locale.manifest, { ...options, draftOnly: true })
+    }
+  }
   await composeIncrementalSite(io, manifest, options)
 }
 
@@ -194,12 +203,10 @@ export async function composeIncrementalSite(
     current,
     historical,
   })
-  // The default-locale build also composes every locale manifest's version
-  // shells so the single merged output carries /v/, /zh/v/, and /bn/v/.
-  // A locale-scoped build (`--locale zh`) composes only the requested
-  // locale's history; sibling locales whose drafts do not exist yet (cold
-  // cache, or a CI job building locales in sequence) are skipped and are
-  // composed by their own build or the final default build.
+  // The default-locale build drafts every locale first, then composes every
+  // locale manifest's version shells so the merged output carries /v/,
+  // /zh/v/, and /bn/v/. A locale-scoped build (`--locale zh`) composes only
+  // the requested locale's history.
   const discoveredLocales = discoverLocaleManifests(io)
   const isLocaleScopedBuild = discoveredLocales.some(locale => locale.manifest.basePath === manifest.basePath)
   const extraMounts: { routesDirectory: string, basePath: string }[] = []

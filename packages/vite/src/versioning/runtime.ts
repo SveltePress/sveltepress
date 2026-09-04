@@ -131,7 +131,17 @@ export function createLocaleVersionRuntime(
       }
       return context
     },
-    resolveVersionedPath: (to, context) => resolveVersionedPath(to, context, context?.manifest ?? defaultManifest),
+    resolveVersionedPath: (to, context) => {
+      const manifest = context?.manifest ?? defaultManifest
+      if (!context?.historical)
+        return resolveVersionedPath(to, context, manifest)
+      const { pathname, suffix } = splitPathSuffix(to)
+      const prefix = manifest ? resolvePrefix(`${manifest.basePath}/`) : null
+      const logicalTo = prefix && prefix !== '/' && matchesLocalePrefix(pathname, prefix)
+        ? `${stripLocalePrefix(pathname, prefix)}${suffix}`
+        : to
+      return resolveVersionedPath(logicalTo, context, manifest)
+    },
     resolveVersionSwitch: (pathname, targetVersionId) => {
       const prefix = resolvePrefix(pathname)
       const manifest = prefix ? (manifests[prefix] ?? null) : null
@@ -179,6 +189,13 @@ function joinLocalePrefix(prefix: string | null, logicalPath: string): string {
 
 function stripQueryAndHash(value: string): string {
   return value.split(/[?#]/, 1)[0]
+}
+
+function matchesLocalePrefix(pathname: string, prefix: string): boolean {
+  if (prefix === '/')
+    return true
+  const normalized = prefix.replace(/\/+$/, '')
+  return pathname === normalized || pathname.startsWith(`${normalized}/`)
 }
 
 function stripLocalePrefix(pathname: string, prefix: string): string {

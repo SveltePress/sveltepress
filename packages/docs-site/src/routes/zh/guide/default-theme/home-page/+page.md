@@ -49,7 +49,7 @@ defaultTheme({
 * `label`
   按钮里的文案
 * `to`
-  按钮的链接
+  按钮的链接。内部链接应使用逻辑路径，例如 `/guide/introduction/`；默认主题会自动加上当前语言前缀。
 * `external`
   是否展示外部链接的图标
 
@@ -68,7 +68,7 @@ defaultTheme({
   * `collection` - Iconfiy 分类名称
   * `name` - Iconfiy 分类下的图标名称
 * `link`
-  点击特性卡片跳转的链接地址
+  点击特性卡片跳转的链接地址。内部链接应使用逻辑路径，例如 `/guide/markdown/frontmatter/`；默认主题会自动加上当前语言前缀。
   当提供此项时特性卡片将会具有一个可点击的交互样式
   以 http(s) 开头的链接将会被自动识别为外部链接，将会在卡片右上角出现一个外部图标
 

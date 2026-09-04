@@ -70,13 +70,13 @@ src/routes/
 └─ bn/guide/introduction/+page.md       # Bengali → /bn/guide/introduction/
 ```
 
-The default locale stays unprefixed at `/`. Other locales use their configured prefixes (`/zh/`, `/bn/`, …). Logical paths are the same across locales; only the prefix changes.
+The default locale stays unprefixed at `/`. Other locales use their configured prefixes (`/zh/`, `/bn/`, …). Logical paths are the same across locales; only the prefix changes. Navbar, sidebar, home action, and feature-card links should use those logical paths (for example `/guide/introduction/`); the Default Theme prefixes them with the active locale.
 :::
 
-:::since[Language switcher and fallbacks]{version="2026-09-03" id="i18n-language-switcher" summary="Default Theme switcher preserves the logical page, including versioned fallbacks."}
+:::since[Language switcher and fallbacks]{version="2026-09-03" id="i18n-language-switcher" summary="Default Theme switcher keeps the documentation version, logical page, and heading hash."}
 ## Language switcher and fallbacks
 
-When `locales` is configured, the Default Theme renders a language switcher in the navbar. Switching locales keeps the same logical page when the target locale has that route. On a historical version page (`/v/<id>/…` or `/zh/v/<id>/…`), if the target locale lacks that frozen page, the switcher falls back to the current version of the same logical page in that locale when it exists; otherwise it opens that locale's home and shows a short notice (`svp-locale-fallback=1`).
+When `locales` is configured, the Default Theme renders a language switcher in the navbar. Switching locales keeps the same documentation version, the same logical page, and the in-view heading (`#hash`). On a historical version page (`/v/<id>/…` or `/zh/v/<id>/…`), the switcher prefers the same frozen version in the target locale. Only if that frozen page is missing does it fall back to the current version of the same logical page, then to that locale's home with a short notice (`svp-locale-fallback=1`).
 
 Customize switcher and notice copy with theme `i18n.localeSwitcher` and `i18n.localePageUnavailable`.
 :::
@@ -139,10 +139,10 @@ Each locale can keep its own document-version manifest:
 | `zh` | `sveltepress.versions.zh.json` | `/zh/v` |
 | `bn` | `sveltepress.versions.bn.json` | `/bn/v` |
 
-Pass `--locale` to every versions CLI command that should target a non-default manifest:
+A default `sveltepress versions build` drafts every locale and composes `/v/`, `/zh/v/`, `/bn/v/` into one output. Pass `--locale` to `init`, `create`, `validate`, and single-locale draft jobs:
 
 ```sh
-pnpm exec sveltepress versions build --locale zh
+pnpm exec sveltepress versions build
 pnpm exec sveltepress versions create 8.2 --label "8.2" --locale zh
 pnpm exec sveltepress versions validate --locale zh
 ```

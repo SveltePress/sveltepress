@@ -1,4 +1,4 @@
-import type { LocalesConfig, LocaleSwitchTarget, ResolvedLocale } from './types.js'
+import type { LocalesConfig, LocaleSwitchTarget, LocaleVersionSnapshot, ResolvedLocale } from './types.js'
 
 /**
  * Resolve the locale for a route path. Prefix-based matching: the default
@@ -61,53 +61,116 @@ export function resolveLocalizedPath(
 }
 
 /**
- * Compute the target of switching the current route to another locale:
- * preserve the logical page when the target locale has that route, fall back
- * to the target locale's current version of the page if viewing a historical
- * version, or fall back to the target locale's home otherwise.
+ * Compute the target of switching the current route to another locale.
+ * Language switching keeps the documentation version, the logical page, and
+ * the hash/query suffix. A missing frozen page in the target locale falls
+ * back to that locale's current version of the same page, then to its home.
  */
 export function resolveLocaleSwitch(
   pathname: string,
   targetPrefix: string,
   locales?: LocalesConfig | null,
   base?: string,
+  versionManifests?: Record<string, LocaleVersionSnapshot | null> | null,
 ): LocaleSwitchTarget | null {
   if (!pathname || typeof pathname !== 'string')
     return null
-  const cleanPath = stripBase(pathname, base)
-  const current = resolveLocale(cleanPath, locales)
+  const withBase = stripBase(pathname, base)
+  const { pathname: pathOnly, suffix } = splitPathSuffix(withBase)
+  const current = resolveLocale(pathOnly, locales)
   const target = locales?.[targetPrefix]
   if (!current || !target)
     return null
-  const logicalPath = stripLocalePrefix(cleanPath, current.prefix)
-  const routeExists = !target.routes?.length || target.routes.some(route => matchesRoutePattern(route, logicalPath))
-  if (routeExists) {
+
+  const currentManifest = versionManifests?.[current.prefix] ?? null
+  const targetManifest = versionManifests?.[targetPrefix] ?? null
+  const parsed = parseVersionedPath(pathOnly, currentManifest, current.prefix)
+  const withSuffix = (href: string) => `${href}${suffix}`
+
+  if (parsed.historical && parsed.versionId) {
+    const targetVersion = findVersion(targetManifest, parsed.versionId)
+    if (targetManifest && targetVersion && versionHasRoute(targetVersion, parsed.logicalPage)) {
+      const href = targetVersion.id === targetManifest.current.id
+        ? joinLocalePath(targetPrefix, parsed.logicalPage)
+        : joinVersionPath(targetManifest.basePath, parsed.versionId, parsed.logicalPage)
+      return { href: withSuffix(href), fallback: false }
+    }
+    if (!targetManifest) {
+      const remainder = stripLocalePrefix(pathOnly, current.prefix)
+      return { href: withSuffix(joinLocalePath(targetPrefix, remainder)), fallback: false }
+    }
+    if (localeHasCurrentRoute(target, parsed.logicalPage)) {
+      return { href: withSuffix(joinLocalePath(targetPrefix, parsed.logicalPage)), fallback: true }
+    }
+    return { href: withSuffix(joinLocalePath(targetPrefix, '/')), fallback: true }
+  }
+
+  if (localeHasCurrentRoute(target, parsed.logicalPage)) {
+    return { href: withSuffix(joinLocalePath(targetPrefix, parsed.logicalPage)), fallback: false }
+  }
+
+  const remainder = stripLocalePrefix(pathOnly, current.prefix)
+  if (looksLikeVersionedRemainder(remainder)) {
+    return { href: withSuffix(joinLocalePath(targetPrefix, remainder)), fallback: false }
+  }
+
+  return { href: withSuffix(joinLocalePath(targetPrefix, '/')), fallback: true }
+}
+
+function parseVersionedPath(
+  pathname: string,
+  manifest: LocaleVersionSnapshot | null,
+  localePrefix: string,
+): { versionId: string | null, historical: boolean, logicalPage: string } {
+  const logicalPage = stripLocalePrefix(pathname, localePrefix)
+  if (!manifest)
+    return { versionId: null, historical: false, logicalPage }
+  const cleanPath = stripQueryAndHash(pathname)
+  const historical = manifest.versions.find(version =>
+    cleanPath === `${manifest.basePath}/${version.id}/`
+    || cleanPath.startsWith(`${manifest.basePath}/${version.id}/`),
+  )
+  if (historical) {
+    const prefix = `${manifest.basePath}/${historical.id}`
     return {
-      href: joinLocalePath(targetPrefix, logicalPath),
-      fallback: false,
+      versionId: historical.id,
+      historical: true,
+      logicalPage: normalizeRoute(cleanPath.slice(prefix.length) || '/'),
     }
   }
+  return { versionId: manifest.current.id, historical: false, logicalPage }
+}
 
-  // Tiered fallback: if currently on a versioned route (/v/<id>/<path>),
-  // attempt to fall back to the current version of the same logical page
-  // in the target locale rather than kicking the user to the home page.
-  const versionMatch = logicalPath.match(/^\/v\/[^/]+(\/.*)?$/)
-  if (versionMatch) {
-    const versionSubPath = normalizeRoute(versionMatch[1] || '/')
-    const targetHasCurrentPage = !target.routes?.length
-      || target.routes.some(route => matchesRoutePattern(route, versionSubPath))
-    if (targetHasCurrentPage) {
-      return {
-        href: joinLocalePath(targetPrefix, versionSubPath),
-        fallback: false,
-      }
-    }
-  }
+function findVersion(
+  manifest: LocaleVersionSnapshot | null,
+  versionId: string,
+): { id: string, routes?: string[] } | null {
+  if (!manifest)
+    return null
+  if (manifest.current.id === versionId)
+    return manifest.current
+  return manifest.versions.find(version => version.id === versionId) ?? null
+}
 
-  return {
-    href: joinLocalePath(targetPrefix, '/'),
-    fallback: true,
-  }
+function versionHasRoute(version: { routes?: string[] }, logicalPage: string): boolean {
+  return !version.routes?.length || version.routes.includes(logicalPage)
+}
+
+function localeHasCurrentRoute(
+  target: { routes?: string[] },
+  logicalPage: string,
+): boolean {
+  return !target.routes?.length || target.routes.some(route => matchesRoutePattern(route, logicalPage))
+}
+
+function looksLikeVersionedRemainder(path: string): boolean {
+  return /^\/v\/[^/]+(?:\/|$)/.test(path)
+}
+
+function joinVersionPath(basePath: string, versionId: string, logicalPath: string): string {
+  const normalized = normalizeRoute(logicalPath)
+  const rest = normalized === '/' ? '' : normalized.slice(1)
+  return normalizeRoute(`${basePath}/${versionId}/${rest}`)
 }
 
 export function stripBase(pathname: string, base?: string): string {

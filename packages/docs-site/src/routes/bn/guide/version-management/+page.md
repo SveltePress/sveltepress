@@ -186,7 +186,7 @@ pnpm exec sveltepress versions validate
 :::
 
 :::since[CLI --locale for per-locale manifests]{version="2026-09-03" id="versions-cli-locale" summary="Pass --locale to target sveltepress.versions.<locale>.json for zh, bn, and other locales."}
-Multi-locale site-এ প্রতি লোকেলের আলাদা versions manifest থাকে। `init`, `build`, `create`, `validate` ইত্যাদি versions subcommand-এ `--locale <id>` দিন।
+Multi-locale site-এ প্রতি লোকেলের আলাদা versions manifest থাকে। `init`, `create`, `validate` ইত্যাদি versions subcommand-এ `--locale <id>` দিন। `--locale` ছাড়া `sveltepress versions build` সব লোকেল draft করে `/v/`, `/zh/v/`, `/bn/v/` একসাথে production output-এ compose করে।
 
 ```sh
 sveltepress versions build --locale bn

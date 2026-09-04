@@ -37,6 +37,8 @@ export async function generateVersionShellRoutes(input: {
   let historicalRoutes = 0
   try {
     mkdirSync(staging, { recursive: true })
+    if (versionBaseSegments.length)
+      mkdirSync(join(staging, ...versionBaseSegments), { recursive: true })
     copiedSupportFiles = copyRouteSupportFiles(sourceRoutes, staging, versionBaseSegments)
     await writeManifestWrappers({
       destinationRoot: staging,

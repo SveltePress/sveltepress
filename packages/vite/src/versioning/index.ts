@@ -38,7 +38,7 @@ export {
 } from './page-artifact-generated.js'
 export type { PageArtifactGeneratedFile } from './page-artifact-generated.js'
 export * from './page-artifact-module.js'
-export { createVersionRuntime, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from './runtime.js'
+export { createLocaleVersionRuntime, createVersionRuntime, resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from './runtime.js'
 export * from './shell-routes.js'
 export * from './source-deltas.js'
 

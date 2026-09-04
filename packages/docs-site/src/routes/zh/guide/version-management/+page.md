@@ -186,7 +186,9 @@ pnpm exec sveltepress versions validate
 :::
 
 :::since[CLI --locale 按语言选择清单]{version="2026-09-03" id="versions-cli-locale" summary="通过 --locale 指向 sveltepress.versions.<locale>.json（如 zh、bn）。"}
-多语言站点为每种语言保留独立的版本清单（`sveltepress.versions.json`、`sveltepress.versions.zh.json`、`sveltepress.versions.bn.json` 等）。在 `init`、`build`、`create`、`validate` 等 versions 子命令上传入 `--locale <id>`，即可读写该语言的清单与增量（例如 `version-deltas-zh/`）。默认语言省略 `--locale`。
+多语言站点为每种语言保留独立的版本清单（`sveltepress.versions.json`、`sveltepress.versions.zh.json`、`sveltepress.versions.bn.json` 等）。在 `init`、`create`、`validate` 等 versions 子命令上传入 `--locale <id>`，即可读写该语言的清单与增量（例如 `version-deltas-zh/`）。默认语言省略 `--locale`。
+
+不带 `--locale` 的 `sveltepress versions build` 会先为每种语言生成草稿，再把 `/v/`、`/zh/v/`、`/bn/v/` 等一并写入同一份生产产物。只有需要单独处理某一种语言时才使用 `--locale zh`（可配合 `--draft-only`）。
 
 ```sh
 sveltepress versions build --locale zh

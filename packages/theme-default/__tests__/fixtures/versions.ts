@@ -1,5 +1,5 @@
 import type { VersionManifest } from '@sveltepress/vite/versioning'
-import { createVersionRuntime } from '@sveltepress/vite/versioning'
+import { createLocaleVersionRuntime } from '@sveltepress/vite/versioning/runtime'
 
 export const manifest: VersionManifest = {
   basePath: '/v',
@@ -44,11 +44,32 @@ export const manifest: VersionManifest = {
   content: { include: ['**'], exclude: [], shared: [] },
 }
 
-export const manifests = { '/': manifest }
-export const resolveVersionManifest = () => manifest
+function withBasePath(basePath: string): VersionManifest {
+  return {
+    ...manifest,
+    basePath,
+    current: { ...manifest.current },
+    versions: manifest.versions.map(version => ({ ...version })),
+  }
+}
 
-const runtime = createVersionRuntime(manifest)
+export const manifests = {
+  '/': manifest,
+  '/zh/': withBasePath('/zh/v'),
+  '/bn/': withBasePath('/bn/v'),
+}
 
+function localePrefix(pathname: string) {
+  if (pathname.startsWith('/zh/') || pathname === '/zh')
+    return '/zh/'
+  if (pathname.startsWith('/bn/') || pathname === '/bn')
+    return '/bn/'
+  return '/'
+}
+
+const runtime = createLocaleVersionRuntime(manifests, localePrefix)
+
+export const resolveVersionManifest = runtime.resolveVersionManifest
 export const resolveVersionContext = runtime.resolveVersionContext
 export const changeSets = runtime.changeSets
 export const resolveVersionChanges = runtime.resolveVersionChanges

@@ -9,7 +9,7 @@
     resolveLocaleSwitch,
   } from 'virtual:sveltepress/locale'
   import { resolveLocaleOptions } from './locale'
-  import { getPathFromBase } from './utils'
+  import { getPathFromBase, inViewHeadingHash, withSwitchSuffix } from './utils'
   import { nextVersionMenuIndex } from './versioning'
 
   let { mobile = false }: { mobile?: boolean } = $props()
@@ -78,13 +78,21 @@
     }
   }
 
+  function switchPath() {
+    const hash = page.url.hash || inViewHeadingHash()
+    return `${page.url.pathname}${page.url.search}${hash}`
+  }
+
   async function selectLocale(target: LocaleSwitchTarget | null) {
     if (!target) return
     closeMenu()
-    const fallback = target.fallback
-      ? `${target.href.includes('?') ? '&' : '?'}svp-locale-fallback=1`
-      : ''
-    await goto(getPathFromBase(`${target.href}${fallback}`))
+    const href = withSwitchSuffix(
+      target.href,
+      '',
+      target.fallback,
+      'svp-locale-fallback',
+    )
+    await goto(getPathFromBase(href))
   }
 </script>
 
@@ -119,7 +127,7 @@
             class:active={prefix === locale?.prefix}
             tabindex={index === activeIndex ? 0 : -1}
             onclick={() =>
-              selectLocale(resolveLocaleSwitch(page.url.pathname, prefix))}
+              selectLocale(resolveLocaleSwitch(switchPath(), prefix))}
           >
             <span class="locale-option-label">{entry.label}</span>
             {#if prefix === locale?.prefix}<span aria-hidden="true">✓</span

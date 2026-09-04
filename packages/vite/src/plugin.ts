@@ -68,6 +68,23 @@ let devMountedVersionShells: Array<{ path: string }> = []
 /** Base route directories created for dev mounts (e.g. src/routes/v). */
 let devMountedBaseRoots: string[] = []
 
+function slimLocaleVersionManifests(
+  manifests: Record<string, import('./versioning/index.js').VersionManifest | null> | null,
+) {
+  if (!manifests)
+    return null
+  return Object.fromEntries(Object.entries(manifests).map(([prefix, manifest]) => [
+    prefix,
+    manifest
+      ? {
+          basePath: manifest.basePath,
+          current: { id: manifest.current.id, routes: manifest.current.routes },
+          versions: manifest.versions.map(version => ({ id: version.id, routes: version.routes })),
+        }
+      : null,
+  ]))
+}
+
 /**
  * In development, mount each locale's historical version shell routes under
  * `src/routes/<basePath>/<versionId>/...` so `/v/2026-08-28/whats-new/` and
@@ -507,7 +524,8 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
           export const locales = ${JSON.stringify(resolvedLocales)}
           export const resolveLocale = (pathname, base = appBase) => resolveLocaleHelper(pathname, locales, base)
           export const resolveLocalizedPath = (to, locale, base = appBase) => resolveLocalizedPathHelper(to, locale, locales, base)
-          export const resolveLocaleSwitch = (pathname, targetPrefix, base = appBase) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base)
+          const versionManifests = ${JSON.stringify(slimLocaleVersionManifests(localeManifests))}
+          export const resolveLocaleSwitch = (pathname, targetPrefix, base = appBase) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base, versionManifests)
           export default { locales, resolveLocale, resolveLocalizedPath, resolveLocaleSwitch }
         `
       }

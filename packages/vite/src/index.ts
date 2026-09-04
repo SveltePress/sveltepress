@@ -1,5 +1,5 @@
 import type { PluginOption } from 'vite'
-import type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
+import type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, LocaleVersionSnapshot, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins } from './types.js'
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
@@ -94,6 +94,6 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
 }
 
 export { mdToSvelte, sveltepress }
-export type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
+export type { Highlighter, LlmsConfig, LoadTheme, LocaleConfig, LocalesConfig, LocaleSwitchTarget, LocaleVersionSnapshot, ResolvedLocale, ResolvedTheme, SiteConfig, SveltepressVitePluginOptions, ThemeVitePlugins }
 export * as log from './utils/log.js'
 export * from './versioning/index.js'

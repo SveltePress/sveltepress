@@ -1,13 +1,21 @@
-import type { VersionManifest, VersionNavigationItem } from '@sveltepress/vite/versioning'
+import type { VersionManifest, VersionNavigationItem, VersionSwitchTarget } from '@sveltepress/vite/versioning'
 import { resolveVersionContext, resolveVersionedPath, resolveVersionSwitch } from '@sveltepress/vite/versioning/runtime'
 
-export function getVersionOptions(routeId: string, manifest: VersionManifest | null) {
+type VersionSwitcher = (pathname: string, targetVersionId: string) => VersionSwitchTarget | null
+
+export function getVersionOptions(
+  routeId: string,
+  manifest: VersionManifest | null,
+  switchVersion?: VersionSwitcher,
+) {
   if (!manifest)
     return []
+  const resolveTarget = switchVersion
+    ?? ((pathname: string, id: string) => resolveVersionSwitch(pathname, id, manifest))
   const versions = [manifest.current, ...manifest.versions]
   return versions.map(version => ({
     ...version,
-    target: resolveVersionSwitch(routeId, version.id, manifest),
+    target: resolveTarget(routeId, version.id),
   }))
 }
 
@@ -23,11 +31,17 @@ export function nextVersionMenuIndex(current: number, key: string, length: numbe
   return current
 }
 
-export function getLifecycleBanner(routeId: string, manifest: VersionManifest | null) {
+export function getLifecycleBanner(
+  routeId: string,
+  manifest: VersionManifest | null,
+  switchVersion?: VersionSwitcher,
+) {
   const context = resolveVersionContext(routeId, manifest)
   if (!context?.historical || !['deprecated', 'eol'].includes(context.version.status ?? 'stable') || !manifest)
     return null
-  const target = resolveVersionSwitch(routeId, manifest.current.id, manifest)
+  const resolveTarget = switchVersion
+    ?? ((pathname: string, id: string) => resolveVersionSwitch(pathname, id, manifest))
+  const target = resolveTarget(routeId, manifest.current.id)
   return {
     status: context.version.status as 'deprecated' | 'eol',
     message: context.version.message,

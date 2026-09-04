@@ -88,6 +88,17 @@ export interface LocaleSwitchTarget {
   fallback: boolean
 }
 
+/**
+ * Slim per-locale version snapshot used by the language switcher. Only the
+ * fields needed to keep the same frozen version (and fall back otherwise)
+ * are required; full manifests stay on `virtual:sveltepress/versions`.
+ */
+export interface LocaleVersionSnapshot {
+  basePath: string
+  current: { id: string, routes?: string[] }
+  versions: Array<{ id: string, routes?: string[] }>
+}
+
 export interface LlmsConfig {
   enabled?: boolean
   title?: string

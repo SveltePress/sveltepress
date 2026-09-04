@@ -147,6 +147,17 @@ describe('locale switch targets', () => {
     expect(resolveLocaleSwitch('/zh/', '/', locales())).toEqual({ href: '/', fallback: false })
   })
 
+  it('preserves hash and query suffixes when switching locales', () => {
+    expect(resolveLocaleSwitch('/zh/guide/install/#intro', '/', locales())).toEqual({
+      href: '/guide/install/#intro',
+      fallback: false,
+    })
+    expect(resolveLocaleSwitch('/guide/install/?tab=api#intro', '/zh/', locales())).toEqual({
+      href: '/zh/guide/install/?tab=api#intro',
+      fallback: false,
+    })
+  })
+
   it('recognizes concrete dynamic paths as translated routes', () => {
     const dynamic = {
       '/': { lang: 'en', label: 'English', theme: {}, routes: ['/', '/posts/[slug]/', '/guide/[[section]]/', '/docs/[...rest]/'] },
@@ -167,21 +178,76 @@ describe('locale switch targets', () => {
     expect(resolveLocaleSwitch('/docs/zh/guide/', '/', loc, '/docs')).toEqual({ href: '/guide/', fallback: false })
   })
 
-  it('performs tiered fallback when switching from historical version routes', () => {
+  it('keeps the same frozen version and hash when switching locales', () => {
     const loc = locales()
-    // Target has current version of the page -> falls back to current version without warning
-    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/', '/', loc)).toEqual({
-      href: '/guide/',
+    const manifests = {
+      '/': {
+        basePath: '/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/', '/guide/install/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/', '/guide/install/'] },
+        ],
+      },
+      '/zh/': {
+        basePath: '/zh/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/', '/guide/install/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/', '/guide/install/'] },
+        ],
+      },
+      '/bn/': {
+        basePath: '/bn/v',
+        current: { id: '2026-08-31', routes: ['/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/'] },
+        ],
+      },
+    }
+    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/#intro', '/', loc, undefined, manifests)).toEqual({
+      href: '/v/2026-08-28/guide/#intro',
+      fallback: false,
+    })
+    expect(resolveLocaleSwitch('/v/2026-08-28/guide/install/', '/zh/', loc, undefined, manifests)).toEqual({
+      href: '/zh/v/2026-08-28/guide/install/',
+      fallback: false,
+    })
+    expect(resolveLocaleSwitch('/v/2026-08-28/guide/', '/bn/', loc, undefined, manifests)).toEqual({
+      href: '/bn/',
+      fallback: true,
+    })
+  })
+
+  it('falls back to the target current page when that frozen version is missing', () => {
+    const loc = locales()
+    const manifests = {
+      '/': {
+        basePath: '/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/'] },
+        versions: [
+          { id: '2026-08-28', routes: ['/', '/guide/'] },
+        ],
+      },
+      '/zh/': {
+        basePath: '/zh/v',
+        current: { id: '2026-08-31', routes: ['/', '/guide/'] },
+        versions: [],
+      },
+    }
+    expect(resolveLocaleSwitch('/v/2026-08-28/guide/', '/zh/', loc, undefined, manifests)).toEqual({
+      href: '/zh/guide/',
+      fallback: true,
+    })
+  })
+
+  it('rewrites the locale prefix of a versioned path when manifests are absent', () => {
+    const loc = locales()
+    expect(resolveLocaleSwitch('/zh/v/2026-08-28/guide/#intro', '/', loc)).toEqual({
+      href: '/v/2026-08-28/guide/#intro',
       fallback: false,
     })
     expect(resolveLocaleSwitch('/v/2026-08-28/guide/install/', '/zh/', loc)).toEqual({
-      href: '/zh/guide/install/',
+      href: '/zh/v/2026-08-28/guide/install/',
       fallback: false,
-    })
-    // Target lacks the page completely -> falls back to target home with warning
-    expect(resolveLocaleSwitch('/v/2026-08-28/reference/new-api/', '/zh/', loc)).toEqual({
-      href: '/zh/',
-      fallback: true,
     })
   })
 

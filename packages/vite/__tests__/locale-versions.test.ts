@@ -86,6 +86,18 @@ describe('locale-aware version runtime', () => {
     expect(runtime.resolveVersionedPath('/guide/', enContext)).toBe('/v/v8/guide/')
   })
 
+  it('strips an already-localized path before applying the historical prefix', () => {
+    const context = runtime.resolveVersionContext('/zh/v/2026-08-27/guide/')!
+    expect(runtime.resolveVersionedPath('/zh/guide/', context)).toBe('/zh/v/2026-08-27/guide/')
+    expect(runtime.resolveVersionedPath('/zh/guide/#intro', context)).toBe('/zh/v/2026-08-27/guide/#intro')
+    expect(runtime.resolveVersionedPath('/bn/guide/', context)).toBe('/bn/guide/')
+  })
+
+  it('leaves localized current-version links unchanged', () => {
+    const context = runtime.resolveVersionContext('/zh/guide/')!
+    expect(runtime.resolveVersionedPath('/zh/guide/install/', context)).toBe('/zh/guide/install/')
+  })
+
   it('switches versions within the active locale', () => {
     expect(runtime.resolveVersionSwitch('/zh/guide/', '2026-08-27')).toEqual({ href: '/zh/v/2026-08-27/guide/', fallback: false })
     expect(runtime.resolveVersionSwitch('/guide/', 'v8')).toEqual({ href: '/v/v8/guide/', fallback: false })

@@ -5,6 +5,7 @@
     resolveVersionedPath,
   } from 'virtual:sveltepress/versions'
   import External from './icons/External.svelte'
+  import { resolveLocaleLink } from './locale'
   import { getPathFromBase } from './utils'
 
   /**
@@ -19,7 +20,12 @@
   let { label, type = '', to, external = false } = $props()
   const versionContext = $derived(resolveVersionContext(page.url.pathname))
   const resolvedTo = $derived(
-    external ? to : resolveVersionedPath(to, versionContext),
+    external
+      ? to
+      : resolveVersionedPath(
+          resolveLocaleLink(to, page.url.pathname),
+          versionContext,
+        ),
   )
 </script>
 

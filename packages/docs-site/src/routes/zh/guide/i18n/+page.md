@@ -70,13 +70,13 @@ src/routes/
 └─ bn/guide/introduction/+page.md       # 孟加拉语 → /bn/guide/introduction/
 ```
 
-默认语言保持无前缀的 `/`。其他语言使用各自配置的前缀（`/zh/`、`/bn/` 等）。各语言的逻辑路径一致，只有前缀不同。
+默认语言保持无前缀的 `/`。其他语言使用各自配置的前缀（`/zh/`、`/bn/` 等）。各语言的逻辑路径一致，只有前缀不同。导航栏、侧边栏、首页动作按钮和特性卡片都应使用这些逻辑路径（例如 `/guide/introduction/`）；默认主题会自动加上当前语言前缀。
 :::
 
 :::since[语言切换器与回退]{version="2026-09-03" id="i18n-language-switcher" summary="默认主题切换器会尽量保留逻辑页面，并支持版本化回退。"}
 ## 语言切换器与回退
 
-配置 `locales` 后，默认主题会在导航栏渲染语言切换器。目标语言存在同一逻辑页面时会保留该页面。若当前位于历史版本页面（`/v/<id>/…` 或 `/zh/v/<id>/…`），而目标语言没有对应冻结页面，则会优先回退到该语言当前版的同一逻辑页面；再不行则打开该语言首页，并显示简短提示（`svp-locale-fallback=1`）。
+配置 `locales` 后，默认主题会在导航栏渲染语言切换器。切换语言会保留当前文档版本、同一逻辑页面，以及正在阅读的标题位置（`#hash`）。若当前位于历史版本页面（`/v/<id>/…` 或 `/zh/v/<id>/…`），会优先进入目标语言的同一冻结版本。只有该冻结页面不存在时，才回退到该语言当前版的同一逻辑页面；再不行则打开该语言首页，并显示简短提示（`svp-locale-fallback=1`）。
 
 可通过主题 `i18n.localeSwitcher` 与 `i18n.localePageUnavailable` 自定义切换器与提示文案。
 :::
@@ -139,10 +139,10 @@ export const handle = createLocaleHandle(locales)
 | `zh` | `sveltepress.versions.zh.json` | `/zh/v` |
 | `bn` | `sveltepress.versions.bn.json` | `/bn/v` |
 
-非默认语言请在 versions 相关 CLI 子命令上增加 `--locale <id>`（例如 `zh`、`bn`），以选择 `sveltepress.versions.<locale>.json`：
+默认的 `sveltepress versions build` 会为每种语言生成草稿，并把 `/v/`、`/zh/v/`、`/bn/v/` 写入同一份产物。`init`、`create`、`validate` 以及只处理某一种语言的任务才需要 `--locale`：
 
 ```sh
-sveltepress versions build --locale zh
+sveltepress versions build
 sveltepress versions create 8.2 --label "8.2" --locale zh
 sveltepress versions validate --locale zh
 ```

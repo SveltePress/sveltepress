@@ -34,13 +34,13 @@ export default defineConfig({
 :::since[Locale routes and prefixes]{version="2026-09-03" id="i18n-route-prefixes" summary="Default locale stays at /; other locales live under /zh/, /bn/, and matching src/routes trees."}
 ## রুট ও prefix
 
-অনুবাদ করা পৃষ্ঠাগুলো ডিফল্ট লোকেলের একই logical route ID-এর পাশে রাখুন (`src/routes/…`, `src/routes/zh/…`, `src/routes/bn/…`)। ডিফল্ট লোকেল unprefixed `/`-এ থাকে।
+অনুবাদ করা পৃষ্ঠাগুলো ডিফল্ট লোকেলের একই logical route ID-এর পাশে রাখুন (`src/routes/…`, `src/routes/zh/…`, `src/routes/bn/…`)। ডিফল্ট লোকেল unprefixed `/`-এ থাকে। Navbar, sidebar, হোম action বাটন এবং feature card লিংকেও সেই logical path ব্যবহার করুন (যেমন `/guide/introduction/`); Default Theme সক্রিয় লোকেলের prefix যোগ করবে।
 :::
 
 :::since[Language switcher and fallbacks]{version="2026-09-03" id="i18n-language-switcher" summary="Default Theme switcher preserves the logical page, including versioned fallbacks."}
 ## Language switcher ও fallback
 
-`locales` কনফিগার থাকলে Default Theme navbar-এ language switcher দেখায়। টার্গেট লোকেলে একই logical page থাকলে সেটিই রাখে; historical version-এ না থাকলে current logical page বা লোকেল home-এ fallback করে (`svp-locale-fallback=1`)।
+`locales` কনফিগার থাকলে Default Theme navbar-এ language switcher দেখায়। ভাষা বদলালে documentation version, logical page, এবং in-view heading (`#hash`) একই থাকে। Historical version (`/v/<id>/…` বা `/zh/v/<id>/…`) থেকে সুইচ করলে টার্গেট লোকেলের একই frozen version-এ যায়; সেই পৃষ্ঠা না থাকলে current logical page, তারপর লোকেল home-এ fallback করে (`svp-locale-fallback=1`)।
 :::
 
 :::since[virtual:sveltepress/locale]{version="2026-09-03" id="i18n-virtual-locale" summary="Client helpers resolve the active locale, localize links, and compute switch targets."}
@@ -81,10 +81,10 @@ export const handle = createLocaleHandle(locales)
 :::since[Locale-aware versioning]{version="2026-09-03" id="i18n-locale-versioning" summary="Each locale has its own versions manifest; CLI --locale selects sveltepress.versions.<locale>.json."}
 ## Locale-aware versioning
 
-প্রতি লোকেলের আলাদা manifest থাকতে পারে (`sveltepress.versions.json`, `sveltepress.versions.zh.json`, `sveltepress.versions.bn.json`)। নন-ডিফল্ট manifest-এর জন্য CLI-তে `--locale` দিন:
+প্রতি লোকেলের আলাদা manifest থাকতে পারে (`sveltepress.versions.json`, `sveltepress.versions.zh.json`, `sveltepress.versions.bn.json`)। ডিফল্ট `sveltepress versions build` সব লোকেল draft করে এক output-এ compose করে। `init` / `create` / `validate` এবং এক-লোকেল draft-এ `--locale` দিন:
 
 ```sh
-sveltepress versions build --locale bn
+sveltepress versions build
 sveltepress versions create 8.2 --label "8.2" --locale bn
 sveltepress versions validate --locale bn
 ```

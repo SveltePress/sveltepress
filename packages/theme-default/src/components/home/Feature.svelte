@@ -1,7 +1,10 @@
 <script>
   import { goto } from '$app/navigation'
+  import { page } from '$app/state'
   import IconifyIcon from '../IconifyIcon.svelte'
   import External from '../icons/External.svelte'
+  import { resolveLocaleLink } from '../locale'
+  import { getPathFromBase } from '../utils'
 
   /**
    * @typedef {object} Props
@@ -23,11 +26,16 @@
   } = $props()
 
   const external = $derived(/^https?/.test(link))
+  const resolvedLink = $derived(
+    !link || external
+      ? link
+      : getPathFromBase(resolveLocaleLink(link, page.url.pathname)),
+  )
 
   function handleFeatureCardClick() {
-    if (!link) return
-    if (external) window.open(link, '_blank')
-    else goto(link)
+    if (!resolvedLink) return
+    if (external) window.open(resolvedLink, '_blank')
+    else goto(resolvedLink)
   }
 </script>
 

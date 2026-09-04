@@ -1,6 +1,9 @@
 <script>
   import { page } from '$app/state'
-  import { resolveVersionManifest } from 'virtual:sveltepress/versions'
+  import {
+    resolveVersionManifest,
+    resolveVersionSwitch,
+  } from 'virtual:sveltepress/versions'
   import Link from './Link.svelte'
   import { resolveLocaleOptions } from './locale'
   import { getLifecycleBanner } from './versioning'
@@ -11,6 +14,7 @@
     getLifecycleBanner(
       page.url.pathname,
       resolveVersionManifest(page.url.pathname),
+      resolveVersionSwitch,
     ),
   )
   const localeOptions = $derived(resolveLocaleOptions(page.url.pathname))

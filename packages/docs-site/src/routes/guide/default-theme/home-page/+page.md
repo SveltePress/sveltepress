@@ -50,7 +50,7 @@ The action buttons
 * `label`
   The label text of action button
 * `to`
-  The link address of action button
+  The link address of action button. Internal paths should be logical routes such as `/guide/introduction/`; the Default Theme prefixes them with the active locale.
 * `external`
   Determine whether to render a external icon on the right of action button
 
@@ -70,6 +70,7 @@ custom icon config
   * `name` - the icon name in the specified collection of iconify
 * `link`
   The link that would go to when the feature card is clicked.
+  Internal paths should be logical routes such as `/guide/markdown/frontmatter/`; the Default Theme prefixes them with the active locale.
   If the link starts with http(s), would be auto recognized as external link. And would add an external icon on the top-right corner.
   And the feature card has a clickable style when link is provided.
 

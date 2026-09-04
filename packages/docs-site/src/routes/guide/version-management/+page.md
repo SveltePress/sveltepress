@@ -193,7 +193,9 @@ Never run `versions create` over documentation that already contains the next ve
 :::
 
 :::since[CLI --locale for per-locale manifests]{version="2026-09-03" id="versions-cli-locale" summary="Pass --locale to target sveltepress.versions.<locale>.json for zh, bn, and other locales."}
-Multi-locale sites keep one versions manifest per locale (`sveltepress.versions.json`, `sveltepress.versions.zh.json`, `sveltepress.versions.bn.json`, …). Pass `--locale <id>` to `init`, `build`, `create`, `validate`, and other versions subcommands so they read and write that locale's manifest and deltas (for example `version-deltas-zh/`). Default locale commands omit `--locale`.
+Multi-locale sites keep one versions manifest per locale (`sveltepress.versions.json`, `sveltepress.versions.zh.json`, `sveltepress.versions.bn.json`, …). Pass `--locale <id>` to `init`, `create`, `validate`, and other versions subcommands so they read and write that locale's manifest and deltas (for example `version-deltas-zh/`). Default locale commands omit `--locale`.
+
+`sveltepress versions build` with no `--locale` drafts every locale, then composes `/v/`, `/zh/v/`, `/bn/v/`, … into one production output. Use `--locale zh` (optionally with `--draft-only`) only when you need a single-locale job.
 
 ```sh
 sveltepress versions build --locale zh

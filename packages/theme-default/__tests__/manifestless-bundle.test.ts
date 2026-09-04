@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { stripVersioningForManifestlessSite } from '../src/vite-plugins/strip-versioning'
 
 const reviewedManifestlessHashes = {
-  'ActionButton.svelte': 'bca18b81ffc519b9c94abfe42ead195b79c0d5176f6318989dd33176cff7bd29',
+  'ActionButton.svelte': '277fecc0f7d607e5bd9000153f6d171dc62ae895d8305bacb3a16ff898d24bc1',
   'EditPage.svelte': '37cb8f0bffd3abb9df65db87f7730dd7528f7c95cdd30af762703d765bf663fb',
   'GlobalLayout.svelte': 'ee9a313a6ff4ffab9a64068b8c2edf336382acb87a5c503759ac1a0e983eb232',
   'Link.svelte': '8c109b2b40606e9667ebd3e5aa026c3169c2db72bebd1c994df1f778f5560877',
@@ -16,7 +16,7 @@ const reviewedManifestlessHashes = {
   'PageLayout.svelte': '7aa8ffdade12106bb14841305e8ba07518505fef2ecfcc4e12938f77829b9637',
   'SidebarGroup.svelte': '2277d6c145cdd6222033df26ef1c488ef250b94a142705b33ddea38afe158db1',
   'Toc.svelte': 'b260bce61dc3ce8af1c7fbb7d5f6e08f24c1df15dc3f91f6ef77f45253c93775',
-  'layout.ts': 'be00d8ed318247be46737357bb12ca84c337773076964bf95a14337561c90f4a',
+  'layout.ts': '430ecf785cf02871acc04e3de954e37b92a0c2c4586329bef610b4a794df2eb9',
   'pwa/sw.js': 'f750090ff5156db51fc141494ffedc8acfa947cc4440985f8759af2182d6d513',
 }
 
