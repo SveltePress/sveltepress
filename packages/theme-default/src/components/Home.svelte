@@ -109,10 +109,10 @@
   /* flex + centered wrap so an orphan last row (e.g. 5 cards in 3 columns)
      centers instead of leaving a hole at the bottom-right */
   .features {
-    --at-apply: 'flex flex-wrap justify-center gap-5 mt-10 sm:mt-16 mb-8';
+    --at-apply: 'flex flex-wrap justify-center gap-6 mt-10 sm:mt-16 mb-8';
   }
   .features > :global(.feature-item) {
-    --at-apply: 'basis-full sm:basis-[calc((100%-1.25rem)/2)] md:basis-[calc((100%-2.5rem)/3)] grow-0 shrink-0 box-border';
+    --at-apply: 'basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)] grow-0 shrink-0 box-border';
   }
   .home-content {
     --at-apply: 'sm:w-[70vw] max-w-[1152px] mx-auto px-4 sm:px-0 pb-12 sm:pb-24';

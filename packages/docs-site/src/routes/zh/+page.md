@@ -11,29 +11,33 @@ actions:
     external: true
 features:
   - title: 以 Markdown 为中心
-    description: 以最小的配置开始写作
+    description: 以最小的配置开始写作，专注于内容创作。
     icon:
       type: iconify
       collection: vscode-icons
       name: file-type-markdown
+    link: /guide/markdown/frontmatter/
   - title: 基于 Sveltekit 构建
-    description: 保留了 Sveltekit 的完整能力，你可以做的远不止 SSG
+    description: 保留了 Sveltekit 的完整能力，你可以做的远不止 SSG。
     icon:
       type: iconify
       collection: logos
       name: svelte-kit
+    link: /guide/introduction/
   - title: 支持在 Markdown 中编写 Svelte
-    description: 在 Markdown 中自由的编写 Svelte，探索无限可能
+    description: 在 Markdown 中直接使用 Svelte 5 组件与 runes，探索无限可能。
     icon:
       type: iconify
       collection: vscode-icons
       name: file-type-svelte
-  - title: 类型友好
-    description: 所有的 API 以及配置均有 TS 类型提示
+    link: /guide/markdown/svelte-in-markdown/
+  - title: 内置多语言支持
+    description: 单站点开箱即用支持多语言，提供自动化路由前缀、语言切换器与跨版本状态保持。
     icon:
       type: iconify
-      collection: logos
-      name: typescript-icon
+      collection: material-symbols
+      name: translate
+    link: /guide/i18n/
   - title: 文档版本管理
     description: 让当前文档保持简洁 URL，同时发布不可变的历史快照，并提供内置版本导航和发布变化总览。
     icon:
@@ -41,10 +45,25 @@ features:
       collection: material-symbols
       name: history
     link: /guide/version-management/
+  - title: 开箱即用全文搜索
+    description: 基于 Pagefind 提供零配置的高性能本地搜索，支持多语言过滤以及 Algolia DocSearch 扩展。
+    icon:
+      type: iconify
+      collection: material-symbols
+      name: search
+    link: /guide/default-theme/search/
+  - title: 类型友好
+    description: 所有的 API 以及配置均有完整 TypeScript 类型提示。
+    icon:
+      type: iconify
+      collection: logos
+      name: typescript-icon
+    link: /guide/typescript/
   - title: 支持主题自定义
-    description: 根据您的需要选择默认主题，社区主题，或者自行开发主题own.
+    description: 根据您的需要选择默认主题、博客主题、社区主题，或者自行开发主题。
     icon:
       type: iconify
       collection: emojione
       name: artist-palette
+    link: /guide/themes/
 ---

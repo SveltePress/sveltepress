@@ -23,6 +23,7 @@ features:
       type: iconify
       collection: logos
       name: svelte-kit
+    link: /guide/introduction/
   - title: Markdown এ Svelte
     description: Markdown-এর মধ্যে সরাসরি Svelte 5 কম্পোনেন্ট ও runes ব্যবহার করুন।
     icon:
@@ -30,12 +31,13 @@ features:
       collection: vscode-icons
       name: file-type-svelte
     link: /guide/markdown/svelte-in-markdown/
-  - title: টাইপ-বান্ধব
-    description: সমস্ত API পুরোপুরি টাইপস্ক্রিপ্ট দিয়ে টাইপ করা হয়েছে।
+  - title: অন্তর্নির্মিত বহুভাষা সমর্থন (i18n)
+    description: একটি সাইট থেকেই স্বয়ংক্রিয় রুট প্রিফিক্স, ভাষা পরিবর্তনকারী এবং ভার্সন বজায় রেখে বহুভাষা পরিচালনা করুন।
     icon:
       type: iconify
-      collection: logos
-      name: typescript-icon
+      collection: material-symbols
+      name: translate
+    link: /guide/i18n/
   - title: ডকুমেন্টেশন ভার্সন ম্যানেজমেন্ট
     description: বর্তমান ডকুমেন্টেশনকে পরিচ্ছন্ন URL-এ রেখে অপরিবর্তনীয় ঐতিহাসিক স্ন্যাপশট প্রকাশ করুন; সঙ্গে পান অন্তর্নির্মিত ভার্সন নেভিগেশন ও রিলিজ পরিবর্তনের তালিকা।
     icon:
@@ -43,10 +45,25 @@ features:
       collection: material-symbols
       name: history
     link: /guide/version-management/
+  - title: দ্রুত লোকাল সার্চ
+    description: Pagefind দ্বারা চালিত শূন্য-কনফিগারেশন ক্লায়েন্ট-সাইড সার্চ, সাথে বহুভাষা ফিল্টারিং এবং DocSearch সমর্থন।
+    icon:
+      type: iconify
+      collection: material-symbols
+      name: search
+    link: /guide/default-theme/search/
+  - title: টাইপ-বান্ধব
+    description: সমস্ত API পুরোপুরি টাইপস্ক্রিপ্ট দিয়ে টাইপ করা হয়েছে।
+    icon:
+      type: iconify
+      collection: logos
+      name: typescript-icon
+    link: /guide/typescript/
   - title: থিম কাস্টমাইজযোগ্য
     description: নির্দ্বিধায় ডিফল্ট থিম, কমিউনিটি থিম বা আপনার নিজের বানানো থিম ব্যবহার করুন।
     icon:
       type: iconify
       collection: emojione
       name: artist-palette
+    link: /guide/themes/
 ---
