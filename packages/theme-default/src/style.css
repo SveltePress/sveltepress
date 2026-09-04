@@ -544,14 +544,14 @@ html.dark kbd {
 
 /* Tables */
 .theme-default--page-layout .content table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
+  width: 100%;
+  display: table;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9em;
   text-align: left;
   border-radius: 8px;
+  overflow: hidden;
   border: 1px solid var(--svp-divider);
 }
 

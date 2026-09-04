@@ -23,14 +23,12 @@ precacheAndRoute(entriesAfterProcessed)
 // clean old assets
 cleanupOutdatedCaches()
 
-let allowlist
-if (import.meta.env.DEV)
-  allowlist = [/^\/$/]
-
-// to allow work offline
+// Only the root route may fall back to the precached homepage. generateSW
+// and an unrestricted NavigationRoute would otherwise serve `/` on every
+// document-page refresh.
 const route = new NavigationRoute(
   createHandlerBoundToURL('/'),
-  { allowlist },
+  { allowlist: [/^\/$/] },
 )
 
 const versionBase = import.meta.env.SVELTEPRESS_VERSION_BASE

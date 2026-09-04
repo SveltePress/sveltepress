@@ -1,4 +1,14 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
+
+function expectNavigationFallbackDoesNotInterceptDocPages(workbox: any) {
+  const allowlist = workbox.navigateFallbackAllowlist
+  expect(allowlist, 'navigateFallbackAllowlist is required so generateSW does not match every document navigation').toBeDefined()
+  expect(Array.isArray(allowlist)).toBe(true)
+  expect(allowlist.some((re: RegExp) => re.test('/'))).toBe(true)
+  expect(allowlist.some((re: RegExp) => re.test('/guide/markdown/frontmatter/'))).toBe(false)
+}
 
 const capturedPwaOptions: any[] = []
 
@@ -55,6 +65,31 @@ describe('theme-default PWA configuration', () => {
     // dontCacheBustURLsMatching should be configured
     expect(pwa.injectManifest.dontCacheBustURLsMatching).toBeDefined()
     expect(pwa.workbox.dontCacheBustURLsMatching).toBeDefined()
+
+    // generateSW registers navigateFallback BEFORE runtimeCaching.
+    // An unrestricted fallback to '/' serves the homepage HTML on every
+    // document-page refresh (sidebar/url stay correct, body is empty).
+    expectNavigationFallbackDoesNotInterceptDocPages(pwa.workbox)
+  })
+
+  it('restricts navigateFallback when the site uses generateSW like docs-site', async () => {
+    capturedPwaOptions.length = 0
+    const { defaultTheme } = await import('../src/index')
+
+    const theme = defaultTheme({
+      pwa: {
+        scope: '/',
+        base: '/',
+        strategies: 'generateSW',
+        kit: { trailingSlash: 'always' },
+      },
+    })
+
+    const dummyCore = { name: 'core-plugin' }
+    await (theme.vitePlugins as any)(dummyCore)
+
+    expect(capturedPwaOptions).toHaveLength(1)
+    expectNavigationFallbackDoesNotInterceptDocPages(capturedPwaOptions[0].workbox)
   })
 
   it('allows opting into full page precaching via precachePages', async () => {
@@ -122,5 +157,14 @@ describe('theme-default PWA configuration', () => {
       (rc: any) => rc.options?.cacheName === 'sveltepress-pages',
     )
     expect(customIndex).toBeLessThan(docIndex)
+  })
+
+  it('restricts the injectManifest navigation fallback to the root route in production', () => {
+    const sw = readFileSync(
+      resolve(import.meta.dirname, '../src/components/pwa/sw.js'),
+      'utf8',
+    )
+    expect(sw).toContain('allowlist: [/^\\/$/]')
+    expect(sw).not.toContain('import.meta.env.DEV')
   })
 })

@@ -96,6 +96,10 @@ const defaultTheme: ThemeDefault = (options) => {
           dontCacheBustURLsMatching: /-[\w-]{8}\./,
           navigateFallback: '/',
           ...pwaOptions.workbox,
+          // generateSW registers navigateFallback before runtimeCaching.
+          // Without an allowlist, every doc page refresh is served `/`.
+          navigateFallbackAllowlist:
+            pwaOptions.workbox?.navigateFallbackAllowlist ?? [/^\/$/],
           ...(historicalGlob
             ? { globIgnores: [...(pwaOptions.workbox?.globIgnores ?? []), historicalGlob] }
             : {}),

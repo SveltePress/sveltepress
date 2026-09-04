@@ -27,9 +27,10 @@ describe('default theme typography styling', () => {
     expect(css).toContain('border-bottom: 2px solid rgba(255, 255, 255, 0.25);')
   })
 
-  it('defines responsive table styles with overflow-x scrolling and zebra striping', () => {
+  it('defines responsive table styles with full-width layout and zebra striping', () => {
     expect(css).toContain('.theme-default--page-layout .content table')
-    expect(css).toContain('overflow-x: auto;')
+    expect(css).toContain('width: 100%;')
+    expect(css).toContain('display: table;')
     expect(css).toContain('border-collapse: collapse;')
     expect(css).toContain('.theme-default--page-layout .content th')
     expect(css).toContain('.theme-default--page-layout .content tr:nth-child(even)')
