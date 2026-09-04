@@ -1,5 +1,44 @@
 # @sveltepress/theme-default
 
+## 8.7.0
+
+### Minor Changes
+
+- [`a1a909a`](https://github.com/Blackman99/sveltepress/commit/a1a909a68d52cfe036755ae9b6ace361fce39419) Thanks [@Blackman99](https://github.com/Blackman99)! - Enhance default theme markdown content typography and micro-component styling:
+  - Tables now have modern light/dark borders, header background color, zebra striping, and auto-scrolling horizontal overflow for responsive layouts.
+  - Inline code snippets outside code blocks have comfortable padding, rounded corners, and subtle background tint to contrast cleanly with body text.
+  - Blockquotes feature a clean left accent border, italic typography, and subtle tinted background.
+  - `<kbd>` keycaps display a tactile 3D keycap aesthetic with bottom-edge border depth and soft shadow.
+
+- [`bd409ad`](https://github.com/Blackman99/sveltepress/commit/bd409ad2a38cdb84b83e90134def48e4e7e16583) Thanks [@Blackman99](https://github.com/Blackman99)! - Redesign homepage with elevated modern aesthetic and interactive feature showcases:
+  - Enhance `Home.svelte` with ambient radial mesh glow, refined typography hierarchy, announcement `badge` prop with automatic locale resolution, and `installCommand` prop.
+  - Introduce `InstallCommand.svelte` with one-click clipboard copy feedback and terminal prompt styling.
+  - Upgrade `Feature.svelte` with Bento `spotlight` cards and category `tag` badges while remaining 100% backward compatible.
+  - Upgrade `HeroCode.svelte` to an interactive dual-pane showcase with multi-tab switching (Svelte 5 Runes with interactive counter, Markdown Callouts, Twoslash TypeScript annotations).
+
+### Patch Changes
+
+- [`da3899c`](https://github.com/Blackman99/sveltepress/commit/da3899cad7ac3962ee7a6b2f80661e901ae462cf) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`8aa6cea`](https://github.com/Blackman99/sveltepress/commit/8aa6cead36697d120fe6d9f2034a00bf296a866f) Thanks [@Blackman99](https://github.com/Blackman99)! - Resolve home action and feature-card links within the active locale
+
+- [`8aa6cea`](https://github.com/Blackman99/sveltepress/commit/8aa6cead36697d120fe6d9f2034a00bf296a866f) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the documentation version and heading when switching languages, and include every locale's version history in a default `versions build`
+
+- [`fa66877`](https://github.com/Blackman99/sveltepress/commit/fa668777de53e9812370cac9f24103d6feeafef3) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep localized historical sidebar links and highlight on the matching translated page
+
+- [`18d34d6`](https://github.com/Blackman99/sveltepress/commit/18d34d66b645450e02fbad13bf9331154539d249) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix document pages rendering the homepage after a refresh when PWA is enabled
+
+- [`18d34d6`](https://github.com/Blackman99/sveltepress/commit/18d34d66b645450e02fbad13bf9331154539d249) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix markdown table layout so tables expand to full width (`width: 100%; display: table;`) and do not collapse horizontally to content width with empty trailing space.
+
+- [`dd24387`](https://github.com/Blackman99/sveltepress/commit/dd24387fc4a57e82db9eb99008cade1a4fdad2e2) Thanks [@Blackman99](https://github.com/Blackman99)! - Redesign home page feature cards with modern visual polish, responsive equal-height layout, and interactive affordance:
+  - Cards now feature frosted glass background (`backdrop-blur-sm`), rounded-2xl corners, and smooth glow shadow transitions on hover.
+  - Added visual indicator (top-right arrow icon with micro-translation on hover) for clickable internal links alongside external link icon support.
+  - Icons are housed in refined icon badges with dynamic theme color background transitions on card hover.
+  - Fully accessible keyboard navigation (`Enter` and `Space` activation on clickable cards) and seamless downgrade to static display when no link is specified.
+  - Responsive grid spacing and breakpoints (`gap-6`, 2-column on tablet, 3-column on desktop) ensuring clean layout presentation.
+- Updated dependencies [[`da3899c`](https://github.com/Blackman99/sveltepress/commit/da3899cad7ac3962ee7a6b2f80661e901ae462cf)]:
+  - @sveltepress/twoslash@1.3.21
+
 ## 8.6.0
 
 ### Minor Changes
