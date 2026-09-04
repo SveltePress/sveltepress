@@ -49,6 +49,7 @@ declare module 'virtual:sveltepress/theme-default' {
     ga?: string
     pwa?: SvelteKitPWAOptions & {
       darkManifest?: string
+      precachePages?: boolean
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
     search?: Component | string | boolean

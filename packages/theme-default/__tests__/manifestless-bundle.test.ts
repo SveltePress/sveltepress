@@ -17,7 +17,7 @@ const reviewedManifestlessHashes = {
   'SidebarGroup.svelte': '2277d6c145cdd6222033df26ef1c488ef250b94a142705b33ddea38afe158db1',
   'Toc.svelte': 'b260bce61dc3ce8af1c7fbb7d5f6e08f24c1df15dc3f91f6ef77f45253c93775',
   'layout.ts': 'be00d8ed318247be46737357bb12ca84c337773076964bf95a14337561c90f4a',
-  'pwa/sw.js': '34531cfb59de917b1ebf006b4928ab744cdd24f755a9666872f62f7bf41911b3',
+  'pwa/sw.js': '13bf8b9669c0dbf91d8737b3c02e90f75c2e1595e51b32ebae814fd7c0722355',
 }
 
 describe('manifestless default theme', () => {

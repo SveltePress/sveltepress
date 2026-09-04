@@ -1,6 +1,6 @@
 // @ts-nocheck
 /* eslint-disable no-restricted-globals */
-import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
+import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute, PrecacheFallbackPlugin } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { NetworkFirst } from 'workbox-strategies'
 
@@ -37,8 +37,19 @@ const versionBase = import.meta.env.SVELTEPRESS_VERSION_BASE
 if (versionBase) {
   registerRoute(
     ({ request, url }) => request.mode === 'navigate' && url.pathname.startsWith(`${versionBase}/`),
-    new NetworkFirst({ cacheName: 'sveltepress-version-pages' }),
+    new NetworkFirst({
+      cacheName: 'sveltepress-version-pages',
+      plugins: [new PrecacheFallbackPlugin({ fallbackURL: '/' })],
+    }),
   )
 }
+
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({
+    cacheName: 'sveltepress-pages',
+    plugins: [new PrecacheFallbackPlugin({ fallbackURL: '/' })],
+  }),
+)
 
 registerRoute(route)

@@ -42,15 +42,39 @@ const defaultTheme: ThemeDefault = (options) => {
       corePlugin,
     ]
     if (options?.pwa) {
-      const pwaOptions = options.pwa as SvelteKitPWAOptions & Record<string, any>
+      const pwaOptions = options.pwa as SvelteKitPWAOptions & {
+        darkManifest?: string
+        precachePages?: boolean
+      } & Record<string, any>
+      const precachePages = Boolean(pwaOptions.precachePages)
       const historicalGlob = versionManifest
-        ? `prerendered/pages${versionManifest.basePath}/**/*.html`
+        ? `prerendered/pages/**${versionManifest.basePath}/**/*.html`
         : null
+      const defaultGlobPatterns = [
+        'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+        precachePages ? 'prerendered/**/*.html' : 'prerendered/pages/index.html',
+      ]
       const versionRuntimeCaching = versionManifest
         ? [{
             urlPattern: new RegExp(`^${versionManifest.basePath}/`),
             handler: 'NetworkFirst' as const,
             options: { cacheName: 'sveltepress-version-pages' },
+          }]
+        : []
+      const docPagesRuntimeCaching = !precachePages
+        ? [{
+            urlPattern: ({ request }: any) => request.mode === 'navigate',
+            handler: 'NetworkFirst' as const,
+            options: {
+              cacheName: 'sveltepress-pages',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [200],
+              },
+            },
           }]
         : []
       plugins.push(SvelteKitPWA({
@@ -60,21 +84,26 @@ const defaultTheme: ThemeDefault = (options) => {
         ...pwaOptions,
         injectManifest: {
           globDirectory: '.svelte-kit/output',
-          globPatterns: [
-            'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
-            'prerendered/**/*.html',
-          ],
+          globPatterns: defaultGlobPatterns,
+          dontCacheBustURLsMatching: /-[\w-]{8}\./,
           ...pwaOptions.injectManifest,
           ...(historicalGlob
             ? { globIgnores: [...(pwaOptions.injectManifest?.globIgnores ?? []), historicalGlob] }
             : {}),
         },
         workbox: {
+          globPatterns: defaultGlobPatterns,
+          dontCacheBustURLsMatching: /-[\w-]{8}\./,
+          navigateFallback: '/',
           ...pwaOptions.workbox,
           ...(historicalGlob
             ? { globIgnores: [...(pwaOptions.workbox?.globIgnores ?? []), historicalGlob] }
             : {}),
-          runtimeCaching: [...(pwaOptions.workbox?.runtimeCaching ?? []), ...versionRuntimeCaching],
+          runtimeCaching: [
+            ...versionRuntimeCaching,
+            ...(pwaOptions.workbox?.runtimeCaching ?? []),
+            ...docPagesRuntimeCaching,
+          ],
         },
       }))
     }
