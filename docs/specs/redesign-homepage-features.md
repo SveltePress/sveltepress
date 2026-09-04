@@ -99,6 +99,6 @@ Status: landing
 
 ## Plan
 - [x] Ticket 1: Core Theme Home Enhancements (Ambient Glow, Badge, InstallCommand, Bento Spotlight Features) — Delivers badge, copy command, and Bento spotlight layout in theme-default with passing test suite (Blocked by: none)
-- [ ] Ticket 2: Interactive Multi-Tab Hero Visual (`HeroCode.svelte`) — Delivers interactive tabbed HeroCode supporting Runes counter, Callouts, and Twoslash with micro-interactions (Blocked by: Ticket 1)
+- [x] Ticket 2: Interactive Multi-Tab Hero Visual (`HeroCode.svelte`) — Delivers interactive tabbed HeroCode supporting Runes counter, Callouts, and Twoslash with micro-interactions (Blocked by: Ticket 1)
 - [ ] Ticket 3: Official Documentation Site Homepage Redesign (En, Zh, Bn) & Verification — Delivers updated multilingual homepages, changeset, and end-to-end build verification (Blocked by: Ticket 2)
 

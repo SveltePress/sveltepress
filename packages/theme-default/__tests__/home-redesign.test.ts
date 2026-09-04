@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render } from '@testing-library/svelte'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import Home from '../src/components/Home.svelte'
 import Feature from '../src/components/home/Feature.svelte'
+import HeroCode from '../src/components/home/HeroCode.svelte'
 import InstallCommand from '../src/components/home/InstallCommand.svelte'
 import { setPage } from './fixtures/app-state.svelte'
 
@@ -127,6 +128,47 @@ describe('home redesign components', () => {
       expect(view.getByText('Feature 1')).toBeTruthy()
       expect(view.container.querySelector('.home-badge')).toBeNull()
       expect(view.container.querySelector('.install-command')).toBeNull()
+    })
+  })
+
+  describe('herocode interactive showcase', () => {
+    it('renders tabs and increments counter interactively in Runes tab', async () => {
+      const view = render(HeroCode)
+
+      const runesTab = view.getByRole('tab', { name: /runes/i })
+      const calloutsTab = view.getByRole('tab', { name: /callouts/i })
+      const twoslashTab = view.getByRole('tab', { name: /twoslash/i })
+
+      expect(runesTab).toBeTruthy()
+      expect(calloutsTab).toBeTruthy()
+      expect(twoslashTab).toBeTruthy()
+
+      // Interactive counter in render pane
+      const counterBtn = view.getByRole('button', { name: /count:/i })
+      expect(counterBtn.textContent).toContain('1')
+
+      await fireEvent.click(counterBtn)
+      expect(counterBtn.textContent).toContain('2')
+
+      await fireEvent.click(counterBtn)
+      expect(counterBtn.textContent).toContain('3')
+    })
+
+    it('switches content when clicking callouts and twoslash tabs', async () => {
+      const view = render(HeroCode)
+
+      const calloutsTab = view.getByRole('tab', { name: /callouts/i })
+      await fireEvent.click(calloutsTab)
+
+      expect(view.getByText(':::tip')).toBeTruthy()
+      expect(view.getByText(/Pro Tip/)).toBeTruthy()
+
+      const twoslashTab = view.getByRole('tab', { name: /twoslash/i })
+      await fireEvent.click(twoslashTab)
+
+      expect(view.getByText(/\/\/ \^\?/)).toBeTruthy()
+      expect(view.getByText('interface')).toBeTruthy()
+      expect(view.getAllByText('SiteConfig').length).toBeGreaterThan(0)
     })
   })
 })
