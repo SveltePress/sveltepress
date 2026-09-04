@@ -1,5 +1,29 @@
 # @sveltepress/vite
 
+## 1.8.0
+
+### Minor Changes
+
+- [#434](https://github.com/SveltePress/sveltepress/pull/434) [`571299b`](https://github.com/Blackman99/sveltepress/commit/571299b408b932be6232fbd70d33089cd9c43cfc) Thanks [@Blackman99](https://github.com/Blackman99)! - Add opt-in framework-level multi-locale support. `sveltepress({ locales })` declares locales with per-locale theme options and URL prefixes; the core plugin resolves the active locale per route, exposes it through the `virtual:sveltepress/locale` module, provides `createLocaleHandle` in `@sveltepress/vite/hooks` for server-side `<html lang>` SSR injection, generates per-locale `llms.txt`, and emits a combined hreflang sitemap that also lists every eligible historical version route per locale. Version management becomes locale-aware: each locale owns its manifest, version routes compose with the locale prefix, and the CLI's `versions` commands accept a `--locale` selector. The Default Theme renders a language switcher that preserves the current page when a translation exists with tiered fallback for versioned pages, supports subpath deployments (`paths.base`), resolves navigation and edit links within the active locale, keeps the document language in sync, and localizes its i18n strings per locale. Sites without a `locales` option keep today's exact behavior.
+
+- [#434](https://github.com/SveltePress/sveltepress/pull/434) [`abcaec3`](https://github.com/Blackman99/sveltepress/commit/abcaec37b2f748489e19b554e0a46bba8ed4777e) Thanks [@Blackman99](https://github.com/Blackman99)! - Support frozen historical documentation version search with Pagefind:
+  - `@sveltepress/vite`: Add `syncHistoricalPagefind` to generate and persist dedicated Pagefind search assets into immutable version delta storage upon version release; automatically copies existing frozen search assets on subsequent builds without re-indexing.
+  - `@sveltepress/theme-default`: Enable `LocalSearch` on historical versions, dynamically scoping the Pagefind assets and base path to the active version and locale (e.g. `/v/<id>/pagefind/` or `/<locale>/v/<id>/pagefind/`).
+
+- [#434](https://github.com/SveltePress/sveltepress/pull/434) [`f12fe5d`](https://github.com/Blackman99/sveltepress/commit/f12fe5db9ee104bafb5c6af83d6560da27b86c22) Thanks [@Blackman99](https://github.com/Blackman99)! - Add built-in, zero-config Pagefind Local Search:
+  - `@sveltepress/vite`: Automated post-build static HTML indexing via Pagefind; outputs search bundles into `/pagefind/` with multi-language and CJK support; exports `indexSiteWithPagefind` and provides `pagefind` option in Vite plugin to customize or disable indexing.
+  - `@sveltepress/theme-default`: Native Svelte 5 `LocalSearch.svelte` modal component with UnoCSS styling, dark/light mode sync, keyboard navigation (`Cmd+K` / `Ctrl+K`, arrows, Enter, Escape), active locale filtering, and dev mode notice; wired as the out-of-the-box default in Navbar with fallback precedence for custom `search` and explicit `docsearch`.
+
+### Patch Changes
+
+- [`66d594c`](https://github.com/Blackman99/sveltepress/commit/66d594c2bb7a12a2b2f6bdb8f1477b5b8e142cca) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b4b63fa`](https://github.com/Blackman99/sveltepress/commit/b4b63fa6838438d97ef3192d5c6756bfe35c8124) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`cd7ead9`](https://github.com/Blackman99/sveltepress/commit/cd7ead946398aa4731a910c195ecd48819c97754) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`72e1b1c`](https://github.com/Blackman99/sveltepress/commit/72e1b1c582b76fe50bc4aa1def8b131128a4666b) Thanks [@Blackman99](https://github.com/Blackman99)! - fix: resolve Svelte 5 state_referenced_locally warnings in theme components, suppress a11y tabindex warnings on highlighted pre blocks, and ensure dev server transforms live current source pages
+
 ## 1.7.0
 
 ### Minor Changes

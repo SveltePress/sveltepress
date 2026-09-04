@@ -1,5 +1,16 @@
 # @sveltepress/cli
 
+## 0.4.0
+
+### Minor Changes
+
+- [#434](https://github.com/SveltePress/sveltepress/pull/434) [`571299b`](https://github.com/Blackman99/sveltepress/commit/571299b408b932be6232fbd70d33089cd9c43cfc) Thanks [@Blackman99](https://github.com/Blackman99)! - Add opt-in framework-level multi-locale support. `sveltepress({ locales })` declares locales with per-locale theme options and URL prefixes; the core plugin resolves the active locale per route, exposes it through the `virtual:sveltepress/locale` module, provides `createLocaleHandle` in `@sveltepress/vite/hooks` for server-side `<html lang>` SSR injection, generates per-locale `llms.txt`, and emits a combined hreflang sitemap that also lists every eligible historical version route per locale. Version management becomes locale-aware: each locale owns its manifest, version routes compose with the locale prefix, and the CLI's `versions` commands accept a `--locale` selector. The Default Theme renders a language switcher that preserves the current page when a translation exists with tiered fallback for versioned pages, supports subpath deployments (`paths.base`), resolves navigation and edit links within the active locale, keeps the document language in sync, and localizes its i18n strings per locale. Sites without a `locales` option keep today's exact behavior.
+
+### Patch Changes
+
+- Updated dependencies [[`66d594c`](https://github.com/Blackman99/sveltepress/commit/66d594c2bb7a12a2b2f6bdb8f1477b5b8e142cca), [`b4b63fa`](https://github.com/Blackman99/sveltepress/commit/b4b63fa6838438d97ef3192d5c6756bfe35c8124), [`cd7ead9`](https://github.com/Blackman99/sveltepress/commit/cd7ead946398aa4731a910c195ecd48819c97754), [`72e1b1c`](https://github.com/Blackman99/sveltepress/commit/72e1b1c582b76fe50bc4aa1def8b131128a4666b), [`571299b`](https://github.com/Blackman99/sveltepress/commit/571299b408b932be6232fbd70d33089cd9c43cfc), [`abcaec3`](https://github.com/Blackman99/sveltepress/commit/abcaec37b2f748489e19b554e0a46bba8ed4777e), [`f12fe5d`](https://github.com/Blackman99/sveltepress/commit/f12fe5db9ee104bafb5c6af83d6560da27b86c22)]:
+  - @sveltepress/vite@1.8.0
+
 ## 0.3.0
 
 ### Minor Changes
