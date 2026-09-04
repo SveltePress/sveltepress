@@ -470,3 +470,117 @@ html.svp-nav-vt .doc-search {
     pointer-events: auto;
   }
 }
+
+/*
+ * Content typography enhancements:
+ * Inline code, tables, blockquotes, and kbd elements in markdown content.
+ */
+
+/* Inline code (excluding inside pre code blocks) */
+:not(pre) > code {
+  font-family: var(--svp-code-font);
+  font-size: 0.875em;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #c2410c;
+  word-break: break-word;
+}
+
+html.dark :not(pre) > code {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #fb923c;
+}
+
+/* Blockquote */
+.theme-default--page-layout .content blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid var(--docsearch-primary-color, #fb7185);
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 0 8px 8px 0;
+  color: inherit;
+  font-style: italic;
+}
+
+html.dark .theme-default--page-layout .content blockquote {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.theme-default--page-layout .content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.theme-default--page-layout .content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Keyboard keys (<kbd>) */
+kbd {
+  font-family: var(--svp-code-font);
+  font-size: 0.8125em;
+  font-weight: 500;
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #18181b;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+html.dark kbd {
+  background: #27272a;
+  color: #f4f4f5;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Tables */
+.theme-default--page-layout .content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9em;
+  text-align: left;
+  border-radius: 8px;
+  border: 1px solid var(--svp-divider);
+}
+
+.theme-default--page-layout .content th,
+.theme-default--page-layout .content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--svp-divider);
+  border-right: 1px solid var(--svp-divider);
+}
+
+.theme-default--page-layout .content th:last-child,
+.theme-default--page-layout .content td:last-child {
+  border-right: none;
+}
+
+.theme-default--page-layout .content tr:last-child td {
+  border-bottom: none;
+}
+
+.theme-default--page-layout .content th {
+  background-color: var(--svp-expansion-bg-darker);
+  font-weight: 600;
+  color: var(--svp-c-heading);
+}
+
+.theme-default--page-layout .content tr:nth-child(even) {
+  background-color: var(--svp-expansion-bg);
+}
+
+.theme-default--page-layout .content tr:hover {
+  background-color: var(--svp-expansion-bg-darker);
+}
