@@ -14,6 +14,7 @@ import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
 import versionChanges from './markdown/version-changes.js'
+import { resolvePrecacheGlobPatterns, shouldRuntimeCachePages } from './pwa/precache-pages.js'
 import { createVersionManifestReader } from './version-manifest.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
@@ -44,16 +45,13 @@ const defaultTheme: ThemeDefault = (options) => {
     if (options?.pwa) {
       const pwaOptions = options.pwa as SvelteKitPWAOptions & {
         darkManifest?: string
-        precachePages?: boolean
+        precachePages?: boolean | string[]
       } & Record<string, any>
-      const precachePages = Boolean(pwaOptions.precachePages)
+      const precachePages = pwaOptions.precachePages ?? false
       const historicalGlob = versionManifest
         ? `prerendered/pages/**${versionManifest.basePath}/**/*.html`
         : null
-      const defaultGlobPatterns = [
-        'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
-        precachePages ? 'prerendered/**/*.html' : 'prerendered/pages/index.html',
-      ]
+      const defaultGlobPatterns = resolvePrecacheGlobPatterns(precachePages)
       const versionRuntimeCaching = versionManifest
         ? [{
             urlPattern: new RegExp(`^${versionManifest.basePath}/`),
@@ -61,22 +59,50 @@ const defaultTheme: ThemeDefault = (options) => {
             options: { cacheName: 'sveltepress-version-pages' },
           }]
         : []
-      const docPagesRuntimeCaching = !precachePages
+      const pageExpiration = {
+        maxEntries: 50,
+        maxAgeSeconds: 7 * 24 * 60 * 60,
+      }
+      const docPagesRuntimeCaching = shouldRuntimeCachePages(precachePages)
         ? [{
             urlPattern: ({ request }: any) => request.mode === 'navigate',
             handler: 'NetworkFirst' as const,
             options: {
               cacheName: 'sveltepress-pages',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 7 * 24 * 60 * 60,
-              },
+              expiration: pageExpiration,
               cacheableResponse: {
                 statuses: [200],
               },
             },
           }]
         : []
+      const assetRuntimeCaching = [
+        {
+          urlPattern: ({ url }: any) => url.pathname.includes('/__data.json'),
+          handler: 'NetworkFirst' as const,
+          options: {
+            cacheName: 'sveltepress-data',
+            expiration: pageExpiration,
+            cacheableResponse: {
+              statuses: [200],
+            },
+          },
+        },
+        {
+          urlPattern: ({ request }: any) => request.destination === 'image',
+          handler: 'CacheFirst' as const,
+          options: {
+            cacheName: 'sveltepress-images',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 30 * 24 * 60 * 60,
+            },
+            cacheableResponse: {
+              statuses: [200],
+            },
+          },
+        },
+      ]
       plugins.push(SvelteKitPWA({
         strategies: 'injectManifest',
         srcDir: SERVICE_WORKER_PATH.replace(/sw\.js$/, ''),
@@ -107,6 +133,7 @@ const defaultTheme: ThemeDefault = (options) => {
             ...versionRuntimeCaching,
             ...(pwaOptions.workbox?.runtimeCaching ?? []),
             ...docPagesRuntimeCaching,
+            ...assetRuntimeCaching,
           ],
         },
       }))

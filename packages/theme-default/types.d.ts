@@ -49,7 +49,17 @@ declare module 'virtual:sveltepress/theme-default' {
     ga?: string
     pwa?: SvelteKitPWAOptions & {
       darkManifest?: string
-      precachePages?: boolean
+      /**
+       * Which prerendered HTML pages to put in the Workbox precache.
+       *
+       * Default `false` only precaches the homepage so service-worker
+       * install/update stays fast on sites with many versions and locales.
+       *
+       * - `false`: homepage only
+       * - `true`: all prerendered HTML (historical versions are still ignored)
+       * - `string[]`: URL prefixes, e.g. `['/zh/', '/v/2026-08-27/']`
+       */
+      precachePages?: boolean | string[]
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
     search?: Component | string | boolean

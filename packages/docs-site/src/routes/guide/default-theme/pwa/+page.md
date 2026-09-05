@@ -36,6 +36,50 @@ If you want to enable pwa.
 You will need to add `workbox-window` as a dev dependency to your Vite project.
 :::
 
+## HTML precache (versions & i18n)
+
+By default Sveltepress only precaches the **app shell** (JS / CSS / fonts) and the **homepage**. Other documentation pages are cached at runtime when the user visits them (`NetworkFirst`, capped at 50 entries). Images and SvelteKit `__data.json` responses are also runtime-cached.
+
+This keeps service worker install and update fast when the site has many versions and locales. Precaching every prerendered HTML file makes Workbox hash, compare and download `versions × locales × pages` on every update.
+
+### `pwa.precachePages`
+
+| Value | Precached HTML |
+| --- | --- |
+| `false` (default) | Homepage only |
+| `true` | All prerendered HTML (historical versions are still ignored) |
+| `string[]` | Homepage + matching URL prefixes |
+
+Precache only the current locale and a version snapshot:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precachePages: ['/zh/', '/v/2026-08-27/'],
+  },
+})
+```
+
+Restore the previous “cache every page” behavior:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precachePages: true,
+  },
+})
+```
+
+:::tip
+A glob starting with `prerendered/` is always included. Otherwise `@vite-pwa/sveltekit` would append `prerendered/**/*.{html,json}` and pull every version/locale page back into the precache.
+:::
+
+Visited pages still work offline through the runtime cache, even when they are not precached.
+
 ## Example config
 
 Take the config this site use for example:

@@ -124,6 +124,43 @@ describe('theme-default PWA configuration', () => {
     expect(navCaching).toBeUndefined()
   })
 
+  it('precaches selected URL prefixes via precachePages and still runtime-caches the rest', async () => {
+    capturedPwaOptions.length = 0
+    const { defaultTheme } = await import('../src/index')
+
+    const theme = defaultTheme({
+      pwa: {
+        scope: '/',
+        precachePages: ['/zh/', '/v/2026-08-27/'],
+      },
+    })
+
+    const dummyCore = { name: 'core-plugin' }
+    await (theme.vitePlugins as any)(dummyCore)
+
+    expect(capturedPwaOptions).toHaveLength(1)
+    const pwa = capturedPwaOptions[0]
+
+    expect(pwa.injectManifest.globPatterns).toEqual([
+      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+      'prerendered/pages/index.html',
+      'prerendered/pages/zh.html',
+      'prerendered/pages/zh/**',
+      'prerendered/pages/v/2026-08-27.html',
+      'prerendered/pages/v/2026-08-27/**',
+    ])
+    const navCaching = pwa.workbox.runtimeCaching.find(
+      (rc: any) => rc.options?.cacheName === 'sveltepress-pages',
+    )
+    expect(navCaching).toBeDefined()
+    expect(pwa.workbox.runtimeCaching.some(
+      (rc: any) => rc.options?.cacheName === 'sveltepress-data',
+    )).toBe(true)
+    expect(pwa.workbox.runtimeCaching.some(
+      (rc: any) => rc.options?.cacheName === 'sveltepress-images',
+    )).toBe(true)
+  })
+
   it('preserves user custom runtimeCaching and overrides', async () => {
     capturedPwaOptions.length = 0
     const { defaultTheme } = await import('../src/index')
@@ -165,6 +202,8 @@ describe('theme-default PWA configuration', () => {
       'utf8',
     )
     expect(sw).toContain('allowlist: [/^\\/$/]')
+    expect(sw).toContain('workbox-expiration')
+    expect(sw).toContain('__data.json')
     expect(sw).not.toContain('import.meta.env.DEV')
   })
 })

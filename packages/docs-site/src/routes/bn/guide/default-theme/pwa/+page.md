@@ -36,6 +36,46 @@ export default config
 আপনার Vite project এ dev dependency হিসেবে `workbox-window` যুক্ত করতে হবে
 :::
 
+## HTML precache (versions & i18n)
+
+ডিফল্টভাবে Sveltepress শুধু **app shell** (JS / CSS / fonts) এবং **homepage** precache করে। বাকি ডকুমেন্টেশন পেজ ইউজার ভিজিট করলে runtime-এ cache হয় (`NetworkFirst`, সর্বোচ্চ 50টি এন্ট্রি)। ছবি এবং SvelteKit `__data.json`ও runtime cache হয়।
+
+অনেক version এবং locale থাকলে এটি service worker install/update দ্রুত রাখে। সব prerendered HTML precache করলে Workbox প্রতিবার `versions × locales × pages` hash, compare এবং download করে।
+
+### `pwa.precachePages`
+
+| Value | Precached HTML |
+| --- | --- |
+| `false` (default) | শুধু homepage |
+| `true` | সব prerendered HTML (historical version বাদ) |
+| `string[]` | Homepage + URL prefix |
+
+শুধু একটি locale এবং একটি version snapshot precache করতে:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precachePages: ['/zh/', '/v/2026-08-27/'],
+  },
+})
+```
+
+আগের “সব পেজ cache করো” আচরণ ফিরিয়ে আনতে:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precachePages: true,
+  },
+})
+```
+
+ভিজিট করা পেজ precache না থাকলেও runtime cache দিয়ে অফলাইনে খোলা যাবে।
+
 ## কনফিগের উদাহরণ
 
 এই সাইটের কনফিগ উদাহরণ হিসেবে দেখুন:
