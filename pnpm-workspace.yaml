@@ -106,6 +106,7 @@ catalog:
   vite-plugin-inspect: ^11.4.1
   vitest: 4.0.14
   workbox-build: ^7.4.1
+  workbox-expiration: ^7.4.1
   workbox-precaching: ^7.4.1
   workbox-routing: ^7.4.1
   workbox-strategies: ^7.4.1

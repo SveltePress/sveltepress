@@ -87,6 +87,7 @@
     "unist-util-visit": "catalog:",
     "unocss": "catalog:",
     "workbox-build": "catalog:",
+    "workbox-expiration": "catalog:",
     "workbox-precaching": "catalog:",
     "workbox-routing": "catalog:",
     "workbox-strategies": "catalog:"
