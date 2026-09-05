@@ -1,5 +1,12 @@
 # @sveltepress/cli
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [[`ca478f5`](https://github.com/Blackman99/sveltepress/commit/ca478f59d766d887df4cd706bd53631f2f114a4c)]:
+  - @sveltepress/vite@1.8.2
+
 ## 0.4.1
 
 ### Patch Changes
