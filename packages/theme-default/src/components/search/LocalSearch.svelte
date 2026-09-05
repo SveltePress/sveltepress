@@ -70,9 +70,23 @@
   async function loadPagefind() {
     if (pagefind) return pagefind
     loading = true
+    // Show the dev notice immediately. Vitest/CI can hang for seconds on
+    // `import('/pagefind/pagefind.js')` instead of rejecting, which made the
+    // notice-only assertion time out while the footer was already visible.
+    if (import.meta.env.DEV) isDevNotice = true
     try {
       const pagefindUrl = `${targetSearchPath}pagefind.js`
-      const pf = await import(/* @vite-ignore */ pagefindUrl)
+      const timeoutMs = import.meta.env.MODE === 'test' ? 800 : 4000
+      let timer: ReturnType<typeof setTimeout>
+      const pf = await Promise.race([
+        import(/* @vite-ignore */ pagefindUrl),
+        new Promise((_, reject) => {
+          timer = setTimeout(
+            () => reject(new Error(`Timed out loading ${pagefindUrl}`)),
+            timeoutMs,
+          )
+        }),
+      ]).finally(() => clearTimeout(timer))
       const currentLang =
         typeof document !== 'undefined'
           ? document.documentElement.lang || 'en'
@@ -93,12 +107,14 @@
         await pf.init?.()
         instance = pf
       }
+      if (typeof instance?.search !== 'function')
+        throw new TypeError('Invalid pagefind module')
       pagefind = instance
       isDevNotice = false
       isLoadError = false
       return instance
     } catch {
-      if (import.meta.env?.DEV) {
+      if (import.meta.env.DEV) {
         isDevNotice = true
       } else {
         isLoadError = true
