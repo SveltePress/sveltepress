@@ -1,5 +1,25 @@
 # @sveltepress/theme-default
 
+## 8.8.0
+
+### Minor Changes
+
+- [#444](https://github.com/SveltePress/sveltepress/pull/444) [`328b7a3`](https://github.com/Blackman99/sveltepress/commit/328b7a38a066718a3542294944d08cf02a935538) Thanks [@Blackman99](https://github.com/Blackman99)! - feat(pwa): allow precachePages URL prefixes and cap runtime caches
+
+  Default remains homepage-only precache. `precachePages` now also accepts
+  prefix strings (e.g. current locale / version). The injectManifest SW
+  runtime-caches visited pages, `__data.json`, and images with expiration
+  so versioned/i18n sites stay fast to update.
+
+### Patch Changes
+
+- [`ca478f5`](https://github.com/Blackman99/sveltepress/commit/ca478f59d766d887df4cd706bd53631f2f114a4c) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [#443](https://github.com/SveltePress/sveltepress/pull/443) [`e8587b6`](https://github.com/Blackman99/sveltepress/commit/e8587b626bf51012274297d8cf4481fd2e9e8224) Thanks [@Blackman99](https://github.com/Blackman99)! - fix(search): show the pagefind dev notice even when the dynamic import hangs
+
+- Updated dependencies [[`ca478f5`](https://github.com/Blackman99/sveltepress/commit/ca478f59d766d887df4cd706bd53631f2f114a4c)]:
+  - @sveltepress/twoslash@1.3.22
+
 ## 8.7.0
 
 ### Minor Changes
