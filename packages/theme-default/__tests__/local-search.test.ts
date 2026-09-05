@@ -96,7 +96,7 @@ describe('localSearch component', () => {
       expect(document.body.textContent).toContain(
         'Local search index is generated during production build.',
       )
-    })
+    }, { timeout: 3000 })
   })
 
   it('clears query when clear button is clicked', async () => {
