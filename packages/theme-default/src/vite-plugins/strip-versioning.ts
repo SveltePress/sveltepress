@@ -87,7 +87,7 @@ const transforms: Record<string, SourceTransform> = {
     return replaceRequired(result, `  .item {\n    --at-apply: 'relative z-3 flex min-w-0 items-center cursor-pointer';\n    padding-left: calc(2.625rem + var(--heading-level) * 0.75rem);\n  }\n  .item-label {\n    --at-apply: 'min-w-0 truncate';\n  }`, `  .item {\n    --at-apply: 'relative z-3 block truncate cursor-pointer';\n    padding-left: calc(2.625rem + var(--heading-level) * 0.75rem);\n  }`)
   },
   'sw.js': (source) => {
-    return replaceRequired(source, `const versionBase = import.meta.env.SVELTEPRESS_VERSION_BASE\nif (versionBase) {\n  registerRoute(\n    ({ request, url }) => request.mode === 'navigate' && url.pathname.startsWith(\`${'${versionBase}'}/\`),\n    new NetworkFirst({\n      cacheName: 'sveltepress-version-pages',\n      plugins: [new PrecacheFallbackPlugin({ fallbackURL: '/' })],\n    }),\n  )\n}\n\n`)
+    return replaceRequired(source, `const versionBase = import.meta.env.SVELTEPRESS_VERSION_BASE\nif (versionBase) {\n  registerRoute(\n    ({ request, url }) => request.mode === 'navigate' && url.pathname.startsWith(\`${'${versionBase}'}/\`),\n    new NetworkFirst({\n      cacheName: 'sveltepress-version-pages',\n      networkTimeoutSeconds: 3,\n      plugins: [\n        new ExpirationPlugin(pageExpiration),\n        pageFallbackPlugin(),\n      ],\n    }),\n  )\n}\n\n`)
   },
 }
 

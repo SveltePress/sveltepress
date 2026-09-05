@@ -21,8 +21,6 @@ import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 export { generateSidebar, isAutoSidebarOptions } from './auto-sidebar.js'
 export type { AutoSidebarOptions } from './auto-sidebar.js'
 export { SERVICE_WORKER_PATH } from './constants.js'
-export { resolvePrecacheGlobPatterns } from './pwa/precache-pages.js'
-export type { PrecachePages } from './pwa/precache-pages.js'
 
 const VIRTUAL_PWA = 'virtual:pwa-info'
 const VIRTUAL_PWA_SVELTE_REGISTER = 'virtual:pwa-register/svelte'
