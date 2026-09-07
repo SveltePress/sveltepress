@@ -225,6 +225,9 @@ catalogs:
     svelte-check:
       specifier: ^4.7.6
       version: 4.7.6
+    svelte-json-discovery:
+      specifier: ^0.3.0
+      version: 0.3.0
     svelte2tsx:
       specifier: ^0.7.61
       version: 0.7.61
@@ -480,6 +483,9 @@ importers:
       svelte-check:
         specifier: 'catalog:'
         version: 4.7.6(picomatch@4.0.5)(svelte@5.57.0(@typescript-eslint/types@8.50.0))(typescript@5.9.3)
+      svelte-json-discovery:
+        specifier: 'catalog:'
+        version: 0.3.0(svelte@5.57.0(@typescript-eslint/types@8.50.0))
       vite:
         specifier: 'catalog:'
         version: 8.2.2(@types/node@24.13.3)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.0)
@@ -6336,6 +6342,11 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-json-discovery@0.3.0:
+    resolution: {integrity: sha512-YgzPEhmA+WgRGJrawCRSIMYX+i0uA+Aa5k4Qm4pLfCMozV9B3NuEuE4CiVrjIfl9Iawi4RxGBC681I1ytpyx8w==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   svelte-parse-markup@0.1.5:
     resolution: {integrity: sha512-T6mqZrySltPCDwfKXWQ6zehipVLk4GWfH1zCMGgRtLlOIFPuw58ZxVYxVvotMJgJaurKi1i14viB2GIRKXeJTQ==}
@@ -13018,6 +13029,10 @@ snapshots:
       postcss-selector-parser: 7.1.0
       semver: 7.7.3
     optionalDependencies:
+      svelte: 5.57.0(@typescript-eslint/types@8.50.0)
+
+  svelte-json-discovery@0.3.0(svelte@5.57.0(@typescript-eslint/types@8.50.0)):
+    dependencies:
       svelte: 5.57.0(@typescript-eslint/types@8.50.0)
 
   svelte-parse-markup@0.1.5(svelte@5.57.0(@typescript-eslint/types@8.50.0)):

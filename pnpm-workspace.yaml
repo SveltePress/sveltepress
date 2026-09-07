@@ -91,6 +91,7 @@ catalog:
   source-map-js: ^1.2.1
   svelte: ^5.57.0
   svelte-check: ^4.7.6
+  svelte-json-discovery: ^0.3.0
   svelte2tsx: ^0.7.61
   taze: ^19.17.2
   twoslash: ^0.3.9

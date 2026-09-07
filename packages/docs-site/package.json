@@ -36,6 +36,7 @@
     "@types/node": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
+    "svelte-json-discovery": "catalog:",
     "vite": "catalog:",
     "workbox-window": "catalog:"
   }

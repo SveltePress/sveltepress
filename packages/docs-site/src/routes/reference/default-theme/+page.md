@@ -263,18 +263,44 @@ Here's an example for showing the theme options of this site:
 
 ```svelte live
 <script>
+  import { JsonViewer } from 'svelte-json-discovery'
   import themeOptions from 'virtual:sveltepress/theme-default'
 </script>
+
 <div class="viewer">
-  <pre>
-    {JSON.stringify(themeOptions, null, 2)}
-  </pre>
+  <JsonViewer data={themeOptions} />
 </div>
 <style>
   .viewer {
     max-height: 40vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: auto;
+  }
+  :global(html.dark) .viewer {
+    --discovery-background-color: #1a1a1a;
+    --sjd-app-bg: #1a1a1a;
+    --sjd-fmt-color: #999;
+    --sjd-fmt-hover-color: #aaa;
+    --sjd-fmt-property-color: #d17a8c;
+    --sjd-fmt-number-color: #0f8dc2;
+    --sjd-fmt-atom-color: #0f8dc2;
+    --sjd-fmt-string-color: #7faf20;
+    --sjd-fmt-string-underline-color: #85ab51;
+    --sjd-fmt-string-hover-color: #97cf26;
+    --sjd-ui-color: #ccc;
+    --sjd-match-bg: #565638;
+    --sjd-match-border: #a7a73b;
+    --sjd-error-border: #0004;
+    --sjd-error-bg: #622b29;
+    --sjd-error-color: #c66;
+    --sjd-error-message-bg: #443232;
+    --sjd-toggle-color: #72b372;
+    --sjd-touch-button-color: #aaa;
+    --sjd-touch-button-bg: #50505080;
+    --sjd-popup-bg: #333;
+    --sjd-popup-color: #ccc;
+    --sjd-popup-notes-color: #999;
+    --sjd-popup-error-color: #e66;
+    color-scheme: dark;
   }
 </style>
 ```
