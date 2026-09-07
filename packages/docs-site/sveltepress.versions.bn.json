@@ -121,7 +121,7 @@
         ]
       },
       "status": "stable",
-      "sourceHash": "f49c5f1c667b20b41ab52066493d523b1e8ace9068d1eecbb9fc1a7a901b62ba"
+      "sourceHash": "f95edc62000ae2339459975cfb53c900ced7545f900837bee8364e1bee2e8d6e"
     },
     {
       "id": "2026-08-28",
@@ -184,12 +184,12 @@
         ]
       },
       "status": "stable",
-      "sourceHash": "d250db62f5d66747910f2b74d1639fd62afac40d0b8ba84c8ed5dd052c280ed8"
+      "sourceHash": "2188ad4ffd37e5328f42d2b2bcbb59e0d3497eb2f554ad957831d1285419d5ba"
     },
     {
       "id": "2026-08-27",
       "label": "2026-08-27",
-      "sourceHash": "3c28c75d831dfea889219eb8b72b3455a3ed9afbaaf1077f981df26160083b49",
+      "sourceHash": "fe4e1be3ab530246e74e2f7ff18f7b7b29004798c10b370fe2746ce3ed7fefb3",
       "routes": [
         "/",
         "/guide/blog-theme/configuration/",
