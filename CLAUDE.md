@@ -61,6 +61,7 @@ pnpm install
 pnpm test
 pnpm test:vite
 pnpm test:theme-default
+pnpm test:twoslash
 
 # Lint code
 pnpm lint

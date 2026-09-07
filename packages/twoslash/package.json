@@ -13,14 +13,14 @@
     },
     "./FloatingWrapper.svelte": {
       "types": "./dist/components/FloatingWrapper.svelte.d.ts",
+      "svelte": "./dist/components/FloatingWrapper.svelte",
       "import": "./dist/components/FloatingWrapper.svelte",
-      "default": "./dist/components/FloatingWrapper.svelte",
-      "svelte": "./dist/components/FloatingWrapper.svelte"
+      "default": "./dist/components/FloatingWrapper.svelte"
     },
     "./Floating.svelte": {
       "types": "./dist/components/Floating.svelte.d.ts",
-      "default": "./dist/components/Floating.svelte",
-      "svelte": "./dist/components/Floating.svelte"
+      "svelte": "./dist/components/Floating.svelte",
+      "default": "./dist/components/Floating.svelte"
     }
   },
   "types": "./dist/index.d.ts",

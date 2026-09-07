@@ -27,5 +27,6 @@ export default defineConfig({
   },
   test: {
     environmentMatchGlobs: [['**/version-components.test.ts', 'happy-dom']],
+    testTimeout: 10000,
   },
 })

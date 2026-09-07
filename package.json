@@ -12,9 +12,10 @@
     "test:scripts": "vitest run --config vitest.scripts.config.ts",
     "test:vite": "cd packages/vite && npx vitest run && cd ../..",
     "test:cli": "cd packages/cli && npx vitest run && cd ../..",
+    "test:twoslash": "cd packages/twoslash && npx vitest run && cd ../..",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
     "test:theme-blog": "cd packages/theme-blog && npx vitest run && cd ../..",
-    "test": "pnpm test:scripts && pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog",
+    "test": "pnpm test:scripts && pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog && pnpm test:twoslash",
     "prepare": "husky && git config core.hooksPath .husky"
   },
   "dependencies": {
