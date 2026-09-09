@@ -38,11 +38,13 @@ export default config
 
 :::
 
-## HTML 预缓存（多版本 / 多语言）
+## 预缓存（多版本 / 多语言）
 
-默认情况下，Sveltepress **只预缓存应用壳（JS / CSS / 字体）和首页**。其它文档页会在用户访问时按需写入运行时缓存（`NetworkFirst`，最多 50 条）。图片和 SvelteKit 的 `__data.json` 也会进入运行时缓存。
+默认情况下，Sveltepress **只预缓存应用壳和首页 HTML**。应用壳是 SvelteKit 的入口模块、哈希后的 CSS / 字体，以及站点根目录图标，**不包含**各路由的 `_app/immutable/nodes` 和共享 chunks。其它文档页和这些哈希模块会在用户访问时写入运行时缓存（页面：`NetworkFirst`，最多 50 条；哈希客户端文件：`CacheFirst`，最多 400 条 / 30 天）。图片和 SvelteKit 的 `__data.json` 也会进入运行时缓存。
 
-这样在版本多、语言多时，Service Worker 的安装和更新仍然很快。如果把所有预渲染 HTML 都放进 precache，每次更新 Workbox 都要哈希、对比、下载 `版本 × 语言 × 页面` 的笛卡尔积。
+这样在页面多、版本多、语言多时，Service Worker 的安装和更新仍然很快，站点更新后可以尽快弹出刷新提示。如果把所有预渲染 HTML 或全部客户端模块都放进 precache，每次更新 Workbox 都要哈希、对比、下载 `版本 × 语言 × 页面` 的笛卡尔积。
+
+首次安装时，首页的 hydration 可能仍需要网络，直到这些哈希模块被写入运行时缓存。在线访问过一次之后，访问过的页面（包括首页）仍可通过运行时缓存离线打开。
 
 ### `pwa.precachePages`
 
@@ -81,6 +83,27 @@ defaultTheme({
 :::
 
 即使页面没有被预缓存，用户访问过的页面仍可通过运行时缓存离线打开。
+
+### `pwa.precacheClient`
+
+| 取值 | 预缓存的客户端文件 |
+| --- | --- |
+| `false`（默认） | 仅应用壳（入口 + CSS / 字体 + 根目录图标） |
+| `true` | 全部匹配的客户端文件 |
+
+恢复「预缓存每一个客户端 JS/CSS 模块」的旧行为：
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precacheClient: true,
+  },
+})
+```
+
+`precachePages` 和 `precacheClient` 彼此独立：HTML 策略不会改变客户端 glob，反之亦然。
 
 ## 配置示例
 

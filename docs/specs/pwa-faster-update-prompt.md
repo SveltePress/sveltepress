@@ -131,7 +131,7 @@ The repository has no `pnpm run typecheck` script. Global guardrail for this cha
 
 - [x] Ticket 1: Shell client precache glob — Delivers `precacheClient` on the glob helper and theme PWA options: default globs are entry + assets + root icons + existing HTML policy; `true` restores `client/**/*.{js,css,…}`; no nodes/chunks catch-all. Tests at pwa-precache-pages.test.ts and pwa-options.test.ts globPatterns. (Blocked by: none)
 - [x] Ticket 2: Immutable CacheFirst runtime — Delivers generateSW `sveltepress-immutable` CacheFirst (400 / 30d) when shell-only, omitted when `precacheClient: true`; injectManifest `sw.js` registers the same route. Tests at pwa-options.test.ts runtimeCaching + sw.js source. (Blocked by: Ticket 1)
-- [ ] Ticket 3: Release & Documentation Compliance — Delivers Changeset (minor on `@sveltepress/theme-default`) and PWA guide updates in EN / ZH / BN documenting `precacheClient` and the first-install hydration tradeoff. Root README has no PWA glob section to update. (Blocked by: Tickets 1–2)
+- [x] Ticket 3: Release & Documentation Compliance — Delivers Changeset (minor on `@sveltepress/theme-default`) and PWA guide updates in EN / ZH / BN documenting `precacheClient` and the first-install hydration tradeoff. Root README has no PWA glob section to update. (Blocked by: Tickets 1–2)
 
 ## Ticket verification
 
@@ -150,6 +150,14 @@ Same command — exit 1. 2 failed / 15 passed. Default captured `workbox.runtime
 ### Ticket 2 green proof
 
 Same command — exit 0, 17 passed (10 + 7).
+
+### Ticket 3 red proof
+
+Criterion 5 at baseline: `precacheClient` missing from EN/ZH/BN PWA guides (exit 1).
+
+### Ticket 3 green proof
+
+Same python token check — exit 0 after EN/ZH/BN PWA guide updates. Minor changeset `.changeset/pwa-faster-update-prompt.md` added for `@sveltepress/theme-default`.
 
 ## Baseline
 
