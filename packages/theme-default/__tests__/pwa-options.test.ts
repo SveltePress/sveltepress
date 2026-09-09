@@ -43,15 +43,21 @@ describe('theme-default PWA configuration', () => {
     expect(capturedPwaOptions).toHaveLength(1)
     const pwa = capturedPwaOptions[0]
 
-    // Precache patterns should only include static assets and root page, NOT all prerendered html
-    expect(pwa.injectManifest.globPatterns).toEqual([
-      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+    // Precache patterns should only include the app shell and homepage, NOT
+    // every hashed node/chunk or all prerendered html
+    const shellGlobs = [
+      'client/_app/immutable/entry/**/*.{js,css}',
+      'client/_app/immutable/assets/**/*.{css,otf,woff,woff2}',
+      'client/*.{ico,png,svg,webp}',
       'prerendered/pages/index.html',
-    ])
-    expect(pwa.workbox.globPatterns).toEqual([
+    ]
+    expect(pwa.injectManifest.globPatterns).toEqual(shellGlobs)
+    expect(pwa.workbox.globPatterns).toEqual(shellGlobs)
+    expect(pwa.injectManifest.globPatterns).not.toContain(
       'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
-      'prerendered/pages/index.html',
-    ])
+    )
+    expect(pwa.injectManifest.globPatterns.some((g: string) => g.includes('nodes/'))).toBe(false)
+    expect(pwa.injectManifest.globPatterns.some((g: string) => g.includes('chunks/'))).toBe(false)
 
     // Runtime caching should be registered for document navigation
     const navCaching = pwa.workbox.runtimeCaching.find(
@@ -110,11 +116,15 @@ describe('theme-default PWA configuration', () => {
     const pwa = capturedPwaOptions[0]
 
     expect(pwa.injectManifest.globPatterns).toEqual([
-      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+      'client/_app/immutable/entry/**/*.{js,css}',
+      'client/_app/immutable/assets/**/*.{css,otf,woff,woff2}',
+      'client/*.{ico,png,svg,webp}',
       'prerendered/**/*.html',
     ])
     expect(pwa.workbox.globPatterns).toEqual([
-      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+      'client/_app/immutable/entry/**/*.{js,css}',
+      'client/_app/immutable/assets/**/*.{css,otf,woff,woff2}',
+      'client/*.{ico,png,svg,webp}',
       'prerendered/**/*.html',
     ])
     // When precaching all pages, docPagesRuntimeCaching is not added
@@ -142,7 +152,9 @@ describe('theme-default PWA configuration', () => {
     const pwa = capturedPwaOptions[0]
 
     expect(pwa.injectManifest.globPatterns).toEqual([
-      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+      'client/_app/immutable/entry/**/*.{js,css}',
+      'client/_app/immutable/assets/**/*.{css,otf,woff,woff2}',
+      'client/*.{ico,png,svg,webp}',
       'prerendered/pages/index.html',
       'prerendered/pages/zh.html',
       'prerendered/pages/zh/**',
@@ -194,6 +206,32 @@ describe('theme-default PWA configuration', () => {
       (rc: any) => rc.options?.cacheName === 'sveltepress-pages',
     )
     expect(customIndex).toBeLessThan(docIndex)
+  })
+
+  it('restores the catch-all client glob when precacheClient is true', async () => {
+    capturedPwaOptions.length = 0
+    const { defaultTheme } = await import('../src/index')
+
+    const theme = defaultTheme({
+      pwa: {
+        scope: '/',
+        precacheClient: true,
+      },
+    })
+
+    const dummyCore = { name: 'core-plugin' }
+    await (theme.vitePlugins as any)(dummyCore)
+
+    expect(capturedPwaOptions).toHaveLength(1)
+    const pwa = capturedPwaOptions[0]
+    expect(pwa.injectManifest.globPatterns).toEqual([
+      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+      'prerendered/pages/index.html',
+    ])
+    expect(pwa.workbox.globPatterns).toEqual([
+      'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
+      'prerendered/pages/index.html',
+    ])
   })
 
   it('restricts the injectManifest navigation fallback to the root route in production', () => {

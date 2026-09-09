@@ -11,9 +11,22 @@
  */
 export type PrecachePages = boolean | string[]
 
+/** Catch-all used when `precacheClient: true`. */
 export const PWA_CLIENT_GLOB = 'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}'
+/** SvelteKit start/app entry modules (hashed filenames live under this directory). */
+export const PWA_CLIENT_ENTRY_GLOB = 'client/_app/immutable/entry/**/*.{js,css}'
+/** Hashed CSS and fonts referenced by the shell. */
+export const PWA_CLIENT_ASSETS_GLOB = 'client/_app/immutable/assets/**/*.{css,otf,woff,woff2}'
+/** Root-level PWA / favicon images (not nested under `_app`). */
+export const PWA_CLIENT_ROOT_ICONS_GLOB = 'client/*.{ico,png,svg,webp}'
 export const PWA_HOME_GLOB = 'prerendered/pages/index.html'
 export const PWA_ALL_HTML_GLOB = 'prerendered/**/*.html'
+
+export const PWA_SHELL_CLIENT_GLOBS = [
+  PWA_CLIENT_ENTRY_GLOB,
+  PWA_CLIENT_ASSETS_GLOB,
+  PWA_CLIENT_ROOT_ICONS_GLOB,
+] as const
 
 /**
  * Map a site URL prefix to Workbox globs under `.svelte-kit/output`.
@@ -29,26 +42,42 @@ export function prefixToPrerenderedGlobs(prefix: string): string[] {
   ]
 }
 
+function clientGlobs(precacheClient = false): string[] {
+  return precacheClient ? [PWA_CLIENT_GLOB] : [...PWA_SHELL_CLIENT_GLOBS]
+}
+
 /**
  * Build `injectManifest` / `workbox` `globPatterns`.
  *
  * A glob starting with `prerendered/` MUST be present, otherwise
  * `@vite-pwa/sveltekit` appends a catch-all for every prerendered HTML/JSON
  * file and every version/locale page is hashed into the precache again.
+ *
+ * Default `precacheClient` is shell-only (entry + CSS/fonts + root icons)
+ * so Workbox install stays cheap. `true` restores the catch-all client glob.
  */
-export function resolvePrecacheGlobPatterns(precachePages: PrecachePages = false): string[] {
+export function resolvePrecacheGlobPatterns(
+  precachePages: PrecachePages = false,
+  precacheClient = false,
+): string[] {
+  const client = clientGlobs(precacheClient)
   if (precachePages === true)
-    return [PWA_CLIENT_GLOB, PWA_ALL_HTML_GLOB]
+    return [...client, PWA_ALL_HTML_GLOB]
 
   if (Array.isArray(precachePages)) {
     const extra = precachePages.flatMap(prefixToPrerenderedGlobs)
-    return [...new Set([PWA_CLIENT_GLOB, PWA_HOME_GLOB, ...extra])]
+    return [...new Set([...client, PWA_HOME_GLOB, ...extra])]
   }
 
-  return [PWA_CLIENT_GLOB, PWA_HOME_GLOB]
+  return [...client, PWA_HOME_GLOB]
 }
 
 /** Runtime-cache visited pages unless every HTML file is already precached. */
 export function shouldRuntimeCachePages(precachePages: PrecachePages = false): boolean {
   return precachePages !== true
+}
+
+/** Runtime-cache hashed modules unless every client file is already precached. */
+export function shouldRuntimeCacheClient(precacheClient = false): boolean {
+  return precacheClient !== true
 }

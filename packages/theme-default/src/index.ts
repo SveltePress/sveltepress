@@ -46,12 +46,14 @@ const defaultTheme: ThemeDefault = (options) => {
       const pwaOptions = options.pwa as SvelteKitPWAOptions & {
         darkManifest?: string
         precachePages?: boolean | string[]
+        precacheClient?: boolean
       } & Record<string, any>
       const precachePages = pwaOptions.precachePages ?? false
+      const precacheClient = pwaOptions.precacheClient ?? false
       const historicalGlob = versionManifest
         ? `prerendered/pages/**${versionManifest.basePath}/**/*.html`
         : null
-      const defaultGlobPatterns = resolvePrecacheGlobPatterns(precachePages)
+      const defaultGlobPatterns = resolvePrecacheGlobPatterns(precachePages, precacheClient)
       const versionRuntimeCaching = versionManifest
         ? [{
             urlPattern: new RegExp(`^${versionManifest.basePath}/`),
