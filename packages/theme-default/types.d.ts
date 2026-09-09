@@ -60,6 +60,18 @@ declare module 'virtual:sveltepress/theme-default' {
        * - `string[]`: URL prefixes, e.g. `['/zh/', '/v/2026-08-27/']`
        */
       precachePages?: boolean | string[]
+      /**
+       * Which client files to put in the Workbox precache.
+       *
+       * Default `false` only precaches the app shell (SvelteKit entry,
+       * hashed CSS/fonts, and root icons) so service-worker install/update
+       * stays fast on sites with many pages. Per-route nodes and chunks
+       * are fetched on demand.
+       *
+       * - `false`: app shell only
+       * - `true`: every matching client file (the previous catch-all glob)
+       */
+      precacheClient?: boolean
     }
     docsearch?: Omit<DocSearchProps, 'container' | 'theme'>
     search?: Component | string | boolean

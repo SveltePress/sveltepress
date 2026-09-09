@@ -36,11 +36,13 @@ export default config
 আপনার Vite project এ dev dependency হিসেবে `workbox-window` যুক্ত করতে হবে
 :::
 
-## HTML precache (versions & i18n)
+## Precache (versions & i18n)
 
-ডিফল্টভাবে Sveltepress শুধু **app shell** (JS / CSS / fonts) এবং **homepage** precache করে। বাকি ডকুমেন্টেশন পেজ ইউজার ভিজিট করলে runtime-এ cache হয় (`NetworkFirst`, সর্বোচ্চ 50টি এন্ট্রি)। ছবি এবং SvelteKit `__data.json`ও runtime cache হয়।
+ডিফল্টভাবে Sveltepress শুধু **app shell** এবং **homepage HTML** precache করে। Shell হলো SvelteKit-এর entry মডিউল, hashed CSS / fonts, এবং root icon — প্রতি-রুট `_app/immutable/nodes` বা shared chunk নয়। বাকি ডকুমেন্টেশন পেজ এবং সেই hashed মডিউল ইউজার ভিজিট করলে runtime-এ cache হয় (পেজ: `NetworkFirst`, সর্বোচ্চ 50টি এন্ট্রি; hashed client ফাইল: `CacheFirst`, সর্বোচ্চ 400টি / 30 দিন)। ছবি এবং SvelteKit `__data.json`ও runtime cache হয়।
 
-অনেক version এবং locale থাকলে এটি service worker install/update দ্রুত রাখে। সব prerendered HTML precache করলে Workbox প্রতিবার `versions × locales × pages` hash, compare এবং download করে।
+অনেক পেজ, version এবং locale থাকলে এটি service worker install/update দ্রুত রাখে, তাই deploy-এর পর refresh prompt তাড়াতাড়ি দেখা যায়। সব prerendered HTML বা সব client মডিউল precache করলে Workbox প্রতিবার `versions × locales × pages` hash, compare এবং download করে।
+
+প্রথম install-এ homepage hydration-এর জন্য নেটওয়ার্ক লাগতে পারে, যতক্ষণ না সেই hashed মডিউল runtime cache-এ যায়। একবার অনলাইনে ভিজিট করার পর ভিজিট করা পেজ (homepage সহ) runtime cache দিয়ে অফলাইনে খোলা যাবে।
 
 ### `pwa.precachePages`
 
@@ -75,6 +77,27 @@ defaultTheme({
 ```
 
 ভিজিট করা পেজ precache না থাকলেও runtime cache দিয়ে অফলাইনে খোলা যাবে।
+
+### `pwa.precacheClient`
+
+| Value | Precached client files |
+| --- | --- |
+| `false` (default) | শুধু app shell (entry + CSS / fonts + root icon) |
+| `true` | সব matching client file |
+
+আগের “সব client JS/CSS মডিউল precache করো” আচরণ ফিরিয়ে আনতে:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precacheClient: true,
+  },
+})
+```
+
+`precachePages` এবং `precacheClient` আলাদা: HTML policy client glob বদলায় না, আবার উল্টোটাও না।
 
 ## কনফিগের উদাহরণ
 

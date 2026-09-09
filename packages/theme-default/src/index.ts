@@ -14,7 +14,7 @@ import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
 import versionChanges from './markdown/version-changes.js'
-import { resolvePrecacheGlobPatterns, shouldRuntimeCachePages } from './pwa/precache-pages.js'
+import { resolvePrecacheGlobPatterns, shouldRuntimeCacheClient, shouldRuntimeCachePages } from './pwa/precache-pages.js'
 import { createVersionManifestReader } from './version-manifest.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
@@ -46,12 +46,14 @@ const defaultTheme: ThemeDefault = (options) => {
       const pwaOptions = options.pwa as SvelteKitPWAOptions & {
         darkManifest?: string
         precachePages?: boolean | string[]
+        precacheClient?: boolean
       } & Record<string, any>
       const precachePages = pwaOptions.precachePages ?? false
+      const precacheClient = pwaOptions.precacheClient ?? false
       const historicalGlob = versionManifest
         ? `prerendered/pages/**${versionManifest.basePath}/**/*.html`
         : null
-      const defaultGlobPatterns = resolvePrecacheGlobPatterns(precachePages)
+      const defaultGlobPatterns = resolvePrecacheGlobPatterns(precachePages, precacheClient)
       const versionRuntimeCaching = versionManifest
         ? [{
             urlPattern: new RegExp(`^${versionManifest.basePath}/`),
@@ -70,6 +72,22 @@ const defaultTheme: ThemeDefault = (options) => {
             options: {
               cacheName: 'sveltepress-pages',
               expiration: pageExpiration,
+              cacheableResponse: {
+                statuses: [200],
+              },
+            },
+          }]
+        : []
+      const immutableRuntimeCaching = shouldRuntimeCacheClient(precacheClient)
+        ? [{
+            urlPattern: ({ url }: any) => url.pathname.includes('/_app/immutable/'),
+            handler: 'CacheFirst' as const,
+            options: {
+              cacheName: 'sveltepress-immutable',
+              expiration: {
+                maxEntries: 400,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
               cacheableResponse: {
                 statuses: [200],
               },
@@ -133,6 +151,7 @@ const defaultTheme: ThemeDefault = (options) => {
             ...versionRuntimeCaching,
             ...(pwaOptions.workbox?.runtimeCaching ?? []),
             ...docPagesRuntimeCaching,
+            ...immutableRuntimeCaching,
             ...assetRuntimeCaching,
           ],
         },

@@ -36,11 +36,13 @@ If you want to enable pwa.
 You will need to add `workbox-window` as a dev dependency to your Vite project.
 :::
 
-## HTML precache (versions & i18n)
+## Precache (versions & i18n)
 
-By default Sveltepress only precaches the **app shell** (JS / CSS / fonts) and the **homepage**. Other documentation pages are cached at runtime when the user visits them (`NetworkFirst`, capped at 50 entries). Images and SvelteKit `__data.json` responses are also runtime-cached.
+By default Sveltepress only precaches the **app shell** and the **homepage HTML**. The shell is SvelteKit’s entry modules, hashed CSS / fonts, and root icons — not per-route `_app/immutable/nodes` or shared chunks. Other documentation pages and those hashed modules are cached at runtime when the user visits them (pages: `NetworkFirst`, capped at 50 entries; hashed client files: `CacheFirst`, capped at 400 entries / 30 days). Images and SvelteKit `__data.json` responses are also runtime-cached.
 
-This keeps service worker install and update fast when the site has many versions and locales. Precaching every prerendered HTML file makes Workbox hash, compare and download `versions × locales × pages` on every update.
+This keeps service worker install and update fast when the site has many pages, versions, and locales, so the refresh prompt can appear soon after a deploy. Precaching every prerendered HTML file or every client module makes Workbox hash, compare and download `versions × locales × pages` on every update.
+
+On first install, homepage hydration may need the network until those hashed modules have been runtime-cached. After one online visit, visited pages (including home) stay available offline through the runtime cache.
 
 ### `pwa.precachePages`
 
@@ -79,6 +81,27 @@ A glob starting with `prerendered/` is always included. Otherwise `@vite-pwa/sve
 :::
 
 Visited pages still work offline through the runtime cache, even when they are not precached.
+
+### `pwa.precacheClient`
+
+| Value | Precached client files |
+| --- | --- |
+| `false` (default) | App shell only (entry + CSS / fonts + root icons) |
+| `true` | Every matching client file |
+
+Restore the previous “precache every client JS/CSS module” behavior:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  pwa: {
+    precacheClient: true,
+  },
+})
+```
+
+`precachePages` and `precacheClient` are independent: HTML policy does not change the client glob, and the other way around.
 
 ## Example config
 
