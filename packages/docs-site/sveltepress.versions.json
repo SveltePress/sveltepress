@@ -2,10 +2,133 @@
   "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
   "basePath": "/v",
   "current": {
-    "id": "2026-09-03",
-    "label": "2026-09-03"
+    "id": "2026-09-09",
+    "label": "2026-09-09"
   },
   "versions": [
+    {
+      "id": "2026-09-03",
+      "label": "2026-09-03",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/i18n/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/guide/version-management/",
+        "/reference/blog-theme/",
+        "/reference/cli/",
+        "/reference/default-theme/",
+        "/reference/locale/",
+        "/reference/site/",
+        "/reference/versions/",
+        "/reference/vite-plugin/",
+        "/whats-new/"
+      ],
+      "changes": {
+        "versionId": "2026-09-03",
+        "baselineVersionId": "2026-08-31",
+        "newPages": [
+          {
+            "route": "/guide/i18n/",
+            "title": "Internationalization (i18n)",
+            "sections": []
+          }
+        ],
+        "updatedPages": [
+          {
+            "route": "/guide/default-theme/search/",
+            "title": "Search",
+            "sections": [
+              {
+                "id": "search-historical-pagefind-vs-docsearch",
+                "title": "Historical Local Search vs DocSearch",
+                "summary": "Pagefind historical indexes stay available; DocSearch/custom search still need version search metadata.",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/guide/introduction/",
+            "title": "Introduction",
+            "sections": [
+              {
+                "id": "intro-link-i18n",
+                "title": "Internationalization guide",
+                "summary": "Link to the new multi-locale guide.",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/guide/version-management/",
+            "title": "Document version management",
+            "sections": [
+              {
+                "id": "versions-cli-locale",
+                "title": "CLI --locale for per-locale manifests",
+                "summary": "Pass --locale to target sveltepress.versions.<locale>.json for zh, bn, and other locales.",
+                "introducedIn": "2026-09-03"
+              },
+              {
+                "id": "version-historical-pagefind-search",
+                "title": "Historical Local Search vs DocSearch",
+                "summary": "Pagefind historical indexes freeze on version release; DocSearch still needs search metadata.",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/reference/default-theme/",
+            "title": "Default theme",
+            "sections": [
+              {
+                "id": "theme-locale-switcher-localsearch",
+                "title": "Language switcher and default Local Search",
+                "summary": "Locales enable the navbar language switcher; Local Search remains the default when docsearch/search are unset.",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/reference/vite-plugin/",
+            "title": "Vite plugin",
+            "sections": [
+              {
+                "id": "vite-locales-pagefind-hooks",
+                "title": "Locales, Pagefind, and locale hooks",
+                "summary": "Document locales, pagefind, virtual:sveltepress/locale, and createLocaleHandle.",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "stable",
+      "sourceHash": "584681a6dc338f6fcd05846ac031f8152a5bc90c350f1d795729eaeb9809c704"
+    },
     {
       "id": "2026-08-31",
       "label": "2026-08-31",

@@ -84,6 +84,8 @@ defaultTheme({
 
 即使页面没有被预缓存，用户访问过的页面仍可通过运行时缓存离线打开。
 
+:::since[应用壳客户端预缓存]{version="2026-09-09" id="pwa-precache-client" summary="默认只预缓存应用壳；precacheClient 可恢复全量客户端 glob。"}
+
 ### `pwa.precacheClient`
 
 | 取值 | 预缓存的客户端文件 |
@@ -104,6 +106,7 @@ defaultTheme({
 ```
 
 `precachePages` 和 `precacheClient` 彼此独立：HTML 策略不会改变客户端 glob，反之亦然。
+:::
 
 ## 配置示例
 

@@ -134,6 +134,10 @@ defaultTheme({
 
 বিস্তারিত জানতে [PWA](/guide/default-theme/pwa/) দেখুন
 
+:::since[App-shell client precache]{version="2026-09-09" id="theme-pwa-precache-client" summary="pwa.precacheClient defaults to the app shell so service-worker updates stay fast."}
+`pwa.precacheClient` (default `false`) শুধু app shell precache করে। আগের catch-all client glob ফিরিয়ে আনতে `precacheClient: true` দিন। HTML policy এখনও `pwa.precachePages`-এ থাকে।
+:::
+
 ### `themeColor`
 
 local pwa application হিসেবে ওপেন করলে উইন্ডোবারের রঙ।

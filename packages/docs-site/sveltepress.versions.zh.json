@@ -2,10 +2,133 @@
   "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
   "basePath": "/zh/v",
   "current": {
-    "id": "2026-09-03",
-    "label": "2026-09-03"
+    "id": "2026-09-09",
+    "label": "2026-09-09"
   },
   "versions": [
+    {
+      "id": "2026-09-03",
+      "label": "2026-09-03",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/i18n/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/guide/version-management/",
+        "/reference/blog-theme/",
+        "/reference/cli/",
+        "/reference/default-theme/",
+        "/reference/locale/",
+        "/reference/site/",
+        "/reference/versions/",
+        "/reference/vite-plugin/",
+        "/whats-new/"
+      ],
+      "changes": {
+        "versionId": "2026-09-03",
+        "baselineVersionId": "2026-08-31",
+        "newPages": [
+          {
+            "route": "/guide/i18n/",
+            "title": "国际化（i18n）",
+            "sections": []
+          }
+        ],
+        "updatedPages": [
+          {
+            "route": "/guide/default-theme/search/",
+            "title": "搜索",
+            "sections": [
+              {
+                "id": "search-historical-pagefind-vs-docsearch",
+                "title": "历史本地搜索与 DocSearch",
+                "summary": "Pagefind 历史索引仍然可用；DocSearch/自定义搜索仍需要版本 search 元数据。",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/guide/introduction/",
+            "title": "介绍",
+            "sections": [
+              {
+                "id": "intro-link-i18n",
+                "title": "国际化指南",
+                "summary": "链向新的多语言指南。",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/guide/version-management/",
+            "title": "文档版本管理",
+            "sections": [
+              {
+                "id": "versions-cli-locale",
+                "title": "CLI --locale 按语言选择清单",
+                "summary": "通过 --locale 指向 sveltepress.versions.<locale>.json（如 zh、bn）。",
+                "introducedIn": "2026-09-03"
+              },
+              {
+                "id": "version-historical-pagefind-search",
+                "title": "历史本地搜索与 DocSearch",
+                "summary": "版本发布时冻结 Pagefind 历史索引；DocSearch 仍需要 search 元数据。",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/reference/default-theme/",
+            "title": "Default theme",
+            "sections": [
+              {
+                "id": "theme-locale-switcher-localsearch",
+                "title": "语言切换器与默认本地搜索",
+                "summary": "配置 locales 后导航栏显示语言切换器；未设置 docsearch/search 时默认使用本地搜索。",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          },
+          {
+            "route": "/reference/vite-plugin/",
+            "title": "Vite 插件",
+            "sections": [
+              {
+                "id": "vite-locales-pagefind-hooks",
+                "title": "多语言、Pagefind 与 locale hooks",
+                "summary": "补充 locales、pagefind、virtual:sveltepress/locale 与 createLocaleHandle。",
+                "introducedIn": "2026-09-03"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "stable",
+      "sourceHash": "a9ae532efc90500335eeb678cc4daa11bb7033471da052b2e69c0988c0ab2850"
+    },
     {
       "id": "2026-08-31",
       "label": "2026-08-31",

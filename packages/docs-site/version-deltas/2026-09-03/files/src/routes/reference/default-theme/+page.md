@@ -1,0 +1,317 @@
+---
+title: Default theme
+---
+
+## Install
+
+@install-pkg(@sveltepress/theme-default)
+
+## Add in your Vite config
+
+```js title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default' // [svp! ++]
+import { sveltepress } from '@sveltepress/vite'
+
+import { defineConfig } from 'vite'
+
+const config = defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme(/** theme options */) // [svp! ++]
+    })
+  ],
+})
+
+export default config
+```
+
+## Types Overview
+
+@code(/../theme-default/types.d.ts)
+
+## Theme Options
+
+### `navbar`
+
+* `title`
+  The label text of the item in the navigation bar.
+* `to`
+  The link address
+* `icon`
+  An HTML string. Will show the html content instead of `title`. It is useful to display a custom icon on the navbar.
+* `external`
+  Determine whether the link is external or not.
+  Would render an external icon if set to `true`
+* `items`
+  Children links.
+  If this prop is provided it would render a dropdown instead of a single link.
+
+### `discord`
+
+The web invite address to the project's Discord server.
+Would show a discord icon on the navigation bar when provided.
+
+### `github`
+
+The web address of the project's GitHub repository.
+Would show a GitHub icon on the navigation bar when provided
+
+### `logo`
+
+The address of the site's logo, to be shown on the navigation bar.
+
+### `sidebar`
+
+The sidebar can be configured in two ways:
+
+#### Auto-generated sidebar
+
+Pass an object with `enabled: true` to automatically generate the sidebar from your routes directory.
+
+* `enabled` - Set to `true` to enable auto sidebar generation
+* `routesDir` - Custom routes directory path. Default is `'src/routes'`
+* `roots` - Root paths to generate sidebar for, e.g. `['/guide/', '/reference/']`. If not specified, auto-detected from top-level route directories
+
+Pages can control their sidebar appearance via frontmatter:
+
+* `title` - Page title, also used as sidebar label
+* `sidebarTitle` - Override the sidebar label (takes precedence over `title`)
+* `order` - Sort order within the same level. Lower numbers appear first. Default is `100`
+* `sidebar` - Set to `false` to exclude this page from the sidebar
+* `collapsible` - Whether the sidebar group is collapsible
+
+#### Manual sidebar
+
+Pass an object where each key is a group route prefix and each value is an array of sidebar items:
+
+* `title`
+  The label text of the sidebar item
+* `collapsible`
+  Determine whether the sidebar group is collapsible or not.
+* `to`
+  The link address
+* `items`
+  Children links. If this prop is provided would render a sidebar group instead of a single sidebar item
+
+### `highlighter`
+
+An object that contains custom highlight options.
+
+* `languages` - Customize the supported highlight languages.
+Default is: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
+* `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
+* `themeDark` - The code theme that will be applied in dark mode. Default is `night-owl`
+* `twoslash` - Set to `true` to enable [Twoslash](/guide/default-theme/twoslash/). Default is `false`
+* `codeCollapseLines` - Collapse code blocks taller than this number of lines. Default is `30`; set it to `0` to disable collapsing.
+
+:::important[TIP]
+You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki)
+:::
+
+### `editLink`
+
+The link used for bottom edit this page on GitHub button
+For example this site uses `https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route`
+
+`:route` represent the route path, for example: `/foo/bar/+page.md`
+
+### `ga`
+
+The id provided by [Google Analytics](https://analytics.google.com/).
+Something like `G-XXXXXXX`.
+
+Would add gtag script in site head if provided.
+
+:::since[Language switcher and default Local Search]{version="2026-09-03" id="theme-locale-switcher-localsearch" summary="Locales enable the navbar language switcher; Local Search remains the default when docsearch/search are unset."}
+When `sveltepress({ locales })` is configured, the Default Theme shows a language switcher in the navbar (customize copy with `i18n.localeSwitcher` / `i18n.localePageUnavailable`). See [Internationalization](/guide/i18n/).
+
+If neither `docsearch` nor a custom `search` component is set, the theme uses built-in **Local Search** (Pagefind). Set `search: false` to hide search entirely. Details: [Search](/guide/default-theme/search/).
+:::
+
+### `search`
+
+The supported custom-search hook, with type `Component | string`. Use it to integrate a Svelte search component such as `@sveltepress/meilisearch`. A string identifies the wrapper component's source path:
+
+```ts
+import { defaultTheme } from '@sveltepress/theme-default'
+
+defaultTheme({
+  search: '/src/lib/MeilisearchSearch.svelte',
+})
+```
+
+:::note[Production builds]
+This public API and the M Search integration are supported. A source `.svelte` path configured through `search` is bundled into static production builds — the theme resolves it at build time and loads it as a lazy chunk. Passing a component object directly is not supported, because theme options are serialized to JSON for the client. See the [search guide](/guide/default-theme/search/) for the wrapper setup.
+:::
+
+### `docsearch`
+
+* `appId`
+* `apiKey`
+* `indexName`
+
+All these values are provided by Algolia.
+Visit [Docsearch](https://docsearch.algolia.com/) for more details.
+
+> `docsearch` is used only when `search` is not provided.
+
+### `pwa`
+
+See [PWA](/guide/default-theme/pwa/) for details.
+
+### `themeColor`
+
+The color of window bar when opened as a local PWA application.
+
+* `light` - the color that applied on light theme
+* `dark` - the color that applied on dark theme
+* `gradient` - the gradient theme color. Would be applied on home page action button and main title. Default is:
+```js
+const defaultGradient = {
+  start: '#fa709a',
+  end: '#fee140',
+}
+```
+* `primary` - the primary theme color of the site
+* `primaryDeep` - a darker primary color used for accessible accent text on light backgrounds
+* `hover` - the hovered links color
+
+### `i18n`
+
+The fixed text contents that can be replaced by your config.
+
+* `onThisPage` - The text for "On this page"
+* `suggestChangesToThisPage` - The text for "Suggest changes to this page"
+* `lastUpdateAt` - The text for "Last update at:"
+* `previousPage` - The text for "Previous"
+* `nextPage` - The text for "Next"
+* `expansionTitle` - The text for "Click to expand/fold code" in markdown or svelte live code
+* `expandCode` - The label on the expand bar for collapsed long code blocks
+* `heroCode` - The localized text inside the default home page code preview: `title`, `messageBefore`, `messageStrong`, `messageAfter`, `tipLabel`, and `counterLabel`
+* `versionDeprecated` / `versionEol` - The message in the global old-version lifecycle bar
+* `versionDeprecatedLabel` / `versionEolLabel` - The compact lifecycle status label
+* `versionViewCurrent` - The link label that opens the current version of the same logical page
+* `versionNewLabel` - The template for page title and section badges. Use `{version}` for the version label placeholder. Default is `"New in {version}"`
+* `versionNavigationNewLabel` - The compact badge shown beside changed sidebar pages and table-of-contents headings automatically associated with `:::since` markers. Default is `"New"`
+* `pwa` - The PWA prompt relative text contents. All of the following fields correspond to the same text in PWA prompt
+  * `tip`
+  * `reload`
+  * `close`
+  * `appReadyToWorkOffline`
+  * `newContentAvailable`
+* `footnoteLabel` - The auto generated footnotes title. Default is `"Footnotes"`
+
+### `preBuildIconifyIcons`
+
+The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.
+An object, key is the collection name, value is the icons array.
+For example these are the icons this site using:
+
+@code(/vite.config.ts,25,39)
+
+These icons looks like this:
+
+```svelte live
+<script>
+  import { IconifyIcon } from '@sveltepress/theme-default/components'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+</script>
+<div class="flex items-center gap-4 text-[48px] flex-wrap">
+  {#each Object.entries(themeOptions.preBuildIconifyIcons || {}) as [collection, names]}
+    {#each names as name}
+      <div>
+        <IconifyIcon {collection} {name} />
+      </div>
+    {/each}
+  {/each}
+</div>
+```
+
+## Global context
+
+The global context key is in the `@sveltepress/theme-default/context`. You can get all the contexts with the [`getContext`](https://svelte.dev/docs/svelte#getcontext) API
+
+This is an example:
+```svelte live
+<script lang="ts">
+  import type { SveltepressContext } from '@sveltepress/theme-default/context'
+  import { SVELTEPRESS_CONTEXT_KEY } from '@sveltepress/theme-default/context'
+  import { getContext } from 'svelte'
+
+  const { isDark } = getContext<SveltepressContext>(SVELTEPRESS_CONTEXT_KEY)
+</script>
+
+<div class:dark-text={$isDark} class="text-10">
+  isDark: {$isDark}
+</div>
+<style>
+  .dark-text {
+    --at-apply: 'text-red';
+  }
+</style>
+```
+
+All contexts:
+* `$isDark` - Determine the current theme is dark or not. It is a [reactive svelte store](https://svelte.dev/docs/svelte-store).
+
+## Virtual modules
+
+### `virtual:sveltepress/theme-default`
+
+This module hold the theme options that pass to `defaultTheme()` function.
+
+Here's an example for showing the theme options of this site:
+
+```svelte live
+<script>
+  import { JsonViewer } from 'svelte-json-discovery'
+  import themeOptions from 'virtual:sveltepress/theme-default'
+</script>
+
+<div class="viewer">
+  <JsonViewer data={themeOptions} />
+</div>
+<style>
+  .viewer {
+    max-height: 40vh;
+    overflow: auto;
+  }
+  :global(html.dark) .viewer {
+    --discovery-background-color: #1a1a1a;
+    --sjd-app-bg: #1a1a1a;
+    --sjd-fmt-color: #999;
+    --sjd-fmt-hover-color: #aaa;
+    --sjd-fmt-property-color: #d17a8c;
+    --sjd-fmt-number-color: #0f8dc2;
+    --sjd-fmt-atom-color: #0f8dc2;
+    --sjd-fmt-string-color: #7faf20;
+    --sjd-fmt-string-underline-color: #85ab51;
+    --sjd-fmt-string-hover-color: #97cf26;
+    --sjd-ui-color: #ccc;
+    --sjd-match-bg: #565638;
+    --sjd-match-border: #a7a73b;
+    --sjd-error-border: #0004;
+    --sjd-error-bg: #622b29;
+    --sjd-error-color: #c66;
+    --sjd-error-message-bg: #443232;
+    --sjd-toggle-color: #72b372;
+    --sjd-touch-button-color: #aaa;
+    --sjd-touch-button-bg: #50505080;
+    --sjd-popup-bg: #333;
+    --sjd-popup-color: #ccc;
+    --sjd-popup-notes-color: #999;
+    --sjd-popup-error-color: #e66;
+    color-scheme: dark;
+  }
+</style>
+```
+
+## Working with TypeScript
+
+You need to include `@sveltepress/theme-default/types` in your `src/app.d.ts` to get theme options and virtual modules type tips
+
+```ts title="/src/app.d.ts"
+/// <reference types="@sveltepress/theme-default/types" />
+
+// Your other types
+```

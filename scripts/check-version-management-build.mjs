@@ -6,38 +6,34 @@ const root = process.cwd()
 const official = join(root, 'packages/docs-site/dist')
 const historicalId = '2026-08-27'
 const historicalRoot = join(official, 'v', historicalId)
-const previousId = '2026-08-31'
+const previousId = '2026-09-03'
 const previousRoot = join(official, 'v', previousId)
-const currentId = '2026-09-03'
-const versionIds = [currentId, previousId, '2026-08-28', historicalId]
+const currentId = '2026-09-09'
+const versionIds = [currentId, previousId, '2026-08-31', '2026-08-28', historicalId]
 const currentChanges = [
-  { route: 'guide/default-theme/search', id: 'search-historical-pagefind-vs-docsearch' },
-  { route: 'guide/introduction', id: 'intro-link-i18n' },
-  { route: 'guide/version-management', id: 'versions-cli-locale' },
-  { route: 'guide/version-management', id: 'version-historical-pagefind-search' },
-  { route: 'reference/default-theme', id: 'theme-locale-switcher-localsearch' },
-  { route: 'reference/vite-plugin', id: 'vite-locales-pagefind-hooks' },
+  { route: 'guide/default-theme/pwa', id: 'pwa-precache-client' },
+  { route: 'reference/default-theme', id: 'theme-pwa-precache-client' },
 ]
-const currentNewPageRoutes = ['/guide/i18n/']
+const currentNewPageRoutes = []
 const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)
 const currentChangeRoutes = [...new Set([
   ...currentNewPageRoutes,
   ...currentChanges.map(({ route }) => `/${route}/`),
 ])]
 const previousChangeLinks = [
-  `/v/${previousId}/guide/default-theme/code-related/#multiple-focus-ranges`,
-  `/v/${previousId}/guide/default-theme/code-related/#literal-markdown-live-source`,
-  `/v/${previousId}/guide/default-theme/headings-and-anchors/#toc-heading-hierarchy`,
-  `/v/${previousId}/guide/default-theme/home-page/#hero-code-localization`,
-  `/v/${previousId}/guide/version-management/#next-version-doc-workflow`,
-  `/v/${previousId}/guide/version-management/#version-scoped-whats-new`,
-  `/v/${previousId}/reference/vite-plugin/#literal-code-preparation`,
+  `/v/${previousId}/guide/default-theme/search/#search-historical-pagefind-vs-docsearch`,
+  `/v/${previousId}/guide/introduction/#intro-link-i18n`,
+  `/v/${previousId}/guide/version-management/#versions-cli-locale`,
+  `/v/${previousId}/guide/version-management/#version-historical-pagefind-search`,
+  `/v/${previousId}/reference/default-theme/#theme-locale-switcher-localsearch`,
+  `/v/${previousId}/reference/vite-plugin/#vite-locales-pagefind-hooks`,
 ]
 const previousChangeRoutes = [
-  `/v/${previousId}/guide/default-theme/code-related/`,
-  `/v/${previousId}/guide/default-theme/headings-and-anchors/`,
-  `/v/${previousId}/guide/default-theme/home-page/`,
+  `/v/${previousId}/guide/default-theme/search/`,
+  `/v/${previousId}/guide/i18n/`,
+  `/v/${previousId}/guide/introduction/`,
   `/v/${previousId}/guide/version-management/`,
+  `/v/${previousId}/reference/default-theme/`,
   `/v/${previousId}/reference/vite-plugin/`,
 ]
 const changedCodeRelatedTocSlugs = {
@@ -187,26 +183,21 @@ function assertCurrentDocumentationChanges(site, siteRoot) {
       `${site} ${currentId} marker leaked into ${previousId}: ${id}`,
     )
 
-    if (route === 'guide/version-management' || route === 'guide/i18n') {
-      assert(!existsSync(historicalPage), `${site} post-${historicalId} page leaked into ${historicalId}: ${route}`)
-    }
-    else {
-      assert(existsSync(historicalPage), `${site} ${historicalId} documentation page is missing: ${route}`)
-      assert(
-        !read(historicalPage).includes(`id="${id}"`),
-        `${site} ${currentId} marker leaked into ${historicalId}: ${id}`,
-      )
-    }
+    assert(existsSync(historicalPage), `${site} ${historicalId} documentation page is missing: ${route}`)
+    assert(
+      !read(historicalPage).includes(`id="${id}"`),
+      `${site} ${currentId} marker leaked into ${historicalId}: ${id}`,
+    )
   }
 
   const previousViteReference = read(join(siteRoot, 'v', previousId, 'reference/vite-plugin/index.html'))
   assert(
-    previousViteReference.includes('id="literal-code-preparation"')
+    previousViteReference.includes('id="vite-locales-pagefind-hooks"')
     && previousViteReference.includes(`data-sveltepress-introduced-in="${previousId}"`),
     `${site} ${previousId} Vite reference did not preserve its frozen change marker`,
   )
   assert(
-    !read(join(siteRoot, 'v', historicalId, 'reference/vite-plugin/index.html')).includes('id="literal-code-preparation"'),
+    !read(join(siteRoot, 'v', historicalId, 'reference/vite-plugin/index.html')).includes('id="vite-locales-pagefind-hooks"'),
     `${site} ${previousId} Vite marker leaked into ${historicalId}`,
   )
 

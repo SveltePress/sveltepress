@@ -82,6 +82,8 @@ A glob starting with `prerendered/` is always included. Otherwise `@vite-pwa/sve
 
 Visited pages still work offline through the runtime cache, even when they are not precached.
 
+:::since[App-shell client precache]{version="2026-09-09" id="pwa-precache-client" summary="Default client precache is the app shell; precacheClient restores the catch-all glob."}
+
 ### `pwa.precacheClient`
 
 | Value | Precached client files |
@@ -102,6 +104,7 @@ defaultTheme({
 ```
 
 `precachePages` and `precacheClient` are independent: HTML policy does not change the client glob, and the other way around.
+:::
 
 ## Example config
 

@@ -154,6 +154,10 @@ defaultTheme({
 
 阅读 [PWA 章节](/guide/default-theme/pwa/) 来获得更多信息
 
+:::since[应用壳客户端预缓存]{version="2026-09-09" id="theme-pwa-precache-client" summary="pwa.precacheClient 默认只预缓存应用壳，加快 Service Worker 更新。"}
+`pwa.precacheClient`（默认 `false`）只预缓存应用壳。设为 `true` 可恢复之前的全量客户端 glob。HTML 策略仍由 `pwa.precachePages` 控制。
+:::
+
 ### `themeColor`
 
 主题色相关

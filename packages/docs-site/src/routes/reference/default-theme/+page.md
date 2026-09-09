@@ -159,6 +159,10 @@ Visit [Docsearch](https://docsearch.algolia.com/) for more details.
 
 See [PWA](/guide/default-theme/pwa/) for details.
 
+:::since[App-shell client precache]{version="2026-09-09" id="theme-pwa-precache-client" summary="pwa.precacheClient defaults to the app shell so service-worker updates stay fast."}
+`pwa.precacheClient` (default `false`) precaches only the app shell. Set `precacheClient: true` to restore the previous catch-all client glob. HTML policy remains on `pwa.precachePages`.
+:::
+
 ### `themeColor`
 
 The color of window bar when opened as a local PWA application.

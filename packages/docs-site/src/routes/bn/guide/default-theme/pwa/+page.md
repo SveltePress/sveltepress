@@ -78,6 +78,8 @@ defaultTheme({
 
 ভিজিট করা পেজ precache না থাকলেও runtime cache দিয়ে অফলাইনে খোলা যাবে।
 
+:::since[App-shell client precache]{version="2026-09-09" id="pwa-precache-client" summary="Default client precache is the app shell; precacheClient restores the catch-all glob."}
+
 ### `pwa.precacheClient`
 
 | Value | Precached client files |
@@ -98,6 +100,7 @@ defaultTheme({
 ```
 
 `precachePages` এবং `precacheClient` আলাদা: HTML policy client glob বদলায় না, আবার উল্টোটাও না।
+:::
 
 ## কনফিগের উদাহরণ
 
