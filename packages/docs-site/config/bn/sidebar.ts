@@ -144,6 +144,10 @@ export default {
           title: 'ডিফল্ট থিম',
           to: '/reference/default-theme/',
         },
+        {
+          title: 'virtual:sveltepress/versions',
+          to: '/reference/versions/',
+        },
       ],
     },
   ],
