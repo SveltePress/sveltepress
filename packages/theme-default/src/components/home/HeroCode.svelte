@@ -99,16 +99,14 @@
       <div class="file-name">{activeFile}</div>
     </div>
 
-    <pre class="code">
-      {#if activeTab === 'runes'}
-        <span class="c-dim">---</span>
-<span class="c-key">title</span><span
-          class="c-dim">:</span
-        > <span class="c-str">{title}</span>
+    <pre class="code">{#if activeTab === 'runes'}<span class="c-dim">---</span
+        >
+<span class="c-key">title</span><span class="c-dim">:</span> <span
+          class="c-str">{title}</span
+        >
 <span class="c-dim">---</span>
 
-<span
-          class="c-head"># {title}</span
+<span class="c-head"># {title}</span
         >
 
 <span class="c-tip">:::tip</span>
@@ -131,14 +129,13 @@
   {counterPrefix}&#123;count&#125;
 <span class="c-tag"
           >&lt;/button&gt;</span
+        >{:else if activeTab === 'callouts'}<span class="c-head"
+          ># Notes & Callouts</span
         >
-      {:else if activeTab === 'callouts'}
-        <span class="c-head"># Notes & Callouts</span>
 
-<span class="c-tip"
-          >:::tip</span
-        >
-{messageBefore}<span class="c-bold">**{messageStrong}**</span
+<span class="c-tip">:::tip</span>
+{messageBefore}<span class="c-bold"
+          >**{messageStrong}**</span
         >{messageAfter}
 <span class="c-tip">:::</span>
 
@@ -146,17 +143,16 @@
           >:::warning</span
         >
 Full SvelteKit power!
-<span class="c-warn">:::</span>
-      {:else if activeTab === 'twoslash'}
-        <span class="c-dim">// @filename: app.ts</span>
-<span class="c-kw"
-          >interface</span
-        > <span class="c-type">SiteConfig</span> &#123;
-  <span class="c-key"
-          >title</span
-        ><span class="c-dim">:</span> <span class="c-type">string</span>
-  <span
-          class="c-key">version</span
+<span class="c-warn">:::</span
+        >{:else if activeTab === 'twoslash'}<span class="c-dim"
+          >// @filename: app.ts</span
+        >
+<span class="c-kw">interface</span> <span class="c-type"
+          >SiteConfig</span
+        > &#123;
+  <span class="c-key">title</span><span class="c-dim">:</span
+        > <span class="c-type">string</span>
+  <span class="c-key">version</span
         ><span class="c-dim">:</span> <span class="c-type">string</span
         >
 &#125;
@@ -169,9 +165,7 @@ Full SvelteKit power!
   <span class="c-twoslash"
           >// ^? (property) title: string</span
         >
-&#125;
-      {/if}
-    </pre>
+&#125;{/if}</pre>
   </div>
 
   <!-- Live Rendered Preview Pane -->

@@ -191,6 +191,26 @@ describe('home redesign components', () => {
       vi.useRealTimers()
     })
 
+    it('does not indent the first line of each scene in the editor pane', async () => {
+      const firstLine = (view: ReturnType<typeof render>) => {
+        const text = view.container.querySelector('pre.code')?.textContent ?? ''
+        return text.replace(/^\n/, '').split('\n')[0]
+      }
+
+      const runes = render(HeroCode)
+      expect(firstLine(runes)).toMatch(/^---/)
+      cleanup()
+
+      const callouts = render(HeroCode)
+      await fireEvent.click(callouts.getByRole('tab', { name: /callouts/i }))
+      expect(firstLine(callouts)).toMatch(/^# Notes/)
+      cleanup()
+
+      const twoslash = render(HeroCode)
+      await fireEvent.click(twoslash.getByRole('tab', { name: /twoslash/i }))
+      expect(firstLine(twoslash)).toMatch(/^\/\/ @filename/)
+    })
+
     it('clips overflowing editor panes so they cannot cover the home title', () => {
       const source = readFileSync(
         resolve(import.meta.dirname, '../src/components/home/HeroCode.svelte'),
