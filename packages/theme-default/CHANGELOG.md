@@ -1,5 +1,26 @@
 # @sveltepress/theme-default
 
+## 8.9.0
+
+### Minor Changes
+
+- [#446](https://github.com/SveltePress/sveltepress/pull/446) [`8e5ddad`](https://github.com/Blackman99/sveltepress/commit/8e5ddadc79ff4ac020e978a4ef0fdcefeeaa90fe) Thanks [@Blackman99](https://github.com/Blackman99)! - feat(pwa): default client precache to the app shell so the refresh prompt appears sooner on large docs sites. `precacheClient: true` restores the previous catch-all client glob.
+
+### Patch Changes
+
+- [`7730870`](https://github.com/Blackman99/sveltepress/commit/773087085b90d48f8bf539267878dd30658912f7) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`91980ad`](https://github.com/Blackman99/sveltepress/commit/91980ad819e874bb8fad47aedb0957febd491528) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`9b72bea`](https://github.com/Blackman99/sveltepress/commit/9b72bea718bd5409072e71f48a471e93c7ec3d04) Thanks [@Blackman99](https://github.com/Blackman99)! - fix(theme-default): remove leading indent from home hero code samples
+
+- [`46337b4`](https://github.com/Blackman99/sveltepress/commit/46337b44a2294ab247e35abcd735925721f187bc) Thanks [@Blackman99](https://github.com/Blackman99)! - fix(theme-default): keep the mobile home hero from covering the title
+
+- [`7d3805a`](https://github.com/Blackman99/sveltepress/commit/7d3805a7fd957caca79dc2f5da8e6d1e98962387) Thanks [@Blackman99](https://github.com/Blackman99)! - fix(theme-default): make the home hero scenes an auto-playing segmented carousel
+
+- Updated dependencies [[`7730870`](https://github.com/Blackman99/sveltepress/commit/773087085b90d48f8bf539267878dd30658912f7), [`91980ad`](https://github.com/Blackman99/sveltepress/commit/91980ad819e874bb8fad47aedb0957febd491528), [`a2c7f38`](https://github.com/Blackman99/sveltepress/commit/a2c7f388057f28bc48c794b415760e4de82441cf)]:
+  - @sveltepress/twoslash@1.3.23
+
 ## 8.8.0
 
 ### Minor Changes
