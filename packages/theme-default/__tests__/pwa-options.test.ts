@@ -68,6 +68,18 @@ describe('theme-default PWA configuration', () => {
     expect(navCaching.options.cacheName).toBe('sveltepress-pages')
     expect(navCaching.options.expiration.maxEntries).toBe(50)
 
+    const immutableCaching = pwa.workbox.runtimeCaching.find(
+      (rc: any) => rc.options?.cacheName === 'sveltepress-immutable',
+    )
+    expect(immutableCaching).toBeDefined()
+    expect(immutableCaching.handler).toBe('CacheFirst')
+    expect(immutableCaching.options.expiration.maxEntries).toBe(400)
+    expect(immutableCaching.options.expiration.maxAgeSeconds).toBe(30 * 24 * 60 * 60)
+    const immutableUrl = { pathname: '/_app/immutable/nodes/1.abc.js' }
+    const otherUrl = { pathname: '/guide/' }
+    expect(immutableCaching.urlPattern({ url: immutableUrl })).toBe(true)
+    expect(immutableCaching.urlPattern({ url: otherUrl })).toBe(false)
+
     // dontCacheBustURLsMatching should be configured
     expect(pwa.injectManifest.dontCacheBustURLsMatching).toBeDefined()
     expect(pwa.workbox.dontCacheBustURLsMatching).toBeDefined()
@@ -232,6 +244,9 @@ describe('theme-default PWA configuration', () => {
       'client/**/*.{js,css,ico,png,svg,webp,otf,woff,woff2}',
       'prerendered/pages/index.html',
     ])
+    expect(pwa.workbox.runtimeCaching.some(
+      (rc: any) => rc.options?.cacheName === 'sveltepress-immutable',
+    )).toBe(false)
   })
 
   it('restricts the injectManifest navigation fallback to the root route in production', () => {
@@ -242,6 +257,10 @@ describe('theme-default PWA configuration', () => {
     expect(sw).toContain('allowlist: [/^\\/$/]')
     expect(sw).toContain('workbox-expiration')
     expect(sw).toContain('__data.json')
+    expect(sw).toContain('_app/immutable')
+    expect(sw).toContain('CacheFirst')
+    expect(sw).toContain('sveltepress-immutable')
+    expect(sw).toContain('maxEntries: 400')
     expect(sw).not.toContain('import.meta.env.DEV')
   })
 })

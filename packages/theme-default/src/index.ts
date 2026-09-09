@@ -14,7 +14,7 @@ import installPkg from './markdown/install-pkg.js'
 import links from './markdown/links.js'
 import liveCode from './markdown/live-code.js'
 import versionChanges from './markdown/version-changes.js'
-import { resolvePrecacheGlobPatterns, shouldRuntimeCachePages } from './pwa/precache-pages.js'
+import { resolvePrecacheGlobPatterns, shouldRuntimeCacheClient, shouldRuntimeCachePages } from './pwa/precache-pages.js'
 import { createVersionManifestReader } from './version-manifest.js'
 import createPreCorePlugins from './vite-plugins/create-pre-core-plugins.js'
 
@@ -78,6 +78,22 @@ const defaultTheme: ThemeDefault = (options) => {
             },
           }]
         : []
+      const immutableRuntimeCaching = shouldRuntimeCacheClient(precacheClient)
+        ? [{
+            urlPattern: ({ url }: any) => url.pathname.includes('/_app/immutable/'),
+            handler: 'CacheFirst' as const,
+            options: {
+              cacheName: 'sveltepress-immutable',
+              expiration: {
+                maxEntries: 400,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [200],
+              },
+            },
+          }]
+        : []
       const assetRuntimeCaching = [
         {
           urlPattern: ({ url }: any) => url.pathname.includes('/__data.json'),
@@ -135,6 +151,7 @@ const defaultTheme: ThemeDefault = (options) => {
             ...versionRuntimeCaching,
             ...(pwaOptions.workbox?.runtimeCaching ?? []),
             ...docPagesRuntimeCaching,
+            ...immutableRuntimeCaching,
             ...assetRuntimeCaching,
           ],
         },

@@ -130,7 +130,7 @@ The repository has no `pnpm run typecheck` script. Global guardrail for this cha
 ## Plan
 
 - [x] Ticket 1: Shell client precache glob — Delivers `precacheClient` on the glob helper and theme PWA options: default globs are entry + assets + root icons + existing HTML policy; `true` restores `client/**/*.{js,css,…}`; no nodes/chunks catch-all. Tests at pwa-precache-pages.test.ts and pwa-options.test.ts globPatterns. (Blocked by: none)
-- [ ] Ticket 2: Immutable CacheFirst runtime — Delivers generateSW `sveltepress-immutable` CacheFirst (400 / 30d) when shell-only, omitted when `precacheClient: true`; injectManifest `sw.js` registers the same route. Tests at pwa-options.test.ts runtimeCaching + sw.js source. (Blocked by: Ticket 1)
+- [x] Ticket 2: Immutable CacheFirst runtime — Delivers generateSW `sveltepress-immutable` CacheFirst (400 / 30d) when shell-only, omitted when `precacheClient: true`; injectManifest `sw.js` registers the same route. Tests at pwa-options.test.ts runtimeCaching + sw.js source. (Blocked by: Ticket 1)
 - [ ] Ticket 3: Release & Documentation Compliance — Delivers Changeset (minor on `@sveltepress/theme-default`) and PWA guide updates in EN / ZH / BN documenting `precacheClient` and the first-install hydration tradeoff. Root README has no PWA glob section to update. (Blocked by: Tickets 1–2)
 
 ## Ticket verification
@@ -142,6 +142,14 @@ The repository has no `pnpm run typecheck` script. Global guardrail for this cha
 ### Ticket 1 green proof
 
 Same command — exit 0, 16 passed (9 + 7). Theme-default suite: 176 passed.
+
+### Ticket 2 red proof
+
+Same command — exit 1. 2 failed / 15 passed. Default captured `workbox.runtimeCaching` had no `sveltepress-immutable`; `sw.js` did not contain `_app/immutable`.
+
+### Ticket 2 green proof
+
+Same command — exit 0, 17 passed (10 + 7).
 
 ## Baseline
 

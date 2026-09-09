@@ -8,6 +8,7 @@ import {
   PWA_CLIENT_ROOT_ICONS_GLOB,
   PWA_HOME_GLOB,
   resolvePrecacheGlobPatterns,
+  shouldRuntimeCacheClient,
   shouldRuntimeCachePages,
 } from '../src/pwa/precache-pages'
 
@@ -103,5 +104,13 @@ describe('shouldRuntimeCachePages', () => {
     expect(shouldRuntimeCachePages(false)).toBe(true)
     expect(shouldRuntimeCachePages(['/zh/'])).toBe(true)
     expect(shouldRuntimeCachePages(true)).toBe(false)
+  })
+})
+
+describe('shouldRuntimeCacheClient', () => {
+  it('runtime-caches hashed modules unless every client file is already precached', () => {
+    expect(shouldRuntimeCacheClient()).toBe(true)
+    expect(shouldRuntimeCacheClient(false)).toBe(true)
+    expect(shouldRuntimeCacheClient(true)).toBe(false)
   })
 })

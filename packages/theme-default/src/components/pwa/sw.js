@@ -92,4 +92,17 @@ registerRoute(
   }),
 )
 
+registerRoute(
+  ({ url }) => url.pathname.includes('/_app/immutable/'),
+  new CacheFirst({
+    cacheName: 'sveltepress-immutable',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 400,
+        maxAgeSeconds: 30 * 24 * 60 * 60,
+      }),
+    ],
+  }),
+)
+
 registerRoute(route)
