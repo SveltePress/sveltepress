@@ -1,6 +1,6 @@
 # Spec: Faster PWA Refresh Prompt on Large Docs Sites
 
-Status: landing
+Status: shipped
 Branch: ship/pwa-faster-update-prompt
 Base-Commit: 84b431ade8731989d9996bafc92e98e2a5da6180
 Original-Branch: main
