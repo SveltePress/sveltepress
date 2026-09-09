@@ -208,7 +208,7 @@ Full SvelteKit power!
 
 <style>
   .hero-code {
-    --at-apply: 'relative sm:col-span-5 col-span-12 h-[310px] sm:h-[330px] max-w-[420px] w-full mx-auto sm:mx-0 self-center select-none';
+    --at-apply: 'relative row-start-1 sm:col-span-5 col-span-12 h-[310px] sm:h-[330px] max-w-[420px] w-full mx-auto sm:mx-0 self-center select-none overflow-hidden';
     font-size: 11px;
   }
   .pane {
@@ -217,7 +217,7 @@ Full SvelteKit power!
     -webkit-backdrop-filter: blur(12px);
   }
   .pane-md {
-    --at-apply: 'top-0 left-0 w-[78%] z-1';
+    --at-apply: 'top-0 left-0 bottom-0 w-[78%] z-1';
   }
   .pane-render {
     --at-apply: 'right-0 bottom-0 w-[66%] z-2';

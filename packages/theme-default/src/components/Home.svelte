@@ -173,7 +173,7 @@
     --at-apply: 'text-8 leading-[1.2] sm:text-inherit text-zinc-9 dark:text-zinc-1';
   }
   .intro {
-    --at-apply: 'col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1 text-center sm:text-left';
+    --at-apply: 'col-start-1 sm:col-span-7 col-span-12 row-start-2 sm:row-start-1 text-center sm:text-left relative z-2 sm:z-1';
   }
   .badge-wrapper {
     --at-apply: 'flex justify-center sm:justify-start mb-4';

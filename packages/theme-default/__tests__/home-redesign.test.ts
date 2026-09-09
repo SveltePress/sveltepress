@@ -1,5 +1,7 @@
 // @vitest-environment happy-dom
 
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { cleanup, fireEvent, render } from '@testing-library/svelte'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import Home from '../src/components/Home.svelte'
@@ -129,6 +131,15 @@ describe('home redesign components', () => {
       expect(view.container.querySelector('.home-badge')).toBeNull()
       expect(view.container.querySelector('.install-command')).toBeNull()
     })
+
+    it('keeps the title copy above the hero visual on the mobile grid', () => {
+      const source = readFileSync(
+        resolve(import.meta.dirname, '../src/components/Home.svelte'),
+        'utf8',
+      )
+      expect(source).toMatch(/\.intro[\s\S]*row-start-2[\s\S]*sm:row-start-1/)
+      expect(source).toMatch(/\.intro[\s\S]*relative z-2 sm:z-1/)
+    })
   })
 
   describe('herocode interactive showcase', () => {
@@ -152,6 +163,16 @@ describe('home redesign components', () => {
 
       await fireEvent.click(counterBtn)
       expect(counterBtn.textContent).toContain('3')
+    })
+
+    it('clips overflowing editor panes so they cannot cover the home title', () => {
+      const source = readFileSync(
+        resolve(import.meta.dirname, '../src/components/home/HeroCode.svelte'),
+        'utf8',
+      )
+      expect(source).toMatch(/\.hero-code[\s\S]*overflow-hidden/)
+      expect(source).toMatch(/\.hero-code[\s\S]*row-start-1/)
+      expect(source).toMatch(/\.pane-md[\s\S]*bottom-0/)
     })
 
     it('switches content when clicking callouts and twoslash tabs', async () => {
