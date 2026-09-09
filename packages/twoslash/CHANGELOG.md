@@ -1,5 +1,15 @@
 # @sveltepress/twoslash
 
+## 1.3.23
+
+### Patch Changes
+
+- [`7730870`](https://github.com/Blackman99/sveltepress/commit/773087085b90d48f8bf539267878dd30658912f7) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`91980ad`](https://github.com/Blackman99/sveltepress/commit/91980ad819e874bb8fad47aedb0957febd491528) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a2c7f38`](https://github.com/Blackman99/sveltepress/commit/a2c7f388057f28bc48c794b415760e4de82441cf) Thanks [@Blackman99](https://github.com/Blackman99)! - fix export conditions order for Svelte components
+
 ## 1.3.22
 
 ### Patch Changes
