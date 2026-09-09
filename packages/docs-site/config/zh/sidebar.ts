@@ -145,6 +145,22 @@ export default {
           to: '/reference/default-theme/',
         },
         {
+          title: '博客主题',
+          to: '/reference/blog-theme/',
+        },
+        {
+          title: 'Sveltepress CLI',
+          to: '/reference/cli/',
+        },
+        {
+          title: 'virtual:sveltepress/site',
+          to: '/reference/site/',
+        },
+        {
+          title: 'virtual:sveltepress/locale',
+          to: '/reference/locale/',
+        },
+        {
           title: 'virtual:sveltepress/versions',
           to: '/reference/versions/',
         },
