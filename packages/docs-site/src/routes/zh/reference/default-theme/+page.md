@@ -186,6 +186,7 @@ const defaultGradient = {
 * `versionDeprecated` / `versionEol` - 全局旧版生命周期横条中的提示文本
 * `versionDeprecatedLabel` / `versionEolLabel` - 生命周期状态的紧凑标签
 * `versionViewCurrent` - 打开同一逻辑页面最新版的链接文本
+* `versionNewLabel` - 页面主标题与段落小节新增徽章的模板文本。使用 `{version}` 作为版本占位符，默认为 `"New in {version}"`
 * `versionNavigationNewLabel` - 侧边栏变化页面，以及自动关联到 `:::since` 标记的当前页面目录标题旁所显示的紧凑徽章文本，默认为 `"New"`
 * `pwa` - PWA 提示弹窗中的文本，下面的每个字段都直接对应到弹窗中对应意义的文本
   * `tip`

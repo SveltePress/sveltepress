@@ -191,6 +191,7 @@ The fixed text contents that can be replaced by your config.
 * `versionDeprecated` / `versionEol` - The message in the global old-version lifecycle bar
 * `versionDeprecatedLabel` / `versionEolLabel` - The compact lifecycle status label
 * `versionViewCurrent` - The link label that opens the current version of the same logical page
+* `versionNewLabel` - The template for page title and section badges. Use `{version}` for the version label placeholder. Default is `"New in {version}"`
 * `versionNavigationNewLabel` - The compact badge shown beside changed sidebar pages and table-of-contents headings automatically associated with `:::since` markers. Default is `"New"`
 * `pwa` - The PWA prompt relative text contents. All of the following fields correspond to the same text in PWA prompt
   * `tip`

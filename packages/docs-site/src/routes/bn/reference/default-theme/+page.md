@@ -166,6 +166,7 @@ const defaultGradient = {
 * `versionDeprecated` / `versionEol` - global old-version lifecycle bar-এর message
 * `versionDeprecatedLabel` / `versionEolLabel` - compact lifecycle status label
 * `versionViewCurrent` - একই logical page-এর current version link-এর label
+* `versionNewLabel` - পেজ শিরোনাম ও সেকশন ব্যাজের টেমপ্লেট টেক্সট। ভার্সন লেবেলের জন্য `{version}` প্লেসহোল্ডার ব্যবহার করুন। Default `"New in {version}"`
 * `versionNavigationNewLabel` - পরিবর্তিত sidebar page এবং `:::since` marker-এর সঙ্গে স্বয়ংক্রিয়ভাবে যুক্ত table-of-contents heading-এর পাশের compact badge text। Default `"New"`
 * `pwa` - pwa prompt এর relative টেক্সট কন্টেন্ট. নিচের সব ফিল্ডই pwa prompt এর মতই
   * `tip`

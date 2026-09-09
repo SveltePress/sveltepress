@@ -301,9 +301,33 @@ New documentation content.
 
 Unknown versions, duplicate IDs, unknown fields, and invalid field types stop development and production builds. New pages appear only under **New pages**; their `since` sections are not repeated under **Updated pages**. The first managed version has no comparison baseline and does not report the entire site as new.
 
-The Default Theme displays page and section badges only while browsing the version that introduced them. Add a changelog route wherever it fits your site:
+### Automatic "New" badges on pages, sections, and navigation
 
-The sidebar adds a compact **New** badge to both new and updated pages. When a `:::since` marker has no heading of its own, the Default Theme automatically associates it with the nearest preceding heading in the same Markdown container and adds the same badge in **On this page**. Headings contained inside a marker are associated directly. Multiple markers can belong to one heading; the active version renders one badge when any associated marker matches. Override the compact text with `i18n.versionNavigationNewLabel`.
+The Default Theme automatically marks newly introduced features across multiple navigation and content surfaces. Importantly, these badges are **only shown while browsing the specific documentation version that introduced them**; they automatically hide or adjust when switching to older or newer versions:
+
+1. **Page title badge (page level)**:
+   - When a page is newly added in the active version compared to the preceding baseline version (listed under `newPages`), the Default Theme automatically displays an accent badge beside the main page title (`h1.page-title`), such as `New in 8.2`.
+   - The badge template defaults to `"New in {version}"`. Customize it via `i18n.versionNewLabel` in theme options (where `{version}` is replaced with the active version's label or ID).
+   - When browsing subsequent versions, the page is no longer considered new, so the title badge is automatically omitted.
+
+2. **Section and paragraph badge (section level)**:
+   - In existing pages, sections wrapped in `:::since[Title]{version="8.2" id="unique-id" summary="..."}` directives are rendered as stylized container boxes with an automatic version badge in their section header.
+   - The section badge only displays when the user browses the exact version specified in `version="..."`. When browsing other versions, the badge is hidden. The text template also follows `i18n.versionNewLabel`.
+
+3. **In-page navigation badge ("On this page" / TOC level)**:
+   - The right-side "On this page" table of contents automatically resolves associations between headings and `:::since` markers:
+     - Headings contained inside a `:::since` marker are associated directly;
+     - When a `:::since` marker contains no headings of its own, the Default Theme automatically associates it with the nearest preceding heading within the same Markdown container;
+     - Multiple markers can belong to one heading.
+   - While browsing the version that introduced those changes, any associated heading anchor in the table of contents automatically renders a compact **New** badge (`VersionNavigationBadge`).
+   - The compact badge text defaults to `"New"`. Override it with `i18n.versionNavigationNewLabel`.
+
+4. **Sidebar navigation badge (sidebar level)**:
+   - The sidebar automatically adds the compact **New** badge to both new pages (`newPages`) and updated pages (`updatedPages`), also configured via `i18n.versionNavigationNewLabel`.
+
+### What's New overview page
+
+In addition to contextual badges on pages, sections, and navigation, you can embed the full release change catalog anywhere on your site:
 
 ```svelte title="src/routes/whats-new/+page.svelte"
 <script>
