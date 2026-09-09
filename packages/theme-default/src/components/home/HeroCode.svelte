@@ -20,16 +20,74 @@
   } = $props()
 
   type Tab = 'runes' | 'callouts' | 'twoslash'
+  interface SceneMeta {
+    label: string
+    file: string
+  }
+  const scenes: Tab[] = ['runes', 'callouts', 'twoslash']
+  const sceneMeta: Record<Tab, SceneMeta> = {
+    runes: { label: 'Runes', file: '+page.md' },
+    callouts: { label: 'Callouts', file: 'notes.md' },
+    twoslash: { label: 'Twoslash', file: 'app.ts' },
+  }
+  const SCENE_MS = 4000
+
   let activeTab: Tab = $state('runes')
+  let paused = $state(false)
+  let cycle = $state(0)
 
   const counterPrefix = $derived(counterLabel.replace(/\d+$/, '') || 'Count: ')
   const initialCount = $derived(Number(counterLabel.match(/\d+$/)?.[0] ?? 1))
 
   let clickCount = $state(0)
   const currentCount = $derived(initialCount + clickCount)
+  const activeFile = $derived(sceneMeta[activeTab].file)
+
+  function selectScene(tab: Tab) {
+    activeTab = tab
+    paused = true
+    cycle += 1
+  }
+
+  function advanceScene() {
+    const index = scenes.indexOf(activeTab)
+    activeTab = scenes[(index + 1) % scenes.length]
+  }
+
+  $effect(() => {
+    if (paused) return
+    const timer = setInterval(advanceScene, SCENE_MS)
+    return () => clearInterval(timer)
+  })
 </script>
 
-<div class="hero-code">
+<div
+  class="hero-code"
+  role="region"
+  aria-label="Interactive documentation showcase"
+  onmouseenter={() => (paused = true)}
+  onmouseleave={() => (paused = false)}
+>
+  <div class="hero-carousel" role="tablist" aria-label="Showcase scenes">
+    {#each scenes as scene}
+      <button
+        type="button"
+        role="tab"
+        class="scene-tab"
+        class:active={activeTab === scene}
+        aria-selected={activeTab === scene}
+        onclick={() => selectScene(scene)}
+      >
+        <span class="scene-label">{sceneMeta[scene].label}</span>
+        {#if activeTab === scene}
+          {#key `${scene}-${cycle}`}
+            <span class="scene-progress" class:paused aria-hidden="true"></span>
+          {/key}
+        {/if}
+      </button>
+    {/each}
+  </div>
+
   <!-- Code Editor Pane -->
   <div class="pane pane-md">
     <div class="pane-bar">
@@ -38,38 +96,7 @@
         <span class="dot dot-min"></span>
         <span class="dot dot-max"></span>
       </div>
-      <div class="tab-list" role="tablist" aria-label="Hero Code Showcase Tabs">
-        <button
-          type="button"
-          role="tab"
-          class="code-tab"
-          class:active={activeTab === 'runes'}
-          aria-selected={activeTab === 'runes'}
-          onclick={() => (activeTab = 'runes')}
-        >
-          Runes
-        </button>
-        <button
-          type="button"
-          role="tab"
-          class="code-tab"
-          class:active={activeTab === 'callouts'}
-          aria-selected={activeTab === 'callouts'}
-          onclick={() => (activeTab = 'callouts')}
-        >
-          Callouts
-        </button>
-        <button
-          type="button"
-          role="tab"
-          class="code-tab"
-          class:active={activeTab === 'twoslash'}
-          aria-selected={activeTab === 'twoslash'}
-          onclick={() => (activeTab = 'twoslash')}
-        >
-          Twoslash
-        </button>
-      </div>
+      <div class="file-name">{activeFile}</div>
     </div>
 
     <pre class="code">
@@ -208,8 +235,42 @@ Full SvelteKit power!
 
 <style>
   .hero-code {
-    --at-apply: 'relative row-start-1 sm:col-span-5 col-span-12 h-[310px] sm:h-[330px] max-w-[420px] w-full mx-auto sm:mx-0 self-center select-none overflow-hidden';
+    --at-apply: 'relative row-start-1 sm:col-span-5 col-span-12 h-[348px] sm:h-[368px] max-w-[420px] w-full mx-auto sm:mx-0 self-center select-none overflow-hidden';
     font-size: 11px;
+  }
+  .hero-carousel {
+    --at-apply: 'absolute top-0 left-0 right-0 z-3 flex p-0.5 rounded-full bg-black/5 dark:bg-white/8 b-1 b-solid b-black/8 dark:b-white/10';
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .scene-tab {
+    --at-apply: 'relative flex-1 min-w-0 overflow-hidden rounded-full px-2 py-1.5 text-[11px] font-600 tracking-[0.01em] text-zinc-5 dark:text-zinc-4 b-none bg-transparent cursor-pointer transition-colors duration-150 hover:text-zinc-8 dark:hover:text-zinc-1';
+  }
+  .scene-tab.active {
+    --at-apply: 'text-svp-primary-deep dark:text-svp-primary bg-white/90 dark:bg-zinc-8 shadow-sm';
+  }
+  .scene-label {
+    --at-apply: 'relative z-1';
+  }
+  .scene-progress {
+    --at-apply: 'absolute left-2 right-2 bottom-0.5 h-0.5 rounded-full overflow-hidden bg-svp-primary/20';
+  }
+  .scene-progress::after {
+    content: '';
+    --at-apply: 'absolute inset-y-0 left-0 w-full bg-svp-primary-deep dark:bg-svp-primary rounded-full';
+    transform-origin: left center;
+    animation: hero-scene-progress 4s linear forwards;
+  }
+  .scene-progress.paused::after {
+    animation-play-state: paused;
+  }
+  @keyframes hero-scene-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
   .pane {
     --at-apply: 'absolute rounded-xl b-1 b-solid b-black/8 dark:b-white/10 bg-white/90 dark:bg-[#18181b]/92 shadow-xl shadow-black/8 dark:shadow-black/50 overflow-hidden';
@@ -217,7 +278,7 @@ Full SvelteKit power!
     -webkit-backdrop-filter: blur(12px);
   }
   .pane-md {
-    --at-apply: 'top-0 left-0 bottom-0 w-[78%] z-1';
+    --at-apply: 'top-[42px] left-0 bottom-0 w-[78%] z-1';
   }
   .pane-render {
     --at-apply: 'right-0 bottom-0 w-[66%] z-2';
@@ -240,14 +301,8 @@ Full SvelteKit power!
   .dot-max {
     --at-apply: 'bg-emerald-500/60 dark:bg-emerald-400/50';
   }
-  .tab-list {
-    --at-apply: 'flex items-center gap-1 overflow-x-auto';
-  }
-  .code-tab {
-    --at-apply: 'px-2 py-0.5 rounded text-[10px] font-500 text-zinc-5 dark:text-zinc-4 b-none bg-transparent hover:text-zinc-9 dark:hover:text-zinc-1 cursor-pointer transition-colors duration-150';
-  }
-  .code-tab.active {
-    --at-apply: 'bg-black/6 dark:bg-white/10 text-svp-primary-deep dark:text-svp-primary font-600';
+  .file-name {
+    --at-apply: 'text-[10px] font-mono text-zinc-5 dark:text-zinc-4 truncate';
   }
   .render-url {
     --at-apply: 'flex items-center gap-1.5 text-[10px] text-zinc-5 dark:text-zinc-4 font-mono';

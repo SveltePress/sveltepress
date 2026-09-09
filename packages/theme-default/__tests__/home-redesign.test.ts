@@ -143,8 +143,13 @@ describe('home redesign components', () => {
   })
 
   describe('herocode interactive showcase', () => {
-    it('renders tabs and increments counter interactively in Runes tab', async () => {
+    it('renders a segmented carousel control with progress and increments the Runes counter', async () => {
       const view = render(HeroCode)
+
+      const carousel = view.getByRole('tablist', { name: /showcase scenes/i })
+      expect(carousel).toBeTruthy()
+      expect(view.container.querySelector('.hero-carousel')).toBeTruthy()
+      expect(view.container.querySelector('.scene-progress')).toBeTruthy()
 
       const runesTab = view.getByRole('tab', { name: /runes/i })
       const calloutsTab = view.getByRole('tab', { name: /callouts/i })
@@ -153,8 +158,8 @@ describe('home redesign components', () => {
       expect(runesTab).toBeTruthy()
       expect(calloutsTab).toBeTruthy()
       expect(twoslashTab).toBeTruthy()
+      expect(runesTab.getAttribute('aria-selected')).toBe('true')
 
-      // Interactive counter in render pane
       const counterBtn = view.getByRole('button', { name: /count:/i })
       expect(counterBtn.textContent).toContain('1')
 
@@ -163,6 +168,27 @@ describe('home redesign components', () => {
 
       await fireEvent.click(counterBtn)
       expect(counterBtn.textContent).toContain('3')
+    })
+
+    it('auto-advances scenes and pauses while hovered', async () => {
+      vi.useFakeTimers()
+      const view = render(HeroCode)
+      const root = view.container.querySelector('.hero-code') as HTMLElement
+
+      expect(view.getByRole('tab', { name: /runes/i }).getAttribute('aria-selected')).toBe('true')
+
+      await vi.advanceTimersByTimeAsync(4200)
+      expect(view.getByRole('tab', { name: /callouts/i }).getAttribute('aria-selected')).toBe('true')
+      expect(view.getByText(/Pro Tip/)).toBeTruthy()
+
+      await fireEvent.mouseEnter(root)
+      await vi.advanceTimersByTimeAsync(4200)
+      expect(view.getByRole('tab', { name: /callouts/i }).getAttribute('aria-selected')).toBe('true')
+
+      await fireEvent.mouseLeave(root)
+      await vi.advanceTimersByTimeAsync(4200)
+      expect(view.getByRole('tab', { name: /twoslash/i }).getAttribute('aria-selected')).toBe('true')
+      vi.useRealTimers()
     })
 
     it('clips overflowing editor panes so they cannot cover the home title', () => {
