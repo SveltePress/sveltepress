@@ -45,7 +45,7 @@ const config = defineConfig({
       locales,
       siteConfig: {
         title: 'Sveltepress',
-        description: 'A content centered site build tool',
+        description: 'SvelteKit docs & blog SSG — Svelte 5 in Markdown, versioning, i18n, and Pagefind.',
       },
       addInspect: true,
       llms: {

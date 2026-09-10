@@ -2,9 +2,9 @@
 title: 介绍
 ---
 
-Sveltepress 是一个以内容（Markdown）为中心的站点构建工具
-启发自 [Vitepress](https://vitepress.vuejs.org/).
-基于 [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss) 等构建
+Sveltepress 是面向文档与博客的 SvelteKit 站点构建工具。
+启发自 [VitePress](https://vitepress.dev/)。
+基于 [SvelteKit](https://kit.svelte.dev/) 与 [UnoCSS](https://github.com/unocss/unocss) 构建 —— 既有内容工具链，也保留 SSR、适配器、服务端路由与 hooks 等完整能力。
 
 ## 项目结构
 
@@ -15,7 +15,7 @@ Sveltepress 是一个以内容（Markdown）为中心的站点构建工具
 * `src/routes/+page.md` 将会被用作首页
 * `src/routes/+layout.md` 将会被用作自定义全局布局
 
-:::tip[Sveltekit 的完整能力]{icon=logos:svelte-kit}
+:::tip[SvelteKit 的完整能力]{icon=logos:svelte-kit}
 Sveltepress 保留了 SvelteKit 的完整能力，你可以做的远不止静态站点构建
 比如使用 +page.server.js, +layout.server.js, hooks.server.js 去做一些像鉴权，认证，数据库对接等功能
 :::

@@ -2,9 +2,9 @@
 title: Introduction
 ---
 
-Sveltepress is a site build tool.
-Inspired by [Vitepress](https://vitepress.vuejs.org/).
-Build on top of [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss).
+Sveltepress is a SvelteKit docs and blog site builder.
+Inspired by [VitePress](https://vitepress.dev/).
+Built on [SvelteKit](https://kit.svelte.dev/) and [UnoCSS](https://github.com/unocss/unocss) — so you get a content toolkit and the full SvelteKit surface (SSR, adapters, server routes, hooks).
 
 ## Project structure
 
@@ -15,8 +15,8 @@ For example:
 * `src/routes/+page.md` is recognized as home page
 * `src/routes/+layout.md` is used for root custom layout
 
-:::tip[Full power of Sveltekit]{icon=logos:svelte-kit}
-Sveltepress preserves the full power of sveltekit. You can do more than SSG.
+:::tip[Full power of SvelteKit]{icon=logos:svelte-kit}
+Sveltepress preserves the full power of SvelteKit. You can do more than SSG.
 For example use +page.server.js, +layout.server.js, hooks.server.js to do some server side logic like: Authentication, DB Docking, ...
 :::
 

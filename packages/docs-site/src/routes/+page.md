@@ -1,6 +1,6 @@
 ---
-title: A content centered site build tool
-description: A simple, easy to use, content centered site build tool with the full power of Sveltekit.
+title: SvelteKit docs & blog SSG
+description: Write Markdown, keep the full power of SvelteKit — Svelte 5 Runes, versioning, i18n, and Pagefind.
 badge:
   text: '⚡️ Svelte 5 & Runes Full Support'
   link: /guide/markdown/svelte-in-markdown/
@@ -49,7 +49,7 @@ features:
       collection: vscode-icons
       name: file-type-markdown
     link: /guide/markdown/frontmatter/
-  - title: Build with Sveltekit
+  - title: Built with SvelteKit
     description: Preserve the full power of SvelteKit including server routes, SSR, SSG, and adapter deployments.
     tag: Ecosystem
     icon:

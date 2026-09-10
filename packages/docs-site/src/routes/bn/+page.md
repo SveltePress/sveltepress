@@ -1,6 +1,6 @@
 ---
-title: একটি কন্টেন্ট-কেন্দ্রিক সাইট বিল্ড টুল
-description: Sveltekit-এর সম্পূর্ণ শক্তিসহ একটি জটিলতামুক্ত, সহজে ব্যবহারযোগ্য, কন্টেন্ট-কেন্দ্রিক সাইট বিল্ড টুল।
+title: SvelteKit docs & blog SSG
+description: Write Markdown, keep the full power of SvelteKit — Svelte 5 Runes, versioning, i18n, and Pagefind.
 badge:
   text: '⚡️ Svelte 5 এবং Runes পূর্ণ সমর্থন'
   link: /guide/markdown/svelte-in-markdown/

@@ -1,6 +1,6 @@
 ---
-title: 一个以内容为中心的站点构建工具
-description: 一个简单、易用、保留了 SvelteKit 的完整能力的站点构建工具
+title: 面向文档与博客的 SvelteKit 站点构建工具
+description: 用 Markdown 写作，同时保留 SvelteKit 完整能力 — Svelte 5 Runes、文档版本、i18n 与 Pagefind。
 badge:
   text: '⚡️ 全面支持 Svelte 5 与 Runes 响应式特性'
   link: /guide/markdown/svelte-in-markdown/
