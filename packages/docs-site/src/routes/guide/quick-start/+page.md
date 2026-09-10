@@ -24,6 +24,31 @@ The repository and generated templates are tested with pnpm 10.
 
 @install-pkg(@sveltepress/vite)
 
+### Install dependencies
+
+```bash
+npm i svelte2tsx
+npm i -D @sveltepress/theme-default
+```
+
+### Add first `+page.md` file to `docs/` folder to your project
+
+```md title="docs/+page.md"
+--- // [svp! ++]
+title: Welcome to Sveltepress // [svp! ++]
+--- // [svp! ++]
+## This is your first page // [svp! ++]
+Hello, world! // [svp! ++]
+```
+
+### Add example file `+page.md` to `docs/first/` folder to your project
+
+```md title="docs/first/+page.md"
+## First // [svp! ++]
+This is the first page. // [svp! ++]
+```
+
+
 ### Replace `sveltekit` plugin in vite.config.(js|ts)
 
 ```ts title="vite.config.(js|ts)"
@@ -34,7 +59,30 @@ import { defineConfig } from 'vite'
 const config = defineConfig({
   plugins: [
     sveltekit(), // [svp! --]
-    sveltepress(), // [svp! ++]
+    sveltepress({ // [svp! ++]
+      theme: defaultTheme({ // [svp! ++]
+        navbar: [ // [svp! ++]
+          { // [svp! ++]
+            title: 'Hello Navbar', // [svp! ++]
+            to: '/docs/first/' // [svp! ++]
+          } // [svp! ++]
+        ], // [svp! ++]
+        sidebar: { // [svp! ++]
+          '/docs/': [ // [svp! ++]
+            { // [svp! ++]
+              title: 'Docs Home', // [svp! ++]
+              to: '/docs/' // [svp! ++]
+            }, // [svp! ++]
+            { // [svp! ++]
+              title: 'First Sidebar Item', // [svp! ++]
+              to: '/docs/first/' // [svp! ++]
+            } // [svp! ++]
+          ] // [svp! ++]
+        }, // [svp! ++]
+        github: 'https://github.com/Blackman99/sveltepress' // [svp! ++]
+        // logo: '/sveltepress.svg' // [svp! ++]
+      }),
+    }), // [svp! ++]
   ],
 })
 
