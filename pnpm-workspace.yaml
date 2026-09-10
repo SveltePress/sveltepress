@@ -54,9 +54,9 @@ catalog:
   '@types/hast': ^3.0.5
   '@types/mdast': ^4.0.4
   '@types/minimist': ^1.2.5
-  '@types/node': ^24.13.3
+  '@types/node': ^24.13.4
   '@types/prompts': ^2.4.9
-  '@unocss/extractor-svelte': ^66.10.0
+  '@unocss/extractor-svelte': ^66.10.1
   '@vite-pwa/sveltekit': ^1.1.0
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
@@ -64,7 +64,7 @@ catalog:
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.23.0
   fs-extra: ^11.4.0
-  happy-dom: ^20.14.0
+  happy-dom: ^20.14.3
   husky: ^9.1.7
   lint-staged: ^16.4.0
   lru-cache: ^11.5.2
@@ -101,7 +101,7 @@ catalog:
   unbuild: ^3.6.1
   unified: ^11.0.5
   unist-util-visit: ^5.1.0
-  unocss: ^66.10.0
+  unocss: ^66.10.1
   vfile: ^6.0.3
   vite: ^8.2.2
   vite-plugin-inspect: ^11.4.1
