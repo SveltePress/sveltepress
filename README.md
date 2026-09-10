@@ -8,7 +8,16 @@
 </h1>
 
 <p align="center">
-A content centered site build tool
+  <strong>SvelteKit docs &amp; blog SSG</strong> — write Markdown, keep the full power of SvelteKit.<br/>
+  Svelte 5 Runes in Markdown · document versioning · i18n · Pagefind / DocSearch
+</p>
+
+<p align="center">
+  <a href="https://sveltepress.site/"><img alt="Docs" src="https://img.shields.io/badge/docs-sveltepress.site-ff3e00?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@sveltepress/vite"><img alt="npm" src="https://img.shields.io/npm/v/@sveltepress/vite?style=flat-square&color=cb3837" /></a>
+  <a href="https://www.npmjs.com/package/@sveltepress/vite"><img alt="npm downloads" src="https://img.shields.io/npm/dm/@sveltepress/vite?style=flat-square" /></a>
+  <a href="https://github.com/SveltePress/sveltepress/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/SveltePress/sveltepress?style=flat-square" /></a>
+  <a href="./LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" /></a>
 </p>
 
 <p align="center">
@@ -19,26 +28,33 @@ A content centered site build tool
 
 <p align="center">
   <a href="https://sveltepress.site/" target="_blank" rel="noopener noreferrer" >
-    <img src="./asset/../assets/lighthouse.png" alt="Sveltepress lighthouse" width="600" height="auto">
+    <img src="./assets/lighthouse.png" alt="Sveltepress lighthouse" width="600" height="auto">
   </a>
 </p>
 
-## :pizza: Introduction
+> Not affiliated with the archived [GeopJr/SveltePress](https://github.com/GeopJr/SveltePress).
 
-Inspired by [Vitepress](https://vitepress.vuejs.org/)
-Build with [SvelteKit](https://kit.svelte.dev/)
+## Why Sveltepress
 
-Sveltepress supports Svelte 5, SvelteKit 2, and Vite 8. Use Node.js `^20.19.0` or `>=22.12.0`.
+Inspired by [VitePress](https://vitepress.dev/), built on [SvelteKit](https://kit.svelte.dev/) — so you get a docs/blog toolkit **and** the full SvelteKit surface (SSR, adapters, server routes, hooks).
 
-## :rocket: Quick start
+- **Svelte 5 in Markdown** — Runes, components, and interactive islands inside `.md`
+- **Immutable doc versioning** — clean current URLs plus historical snapshots
+- **Search that works** — Pagefind by default; DocSearch / Meilisearch when you need them
+- **i18n built in** — locales, switcher, version-aware navigation
+- **Docs + blog themes** — default docs theme, or [`theme-blog`](https://sveltepress.site/guide/blog-theme/getting-started/) for posts, RSS, OG images
+
+Requires Svelte 5, SvelteKit 2, Vite 8, and Node.js `^20.19.0` or `>=22.12.0`.
+
+## Quick start
 
 ```bash
 npm create @sveltepress@latest
 ```
 
-The generated project uses the default documentation theme. For an editorial site with posts, pagination, RSS, Open Graph images, and Pagefind search, follow the [blog theme guide](https://sveltepress.site/guide/blog-theme/getting-started/).
+Docs: [sveltepress.site](https://sveltepress.site/) · Blog theme: [getting started](https://sveltepress.site/guide/blog-theme/getting-started/)
 
-## :package: Packages
+## Packages
 
 | Package | Purpose |
 |---|---|
@@ -51,26 +67,20 @@ The generated project uses the default documentation theme. For an editorial sit
 | [`@sveltepress/docsearch`](./packages/docsearch/) | Algolia DocSearch UI component for Sveltepress themes |
 | [`@sveltepress/meilisearch`](./packages/meilisearch/) | Meilisearch search UI integration for Sveltepress themes |
 
-## :bookmark_tabs: Online docs and demos
+## Contributing
 
-[Sveltepress](https://sveltepress.site/)
+All kinds of contributions are welcome. See [Contributing](./CONTRIBUTING.md).
 
-## :pray: Contributing
+## Thanks
 
-First of all, all kinds of contributions are welcomed!
+This project would not exist without:
 
-For contributing details, see [Contributing](./CONTRIBUTING.md)
-
-## :heart: Thanks
-
-This project can not be done without these projects
-
-* [Vitepress](https://vitepress.vuejs.org/)
+* [VitePress](https://vitepress.dev/)
 * [SvelteKit](https://kit.svelte.dev/)
 * [Svelte](https://svelte.dev/)
 * [Vitest](https://vitest.dev/)
 * [Vite](https://vitejs.dev/)
-* [Unocss](https://github.com/unocss/unocss)
+* [UnoCSS](https://github.com/unocss/unocss)
 * [Shiki](https://github.com/shikijs/shiki)
 * [Remark](https://github.com/remarkjs/remark)
 * [Rehype](https://github.com/rehypejs/rehype)
@@ -83,6 +93,8 @@ This project can not be done without these projects
 [<img src="https://svelte-u.vercel.app/logo.png" style="width:100px;" />](https://svelte-u.vercel.app/)
 [<img src="https://writewithharper.com/circle-logo.png" style="width:100px;" />](https://writewithharper.com/)
 [<img src="https://svelte-router.dev/logo-64.svg" style="width: 100px;" />](https://svelte-router.dev)
+
+Using Sveltepress? Open a PR or comment on [#334](https://github.com/SveltePress/sveltepress/issues/334) and we'll add you.
 
 ## LICENSE
 
