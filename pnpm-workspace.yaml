@@ -64,7 +64,7 @@ catalog:
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.23.0
   fs-extra: ^11.4.0
-  happy-dom: ^20.14.3
+  happy-dom: ^20.14.5
   husky: ^9.1.7
   lint-staged: ^16.4.0
   lru-cache: ^11.5.2
@@ -112,5 +112,5 @@ catalog:
   workbox-routing: ^7.4.1
   workbox-strategies: ^7.4.1
   workbox-window: ^7.4.1
-  yaml: ^2.9.0
+  yaml: ^2.9.1
   zx: ^8.8.5
