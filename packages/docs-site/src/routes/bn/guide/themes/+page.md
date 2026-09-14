@@ -44,3 +44,7 @@ export default config
 ব্লগ থিম post indexing, pagination, tag, category, RSS, Open Graph image, related post, comment এবং Pagefind search UI দেয়। এটি static site তৈরি করে এবং বর্তমানে `@sveltejs/adapter-static` ও Pagefind post-build step প্রয়োজন।
 
 [ব্লগ থিম গাইড](/guide/blog-theme/getting-started/) দিয়ে শুরু করুন এবং runnable reference হিসেবে [লাইভ ডেমো](https://sveltepress.github.io/sveltepress/blog-demo/) ব্যবহার করুন।
+
+## কাস্টম থিম
+
+Custom theme-এর কোনো Guide leaf নেই। [প্লেগ্রাউন্ড হোম](/playground/) থেকে খুলুন — ফিচার ডিরেক্টরি এন্ট্রি একটি নতুন লেখা Custom theme starter (Default Theme নেই, Blog theme নেই) থিম রুট লেআউটে আপনাআপনি চালু করে।

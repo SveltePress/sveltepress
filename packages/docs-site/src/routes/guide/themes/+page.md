@@ -45,3 +45,7 @@ Get more info about default theme in [Default theme reference](/reference/defaul
 The blog theme adds post indexing, pagination, tags, categories, RSS, Open Graph images, related posts, comments, and a Pagefind search UI. It generates a static site and currently requires `@sveltejs/adapter-static` plus a Pagefind post-build step.
 
 Start with the [blog theme guide](/guide/blog-theme/getting-started/) and use the [live demo](https://sveltepress.github.io/sveltepress/blog-demo/) as the runnable reference.
+
+## Custom theme
+
+There is no Guide leaf for Custom theme. Open it from [Playground home](/playground/) — the Feature directory Entry auto-boots a newly authored Custom theme starter (no Default Theme, no Blog theme) at the theme root layout.

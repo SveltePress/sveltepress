@@ -27,14 +27,21 @@ export const GROUPS = [
 ] as const
 
 export const BASIC_WRITING_SLUG = 'markdown/basic-writing'
+export const I18N_SLUG = 'i18n'
+export const BLOG_CONFIGURATION_SLUG = 'blog-theme/configuration'
+export const BLOG_WRITING_POSTS_SLUG = 'blog-theme/writing-posts'
+export const BLOG_FEATURES_SLUG = 'blog-theme/features'
+export const BLOG_CUSTOMIZATION_SLUG = 'blog-theme/customization'
 export const CUSTOM_THEME_SLUG = 'custom-theme'
 export const KITCHEN_SINK_SLUG = 'kitchen-sink'
+export const TYPESCRIPT_SLUG = 'typescript'
+export const VERSION_MANAGEMENT_SLUG = 'version-management'
 export const VIRTUAL_MODULES_SLUG = 'virtual-modules'
 
 export const PLAYGROUND_STARTERS_REPO = 'SveltePress/playground-starters'
 
 /** sveltepress.site embeds this tag, not `main`. */
-export const PINNED_STARTERS_TAG = 'playground-default-theme'
+export const PINNED_STARTERS_TAG = 'playground-v1.5'
 
 export const STARTER_SUBDIRECTORIES = {
   'Default Theme starter': 'default-theme',
@@ -49,6 +56,16 @@ export const STARTER_SUBDIRECTORIES = {
 export type StarterName = keyof typeof STARTER_SUBDIRECTORIES
 
 const DEFAULT_THEME_STARTER: StarterName = 'Default Theme starter'
+const DEDICATED_SHIPPING_SLUGS = [
+  VERSION_MANAGEMENT_SLUG,
+  I18N_SLUG,
+  CUSTOM_THEME_SLUG,
+  TYPESCRIPT_SLUG,
+  BLOG_CONFIGURATION_SLUG,
+  BLOG_WRITING_POSTS_SLUG,
+  BLOG_FEATURES_SLUG,
+  BLOG_CUSTOMIZATION_SLUG,
+] as const
 
 const LOCALE_PREFIX: Record<CatalogLocale, string> = {
   en: '',
@@ -104,7 +121,7 @@ const LOCALIZED_NAMES: Record<string, Partial<Record<CatalogLocale, string>>> = 
 
 export const ENTRIES: Entry[] = [
   {
-    slug: 'version-management',
+    slug: VERSION_MANAGEMENT_SLUG,
     name: 'Document versions',
     group: 'Introduction',
     success: ['as', 'degraded'],
@@ -114,7 +131,7 @@ export const ENTRIES: Entry[] = [
     guideHref: '/guide/version-management/',
   },
   {
-    slug: 'i18n',
+    slug: I18N_SLUG,
     name: 'Internationalization',
     group: 'Introduction',
     success: ['as'],
@@ -123,7 +140,7 @@ export const ENTRIES: Entry[] = [
     guideHref: '/guide/i18n/',
   },
   {
-    slug: 'typescript',
+    slug: TYPESCRIPT_SLUG,
     name: 'Working with TypeScript',
     group: 'Introduction',
     success: ['as'],
@@ -288,7 +305,7 @@ export const ENTRIES: Entry[] = [
     guideHref: '/guide/default-theme/google-analytics/',
   },
   {
-    slug: 'blog-theme/configuration',
+    slug: BLOG_CONFIGURATION_SLUG,
     name: 'Configuration',
     group: 'Blog theme features',
     success: ['as'],
@@ -297,7 +314,7 @@ export const ENTRIES: Entry[] = [
     guideHref: '/guide/blog-theme/configuration/',
   },
   {
-    slug: 'blog-theme/writing-posts',
+    slug: BLOG_WRITING_POSTS_SLUG,
     name: 'Writing posts',
     group: 'Blog theme features',
     success: ['as'],
@@ -306,7 +323,7 @@ export const ENTRIES: Entry[] = [
     guideHref: '/guide/blog-theme/writing-posts/',
   },
   {
-    slug: 'blog-theme/features',
+    slug: BLOG_FEATURES_SLUG,
     name: 'Features',
     group: 'Blog theme features',
     success: ['as', 'degraded', 'observation'],
@@ -316,7 +333,7 @@ export const ENTRIES: Entry[] = [
     guideHref: '/guide/blog-theme/features/',
   },
   {
-    slug: 'blog-theme/customization',
+    slug: BLOG_CUSTOMIZATION_SLUG,
     name: 'Customisation',
     group: 'Blog theme features',
     success: ['as'],
@@ -355,9 +372,10 @@ export const ENTRIES: Entry[] = [
   },
 ]
 
-const SHIPPING_SLUGS = new Set(
-  ENTRIES.filter(entry => entry.starter === DEFAULT_THEME_STARTER).map(entry => entry.slug),
-)
+const SHIPPING_SLUGS = new Set([
+  ...ENTRIES.filter(entry => entry.starter === DEFAULT_THEME_STARTER).map(entry => entry.slug),
+  ...DEDICATED_SHIPPING_SLUGS,
+])
 
 const ENTRIES_BY_SLUG = new Map(ENTRIES.map(entry => [entry.slug, entry]))
 const ENTRIES_BY_GUIDE_HREF = new Map(

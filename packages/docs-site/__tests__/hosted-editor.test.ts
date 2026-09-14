@@ -4,7 +4,10 @@ import { cleanup, render, waitFor, within } from '@testing-library/svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   BASIC_WRITING_SLUG,
+  entryBySlug,
   githubImportPath,
+  I18N_SLUG,
+  openInStackBlitzUrl,
   PINNED_STARTERS_TAG,
   shippingEntries,
 } from '../src/lib/playground/catalog.ts'
@@ -14,7 +17,7 @@ afterEach(cleanup)
 
 describe('hosted editor wrapper', () => {
   it('auto-boots embedGithubProject with the tagged tree, Focused file, and theme', async () => {
-    const entry = shippingEntries().find(item => item.slug === BASIC_WRITING_SLUG)!
+    const entry = entryBySlug(BASIC_WRITING_SLUG)!
     const embed = vi.fn(async () => ({}))
     render(PlaygroundApp, {
       locale: 'en',
@@ -119,5 +122,30 @@ describe('hosted editor wrapper', () => {
       clickToLoad: false,
       theme: 'dark',
     })
+  })
+
+  it('auto-boots the i18n starter at the catalog Focused file', async () => {
+    const entry = shippingEntries().find(item => item.slug === I18N_SLUG)!
+    const embed = vi.fn(async () => ({}))
+    render(PlaygroundApp, {
+      locale: 'en',
+      slug: I18N_SLUG,
+      theme: 'dark',
+      embed,
+    })
+    await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    const [element, projectPath, options] = embed.mock.calls[0]!
+    expect(element).toBeInstanceOf(HTMLElement)
+    expect(projectPath).toBe(githubImportPath(entry))
+    expect(projectPath).toBe(`SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/i18n`)
+    expect(options).toMatchObject({
+      openFile: 'config/locales.ts',
+      clickToLoad: false,
+      theme: 'dark',
+      height: '100%',
+    })
+    expect(openInStackBlitzUrl(entry)).toBe(
+      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/i18n`,
+    )
   })
 })

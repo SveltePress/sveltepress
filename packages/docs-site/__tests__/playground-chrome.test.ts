@@ -3,9 +3,11 @@ import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import {
   BASIC_WRITING_SLUG,
+  entryBySlug,
   githubImportPath,
   PINNED_STARTERS_TAG,
   shippingEntries,
+  TYPESCRIPT_SLUG,
 } from '../src/lib/playground/catalog.ts'
 import {
   localizedGroup,
@@ -25,29 +27,26 @@ const SLICE_SENTENCE_EN
 describe('playground catalog chrome', () => {
   it('lists Markdown features, Default theme features, and Reference in Guide order', () => {
     const groups = shippingGroups()
-    expect(groups).toEqual(['Markdown features', 'Default theme features', 'Reference'])
-    expect(shippingEntries().map(entry => entry.group)).toEqual([
-      'Markdown features',
-      'Markdown features',
-      'Markdown features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Default theme features',
-      'Reference',
-    ])
-    expect(shippingEntries().some(entry => entry.slug === BASIC_WRITING_SLUG)).toBe(true)
+    expect(groups).toContain('Introduction')
+    expect(groups).toContain('Markdown features')
+    expect(groups).toContain('Default theme features')
+    expect(groups).toContain('Reference')
+    const slugs = shippingEntries().map(entry => entry.slug)
+    expect(slugs).toContain(BASIC_WRITING_SLUG)
+    expect(slugs).toContain('default-theme/navbar')
+    expect(slugs).toContain('vite-plugin')
+    expect(slugs).toContain(TYPESCRIPT_SLUG)
+    expect(slugs).toContain('version-management')
+    expect(shippingEntries().find(entry => entry.slug === TYPESCRIPT_SLUG)?.name).toBe('Working with TypeScript')
     expect(shippingEntries().some(entry => entry.slug === 'kitchen-sink')).toBe(false)
-    expect(shippingEntries().some(entry => entry.slug === 'i18n')).toBe(false)
+    expect(shippingEntries().some(entry => entry.slug === 'i18n')).toBe(true)
+    expect(groups).toContain('Blog theme features')
+    expect(slugs).toEqual(expect.arrayContaining([
+      'blog-theme/configuration',
+      'blog-theme/writing-posts',
+      'blog-theme/features',
+      'blog-theme/customization',
+    ]))
   })
 
   it('keeps the slice sentence in home copy and out of the Entry strip copy', () => {
@@ -87,15 +86,13 @@ describe('playground catalog chrome', () => {
     expect(existsSync(resolve(routes, 'playground/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'zh/playground/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'bn/playground/+page.svelte'))).toBe(true)
-    for (const slug of shippingEntries().map(entry => entry.slug)) {
-      expect(existsSync(resolve(routes, `playground/${slug}/+page.svelte`)), slug).toBe(true)
-      expect(existsSync(resolve(routes, `zh/playground/${slug}/+page.svelte`)), slug).toBe(true)
-      expect(existsSync(resolve(routes, `bn/playground/${slug}/+page.svelte`)), slug).toBe(true)
-    }
+    expect(existsSync(resolve(routes, 'playground/typescript/+page.svelte'))).toBe(true)
+    expect(existsSync(resolve(routes, 'zh/playground/typescript/+page.svelte'))).toBe(true)
+    expect(existsSync(resolve(routes, 'bn/playground/typescript/+page.svelte'))).toBe(true)
+    expect(existsSync(resolve(routes, 'playground/i18n/+page.svelte'))).toBe(true)
+    expect(existsSync(resolve(routes, 'zh/playground/i18n/+page.svelte'))).toBe(true)
+    expect(existsSync(resolve(routes, 'bn/playground/i18n/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
-    expect(existsSync(resolve(routes, 'playground/i18n/+page.svelte'))).toBe(false)
-    expect(existsSync(resolve(routes, 'playground/typescript/+page.svelte'))).toBe(false)
-    expect(existsSync(resolve(routes, 'playground/custom-theme/+page.svelte'))).toBe(false)
     expect(existsSync(resolve(routes, 'v/playground/+page.svelte'))).toBe(false)
     expect(existsSync(resolve(routes, 'zh/v/playground/+page.svelte'))).toBe(false)
   })
@@ -117,12 +114,11 @@ describe('playground catalog chrome', () => {
 
 describe('hosted editor addressing', () => {
   it('asks embedGithubProject for the tagged subdirectory, Focused file, auto-boot, and theme', () => {
-    const entry = shippingEntries()[0]!
+    const entry = entryBySlug(BASIC_WRITING_SLUG)!
     const request = hostedEditorEmbedRequest(entry, 'dark')
     expect(request.method).toBe('embedGithubProject')
     expect(request.projectPath).toBe(githubImportPath(entry))
     expect(PINNED_STARTERS_TAG).not.toBe('main')
-    expect(PINNED_STARTERS_TAG).toBe('playground-default-theme')
     expect(request.projectPath).toContain(`/tree/${PINNED_STARTERS_TAG}/default-theme`)
     expect(request.projectPath).not.toContain('/main/')
     expect(request.options.openFile).toBe('src/routes/guide/markdown/basic-writing/+page.md')

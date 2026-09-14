@@ -47,3 +47,7 @@ export default config
 博客主题提供文章索引、分页、标签、分类、RSS、Open Graph 图片、相关文章、评论和 Pagefind 搜索界面。它生成静态站点，当前需要 `@sveltejs/adapter-static`，并在 Vite 构建后运行 Pagefind。
 
 从[博客主题快速上手](/guide/blog-theme/getting-started/)开始，并把[在线 Demo](https://sveltepress.github.io/sveltepress/blog-demo/)作为可运行参考。
+
+## 自定义主题
+
+自定义主题没有对应的指南页。请从[演练场首页](/playground/)进入 —— 功能目录条目会按作者提交的内容，在主题根布局处自动启动一个新编写的自定义主题 Starter（不含默认主题，也不含博客主题）。
