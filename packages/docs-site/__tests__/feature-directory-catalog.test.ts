@@ -595,9 +595,17 @@ describe('open in playground door', () => {
       href: '/bn/playground/markdown/basic-writing/',
       label: 'প্লেগ্রাউন্ডে খুলুন',
     })
+    expect(openInPlaygroundTitleAction('/guide/default-theme/navbar/')).toEqual({
+      href: '/playground/default-theme/navbar/',
+      label: 'Open in Playground',
+    })
+    expect(openInPlaygroundTitleAction('/reference/vite-plugin/')).toEqual({
+      href: '/playground/vite-plugin/',
+      label: 'Open in Playground',
+    })
     expect(openInPlaygroundTitleAction('/guide/markdown/basic-writing/')?.href).not.toContain('stackblitz')
     expect(openInPlaygroundTitleAction('/guide/quick-start/')).toBeNull()
-    expect(openInPlaygroundTitleAction('/guide/default-theme/navbar/')).toBeNull()
+    expect(openInPlaygroundTitleAction('/guide/custom-theme/')).toBeNull()
     expect(openInPlaygroundTitleAction('/reference/site/')).toBeNull()
     expect(openInPlaygroundTitleAction('/v/2026-09-03/guide/markdown/basic-writing/')).toBeNull()
     expect(openInPlaygroundTitleAction('/zh/v/2026-09-03/guide/markdown/basic-writing/')).toBeNull()
