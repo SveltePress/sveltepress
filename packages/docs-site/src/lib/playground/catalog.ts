@@ -374,6 +374,17 @@ export function entryUrl(slug: string, locale: CatalogLocale = 'en'): string {
   return `${LOCALE_PREFIX[locale]}/playground/${normalizeSlug(slug)}/`
 }
 
+export function playgroundHomeUrl(locale: CatalogLocale = 'en'): string {
+  return `${LOCALE_PREFIX[locale]}/playground/`
+}
+
+export function localePath(path: string, locale: CatalogLocale = 'en'): string {
+  const normalized = path.startsWith('/') ? path : `/${path}`
+  if (locale === 'en')
+    return normalized
+  return `${LOCALE_PREFIX[locale]}${normalized}`
+}
+
 export function isPlaygroundPathRegistered(pathname: string): boolean {
   if (isHistoricalPath(pathname))
     return false

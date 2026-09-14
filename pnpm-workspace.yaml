@@ -42,6 +42,7 @@ catalog:
   '@iconify-json/vscode-icons': ^1.2.77
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
+  '@stackblitz/sdk': ^1.11.1
   '@sveltejs/adapter-static': ^3.0.10
   '@sveltejs/enhanced-img': ^0.10.4
   '@sveltejs/kit': ^2.70.3

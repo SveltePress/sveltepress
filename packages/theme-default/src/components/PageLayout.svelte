@@ -49,11 +49,8 @@
 
   const pageType = $derived(fm?.pageType)
   const lastUpdate = $derived(fm?.lastUpdate)
-  const fmAnchors = $derived(fm?.anchors ?? [])
-  const fmSidebar = $derived(fm?.sidebar ?? true)
   const home = $derived(fm?.home)
   const fmHeroImage = $derived(fm?.heroImage)
-  const header = $derived(fm?.header ?? true)
   const layout = $derived(fm?.layout ?? true)
 
   function resolveHomeLayout() {
@@ -66,11 +63,18 @@
 
   const isHome = $derived(resolveHomeLayout())
 
+  function applyLayoutChrome() {
+    const home = resolveHomeLayout()
+    $sidebar = home ? false : (fm?.sidebar ?? true)
+    $showHeader = fm?.header ?? true
+    $showLayout = fm?.layout ?? true
+    anchors.set(home ? [] : (fm?.anchors ?? []))
+  }
+
+  applyLayoutChrome()
+
   $effect(() => {
-    $sidebar = resolveHomeLayout() ? false : fmSidebar
-    $showHeader = header
-    $showLayout = layout
-    anchors.set(resolveHomeLayout() ? [] : fmAnchors)
+    applyLayoutChrome()
   })
 
   let ready = $state(false)

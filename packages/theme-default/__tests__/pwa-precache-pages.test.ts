@@ -48,6 +48,7 @@ describe('resolvePrecacheGlobPatterns', () => {
     expect(resolvePrecacheGlobPatterns()).toEqual(expected)
     expect(resolvePrecacheGlobPatterns(false)).toEqual(expected)
     expectNoCatchAllOrRouteModules(expected)
+    expect(expected.some(g => g.includes('playground'))).toBe(false)
   })
 
   it('includes a prerendered/ glob so sveltekit-pwa does not add the catch-all', () => {

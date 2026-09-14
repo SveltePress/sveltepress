@@ -6,6 +6,8 @@ Sveltepress হচ্ছে একটি সাইট বানানোর ট�
 [Vitepress](https://vitepress.vuejs.org/) থেকে অনুপ্রাণিত।
 [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss) এর উপর নির্ভর করে তৈরী।
 
+ন্যাভবারের **প্লেগ্রাউন্ড** ব্রাউজারের ভিতরে Starter-এর ফিচার ডিরেক্টরি খোলে। Playground v1-এ Basic Writing এবং একটি পাতলা Default Theme starter আছে। গাইড পাতায় Live code অপরিবর্তিত থাকে; ব্লগ ডেমো আগের মতোই একটি সম্পূর্ণ প্রদর্শনী।
+
 ## প্রজেক্টের স্ট্র্যাকচার
 
 হুবহু [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure) এর মতই।

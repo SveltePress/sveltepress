@@ -8,6 +8,10 @@ export default [
     to: '/whats-new/',
   },
   {
+    title: 'প্লেগ্রাউন্ড',
+    to: '/playground/',
+  },
+  {
     title: 'রেফারেন্স',
     to: '/reference/vite-plugin/',
   },

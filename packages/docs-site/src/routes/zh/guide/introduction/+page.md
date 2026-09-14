@@ -6,6 +6,8 @@ Sveltepress 是面向文档与博客的 SvelteKit 站点构建工具。
 启发自 [VitePress](https://vitepress.dev/)。
 基于 [SvelteKit](https://kit.svelte.dev/) 与 [UnoCSS](https://github.com/unocss/unocss) 构建 —— 既有内容工具链，也保留 SSR、适配器、服务端路由与 hooks 等完整能力。
 
+导航栏中的 **演练场** 会打开浏览器内的功能目录与 Starter。Playground v1 目前提供「写作基础」及精简的默认主题 Starter。指南页仍使用不可编辑的 Live code；博客示例仍是成品展示。
+
 ## 项目结构
 
 与 [项目结构 - SvelteKit](https://kit.svelte.dev/docs/project-structure) 完全一致

@@ -135,12 +135,11 @@
 {/if}
 {#if page.error}
   <Error error={page.error} />
-{:else if $showLayout === false}
-  {@render children?.()}
 {:else}
   <main
     class:without-header={$showHeader === false}
-    class:with-mobile-subnav={$sidebar || $anchors.length}
+    class:with-mobile-subnav={$showLayout !== false &&
+      ($sidebar || $anchors.length)}
   >
     <AjaxBar bind:this={ajaxBar} />
     {#if locales}
@@ -149,7 +148,7 @@
     {#if resolveVersionManifest(page.url.pathname)}
       <VersionFallbackNotice />
     {/if}
-    {#if $sidebar}
+    {#if $showLayout !== false && $sidebar}
       <Sidebar />
     {/if}
     <Backdrop
@@ -160,7 +159,9 @@
     />
     {@render children?.()}
 
-    <Toc anchors={$anchors} />
+    {#if $showLayout !== false}
+      <Toc anchors={$anchors} />
+    {/if}
 
     <GoogleAnalytics />
 

@@ -78,6 +78,9 @@ catalogs:
     '@shikijs/twoslash':
       specifier: ^3.23.0
       version: 3.23.0
+    '@stackblitz/sdk':
+      specifier: ^1.11.1
+      version: 1.11.1
     '@sveltejs/adapter-static':
       specifier: ^3.0.10
       version: 3.0.10
@@ -453,6 +456,9 @@ importers:
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
         version: 1.2.77
+      '@stackblitz/sdk':
+        specifier: 'catalog:'
+        version: 1.11.1
       '@sveltejs/adapter-static':
         specifier: 'catalog:'
         version: 3.0.10(@sveltejs/kit@2.70.3(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@7.3.0(svelte@5.57.0(@typescript-eslint/types@8.50.0))(vite@8.3.0(@types/node@24.13.4)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.1)))(svelte@5.57.0(@typescript-eslint/types@8.50.0))(typescript@5.9.3)(vite@8.3.0(@types/node@24.13.4)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.1)))
@@ -474,9 +480,15 @@ importers:
       '@sveltepress/vite':
         specifier: workspace:*
         version: link:../vite
+      '@testing-library/svelte':
+        specifier: 'catalog:'
+        version: 5.4.2(svelte@5.57.0(@typescript-eslint/types@8.50.0))(vite@8.3.0(@types/node@24.13.4)(esbuild@0.27.1)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.1))(vitest@4.0.14(@opentelemetry/api@1.9.0)(@types/node@24.13.4)(happy-dom@20.14.5)(jiti@2.6.1)(lightningcss@1.33.0)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.1))
       '@types/node':
         specifier: 'catalog:'
         version: 24.13.4
+      happy-dom:
+        specifier: 'catalog:'
+        version: 20.14.5
       svelte:
         specifier: 'catalog:'
         version: 5.57.0(@typescript-eslint/types@8.50.0)
@@ -2908,6 +2920,9 @@ packages:
   '@sindresorhus/merge-streams@4.0.0':
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
+
+  '@stackblitz/sdk@1.11.1':
+    resolution: {integrity: sha512-5wl1j3IhtmE7POTl2W9VGQdbQyBQrRsF3jcYBK+0V353AuO8H2GFZkiFNyTRxL+TDY3HIFCHc3G983Osmg76Lg==}
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
@@ -8915,6 +8930,8 @@ snapshots:
   '@sindresorhus/is@4.6.0': {}
 
   '@sindresorhus/merge-streams@4.0.0': {}
+
+  '@stackblitz/sdk@1.11.1': {}
 
   '@standard-schema/spec@1.0.0': {}
 
