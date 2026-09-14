@@ -471,7 +471,7 @@ function normalizeSlug(slug: string): string {
   return slug.replace(/^\/+|\/+$/g, '')
 }
 
-function localeFromPath(pathname: string): CatalogLocale {
+export function localeFromPath(pathname: string): CatalogLocale {
   if (pathname === '/zh' || pathname.startsWith('/zh/'))
     return 'zh'
   if (pathname === '/bn' || pathname.startsWith('/bn/'))

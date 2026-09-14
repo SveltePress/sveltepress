@@ -180,6 +180,33 @@ const defaultGradient = {
   * `newContentAvailable`
 * `footnoteLabel` - অটো জেনারেটেড ফুটনোট টাইটেলে। ডিফল্ট হচ্ছে `"Footnotes"`
 
+:::since[ঐচ্ছিক টাইটেল-সারি অ্যাকশন]{version="2026-09-09" id="theme-title-row-action" summary="PageLayout পেজ টাইটেল ও version-new badge-এর পরে একটি ঐচ্ছিক অ্যাকশন রেন্ডার করতে পারে।"}
+### Title-row action
+
+ডিফল্ট থিমের `PageLayout` `h1` সারিতে, টাইটেল ও যেকোনো version-new badge-এর পরে একটি ঐচ্ছিক কন্ট্রোল দেখাতে পারে। না দিলে আজকের টাইটেল সারিই থাকে।
+
+`PageLayout`-এ `titleAction` snippet দিন, অথবা `@sveltepress/theme-default/context`-এর `TITLE_ROW_ACTION_KEY` দিয়ে `{ current }` দিন (`current` হলো `{ href, label }` অথবা `undefined`):
+
+```svelte
+<script>
+  import { TITLE_ROW_ACTION_KEY } from '@sveltepress/theme-default/context'
+  import { setContext } from 'svelte'
+
+  const action = $derived({
+    href: '/playground/markdown/basic-writing/',
+    label: 'প্লেগ্রাউন্ডে খুলুন',
+  })
+  setContext(TITLE_ROW_ACTION_KEY, {
+    get current() {
+      return action
+    },
+  })
+</script>
+```
+
+এটি একই পাতার লিংক। থিম কনজিউমাররা নিজেরা সেট না করলে SveltePress ডকস-সাইটের কন্ট্রোল পায় না।
+:::
+
 ### `preBuildIconifyIcons`
 
 [Iconify](https://iconify.design/) এর আইকন যা আপনি ভবিষ্যত ব্যবহারের জন্য প্রিবিল্ড করতে চান।

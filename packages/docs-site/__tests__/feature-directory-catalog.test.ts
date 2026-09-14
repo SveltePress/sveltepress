@@ -19,6 +19,7 @@ import {
   TYPESCRIPT_SLUG,
   VIRTUAL_MODULES_SLUG,
 } from '../src/lib/playground/catalog.ts'
+import { openInPlaygroundTitleAction } from '../src/lib/playground/copy.ts'
 
 const ALL_SLUGS = [
   'version-management',
@@ -579,5 +580,34 @@ describe('open in playground door', () => {
       visible: true,
       href: '/playground/vite-plugin/',
     })
+  })
+
+  it('supplies a same-page title-row action only for current shipping Entry leaves', () => {
+    expect(openInPlaygroundTitleAction('/guide/markdown/basic-writing/')).toEqual({
+      href: '/playground/markdown/basic-writing/',
+      label: 'Open in Playground',
+    })
+    expect(openInPlaygroundTitleAction('/zh/guide/markdown/basic-writing/')).toEqual({
+      href: '/zh/playground/markdown/basic-writing/',
+      label: '在演练场中打开',
+    })
+    expect(openInPlaygroundTitleAction('/bn/guide/markdown/basic-writing/')).toEqual({
+      href: '/bn/playground/markdown/basic-writing/',
+      label: 'প্লেগ্রাউন্ডে খুলুন',
+    })
+    expect(openInPlaygroundTitleAction('/guide/default-theme/navbar/')).toEqual({
+      href: '/playground/default-theme/navbar/',
+      label: 'Open in Playground',
+    })
+    expect(openInPlaygroundTitleAction('/reference/vite-plugin/')).toEqual({
+      href: '/playground/vite-plugin/',
+      label: 'Open in Playground',
+    })
+    expect(openInPlaygroundTitleAction('/guide/markdown/basic-writing/')?.href).not.toContain('stackblitz')
+    expect(openInPlaygroundTitleAction('/guide/quick-start/')).toBeNull()
+    expect(openInPlaygroundTitleAction('/guide/custom-theme/')).toBeNull()
+    expect(openInPlaygroundTitleAction('/reference/site/')).toBeNull()
+    expect(openInPlaygroundTitleAction('/v/2026-09-03/guide/markdown/basic-writing/')).toBeNull()
+    expect(openInPlaygroundTitleAction('/zh/v/2026-09-03/guide/markdown/basic-writing/')).toBeNull()
   })
 })
