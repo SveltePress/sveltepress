@@ -13,6 +13,7 @@ const versionIds = [currentId, previousId, '2026-08-31', '2026-08-28', historica
 const currentChanges = [
   { route: 'guide/default-theme/pwa', id: 'pwa-precache-client' },
   { route: 'reference/default-theme', id: 'theme-pwa-precache-client' },
+  { route: 'reference/default-theme', id: 'theme-title-row-action' },
 ]
 const currentNewPageRoutes = []
 const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)
