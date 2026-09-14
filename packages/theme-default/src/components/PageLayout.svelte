@@ -1,13 +1,14 @@
 <script>
   import { afterNavigate, beforeNavigate } from '$app/navigation'
   import { page } from '$app/state'
-  import { tick } from 'svelte'
+  import { getContext, hasContext, tick } from 'svelte'
   import siteConfig from 'virtual:sveltepress/site'
   import {
     resolveVersionChanges,
     resolveVersionContext,
     resolveVersionManifest,
   } from 'virtual:sveltepress/versions'
+  import { TITLE_ROW_ACTION_KEY } from '../context'
   import EditPage from './EditPage.svelte'
   import Home from './Home.svelte'
   import HeroCode from './home/HeroCode.svelte'
@@ -45,7 +46,14 @@
   })
 
   // The frontmatter info. This would be injected by sveltepress
-  const { fm, children, heroImage } = $props()
+  const { fm, children, heroImage, titleAction } = $props()
+  const contextTitleAction = hasContext(TITLE_ROW_ACTION_KEY)
+    ? /** @type {import('../context').TitleRowActionContext} */ (
+        getContext(TITLE_ROW_ACTION_KEY)
+      )
+    : undefined
+  const providedTitleAction = $derived(contextTitleAction?.current)
+  const resolvedTitleAction = $derived(titleAction ?? providedTitleAction)
 
   const pageType = $derived(fm?.pageType)
   const lastUpdate = $derived(fm?.lastUpdate)
@@ -116,12 +124,19 @@
         data-pagefind-body={!versionContext?.historical ? true : undefined}
       >
         {#if fm.title}
-          <h1 class="page-title">
+          <h1 class="page-title" class:has-title-action={resolvedTitleAction}>
             {fm.title}
             {#if newPage}<span
                 class="version-new-badge ml-2 inline-flex align-middle items-center rounded-full bg-rose-50 dark:bg-rose-950/45 px-2.5 py-1 text-xs font-700 text-svp-primary-deep dark:text-svp-primary"
                 >{newPageLabel}</span
               >{/if}
+            {#if titleAction}
+              <span class="title-action">{@render titleAction()}</span>
+            {:else if providedTitleAction}
+              <a class="title-action" href={providedTitleAction.href}
+                >{providedTitleAction.label}</a
+              >
+            {/if}
           </h1>
         {/if}
         {@render children?.()}
@@ -173,6 +188,9 @@
   :global(.theme-default--page-layout h1) {
     --at-apply: 'text-8 leading-[1.3] font-700 tracking-[-0.02em] mb-5';
   }
+  :global(.theme-default--page-layout h1.has-title-action) {
+    --at-apply: 'flex flex-wrap items-center gap-x-3 gap-y-1';
+  }
   :global(.theme-default--page-layout h2) {
     --at-apply: 'text-6 leading-[1.35] font-600 tracking-[-0.01em] border-t-solid border-t border-black/8 dark:border-white/10 pt-6 mt-12 mb-4';
   }
@@ -198,6 +216,9 @@
   }
   .page-title {
     --at-apply: 'mt-none';
+  }
+  .title-action {
+    --at-apply: 'inline-flex items-center text-[13px] font-500 leading-none bg-transparent text-svp-primary-deep dark:text-svp-primary hover:text-svp-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-svp-primary no-underline whitespace-nowrap';
   }
   .meta {
     --at-apply: 'sm:flex justify-between mt-16 column';

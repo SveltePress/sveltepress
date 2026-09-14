@@ -8,6 +8,8 @@ versionChanges:
 
 自定义主题和组件可以通过导入该模块来构建版本切换器、生命周期提示横幅、更新日志列表以及具备版本感知能力的站内链接。
 
+演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会启动 Kitchen-sink Starter，其中 `virtual:sveltepress/site`、`locale` 与 `versions` 都已填充。本页的 Open in Playground 会进入该条目。
+
 ## 实时数据
 
 以下是当前站点版本运行时数据的实时交互展示：

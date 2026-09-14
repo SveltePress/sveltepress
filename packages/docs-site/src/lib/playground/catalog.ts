@@ -41,7 +41,7 @@ export const VIRTUAL_MODULES_SLUG = 'virtual-modules'
 export const PLAYGROUND_STARTERS_REPO = 'SveltePress/playground-starters'
 
 /** sveltepress.site embeds this tag, not `main`. */
-export const PINNED_STARTERS_TAG = 'playground-v1.5'
+export const PINNED_STARTERS_TAG = 'playground-v1.6'
 
 export const STARTER_SUBDIRECTORIES = {
   'Default Theme starter': 'default-theme',
@@ -65,6 +65,8 @@ const DEDICATED_SHIPPING_SLUGS = [
   BLOG_WRITING_POSTS_SLUG,
   BLOG_FEATURES_SLUG,
   BLOG_CUSTOMIZATION_SLUG,
+  VIRTUAL_MODULES_SLUG,
+  KITCHEN_SINK_SLUG,
 ] as const
 
 const LOCALE_PREFIX: Record<CatalogLocale, string> = {
@@ -400,6 +402,10 @@ export function playgroundHomeUrl(locale: CatalogLocale = 'en'): string {
   return `${LOCALE_PREFIX[locale]}/playground/`
 }
 
+export function kitchenSinkCtaHref(locale: CatalogLocale = 'en'): string {
+  return entryUrl(KITCHEN_SINK_SLUG, locale)
+}
+
 export function localePath(path: string, locale: CatalogLocale = 'en'): string {
   const normalized = path.startsWith('/') ? path : `/${path}`
   if (locale === 'en')
@@ -471,7 +477,7 @@ function normalizeSlug(slug: string): string {
   return slug.replace(/^\/+|\/+$/g, '')
 }
 
-function localeFromPath(pathname: string): CatalogLocale {
+export function localeFromPath(pathname: string): CatalogLocale {
   if (pathname === '/zh' || pathname.startsWith('/zh/'))
     return 'zh'
   if (pathname === '/bn' || pathname.startsWith('/bn/'))

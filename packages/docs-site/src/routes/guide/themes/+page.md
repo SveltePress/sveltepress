@@ -49,3 +49,5 @@ Start with the [blog theme guide](/guide/blog-theme/getting-started/). The [live
 ## Custom theme
 
 There is no Guide leaf for Custom theme. Open it from [Playground home](/playground/) — the Feature directory Entry auto-boots a newly authored Custom theme starter (no Default Theme, no Blog theme) at the theme root layout.
+
+The Playground [Kitchen sink](/playground/kitchen-sink/) Entry is the largest Default Theme project that can coexist (Markdown, Default Theme, i18n, versions, Vite plugin, and virtual modules). Blog theme and custom theme never live in that tree.

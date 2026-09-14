@@ -31,7 +31,12 @@ describe('playground Pagefind body', () => {
     expect(body?.textContent).toContain('27 Entries')
     expect(view.container.querySelector('[data-pagefind-ignore]')).toBeNull()
     expect(view.queryByRole('region', { name: 'Hosted editor' })).toBeNull()
-    expect(view.queryByRole('link', { name: /kitchen sink/i })).toBeNull()
+    expect(view.getAllByRole('link', { name: /kitchen sink/i })[0]?.getAttribute('href')).toBe(
+      '/playground/kitchen-sink/',
+    )
+    expect(body?.textContent).toContain('Kitchen sink')
+    expect(body?.textContent).toContain('Virtual modules')
+    expect(body?.textContent).toContain('All features')
     expect(embed).not.toHaveBeenCalled()
   })
 

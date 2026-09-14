@@ -74,8 +74,8 @@ describe('blog starter and Blog theme Entries', () => {
     }
 
     expect(shippingGroups()).toContain('Blog theme features')
-    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
-    expect(shipping.some(entry => entry.starter === 'Kitchen-sink starter')).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(true)
+    expect(shipping.some(entry => entry.starter === 'Kitchen-sink starter')).toBe(true)
   })
 
   it('registers locale-prefixed Blog Entry URLs and leaves getting-started unregistered', () => {
@@ -91,7 +91,7 @@ describe('blog starter and Blog theme Entries', () => {
     }
 
     expect(isPlaygroundPathRegistered('/playground/blog-theme/getting-started/')).toBe(false)
-    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(true)
   })
 
   it('addresses GitHub import and Open in StackBlitz at the pinned tag plus blog', () => {
@@ -179,6 +179,6 @@ describe('blog starter and Blog theme Entries', () => {
       expect(existsSync(resolve(routes, `bn/playground/${slug}/+page.svelte`))).toBe(true)
     }
     expect(existsSync(resolve(routes, 'playground/blog-theme/getting-started/+page.svelte'))).toBe(false)
-    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(true)
   })
 })

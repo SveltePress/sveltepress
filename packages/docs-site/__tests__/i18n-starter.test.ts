@@ -24,10 +24,10 @@ describe('i18n starter and Internationalization', () => {
     const shipping = shippingEntries()
     expect(shipping.map(entry => entry.slug)).toContain(I18N_SLUG)
     expect(shipping.map(entry => entry.slug)).toContain(BASIC_WRITING_SLUG)
-    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(true)
     expect(shippingGroups()).toContain('Introduction')
     expect(shippingGroups()).toContain('Markdown features')
-    expect(shippingGroups()).not.toContain('All features')
+    expect(shippingGroups()).toContain('All features')
 
     const entry = entryBySlug(I18N_SLUG)!
     expect(entry.name).toBe('Internationalization')
@@ -39,7 +39,7 @@ describe('i18n starter and Internationalization', () => {
     expect(STARTER_SUBDIRECTORIES[entry.starter]).toBe('i18n')
   })
 
-  it('registers locale-prefixed Internationalization Entry URLs and leaves Kitchen sink unregistered', () => {
+  it('registers locale-prefixed Internationalization Entry URLs', () => {
     expect(entryUrl(I18N_SLUG)).toBe('/playground/i18n/')
     expect(entryUrl(I18N_SLUG, 'zh')).toBe('/zh/playground/i18n/')
     expect(entryUrl(I18N_SLUG, 'bn')).toBe('/bn/playground/i18n/')
@@ -47,7 +47,7 @@ describe('i18n starter and Internationalization', () => {
     expect(isPlaygroundPathRegistered('/playground/i18n/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/i18n/')).toBe(true)
     expect(isPlaygroundPathRegistered('/bn/playground/i18n/')).toBe(true)
-    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(true)
     expect(isPlaygroundPathRegistered('/v/2026-09-03/playground/i18n/')).toBe(false)
   })
 
@@ -111,6 +111,6 @@ describe('i18n starter and Internationalization', () => {
     expect(existsSync(resolve(routes, 'playground/i18n/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'zh/playground/i18n/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'bn/playground/i18n/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(true)
   })
 })
