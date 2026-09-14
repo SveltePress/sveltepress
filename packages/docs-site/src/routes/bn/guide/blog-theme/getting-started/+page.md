@@ -5,6 +5,8 @@ title: শুরু করা
 :::tip[আগে লাইভ ডেমো দেখুন]{icon=noto:rocket}
 স্ক্যাফোল্ড করার আগে **লাইভ ডেমোটা এক ঝলক দেখে নিন — [sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**। এই পেজে যা কিছু বর্ণনা করা হয়েছে, সব সেখানে ইতিমধ্যেই চালু অবস্থায় আছে।
 
+ন্যাভবারের **ব্লগ ডেমো** সেই সম্পূর্ণ প্রদর্শনী। ন্যাভবারের **প্লেগ্রাউন্ড** আলাদা কাজ: এটি Blog starter খুলে Hosted editor-এ Configuration, Writing posts, Features এবং Customisation সম্পাদনা করতে দেয়। এই শুরু করার পাতা কোনো প্লেগ্রাউন্ড এন্ট্রি নয় এবং এতে Open in Playground নেই।
+
 সোর্স: monorepo-এর [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)। রেপো ক্লোন করে রুট থেকে `pnpm install` এবং `pnpm --filter @sveltepress/example-blog dev` চালান। ডেমোটি `http://localhost:36739`-এ চালু হবে।
 :::
 
