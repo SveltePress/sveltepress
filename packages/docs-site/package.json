@@ -9,7 +9,8 @@
     "build": "sveltepress versions build",
     "build:vercel": "cd ../vite && pnpm build && cd ../theme-default && pnpm build && cd ../docs-site && pnpm build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "vitest"
   },
   "devDependencies": {
     "@iconify-json/bi": "catalog:",
@@ -38,6 +39,7 @@
     "svelte-check": "catalog:",
     "svelte-json-discovery": "catalog:",
     "vite": "catalog:",
+    "vitest": "catalog:",
     "workbox-window": "catalog:"
   }
 }
