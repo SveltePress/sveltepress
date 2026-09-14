@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",
+    "prototype:playground": "vite dev",
     "build": "sveltepress versions build",
     "build:vercel": "cd ../vite && pnpm build && cd ../theme-default && pnpm build && cd ../docs-site && pnpm build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
