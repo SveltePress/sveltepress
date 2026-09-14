@@ -67,8 +67,9 @@ function assertSameStrings(actual, expected, message) {
 }
 
 function linksWithClass(html, className) {
-  return [...html.matchAll(new RegExp(`<a class="${className}[^\"]*" href="([^\"]+)"`, 'g'))]
+  return [...html.matchAll(new RegExp(`<a class="${className}(?:\\s[^"]*)?" href="([^\"]+)"`, 'g'))]
     .map(match => match[1])
+    .filter(href => !href.includes('/playground/'))
 }
 
 function assertVersionSelectorLabel(html, versionId, message) {

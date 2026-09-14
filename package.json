@@ -15,7 +15,8 @@
     "test:twoslash": "cd packages/twoslash && npx vitest run && cd ../..",
     "test:theme-default": "cd packages/theme-default && npx vitest run && cd ../..",
     "test:theme-blog": "cd packages/theme-blog && npx vitest run && cd ../..",
-    "test": "pnpm test:scripts && pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog && pnpm test:twoslash",
+    "test:docs-site": "cd packages/docs-site && npx svelte-kit sync && npx vitest run && cd ../..",
+    "test": "pnpm test:scripts && pnpm test:cli && pnpm test:vite && pnpm test:theme-default && pnpm test:theme-blog && pnpm test:twoslash && pnpm test:docs-site",
     "prepare": "husky && git config core.hooksPath .husky"
   },
   "dependencies": {

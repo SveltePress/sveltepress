@@ -19,6 +19,15 @@ describe('resolveLogicalRoute', () => {
     expect(resolveLogicalRoute('/bn')).toBe('/')
   })
 
+  it('strips locale prefixes from Playground paths', () => {
+    expect(resolveLogicalRoute('/playground/')).toBe('/playground/')
+    expect(resolveLogicalRoute('/playground/markdown/basic-writing/')).toBe('/playground/markdown/basic-writing/')
+    expect(resolveLogicalRoute('/zh/playground/')).toBe('/playground/')
+    expect(resolveLogicalRoute('/zh/playground/markdown/basic-writing/')).toBe('/playground/markdown/basic-writing/')
+    expect(resolveLogicalRoute('/bn/playground/')).toBe('/playground/')
+    expect(resolveLogicalRoute('/bn/playground/markdown/basic-writing/')).toBe('/playground/markdown/basic-writing/')
+  })
+
   it('strips only the longest matching locale prefix', () => {
     expect(resolveLogicalRoute('/zh/guide/default-theme/admonitions')).toBe('/guide/default-theme/admonitions')
   })

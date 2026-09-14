@@ -8,7 +8,7 @@ import { get } from 'svelte/store'
 import themeOptions from 'virtual:sveltepress/theme-default'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import GlobalLayout from '../src/components/GlobalLayout.svelte'
-import { anchors, navCollapsed, resolveSidebar, sidebar } from '../src/components/layout'
+import { anchors, navCollapsed, resolveSidebar, showHeader, showLayout, sidebar } from '../src/components/layout'
 import MobileSubNav from '../src/components/MobileSubNav.svelte'
 import Navbar from '../src/components/Navbar.svelte'
 import NavbarMobile from '../src/components/NavbarMobile.svelte'
@@ -378,6 +378,35 @@ Existing content.`,
     expect(view.container.querySelector('.meta')).toBeNull()
     expect(get(sidebar)).toBe(false)
     expect(get(anchors)).toEqual([])
+  })
+
+  it('keeps header chrome available when Playground-style layout is false', () => {
+    setPage('/playground/')
+    render(PageLayout, {
+      fm: {
+        title: 'Playground',
+        layout: false,
+        sidebar: false,
+        pageType: 'svelte',
+      },
+    })
+
+    expect(get(showHeader)).toBe(true)
+    expect(get(showLayout)).toBe(false)
+    expect(get(sidebar)).toBe(false)
+  })
+
+  it('keeps a page shell for layout:false so Navbar stays and Sidebar/TOC stay dropped', () => {
+    setPage('/playground/')
+    showHeader.set(true)
+    showLayout.set(false)
+    sidebar.set(false)
+    anchors.set([])
+    const view = render(GlobalLayout)
+    expect(view.container.querySelector('header')).not.toBeNull()
+    expect(view.container.querySelector('main')).not.toBeNull()
+    expect(view.container.querySelector('.theme-default-sidebar')).toBeNull()
+    expect(view.container.querySelector('.toc, nav.toc')).toBeNull()
   })
 
   it('excludes data-pagefind-body from historical pages while keeping it on current pages', () => {

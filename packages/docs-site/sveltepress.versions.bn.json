@@ -507,7 +507,9 @@
     "include": [
       "**"
     ],
-    "exclude": [],
+    "exclude": [
+      "playground/**"
+    ],
     "shared": [
       "$lib/**",
       "../vite/**",

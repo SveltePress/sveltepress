@@ -9,7 +9,8 @@
     "build": "sveltepress versions build",
     "build:vercel": "cd ../vite && pnpm build && cd ../theme-default && pnpm build && cd ../docs-site && pnpm build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "svelte-kit sync && vitest"
   },
   "devDependencies": {
     "@iconify-json/bi": "catalog:",
@@ -26,6 +27,7 @@
     "@iconify-json/solar": "catalog:",
     "@iconify-json/tabler": "catalog:",
     "@iconify-json/vscode-icons": "catalog:",
+    "@stackblitz/sdk": "catalog:",
     "@sveltejs/adapter-static": "catalog:",
     "@sveltejs/kit": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
@@ -33,11 +35,14 @@
     "@sveltepress/theme-default": "workspace:*",
     "@sveltepress/twoslash": "workspace:*",
     "@sveltepress/vite": "workspace:*",
+    "@testing-library/svelte": "catalog:",
     "@types/node": "catalog:",
+    "happy-dom": "catalog:",
     "svelte": "catalog:",
     "svelte-check": "catalog:",
     "svelte-json-discovery": "catalog:",
     "vite": "catalog:",
+    "vitest": "catalog:",
     "workbox-window": "catalog:"
   }
 }

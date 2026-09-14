@@ -4,6 +4,8 @@ title: ডকুমেন্ট সংস্করণ ব্যবস্থা�
 
 SveltePress সর্বশেষ ডকুমেন্টেশনকে স্বাভাবিক URL-এ রেখে `/v/8.1/`-এর মতো পথে অপরিবর্তনীয় পুরোনো snapshot প্রকাশ করতে পারে। এটি opt-in; `sveltepress.versions.json` না থাকলে সাইট আগের মতোই কাজ করে।
 
+প্লেগ্রাউন্ডের [ডকুমেন্ট সংস্করণ ব্যবস্থাপনা](/playground/version-management/) এন্ট্রি `sveltepress.versions.json`-এ লেখকের মতোই একটি versions manifest ও একটি frozen snapshot সহ Default Theme starter চালু করে।
+
 ## ইনস্টল ও শুরু
 
 ```sh

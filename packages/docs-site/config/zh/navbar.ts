@@ -8,6 +8,10 @@ export default [
     to: '/whats-new/',
   },
   {
+    title: '演练场',
+    to: '/playground/',
+  },
+  {
     title: '参考',
     to: '/reference/vite-plugin/',
   },

@@ -4,6 +4,8 @@ title: Internationalization (i18n)
 
 SveltePress can serve multiple locales from one site. Internationalization is opt-in: omit `locales` and the site stays single-locale with unchanged behavior.
 
+The Playground [Internationalization](/playground/i18n/) Entry boots a two-locale Default Theme starter as authored at `config/locales.ts`.
+
 :::since[Opt-in locales]{version="2026-09-03" id="i18n-opt-in-locales" summary="Pass sveltepress({ locales }) to enable multi-locale routing, theme options, and switcher."}
 ## Enable locales
 

@@ -6,6 +6,8 @@ Sveltepress is a SvelteKit docs and blog site builder.
 Inspired by [VitePress](https://vitepress.dev/).
 Built on [SvelteKit](https://kit.svelte.dev/) and [UnoCSS](https://github.com/unocss/unocss) — so you get a content toolkit and the full SvelteKit surface (SSR, adapters, server routes, hooks).
 
+The navbar **Playground** opens a Feature directory of in-browser Starters. Markdown, Default Theme, and Vite plugin Entries share the Default Theme starter. Document versions ships on a Versions starter (`versions init` / `create` · `versions build`). Internationalization ships on a two-locale starter. Custom theme ships from Playground home only (there is no Guide leaf). Blog theme Entries (Configuration, Writing posts, Features, Customisation) share the Blog starter. Guide pages keep frozen Live code; the Blog demo stays a finished showcase.
+
 ## Project structure
 
 Exactly the same as [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure)

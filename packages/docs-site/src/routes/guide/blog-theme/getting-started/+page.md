@@ -5,6 +5,8 @@ title: Getting started
 :::tip[See it live first]{icon=noto:rocket}
 Before you scaffold anything, **take a look at the live demo — [sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**. Everything described on this page is already working there.
 
+The navbar **Blog demo** is that finished showcase. The navbar **Playground** opens the Feature directory. Configuration, Writing posts, Features, and Customisation are the Blog theme Entries that auto-boot the Blog starter. This getting-started page is not a Playground Entry and has no Open in Playground control.
+
 Source: [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog) in the monorepo. After cloning the repository, run `pnpm install` and `pnpm --filter @sveltepress/example-blog dev` from the repository root. The demo starts on `http://localhost:36739`.
 :::
 

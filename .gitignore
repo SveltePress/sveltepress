@@ -27,3 +27,5 @@ node-jiti
 
 # pnpm content-addressable store (local cache)
 .pnpm-store
+
+.dsh/

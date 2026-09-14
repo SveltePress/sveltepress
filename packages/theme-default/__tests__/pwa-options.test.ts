@@ -8,6 +8,9 @@ function expectNavigationFallbackDoesNotInterceptDocPages(workbox: any) {
   expect(Array.isArray(allowlist)).toBe(true)
   expect(allowlist.some((re: RegExp) => re.test('/'))).toBe(true)
   expect(allowlist.some((re: RegExp) => re.test('/guide/markdown/frontmatter/'))).toBe(false)
+  expect(allowlist.some((re: RegExp) => re.test('/playground/'))).toBe(false)
+  expect(allowlist.some((re: RegExp) => re.test('/zh/playground/'))).toBe(false)
+  expect(allowlist.some((re: RegExp) => re.test('/bn/playground/markdown/basic-writing/'))).toBe(false)
 }
 
 const capturedPwaOptions: any[] = []

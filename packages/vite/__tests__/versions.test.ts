@@ -331,6 +331,8 @@ describe('version route contract', () => {
   it('switches to the same page when present and the target home otherwise', () => {
     expect(resolveVersionSwitch('/guide/install/', '8.1.0', manifest())).toEqual({ href: '/v/8.1.0/guide/install/', fallback: false })
     expect(resolveVersionSwitch('/reference/new-api/', '8.1.0', manifest())).toEqual({ href: '/v/8.1.0/', fallback: true })
+    expect(resolveVersionSwitch('/playground/', '8.1.0', manifest())).toEqual({ href: '/v/8.1.0/', fallback: true })
+    expect(resolveVersionSwitch('/playground/markdown/basic-writing/', '8.1.0', manifest())).toEqual({ href: '/v/8.1.0/', fallback: true })
     expect(resolveVersionSwitch('/v/8.1.0/guide/install/', 'v9', manifest())).toEqual({ href: '/guide/install/', fallback: false })
   })
 

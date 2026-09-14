@@ -6,6 +6,8 @@ Sveltepress হচ্ছে একটি সাইট বানানোর ট�
 [Vitepress](https://vitepress.vuejs.org/) থেকে অনুপ্রাণিত।
 [SvelteKit](https://kit.svelte.dev/), [Unocss](https://github.com/unocss/unocss) এর উপর নির্ভর করে তৈরী।
 
+ন্যাভবারের **প্লেগ্রাউন্ড** ব্রাউজারের ভিতরে Starter-এর ফিচার ডিরেক্টরি খোলে। Markdown, Default Theme এবং Vite plugin এন্ট্রি একই Default Theme starter শেয়ার করে। ডকুমেন্ট সংস্করণ ব্যবস্থাপনা একটি Versions starter-এ চালু আছে (`versions init` / `create` · `versions build`)। Internationalization একটি দুই-লোকেল starter-এ চালু আছে। Custom theme শুধু প্লেগ্রাউন্ড হোম থেকে পাওয়া যায় (কোনো Guide leaf নেই)। ব্লগ থিম এন্ট্রি (কনফিগারেশন, পোস্ট লেখা, ফিচারসমূহ, কাস্টমাইজেশন) Blog starter শেয়ার করে। গাইড পাতায় Live code অপরিবর্তিত থাকে; ব্লগ ডেমো আগের মতোই একটি সম্পূর্ণ প্রদর্শনী।
+
 ## প্রজেক্টের স্ট্র্যাকচার
 
 হুবহু [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure) এর মতই।

@@ -322,6 +322,45 @@ describe('locale-aware navigation chrome', () => {
     expect(link.getAttribute('href')).toBe('/zh/guide/')
   })
 
+  it('prefixes Playground to that locale home and keeps Blog demo external', () => {
+    const locales = localeFixture()
+    const blogDemo = {
+      title: 'Blog demo',
+      to: 'https://sveltepress.github.io/sveltepress/blog-demo/',
+      external: true,
+    }
+    locales['/']!.theme = {
+      ...locales['/']!.theme,
+      navbar: [{ title: 'Playground', to: '/playground/' }, blogDemo],
+    }
+    locales['/zh/']!.theme = {
+      ...locales['/zh/']!.theme,
+      navbar: [{ title: '演练场', to: '/playground/' }, { ...blogDemo, title: '博客示例' }],
+    }
+    locales['/bn/']!.theme = {
+      ...locales['/bn/']!.theme,
+      navbar: [{ title: 'প্লেগ্রাউন্ড', to: '/playground/' }, { ...blogDemo, title: 'ব্লগ ডেমো' }],
+    }
+    setLocaleFixtures(locales)
+
+    setPage('/zh/guide/')
+    const zh = render(Navbar)
+    expect(zh.getByRole('link', { name: '演练场' }).getAttribute('href')).toBe('/zh/playground/')
+    expect(zh.getByRole('link', { name: '博客示例' }).getAttribute('href')).toBe(blogDemo.to)
+    zh.unmount()
+
+    setPage('/bn/guide/')
+    const bn = render(Navbar)
+    expect(bn.getByRole('link', { name: 'প্লেগ্রাউন্ড' }).getAttribute('href')).toBe('/bn/playground/')
+    expect(bn.getByRole('link', { name: 'ব্লগ ডেমো' }).getAttribute('href')).toBe(blogDemo.to)
+    bn.unmount()
+
+    setPage('/guide/')
+    const en = render(Navbar)
+    expect(en.getByRole('link', { name: 'Playground' }).getAttribute('href')).toBe('/playground/')
+    expect(en.getByRole('link', { name: 'Blog demo' }).getAttribute('href')).toBe(blogDemo.to)
+  })
+
   it('renders the mobile switcher and per-locale navbar in the navigation drawer', async () => {
     setPage('/zh/guide/')
     const view = render(NavbarMobile)
