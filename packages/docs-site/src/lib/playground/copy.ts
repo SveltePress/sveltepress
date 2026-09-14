@@ -1,6 +1,12 @@
 import type { CatalogLocale, SuccessKind } from './catalog.ts'
 import { localeFromPath, openInPlayground } from './catalog.ts'
 
+export interface KitchenSinkCtaCopy {
+  kicker: string
+  title: string
+  hint: string
+}
+
 export interface PlaygroundCopy {
   playground: string
   featureDirectory: string
@@ -9,6 +15,7 @@ export interface PlaygroundCopy {
   persistCaveat: string
   openInPlayground: string
   openInStackBlitz: string
+  kitchenSinkCta: KitchenSinkCtaCopy
   guide: string
   reference: string
   switchEntry: string
@@ -39,6 +46,11 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     persistCaveat: 'Reloading or opening this URL always boots the Starter as authored. Keep edits with Save-fork in StackBlitz chrome. Open in StackBlitz opens the Starter as authored in a new tab and does not carry Hosted editor edits.',
     openInPlayground: 'Open in Playground',
     openInStackBlitz: 'Open in StackBlitz',
+    kitchenSinkCta: {
+      kicker: 'All features',
+      title: 'Kitchen sink',
+      hint: 'Largest Default Theme project that can coexist. Not a site-navbar item.',
+    },
     guide: 'Guide',
     reference: 'Reference',
     switchEntry: 'Switch Entry',
@@ -62,6 +74,11 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     persistCaveat: '重新加载或打开此 URL 总会按作者提交的内容启动 Starter。请在 StackBlitz 界面中使用 Save-fork 保留编辑。Open in StackBlitz 会在新标签页打开作者提交的 Starter，不会带走 Hosted editor 中的编辑。',
     openInPlayground: '在演练场中打开',
     openInStackBlitz: '在 StackBlitz 中打开',
+    kitchenSinkCta: {
+      kicker: '全部特性',
+      title: 'Kitchen sink',
+      hint: '可共存的最大默认主题项目。不是站点导航栏项。',
+    },
     guide: '指南',
     reference: '参考',
     switchEntry: '切换条目',
@@ -85,6 +102,11 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     persistCaveat: 'এই URL রিলোড বা খুললে Starter সবসময় লেখকের মতোই চালু হয়। সম্পাদনা রাখতে StackBlitz ইন্টারফেসে Save-fork ব্যবহার করুন। Open in StackBlitz নতুন ট্যাবে লেখকের Starter খোলে এবং Hosted editor-এর সম্পাদনা নিয়ে যায় না।',
     openInPlayground: 'প্লেগ্রাউন্ডে খুলুন',
     openInStackBlitz: 'StackBlitz-এ খুলুন',
+    kitchenSinkCta: {
+      kicker: 'সব ফিচার',
+      title: 'Kitchen sink',
+      hint: 'সবচেয়ে বড় Default Theme প্রকল্প যা একসাথে চলতে পারে। সাইট ন্যাভবার আইটেম নয়।',
+    },
     guide: 'গাইড',
     reference: 'রেফারেন্স',
     switchEntry: 'এন্ট্রি বদলান',

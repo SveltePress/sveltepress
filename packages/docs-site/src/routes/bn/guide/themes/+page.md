@@ -48,3 +48,5 @@ export default config
 ## কাস্টম থিম
 
 Custom theme-এর কোনো Guide leaf নেই। [প্লেগ্রাউন্ড হোম](/playground/) থেকে খুলুন — ফিচার ডিরেক্টরি এন্ট্রি একটি নতুন লেখা Custom theme starter (Default Theme নেই, Blog theme নেই) থিম রুট লেআউটে আপনাআপনি চালু করে।
+
+প্লেগ্রাউন্ডের [Kitchen sink](/playground/kitchen-sink/) এন্ট্রি হলো সবচেয়ে বড় Default Theme প্রকল্প যা একসাথে চলতে পারে (Markdown, Default Theme, i18n, versions, Vite plugin এবং virtual modules)। Blog theme ও custom theme সেই ট্রিতে থাকে না।

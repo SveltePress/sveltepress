@@ -23,10 +23,10 @@ import { shippingGroups } from '../src/lib/playground/shipping.ts'
 afterEach(cleanup)
 
 describe('custom theme starter and Entry', () => {
-  it('ships Custom theme from Playground home without Kitchen sink', () => {
+  it('ships Custom theme from Playground home', () => {
     const shipping = shippingEntries()
     expect(shipping.map(entry => entry.slug)).toContain(CUSTOM_THEME_SLUG)
-    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(true)
     expect(shippingGroups()).toContain('Introduction')
     expect(shipping.find(entry => entry.slug === CUSTOM_THEME_SLUG)?.name).toBe('Custom theme')
     expect(shipping.find(entry => entry.slug === CUSTOM_THEME_SLUG)?.starter).toBe('Custom theme starter')

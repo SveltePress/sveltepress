@@ -42,4 +42,11 @@ describe('navbar Playground', () => {
       expect(blogDemo?.external).toBe(true)
     }
   })
+
+  it('does not add Kitchen sink to the site Navbar', () => {
+    for (const navbar of [enNavbar, zhNavbar, bnNavbar]) {
+      expect(navbar.some(item => item.to === '/playground/kitchen-sink/')).toBe(false)
+      expect(JSON.stringify(navbar)).not.toMatch(/kitchen-sink/i)
+    }
+  })
 })

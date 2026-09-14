@@ -24,9 +24,9 @@ describe('typescript starter and Working with TypeScript', () => {
     const shipping = shippingEntries()
     expect(shipping.map(entry => entry.slug)).toContain(TYPESCRIPT_SLUG)
     expect(shipping.map(entry => entry.slug)).toContain(BASIC_WRITING_SLUG)
-    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(true)
     expect(shippingGroups()).toContain('Introduction')
-    expect(shippingGroups()).not.toContain('All features')
+    expect(shippingGroups()).toContain('All features')
 
     const entry = entryBySlug(TYPESCRIPT_SLUG)!
     expect(entry.name).toBe('Working with TypeScript')
@@ -37,7 +37,7 @@ describe('typescript starter and Working with TypeScript', () => {
     expect(STARTER_SUBDIRECTORIES[entry.starter]).toBe('typescript')
   })
 
-  it('registers locale-prefixed TypeScript Entry URLs and leaves Kitchen sink unregistered', () => {
+  it('registers locale-prefixed TypeScript Entry URLs', () => {
     expect(entryUrl(TYPESCRIPT_SLUG)).toBe('/playground/typescript/')
     expect(entryUrl(TYPESCRIPT_SLUG, 'zh')).toBe('/zh/playground/typescript/')
     expect(entryUrl(TYPESCRIPT_SLUG, 'bn')).toBe('/bn/playground/typescript/')
@@ -45,7 +45,7 @@ describe('typescript starter and Working with TypeScript', () => {
     expect(isPlaygroundPathRegistered('/playground/typescript/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/typescript/')).toBe(true)
     expect(isPlaygroundPathRegistered('/bn/playground/typescript/')).toBe(true)
-    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(true)
     expect(isPlaygroundPathRegistered('/v/2026-09-03/playground/typescript/')).toBe(false)
   })
 
@@ -100,11 +100,11 @@ describe('typescript starter and Working with TypeScript', () => {
     })
   })
 
-  it('registers EN/ZH/BN TypeScript Entry pages and no Kitchen-sink route', () => {
+  it('registers EN/ZH/BN TypeScript Entry pages', () => {
     const routes = resolve(import.meta.dirname, '../src/routes')
     expect(existsSync(resolve(routes, 'playground/typescript/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'zh/playground/typescript/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'bn/playground/typescript/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(true)
   })
 })

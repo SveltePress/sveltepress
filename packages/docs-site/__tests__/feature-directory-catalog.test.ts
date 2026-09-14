@@ -329,7 +329,7 @@ describe('feature directory catalog', () => {
     expect(entryBySlug(undefined)).toBeUndefined()
   })
 
-  it('ships every Default Theme starter Entry and leaves Kitchen sink unregistered', () => {
+  it('ships every Default Theme starter Entry plus Kitchen sink and Virtual modules', () => {
     const shipping = shippingEntries()
     const slugs = shipping.map(entry => entry.slug)
     for (const slug of [
@@ -365,8 +365,8 @@ describe('feature directory catalog', () => {
     expect(entryBySlug('version-management')?.success).toEqual(['as', 'degraded'])
     expect(entryBySlug('version-management')?.barNote).toBe('`versions init` / `create` · `versions build`')
     expect(shipping.some(entry => entry.slug === 'highlight')).toBe(false)
-    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
-    expect(shipping.some(entry => entry.slug === VIRTUAL_MODULES_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(true)
+    expect(shipping.some(entry => entry.slug === VIRTUAL_MODULES_SLUG)).toBe(true)
     expect(slugs).toContain(TYPESCRIPT_SLUG)
     expect(slugs).toContain('version-management')
     expect(slugs).toContain(I18N_SLUG)
@@ -391,7 +391,8 @@ describe('feature directory catalog', () => {
     expect(isPlaygroundPathRegistered('/bn/playground/vite-plugin/')).toBe(true)
     expect(isPlaygroundPathRegistered('/playground/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/')).toBe(true)
-    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(true)
+    expect(isPlaygroundPathRegistered('/playground/virtual-modules/')).toBe(true)
     expect(isPlaygroundPathRegistered('/playground/i18n/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/i18n/')).toBe(true)
     expect(isPlaygroundPathRegistered('/bn/playground/i18n/')).toBe(true)
@@ -534,7 +535,7 @@ describe('open in playground door', () => {
   })
 
   it('hides on current Entry leaves that are not yet shipping', () => {
-    expect(openInPlayground('/reference/site/')).toEqual({
+    expect(openInPlayground('/guide/not-a-capability/')).toEqual({
       visible: false,
       href: null,
     })
@@ -574,8 +575,14 @@ describe('open in playground door', () => {
     expect(openInPlaygroundHref('/zh/reference/locale/')).toBe('/zh/playground/virtual-modules/')
     expect(openInPlaygroundHref('/bn/reference/versions/')).toBe('/bn/playground/virtual-modules/')
     expect(openInPlaygroundHref('/reference/vite-plugin/')).toBe('/playground/vite-plugin/')
-    expect(openInPlayground('/reference/site/')).toEqual({ visible: false, href: null })
-    expect(openInPlayground('/zh/reference/locale/')).toEqual({ visible: false, href: null })
+    expect(openInPlayground('/reference/site/')).toEqual({
+      visible: true,
+      href: '/playground/virtual-modules/',
+    })
+    expect(openInPlayground('/zh/reference/locale/')).toEqual({
+      visible: true,
+      href: '/zh/playground/virtual-modules/',
+    })
     expect(openInPlayground('/reference/vite-plugin/')).toEqual({
       visible: true,
       href: '/playground/vite-plugin/',
@@ -606,7 +613,10 @@ describe('open in playground door', () => {
     expect(openInPlaygroundTitleAction('/guide/markdown/basic-writing/')?.href).not.toContain('stackblitz')
     expect(openInPlaygroundTitleAction('/guide/quick-start/')).toBeNull()
     expect(openInPlaygroundTitleAction('/guide/custom-theme/')).toBeNull()
-    expect(openInPlaygroundTitleAction('/reference/site/')).toBeNull()
+    expect(openInPlaygroundTitleAction('/reference/site/')).toEqual({
+      href: '/playground/virtual-modules/',
+      label: 'Open in Playground',
+    })
     expect(openInPlaygroundTitleAction('/v/2026-09-03/guide/markdown/basic-writing/')).toBeNull()
     expect(openInPlaygroundTitleAction('/zh/v/2026-09-03/guide/markdown/basic-writing/')).toBeNull()
   })

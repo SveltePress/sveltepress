@@ -4,12 +4,15 @@
   import {
     entryBySlug,
     entryUrl,
+    KITCHEN_SINK_SLUG,
+    kitchenSinkCtaHref,
     localePath,
     localizedName,
     openInStackBlitzUrl,
   } from './catalog.ts'
   import { localizedGroup, playgroundCopy } from './copy.ts'
   import HostedEditor from './HostedEditor.svelte'
+  import KitchenSinkCta from './KitchenSinkCta.svelte'
   import { shippingEntriesInGroup, shippingGroups } from './shipping.ts'
   import SuccessBar from './SuccessBar.svelte'
   import SwitchEntry from './SwitchEntry.svelte'
@@ -36,6 +39,7 @@
 </script>
 
 <div class="shell">
+  <KitchenSinkCta {locale} />
   {#if !entry}
     <div class="home" data-pagefind-body>
       <header class="home-head">
@@ -75,6 +79,11 @@
               >{entry.guideHref.startsWith('/reference/')
                 ? copy.reference
                 : copy.guide}</a
+            >
+          {/if}
+          {#if entry.slug !== KITCHEN_SINK_SLUG}
+            <a class="text-link" href={kitchenSinkCtaHref(locale)}
+              >{copy.kitchenSinkCta.title}</a
             >
           {/if}
           <a

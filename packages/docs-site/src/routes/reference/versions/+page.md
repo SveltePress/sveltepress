@@ -8,6 +8,8 @@ When document version management is enabled in `@sveltepress/vite`, `virtual:sve
 
 Custom themes and components can import this module to build version selectors, lifecycle banners, changelog catalogs, and version-aware navigation links.
 
+The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated. Open in Playground on this leaf lands there.
+
 ## Live data
 
 Here is an interactive inspection of the version runtime data on this site:

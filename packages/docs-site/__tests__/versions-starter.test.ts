@@ -24,7 +24,7 @@ describe('versions starter and Document versions', () => {
     const shipping = shippingEntries()
     expect(shipping.map(entry => entry.slug)).toContain(VERSION_MANAGEMENT_SLUG)
     expect(shipping.map(entry => entry.slug)).toContain(BASIC_WRITING_SLUG)
-    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(true)
     expect(shipping.some(entry => entry.name === 'SveltePress CLI')).toBe(false)
     expect(shippingGroups()).toContain('Introduction')
     expect(shippingGroups()).toContain('Markdown features')
@@ -43,7 +43,7 @@ describe('versions starter and Document versions', () => {
     expect(STARTER_SUBDIRECTORIES[entry.starter]).toBe('versions')
   })
 
-  it('registers locale-prefixed Document versions Entry URLs and leaves Kitchen sink unregistered', () => {
+  it('registers locale-prefixed Document versions Entry URLs', () => {
     expect(entryUrl(VERSION_MANAGEMENT_SLUG)).toBe('/playground/version-management/')
     expect(entryUrl(VERSION_MANAGEMENT_SLUG, 'zh')).toBe('/zh/playground/version-management/')
     expect(entryUrl(VERSION_MANAGEMENT_SLUG, 'bn')).toBe('/bn/playground/version-management/')
@@ -51,7 +51,7 @@ describe('versions starter and Document versions', () => {
     expect(isPlaygroundPathRegistered('/playground/version-management/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/version-management/')).toBe(true)
     expect(isPlaygroundPathRegistered('/bn/playground/version-management/')).toBe(true)
-    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(true)
     expect(isPlaygroundPathRegistered('/v/2026-09-03/playground/version-management/')).toBe(false)
   })
 
@@ -105,11 +105,11 @@ describe('versions starter and Document versions', () => {
     })
   })
 
-  it('registers EN/ZH/BN Document versions Entry pages and no Kitchen-sink route', () => {
+  it('registers EN/ZH/BN Document versions Entry pages', () => {
     const routes = resolve(import.meta.dirname, '../src/routes')
     expect(existsSync(resolve(routes, 'playground/version-management/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'zh/playground/version-management/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'bn/playground/version-management/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(true)
   })
 })

@@ -51,3 +51,5 @@ export default config
 ## 自定义主题
 
 自定义主题没有对应的指南页。请从[演练场首页](/playground/)进入 —— 功能目录条目会按作者提交的内容，在主题根布局处自动启动一个新编写的自定义主题 Starter（不含默认主题，也不含博客主题）。
+
+演练场中的 [Kitchen sink](/playground/kitchen-sink/) 条目是可共存的最大默认主题项目（Markdown、默认主题、国际化、文档版本、Vite 插件与虚拟模块）。博客主题和自定义主题不会进入该树。
