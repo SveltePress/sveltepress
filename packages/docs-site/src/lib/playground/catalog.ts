@@ -34,7 +34,7 @@ export const VIRTUAL_MODULES_SLUG = 'virtual-modules'
 export const PLAYGROUND_STARTERS_REPO = 'SveltePress/playground-starters'
 
 /** sveltepress.site embeds this tag, not `main`. */
-export const PINNED_STARTERS_TAG = 'playground-v1'
+export const PINNED_STARTERS_TAG = 'playground-default-theme'
 
 export const STARTER_SUBDIRECTORIES = {
   'Default Theme starter': 'default-theme',
@@ -48,7 +48,7 @@ export const STARTER_SUBDIRECTORIES = {
 
 export type StarterName = keyof typeof STARTER_SUBDIRECTORIES
 
-const SHIPPING_SLUGS = new Set<string>([BASIC_WRITING_SLUG])
+const DEFAULT_THEME_STARTER: StarterName = 'Default Theme starter'
 
 const LOCALE_PREFIX: Record<CatalogLocale, string> = {
   en: '',
@@ -354,6 +354,10 @@ export const ENTRIES: Entry[] = [
     guideHref: null,
   },
 ]
+
+const SHIPPING_SLUGS = new Set(
+  ENTRIES.filter(entry => entry.starter === DEFAULT_THEME_STARTER).map(entry => entry.slug),
+)
 
 const ENTRIES_BY_SLUG = new Map(ENTRIES.map(entry => [entry.slug, entry]))
 const ENTRIES_BY_GUIDE_HREF = new Map(

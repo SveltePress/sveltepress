@@ -8,6 +8,7 @@ export interface PlaygroundCopy {
   persistCaveat: string
   openInStackBlitz: string
   guide: string
+  reference: string
   switchEntry: string
   playgroundHome: string
   loading: string
@@ -32,10 +33,11 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     playground: 'Playground',
     featureDirectory: 'Feature directory',
     lede: 'Pick an Entry to auto-boot its Starter in the Hosted editor. This page never boots.',
-    sliceSentence: 'The full Feature directory is 27 Entries. This cut proves the sandbox.',
+    sliceSentence: 'The full Feature directory is 27 Entries. This list is every currently shipping Entry.',
     persistCaveat: 'Reloading or opening this URL always boots the Starter as authored. Keep edits with Save-fork in StackBlitz chrome. Open in StackBlitz opens the Starter as authored in a new tab and does not carry Hosted editor edits.',
     openInStackBlitz: 'Open in StackBlitz',
     guide: 'Guide',
+    reference: 'Reference',
     switchEntry: 'Switch Entry',
     playgroundHome: 'Playground home',
     loading: 'Booting Hosted editor…',
@@ -53,10 +55,11 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     playground: '演练场',
     featureDirectory: '功能目录',
     lede: '选择一条目即可在 Hosted editor 中自动启动对应 Starter。本页不会启动编辑器。',
-    sliceSentence: '完整功能目录共 27 个条目。本次切片用于验证沙箱。',
+    sliceSentence: '完整功能目录共 27 个条目。下列为当前已上线的条目。',
     persistCaveat: '重新加载或打开此 URL 总会按作者提交的内容启动 Starter。请在 StackBlitz 界面中使用 Save-fork 保留编辑。Open in StackBlitz 会在新标签页打开作者提交的 Starter，不会带走 Hosted editor 中的编辑。',
     openInStackBlitz: '在 StackBlitz 中打开',
     guide: '指南',
+    reference: '参考',
     switchEntry: '切换条目',
     playgroundHome: '演练场首页',
     loading: '正在启动 Hosted editor…',
@@ -74,10 +77,11 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     playground: 'প্লেগ্রাউন্ড',
     featureDirectory: 'ফিচার ডিরেক্টরি',
     lede: 'একটি এন্ট্রি বেছে নিলে Hosted editor সেই Starter আপনাআপনি চালায়। এই পাতা কখনো এডিটর চালায় না।',
-    sliceSentence: 'সম্পূর্ণ ফিচার ডিরেক্টরিতে 27টি এন্ট্রি আছে। এই কাট স্যান্ডবক্স প্রমাণ করে।',
+    sliceSentence: 'সম্পূর্ণ ফিচার ডিরেক্টরিতে 27টি এন্ট্রি আছে। এই তালিকা বর্তমানে শিপিং এন্ট্রি।',
     persistCaveat: 'এই URL রিলোড বা খুললে Starter সবসময় লেখকের মতোই চালু হয়। সম্পাদনা রাখতে StackBlitz ইন্টারফেসে Save-fork ব্যবহার করুন। Open in StackBlitz নতুন ট্যাবে লেখকের Starter খোলে এবং Hosted editor-এর সম্পাদনা নিয়ে যায় না।',
     openInStackBlitz: 'StackBlitz-এ খুলুন',
     guide: 'গাইড',
+    reference: 'রেফারেন্স',
     switchEntry: 'এন্ট্রি বদলান',
     playgroundHome: 'প্লেগ্রাউন্ড হোম',
     loading: 'Hosted editor চালু হচ্ছে…',

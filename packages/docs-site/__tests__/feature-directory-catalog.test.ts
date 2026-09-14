@@ -326,24 +326,63 @@ describe('feature directory catalog', () => {
     expect(entryBySlug(undefined)).toBeUndefined()
   })
 
-  it('ships only Basic Writing in v1', () => {
+  it('ships every Default Theme starter Entry and leaves dedicated-Starter Entries unregistered', () => {
     const shipping = shippingEntries()
-    expect(shipping.map(entry => entry.slug)).toEqual([BASIC_WRITING_SLUG])
-    expect(shipping[0]?.name).toBe('Basic Writing')
-    expect(entryBySlug('markdown/frontmatter')).toBeDefined()
-    expect(shipping.some(entry => entry.slug === 'markdown/frontmatter')).toBe(false)
+    expect(shipping.map(entry => entry.slug)).toEqual([
+      BASIC_WRITING_SLUG,
+      'markdown/frontmatter',
+      'markdown/svelte-in-markdown',
+      'default-theme/frontmatter',
+      'default-theme/navbar',
+      'default-theme/sidebar',
+      'default-theme/home-page',
+      'default-theme/builtin-components',
+      'default-theme/headings-and-anchors',
+      'default-theme/admonitions',
+      'default-theme/code-related',
+      'default-theme/twoslash',
+      'default-theme/unocss',
+      'default-theme/search',
+      'default-theme/pwa',
+      'default-theme/google-analytics',
+      'vite-plugin',
+    ])
+    expect(new Set(shipping.map(entry => entry.starter))).toEqual(new Set(['Default Theme starter']))
+    expect(entryBySlug('default-theme/navbar')?.focusedFile).toBe('config/navbar.js')
+    expect(entryBySlug('default-theme/sidebar')?.focusedFile).toBe('config/sidebar.js')
+    expect(entryBySlug('default-theme/navbar')?.focusedFile).not.toBe(
+      entryBySlug('default-theme/sidebar')?.focusedFile,
+    )
+    expect(entryBySlug('default-theme/search')?.success).toEqual(['degraded', 'observation'])
+    expect(entryBySlug('default-theme/pwa')?.success).toEqual(['observation', 'degraded'])
+    expect(entryBySlug('default-theme/google-analytics')?.success).toEqual(['observation'])
+    expect(entryBySlug('vite-plugin')?.success).toEqual(['as', 'observation'])
+    expect(shipping.some(entry => entry.slug === 'highlight')).toBe(false)
+    expect(shipping.some(entry => entry.slug === KITCHEN_SINK_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === VIRTUAL_MODULES_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug === CUSTOM_THEME_SLUG)).toBe(false)
+    expect(shipping.some(entry => entry.slug.startsWith('blog-theme/'))).toBe(false)
+    expect(shipping.map(entry => entry.slug)).not.toContain('i18n')
+    expect(shipping.map(entry => entry.slug)).not.toContain('typescript')
+    expect(shipping.map(entry => entry.slug)).not.toContain('version-management')
   })
 
   it('registers only shipping Playground paths', () => {
     expect(isPlaygroundPathRegistered('/playground/markdown/basic-writing/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/markdown/basic-writing/')).toBe(true)
     expect(isPlaygroundPathRegistered('/bn/playground/markdown/basic-writing/')).toBe(true)
+    expect(isPlaygroundPathRegistered('/playground/markdown/frontmatter/')).toBe(true)
+    expect(isPlaygroundPathRegistered('/zh/playground/default-theme/navbar/')).toBe(true)
+    expect(isPlaygroundPathRegistered('/bn/playground/vite-plugin/')).toBe(true)
     expect(isPlaygroundPathRegistered('/playground/')).toBe(true)
     expect(isPlaygroundPathRegistered('/zh/playground/')).toBe(true)
-    expect(isPlaygroundPathRegistered('/playground/markdown/frontmatter/')).toBe(false)
     expect(isPlaygroundPathRegistered('/playground/kitchen-sink/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/i18n/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/typescript/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/playground/custom-theme/')).toBe(false)
     expect(isPlaygroundPathRegistered('/playground/not-a-capability/')).toBe(false)
     expect(isPlaygroundPathRegistered('/v/2026-09-03/playground/markdown/basic-writing/')).toBe(false)
+    expect(isPlaygroundPathRegistered('/v/2026-09-03/playground/default-theme/navbar/')).toBe(false)
   })
 
   it('builds locale-prefixed Entry URLs with English segments, a trailing slash, and no query string', () => {
@@ -370,6 +409,7 @@ describe('feature directory catalog', () => {
       'Kitchen-sink starter': 'kitchen-sink',
     })
 
+    expect(PINNED_STARTERS_TAG).toBe('playground-default-theme')
     const basic = entryBySlug(BASIC_WRITING_SLUG)!
     expect(githubImportPath(basic)).toBe(
       `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme`,
@@ -427,14 +467,30 @@ describe('open in playground door', () => {
       visible: true,
       href: '/bn/playground/markdown/basic-writing/',
     })
+    expect(openInPlayground('/guide/default-theme/navbar/')).toEqual({
+      visible: true,
+      href: '/playground/default-theme/navbar/',
+    })
+    expect(openInPlayground('/zh/guide/default-theme/sidebar/')).toEqual({
+      visible: true,
+      href: '/zh/playground/default-theme/sidebar/',
+    })
+    expect(openInPlayground('/reference/vite-plugin/')).toEqual({
+      visible: true,
+      href: '/playground/vite-plugin/',
+    })
   })
 
   it('hides on current Entry leaves that are not yet shipping', () => {
-    expect(openInPlayground('/guide/default-theme/navbar/')).toEqual({
+    expect(openInPlayground('/guide/i18n/')).toEqual({
       visible: false,
       href: null,
     })
-    expect(openInPlayground('/reference/vite-plugin/')).toEqual({
+    expect(openInPlayground('/guide/typescript/')).toEqual({
+      visible: false,
+      href: null,
+    })
+    expect(openInPlayground('/guide/version-management/')).toEqual({
       visible: false,
       href: null,
     })
@@ -480,6 +536,9 @@ describe('open in playground door', () => {
     expect(openInPlaygroundHref('/reference/vite-plugin/')).toBe('/playground/vite-plugin/')
     expect(openInPlayground('/reference/site/')).toEqual({ visible: false, href: null })
     expect(openInPlayground('/zh/reference/locale/')).toEqual({ visible: false, href: null })
-    expect(openInPlayground('/reference/vite-plugin/')).toEqual({ visible: false, href: null })
+    expect(openInPlayground('/reference/vite-plugin/')).toEqual({
+      visible: true,
+      href: '/playground/vite-plugin/',
+    })
   })
 })

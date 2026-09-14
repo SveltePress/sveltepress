@@ -72,7 +72,9 @@
         <div class="strip-actions">
           {#if entry.guideHref}
             <a class="text-link" href={localePath(entry.guideHref, locale)}
-              >{copy.guide}</a
+              >{entry.guideHref.startsWith('/reference/')
+                ? copy.reference
+                : copy.guide}</a
             >
           {/if}
           <a

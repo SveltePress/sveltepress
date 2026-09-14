@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import {
   BASIC_WRITING_SLUG,
   githubImportPath,
+  PINNED_STARTERS_TAG,
   shippingEntries,
 } from '../src/lib/playground/catalog.ts'
 import {
@@ -19,19 +20,40 @@ const PERSIST_CAVEAT_EN
   = 'Reloading or opening this URL always boots the Starter as authored. Keep edits with Save-fork in StackBlitz chrome. Open in StackBlitz opens the Starter as authored in a new tab and does not carry Hosted editor edits.'
 
 const SLICE_SENTENCE_EN
-  = 'The full Feature directory is 27 Entries. This cut proves the sandbox.'
+  = 'The full Feature directory is 27 Entries. This list is every currently shipping Entry.'
 
-describe('playground v1 catalog chrome', () => {
-  it('lists one Markdown features group and one Basic Writing row', () => {
+describe('playground catalog chrome', () => {
+  it('lists Markdown features, Default theme features, and Reference in Guide order', () => {
     const groups = shippingGroups()
-    expect(groups).toEqual(['Markdown features'])
-    expect(shippingEntries().map(entry => entry.slug)).toEqual([BASIC_WRITING_SLUG])
-    expect(shippingEntries()[0]?.name).toBe('Basic Writing')
+    expect(groups).toEqual(['Markdown features', 'Default theme features', 'Reference'])
+    expect(shippingEntries().map(entry => entry.group)).toEqual([
+      'Markdown features',
+      'Markdown features',
+      'Markdown features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Default theme features',
+      'Reference',
+    ])
+    expect(shippingEntries().some(entry => entry.slug === BASIC_WRITING_SLUG)).toBe(true)
+    expect(shippingEntries().some(entry => entry.slug === 'kitchen-sink')).toBe(false)
+    expect(shippingEntries().some(entry => entry.slug === 'i18n')).toBe(false)
   })
 
   it('keeps the slice sentence in home copy and out of the Entry strip copy', () => {
     const copy = playgroundCopy('en')
     expect(copy.sliceSentence).toBe(SLICE_SENTENCE_EN)
+    expect(copy.sliceSentence).not.toMatch(/sandbox|this cut/i)
     expect(copy.persistCaveat).toBe(PERSIST_CAVEAT_EN)
     expect(copy.persistCaveat).not.toContain('27 Entries')
     expect(copy.openInStackBlitz).toBe('Open in StackBlitz')
@@ -46,24 +68,34 @@ describe('playground v1 catalog chrome', () => {
     expect(bn.playground).toBe('প্লেগ্রাউন্ড')
     expect(zh.sliceSentence).toContain('27')
     expect(bn.sliceSentence).toContain('27')
+    expect(zh.sliceSentence).not.toContain('切片')
+    expect(bn.sliceSentence).not.toContain('স্যান্ডবক্স')
     expect(zh.persistCaveat).toContain('Save-fork')
     expect(bn.persistCaveat).toContain('Save-fork')
     expect(zh.openInStackBlitz).not.toMatch(/修改|编辑/)
     expect(localizedGroup('Markdown features', 'zh')).toBe('Markdown 相关')
     expect(localizedGroup('Markdown features', 'bn')).toBe('Markdown এর ফিচারসমূহ')
     expect(localizedGroup('Markdown features', 'en')).toBe('Markdown features')
+    expect(localizedGroup('Default theme features', 'zh')).toBe('默认主题特性')
+    expect(localizedGroup('Default theme features', 'bn')).toBe('ডিফল্ট থিমের ফিচারসমূহ')
+    expect(localizedGroup('Reference', 'zh')).toBe('参考')
+    expect(localizedGroup('Reference', 'bn')).toBe('রেফারেন্স')
   })
 
-  it('registers only the shipping Entry URL and Playground home as files', () => {
+  it('registers shipping Entry URLs and Playground home as files', () => {
     const routes = resolve(import.meta.dirname, '../src/routes')
     expect(existsSync(resolve(routes, 'playground/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'playground/markdown/basic-writing/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'zh/playground/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'zh/playground/markdown/basic-writing/+page.svelte'))).toBe(true)
     expect(existsSync(resolve(routes, 'bn/playground/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'bn/playground/markdown/basic-writing/+page.svelte'))).toBe(true)
-    expect(existsSync(resolve(routes, 'playground/markdown/frontmatter/+page.svelte'))).toBe(false)
+    for (const slug of shippingEntries().map(entry => entry.slug)) {
+      expect(existsSync(resolve(routes, `playground/${slug}/+page.svelte`)), slug).toBe(true)
+      expect(existsSync(resolve(routes, `zh/playground/${slug}/+page.svelte`)), slug).toBe(true)
+      expect(existsSync(resolve(routes, `bn/playground/${slug}/+page.svelte`)), slug).toBe(true)
+    }
     expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/i18n/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/typescript/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, 'playground/custom-theme/+page.svelte'))).toBe(false)
     expect(existsSync(resolve(routes, 'v/playground/+page.svelte'))).toBe(false)
     expect(existsSync(resolve(routes, 'zh/v/playground/+page.svelte'))).toBe(false)
   })
@@ -89,7 +121,9 @@ describe('hosted editor addressing', () => {
     const request = hostedEditorEmbedRequest(entry, 'dark')
     expect(request.method).toBe('embedGithubProject')
     expect(request.projectPath).toBe(githubImportPath(entry))
-    expect(request.projectPath).toContain('/tree/playground-v1/default-theme')
+    expect(PINNED_STARTERS_TAG).not.toBe('main')
+    expect(PINNED_STARTERS_TAG).toBe('playground-default-theme')
+    expect(request.projectPath).toContain(`/tree/${PINNED_STARTERS_TAG}/default-theme`)
     expect(request.projectPath).not.toContain('/main/')
     expect(request.options.openFile).toBe('src/routes/guide/markdown/basic-writing/+page.md')
     expect(request.options.clickToLoad).toBe(false)
