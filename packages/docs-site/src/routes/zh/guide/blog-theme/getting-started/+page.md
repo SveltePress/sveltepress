@@ -5,7 +5,7 @@ title: 快速上手
 :::tip[先看在线效果]{icon=noto:rocket}
 动手搭建之前，强烈建议**先打开在线 Demo：[sveltepress.github.io/sveltepress/blog-demo](https://sveltepress.github.io/sveltepress/blog-demo/)**。本页介绍的一切特性都已经在这里跑起来了。
 
-导航栏中的 **博客示例** 是这份成品展示。导航栏中的 **演练场** 是另一项工作：它打开 Blog starter，让你可以在 Hosted editor 中编辑「配置」「写文章」「特性」和「自定义」。本快速上手页不是演练场条目，也没有「在演练场中打开」控件。
+导航栏中的 **博客示例** 是这份成品展示。导航栏中的 **演练场** 打开功能目录。「配置」「写文章」「特性」和「自定义」才是会自动启动 Blog starter 的博客主题条目。本快速上手页不是演练场条目，也没有「在演练场中打开」控件。
 
 源码在 monorepo 中的 [`packages/example-blog`](https://github.com/SveltePress/sveltepress/tree/main/packages/example-blog)。克隆仓库后，在仓库根目录执行 `pnpm install` 和 `pnpm --filter @sveltepress/example-blog dev`，Demo 会启动在 `http://localhost:36739`。
 :::
