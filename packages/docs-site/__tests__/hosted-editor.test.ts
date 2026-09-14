@@ -10,6 +10,7 @@ import {
   openInStackBlitzUrl,
   PINNED_STARTERS_TAG,
   shippingEntries,
+  VERSION_MANAGEMENT_SLUG,
 } from '../src/lib/playground/catalog.ts'
 import PlaygroundApp from '../src/lib/playground/PlaygroundApp.svelte'
 
@@ -146,6 +147,36 @@ describe('hosted editor wrapper', () => {
     })
     expect(openInStackBlitzUrl(entry)).toBe(
       `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/i18n`,
+    )
+  })
+
+  it('auto-boots the Versions starter at sveltepress.versions.json', async () => {
+    const entry = shippingEntries().find(item => item.slug === VERSION_MANAGEMENT_SLUG)!
+    const embed = vi.fn(async () => ({}))
+    const view = render(PlaygroundApp, {
+      locale: 'en',
+      slug: VERSION_MANAGEMENT_SLUG,
+      theme: 'light',
+      embed,
+    })
+    await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    const [element, projectPath, options] = embed.mock.calls[0]!
+    expect(element).toBeInstanceOf(HTMLElement)
+    expect(projectPath).toBe(githubImportPath(entry))
+    expect(projectPath).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/versions`,
+    )
+    expect(options).toMatchObject({
+      openFile: 'sveltepress.versions.json',
+      clickToLoad: false,
+      theme: 'light',
+      height: '100%',
+    })
+    expect(view.getByText('Author-success')).toBeTruthy()
+    expect(view.getByText('Degraded')).toBeTruthy()
+    expect(view.getByText('`versions init` / `create` · `versions build`')).toBeTruthy()
+    expect(openInStackBlitzUrl(entry)).toBe(
+      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/versions`,
     )
   })
 })

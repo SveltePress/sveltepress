@@ -4,6 +4,8 @@ title: 文档版本管理
 
 SveltePress 可以让最新版文档继续使用普通 URL，同时把不可变的历史快照发布到 `/v/8.1/` 之类的路径。该能力默认关闭；没有 `sveltepress.versions.json` 的站点行为不变。
 
+演练场中的 [文档版本管理](/playground/version-management/) 条目会按作者提交的内容启动带 versions 清单和一个冻结快照的默认主题 Starter，并打开 `sveltepress.versions.json`。
+
 ## 安装与初始化
 
 ```sh

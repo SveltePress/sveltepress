@@ -10,7 +10,7 @@
     "build:vercel": "cd ../vite && pnpm build && cd ../theme-default && pnpm build && cd ../docs-site && pnpm build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "vitest"
+    "test": "svelte-kit sync && vitest"
   },
   "devDependencies": {
     "@iconify-json/bi": "catalog:",

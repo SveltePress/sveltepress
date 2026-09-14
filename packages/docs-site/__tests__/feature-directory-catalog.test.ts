@@ -518,6 +518,18 @@ describe('open in playground door', () => {
       visible: true,
       href: '/bn/playground/i18n/',
     })
+    expect(openInPlayground('/guide/version-management/')).toEqual({
+      visible: true,
+      href: '/playground/version-management/',
+    })
+    expect(openInPlayground('/zh/guide/version-management/')).toEqual({
+      visible: true,
+      href: '/zh/playground/version-management/',
+    })
+    expect(openInPlayground('/bn/guide/version-management/')).toEqual({
+      visible: true,
+      href: '/bn/playground/version-management/',
+    })
   })
 
   it('hides on current Entry leaves that are not yet shipping', () => {

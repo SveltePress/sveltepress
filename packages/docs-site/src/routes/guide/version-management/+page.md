@@ -4,6 +4,8 @@ title: Document version management
 
 SveltePress can keep the latest documentation at its normal URLs while publishing immutable historical snapshots below a version prefix such as `/v/8.1/`. Version management is opt-in: sites without a `sveltepress.versions.json` manifest behave exactly as before.
 
+The Playground [Document versions](/playground/version-management/) Entry boots a Default Theme starter with a versions manifest and one frozen snapshot as authored at `sveltepress.versions.json`.
+
 ## Install and initialize
 
 Install the CLI beside the Vite plugin and theme:
