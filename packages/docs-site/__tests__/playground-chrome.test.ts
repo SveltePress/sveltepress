@@ -55,6 +55,7 @@ describe('playground catalog chrome', () => {
     expect(copy.sliceSentence).not.toMatch(/sandbox|this cut/i)
     expect(copy.persistCaveat).toBe(PERSIST_CAVEAT_EN)
     expect(copy.persistCaveat).not.toContain('27 Entries')
+    expect(copy.openInPlayground).toBe('Open in Playground')
     expect(copy.openInStackBlitz).toBe('Open in StackBlitz')
     expect(copy.openInStackBlitz.toLowerCase()).not.toContain('edit')
     expect(copy.openInStackBlitz.toLowerCase()).not.toContain('changes')
@@ -98,6 +99,18 @@ describe('playground catalog chrome', () => {
     expect(existsSync(resolve(routes, 'playground/kitchen-sink/+page.svelte'))).toBe(false)
     expect(existsSync(resolve(routes, 'v/playground/+page.svelte'))).toBe(false)
     expect(existsSync(resolve(routes, 'zh/v/playground/+page.svelte'))).toBe(false)
+    expect(existsSync(resolve(routes, '../src/lib/prototype/open-in-playground'))).toBe(false)
+  })
+
+  it('wires Open in Playground from the catalog, not a prototype overlay', () => {
+    const layout = readFileSync(
+      resolve(import.meta.dirname, '../src/routes/+layout.svelte'),
+      'utf8',
+    )
+    expect(layout).toContain('openInPlaygroundTitleAction')
+    expect(layout).toContain('TITLE_ROW_ACTION_KEY')
+    expect(layout).not.toContain('mountAt')
+    expect(layout).not.toMatch(/prototype/i)
   })
 
   it('keeps Playground routes out of future documentation freezes', () => {

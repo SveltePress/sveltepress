@@ -1,4 +1,5 @@
 import type { CatalogLocale, SuccessKind } from './catalog.ts'
+import { localeFromPath, openInPlayground } from './catalog.ts'
 
 export interface PlaygroundCopy {
   playground: string
@@ -6,6 +7,7 @@ export interface PlaygroundCopy {
   lede: string
   sliceSentence: string
   persistCaveat: string
+  openInPlayground: string
   openInStackBlitz: string
   guide: string
   reference: string
@@ -35,6 +37,7 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     lede: 'Pick an Entry to auto-boot its Starter in the Hosted editor. This page never boots.',
     sliceSentence: 'The full Feature directory is 27 Entries. This list is every currently shipping Entry.',
     persistCaveat: 'Reloading or opening this URL always boots the Starter as authored. Keep edits with Save-fork in StackBlitz chrome. Open in StackBlitz opens the Starter as authored in a new tab and does not carry Hosted editor edits.',
+    openInPlayground: 'Open in Playground',
     openInStackBlitz: 'Open in StackBlitz',
     guide: 'Guide',
     reference: 'Reference',
@@ -57,6 +60,7 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     lede: '选择一条目即可在 Hosted editor 中自动启动对应 Starter。本页不会启动编辑器。',
     sliceSentence: '完整功能目录共 27 个条目。下列为当前已上线的条目。',
     persistCaveat: '重新加载或打开此 URL 总会按作者提交的内容启动 Starter。请在 StackBlitz 界面中使用 Save-fork 保留编辑。Open in StackBlitz 会在新标签页打开作者提交的 Starter，不会带走 Hosted editor 中的编辑。',
+    openInPlayground: '在演练场中打开',
     openInStackBlitz: '在 StackBlitz 中打开',
     guide: '指南',
     reference: '参考',
@@ -79,6 +83,7 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     lede: 'একটি এন্ট্রি বেছে নিলে Hosted editor সেই Starter আপনাআপনি চালায়। এই পাতা কখনো এডিটর চালায় না।',
     sliceSentence: 'সম্পূর্ণ ফিচার ডিরেক্টরিতে 27টি এন্ট্রি আছে। এই তালিকা বর্তমানে শিপিং এন্ট্রি।',
     persistCaveat: 'এই URL রিলোড বা খুললে Starter সবসময় লেখকের মতোই চালু হয়। সম্পাদনা রাখতে StackBlitz ইন্টারফেসে Save-fork ব্যবহার করুন। Open in StackBlitz নতুন ট্যাবে লেখকের Starter খোলে এবং Hosted editor-এর সম্পাদনা নিয়ে যায় না।',
+    openInPlayground: 'প্লেগ্রাউন্ডে খুলুন',
     openInStackBlitz: 'StackBlitz-এ খুলুন',
     guide: 'গাইড',
     reference: 'রেফারেন্স',
@@ -99,6 +104,18 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
 
 export function playgroundCopy(locale: CatalogLocale): PlaygroundCopy {
   return COPY[locale]
+}
+
+export function openInPlaygroundTitleAction(
+  pathname: string,
+): { href: string, label: string } | null {
+  const door = openInPlayground(pathname)
+  if (!door.visible || !door.href)
+    return null
+  return {
+    href: door.href,
+    label: playgroundCopy(localeFromPath(pathname)).openInPlayground,
+  }
 }
 
 export function localizedGroup(group: string, locale: CatalogLocale): string {

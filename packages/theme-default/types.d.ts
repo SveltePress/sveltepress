@@ -173,6 +173,16 @@ declare module '@sveltepress/theme-default/context' {
     isDark: Writable<boolean>
   }
   export const SVELTEPRESS_CONTEXT_KEY: symbol
+  export const TITLE_ROW_ACTION_KEY: symbol
+
+  export interface TitleRowAction {
+    href: string
+    label: string
+  }
+
+  export interface TitleRowActionContext {
+    readonly current: TitleRowAction | undefined
+  }
 }
 
 declare module 'virtual:sveltepress/theme-default/versioning' {

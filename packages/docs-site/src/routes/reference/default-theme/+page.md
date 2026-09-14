@@ -205,6 +205,33 @@ The fixed text contents that can be replaced by your config.
   * `newContentAvailable`
 * `footnoteLabel` - The auto generated footnotes title. Default is `"Footnotes"`
 
+:::since[Optional title-row action]{version="2026-09-09" id="theme-title-row-action" summary="PageLayout can render an optional action after the page title and version-new badge."}
+### Title-row action
+
+Default Theme `PageLayout` can render an optional control on the `h1` row, after the title and any version-new badge. Sites that omit it keep today's title row.
+
+Pass a `titleAction` snippet to `PageLayout`, or provide a `{ current }` object through `TITLE_ROW_ACTION_KEY` from `@sveltepress/theme-default/context` (`current` is `{ href, label }` or `undefined`):
+
+```svelte
+<script>
+  import { setContext } from 'svelte'
+  import { TITLE_ROW_ACTION_KEY } from '@sveltepress/theme-default/context'
+
+  const action = $derived({
+    href: '/playground/markdown/basic-writing/',
+    label: 'Open in Playground',
+  })
+  setContext(TITLE_ROW_ACTION_KEY, {
+    get current() {
+      return action
+    },
+  })
+</script>
+```
+
+The action is a same-page link. Theme consumers do not inherit a SveltePress-docs-only control unless they set one.
+:::
+
 ### `preBuildIconifyIcons`
 
 The icons in [Iconify](https://iconify.design/) that you want to pre-build for future usage.

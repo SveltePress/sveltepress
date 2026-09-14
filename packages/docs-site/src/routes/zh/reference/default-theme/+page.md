@@ -200,6 +200,33 @@ const defaultGradient = {
   * `newContentAvailable`
 * `footnoteLabel` - 自动生成的脚注标题，默认为 `"Footnotes"`
 
+:::since[可选的标题行操作]{version="2026-09-09" id="theme-title-row-action" summary="PageLayout 可在页面标题和版本新增徽章之后渲染可选操作。"}
+### 标题行操作
+
+默认主题的 `PageLayout` 可以在 `h1` 行上、标题以及版本新增徽章之后渲染一个可选控件。不传入时保持现有标题行。
+
+向 `PageLayout` 传入 `titleAction` snippet，或通过 `@sveltepress/theme-default/context` 的 `TITLE_ROW_ACTION_KEY` 提供 `{ current }` 对象（`current` 为 `{ href, label }` 或 `undefined`）：
+
+```svelte
+<script>
+  import { setContext } from 'svelte'
+  import { TITLE_ROW_ACTION_KEY } from '@sveltepress/theme-default/context'
+
+  const action = $derived({
+    href: '/playground/markdown/basic-writing/',
+    label: '在演练场中打开',
+  })
+  setContext(TITLE_ROW_ACTION_KEY, {
+    get current() {
+      return action
+    },
+  })
+</script>
+```
+
+该操作是同页链接。主题消费者不会自动获得 SveltePress 文档站专用的控件，除非自行设置。
+:::
+
 ### `preBuildIconifyIcons`
 一些你可能在编写文档过程中用到的 [Iconify](https://iconify.design/) 图标
 
