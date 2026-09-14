@@ -189,8 +189,8 @@ const defaultGradient = {
 
 ```svelte
 <script>
-  import { setContext } from 'svelte'
   import { TITLE_ROW_ACTION_KEY } from '@sveltepress/theme-default/context'
+  import { setContext } from 'svelte'
 
   const action = $derived({
     href: '/playground/markdown/basic-writing/',
