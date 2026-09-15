@@ -35,6 +35,7 @@ describe('hosted editor wrapper', () => {
       clickToLoad: false,
       theme: 'light',
       height: '100%',
+      crossOriginIsolated: true,
     })
   })
 

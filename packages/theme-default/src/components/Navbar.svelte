@@ -248,7 +248,13 @@
     --at-apply: 'flex items-center gap-2 flex-none';
   }
   .doc-search {
-    --at-apply: 'flex-grow min-w-0 flex items-center relative transition-300 ease-out';
+    --at-apply: 'flex-grow min-w-0 overflow-hidden flex items-center relative transition-300 ease-out';
+  }
+  .doc-search :global(.local-search-trigger),
+  .doc-search :global(.DocSearch-Button) {
+    width: 100%;
+    max-width: 220px;
+    min-width: 0;
   }
   .doc-search.is-home {
     --at-apply: 'left-0';
@@ -267,7 +273,7 @@
     --at-apply: 'items-stretch flex flex-none gap-1';
   }
   .nav-links {
-    --at-apply: 'flex items-stretch flex-grow justify-end';
+    --at-apply: 'flex items-stretch flex-none justify-end';
   }
 
   .desktop-nav-items,

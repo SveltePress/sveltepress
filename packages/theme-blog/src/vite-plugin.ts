@@ -8,7 +8,6 @@ import { createReadStream } from 'node:fs'
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
-import { renderOgImage } from './og-image.js'
 import { hashContent, loadCache, saveCache } from './parse-cache.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
@@ -172,6 +171,17 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       }
 
       if (options.ogImage?.enabled !== false) {
+        let renderOgImage: typeof import('./og-image.js').renderOgImage
+        try {
+          // Browser containers cannot load the native resvg addon.
+          const renderer = await import('./og-image.js')
+          renderOgImage = renderer.renderOgImage
+        }
+        catch (err) {
+          console.warn('[theme-blog] OG image generation unavailable; skipping PNGs. Generate them in a native Node.js environment, or set ogImage.enabled to false.', err)
+          return
+        }
+
         const ogDir = resolve(config.root, 'static/og')
         await mkdir(ogDir, { recursive: true })
         const ogTheme = {
