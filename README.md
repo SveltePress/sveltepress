@@ -46,6 +46,19 @@ Inspired by [VitePress](https://vitepress.dev/), built on [SvelteKit](https://ki
 
 Requires Svelte 5, SvelteKit 2, Vite 8, and Node.js `^20.19.0` or `>=22.12.0`.
 
+### Comparison
+
+| Feature / Aspect | Sveltepress | VitePress | Astro (Starlight) | Docusaurus |
+|---|---|---|---|---|
+| **Ecosystem** | Svelte / SvelteKit | Vue 3 | Framework-agnostic | React |
+| **Build Engine** | Vite 8 + SvelteKit 2 | Vite + Vue 3 | Vite + Astro compiler | Webpack |
+| **Fullstack Power** | Full SvelteKit surface (SSR, API routes, hooks) | Static-focused SSG | Requires SSR adapter | Requires Node plugins |
+| **Reactivity** | Svelte 5 Runes natively in `.md` | Vue 3 Composition API | Static by default (Islands) | React Hooks |
+| **Interactive Code** | Native live components + Twoslash hover | Vue components | Requires plugins | Requires react-live |
+| **Doc Versioning** | Content-addressed immutable deltas & diffs | Branch/dir-based | Requires plugins | Directory snapshot copies |
+| **Search** | Pagefind (built-in) / DocSearch / Meilisearch | Pagefind / DocSearch | Pagefind | Algolia / local plugins |
+| **AI Knowledge (`llms.txt`)** | Built-in automatic generation | Third-party plugin | Third-party plugin | Third-party plugin |
+
 ## Quick start
 
 ```bash

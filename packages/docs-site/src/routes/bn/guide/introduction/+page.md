@@ -8,6 +8,21 @@ Sveltepress হচ্ছে একটি সাইট বানানোর ট�
 
 ন্যাভবারের **প্লেগ্রাউন্ড** ব্রাউজারের ভিতরে Starter-এর ফিচার ডিরেক্টরি খোলে। Markdown, Default Theme এবং Vite plugin এন্ট্রি একই Default Theme starter শেয়ার করে। ডকুমেন্ট সংস্করণ ব্যবস্থাপনা একটি Versions starter-এ চালু আছে (`versions init` / `create` · `versions build`)। Internationalization একটি তিন-লোকেল starter-এ চালু আছে। লোকেল প্লেগ্রাউন্ড সেই ভাষায় লেখা একই-পাথ Starter এমবেড করে (`src/routes/+page.md`, `config/navbar.js`) — `/zh/` বা `/bn/` রুট যোগ করে না, শুধু Internationalization এন্ট্রি ব্যতিক্রম। Custom theme শুধু প্লেগ্রাউন্ড হোম থেকে পাওয়া যায় (কোনো Guide leaf নেই); প্রিভিউয়ের ফ্রেম [লেআউট অনুক্রম](#Layout-hierarchy)-এর সাথে মিলিয়ে `GlobalLayout`, `+layout.svelte` ও `PageLayout` দেখায়। ব্লগ থিম এন্ট্রি (কনফিগারেশন, পোস্ট লেখা, ফিচারসমূহ, কাস্টমাইজেশন) Blog starter শেয়ার করে। Virtual modules Kitchen-sink starter-এর একটি Reference এন্ট্রি; `virtual:sveltepress/site`, `locale` এবং `versions` পাতার Open in Playground সেখানেই যায়। Kitchen sink হলো All features এন্ট্রি এবং প্লেগ্রাউন্ড ক্রোমের CTA (সাইট ন্যাভবার আইটেম নয়)। Blog theme ও custom theme সেই ট্রিতে থাকে না। গাইড পাতায় Live code অপরিবর্তিত থাকে; ব্লগ ডেমো আগের মতোই একটি সম্পূর্ণ প্রদর্শনী।
 
+## অন্যান্য টুলের সাথে তুলনা
+
+অন্যান্য আধুনিক ডকুমেন্টেশন সমাধানের সাথে Sveltepress-এর তুলনা:
+
+| ফিচার / দিক | Sveltepress | VitePress | Astro (Starlight) | Docusaurus |
+|---|---|---|---|---|
+| **মূল ইকোসিস্টেম** | Svelte / SvelteKit | Vue 3 | ফ্রেমওয়ার্ক-নিরপেক্ষ | React |
+| **বিল্ড ইঞ্জিন** | Vite 8 + SvelteKit 2 | Vite + Vue 3 | Vite + Astro কম্পাইলার | Webpack |
+| **ফুলস্ট্যাক সক্ষমতা** | সম্পূর্ণ SvelteKit সক্ষমতা (SSR, API রুট, hooks) | প্রধানত স্ট্যাটিক SSG | SSR অ্যাডাপ্টার প্রয়োজন | Node প্লাগইন প্রয়োজন |
+| **রিঅ্যাক্টিভিটি** | `.md`-তে সরাসরি Svelte 5 Runes | Vue 3 Composition API | ডিফল্টরূপে স্ট্যাটিক (Islands) | React Hooks |
+| **ইন্টারেক্টিভ কোড** | নেটিভ লাইভ কম্পোনেন্ট + Twoslash হোভার | Vue কম্পোনেন্ট | প্লাগইন প্রয়োজন | react-live প্রয়োজন |
+| **ডকুমেন্ট সংস্করণ** | কনটেন্ট-অ্যাড্রেসড অপরিবর্তনীয় ডেল্টা ও ডিফারেন্স | ব্রাঞ্চ/ডিরেক্টরি ভিত্তিক | প্লাগইন প্রয়োজন | ডিরেক্টরি স্ন্যাপশট কপি |
+| **অনুসন্ধান** | Pagefind (বিল্ট-ইন) / DocSearch / Meilisearch | Pagefind / DocSearch | Pagefind | Algolia / লোকাল প্লাগইন |
+| **এআই নলেজ (`llms.txt`)** | বিল্ট-ইন স্বয়ংক্রিয় জেনারেশন | থার্ড-পার্টি প্লাগইন | থার্ড-পার্টি প্লাগইন | থার্ড-পার্টি প্লাগইন |
+
 ## প্রজেক্টের স্ট্র্যাকচার
 
 হুবহু [Project structure - SvelteKit](https://kit.svelte.dev/docs/project-structure) এর মতই।
