@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
 export interface PagefindOptions {
@@ -183,17 +183,31 @@ export async function indexSiteWithPagefind(
 
     const addRes = await index.addDirectory({ path: siteDir })
     if (addRes.errors && addRes.errors.length > 0) {
-      await pagefind.close()
+      await index.deleteIndex().catch(() => {})
       return { success: false, reason: `Pagefind addDirectory error: ${addRes.errors.join(', ')}` }
     }
 
     const writeRes = await index.writeFiles({ outputPath })
     if (writeRes.errors && writeRes.errors.length > 0) {
-      await pagefind.close()
+      await index.deleteIndex().catch(() => {})
       return { success: false, reason: `Pagefind writeFiles error: ${writeRes.errors.join(', ')}` }
     }
 
-    await pagefind.close()
+    // Await index asset flush to disk before deleting index or returning
+    const entryPath = join(outputPath, 'pagefind-entry.json')
+    if (existsSync(outputPath)) {
+      const start = Date.now()
+      while (Date.now() - start < 1500) {
+        try {
+          if (existsSync(entryPath) && statSync(entryPath).size > 0)
+            break
+        }
+        catch {}
+        await new Promise(resolve => setTimeout(resolve, 20))
+      }
+    }
+
+    await index.deleteIndex().catch(() => {})
     return {
       success: true,
       outputPath,
@@ -205,5 +219,18 @@ export async function indexSiteWithPagefind(
       success: false,
       reason: (error as Error).message,
     }
+  }
+}
+
+/**
+ * Clean up the background Pagefind service process if active.
+ */
+export async function closePagefind(): Promise<void> {
+  try {
+    const pagefind = await import('pagefind')
+    await pagefind.close()
+  }
+  catch {
+    // Ignore if not running or already closed
   }
 }
