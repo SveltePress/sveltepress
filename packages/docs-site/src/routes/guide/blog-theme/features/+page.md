@@ -63,7 +63,9 @@ blogTheme({
 })
 ```
 
-Set `enabled: false` to skip generation entirely.
+Set `enabled: false` to skip generation and loading the renderer entirely.
+
+The resvg renderer requires native Node.js addons, which browser containers such as StackBlitz WebContainers do not support. If the renderer cannot be loaded, the theme warns and skips OG PNG generation; the blog still starts and existing images are preserved. Generate fresh OG images in a native Node.js environment before deployment.
 
 For the OG URLs in meta tags to be fully-qualified (required by Facebook and most crawlers), set `base` to your site's full URL: `base: 'https://example.com'`.
 

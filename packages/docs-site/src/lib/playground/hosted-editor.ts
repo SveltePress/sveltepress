@@ -8,6 +8,7 @@ export interface HostedEditorEmbedOptions {
   clickToLoad: false
   theme: HostedEditorTheme
   height: '100%'
+  crossOriginIsolated: true
 }
 
 export interface HostedEditorEmbedRequest {
@@ -34,6 +35,7 @@ export function hostedEditorEmbedRequest(
       clickToLoad: false,
       theme,
       height: '100%',
+      crossOriginIsolated: true,
     },
   }
 }

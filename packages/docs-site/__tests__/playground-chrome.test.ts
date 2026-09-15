@@ -2,6 +2,10 @@ import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import {
+  applyIsolationHeaders,
+  isolationHeaders,
+} from '../src/lib/isolation-headers.ts'
+import {
   BASIC_WRITING_SLUG,
   entryBySlug,
   githubImportPath,
@@ -146,7 +150,40 @@ describe('hosted editor addressing', () => {
     expect(request.options.clickToLoad).toBe(false)
     expect(request.options.theme).toBe('dark')
     expect(request.options.height).toBe('100%')
+    expect(request.options.crossOriginIsolated).toBe(true)
     expect(JSON.stringify(request)).not.toMatch(/embedProject/)
     expect(JSON.stringify(request)).not.toMatch(/\/run/)
+  })
+})
+
+describe('hosted editor isolation', () => {
+  it('stamps COOP/COEP onto the resolved document response', () => {
+    const headers = new Headers()
+    applyIsolationHeaders(headers)
+    expect(headers.get('Cross-Origin-Opener-Policy')).toBe('same-origin')
+    expect(headers.get('Cross-Origin-Embedder-Policy')).toBe('credentialless')
+    expect(isolationHeaders).toEqual({
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'credentialless',
+    })
+  })
+
+  it('serves COOP/COEP on every document so client navigation keeps SharedArrayBuffer', () => {
+    const site = resolve(import.meta.dirname, '..')
+    const viteConfig = readFileSync(resolve(site, 'vite.config.ts'), 'utf8')
+    const hooks = readFileSync(resolve(site, 'src/hooks.server.js'), 'utf8')
+    const netlifyConfig = readFileSync(resolve(site, 'netlify.toml'), 'utf8')
+    const publishedHeaders = readFileSync(resolve(site, 'static/_headers'), 'utf8')
+
+    expect(viteConfig).toContain('./src/lib/isolation-headers.ts')
+    expect(viteConfig).toMatch(/server:\s*\{[\s\S]*headers:\s*isolationHeaders/)
+    expect(viteConfig).toMatch(/preview:\s*\{[\s\S]*headers:\s*isolationHeaders/)
+    expect(hooks).toContain('sequence(isolationHandle, createLocaleHandle(locales))')
+
+    for (const [name, value] of Object.entries(isolationHeaders)) {
+      expect(publishedHeaders).toContain(`${name}: ${value}`)
+      expect(netlifyConfig).toContain(name)
+      expect(netlifyConfig).toContain(`"${value}"`)
+    }
   })
 })

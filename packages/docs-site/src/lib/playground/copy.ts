@@ -26,6 +26,12 @@ export interface PlaygroundCopy {
   failedCopy: string
   hostedEditor: string
   success: Record<SuccessKind, string>
+  searchPlaceholder: string
+  allCategories: string
+  launch: string
+  starters: string
+  browseStarters: string
+  caveatTitle: string
 }
 
 const GROUPS: Record<string, Record<Exclude<CatalogLocale, 'en'>, string>> = {
@@ -65,6 +71,12 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
       degraded: 'Degraded',
       observation: 'Observation-only',
     },
+    searchPlaceholder: 'Search starters or files…',
+    allCategories: 'All categories',
+    launch: 'Launch',
+    starters: 'starters',
+    browseStarters: 'Browse Starters',
+    caveatTitle: 'Persistence note',
   },
   zh: {
     playground: '演练场',
@@ -93,6 +105,12 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
       degraded: '降级',
       observation: '仅观察',
     },
+    searchPlaceholder: '搜索演练场条目或文件…',
+    allCategories: '所有类别',
+    launch: '启动',
+    starters: '个条目',
+    browseStarters: '浏览条目',
+    caveatTitle: '存储提示',
   },
   bn: {
     playground: 'প্লেগ্রাউন্ড',
@@ -121,6 +139,12 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
       degraded: 'অবনমিত',
       observation: 'শুধু পর্যবেক্ষণ',
     },
+    searchPlaceholder: 'স্টার্টার বা ফাইল খুঁজুন…',
+    allCategories: 'সকল বিভাগ',
+    launch: 'চালু করুন',
+    starters: 'টি স্টার্টার',
+    browseStarters: 'স্টার্টার তালিকা',
+    caveatTitle: 'সংরক্ষণ নির্দেশিকা',
   },
 }
 

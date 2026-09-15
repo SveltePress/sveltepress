@@ -5,6 +5,7 @@ import { locales } from './config/locales.ts'
 import navbar from './config/navbar.ts'
 import pwa from './config/pwa.ts'
 import sidebar from './config/sidebar.ts'
+import { isolationHeaders } from './src/lib/isolation-headers.ts'
 
 const config = defineConfig({
   plugins: [
@@ -57,6 +58,10 @@ const config = defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5556,
+    headers: isolationHeaders,
+  },
+  preview: {
+    headers: isolationHeaders,
   },
 })
 

@@ -43,6 +43,10 @@ The theme generates a fully static site and scaffolds missing route files on the
 }
 ```
 
+## Browser containers
+
+OG PNG generation uses a native resvg addon, which browser containers such as StackBlitz WebContainers cannot load. The theme loads the renderer only when OG images are enabled. If the renderer is unavailable, it warns and skips PNG generation without preventing the blog from starting or deleting existing images. Generate fresh OG images in a native Node.js environment before deployment, or set `ogImage: { enabled: false }` to skip loading the renderer entirely.
+
 See the [blog theme guide](https://sveltepress.site/guide/blog-theme/getting-started/) and [live demo](https://sveltepress.github.io/sveltepress/blog-demo/) for the complete setup, configuration, and customization surface.
 
 ## License

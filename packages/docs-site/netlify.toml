@@ -25,3 +25,13 @@ status = 301
 from = "/bn"
 to = "/bn/"
 status = 301
+
+# WebContainer embeds need SharedArrayBuffer. Isolation is captured on the
+# initial document, so every locale (and client navigations from docs into
+# Playground) must send these headers — not only `/playground/*`.
+[[headers]]
+for = "/*"
+
+[headers.values]
+Cross-Origin-Opener-Policy = "same-origin"
+Cross-Origin-Embedder-Policy = "credentialless"
