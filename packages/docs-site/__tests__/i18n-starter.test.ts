@@ -74,6 +74,8 @@ describe('i18n starter and Internationalization', () => {
       `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/i18n`,
     )
     expect(request.options.openFile).toBe('config/locales.ts')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile).toBe('config/locales.ts')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'bn').options.openFile).toBe('config/locales.ts')
     expect(request.options.clickToLoad).toBe(false)
     expect(request.options.theme).toBe('light')
     expect(JSON.stringify(request)).not.toMatch(/embedProject/)

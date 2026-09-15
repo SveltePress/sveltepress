@@ -8,7 +8,7 @@ When document version management is enabled in `@sveltepress/vite`, `virtual:sve
 
 Custom themes and components can import this module to build version selectors, lifecycle banners, changelog catalogs, and version-aware navigation links.
 
-The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated. That page writes Svelte in markdown and renders them with the same `JsonViewer` as this page. This docs page keeps svelte live so it can show the source next to the rendered result. Open in Playground on this leaf lands there.
+The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated. English opens `src/routes/reference/virtual-modules/+page.md`; Chinese and Bengali open the translated pages under `src/routes/zh/` and `src/routes/bn/`. That page writes Svelte in markdown and renders them with the same `JsonViewer` as this page. This docs page keeps svelte live so it can show the source next to the rendered result. Open in Playground on this leaf lands there.
 
 ## Live data
 

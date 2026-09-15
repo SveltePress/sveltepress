@@ -4,6 +4,7 @@
   import {
     entryBySlug,
     entryUrl,
+    focusedFileForLocale,
     KITCHEN_SINK_SLUG,
     kitchenSinkCtaHref,
     localePath,
@@ -33,6 +34,7 @@
   const copy = $derived(playgroundCopy(locale))
   const entry = $derived(slug ? entryBySlug(slug) : undefined)
   const groups = $derived(shippingGroups())
+  const entryFile = $derived(entry ? focusedFileForLocale(entry, locale) : '')
 
   let searchQuery = $state('')
   let activeCategory = $state<string | null>(null)
@@ -49,7 +51,7 @@
     return rows.filter(r => {
       const name = localizedName(r, locale).toLowerCase()
       const slug = r.slug.toLowerCase()
-      const file = r.focusedFile.toLowerCase()
+      const file = focusedFileForLocale(r, locale).toLowerCase()
       const note = (r.barNote || '').toLowerCase()
       return (
         name.includes(q) ||
@@ -155,8 +157,11 @@
                         <span class="card-group"
                           >{localizedGroup(row.group, locale)}</span
                         >
-                        <span class="card-file" title={row.focusedFile}>
-                          <code>{row.focusedFile}</code>
+                        <span
+                          class="card-file"
+                          title={focusedFileForLocale(row, locale)}
+                        >
+                          <code>{focusedFileForLocale(row, locale)}</code>
                         </span>
                       </div>
                       <div class="card-body">
@@ -222,8 +227,8 @@
             >
             <span class="crumb-sep" aria-hidden="true">/</span>
             <h1>{localizedName(entry, locale)}</h1>
-            <span class="entry-file" title={entry.focusedFile}>
-              <code>{entry.focusedFile}</code>
+            <span class="entry-file" title={entryFile}>
+              <code>{entryFile}</code>
             </span>
             <SuccessBar kinds={entry.success} note={entry.barNote} {locale} />
           </div>

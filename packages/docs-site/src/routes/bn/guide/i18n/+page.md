@@ -4,7 +4,7 @@ title: আন্তর্জাতিকীকরণ (i18n)
 
 SveltePress একই সাইটে একাধিক লোকেল পরিবেশন করতে পারে। আন্তর্জাতিকীকরণ opt-in: `locales` না দিলে সাইট single-locale থাকে এবং আগের আচরণই বজায় থাকে।
 
-প্লেগ্রাউন্ডের [আন্তর্জাতিকীকরণ](/playground/i18n/) এন্ট্রি `config/locales.ts`-এ লেখকের মতোই একটি দুই-লোকেল Default Theme starter চালু করে।
+প্লেগ্রাউন্ডের [আন্তর্জাতিকীকরণ](/playground/i18n/) এন্ট্রি `config/locales.ts`-এ লেখকের মতোই একটি তিন-লোকেল Default Theme starter চালু করে। চীনা ও বাংলা প্লেগ্রাউন্ডও সেই ফোকাসড ফাইল খোলে; Starter-এর `/zh/` ও `/bn/` উদাহরণ ব্যাখ্যা অনুবাদ, ইংরেজি পাতার কপি নয়।
 
 :::since[Opt-in locales]{version="2026-09-03" id="i18n-opt-in-locales" summary="Pass sveltepress({ locales }) to enable multi-locale routing, theme options, and switcher."}
 ## লোকেল সক্রিয় করুন

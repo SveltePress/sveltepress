@@ -41,7 +41,7 @@ export const VIRTUAL_MODULES_SLUG = 'virtual-modules'
 export const PLAYGROUND_STARTERS_REPO = 'SveltePress/playground-starters'
 
 /** sveltepress.site embeds this tag, not `main`. */
-export const PINNED_STARTERS_TAG = 'playground-v1.10'
+export const PINNED_STARTERS_TAG = 'playground-v1.11'
 
 export const STARTER_SUBDIRECTORIES = {
   'Default Theme starter': 'default-theme',
@@ -435,6 +435,44 @@ export function localizedName(entry: Entry, locale: CatalogLocale): string {
   if (locale === 'en')
     return entry.name
   return LOCALIZED_NAMES[entry.slug]?.[locale] ?? entry.name
+}
+
+/**
+ * Hosted editor `openFile` for a locale. English keeps the catalog Focused
+ * file. Other locales open the matching translated example — not a copy of
+ * the English page — when that example lives under `src/routes`, `config`,
+ * or `src/posts`. Shared project files (`vite.config.*`, `locales.ts`,
+ * layouts) stay on the catalog path.
+ */
+export function focusedFileForLocale(entry: Entry, locale: CatalogLocale = 'en'): string {
+  if (locale === 'en')
+    return entry.focusedFile
+  return localizeFocusedFile(entry.focusedFile, locale)
+}
+
+function localizeFocusedFile(focusedFile: string, locale: Exclude<CatalogLocale, 'en'>): string {
+  if (focusedFile.startsWith('src/routes/') && focusedFile.endsWith('+page.md')) {
+    const rest = focusedFile.slice('src/routes/'.length)
+    if (rest.startsWith('zh/') || rest.startsWith('bn/'))
+      return focusedFile
+    return `src/routes/${locale}/${rest}`
+  }
+
+  if (focusedFile.startsWith('config/')) {
+    const rest = focusedFile.slice('config/'.length)
+    if (rest === 'locales.ts' || rest.startsWith('zh/') || rest.startsWith('bn/'))
+      return focusedFile
+    return `config/${locale}/${rest}`
+  }
+
+  if (focusedFile.startsWith('src/posts/') && focusedFile.endsWith('.md')) {
+    const rest = focusedFile.slice('src/posts/'.length)
+    if (rest.startsWith('zh/') || rest.startsWith('bn/') || rest.includes(`.${locale}.`))
+      return focusedFile
+    return focusedFile.replace(/\.md$/, `.${locale}.md`)
+  }
+
+  return focusedFile
 }
 
 export function openInPlaygroundHref(pathname: string): string | null {

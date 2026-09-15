@@ -4,6 +4,7 @@ import {
   CUSTOM_THEME_SLUG,
   entryBySlug,
   entryUrl,
+  focusedFileForLocale,
   githubImportPath,
   I18N_SLUG,
   isPlaygroundPathRegistered,
@@ -467,6 +468,40 @@ describe('feature directory catalog', () => {
     expect(localizedName(entryBySlug(KITCHEN_SINK_SLUG)!, 'en')).toBe('Kitchen sink')
     expect(localizedName(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'zh')).toBe('虚拟模块')
     expect(localizedName(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'bn')).toBe('ভার্চুয়াল মডিউল')
+  })
+
+  it('opens translated example files for ZH and BN instead of the English Focused file', () => {
+    const basic = entryBySlug(BASIC_WRITING_SLUG)!
+    expect(focusedFileForLocale(basic, 'en')).toBe('src/routes/guide/markdown/basic-writing/+page.md')
+    expect(focusedFileForLocale(basic, 'zh')).toBe('src/routes/zh/guide/markdown/basic-writing/+page.md')
+    expect(focusedFileForLocale(basic, 'bn')).toBe('src/routes/bn/guide/markdown/basic-writing/+page.md')
+
+    const navbar = entryBySlug('default-theme/navbar')!
+    expect(focusedFileForLocale(navbar, 'en')).toBe('config/navbar.js')
+    expect(focusedFileForLocale(navbar, 'zh')).toBe('config/zh/navbar.js')
+    expect(focusedFileForLocale(navbar, 'bn')).toBe('config/bn/navbar.js')
+
+    const home = entryBySlug('default-theme/home-page')!
+    expect(focusedFileForLocale(home, 'zh')).toBe('src/routes/zh/+page.md')
+    expect(focusedFileForLocale(home, 'bn')).toBe('src/routes/bn/+page.md')
+
+    const posts = entryBySlug('blog-theme/writing-posts')!
+    expect(focusedFileForLocale(posts, 'en')).toBe('src/posts/hello-sveltepress.md')
+    expect(focusedFileForLocale(posts, 'zh')).toBe('src/posts/hello-sveltepress.zh.md')
+    expect(focusedFileForLocale(posts, 'bn')).toBe('src/posts/hello-sveltepress.bn.md')
+
+    const locales = entryBySlug(I18N_SLUG)!
+    expect(focusedFileForLocale(locales, 'zh')).toBe('config/locales.ts')
+    expect(focusedFileForLocale(locales, 'bn')).toBe('config/locales.ts')
+
+    const typescript = entryBySlug(TYPESCRIPT_SLUG)!
+    expect(focusedFileForLocale(typescript, 'zh')).toBe('vite.config.ts')
+
+    const custom = entryBySlug(CUSTOM_THEME_SLUG)!
+    expect(focusedFileForLocale(custom, 'bn')).toBe('src/routes/+layout.svelte')
+
+    const virtual = entryBySlug(VIRTUAL_MODULES_SLUG)!
+    expect(focusedFileForLocale(virtual, 'zh')).toBe('src/routes/zh/reference/virtual-modules/+page.md')
   })
 })
 

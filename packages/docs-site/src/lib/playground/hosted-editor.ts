@@ -1,5 +1,5 @@
-import type { Entry } from './catalog.ts'
-import { githubImportPath } from './catalog.ts'
+import type { CatalogLocale, Entry } from './catalog.ts'
+import { focusedFileForLocale, githubImportPath } from './catalog.ts'
 
 export type HostedEditorTheme = 'light' | 'dark'
 
@@ -26,12 +26,13 @@ export type HostedEditorEmbed = (
 export function hostedEditorEmbedRequest(
   entry: Entry,
   theme: HostedEditorTheme,
+  locale: CatalogLocale = 'en',
 ): HostedEditorEmbedRequest {
   return {
     method: 'embedGithubProject',
     projectPath: githubImportPath(entry),
     options: {
-      openFile: entry.focusedFile,
+      openFile: focusedFileForLocale(entry, locale),
       clickToLoad: false,
       theme,
       height: '100%',

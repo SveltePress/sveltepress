@@ -37,7 +37,7 @@
     const node = host
     if (!node) return
 
-    const request = hostedEditorEmbedRequest(entry, resolveTheme())
+    const request = hostedEditorEmbedRequest(entry, resolveTheme(), locale)
     let cancelled = false
     void (async () => {
       const embedFn = embed ?? (await import('./embed.ts')).embedGithubProject

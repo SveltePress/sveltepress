@@ -180,4 +180,31 @@ describe('hosted editor wrapper', () => {
       `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/versions`,
     )
   })
+
+  it('auto-boots ZH and BN Entries at the translated example, not a copy of the English page', async () => {
+    const embed = vi.fn(async () => ({}))
+    render(PlaygroundApp, {
+      locale: 'zh',
+      slug: BASIC_WRITING_SLUG,
+      theme: 'light',
+      embed,
+    })
+    await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    expect(embed.mock.calls[0]![2]).toMatchObject({
+      openFile: 'src/routes/zh/guide/markdown/basic-writing/+page.md',
+    })
+    cleanup()
+
+    embed.mockClear()
+    render(PlaygroundApp, {
+      locale: 'bn',
+      slug: 'default-theme/admonitions',
+      theme: 'dark',
+      embed,
+    })
+    await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    expect(embed.mock.calls[0]![2]).toMatchObject({
+      openFile: 'src/routes/bn/guide/default-theme/admonitions/+page.md',
+    })
+  })
 })

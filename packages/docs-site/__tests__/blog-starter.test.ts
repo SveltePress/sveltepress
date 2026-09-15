@@ -123,6 +123,15 @@ describe('blog starter and Blog theme Entries', () => {
         `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog`,
       )
       expect(request.options.openFile).toBe(record.focusedFile)
+      if (record.focusedFile.endsWith('.md')) {
+        expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile)
+          .toBe(record.focusedFile.replace(/\.md$/, '.zh.md'))
+        expect(hostedEditorEmbedRequest(entry, 'light', 'bn').options.openFile)
+          .toBe(record.focusedFile.replace(/\.md$/, '.bn.md'))
+      }
+      else {
+        expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile).toBe(record.focusedFile)
+      }
       expect(request.options.clickToLoad).toBe(false)
       expect(JSON.stringify(request)).not.toMatch(/embedProject/)
       expect(JSON.stringify(request)).not.toMatch(/\/run/)

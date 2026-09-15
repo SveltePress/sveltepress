@@ -8,7 +8,7 @@ versionChanges:
 
 自定义主题和组件可以通过导入该模块来构建语言切换器、本地化链接以及具备语言感知能力的用户界面。
 
-演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会启动 Kitchen-sink Starter，其中 `virtual:sveltepress/site`、`locale` 与 `versions` 都已填充。该页直接在 Markdown 中写 Svelte，用与本页相同的 `JsonViewer` 渲染。文档页继续使用 svelte live，以便同时展示源代码和渲染结果。本页的 Open in Playground 会进入该条目。
+演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会启动 Kitchen-sink Starter，其中 `virtual:sveltepress/site`、`locale` 与 `versions` 都已填充。英文打开 `src/routes/reference/virtual-modules/+page.md`，中文和孟加拉语打开 `src/routes/zh/` 与 `src/routes/bn/` 下翻译过的示例说明（不是英文页的复制）。该页直接在 Markdown 中写 Svelte，用与本页相同的 `JsonViewer` 渲染。文档页继续使用 svelte live，以便同时展示源代码和渲染结果。本页的 Open in Playground 会进入该条目。
 
 ## 实时数据
 

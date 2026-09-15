@@ -4,7 +4,7 @@ title: 国际化（i18n）
 
 SveltePress 可以在同一个站点中提供多种语言。国际化是可选的：不传 `locales` 时，站点保持单语言，行为与之前完全一致。
 
-演练场中的 [国际化](/playground/i18n/) 条目会按作者提交的内容启动双语言默认主题 Starter，并打开 `config/locales.ts`。
+演练场中的 [国际化](/playground/i18n/) 条目会按作者提交的内容启动三语言默认主题 Starter，并打开 `config/locales.ts`。中文和孟加拉语演练场仍打开该聚焦文件；Starter 里 `/zh/`、`/bn/` 下的示例说明是翻译过的讲解，不是英文页的复制。
 
 :::since[按需启用多语言]{version="2026-09-03" id="i18n-opt-in-locales" summary="通过 sveltepress({ locales }) 启用多语言路由、主题选项与语言切换器。"}
 ## 启用多语言

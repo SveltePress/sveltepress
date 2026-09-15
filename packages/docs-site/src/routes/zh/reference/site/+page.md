@@ -8,7 +8,7 @@ versionChanges:
 
 自定义主题、全局组件或布局模板可以导入该模块来展示全局站点名称与描述，或者填充 HTML meta 标签。
 
-演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会按作者提交的内容启动 Kitchen-sink Starter，并打开 `src/routes/reference/virtual-modules/+page.md`。该页直接在 Markdown 中写 Svelte，用与本页相同的 `JsonViewer` 渲染 `virtual:sveltepress/site`、`locale` 与 `versions`。文档页继续使用 svelte live，以便同时展示源代码和渲染结果。本页、[`virtual:sveltepress/locale`](/reference/locale/) 与 [`virtual:sveltepress/versions`](/reference/versions/) 上的 Open in Playground 都会进入该条目。
+演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会按作者提交的内容启动 Kitchen-sink Starter。英文打开 `src/routes/reference/virtual-modules/+page.md`，中文打开 `src/routes/zh/reference/virtual-modules/+page.md`，孟加拉语打开 `src/routes/bn/` 下的对应页。示例说明是翻译，不是英文页的复制。该页直接在 Markdown 中写 Svelte，用与本页相同的 `JsonViewer` 渲染 `virtual:sveltepress/site`、`locale` 与 `versions`。文档页继续使用 svelte live，以便同时展示源代码和渲染结果。本页、[`virtual:sveltepress/locale`](/reference/locale/) 与 [`virtual:sveltepress/versions`](/reference/versions/) 上的 Open in Playground 都会进入该条目。
 
 ## 实时数据
 

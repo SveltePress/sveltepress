@@ -8,7 +8,7 @@ The `virtual:sveltepress/site` module exposes the core site metadata (`title`, `
 
 Custom themes, components, and layout templates can import this module to display the global site name and description or populate meta tags.
 
-The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter as authored at `src/routes/reference/virtual-modules/+page.md`. That page writes Svelte in markdown and renders `virtual:sveltepress/site`, `locale`, and `versions` with the same `JsonViewer` as this page. This docs page keeps svelte live so it can show the source next to the rendered result. Open in Playground on this leaf, [`virtual:sveltepress/locale`](/reference/locale/), and [`virtual:sveltepress/versions`](/reference/versions/) all land there.
+The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter as authored at `src/routes/reference/virtual-modules/+page.md`. Chinese and Bengali Playground URLs open the translated pages under `src/routes/zh/` and `src/routes/bn/` — the example explanations are localized, not copies of the English page. That page writes Svelte in markdown and renders `virtual:sveltepress/site`, `locale`, and `versions` with the same `JsonViewer` as this page. This docs page keeps svelte live so it can show the source next to the rendered result. Open in Playground on this leaf, [`virtual:sveltepress/locale`](/reference/locale/), and [`virtual:sveltepress/versions`](/reference/versions/) all land there.
 
 ## Live data
 
