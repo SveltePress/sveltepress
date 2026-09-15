@@ -8,7 +8,7 @@ When multi-locale support is enabled in `@sveltepress/vite` via `locales`, `virt
 
 Custom themes and components can import this module to build language switchers, localized navigation links, and locale-aware UI chrome.
 
-The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated. Open in Playground on this leaf lands there.
+The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated and live-rendered with the same `JsonViewer` as this page. Open in Playground on this leaf lands there.
 
 ## Live data
 

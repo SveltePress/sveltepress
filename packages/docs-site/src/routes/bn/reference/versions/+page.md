@@ -8,7 +8,7 @@ versionChanges:
 
 কাস্টম থিম এবং সাইট কম্পোনেন্ট এই মডিউলটি ইম্পোর্ট করে সংস্করণ নির্বাচক, জীবনচক্র সতর্কবার্তা ব্যানার, পরিবর্তন তালিকা প্রদর্শন এবং সংস্করণ-সচেতন অভ্যন্তরীণ লিঙ্ক তৈরি করতে পারে।
 
-প্লেগ্রাউন্ডের [ভার্চুয়াল মডিউল](/playground/virtual-modules/) এন্ট্রি Kitchen-sink starter চালু করে, যেখানে `virtual:sveltepress/site`, `locale` এবং `versions` সব পপুলেট থাকে। এই পাতার Open in Playground সেখানেই যায়।
+প্লেগ্রাউন্ডের [ভার্চুয়াল মডিউল](/playground/virtual-modules/) এন্ট্রি Kitchen-sink starter চালু করে, যেখানে `virtual:sveltepress/site`, `locale` এবং `versions` সব পপুলেট থাকে এবং এই পাতার মতোই `JsonViewer` দিয়ে লাইভ রেন্ডার হয়। এই পাতার Open in Playground সেখানেই যায়।
 
 ## লাইভ ডেটা
 

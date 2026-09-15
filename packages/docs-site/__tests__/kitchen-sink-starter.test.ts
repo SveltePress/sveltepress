@@ -129,6 +129,10 @@ describe('kitchen-sink starter, Virtual modules, and Kitchen-sink CTA', () => {
     expect(virtual.options.theme).toBe('dark')
   })
 
+  it('pins playground-v1.9 so Virtual modules live-renders JsonViewer', () => {
+    expect(PINNED_STARTERS_TAG).toBe('playground-v1.9')
+  })
+
   it('opens virtual-module reference leaves on the one Virtual modules Entry URL', () => {
     expect(openInPlayground('/reference/site/')).toEqual({
       visible: true,

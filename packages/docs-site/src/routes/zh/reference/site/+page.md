@@ -8,7 +8,7 @@ versionChanges:
 
 自定义主题、全局组件或布局模板可以导入该模块来展示全局站点名称与描述，或者填充 HTML meta 标签。
 
-演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会按作者提交的内容启动 Kitchen-sink Starter，并打开 `src/routes/reference/virtual-modules/+page.md`。本页、[`virtual:sveltepress/locale`](/reference/locale/) 与 [`virtual:sveltepress/versions`](/reference/versions/) 上的 Open in Playground 都会进入该条目。
+演练场中的 [虚拟模块](/playground/virtual-modules/) 条目会按作者提交的内容启动 Kitchen-sink Starter，并打开 `src/routes/reference/virtual-modules/+page.md`，用与本页相同的 `JsonViewer` 实时渲染 `virtual:sveltepress/site`、`locale` 与 `versions`。本页、[`virtual:sveltepress/locale`](/reference/locale/) 与 [`virtual:sveltepress/versions`](/reference/versions/) 上的 Open in Playground 都会进入该条目。
 
 ## 实时数据
 

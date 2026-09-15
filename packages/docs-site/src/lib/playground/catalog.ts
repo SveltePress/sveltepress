@@ -41,7 +41,7 @@ export const VIRTUAL_MODULES_SLUG = 'virtual-modules'
 export const PLAYGROUND_STARTERS_REPO = 'SveltePress/playground-starters'
 
 /** sveltepress.site embeds this tag, not `main`. */
-export const PINNED_STARTERS_TAG = 'playground-v1.8'
+export const PINNED_STARTERS_TAG = 'playground-v1.9'
 
 export const STARTER_SUBDIRECTORIES = {
   'Default Theme starter': 'default-theme',
