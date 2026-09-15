@@ -422,8 +422,10 @@
 <style>
   .local-search-trigger {
     --at-apply: 'h-9 px-3 flex items-center justify-between gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-800/80 text-zinc-500 dark:text-zinc-400 text-xs transition-colors hover:border-zinc-300 dark:hover:border-zinc-700 cursor-pointer';
-    min-width: 140px;
+    min-width: 0;
+    width: 100%;
     max-width: 220px;
+    container-type: inline-size;
   }
 
   .trigger-icon {
@@ -436,6 +438,12 @@
 
   .trigger-shortcut {
     --at-apply: 'hidden sm:flex items-center gap-0.5 flex-none';
+  }
+
+  @container (max-width: 180px) {
+    .trigger-shortcut {
+      display: none;
+    }
   }
 
   .shortcut-key {
