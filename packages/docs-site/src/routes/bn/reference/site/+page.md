@@ -8,7 +8,7 @@ versionChanges:
 
 কাস্টম থিম, কম্পোনেন্ট এবং লেআউট টেমপ্লেট এই মডিউলটি ইম্পোর্ট করে গ্লোবাল সাইট নাম ও বিবরণ প্রদর্শন করতে পারে বা মেটা ট্যাগ তৈরি করতে পারে।
 
-প্লেগ্রাউন্ডের [ভার্চুয়াল মডিউল](/playground/virtual-modules/) এন্ট্রি `src/routes/reference/virtual-modules/+page.md`-এ লেখকের মতোই Kitchen-sink starter চালু করে এবং এই পাতার মতোই `JsonViewer` দিয়ে `virtual:sveltepress/site`, `locale` ও `versions` লাইভ রেন্ডার করে। এই পাতা, [`virtual:sveltepress/locale`](/reference/locale/) এবং [`virtual:sveltepress/versions`](/reference/versions/)-এর Open in Playground সব সেখানেই যায়।
+প্লেগ্রাউন্ডের [ভার্চুয়াল মডিউল](/playground/virtual-modules/) এন্ট্রি `src/routes/reference/virtual-modules/+page.md`-এ লেখকের মতোই Kitchen-sink starter চালু করে। সেই পাতা markdown-এ সরাসরি Svelte লিখে এই পাতার মতোই `JsonViewer` দিয়ে `virtual:sveltepress/site`, `locale` ও `versions` রেন্ডার করে। এই ডকুমেন্ট পাতা svelte live রাখে যাতে সোর্স কোড ও রেন্ডার ফলাফল একসাথে দেখা যায়। এই পাতা, [`virtual:sveltepress/locale`](/reference/locale/) এবং [`virtual:sveltepress/versions`](/reference/versions/)-এর Open in Playground সব সেখানেই যায়।
 
 ## লাইভ ডেটা
 

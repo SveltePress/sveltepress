@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { cleanup, render, waitFor } from '@testing-library/svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -129,8 +129,33 @@ describe('kitchen-sink starter, Virtual modules, and Kitchen-sink CTA', () => {
     expect(virtual.options.theme).toBe('dark')
   })
 
-  it('pins playground-v1.9 so Virtual modules live-renders JsonViewer', () => {
-    expect(PINNED_STARTERS_TAG).toBe('playground-v1.9')
+  it('pins playground-v1.10 so Virtual modules writes Svelte in markdown', () => {
+    expect(PINNED_STARTERS_TAG).toBe('playground-v1.10')
+  })
+
+  it('keeps svelte live on docs virtual-module pages and writes Svelte in the playground focused file', () => {
+    const routes = resolve(import.meta.dirname, '../src/routes')
+    const docsLeaves = [
+      'reference/site/+page.md',
+      'reference/locale/+page.md',
+      'reference/versions/+page.md',
+      'zh/reference/site/+page.md',
+      'zh/reference/locale/+page.md',
+      'zh/reference/versions/+page.md',
+      'bn/reference/site/+page.md',
+      'bn/reference/locale/+page.md',
+      'bn/reference/versions/+page.md',
+    ]
+
+    for (const leaf of docsLeaves) {
+      const page = readFileSync(resolve(routes, leaf), 'utf8')
+      expect(page).toContain('```svelte live')
+      expect(page).toMatch(/JsonViewer/)
+    }
+
+    const enSite = readFileSync(resolve(routes, 'reference/site/+page.md'), 'utf8')
+    expect(enSite).toMatch(/writes Svelte in markdown/)
+    expect(enSite).toMatch(/keeps svelte live so it can show the source next to the rendered result/)
   })
 
   it('opens virtual-module reference leaves on the one Virtual modules Entry URL', () => {
