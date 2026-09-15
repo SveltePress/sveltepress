@@ -143,8 +143,8 @@ describe('kitchen-sink starter, Virtual modules, and Kitchen-sink CTA', () => {
     expect(virtual.options.theme).toBe('dark')
   })
 
-  it('pins playground-v1.13 so locale Playground opens same-path locale-written starters', () => {
-    expect(PINNED_STARTERS_TAG).toBe('playground-v1.13')
+  it('pins playground-v1.14 so locale Playground opens same-path locale-written starters', () => {
+    expect(PINNED_STARTERS_TAG).toBe('playground-v1.14')
   })
 
   it('keeps svelte live on docs virtual-module pages and writes Svelte in the playground focused file', () => {
