@@ -12,6 +12,7 @@ const currentId = '2026-09-09'
 const versionIds = [currentId, previousId, '2026-08-31', '2026-08-28', historicalId]
 const currentChanges = [
   { route: 'guide/default-theme/pwa', id: 'pwa-precache-client' },
+  { route: 'guide/default-theme/sidebar', id: 'auto-sidebar-skip-version-snapshots' },
   { route: 'reference/default-theme', id: 'theme-pwa-precache-client' },
   { route: 'reference/default-theme', id: 'theme-title-row-action' },
 ]
