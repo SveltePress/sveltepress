@@ -1,7 +1,6 @@
 import type { Buffer } from 'node:buffer'
 import { readFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'
-import { Resvg } from '@resvg/resvg-js'
 import satori from 'satori'
 
 export interface OgImageOpts {
@@ -90,6 +89,7 @@ export async function renderOgImage(opts: OgImageOpts): Promise<Buffer> {
     },
   )
 
+  const { Resvg } = await import('@resvg/resvg-js')
   const resvg = new Resvg(svg, { background: opts.theme.bg })
   return resvg.render().asPng()
 }

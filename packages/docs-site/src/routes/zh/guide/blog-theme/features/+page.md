@@ -65,7 +65,7 @@ blogTheme({
 
 通过 `enabled: false` 完全跳过生成，也不会加载渲染器。
 
-resvg 渲染器需要原生 Node.js 扩展，而 StackBlitz WebContainers 等浏览器容器不支持此类扩展。如果无法加载渲染器，主题会发出警告并跳过 OG PNG 生成；博客仍可启动，已有图片也会保留。请在部署前使用原生 Node.js 环境生成最新的 OG 图片。
+resvg 渲染器需要原生 Node.js 扩展，而 StackBlitz WebContainers 等浏览器容器不支持此类扩展。主题会先探测当前环境能否加载原生扩展，再尝试导入渲染器。如果扩展被禁用或渲染器无法加载，主题会发出警告并跳过 OG PNG 生成；博客仍可启动，已有图片也会保留。请在部署前使用原生 Node.js 环境生成最新的 OG 图片。
 
 要让 meta 中的 OG URL 是完整绝对路径（Facebook 等大多数爬虫需要），请把 `base` 设为站点完整 URL：`base: 'https://example.com'`。
 

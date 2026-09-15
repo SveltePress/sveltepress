@@ -8,6 +8,7 @@ import { createReadStream } from 'node:fs'
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { join, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
+import { canLoadNativeAddons } from './native-addons.js'
 import { hashContent, loadCache, saveCache } from './parse-cache.js'
 import { parsePost } from './parse-post.js'
 import { generateRss } from './rss.js'
@@ -109,6 +110,61 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     ])
   }
 
+  async function writeOgImages(
+    root: string,
+    parsed: ParsedPost[],
+    renderOgImage: typeof import('./og-image.js').renderOgImage,
+  ) {
+    const ogDir = resolve(root, 'static/og')
+    await mkdir(ogDir, { recursive: true })
+    const ogTheme = {
+      primary: options.themeColor?.primary ?? DEFAULT_THEME_COLOR.primary,
+      bg: options.themeColor?.bg ?? DEFAULT_THEME_COLOR.bg,
+      text: '#fff7ed',
+    }
+    const fontPath = options.ogImage?.fontPath
+    const wanted = new Set<string>()
+    const tagline = options.ogImage?.tagline ?? options.description ?? ''
+
+    for (const p of parsed.filter(x => !x.draft)) {
+      wanted.add(`${p.slug}.png`)
+      const out = join(ogDir, `${p.slug}.png`)
+      try {
+        const png = await renderOgImage({
+          title: p.title,
+          subtitle: (p.category ?? p.tags[0] ?? tagline).toUpperCase(),
+          theme: ogTheme,
+          fontPath,
+        })
+        await writeFile(out, png)
+      }
+      catch (err) {
+        console.warn(`[theme-blog] OG image failed for ${p.slug}:`, err)
+      }
+    }
+
+    wanted.add('__home.png')
+    try {
+      const png = await renderOgImage({
+        title: options.title,
+        subtitle: tagline,
+        theme: ogTheme,
+        fontPath,
+      })
+      await writeFile(join(ogDir, '__home.png'), png)
+    }
+    catch (err) {
+      console.warn('[theme-blog] site OG image failed:', err)
+    }
+
+    const existing = await readdir(ogDir).catch(() => [] as string[])
+    await Promise.all(
+      existing
+        .filter(f => f.endsWith('.png') && !wanted.has(f))
+        .map(f => rm(join(ogDir, f))),
+    )
+  }
+
   return {
     name: '@sveltepress/theme-blog',
     enforce: 'pre',
@@ -171,65 +227,27 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       }
 
       if (options.ogImage?.enabled !== false) {
-        let renderOgImage: typeof import('./og-image.js').renderOgImage
-        try {
-          // Browser containers cannot load the native resvg addon.
-          const renderer = await import('./og-image.js')
-          renderOgImage = renderer.renderOgImage
-        }
-        catch (err) {
-          console.warn('[theme-blog] OG image generation unavailable; skipping PNGs. Generate them in a native Node.js environment, or set ogImage.enabled to false.', err)
-          return
-        }
+        const ogUnavailable
+          = '[theme-blog] OG image generation unavailable; skipping PNGs. Generate them in a native Node.js environment, or set ogImage.enabled to false.'
 
-        const ogDir = resolve(config.root, 'static/og')
-        await mkdir(ogDir, { recursive: true })
-        const ogTheme = {
-          primary: options.themeColor?.primary ?? DEFAULT_THEME_COLOR.primary,
-          bg: options.themeColor?.bg ?? DEFAULT_THEME_COLOR.bg,
-          text: '#fff7ed',
+        // Probe before importing: Vite/Node still evaluate og-image → resvg
+        // when the dynamic import runs, and WebContainers crash on dlopen.
+        if (!canLoadNativeAddons()) {
+          console.warn(ogUnavailable)
         }
-        const fontPath = options.ogImage?.fontPath
-        const wanted = new Set<string>()
-        const tagline = options.ogImage?.tagline ?? options.description ?? ''
-
-        for (const p of parsed.filter(x => !x.draft)) {
-          wanted.add(`${p.slug}.png`)
-          const out = join(ogDir, `${p.slug}.png`)
+        else {
+          let renderOgImage: typeof import('./og-image.js').renderOgImage | undefined
           try {
-            const png = await renderOgImage({
-              title: p.title,
-              subtitle: (p.category ?? p.tags[0] ?? tagline).toUpperCase(),
-              theme: ogTheme,
-              fontPath,
-            })
-            await writeFile(out, png)
+            const renderer = await import('./og-image.js')
+            renderOgImage = renderer.renderOgImage
           }
           catch (err) {
-            console.warn(`[theme-blog] OG image failed for ${p.slug}:`, err)
+            console.warn(ogUnavailable, err)
           }
-        }
 
-        wanted.add('__home.png')
-        try {
-          const png = await renderOgImage({
-            title: options.title,
-            subtitle: tagline,
-            theme: ogTheme,
-            fontPath,
-          })
-          await writeFile(join(ogDir, '__home.png'), png)
+          if (renderOgImage)
+            await writeOgImages(config.root, parsed, renderOgImage)
         }
-        catch (err) {
-          console.warn('[theme-blog] site OG image failed:', err)
-        }
-
-        const existing = await readdir(ogDir).catch(() => [] as string[])
-        await Promise.all(
-          existing
-            .filter(f => f.endsWith('.png') && !wanted.has(f))
-            .map(f => rm(join(ogDir, f))),
-        )
       }
     },
 

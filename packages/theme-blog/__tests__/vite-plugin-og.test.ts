@@ -33,6 +33,7 @@ An unpublished post.
 
 afterEach(async () => {
   vi.doUnmock('../src/og-image.js')
+  vi.doUnmock('../src/native-addons.js')
   vi.restoreAllMocks()
   await rm(root, { recursive: true, force: true })
 })
@@ -65,6 +66,15 @@ async function expectBlogContent() {
 }
 
 describe('blog theme OG renderer loading', () => {
+  it('does not statically import the renderer or resvg from the vite plugin', async () => {
+    const pluginSrc = await readFile(new URL('../src/vite-plugin.ts', import.meta.url), 'utf-8')
+    const ogSrc = await readFile(new URL('../src/og-image.ts', import.meta.url), 'utf-8')
+    expect(pluginSrc).not.toContain('from \'./og-image.js\'')
+    expect(pluginSrc).toContain('await import(\'./og-image.js\')')
+    expect(ogSrc).not.toContain('from \'@resvg/resvg-js\'')
+    expect(ogSrc).toContain('await import(\'@resvg/resvg-js\')')
+  })
+
   it('does not import the renderer when OG images are disabled', async () => {
     const loadRenderer = vi.fn(() => {
       throw Object.assign(new Error('Cannot load native addon because loading addons is disabled.'), {
@@ -81,7 +91,27 @@ describe('blog theme OG renderer loading', () => {
     await expectBlogContent()
   })
 
-  it.each(['serve', 'build'] as const)('keeps %s working when native addons are disabled', async (command) => {
+  it.each(['serve', 'build'] as const)('does not import the renderer during %s when native addons are disabled', async (command) => {
+    const loadRenderer = vi.fn(() => {
+      throw new Error('og-image must not load when native addons are disabled')
+    })
+    vi.doMock('../src/og-image.js', loadRenderer)
+    vi.doMock('../src/native-addons.js', () => ({ canLoadNativeAddons: () => false }))
+    await mkdir(join(root, 'static/og'))
+    await writeFile(join(root, 'static/og/existing.png'), 'existing image')
+
+    const plugin = await startBlog(undefined, command)
+
+    expect(loadRenderer).not.toHaveBeenCalled()
+    expect(ogWarnings()).toHaveLength(1)
+    expect(ogWarnings()[0][0]).toContain('OG image generation unavailable')
+    expect(await readFile(join(root, 'static/og/existing.png'), 'utf-8')).toBe('existing image')
+    const load = plugin.load as (id: string) => string
+    expect(load('\0virtual:sveltepress/blog-posts-meta')).toContain('Hello blog')
+    await expectBlogContent()
+  })
+
+  it('warns and preserves images if the renderer import fails after the probe', async () => {
     const loadRenderer = vi.fn(() => {
       throw Object.assign(new Error('Cannot load native addon because loading addons is disabled.'), {
         code: 'ERR_DLOPEN_DISABLED',
@@ -91,14 +121,12 @@ describe('blog theme OG renderer loading', () => {
     await mkdir(join(root, 'static/og'))
     await writeFile(join(root, 'static/og/existing.png'), 'existing image')
 
-    const plugin = await startBlog(undefined, command)
+    await startBlog()
 
     expect(loadRenderer).toHaveBeenCalledTimes(1)
     expect(ogWarnings()).toHaveLength(1)
     expect(ogWarnings()[0][0]).toContain('OG image generation unavailable')
     expect(await readFile(join(root, 'static/og/existing.png'), 'utf-8')).toBe('existing image')
-    const load = plugin.load as (id: string) => string
-    expect(load('\0virtual:sveltepress/blog-posts-meta')).toContain('Hello blog')
     await expectBlogContent()
   })
 

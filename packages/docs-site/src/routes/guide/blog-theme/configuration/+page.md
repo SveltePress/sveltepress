@@ -21,7 +21,7 @@ All options are passed to `blogTheme()` in `vite.config.ts`.
 | `pageSize` | `number` | `12` | Posts per page on the home listing. |
 | `highlighter` | [`HighlighterOptions`](#highlighteroptions) | — | Shiki/Twoslash options. |
 | `rss` | `{ enabled, limit, copyright }` | enabled, 20 | RSS feed generation. Writes to `static/rss.xml`. |
-| `ogImage` | `{ enabled, fontPath, tagline }` | enabled | Per-post OG image generation via Satori. |
+| `ogImage` | `{ enabled, fontPath, tagline }` | enabled | Per-post OG image generation via Satori. Skipped when native addons cannot load. |
 | `giscus` | [`GiscusConfig`](#giscusconfig) | — | Set to enable GitHub-discussions-backed comments. |
 | `search` | reserved | — | Do not configure yet. The current release always uses the built-in Pagefind search. |
 
