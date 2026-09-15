@@ -8,7 +8,7 @@ versionChanges:
 
 কাস্টম থিম এবং কম্পোনেন্ট এই মডিউলটি ইম্পোর্ট করে ভাষা নির্বাচক, স্থানীয়করণ লিঙ্ক এবং লোকাল-সচেতন ইন্টারফেস উপাদান তৈরি করতে পারে।
 
-প্লেগ্রাউন্ডের [ভার্চুয়াল মডিউল](/playground/virtual-modules/) এন্ট্রি Kitchen-sink starter চালু করে, যেখানে `virtual:sveltepress/site`, `locale` এবং `versions` সব পপুলেট থাকে। ইংরেজি `src/routes/reference/virtual-modules/+page.md` খোলে; চীনা ও বাংলা `src/routes/zh/` ও `src/routes/bn/`-এর অনুবাদ করা উদাহরণ খোলে (ইংরেজি পাতার কপি নয়)। সেই পাতা markdown-এ সরাসরি Svelte লিখে এই পাতার মতোই `JsonViewer` দিয়ে রেন্ডার করে। এই ডকুমেন্ট পাতা svelte live রাখে যাতে সোর্স কোড ও রেন্ডার ফলাফল একসাথে দেখা যায়। এই পাতার Open in Playground সেখানেই যায়।
+প্লেগ্রাউন্ডের [ভার্চুয়াল মডিউল](/playground/virtual-modules/) এন্ট্রি Kitchen-sink starter চালু করে, যেখানে `virtual:sveltepress/site`, `locale` এবং `versions` সব পপুলেট থাকে, এবং `src/routes/reference/virtual-modules/+page.md` খোলে। চীনা ও বাংলা `kitchen-sink-zh` / `kitchen-sink-bn` এমবেড করে, একই ডিফল্ট পাথে। সেই পাতা markdown-এ সরাসরি Svelte লিখে এই পাতার মতোই `JsonViewer` দিয়ে রেন্ডার করে। এই ডকুমেন্ট পাতা svelte live রাখে যাতে সোর্স কোড ও রেন্ডার ফলাফল একসাথে দেখা যায়। এই পাতার Open in Playground সেখানেই যায়।
 
 ## লাইভ ডেটা
 

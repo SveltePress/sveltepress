@@ -79,6 +79,19 @@ describe('custom theme starter and Entry', () => {
     expect(request.method).toBe('embedGithubProject')
     expect(request.projectPath).toBe(githubImportPath(entry))
     expect(request.options.openFile).toBe('src/routes/+layout.svelte')
+    expect(request.previewPath).toBe('/')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile)
+      .toBe('src/routes/+layout.svelte')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'zh').previewPath).toBe('/')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'zh').projectPath).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/custom-theme-zh`,
+    )
+    expect(hostedEditorEmbedRequest(entry, 'light', 'bn').options.openFile)
+      .toBe('src/routes/+layout.svelte')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'bn').previewPath).toBe('/')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'bn').projectPath).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/custom-theme-bn`,
+    )
     expect(request.options.clickToLoad).toBe(false)
     expect(JSON.stringify(request)).not.toMatch(/embedProject/)
     expect(JSON.stringify(request)).not.toMatch(/\/run/)

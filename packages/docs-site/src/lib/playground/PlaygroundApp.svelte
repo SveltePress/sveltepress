@@ -267,7 +267,7 @@
 
             <a
               class="action-btn text-link primary"
-              href={openInStackBlitzUrl(entry)}
+              href={openInStackBlitzUrl(entry, locale)}
               target="_blank"
               rel="noreferrer"
             >

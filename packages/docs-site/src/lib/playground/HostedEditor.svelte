@@ -4,7 +4,10 @@
   import { onMount } from 'svelte'
   import { openInStackBlitzUrl } from './catalog.ts'
   import { playgroundCopy } from './copy.ts'
-  import { hostedEditorEmbedRequest } from './hosted-editor.ts'
+  import {
+    applyHostedEditorPreview,
+    hostedEditorEmbedRequest,
+  } from './hosted-editor.ts'
 
   let {
     entry,
@@ -19,7 +22,7 @@
   } = $props()
 
   const copy = $derived(playgroundCopy(locale))
-  const forkHref = $derived(openInStackBlitzUrl(entry))
+  const forkHref = $derived(openInStackBlitzUrl(entry, locale))
 
   let wrap = $state<HTMLDivElement | undefined>()
   let host = $state<HTMLDivElement | undefined>()
@@ -38,12 +41,21 @@
     if (!node) return
 
     const request = hostedEditorEmbedRequest(entry, resolveTheme(), locale)
+    const abort = new AbortController()
     let cancelled = false
     void (async () => {
       const embedFn = embed ?? (await import('./embed.ts')).embedGithubProject
       try {
-        await embedFn(node, request.projectPath, request.options)
-        if (!cancelled) status = 'ready'
+        const vm = await embedFn(node, request.projectPath, request.options)
+        if (cancelled) return
+        status = 'ready'
+        try {
+          await applyHostedEditorPreview(vm, request.previewPath, {
+            signal: abort.signal,
+          })
+        } catch {
+          // Preview navigation is best-effort and must not fail boot.
+        }
       } catch {
         if (!cancelled) status = 'failed'
       }
@@ -51,6 +63,7 @@
 
     return () => {
       cancelled = true
+      abort.abort()
       wrap?.querySelector('iframe')?.remove()
     }
   })

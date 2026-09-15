@@ -4,7 +4,7 @@ title: Internationalization (i18n)
 
 SveltePress can serve multiple locales from one site. Internationalization is opt-in: omit `locales` and the site stays single-locale with unchanged behavior.
 
-The Playground [Internationalization](/playground/i18n/) Entry boots a three-locale Default Theme starter as authored at `config/locales.ts`. Chinese and Bengali Playground URLs keep that same focused file; the starter's example pages under `/zh/` and `/bn/` are translated explanations, not copies of the English pages.
+The Playground [Internationalization](/playground/i18n/) Entry boots a three-locale Default Theme starter as authored at `config/locales.ts`. Chinese and Bengali Playground URLs keep that same starter and start the preview on `/zh/` or `/bn/`. This is the exception: other Playground Entries are single-locale trees written in the page language at the default paths.
 
 :::since[Opt-in locales]{version="2026-09-03" id="i18n-opt-in-locales" summary="Pass sveltepress({ locales }) to enable multi-locale routing, theme options, and switcher."}
 ## Enable locales

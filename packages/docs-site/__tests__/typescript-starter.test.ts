@@ -72,6 +72,10 @@ describe('typescript starter and Working with TypeScript', () => {
       `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/typescript`,
     )
     expect(request.options.openFile).toBe('vite.config.ts')
+    expect(hostedEditorEmbedRequest(entry, 'dark', 'zh').projectPath).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/typescript-zh`,
+    )
+    expect(hostedEditorEmbedRequest(entry, 'dark', 'zh').options.openFile).toBe('vite.config.ts')
     expect(request.options.clickToLoad).toBe(false)
     expect(request.options.theme).toBe('dark')
     expect(JSON.stringify(request)).not.toMatch(/embedProject/)

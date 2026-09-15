@@ -41,7 +41,7 @@ export const VIRTUAL_MODULES_SLUG = 'virtual-modules'
 export const PLAYGROUND_STARTERS_REPO = 'SveltePress/playground-starters'
 
 /** sveltepress.site embeds this tag, not `main`. */
-export const PINNED_STARTERS_TAG = 'playground-v1.11'
+export const PINNED_STARTERS_TAG = 'playground-v1.13'
 
 export const STARTER_SUBDIRECTORIES = {
   'Default Theme starter': 'default-theme',
@@ -423,12 +423,30 @@ export function isPlaygroundPathRegistered(pathname: string): boolean {
   return slug !== undefined && SHIPPING_SLUGS.has(slug)
 }
 
-export function githubImportPath(entry: Entry): string {
-  return `${PLAYGROUND_STARTERS_REPO}/tree/${PINNED_STARTERS_TAG}/${STARTER_SUBDIRECTORIES[entry.starter]}`
+export function githubImportPath(entry: Entry, locale: CatalogLocale = 'en'): string {
+  return `${PLAYGROUND_STARTERS_REPO}/tree/${PINNED_STARTERS_TAG}/${starterSubdirectory(entry, locale)}`
 }
 
-export function openInStackBlitzUrl(entry: Entry): string {
-  return `https://stackblitz.com/fork/github/${githubImportPath(entry)}`
+/**
+ * Locale Playground embeds a same-path starter written in that language
+ * (`custom-theme-zh`, `default-theme-bn`, …). The i18n starter is the
+ * exception: every locale opens the three-locale demo.
+ */
+export function starterSubdirectory(entry: Entry, locale: CatalogLocale = 'en'): string {
+  const base = STARTER_SUBDIRECTORIES[entry.starter]
+  if (locale === 'en' || entry.starter === 'i18n starter')
+    return base
+  return `${base}-${locale}`
+}
+
+export function openInStackBlitzUrl(entry: Entry, locale: CatalogLocale = 'en'): string {
+  const base = `https://stackblitz.com/fork/github/${githubImportPath(entry, locale)}`
+  const preview = previewPathForLocale(entry, locale)
+  if (preview === '/')
+    return base
+  const params = new URLSearchParams()
+  params.set('initialpath', preview)
+  return `${base}?${params.toString()}`
 }
 
 export function localizedName(entry: Entry, locale: CatalogLocale): string {
@@ -438,41 +456,49 @@ export function localizedName(entry: Entry, locale: CatalogLocale): string {
 }
 
 /**
- * Hosted editor `openFile` for a locale. English keeps the catalog Focused
- * file. Other locales open the matching translated example — not a copy of
- * the English page — when that example lives under `src/routes`, `config`,
- * or `src/posts`. Shared project files (`vite.config.*`, `locales.ts`,
- * layouts) stay on the catalog path.
+ * Hosted editor `openFile`. Every locale uses the catalog Focused file —
+ * `src/routes/+page.md`, `config/navbar.js`, `src/posts/hello-sveltepress.md`.
+ * Chinese and Bengali trees are written in that language at those same paths.
+ * They do not add `/zh/` or `/bn/` routes except the i18n starter.
  */
-export function focusedFileForLocale(entry: Entry, locale: CatalogLocale = 'en'): string {
-  if (locale === 'en')
-    return entry.focusedFile
-  return localizeFocusedFile(entry.focusedFile, locale)
+export function focusedFileForLocale(entry: Entry, _locale: CatalogLocale = 'en'): string {
+  return entry.focusedFile
 }
 
-function localizeFocusedFile(focusedFile: string, locale: Exclude<CatalogLocale, 'en'>): string {
-  if (focusedFile.startsWith('src/routes/') && focusedFile.endsWith('+page.md')) {
-    const rest = focusedFile.slice('src/routes/'.length)
-    if (rest.startsWith('zh/') || rest.startsWith('bn/'))
-      return focusedFile
-    return `src/routes/${locale}/${rest}`
-  }
+/**
+ * Preview path for the Hosted editor. Page examples map to their default
+ * route (`/guide/markdown/basic-writing/`). Blog posts map to
+ * `/posts/<slug>/`. The i18n starter is the three-locale demo, so Chinese
+ * and Bengali start on `/zh/` and `/bn/`.
+ */
+export function previewPathForLocale(entry: Entry, locale: CatalogLocale = 'en'): string {
+  if (entry.starter === 'i18n starter')
+    return localeHome(locale)
 
-  if (focusedFile.startsWith('config/')) {
-    const rest = focusedFile.slice('config/'.length)
-    if (rest === 'locales.ts' || rest.startsWith('zh/') || rest.startsWith('bn/'))
-      return focusedFile
-    return `config/${locale}/${rest}`
-  }
+  const file = entry.focusedFile
+  return previewPathFromPageFile(file) ?? previewPathFromPostFile(file) ?? '/'
+}
 
-  if (focusedFile.startsWith('src/posts/') && focusedFile.endsWith('.md')) {
-    const rest = focusedFile.slice('src/posts/'.length)
-    if (rest.startsWith('zh/') || rest.startsWith('bn/') || rest.includes(`.${locale}.`))
-      return focusedFile
-    return focusedFile.replace(/\.md$/, `.${locale}.md`)
-  }
+function localeHome(locale: CatalogLocale): string {
+  if (locale === 'en')
+    return '/'
+  return `/${locale}/`
+}
 
-  return focusedFile
+function previewPathFromPageFile(file: string): string | null {
+  if (!file.startsWith('src/routes/') || !file.endsWith('+page.md'))
+    return null
+  const rest = file.slice('src/routes/'.length).replace(/\/?\+page\.md$/, '')
+  if (!rest)
+    return '/'
+  return `/${rest}/`
+}
+
+function previewPathFromPostFile(file: string): string | null {
+  if (!file.startsWith('src/posts/') || !file.endsWith('.md'))
+    return null
+  const slug = file.slice('src/posts/'.length).replace(/\.md$/, '')
+  return `/posts/${slug}/`
 }
 
 export function openInPlaygroundHref(pathname: string): string | null {

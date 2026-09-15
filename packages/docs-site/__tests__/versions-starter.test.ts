@@ -77,6 +77,13 @@ describe('versions starter and Document versions', () => {
       `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/versions`,
     )
     expect(request.options.openFile).toBe('sveltepress.versions.json')
+    expect(hostedEditorEmbedRequest(entry, 'light', 'zh').projectPath).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/versions-zh`,
+    )
+    expect(hostedEditorEmbedRequest(entry, 'light', 'bn').projectPath).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/versions-bn`,
+    )
+    expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile).toBe('sveltepress.versions.json')
     expect(request.options.clickToLoad).toBe(false)
     expect(request.options.theme).toBe('light')
     expect(JSON.stringify(request)).not.toMatch(/embedProject/)

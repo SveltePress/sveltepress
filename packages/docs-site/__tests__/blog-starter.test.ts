@@ -15,6 +15,7 @@ import {
   openInPlayground,
   openInStackBlitzUrl,
   PINNED_STARTERS_TAG,
+  previewPathForLocale,
   shippingEntries,
   STARTER_SUBDIRECTORIES,
 } from '../src/lib/playground/catalog.ts'
@@ -103,8 +104,12 @@ describe('blog starter and Blog theme Entries', () => {
       expect(githubImportPath(entry)).toBe(
         `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog`,
       )
+      const preview = previewPathForLocale(entry)
+      const stackblitz = `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog`
       expect(openInStackBlitzUrl(entry)).toBe(
-        `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog`,
+        preview === '/'
+          ? stackblitz
+          : `${stackblitz}?initialpath=${encodeURIComponent(preview)}`,
       )
       expect(githubImportPath(entry)).not.toContain('/main/')
       expect(githubImportPath(entry)).not.toContain('example-blog')
@@ -123,15 +128,14 @@ describe('blog starter and Blog theme Entries', () => {
         `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog`,
       )
       expect(request.options.openFile).toBe(record.focusedFile)
-      if (record.focusedFile.endsWith('.md')) {
-        expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile)
-          .toBe(record.focusedFile.replace(/\.md$/, '.zh.md'))
-        expect(hostedEditorEmbedRequest(entry, 'light', 'bn').options.openFile)
-          .toBe(record.focusedFile.replace(/\.md$/, '.bn.md'))
-      }
-      else {
-        expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile).toBe(record.focusedFile)
-      }
+      expect(hostedEditorEmbedRequest(entry, 'light', 'zh').options.openFile).toBe(record.focusedFile)
+      expect(hostedEditorEmbedRequest(entry, 'light', 'zh').projectPath).toBe(
+        `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog-zh`,
+      )
+      expect(hostedEditorEmbedRequest(entry, 'light', 'bn').options.openFile).toBe(record.focusedFile)
+      expect(hostedEditorEmbedRequest(entry, 'light', 'bn').projectPath).toBe(
+        `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/blog-bn`,
+      )
       expect(request.options.clickToLoad).toBe(false)
       expect(JSON.stringify(request)).not.toMatch(/embedProject/)
       expect(JSON.stringify(request)).not.toMatch(/\/run/)

@@ -6,7 +6,7 @@ Sveltepress 是面向文档与博客的 SvelteKit 站点构建工具。
 启发自 [VitePress](https://vitepress.dev/)。
 基于 [SvelteKit](https://kit.svelte.dev/) 与 [UnoCSS](https://github.com/unocss/unocss) 构建 —— 既有内容工具链，也保留 SSR、适配器、服务端路由与 hooks 等完整能力。
 
-导航栏中的 **演练场** 会打开浏览器内的功能目录与 Starter。Markdown、默认主题与 Vite 插件条目共用默认主题 Starter。「文档版本管理」使用 Versions Starter（`versions init` / `create` · `versions build`）。「国际化」使用三语言 Starter。各语言演练场会打开对应语言的示例说明（不是英文页的复制），并落在匹配的聚焦文件上。「自定义主题」仅能从演练场首页进入（没有对应指南页）。博客主题条目（配置、写文章、特性、自定义）共用 Blog starter。「虚拟模块」是 Kitchen-sink Starter 上的一条参考条目；在 `virtual:sveltepress/site`、`locale` 与 `versions` 页上的 Open in Playground 都会进入该条目。Kitchen sink 是「全部特性」条目，也是演练场顶部的 CTA（不是站点导航栏项）。博客主题和自定义主题不会进入该树。指南页仍使用不可编辑的 Live code；博客示例仍是成品展示。
+导航栏中的 **演练场** 会打开浏览器内的功能目录与 Starter。Markdown、默认主题与 Vite 插件条目共用默认主题 Starter。「文档版本管理」使用 Versions Starter（`versions init` / `create` · `versions build`）。「国际化」使用三语言 Starter。各语言演练场嵌入一份用该语言写在默认路径上的 Starter（例如 `src/routes/+page.md`、`config/navbar.js`），不会再增加 `/zh/` 或 `/bn/` 路由；只有「国际化」条目例外。「自定义主题」仅能从演练场首页进入（没有对应指南页）。博客主题条目（配置、写文章、特性、自定义）共用 Blog starter。「虚拟模块」是 Kitchen-sink Starter 上的一条参考条目；在 `virtual:sveltepress/site`、`locale` 与 `versions` 页上的 Open in Playground 都会进入该条目。Kitchen sink 是「全部特性」条目，也是演练场顶部的 CTA（不是站点导航栏项）。博客主题和自定义主题不会进入该树。指南页仍使用不可编辑的 Live code；博客示例仍是成品展示。
 
 ## 项目结构
 

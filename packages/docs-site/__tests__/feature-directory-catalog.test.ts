@@ -15,6 +15,7 @@ import {
   openInStackBlitzUrl,
   PINNED_STARTERS_TAG,
   PLAYGROUND_STARTERS_REPO,
+  previewPathForLocale,
   shippingEntries,
   STARTER_SUBDIRECTORIES,
   TYPESCRIPT_SLUG,
@@ -433,7 +434,7 @@ describe('feature directory catalog', () => {
       `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme`,
     )
     expect(openInStackBlitzUrl(basic)).toBe(
-      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme`,
+      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme?initialpath=${encodeURIComponent('/guide/markdown/basic-writing/')}`,
     )
     expect(githubImportPath(basic)).not.toContain('/main/')
     expect(JSON.stringify(basic)).not.toMatch(/stackblitz\.com\/edit/)
@@ -445,6 +446,15 @@ describe('feature directory catalog', () => {
     )
     expect(openInStackBlitzUrl(kitchen)).toBe(
       `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/kitchen-sink`,
+    )
+    expect(githubImportPath(basic, 'zh')).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme-zh`,
+    )
+    expect(githubImportPath(kitchen, 'bn')).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/kitchen-sink-bn`,
+    )
+    expect(githubImportPath(entryBySlug(I18N_SLUG)!, 'zh')).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/i18n`,
     )
   })
 
@@ -470,25 +480,25 @@ describe('feature directory catalog', () => {
     expect(localizedName(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'bn')).toBe('ভার্চুয়াল মডিউল')
   })
 
-  it('opens translated example files for ZH and BN instead of the English Focused file', () => {
+  it('keeps the catalog Focused file on ZH and BN; locale trees are written at those same paths', () => {
     const basic = entryBySlug(BASIC_WRITING_SLUG)!
     expect(focusedFileForLocale(basic, 'en')).toBe('src/routes/guide/markdown/basic-writing/+page.md')
-    expect(focusedFileForLocale(basic, 'zh')).toBe('src/routes/zh/guide/markdown/basic-writing/+page.md')
-    expect(focusedFileForLocale(basic, 'bn')).toBe('src/routes/bn/guide/markdown/basic-writing/+page.md')
+    expect(focusedFileForLocale(basic, 'zh')).toBe('src/routes/guide/markdown/basic-writing/+page.md')
+    expect(focusedFileForLocale(basic, 'bn')).toBe('src/routes/guide/markdown/basic-writing/+page.md')
 
     const navbar = entryBySlug('default-theme/navbar')!
     expect(focusedFileForLocale(navbar, 'en')).toBe('config/navbar.js')
-    expect(focusedFileForLocale(navbar, 'zh')).toBe('config/zh/navbar.js')
-    expect(focusedFileForLocale(navbar, 'bn')).toBe('config/bn/navbar.js')
+    expect(focusedFileForLocale(navbar, 'zh')).toBe('config/navbar.js')
+    expect(focusedFileForLocale(navbar, 'bn')).toBe('config/navbar.js')
 
     const home = entryBySlug('default-theme/home-page')!
-    expect(focusedFileForLocale(home, 'zh')).toBe('src/routes/zh/+page.md')
-    expect(focusedFileForLocale(home, 'bn')).toBe('src/routes/bn/+page.md')
+    expect(focusedFileForLocale(home, 'zh')).toBe('src/routes/+page.md')
+    expect(focusedFileForLocale(home, 'bn')).toBe('src/routes/+page.md')
 
     const posts = entryBySlug('blog-theme/writing-posts')!
     expect(focusedFileForLocale(posts, 'en')).toBe('src/posts/hello-sveltepress.md')
-    expect(focusedFileForLocale(posts, 'zh')).toBe('src/posts/hello-sveltepress.zh.md')
-    expect(focusedFileForLocale(posts, 'bn')).toBe('src/posts/hello-sveltepress.bn.md')
+    expect(focusedFileForLocale(posts, 'zh')).toBe('src/posts/hello-sveltepress.md')
+    expect(focusedFileForLocale(posts, 'bn')).toBe('src/posts/hello-sveltepress.md')
 
     const locales = entryBySlug(I18N_SLUG)!
     expect(focusedFileForLocale(locales, 'zh')).toBe('config/locales.ts')
@@ -498,10 +508,38 @@ describe('feature directory catalog', () => {
     expect(focusedFileForLocale(typescript, 'zh')).toBe('vite.config.ts')
 
     const custom = entryBySlug(CUSTOM_THEME_SLUG)!
+    expect(focusedFileForLocale(custom, 'zh')).toBe('src/routes/+layout.svelte')
     expect(focusedFileForLocale(custom, 'bn')).toBe('src/routes/+layout.svelte')
 
     const virtual = entryBySlug(VIRTUAL_MODULES_SLUG)!
-    expect(focusedFileForLocale(virtual, 'zh')).toBe('src/routes/zh/reference/virtual-modules/+page.md')
+    expect(focusedFileForLocale(virtual, 'zh')).toBe('src/routes/reference/virtual-modules/+page.md')
+  })
+
+  it('maps Hosted editor previews to default routes; only i18n starts on /zh/ or /bn/', () => {
+    const basic = entryBySlug(BASIC_WRITING_SLUG)!
+    expect(previewPathForLocale(basic, 'en')).toBe('/guide/markdown/basic-writing/')
+    expect(previewPathForLocale(basic, 'zh')).toBe('/guide/markdown/basic-writing/')
+    expect(previewPathForLocale(basic, 'bn')).toBe('/guide/markdown/basic-writing/')
+
+    const custom = entryBySlug(CUSTOM_THEME_SLUG)!
+    expect(previewPathForLocale(custom, 'en')).toBe('/')
+    expect(previewPathForLocale(custom, 'zh')).toBe('/')
+    expect(previewPathForLocale(custom, 'bn')).toBe('/')
+
+    const i18n = entryBySlug(I18N_SLUG)!
+    expect(previewPathForLocale(i18n, 'en')).toBe('/')
+    expect(previewPathForLocale(i18n, 'zh')).toBe('/zh/')
+    expect(previewPathForLocale(i18n, 'bn')).toBe('/bn/')
+
+    const posts = entryBySlug('blog-theme/writing-posts')!
+    expect(previewPathForLocale(posts, 'en')).toBe('/posts/hello-sveltepress/')
+    expect(previewPathForLocale(posts, 'zh')).toBe('/posts/hello-sveltepress/')
+
+    const features = entryBySlug('blog-theme/features')!
+    expect(previewPathForLocale(features, 'zh')).toBe('/posts/editorial-showcase/')
+
+    const kitchen = entryBySlug(KITCHEN_SINK_SLUG)!
+    expect(previewPathForLocale(kitchen, 'zh')).toBe('/')
   })
 })
 

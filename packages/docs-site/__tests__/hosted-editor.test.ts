@@ -4,6 +4,7 @@ import { cleanup, render, waitFor, within } from '@testing-library/svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   BASIC_WRITING_SLUG,
+  CUSTOM_THEME_SLUG,
   entryBySlug,
   githubImportPath,
   I18N_SLUG,
@@ -12,6 +13,7 @@ import {
   shippingEntries,
   VERSION_MANAGEMENT_SLUG,
 } from '../src/lib/playground/catalog.ts'
+import { applyHostedEditorPreview } from '../src/lib/playground/hosted-editor.ts'
 import PlaygroundApp from '../src/lib/playground/PlaygroundApp.svelte'
 
 afterEach(cleanup)
@@ -60,7 +62,7 @@ describe('hosted editor wrapper', () => {
       { name: 'Open in StackBlitz' },
     )
     expect(fallback.getAttribute('href')).toBe(
-      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme`,
+      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme?initialpath=${encodeURIComponent('/guide/markdown/basic-writing/')}`,
     )
     expect(fallback.getAttribute('target')).toBe('_blank')
     expect(view.getByRole('region', { name: 'Hosted editor' }).textContent).toMatch(
@@ -181,7 +183,7 @@ describe('hosted editor wrapper', () => {
     )
   })
 
-  it('auto-boots ZH and BN Entries at the translated example, not a copy of the English page', async () => {
+  it('auto-boots ZH and BN Entries on the same Focused file in a locale-written starter tree', async () => {
     const embed = vi.fn(async () => ({}))
     render(PlaygroundApp, {
       locale: 'zh',
@@ -190,8 +192,11 @@ describe('hosted editor wrapper', () => {
       embed,
     })
     await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    expect(embed.mock.calls[0]![1]).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme-zh`,
+    )
     expect(embed.mock.calls[0]![2]).toMatchObject({
-      openFile: 'src/routes/zh/guide/markdown/basic-writing/+page.md',
+      openFile: 'src/routes/guide/markdown/basic-writing/+page.md',
     })
     cleanup()
 
@@ -203,8 +208,48 @@ describe('hosted editor wrapper', () => {
       embed,
     })
     await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    expect(embed.mock.calls[0]![1]).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme-bn`,
+    )
     expect(embed.mock.calls[0]![2]).toMatchObject({
-      openFile: 'src/routes/bn/guide/default-theme/admonitions/+page.md',
+      openFile: 'src/routes/guide/default-theme/admonitions/+page.md',
     })
+  })
+
+  it('opens ZH Custom theme on the default layout in the Chinese starter tree', async () => {
+    const setUrl = vi.fn(async () => null)
+    const getUrl = vi.fn(async () => 'https://preview.example/')
+    const embed = vi.fn(async () => ({ preview: { getUrl, setUrl } }))
+    const view = render(PlaygroundApp, {
+      locale: 'zh',
+      slug: CUSTOM_THEME_SLUG,
+      theme: 'light',
+      embed,
+    })
+    await waitFor(() => expect(embed).toHaveBeenCalledTimes(1))
+    expect(embed.mock.calls[0]![1]).toBe(
+      `SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/custom-theme-zh`,
+    )
+    expect(embed.mock.calls[0]![2]).toMatchObject({
+      openFile: 'src/routes/+layout.svelte',
+    })
+    expect(setUrl).not.toHaveBeenCalled()
+    expect(view.getByRole('link', { name: '在 StackBlitz 中打开' }).getAttribute('href')).toBe(
+      `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/custom-theme-zh`,
+    )
+  })
+
+  it('waits for a preview origin before applying a non-home path', async () => {
+    const setUrl = vi.fn(async () => null)
+    const getUrl = vi.fn()
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce('https://preview.example/')
+    await applyHostedEditorPreview(
+      { preview: { getUrl, setUrl } },
+      '/guide/markdown/basic-writing/',
+      { wait: async () => undefined },
+    )
+    expect(getUrl).toHaveBeenCalledTimes(2)
+    expect(setUrl).toHaveBeenCalledWith('/guide/markdown/basic-writing/')
   })
 })

@@ -8,7 +8,7 @@ When multi-locale support is enabled in `@sveltepress/vite` via `locales`, `virt
 
 Custom themes and components can import this module to build language switchers, localized navigation links, and locale-aware UI chrome.
 
-The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated. English opens `src/routes/reference/virtual-modules/+page.md`; Chinese and Bengali open the translated pages under `src/routes/zh/` and `src/routes/bn/`. That page writes Svelte in markdown and renders them with the same `JsonViewer` as this page. This docs page keeps svelte live so it can show the source next to the rendered result. Open in Playground on this leaf lands there.
+The Playground [Virtual modules](/playground/virtual-modules/) Entry boots the Kitchen-sink starter where `virtual:sveltepress/site`, `locale`, and `versions` are all populated at `src/routes/reference/virtual-modules/+page.md`. Chinese and Bengali embed `kitchen-sink-zh` / `kitchen-sink-bn` at that same path. That page writes Svelte in markdown and renders them with the same `JsonViewer` as this page. This docs page keeps svelte live so it can show the source next to the rendered result. Open in Playground on this leaf lands there.
 
 ## Live data
 

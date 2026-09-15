@@ -126,17 +126,25 @@ describe('kitchen-sink starter, Virtual modules, and Kitchen-sink CTA', () => {
     expect(virtual.projectPath).toBe(kitchen.projectPath)
     expect(virtual.options.openFile).toBe('src/routes/reference/virtual-modules/+page.md')
     expect(hostedEditorEmbedRequest(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'dark', 'zh').options.openFile)
-      .toBe('src/routes/zh/reference/virtual-modules/+page.md')
+      .toBe('src/routes/reference/virtual-modules/+page.md')
+    expect(hostedEditorEmbedRequest(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'dark', 'zh').projectPath)
+      .toBe(`SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/kitchen-sink-zh`)
     expect(hostedEditorEmbedRequest(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'dark', 'bn').options.openFile)
-      .toBe('src/routes/bn/reference/virtual-modules/+page.md')
+      .toBe('src/routes/reference/virtual-modules/+page.md')
     expect(hostedEditorEmbedRequest(entryBySlug(KITCHEN_SINK_SLUG)!, 'light', 'zh').options.openFile)
-      .toBe('src/routes/zh/+page.md')
+      .toBe('src/routes/+page.md')
+    expect(hostedEditorEmbedRequest(entryBySlug(KITCHEN_SINK_SLUG)!, 'light', 'zh').previewPath)
+      .toBe('/')
+    expect(hostedEditorEmbedRequest(entryBySlug(KITCHEN_SINK_SLUG)!, 'light', 'zh').projectPath)
+      .toBe(`SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/kitchen-sink-zh`)
+    expect(hostedEditorEmbedRequest(entryBySlug(VIRTUAL_MODULES_SLUG)!, 'dark', 'zh').previewPath)
+      .toBe('/reference/virtual-modules/')
     expect(virtual.options.clickToLoad).toBe(false)
     expect(virtual.options.theme).toBe('dark')
   })
 
-  it('pins playground-v1.11 so locale Playground opens translated examples', () => {
-    expect(PINNED_STARTERS_TAG).toBe('playground-v1.11')
+  it('pins playground-v1.13 so locale Playground opens same-path locale-written starters', () => {
+    expect(PINNED_STARTERS_TAG).toBe('playground-v1.13')
   })
 
   it('keeps svelte live on docs virtual-module pages and writes Svelte in the playground focused file', () => {
