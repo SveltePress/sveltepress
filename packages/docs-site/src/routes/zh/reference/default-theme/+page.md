@@ -69,7 +69,7 @@ Logo 图片
 
 * `enabled` - 设为 `true` 启用自动侧边栏生成
 * `routesDir` - 自定义路由目录路径。默认为 `'src/routes'`
-* `roots` - 生成侧边栏的根路径，如 `['/guide/', '/reference/']`。未指定时从顶级路由目录自动检测
+* `roots` - 生成侧边栏的根路径，如 `['/guide/', '/reference/']`。未指定时从顶级路由目录自动检测。历史版本快照目录（`/v/{id}/`，包括按语言组合的路径）会被跳过。
 
 页面可以通过 frontmatter 控制其在侧边栏中的显示：
 

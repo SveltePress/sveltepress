@@ -33,6 +33,10 @@ export default defineConfig({
 
 SveltePress শীর্ষ-স্তরের রাউট ডিরেক্টরি (যেমন `/guide/`, `/reference/`) শনাক্ত করে স্বয়ংক্রিয়ভাবে সাইডবার গ্রুপ তৈরি করবে।
 
+:::since[স্বয়ংক্রিয় সাইডবার historical version এড়িয়ে যায়]{version="2026-09-09" id="auto-sidebar-skip-version-snapshots" summary="স্বয়ংক্রিয় সাইডবার freeze ও dev-mounted /v/{id}/ ট্রি এড়িয়ে যায়।"}
+`/v/1.0/`-এর মতো historical version snapshot tree (এবং `/zh/v/1.0/`-এর মতো locale-composed base) বাদ পড়ে, `roots`-এ স্পষ্টভাবে `/v/` থাকলেও। Frozen history তার snapshot metadata-এর সাইডবারই রাখে।
+:::
+
 ### অপশনসমূহ
 
 | অপশন | টাইপ | ডিফল্ট | বিবরণ |

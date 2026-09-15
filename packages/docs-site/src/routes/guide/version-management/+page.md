@@ -4,7 +4,7 @@ title: Document version management
 
 SveltePress can keep the latest documentation at its normal URLs while publishing immutable historical snapshots below a version prefix such as `/v/8.1/`. Version management is opt-in: sites without a `sveltepress.versions.json` manifest behave exactly as before.
 
-The Playground [Document versions](/playground/version-management/) Entry boots a Default Theme starter with a versions manifest and one frozen snapshot as authored at `sveltepress.versions.json`.
+The Playground [Document versions](/playground/version-management/) Entry boots a Default Theme starter with a versions manifest, one frozen snapshot, an automatic What's new catalog, auto sidebar, and New badges as authored at `sveltepress.versions.json`.
 
 ## Install and initialize
 
@@ -339,7 +339,7 @@ In addition to contextual badges on pages, sections, and navigation, you can emb
 <VersionChanges />
 ```
 
-See the official site's live catalog on the [What's new page](/whats-new/).
+See the official site's live catalog on the [What's new page](/whats-new/). The Playground [Document versions](/playground/version-management/) starter ships the same catalog at `/whats-new/`, auto sidebar under `/guide/`, and New badges on the current 1.1 pages.
 
 :::since[Route-scoped What's New catalogs]{version="2026-08-31" id="version-scoped-whats-new" summary="Keep each What's New route bound to its own frozen preceding-version comparison."}
 `VersionChanges` defaults to the documentation version resolved from the current page URL. A valid `?version={id}` explicitly overrides that context. Each version's catalog is generated against its immediately preceding version in manifest order, while frozen historical catalogs stay independent of later current documentation. Current links stay unprefixed; historical links target `/v/{id}/...`, including exact section anchors.

@@ -4,7 +4,7 @@ title: 文档版本管理
 
 SveltePress 可以让最新版文档继续使用普通 URL，同时把不可变的历史快照发布到 `/v/8.1/` 之类的路径。该能力默认关闭；没有 `sveltepress.versions.json` 的站点行为不变。
 
-演练场中的 [文档版本管理](/playground/version-management/) 条目会按作者提交的内容启动带 versions 清单和一个冻结快照的默认主题 Starter，并打开 `sveltepress.versions.json`。
+演练场中的 [文档版本管理](/playground/version-management/) 条目会按作者提交的内容启动带 versions 清单、一个冻结快照、自动「新增内容」目录、自动侧边栏和 New 徽章的默认主题 Starter，并打开 `sveltepress.versions.json`。
 
 ## 安装与初始化
 
@@ -321,7 +321,7 @@ versionChanges:
 <VersionChanges />
 ```
 
-可在本站的[新增内容页面](/whats-new/)查看对应路由示例。
+可在本站的[新增内容页面](/whats-new/)查看对应路由示例。演练场中的[文档版本管理](/playground/version-management/) Starter 同样带有 `/whats-new/` 目录、`/guide/` 下的自动侧边栏，以及当前 1.1 页面上的 New 徽章。
 
 :::since[按路由隔离的新增内容]{version="2026-08-31" id="version-scoped-whats-new" summary="让每个“新增内容”路由使用自身相对上一版本冻结的变化集。"}
 `VersionChanges` 默认采用当前页面 URL 解析出的文档版本；有效的 `?version={id}` 可显式覆盖该上下文。每个版本的变化总览都以清单中紧邻的上一版本为比较基准，历史变化集冻结后不受后续当前文档影响。当前链接不加前缀，历史链接精确指向 `/v/{id}/...` 及段落锚点。

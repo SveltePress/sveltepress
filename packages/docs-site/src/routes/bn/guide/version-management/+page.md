@@ -4,7 +4,7 @@ title: ডকুমেন্ট সংস্করণ ব্যবস্থা�
 
 SveltePress সর্বশেষ ডকুমেন্টেশনকে স্বাভাবিক URL-এ রেখে `/v/8.1/`-এর মতো পথে অপরিবর্তনীয় পুরোনো snapshot প্রকাশ করতে পারে। এটি opt-in; `sveltepress.versions.json` না থাকলে সাইট আগের মতোই কাজ করে।
 
-প্লেগ্রাউন্ডের [ডকুমেন্ট সংস্করণ ব্যবস্থাপনা](/playground/version-management/) এন্ট্রি `sveltepress.versions.json`-এ লেখকের মতোই একটি versions manifest ও একটি frozen snapshot সহ Default Theme starter চালু করে।
+প্লেগ্রাউন্ডের [ডকুমেন্ট সংস্করণ ব্যবস্থাপনা](/playground/version-management/) এন্ট্রি `sveltepress.versions.json`-এ লেখকের মতোই একটি versions manifest, একটি frozen snapshot, স্বয়ংক্রিয় What's new catalog, auto sidebar এবং New ব্যাজ সহ Default Theme starter চালু করে।
 
 ## ইনস্টল ও শুরু
 
@@ -318,7 +318,7 @@ Default Theme বিভিন্ন কন্টেন্ট ও নেভিগ
 <VersionChanges />
 ```
 
-এই site-এর route উদাহরণ [নতুন কী page](/whats-new/)-এ দেখা যাবে।
+এই site-এর route উদাহরণ [নতুন কী page](/whats-new/)-এ দেখা যাবে। প্লেগ্রাউন্ডের [ডকুমেন্ট সংস্করণ ব্যবস্থাপনা](/playground/version-management/) starter-এও `/whats-new/` catalog, `/guide/`-এর auto sidebar এবং বর্তমান 1.1 পেজের New ব্যাজ আছে।
 
 :::since[Route অনুযায়ী আলাদা নতুন কী catalog]{version="2026-08-31" id="version-scoped-whats-new" summary="প্রতিটি নতুন কী route-কে তার আগের version-এর তুলনায় freeze করা নিজস্ব change set-এর সঙ্গে যুক্ত রাখুন।"}
 `VersionChanges` default হিসেবে current page URL থেকে resolve করা documentation version ব্যবহার করে; valid `?version={id}` সেই context-কে স্পষ্টভাবে override করতে পারে। প্রতিটি version-এর catalog manifest order-এ তার ঠিক আগের version-এর সঙ্গে তুলনা করে তৈরি হয়, আর frozen historical catalog পরবর্তী current documentation থেকে স্বাধীন থাকে। Current link unprefixed থাকে; historical link `/v/{id}/...` ও নির্দিষ্ট section anchor-এ যায়।

@@ -33,6 +33,10 @@ export default defineConfig({
 
 SveltePress 会检测顶级路由目录（如 `/guide/`、`/reference/`）并自动构建侧边栏分组。
 
+:::since[自动侧边栏跳过历史版本]{version="2026-09-09" id="auto-sidebar-skip-version-snapshots" summary="自动生成的侧边栏会跳过冻结和开发期挂载的 /v/{id}/ 目录树。"}
+历史版本快照目录（如 `/v/1.0/`，以及 `/zh/v/1.0/` 这类按语言组合的路径）会被跳过，即使 `roots` 显式包含 `/v/` 也一样。冻结历史版本仍使用快照元数据中的侧边栏。
+:::
+
 ### 选项
 
 | 选项 | 类型 | 默认值 | 说明 |

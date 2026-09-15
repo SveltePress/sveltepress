@@ -1,6 +1,12 @@
 import type { LinkItem } from 'virtual:sveltepress/theme-default'
-import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
+
+const VERSION_SNAPSHOT_MARKERS = [
+  '.sveltepress-version.json',
+  '.sveltepress-dev-shell.json',
+  '.sveltepress-generated-shells.json',
+] as const
 
 export interface AutoSidebarOptions {
   /**
@@ -91,6 +97,16 @@ function shouldSkipDir(name: string): boolean {
   return isDynamicRoute(name) || isPrivate(name)
 }
 
+function hasVersionSnapshotMarker(dirPath: string): boolean {
+  return VERSION_SNAPSHOT_MARKERS.some(marker => existsSync(join(dirPath, marker)))
+}
+
+function isVersionSnapshotTree(dirPath: string): boolean {
+  if (hasVersionSnapshotMarker(dirPath))
+    return true
+  return getSubDirs(dirPath).some(name => hasVersionSnapshotMarker(join(dirPath, name)))
+}
+
 function findPageFile(dirPath: string): string | null {
   for (const name of ['+page.md', '+page.svelte']) {
     const filePath = join(dirPath, name)
@@ -142,10 +158,9 @@ function scanDir(dirPath: string, routesDir: string, depth: number): LinkItem[] 
   const items: Array<LinkItem & { _order: number }> = []
 
   for (const name of subDirs) {
-    if (shouldSkipDir(name))
-      continue
-
     const subDirPath = join(dirPath, name)
+    if (shouldSkipDir(name) || isVersionSnapshotTree(subDirPath))
+      continue
 
     // Handle group directories — they are transparent in URL structure
     if (isGroupDir(name)) {
@@ -225,16 +240,16 @@ function detectRoots(routesDir: string): string[] {
   const roots: string[] = []
 
   for (const name of dirs) {
-    if (shouldSkipDir(name) || isPrivate(name))
-      continue
-
     const dirPath = join(routesDir, name)
+    if (shouldSkipDir(name) || isPrivate(name) || isVersionSnapshotTree(dirPath))
+      continue
 
     if (isGroupDir(name)) {
       // Look inside group dirs for real route dirs
       const innerDirs = getSubDirs(dirPath)
       for (const inner of innerDirs) {
-        if (!shouldSkipDir(inner) && !isPrivate(inner) && !isGroupDir(inner))
+        const innerPath = join(dirPath, inner)
+        if (!shouldSkipDir(inner) && !isPrivate(inner) && !isGroupDir(inner) && !isVersionSnapshotTree(innerPath))
           roots.push(`/${inner}/`)
       }
       continue
@@ -309,7 +324,7 @@ export function generateSidebar(autoOptions: AutoSidebarOptions): Record<string,
 
   for (const root of roots) {
     const rootDir = findRootDir(routesDir, root)
-    if (!rootDir)
+    if (!rootDir || isVersionSnapshotTree(rootDir))
       continue
 
     const items = scanDir(rootDir, routesDir, 0)

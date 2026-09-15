@@ -33,6 +33,10 @@ export default defineConfig({
 
 SveltePress will detect top-level route directories (e.g. `/guide/`, `/reference/`) and build sidebar groups from them automatically.
 
+:::since[Auto sidebar skips historical versions]{version="2026-09-09" id="auto-sidebar-skip-version-snapshots" summary="Auto-generated sidebars skip frozen and dev-mounted /v/{id}/ trees."}
+Historical version snapshot trees such as `/v/1.0/` (and locale-composed bases such as `/zh/v/1.0/`) are skipped, including when `roots` explicitly lists `/v/`. Frozen history keeps its own sidebar from snapshot metadata.
+:::
+
 ### Options
 
 | Option | Type | Default | Description |

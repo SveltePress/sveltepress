@@ -70,7 +70,7 @@ Pass an object with `enabled: true` to automatically generate the sidebar from y
 
 * `enabled` - Set to `true` to enable auto sidebar generation
 * `routesDir` - Custom routes directory path. Default is `'src/routes'`
-* `roots` - Root paths to generate sidebar for, e.g. `['/guide/', '/reference/']`. If not specified, auto-detected from top-level route directories
+* `roots` - Root paths to generate sidebar for, e.g. `['/guide/', '/reference/']`. If not specified, auto-detected from top-level route directories. Historical version snapshot trees (`/v/{id}/`, including locale-composed bases) are skipped.
 
 Pages can control their sidebar appearance via frontmatter:
 
