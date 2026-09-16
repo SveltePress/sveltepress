@@ -80,6 +80,22 @@ function incrementalIO(root: string) {
       runBuild: async () => {
         builds += 1
         historicalRoutesMounted = existsSync(join(root, 'src/routes/v'))
+        mkdirSync(join(root, 'dist/guide'), { recursive: true })
+        writeFileSync(join(root, 'dist/index.html'), [
+          '<html><head><title>Home</title><link rel="canonical" href="/" /></head>',
+          '<body><aside class="version-lifecycle">current</aside>',
+          '<div class="version-selector"><span>v9</span></div>',
+          '<div class="content" data-pagefind-body="true"><h1>Home</h1></div>',
+          '<script>kit.start(app, element, { node_ids: [0, 4] });</script>',
+          '</body></html>',
+        ].join(''))
+        writeFileSync(join(root, 'dist/guide/index.html'), [
+          '<html><head><title>Guide</title><link rel="canonical" href="/guide/" /></head>',
+          '<body><div class="version-selector"><span>v9</span></div>',
+          '<div class="content" data-pagefind-body="true"><h1>Guide</h1></div>',
+          '<script>kit.start(app, element, { node_ids: [0, 5] });</script>',
+          '</body></html>',
+        ].join(''))
       },
     },
   }
@@ -109,15 +125,22 @@ describe('sveltepress versions CLI', () => {
     harness.stdout.length = 0
     expect(await runCli(['versions', 'plan'], harness.io)).toBe(0)
     const plan = JSON.parse(harness.stdout.at(-1)!)
-    expect(plan).toMatchObject({ compiledPages: 2, reusedPages: 28 })
+    expect(plan).toMatchObject({
+      compiledPages: 2,
+      reusedPages: 28,
+      vitePrerenderScope: 'current-only',
+      overlaidHistoricalHtml: 30,
+    })
     expect(plan.compiledRoutes).toEqual(['/guide/', '/page-7/'])
 
     harness.stdout.length = 0
     expect(await runCli(['versions', 'build'], harness.io)).toBe(0)
     expect(harness.compiled).toEqual(['/guide/', '/page-7/'])
     expect(harness.builds).toBe(1)
-    expect(harness.historicalRoutesMounted).toBe(true)
+    expect(harness.historicalRoutesMounted).toBe(false)
     expect(existsSync(join(root, 'src/routes/v'))).toBe(false)
+    expect(existsSync(join(root, 'dist/v/v8/guide/index.html'))).toBe(true)
+    expect(existsSync(join(root, 'dist/v/v8/index.html'))).toBe(true)
 
     expect(await runCli(['versions', 'create', 'v10'], harness.io)).toBe(0)
     expect(JSON.parse(readFileSync(join(root, 'version-deltas/v9/delta.json'), 'utf8')).pages.map((page: any) => page.route)).toEqual(['/guide/', '/page-7/'])

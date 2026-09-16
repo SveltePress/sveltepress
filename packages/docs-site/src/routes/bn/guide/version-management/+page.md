@@ -35,7 +35,7 @@ Production build script:
 }
 ```
 
-`versions plan` build না করেই compiled, reused, removed ও recomposed route জানায়। `versions build` committed delta থেকে missing history restore করে, current version-এর শুধু বদলানো page compile করে, stable SveltePress shell-এ সব route compose করে, তারপর স্বাভাবিক Vite production build চালায়। Shell বা index বদলালে page content পুনরায় compile না করেও route recompose হতে পারে; page compiler বা artifact schema বদলালে সব page artifact ইচ্ছাকৃতভাবে invalid হয়।
+`versions plan` build না করেই compiled, reused, removed, recomposed route এবং `vitePrerenderScope: "current-only"` ও `overlaidHistoricalHtml` জানায়। `versions build` committed delta থেকে missing history restore করে, current version-এর শুধু বদলানো page compile করে, তারপর Vite **শুধু বর্তমান locale tree** (`/`, `/zh/`, `/bn/`, Playground) চালায়। Frozen ইতিহাস HTML হিসেবে `dist`-এ **overlay** হয় এবং বর্তমান `_app` asset share করে — Vite `/v/`, `/zh/v/`, `/bn/v/`-কে SvelteKit route হিসেবে mount করে না। Shell বদলালে overlay HTML rewrite হতে পারে page module পুনরায় compile না করেই; page compiler বা artifact schema বদলালে সব page artifact ইচ্ছাকৃতভাবে invalid হয়।
 
 GitHub Actions-এ build-এর আগে সর্বশেষ compatible store restore করুন এবং current commit key-তে updated store save করুন:
 

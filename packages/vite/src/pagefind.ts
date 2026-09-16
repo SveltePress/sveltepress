@@ -1,5 +1,6 @@
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, relative, sep } from 'node:path'
+import process from 'node:process'
 
 export interface PagefindOptions {
   /**
@@ -27,6 +28,16 @@ export interface PagefindOptions {
    * Whether local search indexing is enabled. Defaults to true.
    */
   enabled?: boolean
+  /**
+   * Site root that holds `sveltepress.versions*.json` manifests.
+   * Used to skip historical `/v/` output trees unless `excludeRelativeDirs` is set.
+   */
+  siteRoot?: string
+  /**
+   * Dist-relative directories to skip when indexing the current site
+   * (for example `v` and `zh/v`). Overrides manifest discovery.
+   */
+  excludeRelativeDirs?: string[]
 }
 
 export interface PagefindIndexResult {
@@ -151,8 +162,72 @@ export async function syncHistoricalPagefind(
 }
 
 /**
+ * Dist-relative prefixes of frozen version output (`v`, `zh/v`, `bn/v`).
+ * Current-site Pagefind must not crawl these trees; historical indexes are
+ * copied from version-deltas instead.
+ */
+export function versionOutputPrefixesFromManifests(siteRoot: string): string[] {
+  if (!existsSync(siteRoot))
+    return []
+  const prefixes: string[] = []
+  for (const entry of readdirSync(siteRoot, { withFileTypes: true })) {
+    if (!entry.isFile() || !/^sveltepress\.versions(?:\.[a-z0-9-]+)?\.json$/.test(entry.name))
+      continue
+    try {
+      const manifest = JSON.parse(readFileSync(join(siteRoot, entry.name), 'utf8'))
+      const base = typeof manifest?.basePath === 'string'
+        ? manifest.basePath.replace(/^\/+|\/+$/g, '')
+        : ''
+      if (base)
+        prefixes.push(base)
+    }
+    catch {
+      continue
+    }
+  }
+  return [...new Set(prefixes)].sort()
+}
+
+function posixRelative(from: string, to: string): string {
+  return relative(from, to).split(sep).join('/')
+}
+
+function isExcludedRelativePath(relativePath: string, prefixes: string[]): boolean {
+  return prefixes.some((prefix) => {
+    if (!prefix)
+      return false
+    return relativePath === prefix
+      || relativePath.startsWith(`${prefix}/`)
+  })
+}
+
+function collectCurrentHtmlFiles(siteDir: string, prefixes: string[]): string[] {
+  const files: string[] = []
+  const visit = (directory: string) => {
+    if (!existsSync(directory))
+      return
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const full = join(directory, entry.name)
+      const rel = posixRelative(siteDir, full)
+      if (isExcludedRelativePath(rel, prefixes))
+        continue
+      if (entry.isDirectory()) {
+        visit(full)
+        continue
+      }
+      if (entry.isFile() && entry.name.endsWith('.html'))
+        files.push(full)
+    }
+  }
+  visit(siteDir)
+  return files
+}
+
+/**
  * Index a static HTML site directory using Pagefind.
  * Emits search assets into `${siteDir}/pagefind` (or configured outputPath).
+ * Historical version trees (`/v/`, `/zh/v/`, …) are skipped so current search
+ * does not absorb frozen snapshots.
  */
 export async function indexSiteWithPagefind(
   siteDir: string,
@@ -167,6 +242,8 @@ export async function indexSiteWithPagefind(
   }
 
   const outputPath = options?.outputPath ?? join(siteDir, 'pagefind')
+  const excludeDirs = options?.excludeRelativeDirs
+    ?? versionOutputPrefixesFromManifests(options?.siteRoot ?? process.cwd())
 
   try {
     const pagefind = await import('pagefind')
@@ -181,10 +258,18 @@ export async function indexSiteWithPagefind(
       return { success: false, reason: `Pagefind createIndex error: ${errors.join(', ')}` }
     }
 
-    const addRes = await index.addDirectory({ path: siteDir })
-    if (addRes.errors && addRes.errors.length > 0) {
-      await index.deleteIndex().catch(() => {})
-      return { success: false, reason: `Pagefind addDirectory error: ${addRes.errors.join(', ')}` }
+    const htmlFiles = collectCurrentHtmlFiles(siteDir, excludeDirs)
+    let pageCount = 0
+    for (const file of htmlFiles) {
+      const addRes = await index.addHTMLFile({
+        sourcePath: posixRelative(siteDir, file),
+        content: readFileSync(file, 'utf8'),
+      })
+      if (addRes.errors && addRes.errors.length > 0) {
+        await index.deleteIndex().catch(() => {})
+        return { success: false, reason: `Pagefind addHTMLFile error: ${addRes.errors.join(', ')}` }
+      }
+      pageCount += 1
     }
 
     const writeRes = await index.writeFiles({ outputPath })
@@ -211,7 +296,7 @@ export async function indexSiteWithPagefind(
     return {
       success: true,
       outputPath,
-      pageCount: addRes.page_count,
+      pageCount,
     }
   }
   catch (error) {

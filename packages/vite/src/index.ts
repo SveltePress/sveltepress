@@ -63,14 +63,15 @@ const sveltepress: (options?: SveltepressVitePluginOptions) => PluginOption = as
               if (process.env.SVELTEPRESS_SKIP_PAGEFIND)
                 return
               const opts = typeof pagefind === 'object' ? pagefind : undefined
+              const siteRoot = process.cwd()
               const candidates = [
-                resolve(process.cwd(), 'dist'),
-                resolve(process.cwd(), 'build'),
+                resolve(siteRoot, 'dist'),
+                resolve(siteRoot, 'build'),
               ]
               for (const candidate of candidates) {
                 if (existsSync(candidate)) {
-                  await indexSiteWithPagefind(candidate, opts)
-                  await syncHistoricalPagefind(process.cwd(), candidate, opts)
+                  await indexSiteWithPagefind(candidate, { ...opts, siteRoot })
+                  await syncHistoricalPagefind(siteRoot, candidate, opts)
                   break
                 }
               }

@@ -255,6 +255,10 @@ assert(historicalHtml.includes('<link rel="canonical" href="/v/2026-08-27/"'), '
 assert(historicalHtml.includes('You are viewing an older version of this site. Some features may not work as expected.'), 'Historical lifecycle message is missing')
 assert(historicalHtml.includes('Current version'), 'Historical current-version link is missing')
 assert(historicalHtml.includes('local-search-trigger'), 'Historical search button is missing')
+assert(
+  [...historicalHtml.matchAll(/\/_app\/immutable\/[^"']+/g)].every(match => existsSync(join(official, match[0].slice(1)))),
+  'Historical overlay HTML references a missing current _app asset',
+)
 assertVersionSelectorLabel(currentHtml, currentId, 'Current version selector label is missing')
 assertVersionSelectorLabel(previousHtml, previousId, 'Previous version selector label is missing')
 assertVersionSelectorLabel(historicalHtml, historicalId, 'Historical version selector label is missing')

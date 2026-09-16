@@ -2,7 +2,11 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { indexSiteWithPagefind, syncHistoricalPagefind } from '../src/pagefind'
+import {
+  indexSiteWithPagefind,
+  syncHistoricalPagefind,
+  versionOutputPrefixesFromManifests,
+} from '../src/pagefind'
 
 describe('pagefind indexing in vite', () => {
   let tempDir: string
@@ -26,6 +30,60 @@ describe('pagefind indexing in vite', () => {
     const result = await indexSiteWithPagefind(tempDir, { enabled: false })
     expect(result.success).toBe(false)
     expect(result.reason).toContain('disabled')
+  })
+
+  it('reads historical output prefixes from locale version manifests', () => {
+    writeFileSync(join(tempDir, 'sveltepress.versions.json'), JSON.stringify({
+      basePath: '/v',
+      current: { id: 'now' },
+      versions: [{ id: 'old' }],
+    }))
+    writeFileSync(join(tempDir, 'sveltepress.versions.zh.json'), JSON.stringify({
+      basePath: '/zh/v',
+      current: { id: 'now' },
+      versions: [{ id: 'old' }],
+    }))
+    expect(versionOutputPrefixesFromManifests(tempDir)).toEqual(['v', 'zh/v'])
+  })
+
+  it('indexes current trees and skips historical version prefixes', async () => {
+    const currentHtml = `<!DOCTYPE html>
+<html lang="en">
+<head><title>Current</title></head>
+<body>
+  <main data-pagefind-body>
+    <h1>Current Guide</h1>
+    <p>UniqueCurrentToken sveltepress-current-only</p>
+  </main>
+</body>
+</html>`
+    const historicalHtml = `<!DOCTYPE html>
+<html lang="en">
+<head><title>Historical</title></head>
+<body>
+  <main data-pagefind-body>
+    <h1>Historical Guide</h1>
+    <p>UniqueHistoricalToken sveltepress-history-only</p>
+  </main>
+</body>
+</html>`
+    writeFileSync(join(tempDir, 'index.html'), currentHtml, 'utf-8')
+    mkdirSync(join(tempDir, 'v', '2026-08-27'), { recursive: true })
+    writeFileSync(join(tempDir, 'v', '2026-08-27', 'index.html'), historicalHtml, 'utf-8')
+    mkdirSync(join(tempDir, 'zh', 'v', '2026-08-27'), { recursive: true })
+    writeFileSync(join(tempDir, 'zh', 'index.html'), currentHtml.replace('Current Guide', '当前指南'), 'utf-8')
+    writeFileSync(join(tempDir, 'zh', 'v', '2026-08-27', 'index.html'), historicalHtml, 'utf-8')
+
+    const result = await indexSiteWithPagefind(tempDir, {
+      excludeRelativeDirs: ['v', 'zh/v'],
+    })
+    expect(result.success).toBe(true)
+    expect(result.pageCount).toBe(2)
+
+    const entry = JSON.parse(readFileSync(join(tempDir, 'pagefind', 'pagefind-entry.json'), 'utf-8'))
+    const indexed = JSON.stringify(entry)
+    expect(indexed).not.toMatch(/UniqueHistoricalToken|sveltepress-history-only/)
+    expect(result.pageCount).toBeLessThan(4)
   })
 
   it('indexes mock html files and emits pagefind search assets', async () => {

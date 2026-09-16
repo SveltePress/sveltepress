@@ -32,6 +32,7 @@ export * from './artifact-store.js'
 export * from './artifacts.js'
 export { computeVersionChangeSet, validateFrozenVersionChangeSets, validateVersionChangeSet } from './changes.js'
 export { generateVersionSitemap } from './output.js'
+export * from './overlay-html.js'
 export {
   emitPageArtifactFile,
   PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX,

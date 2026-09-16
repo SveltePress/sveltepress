@@ -42,7 +42,7 @@ Use the incremental command as the production build script:
 }
 ```
 
-`versions plan` reports compiled, reused, removed, and recomposed routes without building. `versions build` restores missing historical artifacts from committed deltas, compiles only changed current pages, composes the stable SveltePress shell, and then runs the normal Vite production build. A shell or index change may recompose routes without recompiling unchanged page content; a page compiler or artifact schema change intentionally invalidates every page artifact.
+`versions plan` reports compiled, reused, removed, and recomposed routes without building, plus `vitePrerenderScope: "current-only"` and `overlaidHistoricalHtml`. `versions build` restores missing historical artifacts from committed deltas, compiles only changed current pages, then runs Vite on the **current** locale trees only (`/`, `/zh/`, `/bn/`, Playground). Frozen history is **overlaid** into `dist` as HTML that shares the current build’s `_app` assets — Vite does not mount `/v/`, `/zh/v/`, or `/bn/v/` as SvelteKit routes. A shell or index change may rewrite overlay HTML without recompiling page modules; a page compiler or artifact schema change intentionally invalidates every page artifact.
 
 For GitHub Actions, restore the newest compatible store before the build and save the updated store under the current commit key:
 

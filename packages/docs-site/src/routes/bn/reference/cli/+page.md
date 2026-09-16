@@ -70,7 +70,7 @@ sveltepress versions validate --locale bn
 
 ### `plan`
 
-ইনক্রিমেন্টাল বিল্ড প্ল্যান প্রিভিউ করুন এবং পুনরায় ব্যবহৃত পেজ ও পরিবর্তিত রুট দেখুন:
+ইনক্রিমেন্টাল বিল্ড প্ল্যান প্রিভিউ করুন: page reuse, পরিবর্তিত route, overlay সংখ্যা এবং invalidation। JSON-এ `vitePrerenderScope: "current-only"` ও `overlaidHistoricalHtml` থাকে।
 
 ```sh
 sveltepress versions plan
@@ -80,7 +80,7 @@ sveltepress versions plan
 
 ### `build`
 
-সংস্করণ-সচেতন প্রোডাকশন কম্পাইলেশন চালান। `--locale` ছাড়া এটি সমস্ত লোকাল বিল্ড ও কম্পোজ করে:
+সংস্করণ-সচেতন প্রোডাকশন কম্পাইলেশন চালান। `--locale` ছাড়া এটি সব লোকাল draft করে, Vite শুধু বর্তমান tree চালায়, তারপর frozen `/v/` HTML একই output-এ overlay করে:
 
 ```sh
 sveltepress versions build

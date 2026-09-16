@@ -70,7 +70,7 @@ sveltepress versions validate --locale bn
 
 ### `plan`
 
-Preview the incremental build plan, showing page reuse, changed routes, and invalidations:
+Preview the incremental build plan, showing page reuse, changed routes, overlay counts, and invalidations. The JSON includes `vitePrerenderScope: "current-only"` and `overlaidHistoricalHtml`.
 
 ```sh
 sveltepress versions plan
@@ -80,7 +80,7 @@ sveltepress versions plan
 
 ### `build`
 
-Execute version-aware production compilation. Without `--locale`, it builds and composes all locales:
+Execute version-aware production compilation. Without `--locale`, it drafts every locale, runs Vite on current trees only, then overlays frozen `/v/` HTML into the same output:
 
 ```sh
 sveltepress versions build

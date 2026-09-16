@@ -15,7 +15,6 @@ import {
   renameSync,
   rmSync,
   statSync,
-  writeFileSync,
 } from 'node:fs'
 import { basename, dirname, join, relative, resolve } from 'node:path'
 import process from 'node:process'
@@ -24,9 +23,10 @@ import {
   buildInitialVersionArtifacts,
   buildVersionArtifacts,
   collectPageArtifactInputs,
-  generateVersionShellRoutes,
+  countHistoricalOverlayPages,
   loadVersionManifest,
   materializeVersionSourceDeltas,
+  overlayHistoricalVersion,
   PAGE_ARTIFACT_MODULE_SCHEMA,
   planVersionBuild,
   publishDraftVersionArtifactManifest,
@@ -39,7 +39,9 @@ import {
   validateVersionArtifactManifest,
   versionMetadataHash,
   versionSourceHash,
+  VITE_PRERENDER_SCOPE_CURRENT,
   writeDraftVersionArtifactManifest,
+  writeHistoricalLlmsFromArtifacts,
   writeVersionSourceDelta,
 } from '@sveltepress/vite/versioning'
 
@@ -112,6 +114,9 @@ export async function printIncrementalPlan(
   manifest: VersionManifest,
 ) {
   const { plan, pages } = await planIncrementalBuild(io, manifest)
+  const storeRoot = resolveArtifactStore(io.cwd, manifest)
+  const siteId = manifest.artifacts!.siteId
+  const overlaidHistoricalHtml = countHistoricalOverlayPages(manifest, storeRoot, siteId)
   const summary = plan
     ? {
         siteId: plan.siteId,
@@ -123,9 +128,11 @@ export async function printIncrementalPlan(
         fullRebuild: plan.fullRebuild,
         invalidationReasons: plan.invalidationReasons,
         compiledRoutes: plan.compiledRoutes,
+        vitePrerenderScope: VITE_PRERENDER_SCOPE_CURRENT,
+        overlaidHistoricalHtml,
       }
     : {
-        siteId: manifest.artifacts!.siteId,
+        siteId,
         versionId: manifest.current.id,
         compiledPages: pages.length,
         reusedPages: 0,
@@ -134,6 +141,8 @@ export async function printIncrementalPlan(
         fullRebuild: true,
         invalidationReasons: ['initial artifact baseline'],
         compiledRoutes: pages.map(page => page.route),
+        vitePrerenderScope: VITE_PRERENDER_SCOPE_CURRENT,
+        overlaidHistoricalHtml,
       }
   io.stdout(JSON.stringify(summary, null, 2))
 }
@@ -192,24 +201,23 @@ export async function composeIncrementalSite(
       throw new Error(`Missing published artifact manifest for ${version.id}.`)
     return artifact
   })
-  const routesDirectory = join(io.cwd, '.sveltepress/version-shell-routes')
-  const pageLayout = await resolvePageLayout(io)
-  const report = await generateVersionShellRoutes({
-    siteRoot: io.cwd,
-    storeRoot,
-    outputDirectory: routesDirectory,
-    basePath: manifest.basePath,
-    pageLayout,
-    current,
-    historical,
-  })
-  // The default-locale build drafts every locale first, then composes every
-  // locale manifest's version shells so the merged output carries /v/,
-  // /zh/v/, and /bn/v/. A locale-scoped build (`--locale zh`) composes only
-  // the requested locale's history.
   const discoveredLocales = discoverLocaleManifests(io)
   const isLocaleScopedBuild = discoveredLocales.some(locale => locale.manifest.basePath === manifest.basePath)
-  const extraMounts: { routesDirectory: string, basePath: string }[] = []
+  const overlayLocales: Array<{
+    localeDir: string
+    basePath: string
+    currentVersionId: string
+    storeRoot: string
+    versions: VersionManifest['versions']
+    historical: VersionArtifactManifest[]
+  }> = [{
+    localeDir: localeDirFromBasePath(manifest.basePath),
+    basePath: manifest.basePath,
+    currentVersionId: manifest.current.id,
+    storeRoot,
+    versions: manifest.versions,
+    historical,
+  }]
   if (!isLocaleScopedBuild) {
     for (const locale of discoveredLocales) {
       if (locale.manifest.basePath === manifest.basePath)
@@ -225,21 +233,61 @@ export async function composeIncrementalSite(
           throw new Error(`Missing published artifact manifest for /${locale.slug}/ ${version.id}.`)
         return artifact
       })
-      const localeRoutesDirectory = join(io.cwd, `.sveltepress/version-shell-routes-${locale.slug}`)
-      await generateVersionShellRoutes({
-        siteRoot: io.cwd,
-        storeRoot: localeStore,
-        outputDirectory: localeRoutesDirectory,
+      overlayLocales.push({
+        localeDir: locale.slug,
         basePath: locale.manifest.basePath,
-        pageLayout,
-        current: localeCurrent,
+        currentVersionId: locale.manifest.current.id,
+        storeRoot: localeStore,
+        versions: locale.manifest.versions,
         historical: localeHistorical,
       })
-      extraMounts.push({ routesDirectory: localeRoutesDirectory, basePath: locale.manifest.basePath })
     }
   }
-  await runViteBuild(io, routesDirectory, storeRoot, config.siteId, manifest.basePath, extraMounts)
-  io.stdout(`Composed ${report.currentRoutes} current and ${report.historicalRoutes} historical routes from reusable page artifacts.`)
+  await runCurrentViteBuild(io, storeRoot, config.siteId)
+  const distRoot = resolveDistRoot(io.cwd)
+  let historicalRoutes = 0
+  for (const locale of overlayLocales) {
+    for (const version of locale.historical) {
+      const meta = locale.versions.find(item => item.id === version.versionId)
+      historicalRoutes += overlayHistoricalVersion({
+        distRoot,
+        localeDir: locale.localeDir,
+        basePath: locale.basePath,
+        currentVersionId: locale.currentVersionId,
+        historical: version,
+        storeRoot: locale.storeRoot,
+        changes: meta?.changes ?? null,
+      })
+      writeHistoricalLlmsFromArtifacts({
+        storeRoot: locale.storeRoot,
+        historical: version,
+        outputDir: distIndexPathDir(distRoot, locale.basePath, version.versionId),
+        routePrefix: `${locale.basePath}/${version.versionId}`,
+      })
+    }
+  }
+  io.stdout(`Composed ${Object.keys(current.pages).length} current and ${historicalRoutes} historical routes from reusable page artifacts.`)
+}
+
+function localeDirFromBasePath(basePath: string): string {
+  const parts = basePath.split('/').filter(Boolean)
+  if (parts.length >= 2 && parts.at(-1) === 'v')
+    return parts.slice(0, -1).join('/')
+  return ''
+}
+
+function resolveDistRoot(siteRoot: string): string {
+  for (const name of ['dist', 'build']) {
+    const candidate = join(siteRoot, name)
+    if (existsSync(candidate))
+      return candidate
+  }
+  return join(siteRoot, 'dist')
+}
+
+function distIndexPathDir(distRoot: string, basePath: string, versionId: string): string {
+  const relative = `${basePath.replace(/^\/+|\/+$/g, '')}/${versionId}`
+  return join(distRoot, relative)
 }
 
 function discoverLocaleSlugs(siteRoot: string): string[] {
@@ -739,61 +787,34 @@ async function cachedArtifactIsReusable(
   }
 }
 
-async function resolvePageLayout(io: IncrementalCliIO): Promise<string> {
-  if (io.compilePage)
-    return '@sveltepress/theme-default/PageLayout.svelte'
-  const config = await resolveSiteViteConfig(io.cwd)
-  const api = config.plugins.map((plugin: any) => plugin?.api?.sveltepress).find((value: any) => value?.pageLayout)
-  if (!api?.pageLayout)
-    throw new Error('The configured SveltePress theme does not expose a page layout for artifact composition.')
-  return api.pageLayout
-}
-
 async function resolveSiteViteConfig(siteRoot: string): Promise<any> {
   const { resolveConfig } = await import('vite')
   return resolveConfig({ root: siteRoot }, 'build')
 }
 
-async function runViteBuild(
+async function runCurrentViteBuild(
   io: IncrementalCliIO,
-  routesDirectory: string,
   storeRoot: string,
   siteId: string,
-  basePath: string,
-  extraMounts: { routesDirectory: string, basePath: string }[] = [],
 ) {
-  // The version base may be locale-composed (e.g. `/zh/v`): mount every
-  // segment under `src/routes` so historical routes land inside the locale.
-  const mounts = [{ routesDirectory, basePath }, ...extraMounts]
-  const mountedHistoryRoutes: string[] = []
-  for (const mount of mounts) {
-    const baseSegments = mount.basePath.split('/').filter(Boolean)
-    const generatedHistoryRoutes = join(mount.routesDirectory, ...baseSegments)
-    const mountedHistoryRoute = join(io.cwd, 'src/routes', ...baseSegments)
-    const generatedMarker = join(mountedHistoryRoute, '.sveltepress-generated-shells.json')
-    if (existsSync(generatedMarker))
-      rmSync(mountedHistoryRoute, { recursive: true, force: true })
-    if (existsSync(mountedHistoryRoute))
-      throw new Error(`[sveltepress:versions] Cannot compose incremental routes because ${mountedHistoryRoute} already exists.`)
-    if (!existsSync(generatedHistoryRoutes))
-      throw new Error('[sveltepress:versions] Generated historical route shells are missing.')
-    renameSync(generatedHistoryRoutes, mountedHistoryRoute)
-    writeFileSync(generatedMarker, `${JSON.stringify({ siteId, generated: true })}\n`, { flag: 'wx' })
-    mountedHistoryRoutes.push(mountedHistoryRoute)
-  }
   const previousStore = process.env.SVELTEPRESS_ARTIFACT_STORE
   const previousSiteId = process.env.SVELTEPRESS_ARTIFACT_SITE_ID
   process.env.SVELTEPRESS_ARTIFACT_STORE = storeRoot
   process.env.SVELTEPRESS_ARTIFACT_SITE_ID = siteId
   try {
-    if (io.runBuild)
-      return await io.runBuild({ cwd: io.cwd, routesDirectory, storeRoot, siteId })
+    if (io.runBuild) {
+      await io.runBuild({
+        cwd: io.cwd,
+        routesDirectory: join(io.cwd, '.sveltepress/version-shell-routes'),
+        storeRoot,
+        siteId,
+      })
+      return
+    }
     const { build } = await import('vite')
     await build({ root: io.cwd })
   }
   finally {
-    for (const mountedHistoryRoute of mountedHistoryRoutes)
-      rmSync(mountedHistoryRoute, { recursive: true, force: true })
     restoreEnvironment('SVELTEPRESS_ARTIFACT_STORE', previousStore)
     restoreEnvironment('SVELTEPRESS_ARTIFACT_SITE_ID', previousSiteId)
   }

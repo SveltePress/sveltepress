@@ -70,7 +70,7 @@ sveltepress versions validate --locale zh
 
 ### `plan`
 
-预览增量构建计划，查看页面复用情况、变更路由以及失效原因：
+预览增量构建计划，查看页面复用、变更路由、overlay 数量以及失效原因。JSON 中包含 `vitePrerenderScope: "current-only"` 与 `overlaidHistoricalHtml`。
 
 ```sh
 sveltepress versions plan
@@ -80,7 +80,7 @@ sveltepress versions plan
 
 ### `build`
 
-执行支持版本管理的生产编译。未指定 `--locale` 时，会自动编译并整合所有语言：
+执行支持版本管理的生产编译。未指定 `--locale` 时，会为每种语言生成草稿，只对当前语言树跑 Vite，再把冻结的 `/v/` HTML 覆盖进同一份产物：
 
 ```sh
 sveltepress versions build
