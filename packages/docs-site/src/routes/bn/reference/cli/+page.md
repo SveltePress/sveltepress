@@ -68,6 +68,10 @@ sveltepress versions validate --locale bn
 
 * `--locale <id>`: লক্ষ্য লোকাল।
 
+:::since[শুধু বর্তমান tree-এ Vite]{version="2026-09-17" id="versions-cli-overlay-plan" summary="versions plan overlay সংখ্যা দেখায়; versions build বর্তমান tree prerender করে তারপর frozen /v/ HTML overlay করে।"}
+`versions plan` JSON-এ `vitePrerenderScope: "current-only"` ও `overlaidHistoricalHtml` থাকে। `--locale` ছাড়া `versions build` শুধু বর্তমান locale tree prerender করে, তারপর frozen `/v/` HTML একই output-এ overlay করে।
+:::
+
 ### `plan`
 
 ইনক্রিমেন্টাল বিল্ড প্ল্যান প্রিভিউ করুন: page reuse, পরিবর্তিত route, overlay সংখ্যা এবং invalidation। JSON-এ `vitePrerenderScope: "current-only"` ও `overlaidHistoricalHtml` থাকে।

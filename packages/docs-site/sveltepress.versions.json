@@ -2,10 +2,272 @@
   "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
   "basePath": "/v",
   "current": {
-    "id": "2026-09-09",
-    "label": "2026-09-09"
+    "id": "2026-09-17",
+    "label": "2026-09-17"
   },
   "versions": [
+    {
+      "id": "2026-09-09",
+      "label": "2026-09-09",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/i18n/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/guide/version-management/",
+        "/playground/",
+        "/playground/blog-theme/configuration/",
+        "/playground/blog-theme/customization/",
+        "/playground/blog-theme/features/",
+        "/playground/blog-theme/writing-posts/",
+        "/playground/custom-theme/",
+        "/playground/default-theme/admonitions/",
+        "/playground/default-theme/builtin-components/",
+        "/playground/default-theme/code-related/",
+        "/playground/default-theme/frontmatter/",
+        "/playground/default-theme/google-analytics/",
+        "/playground/default-theme/headings-and-anchors/",
+        "/playground/default-theme/home-page/",
+        "/playground/default-theme/navbar/",
+        "/playground/default-theme/pwa/",
+        "/playground/default-theme/search/",
+        "/playground/default-theme/sidebar/",
+        "/playground/default-theme/twoslash/",
+        "/playground/default-theme/unocss/",
+        "/playground/i18n/",
+        "/playground/kitchen-sink/",
+        "/playground/markdown/basic-writing/",
+        "/playground/markdown/frontmatter/",
+        "/playground/markdown/svelte-in-markdown/",
+        "/playground/typescript/",
+        "/playground/version-management/",
+        "/playground/virtual-modules/",
+        "/playground/vite-plugin/",
+        "/reference/blog-theme/",
+        "/reference/cli/",
+        "/reference/default-theme/",
+        "/reference/locale/",
+        "/reference/site/",
+        "/reference/versions/",
+        "/reference/vite-plugin/",
+        "/whats-new/"
+      ],
+      "changes": {
+        "versionId": "2026-09-09",
+        "baselineVersionId": "2026-09-03",
+        "newPages": [
+          {
+            "route": "/playground/",
+            "title": "/playground/",
+            "sections": []
+          },
+          {
+            "route": "/playground/blog-theme/configuration/",
+            "title": "/playground/blog-theme/configuration/",
+            "sections": []
+          },
+          {
+            "route": "/playground/blog-theme/customization/",
+            "title": "/playground/blog-theme/customization/",
+            "sections": []
+          },
+          {
+            "route": "/playground/blog-theme/features/",
+            "title": "/playground/blog-theme/features/",
+            "sections": []
+          },
+          {
+            "route": "/playground/blog-theme/writing-posts/",
+            "title": "/playground/blog-theme/writing-posts/",
+            "sections": []
+          },
+          {
+            "route": "/playground/custom-theme/",
+            "title": "/playground/custom-theme/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/admonitions/",
+            "title": "/playground/default-theme/admonitions/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/builtin-components/",
+            "title": "/playground/default-theme/builtin-components/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/code-related/",
+            "title": "/playground/default-theme/code-related/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/frontmatter/",
+            "title": "/playground/default-theme/frontmatter/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/google-analytics/",
+            "title": "/playground/default-theme/google-analytics/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/headings-and-anchors/",
+            "title": "/playground/default-theme/headings-and-anchors/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/home-page/",
+            "title": "/playground/default-theme/home-page/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/navbar/",
+            "title": "/playground/default-theme/navbar/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/pwa/",
+            "title": "/playground/default-theme/pwa/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/search/",
+            "title": "/playground/default-theme/search/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/sidebar/",
+            "title": "/playground/default-theme/sidebar/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/twoslash/",
+            "title": "/playground/default-theme/twoslash/",
+            "sections": []
+          },
+          {
+            "route": "/playground/default-theme/unocss/",
+            "title": "/playground/default-theme/unocss/",
+            "sections": []
+          },
+          {
+            "route": "/playground/i18n/",
+            "title": "/playground/i18n/",
+            "sections": []
+          },
+          {
+            "route": "/playground/kitchen-sink/",
+            "title": "/playground/kitchen-sink/",
+            "sections": []
+          },
+          {
+            "route": "/playground/markdown/basic-writing/",
+            "title": "/playground/markdown/basic-writing/",
+            "sections": []
+          },
+          {
+            "route": "/playground/markdown/frontmatter/",
+            "title": "/playground/markdown/frontmatter/",
+            "sections": []
+          },
+          {
+            "route": "/playground/markdown/svelte-in-markdown/",
+            "title": "/playground/markdown/svelte-in-markdown/",
+            "sections": []
+          },
+          {
+            "route": "/playground/typescript/",
+            "title": "/playground/typescript/",
+            "sections": []
+          },
+          {
+            "route": "/playground/version-management/",
+            "title": "/playground/version-management/",
+            "sections": []
+          },
+          {
+            "route": "/playground/virtual-modules/",
+            "title": "/playground/virtual-modules/",
+            "sections": []
+          },
+          {
+            "route": "/playground/vite-plugin/",
+            "title": "/playground/vite-plugin/",
+            "sections": []
+          }
+        ],
+        "updatedPages": [
+          {
+            "route": "/guide/default-theme/pwa/",
+            "title": "PWA",
+            "sections": [
+              {
+                "id": "pwa-precache-client",
+                "title": "App-shell client precache",
+                "summary": "Default client precache is the app shell; precacheClient restores the catch-all glob.",
+                "introducedIn": "2026-09-09"
+              }
+            ]
+          },
+          {
+            "route": "/guide/default-theme/sidebar/",
+            "title": "Sidebar",
+            "sections": [
+              {
+                "id": "auto-sidebar-skip-version-snapshots",
+                "title": "Auto sidebar skips historical versions",
+                "summary": "Auto-generated sidebars skip frozen and dev-mounted /v/{id}/ trees.",
+                "introducedIn": "2026-09-09"
+              }
+            ]
+          },
+          {
+            "route": "/reference/default-theme/",
+            "title": "Default theme",
+            "sections": [
+              {
+                "id": "theme-pwa-precache-client",
+                "title": "App-shell client precache",
+                "summary": "pwa.precacheClient defaults to the app shell so service-worker updates stay fast.",
+                "introducedIn": "2026-09-09"
+              },
+              {
+                "id": "theme-title-row-action",
+                "title": "Optional title-row action",
+                "summary": "PageLayout can render an optional action after the page title and version-new badge.",
+                "introducedIn": "2026-09-09"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "stable",
+      "sourceHash": "d8c16d7d635620b9b557b32d3cb452b614038fbb90861f06763a608e63e3caec"
+    },
     {
       "id": "2026-09-03",
       "label": "2026-09-03",

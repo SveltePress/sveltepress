@@ -68,6 +68,10 @@ sveltepress versions validate --locale bn
 
 * `--locale <id>`: Target locale.
 
+:::since[Current-only Vite compose]{version="2026-09-17" id="versions-cli-overlay-plan" summary="versions plan reports overlay counts; versions build prerenders current trees then overlays frozen /v/ HTML."}
+`versions plan` JSON includes `vitePrerenderScope: "current-only"` and `overlaidHistoricalHtml`. Without `--locale`, `versions build` prerenders current locale trees only, then overlays frozen `/v/` HTML into the same output.
+:::
+
 ### `plan`
 
 Preview the incremental build plan, showing page reuse, changed routes, overlay counts, and invalidations. The JSON includes `vitePrerenderScope: "current-only"` and `overlaidHistoricalHtml`.

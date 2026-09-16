@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 2,
+  "siteId": "sveltepress-docs-bn",
+  "versionId": "2026-09-09",
+  "parentVersionId": "2026-09-03",
+  "metadataHash": "4cbb09acd25bbad811db5556aec386aa095a19d71a5418ef6d3d0ed9f6d61e57",
+  "pages": [
+    {
+      "route": "/",
+      "files": [
+        "src/routes/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/configuration/",
+      "files": [
+        "src/routes/guide/blog-theme/configuration/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/features/",
+      "files": [
+        "src/routes/guide/blog-theme/features/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/blog-theme/getting-started/",
+      "files": [
+        "src/routes/guide/blog-theme/getting-started/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/home-page/",
+      "files": [
+        "src/routes/+page.md",
+        "src/routes/guide/default-theme/home-page/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/pwa/",
+      "files": [
+        "src/routes/guide/default-theme/pwa/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/default-theme/sidebar/",
+      "files": [
+        "src/routes/guide/default-theme/sidebar/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/i18n/",
+      "files": [
+        "src/routes/guide/i18n/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/introduction/",
+      "files": [
+        "src/lib/components/LayoutHierarchy.svelte",
+        "src/routes/guide/introduction/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/themes/",
+      "files": [
+        "src/routes/guide/themes/+page.md"
+      ]
+    },
+    {
+      "route": "/guide/version-management/",
+      "files": [
+        "src/routes/guide/version-management/+page.md"
+      ]
+    },
+    {
+      "route": "/playground/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/blog-theme/configuration/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/blog-theme/configuration/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/blog-theme/customization/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/blog-theme/customization/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/blog-theme/features/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/blog-theme/features/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/blog-theme/writing-posts/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/blog-theme/writing-posts/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/custom-theme/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/custom-theme/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/admonitions/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/admonitions/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/builtin-components/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/builtin-components/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/code-related/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/code-related/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/frontmatter/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/frontmatter/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/google-analytics/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/google-analytics/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/headings-and-anchors/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/headings-and-anchors/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/home-page/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/home-page/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/navbar/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/navbar/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/pwa/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/pwa/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/search/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/search/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/sidebar/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/sidebar/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/twoslash/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/twoslash/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/default-theme/unocss/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/default-theme/unocss/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/i18n/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/i18n/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/kitchen-sink/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/kitchen-sink/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/markdown/basic-writing/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/markdown/basic-writing/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/markdown/frontmatter/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/markdown/frontmatter/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/markdown/svelte-in-markdown/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/markdown/svelte-in-markdown/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/typescript/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/typescript/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/version-management/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/version-management/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/virtual-modules/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/virtual-modules/+page.svelte"
+      ]
+    },
+    {
+      "route": "/playground/vite-plugin/",
+      "files": [
+        "src/lib/playground/HostedEditor.svelte",
+        "src/lib/playground/KitchenSinkCta.svelte",
+        "src/lib/playground/PlaygroundApp.svelte",
+        "src/lib/playground/SuccessBar.svelte",
+        "src/lib/playground/SwitchEntry.svelte",
+        "src/lib/playground/catalog.ts",
+        "src/lib/playground/copy.ts",
+        "src/lib/playground/embed.ts",
+        "src/lib/playground/hosted-editor.ts",
+        "src/lib/playground/shipping.ts",
+        "src/routes/playground/vite-plugin/+page.svelte"
+      ]
+    },
+    {
+      "route": "/reference/default-theme/",
+      "files": [
+        "src/routes/reference/default-theme/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/locale/",
+      "files": [
+        "src/routes/reference/locale/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/site/",
+      "files": [
+        "src/routes/reference/site/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/versions/",
+      "files": [
+        "src/routes/reference/versions/+page.md"
+      ]
+    }
+  ],
+  "removedRoutes": []
+}

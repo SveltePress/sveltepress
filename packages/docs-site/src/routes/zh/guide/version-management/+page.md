@@ -35,7 +35,9 @@ pnpm exec sveltepress versions migrate --site-id docs-example
 }
 ```
 
+:::since[覆盖写入历史 HTML]{version="2026-09-17" id="versions-overlay-html" summary="Vite 只预渲染当前语言树；冻结的 /v/ 页作为 overlay HTML 共享当前 _app 资源。"}
 `versions plan` 会在不构建的情况下报告需要编译、复用、删除和重新组合的路由，以及 `vitePrerenderScope: "current-only"` 与 `overlaidHistoricalHtml`。`versions build` 会从已提交增量恢复缺失的历史产物，只编译当前版本中真正变化的页面，然后 **只对当前语言树**（`/`、`/zh/`、`/bn/`、Playground）跑 Vite。冻结的历史页作为 HTML **覆盖** 进 `dist`，与当前构建的 `_app` 资源共享 — Vite 不会把 `/v/`、`/zh/v/`、`/bn/v/` 挂成 SvelteKit 路由。壳层变化可以重写 overlay HTML 而不重编译页面模块；页面编译器或产物 schema 变化则会有意使所有页面产物失效。
+:::
 
 在 GitHub Actions 中，可在构建前恢复最近的兼容存储，并按当前提交保存更新后的存储：
 

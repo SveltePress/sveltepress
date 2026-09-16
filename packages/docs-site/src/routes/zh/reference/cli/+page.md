@@ -68,6 +68,10 @@ sveltepress versions validate --locale zh
 
 * `--locale <id>`：目标语言。
 
+:::since[只对当前树跑 Vite]{version="2026-09-17" id="versions-cli-overlay-plan" summary="versions plan 报告 overlay 数量；versions build 只预渲染当前树，再覆盖写入冻结的 /v/ HTML。"}
+`versions plan` 的 JSON 包含 `vitePrerenderScope: "current-only"` 与 `overlaidHistoricalHtml`。未指定 `--locale` 时，`versions build` 只预渲染当前语言树，再把冻结的 `/v/` HTML 覆盖进同一份产物。
+:::
+
 ### `plan`
 
 预览增量构建计划，查看页面复用、变更路由、overlay 数量以及失效原因。JSON 中包含 `vitePrerenderScope: "current-only"` 与 `overlaidHistoricalHtml`。
