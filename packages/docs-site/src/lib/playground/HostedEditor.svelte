@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { CatalogLocale, Entry } from './catalog.ts'
   import type { HostedEditorEmbed, HostedEditorTheme } from './hosted-editor.ts'
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
   import { openInStackBlitzUrl } from './catalog.ts'
   import { playgroundCopy } from './copy.ts'
   import {
@@ -27,6 +27,10 @@
   let wrap = $state<HTMLDivElement | undefined>()
   let host = $state<HTMLDivElement | undefined>()
   let status = $state<'loading' | 'ready' | 'failed'>('loading')
+  let generation = $state(0)
+  let bootToken = 0
+  let cancelled = false
+  let abort = new AbortController()
 
   function resolveTheme(): HostedEditorTheme {
     if (theme) return theme
@@ -36,33 +40,46 @@
       : 'light'
   }
 
-  onMount(() => {
+  async function boot() {
+    const token = ++bootToken
+    await tick()
     const node = host
-    if (!node) return
+    if (!node || cancelled || token !== bootToken) return
 
     const request = hostedEditorEmbedRequest(entry, resolveTheme(), locale)
-    const abort = new AbortController()
-    let cancelled = false
-    void (async () => {
+    try {
       const embedFn = embed ?? (await import('./embed.ts')).embedGithubProject
+      const vm = await embedFn(node, request.projectPath, request.options)
+      if (cancelled || token !== bootToken) return
+      status = 'ready'
       try {
-        const vm = await embedFn(node, request.projectPath, request.options)
-        if (cancelled) return
-        status = 'ready'
-        try {
-          await applyHostedEditorPreview(vm, request.previewPath, {
-            signal: abort.signal,
-          })
-        } catch {
-          // Preview navigation is best-effort and must not fail boot.
-        }
+        await applyHostedEditorPreview(vm, request.previewPath, {
+          signal: abort.signal,
+        })
       } catch {
-        if (!cancelled) status = 'failed'
+        // Preview navigation is best-effort and must not fail boot.
       }
-    })()
+    } catch {
+      if (!cancelled && token === bootToken) status = 'failed'
+    }
+  }
 
+  function retry() {
+    if (status !== 'failed') return
+    abort.abort()
+    abort = new AbortController()
+    wrap?.querySelector('iframe')?.remove()
+    status = 'loading'
+    generation += 1
+    void boot()
+  }
+
+  onMount(() => {
+    cancelled = false
+    void boot()
     return () => {
       cancelled = true
+      bootToken += 1
       abort.abort()
       wrap?.querySelector('iframe')?.remove()
     }
@@ -79,20 +96,32 @@
     <div class="failed">
       <p class="failed-title">{copy.failedTitle}</p>
       <p class="failed-copy">{copy.failedCopy}</p>
-      <a class="failed-cta" href={forkHref} target="_blank" rel="noreferrer">
-        {copy.openInStackBlitz}
-      </a>
+      <div class="failed-actions">
+        <button type="button" class="failed-cta" onclick={retry}>
+          {copy.retry}
+        </button>
+        <a
+          class="failed-cta failed-cta-secondary"
+          href={forkHref}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {copy.openInStackBlitz}
+        </a>
+      </div>
     </div>
   {:else}
-    <div class="embed-wrap" bind:this={wrap}>
-      {#if status === 'loading'}
-        <div class="stub">
-          <p class="status">{copy.loading}</p>
-          <p class="status-sub">{copy.loadingSub}</p>
-        </div>
-      {/if}
-      <div class="embed-host" bind:this={host}></div>
-    </div>
+    {#key generation}
+      <div class="embed-wrap" bind:this={wrap}>
+        {#if status === 'loading'}
+          <div class="stub">
+            <p class="status">{copy.loading}</p>
+            <p class="status-sub">{copy.loadingSub}</p>
+          </div>
+        {/if}
+        <div class="embed-host" bind:this={host}></div>
+      </div>
+    {/key}
   {/if}
 </section>
 
@@ -131,7 +160,13 @@
   .failed-copy {
     --at-apply: 'm-0 max-w-[36rem] text-[13px] leading-6 text-zinc-4';
   }
+  .failed-actions {
+    --at-apply: 'flex flex-wrap items-center gap-2 mt-1';
+  }
   .failed-cta {
-    --at-apply: 'inline-flex items-center h-10 px-4 rounded-full bg-white text-[#18181b] font-600 text-[13px] no-underline';
+    --at-apply: 'inline-flex items-center h-10 px-4 rounded-full bg-white text-[#18181b] font-600 text-[13px] no-underline border-0 cursor-pointer font-inherit';
+  }
+  .failed-cta-secondary {
+    --at-apply: 'bg-transparent text-zinc-2 b-1 b-solid b-white/20';
   }
 </style>

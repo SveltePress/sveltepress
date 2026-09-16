@@ -24,6 +24,7 @@ export interface PlaygroundCopy {
   loadingSub: string
   failedTitle: string
   failedCopy: string
+  retry: string
   hostedEditor: string
   success: Record<SuccessKind, string>
   searchPlaceholder: string
@@ -65,6 +66,7 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     loadingSub: 'Same-page auto-boot.',
     failedTitle: 'Hosted editor did not boot',
     failedCopy: 'Open the Starter as authored on stackblitz.com. This does not carry iframe edits — there are none if the embed never started.',
+    retry: 'Retry',
     hostedEditor: 'Hosted editor',
     success: {
       as: 'Author-success',
@@ -99,6 +101,7 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     loadingSub: '本页自动启动。',
     failedTitle: 'Hosted editor 未能启动',
     failedCopy: '在 stackblitz.com 打开作者提交的 Starter。这不会带走 iframe 中的编辑 — 若嵌入从未开始，则没有任何编辑。',
+    retry: '重试',
     hostedEditor: '托管编辑器',
     success: {
       as: '可编写验证',
@@ -133,6 +136,7 @@ const COPY: Record<CatalogLocale, PlaygroundCopy> = {
     loadingSub: 'এই পাতাতেই আপনাআপনি চালু।',
     failedTitle: 'Hosted editor চালু হয়নি',
     failedCopy: 'stackblitz.com-এ লেখকের Starter খুলুন। এটি iframe-এর সম্পাদনা নিয়ে যায় না — এমবেড শুরু না হলে কোনো সম্পাদনাই নেই।',
+    retry: 'আবার চেষ্টা করুন',
     hostedEditor: 'হোস্টেড এডিটর',
     success: {
       as: 'লেখক-সাফল্য',

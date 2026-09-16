@@ -41,7 +41,7 @@ describe('hosted editor wrapper', () => {
     })
   })
 
-  it('replaces a failed boot with Open in StackBlitz in place', async () => {
+  it('replaces a failed boot with Retry and Open in StackBlitz in place', async () => {
     const embed = vi.fn(async () => {
       throw new Error('blocked')
     })
@@ -50,25 +50,85 @@ describe('hosted editor wrapper', () => {
       slug: BASIC_WRITING_SLUG,
       embed,
     })
+    const stage = () => view.getByRole('region', { name: 'Hosted editor' })
     await waitFor(() => {
-      expect(
-        within(view.getByRole('region', { name: 'Hosted editor' })).getByRole('link', {
-          name: 'Open in StackBlitz',
-        }),
-      ).toBeTruthy()
+      expect(within(stage()).getByRole('button', { name: 'Retry' })).toBeTruthy()
+      expect(within(stage()).getByRole('link', { name: 'Open in StackBlitz' })).toBeTruthy()
     })
-    const fallback = within(view.getByRole('region', { name: 'Hosted editor' })).getByRole(
-      'link',
-      { name: 'Open in StackBlitz' },
-    )
+    const fallback = within(stage()).getByRole('link', { name: 'Open in StackBlitz' })
     expect(fallback.getAttribute('href')).toBe(
       `https://stackblitz.com/fork/github/SveltePress/playground-starters/tree/${PINNED_STARTERS_TAG}/default-theme?initialpath=${encodeURIComponent('/guide/markdown/basic-writing/')}`,
     )
     expect(fallback.getAttribute('target')).toBe('_blank')
-    expect(view.getByRole('region', { name: 'Hosted editor' }).textContent).toMatch(
-      /does not carry/i,
-    )
+    expect(stage().textContent).toMatch(/does not carry/i)
     expect(view.container.textContent).not.toMatch(/Teams|paywall|Personal\+/i)
+  })
+
+  it('retries a failed boot in place without leaving the page', async () => {
+    const embed = vi.fn()
+      .mockRejectedValueOnce(new Error('blocked'))
+      .mockResolvedValueOnce({})
+    const view = render(PlaygroundApp, {
+      locale: 'en',
+      slug: BASIC_WRITING_SLUG,
+      embed,
+    })
+    await waitFor(() => {
+      expect(
+        within(view.getByRole('region', { name: 'Hosted editor' })).getByRole('button', {
+          name: 'Retry',
+        }),
+      ).toBeTruthy()
+    })
+    expect(embed).toHaveBeenCalledTimes(1)
+    within(view.getByRole('region', { name: 'Hosted editor' }))
+      .getByRole('button', { name: 'Retry' })
+      .click()
+    await waitFor(() => expect(embed).toHaveBeenCalledTimes(2))
+    const [element, projectPath, options] = embed.mock.calls[1]!
+    expect(element).toBeInstanceOf(HTMLElement)
+    expect(element).not.toBe(embed.mock.calls[0]![0])
+    expect(projectPath).toBe(embed.mock.calls[0]![1])
+    expect(options).toMatchObject({
+      openFile: entryBySlug(BASIC_WRITING_SLUG)!.focusedFile,
+      clickToLoad: false,
+    })
+    await waitFor(() => {
+      expect(view.queryByRole('button', { name: 'Retry' })).toBeNull()
+      expect(view.queryByText('Hosted editor did not boot')).toBeNull()
+    })
+  })
+
+  it('labels Retry in ZH and BN on a failed boot', async () => {
+    const embed = vi.fn(async () => {
+      throw new Error('blocked')
+    })
+    const zh = render(PlaygroundApp, {
+      locale: 'zh',
+      slug: BASIC_WRITING_SLUG,
+      embed,
+    })
+    await waitFor(() => {
+      expect(
+        within(zh.getByRole('region', { name: '托管编辑器' })).getByRole('button', {
+          name: '重试',
+        }),
+      ).toBeTruthy()
+    })
+    cleanup()
+
+    const bn = render(PlaygroundApp, {
+      locale: 'bn',
+      slug: BASIC_WRITING_SLUG,
+      embed,
+    })
+    await waitFor(() => {
+      expect(
+        within(bn.getByRole('region', { name: 'হোস্টেড এডিটর' })).getByRole('button', {
+          name: 'আবার চেষ্টা করুন',
+        }),
+      ).toBeTruthy()
+    })
   })
 
   it('shows Search, PWA, Google Analytics, and Vite plugin success bars from the catalog', async () => {
