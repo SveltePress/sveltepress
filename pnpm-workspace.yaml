@@ -37,7 +37,7 @@ catalog:
   '@iconify-json/noto': ^1.2.7
   '@iconify-json/openmoji': ^1.2.29
   '@iconify-json/ph': ^1.2.2
-  '@iconify-json/solar': ^1.2.10
+  '@iconify-json/solar': ^1.2.11
   '@iconify-json/tabler': ^1.2.38
   '@iconify-json/vscode-icons': ^1.2.77
   '@resvg/resvg-js': ^2.6.2
@@ -57,7 +57,7 @@ catalog:
   '@types/minimist': ^1.2.5
   '@types/node': ^24.13.5
   '@types/prompts': ^2.4.9
-  '@unocss/extractor-svelte': ^66.10.4
+  '@unocss/extractor-svelte': ^66.10.5
   '@vite-pwa/sveltekit': ^1.1.0
   changelogithub: ^14.0.0
   cross-spawn: ^7.0.6
@@ -102,7 +102,7 @@ catalog:
   unbuild: ^3.6.1
   unified: ^11.0.5
   unist-util-visit: ^5.1.0
-  unocss: ^66.10.4
+  unocss: ^66.10.5
   vfile: ^6.0.3
   vite: ^8.3.0
   vite-plugin-inspect: ^11.4.1
