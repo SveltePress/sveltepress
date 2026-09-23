@@ -32,14 +32,14 @@ catalog:
   '@iconify-json/emojione': ^1.2.3
   '@iconify-json/fxemoji': ^1.2.2
   '@iconify-json/logos': ^1.2.14
-  '@iconify-json/material-symbols': ^1.2.92
+  '@iconify-json/material-symbols': ^1.2.93
   '@iconify-json/mdi': ^1.2.3
   '@iconify-json/noto': ^1.2.8
   '@iconify-json/openmoji': ^1.2.29
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.12
   '@iconify-json/tabler': ^1.2.39
-  '@iconify-json/vscode-icons': ^1.2.79
+  '@iconify-json/vscode-icons': ^1.2.80
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@stackblitz/sdk': ^1.11.1
@@ -64,7 +64,7 @@ catalog:
   dayjs: ^1.11.23
   eslint: ^9.39.5
   eslint-plugin-svelte: ^3.23.0
-  fs-extra: ^11.4.0
+  fs-extra: ^11.4.1
   happy-dom: ^20.14.5
   husky: ^9.1.7
   lint-staged: ^16.4.0
