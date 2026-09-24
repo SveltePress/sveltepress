@@ -38,8 +38,8 @@ catalog:
   '@iconify-json/openmoji': ^1.2.29
   '@iconify-json/ph': ^1.2.2
   '@iconify-json/solar': ^1.2.12
-  '@iconify-json/tabler': ^1.2.39
-  '@iconify-json/vscode-icons': ^1.2.80
+  '@iconify-json/tabler': ^1.2.40
+  '@iconify-json/vscode-icons': ^1.2.81
   '@resvg/resvg-js': ^2.6.2
   '@shikijs/twoslash': ^3.23.0
   '@stackblitz/sdk': ^1.11.1
@@ -47,7 +47,7 @@ catalog:
   '@sveltejs/enhanced-img': ^0.10.4
   '@sveltejs/kit': ^2.70.3
   '@sveltejs/package': ^2.5.8
-  '@sveltejs/vite-plugin-svelte': ^7.3.0
+  '@sveltejs/vite-plugin-svelte': ^7.3.1
   '@testing-library/svelte': ^5.4.2
   '@types/cross-spawn': ^6.0.6
   '@types/estree': ^1.0.9
