@@ -1,5 +1,16 @@
 # @sveltepress/cli
 
+## 0.5.0
+
+### Minor Changes
+
+- [`5a0e4c6`](https://github.com/Blackman99/sveltepress/commit/5a0e4c65085c682f53bf69f6b9b696020f582495) Thanks [@Blackman99](https://github.com/Blackman99)! - Run Vite on current locale trees only during `versions build`, then overlay frozen `/v/` HTML that shares the current `_app` assets. Current-site Pagefind skips historical version prefixes.
+
+### Patch Changes
+
+- Updated dependencies [[`f2bbe76`](https://github.com/Blackman99/sveltepress/commit/f2bbe76734b57aea6c7be6fa0e412c4534e0c81a), [`68d4fbd`](https://github.com/Blackman99/sveltepress/commit/68d4fbd2768d9a7e99f4cb99eb973d558c3d50b9), [`9bbd531`](https://github.com/Blackman99/sveltepress/commit/9bbd5314b8b424caaf1435428f0adf73aaf23fc2), [`efc1f15`](https://github.com/Blackman99/sveltepress/commit/efc1f15222d84a7f49a193a6255067d8cc879472), [`d30c548`](https://github.com/Blackman99/sveltepress/commit/d30c548e152739587941667204f1712ea6868504), [`f687400`](https://github.com/Blackman99/sveltepress/commit/f687400a5deba988b90665944b1be3457853f787), [`cb37ec3`](https://github.com/Blackman99/sveltepress/commit/cb37ec3853f6a6ac4b7ed2ce0fd9644a010902ae), [`80d1da0`](https://github.com/Blackman99/sveltepress/commit/80d1da0ca9b2985421d7f8ee5febef872b2b2b5b), [`a80c8d5`](https://github.com/Blackman99/sveltepress/commit/a80c8d599131987db30d06de9f98518d4d7fe529), [`dce6419`](https://github.com/Blackman99/sveltepress/commit/dce64192054ea9f272ec2fa969032aa0dc0bb4d3), [`6bf55ce`](https://github.com/Blackman99/sveltepress/commit/6bf55ce04e2db8d50f3c004379faa8afeaa1414e), [`f3ab25b`](https://github.com/Blackman99/sveltepress/commit/f3ab25be2d823463335d698a7f14136ea4c97089), [`5a0e4c6`](https://github.com/Blackman99/sveltepress/commit/5a0e4c65085c682f53bf69f6b9b696020f582495), [`117d1be`](https://github.com/Blackman99/sveltepress/commit/117d1bed41c6478fb754e3c9724a9932607610e3)]:
+  - @sveltepress/vite@1.9.0
+
 ## 0.4.3
 
 ### Patch Changes
