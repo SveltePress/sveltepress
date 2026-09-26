@@ -1,5 +1,46 @@
 # @sveltepress/theme-default
 
+## 8.10.0
+
+### Minor Changes
+
+- [#476](https://github.com/SveltePress/sveltepress/pull/476) [`92b7213`](https://github.com/Blackman99/sveltepress/commit/92b7213e42899a4be78ac7068951c1c7b68483a1) Thanks [@Blackman99](https://github.com/Blackman99)! - Add an optional PageLayout title-row action after the page title and version-new badge. Sites that omit it keep today's title row.
+
+### Patch Changes
+
+- [`f2bbe76`](https://github.com/Blackman99/sveltepress/commit/f2bbe76734b57aea6c7be6fa0e412c4534e0c81a) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`68d4fbd`](https://github.com/Blackman99/sveltepress/commit/68d4fbd2768d9a7e99f4cb99eb973d558c3d50b9) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`9bbd531`](https://github.com/Blackman99/sveltepress/commit/9bbd5314b8b424caaf1435428f0adf73aaf23fc2) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`efc1f15`](https://github.com/Blackman99/sveltepress/commit/efc1f15222d84a7f49a193a6255067d8cc879472) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d30c548`](https://github.com/Blackman99/sveltepress/commit/d30c548e152739587941667204f1712ea6868504) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`f687400`](https://github.com/Blackman99/sveltepress/commit/f687400a5deba988b90665944b1be3457853f787) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`cb37ec3`](https://github.com/Blackman99/sveltepress/commit/cb37ec3853f6a6ac4b7ed2ce0fd9644a010902ae) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`80d1da0`](https://github.com/Blackman99/sveltepress/commit/80d1da0ca9b2985421d7f8ee5febef872b2b2b5b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a80c8d5`](https://github.com/Blackman99/sveltepress/commit/a80c8d599131987db30d06de9f98518d4d7fe529) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`dce6419`](https://github.com/Blackman99/sveltepress/commit/dce64192054ea9f272ec2fa969032aa0dc0bb4d3) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`6bf55ce`](https://github.com/Blackman99/sveltepress/commit/6bf55ce04e2db8d50f3c004379faa8afeaa1414e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`f3ab25b`](https://github.com/Blackman99/sveltepress/commit/f3ab25be2d823463335d698a7f14136ea4c97089) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [#477](https://github.com/SveltePress/sveltepress/pull/477) [`d49075b`](https://github.com/Blackman99/sveltepress/commit/d49075bb420105e3b44950d299a32b9887dd0b10) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep the desktop search pill from overflowing onto the first navbar link when the bar is crowded.
+
+- [#474](https://github.com/SveltePress/sveltepress/pull/474) [`5ca625b`](https://github.com/Blackman99/sveltepress/commit/5ca625bd6a262ff4a8efe3183f71a44460c1abdd) Thanks [@Blackman99](https://github.com/Blackman99)! - Keep Navbar and a stable page shell on `layout: false` pages so Feature directory routes can drop Sidebar, TOC, and article chrome without breaking client navigation.
+
+- [`29fe567`](https://github.com/Blackman99/sveltepress/commit/29fe5676ff99013cc5ec8bd47309eba0144ddcba) Thanks [@Blackman99](https://github.com/Blackman99)! - Skip frozen and dev-mounted historical version snapshot trees when generating the auto sidebar so `/v/` (and locale-composed bases) do not appear as live sidebar groups.
+
+- Updated dependencies [[`f2bbe76`](https://github.com/Blackman99/sveltepress/commit/f2bbe76734b57aea6c7be6fa0e412c4534e0c81a), [`68d4fbd`](https://github.com/Blackman99/sveltepress/commit/68d4fbd2768d9a7e99f4cb99eb973d558c3d50b9), [`9bbd531`](https://github.com/Blackman99/sveltepress/commit/9bbd5314b8b424caaf1435428f0adf73aaf23fc2), [`efc1f15`](https://github.com/Blackman99/sveltepress/commit/efc1f15222d84a7f49a193a6255067d8cc879472), [`d30c548`](https://github.com/Blackman99/sveltepress/commit/d30c548e152739587941667204f1712ea6868504), [`f687400`](https://github.com/Blackman99/sveltepress/commit/f687400a5deba988b90665944b1be3457853f787), [`cb37ec3`](https://github.com/Blackman99/sveltepress/commit/cb37ec3853f6a6ac4b7ed2ce0fd9644a010902ae), [`80d1da0`](https://github.com/Blackman99/sveltepress/commit/80d1da0ca9b2985421d7f8ee5febef872b2b2b5b), [`a80c8d5`](https://github.com/Blackman99/sveltepress/commit/a80c8d599131987db30d06de9f98518d4d7fe529), [`dce6419`](https://github.com/Blackman99/sveltepress/commit/dce64192054ea9f272ec2fa969032aa0dc0bb4d3), [`6bf55ce`](https://github.com/Blackman99/sveltepress/commit/6bf55ce04e2db8d50f3c004379faa8afeaa1414e), [`f3ab25b`](https://github.com/Blackman99/sveltepress/commit/f3ab25be2d823463335d698a7f14136ea4c97089)]:
+  - @sveltepress/twoslash@1.3.24
+
 ## 8.9.0
 
 ### Minor Changes
