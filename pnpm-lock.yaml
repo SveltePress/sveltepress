@@ -37,8 +37,8 @@ catalogs:
       specifier: ^1.2.3
       version: 1.2.3
     '@iconify-json/carbon':
-      specifier: ^1.2.27
-      version: 1.2.27
+      specifier: ^1.2.28
+      version: 1.2.28
     '@iconify-json/emojione':
       specifier: ^1.2.3
       version: 1.2.3
@@ -55,8 +55,8 @@ catalogs:
       specifier: ^1.2.3
       version: 1.2.3
     '@iconify-json/noto':
-      specifier: ^1.2.8
-      version: 1.2.8
+      specifier: ^1.2.9
+      version: 1.2.9
     '@iconify-json/openmoji':
       specifier: ^1.2.29
       version: 1.2.29
@@ -64,14 +64,14 @@ catalogs:
       specifier: ^1.2.2
       version: 1.2.2
     '@iconify-json/solar':
-      specifier: ^1.2.12
-      version: 1.2.12
+      specifier: ^1.2.13
+      version: 1.2.13
     '@iconify-json/tabler':
       specifier: ^1.2.40
       version: 1.2.40
     '@iconify-json/vscode-icons':
-      specifier: ^1.2.81
-      version: 1.2.81
+      specifier: ^1.2.82
+      version: 1.2.82
     '@resvg/resvg-js':
       specifier: ^2.6.2
       version: 2.6.2
@@ -422,7 +422,7 @@ importers:
         version: 1.2.3
       '@iconify-json/carbon':
         specifier: 'catalog:'
-        version: 1.2.27
+        version: 1.2.28
       '@iconify-json/emojione':
         specifier: 'catalog:'
         version: 1.2.3
@@ -440,7 +440,7 @@ importers:
         version: 1.2.3
       '@iconify-json/noto':
         specifier: 'catalog:'
-        version: 1.2.8
+        version: 1.2.9
       '@iconify-json/openmoji':
         specifier: 'catalog:'
         version: 1.2.29
@@ -449,13 +449,13 @@ importers:
         version: 1.2.2
       '@iconify-json/solar':
         specifier: 'catalog:'
-        version: 1.2.12
+        version: 1.2.13
       '@iconify-json/tabler':
         specifier: 'catalog:'
         version: 1.2.40
       '@iconify-json/vscode-icons':
         specifier: 'catalog:'
-        version: 1.2.81
+        version: 1.2.82
       '@stackblitz/sdk':
         specifier: 'catalog:'
         version: 1.11.1
@@ -1987,8 +1987,8 @@ packages:
   '@iconify-json/bxs@1.2.3':
     resolution: {integrity: sha512-SxRzB4e0zrWq1duwDUmuT5t5gaDjwN2nMu1yoO2mP2tNaiciylx33+hKxEz3ykxIGKPi3/ItX0V6Sfdju1FrZA==}
 
-  '@iconify-json/carbon@1.2.27':
-    resolution: {integrity: sha512-tufpkYXBDlXqczQEZo6QgvfwBd5aIK36gt+pHOI66eK4KOO8oh7CIHDZ4JsiSnOyjqRbApVHzXv4Nz8NO0GPFQ==}
+  '@iconify-json/carbon@1.2.28':
+    resolution: {integrity: sha512-dog92E0fGszJSrmeikPQmFrd4ptbdapogEhtZ9MCA9KiCNacYb2/nDi0euwsK0kTevsFiTy7Mte6QvRq3LDyHQ==}
 
   '@iconify-json/emojione@1.2.3':
     resolution: {integrity: sha512-T9+T3HIbJNLKKsmxYKlaYhvnHYkz/HNYTV7SHCXVZPfeUi4FqskY70YeN8yYAZT8cCv7w5vJxS4Q1m8zb9CMMg==}
@@ -2005,8 +2005,8 @@ packages:
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
 
-  '@iconify-json/noto@1.2.8':
-    resolution: {integrity: sha512-9cy5AJZ0lmSwrRJ66NGtOtAiSllcEHWjDoa0fk5X3HR0TBiGEcoXiyykjp3kIpqjGBHXJnTdhdeBNK85XD1Apg==}
+  '@iconify-json/noto@1.2.9':
+    resolution: {integrity: sha512-DQiuXENbun41ch+XPSV55H9FaWKpHTyz46YIKtSaKYD4fIDDzL1tR6H4np/T38jfrTAeI3rcKF0mqHYeZVAuaw==}
 
   '@iconify-json/openmoji@1.2.29':
     resolution: {integrity: sha512-vXdhkqcXVSO6suy+m9LbcUM3OdVyuNOtpV8/als/WqfkQIRxevL5Geb/g+6GH/Qwnq1OqksEmaDGTCmZ5nFKJQ==}
@@ -2014,14 +2014,14 @@ packages:
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
 
-  '@iconify-json/solar@1.2.12':
-    resolution: {integrity: sha512-du9+xxEUCWfjKzr1O+yqtQ3zHYr7M5x88WpnCABdclvW3xpDjJckkPJak+l9k0YqpEgG1F2kjz02csD969R6Fw==}
+  '@iconify-json/solar@1.2.13':
+    resolution: {integrity: sha512-/ZWb6xRib6pzxD/qTkKWYhuzSU2yu0bY+EN0spgtz1NM3d5f4eYueQZpL3PfCdsg5uVfm4Ldtt3cAyQL+YI8/Q==}
 
   '@iconify-json/tabler@1.2.40':
     resolution: {integrity: sha512-CetrHwWDd8oiMySokCHjn77NSsbdnJgmA+Lr/7+0JI2r1QUZs8iknF2BhiE4i54YJcVjEt+EZw98EF2s2ligIg==}
 
-  '@iconify-json/vscode-icons@1.2.81':
-    resolution: {integrity: sha512-ES/vVycj4IVC7TK8t+9T4Gnca9p/GbuL8A2Va+xWi01HGpyRCrXdRvKAUE8VcQbTkZsfy6Fv0L6TXq9eFj5+Yw==}
+  '@iconify-json/vscode-icons@1.2.82':
+    resolution: {integrity: sha512-J4TIauES5jhw7Ij38qhH5JoE/6MciTWz2Wz6KPiVj5kgP07mI4ai9MYpl+bn991LiqC3uW6YqNrIk0jlabT3ug==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -8115,7 +8115,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/carbon@1.2.27':
+  '@iconify-json/carbon@1.2.28':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8139,7 +8139,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/noto@1.2.8':
+  '@iconify-json/noto@1.2.9':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8151,7 +8151,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/solar@1.2.12':
+  '@iconify-json/solar@1.2.13':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -8159,7 +8159,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.81':
+  '@iconify-json/vscode-icons@1.2.82':
     dependencies:
       '@iconify/types': 2.0.0
 
