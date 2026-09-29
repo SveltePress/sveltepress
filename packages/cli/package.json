@@ -2,7 +2,7 @@
   "name": "@sveltepress/cli",
   "type": "module",
   "version": "0.4.3",
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@10.34.6",
   "description": "Document version management CLI for SveltePress",
   "license": "MIT",
   "homepage": "https://sveltepress.site/",

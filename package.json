@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "packageManager": "pnpm@10.34.5",
+  "packageManager": "pnpm@10.34.6",
   "scripts": {
     "capture:site-screenshot": "node scripts/capture-site-screenshot.mjs",
     "check:docs:content": "vitest run --config vitest.docs.config.ts && node check-docs.mjs",
