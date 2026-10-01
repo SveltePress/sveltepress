@@ -89,7 +89,7 @@ catalog:
   remark-stringify: ^11.0.0
   satori: ^0.12.2
   shiki: ^3.23.0
-  source-map-js: ^1.2.1
+  source-map-js: ^1.2.2
   svelte: ^5.57.1
   svelte-check: ^4.7.6
   svelte-json-discovery: ^0.3.0
