@@ -20,6 +20,8 @@
   <a href="./LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" /></a>
 </p>
 
+https://github.com/user-attachments/assets/39669b6a-61bc-4701-93d8-fe98b88a58cb
+
 <p align="center">
   <a href="https://sveltepress.site/" target="_blank" rel="noopener noreferrer" >
     <img src="./assets/site.png" alt="Sveltepress screenshots" width="600" height="auto">
