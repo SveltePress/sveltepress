@@ -1,5 +1,43 @@
 # @sveltepress/twoslash
 
+## 1.3.24
+
+### Patch Changes
+
+- [`f2bbe76`](https://github.com/Blackman99/sveltepress/commit/f2bbe76734b57aea6c7be6fa0e412c4534e0c81a) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`68d4fbd`](https://github.com/Blackman99/sveltepress/commit/68d4fbd2768d9a7e99f4cb99eb973d558c3d50b9) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`9bbd531`](https://github.com/Blackman99/sveltepress/commit/9bbd5314b8b424caaf1435428f0adf73aaf23fc2) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`efc1f15`](https://github.com/Blackman99/sveltepress/commit/efc1f15222d84a7f49a193a6255067d8cc879472) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d30c548`](https://github.com/Blackman99/sveltepress/commit/d30c548e152739587941667204f1712ea6868504) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`f687400`](https://github.com/Blackman99/sveltepress/commit/f687400a5deba988b90665944b1be3457853f787) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`cb37ec3`](https://github.com/Blackman99/sveltepress/commit/cb37ec3853f6a6ac4b7ed2ce0fd9644a010902ae) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`80d1da0`](https://github.com/Blackman99/sveltepress/commit/80d1da0ca9b2985421d7f8ee5febef872b2b2b5b) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`a80c8d5`](https://github.com/Blackman99/sveltepress/commit/a80c8d599131987db30d06de9f98518d4d7fe529) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`dce6419`](https://github.com/Blackman99/sveltepress/commit/dce64192054ea9f272ec2fa969032aa0dc0bb4d3) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`6bf55ce`](https://github.com/Blackman99/sveltepress/commit/6bf55ce04e2db8d50f3c004379faa8afeaa1414e) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`f3ab25b`](https://github.com/Blackman99/sveltepress/commit/f3ab25be2d823463335d698a7f14136ea4c97089) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`d4cbdce`](https://github.com/Blackman99/sveltepress/commit/d4cbdceaf6ebab2611c825a6f90cc134e3b3a6ef) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`b476038`](https://github.com/Blackman99/sveltepress/commit/b47603843e2f28e3b5d8ec764658e12e4a863d04) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`284bea5`](https://github.com/Blackman99/sveltepress/commit/284bea5c47fb3e839be16c302536d6c0a0542ef2) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`e4c9baf`](https://github.com/Blackman99/sveltepress/commit/e4c9baf04729d602e4614eff65cfc25c4519883d) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
+- [`289f276`](https://github.com/Blackman99/sveltepress/commit/289f276e7601f9602db9b418a342fcf1a2967eb7) Thanks [@Blackman99](https://github.com/Blackman99)! - chore: update deps
+
 ## 1.3.23
 
 ### Patch Changes
