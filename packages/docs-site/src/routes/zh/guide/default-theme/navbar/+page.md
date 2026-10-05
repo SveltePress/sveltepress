@@ -87,7 +87,7 @@ export default defineConfig({
 })
 ```
 
-:::since[分区标签]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs 会在导航栏下方添加一行分区标签，侧边栏随当前标签切换。"}
+:::since[分区标签]{version="2026-10-05" id="theme-section-tabs" summary="sectionTabs 会在导航栏下方添加一行分区标签，侧边栏随当前标签切换。"}
 ## 分区标签
 
 传入 `sectionTabs`，即可在导航栏下方显示一行标签，每个标签对应一个文档分区，就像本站这样。侧边栏会跟随当前标签：为每个分区配置独立的[侧边栏](/guide/default-theme/sidebar/)键，并让每个标签指向该分区中的某个页面。

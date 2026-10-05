@@ -4,7 +4,6 @@ import { defineConfig } from 'vite'
 import { locales } from './config/locales.ts'
 import navbar from './config/navbar.ts'
 import pwa from './config/pwa.ts'
-import sectionTabs from './config/section-tabs.ts'
 import sidebar from './config/sidebar.ts'
 import { isolationHeaders } from './src/lib/isolation-headers.ts'
 
@@ -13,7 +12,6 @@ const config = defineConfig({
     sveltepress({
       theme: defaultTheme({
         navbar,
-        sectionTabs,
         sidebar,
         editLink: 'https://github.com/SveltePress/sveltepress/edit/main/packages/docs-site/src/routes/:route',
         github: 'https://github.com/SveltePress/sveltepress',
@@ -40,6 +38,9 @@ const config = defineConfig({
           'bi': ['list-nested'],
           'openmoji': ['red-apple'],
         },
+        // After preBuildIconifyIcons: frozen docs show lines 25-39 of this
+        // file via @code, so lines above here must not move.
+        sectionTabs: locales['/'].theme.sectionTabs,
         highlighter: {
           twoslash: true,
           languages: ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss', 'json', 'yaml'],

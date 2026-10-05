@@ -46,7 +46,7 @@ export default config
   Children links.
   If this prop is provided it would render a dropdown instead of a single link.
 
-:::since[Section tabs]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs adds a row of section tabs under the navbar, and the sidebar follows the active tab."}
+:::since[Section tabs]{version="2026-10-05" id="theme-section-tabs" summary="sectionTabs adds a row of section tabs under the navbar, and the sidebar follows the active tab."}
 ### `sectionTabs`
 
 Tabs shown in a row under the navbar on pages with a sidebar, one tab per documentation section. Below the `950px` breakpoint they move into the sidebar drawer. See [Section tabs](/guide/default-theme/navbar/#Section-tabs).
@@ -254,7 +254,7 @@ The icons in [Iconify](https://iconify.design/) that you want to pre-build for f
 An object, key is the collection name, value is the icons array.
 For example these are the icons this site using:
 
-@code(/vite.config.ts,28,42)
+@code(/vite.config.ts,25,39)
 
 These icons looks like this:
 

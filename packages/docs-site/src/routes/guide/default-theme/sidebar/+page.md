@@ -147,7 +147,7 @@ export default defineConfig({
 })
 ```
 
-:::since[Nested sidebar keys]{version="2026-09-17" id="sidebar-nested-keys" summary="The most specific matching sidebar key wins, so nested keys can give each section tab its own sidebar."}
+:::since[Nested sidebar keys]{version="2026-10-05" id="sidebar-nested-keys" summary="The most specific matching sidebar key wins, so nested keys can give each section tab its own sidebar."}
 When several keys match a page, the most specific one wins, whatever their order. Nested keys such as `/guide/` and `/guide/markdown/` can therefore split one route tree into separate sidebars. Pair each key with a [section tab](/guide/default-theme/navbar/#Section-tabs) to switch between them from a row under the navbar.
 :::
 

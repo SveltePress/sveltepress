@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "siteId": "sveltepress-docs-en",
+  "versionId": "2026-09-17",
+  "parentVersionId": "2026-09-09",
+  "metadataHash": "17f28a151ac5b6dd16d8aa1a12be9b471eb3551234f4e5c9c779f8d894aafe7e",
+  "pages": [
+    {
+      "route": "/guide/version-management/",
+      "files": [
+        "src/routes/guide/version-management/+page.md"
+      ]
+    },
+    {
+      "route": "/reference/cli/",
+      "files": [
+        "src/routes/reference/cli/+page.md"
+      ]
+    }
+  ],
+  "removedRoutes": []
+}

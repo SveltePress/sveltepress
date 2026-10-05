@@ -49,7 +49,7 @@ export default config
 * `items`
   子项，如果配置会展示下拉导航
 
-:::since[分区标签]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs 会在导航栏下方添加一行分区标签，侧边栏随当前标签切换。"}
+:::since[分区标签]{version="2026-10-05" id="theme-section-tabs" summary="sectionTabs 会在导航栏下方添加一行分区标签，侧边栏随当前标签切换。"}
 ### `sectionTabs`
 
 在有侧边栏的页面上，显示在导航栏下方的一行标签，每个标签对应一个文档分区。在 `950px` 断点以下，它们会移入侧边栏抽屉。详见[分区标签](/guide/default-theme/navbar/#分区标签)。
@@ -248,7 +248,7 @@ const defaultGradient = {
 
 为一个对象，键是分类名称，值是该分类下需要预构建的图标集合，下面是此站点的配置
 
-@code(/vite.config.ts,28,42)
+@code(/vite.config.ts,25,39)
 
 这些图标看起来像这样：
 ```svelte live

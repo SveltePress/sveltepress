@@ -2,10 +2,101 @@
   "$schema": "./node_modules/@sveltepress/cli/schema/versions.schema.json",
   "basePath": "/bn/v",
   "current": {
-    "id": "2026-09-17",
-    "label": "2026-09-17"
+    "id": "2026-10-05",
+    "label": "2026-10-05"
   },
   "versions": [
+    {
+      "id": "2026-09-17",
+      "label": "2026-09-17",
+      "routes": [
+        "/",
+        "/guide/blog-theme/configuration/",
+        "/guide/blog-theme/customization/",
+        "/guide/blog-theme/features/",
+        "/guide/blog-theme/getting-started/",
+        "/guide/blog-theme/writing-posts/",
+        "/guide/default-theme/admonitions/",
+        "/guide/default-theme/builtin-components/",
+        "/guide/default-theme/code-related/",
+        "/guide/default-theme/frontmatter/",
+        "/guide/default-theme/google-analytics/",
+        "/guide/default-theme/headings-and-anchors/",
+        "/guide/default-theme/home-page/",
+        "/guide/default-theme/navbar/",
+        "/guide/default-theme/pwa/",
+        "/guide/default-theme/search/",
+        "/guide/default-theme/sidebar/",
+        "/guide/default-theme/twoslash/",
+        "/guide/default-theme/unocss/",
+        "/guide/i18n/",
+        "/guide/introduction/",
+        "/guide/markdown/basic-writing/",
+        "/guide/markdown/frontmatter/",
+        "/guide/markdown/svelte-in-markdown/",
+        "/guide/quick-start/",
+        "/guide/themes/",
+        "/guide/typescript/",
+        "/guide/version-management/",
+        "/playground/",
+        "/playground/blog-theme/configuration/",
+        "/playground/blog-theme/customization/",
+        "/playground/blog-theme/features/",
+        "/playground/blog-theme/writing-posts/",
+        "/playground/custom-theme/",
+        "/playground/default-theme/admonitions/",
+        "/playground/default-theme/builtin-components/",
+        "/playground/default-theme/code-related/",
+        "/playground/default-theme/frontmatter/",
+        "/playground/default-theme/google-analytics/",
+        "/playground/default-theme/headings-and-anchors/",
+        "/playground/default-theme/home-page/",
+        "/playground/default-theme/navbar/",
+        "/playground/default-theme/pwa/",
+        "/playground/default-theme/search/",
+        "/playground/default-theme/sidebar/",
+        "/playground/default-theme/twoslash/",
+        "/playground/default-theme/unocss/",
+        "/playground/i18n/",
+        "/playground/kitchen-sink/",
+        "/playground/markdown/basic-writing/",
+        "/playground/markdown/frontmatter/",
+        "/playground/markdown/svelte-in-markdown/",
+        "/playground/typescript/",
+        "/playground/version-management/",
+        "/playground/virtual-modules/",
+        "/playground/vite-plugin/",
+        "/reference/blog-theme/",
+        "/reference/cli/",
+        "/reference/default-theme/",
+        "/reference/locale/",
+        "/reference/site/",
+        "/reference/versions/",
+        "/reference/vite-plugin/",
+        "/whats-new/"
+      ],
+      "changes": {
+        "versionId": "2026-09-17",
+        "baselineVersionId": "2026-09-09",
+        "newPages": [],
+        "updatedPages": [
+          {
+            "route": "/guide/version-management/",
+            "title": "ডকুমেন্ট সংস্করণ ব্যবস্থাপনা",
+            "sections": [
+              {
+                "id": "versions-overlay-html",
+                "title": "ঐতিহাসিক HTML overlay",
+                "summary": "Vite শুধু বর্তমান locale tree prerender করে; frozen /v/ পেজ overlay HTML হিসেবে বর্তমান _app asset share করে।",
+                "introducedIn": "2026-09-17"
+              }
+            ]
+          }
+        ]
+      },
+      "status": "stable",
+      "sourceHash": "7c14bba029fa7ab2abf5d42c2fa813ca9fbefa1fed002922afdb8bca86933019"
+    },
     {
       "id": "2026-09-09",
       "label": "2026-09-09",

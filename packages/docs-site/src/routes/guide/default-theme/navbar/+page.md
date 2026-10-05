@@ -89,7 +89,7 @@ export default defineConfig({
 })
 ```
 
-:::since[Section tabs]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs adds a row of section tabs under the navbar, and the sidebar follows the active tab."}
+:::since[Section tabs]{version="2026-10-05" id="theme-section-tabs" summary="sectionTabs adds a row of section tabs under the navbar, and the sidebar follows the active tab."}
 ## Section tabs
 
 Pass `sectionTabs` to show a row of tabs under the navbar, one tab per documentation section, like the tabs on this site. The sidebar follows the active tab: give each section its own [sidebar](/guide/default-theme/sidebar/) key, and point each tab at a page in that section.

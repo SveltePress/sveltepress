@@ -6,12 +6,11 @@ const root = process.cwd()
 const official = join(root, 'packages/docs-site/dist')
 const historicalId = '2026-08-27'
 const historicalRoot = join(official, 'v', historicalId)
-const previousId = '2026-09-09'
+const previousId = '2026-09-17'
 const previousRoot = join(official, 'v', previousId)
-const currentId = '2026-09-17'
-const versionIds = [currentId, previousId, '2026-09-03', '2026-08-31', '2026-08-28', historicalId]
+const currentId = '2026-10-05'
+const versionIds = [currentId, previousId, '2026-09-09', '2026-09-03', '2026-08-31', '2026-08-28', historicalId]
 const currentChanges = [
-  { route: 'guide/version-management', id: 'versions-overlay-html' },
   { route: 'guide/default-theme/navbar', id: 'theme-section-tabs' },
   { route: 'guide/default-theme/sidebar', id: 'sidebar-nested-keys' },
   { route: 'reference/default-theme', id: 'theme-section-tabs' },
@@ -23,15 +22,10 @@ const currentChangeRoutes = [...new Set([
   ...currentChanges.map(({ route }) => `/${route}/`),
 ])]
 const previousChangeLinks = [
-  `/v/${previousId}/guide/default-theme/pwa/#pwa-precache-client`,
-  `/v/${previousId}/guide/default-theme/sidebar/#auto-sidebar-skip-version-snapshots`,
-  `/v/${previousId}/reference/default-theme/#theme-pwa-precache-client`,
-  `/v/${previousId}/reference/default-theme/#theme-title-row-action`,
+  `/v/${previousId}/guide/version-management/#versions-overlay-html`,
 ]
 const previousChangeRoutes = [
-  `/v/${previousId}/guide/default-theme/pwa/`,
-  `/v/${previousId}/guide/default-theme/sidebar/`,
-  `/v/${previousId}/reference/default-theme/`,
+  `/v/${previousId}/guide/version-management/`,
 ]
 const changedCodeRelatedTocSlugs = {
   '': [],

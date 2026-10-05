@@ -147,7 +147,7 @@ export default defineConfig({
 })
 ```
 
-:::since[嵌套的侧边栏键]{version="2026-09-17" id="sidebar-nested-keys" summary="多个侧边栏键匹配时最具体的生效，因此嵌套键可以为每个分区标签提供独立的侧边栏。"}
+:::since[嵌套的侧边栏键]{version="2026-10-05" id="sidebar-nested-keys" summary="多个侧边栏键匹配时最具体的生效，因此嵌套键可以为每个分区标签提供独立的侧边栏。"}
 当多个键都匹配某个页面时，无论声明顺序如何，最具体的那个生效。因此，`/guide/` 与 `/guide/markdown/` 这样的嵌套键可以把同一棵路由树拆分成多个侧边栏。再为每个键配上一个[分区标签](/guide/default-theme/navbar/#分区标签)，就能在导航栏下方的一行标签之间切换。
 :::
 
