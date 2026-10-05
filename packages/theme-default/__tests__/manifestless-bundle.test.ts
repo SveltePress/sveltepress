@@ -10,7 +10,7 @@ const reviewedManifestlessHashes = {
   'ActionButton.svelte': '277fecc0f7d607e5bd9000153f6d171dc62ae895d8305bacb3a16ff898d24bc1',
   'EditPage.svelte': '37cb8f0bffd3abb9df65db87f7730dd7528f7c95cdd30af762703d765bf663fb',
   'GlobalLayout.svelte': 'a6cc7fbc9c615fb8dc3c316a717c372d9399660520bd4f1d3c3add16d777c6a3',
-  'Link.svelte': '8c109b2b40606e9667ebd3e5aa026c3169c2db72bebd1c994df1f778f5560877',
+  'Link.svelte': 'cfa3ed4a12d735684a7a4a259f076d014d84207485a37912df85e1b083e3465f',
   'Logo.svelte': 'd2074801f9c08eb1e934cf304ac14e7d0845012d99ccd0e023a8be372f07aedc',
   'NavItem.svelte': '55a2261ab9eaa4858b9a8ce1eddb71509315f8f1992db34ba4a8d225907e1e13',
   'Navbar.svelte': '18dafff571573bb4672445719c6a79c49bfcc41852346971b32363c8d2447f85',
@@ -30,6 +30,15 @@ describe('manifestless default theme', () => {
       const stripped = stripVersioningForManifestlessSite(source, path)
       expect(stripped, name).not.toBeNull()
       expect(createHash('sha256').update(stripped!).digest('hex'), name).toBe(expectedHash)
+    }
+  })
+
+  it('keeps the `$app/state` import in every stripped source that still reads `page`', () => {
+    for (const name of Object.keys(reviewedManifestlessHashes)) {
+      const path = resolve(import.meta.dirname, `../src/components/${name}`)
+      const stripped = stripVersioningForManifestlessSite(readFileSync(path, 'utf8'), path)!
+      if (/\bpage\.(?:url|route|data|state|params|status|error|form)\b/.test(stripped))
+        expect(stripped, name).toContain(`import { page } from '$app/state'`)
     }
   })
 

@@ -35,7 +35,8 @@ const transforms: Record<string, SourceTransform> = {
     return replaceRequired(result, `    {#if resolveVersionManifest(page.url.pathname)}\n      <VersionFallbackNotice />\n    {/if}\n`)
   },
   'Link.svelte': (source) => {
-    let result = replaceRequired(source, `  import { page } from '$app/state'\n  import {\n    resolveVersionContext,\n    resolveVersionedPath,\n  } from 'virtual:sveltepress/versions'\n`)
+    // keep `page`: the locale resolution below still reads `page.url.pathname`
+    let result = replaceRequired(source, `  import {\n    resolveVersionContext,\n    resolveVersionedPath,\n  } from 'virtual:sveltepress/versions'\n`)
     result = replaceRequired(result, '   * @property {boolean} [withVersion] - Whether the active documentation version should be applied\n')
     result = replaceRequired(result, '    withVersion = true,\n')
     result = replaceRequired(result, `  let versionContext = $derived(resolveVersionContext(page.url.pathname))\n  let localizedTo = $derived(\n    withLocale ? resolveLocaleLink(to, page.url.pathname) : to,\n  )\n  let versionedTo = $derived(\n    withVersion\n      ? resolveVersionedPath(localizedTo, versionContext)\n      : localizedTo,\n  )\n  let toWithBase = $derived(isExternal ? to : getPathFromBase(versionedTo))`, '  let toWithBase = $derived(isExternal ? to : getPathFromBase(withLocale ? resolveLocaleLink(to, page.url.pathname) : to))')
