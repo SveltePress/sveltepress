@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 function expectNavigationFallbackDoesNotInterceptDocPages(workbox: any) {
   const allowlist = workbox.navigateFallbackAllowlist
@@ -30,6 +30,12 @@ vi.mock('../src/vite-plugins/create-pre-core-plugins.js', () => ({
 }))
 
 describe('theme-default PWA configuration', () => {
+  // The first import transforms the whole theme (Shiki, Twoslash, markdown
+  // plugins), which can exceed the per-test timeout on a cold, slow machine.
+  beforeAll(async () => {
+    await import('../src/index')
+  }, 60_000)
+
   it('configures runtime caching and limits precache to root page by default', async () => {
     capturedPwaOptions.length = 0
     const { defaultTheme } = await import('../src/index')
