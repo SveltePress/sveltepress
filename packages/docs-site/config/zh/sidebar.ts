@@ -30,6 +30,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/markdown/': [
     {
       title: 'Markdown 相关',
       items: [
@@ -47,6 +49,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/default-theme/': [
     {
       title: '默认主题特性',
       collapsible: true,
@@ -105,6 +109,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/blog-theme/': [
     {
       title: '博客主题特性',
       collapsible: true,

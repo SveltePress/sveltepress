@@ -88,3 +88,47 @@ export default defineConfig({
   ]
 })
 ```
+
+:::since[Section tabs]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs adds a row of section tabs under the navbar, and the sidebar follows the active tab."}
+## Section tabs
+
+Pass `sectionTabs` to show a row of tabs under the navbar, one tab per documentation section, like the tabs on this site. The sidebar follows the active tab: give each section its own [sidebar](/guide/default-theme/sidebar/) key, and point each tab at a page in that section.
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        sectionTabs: [
+          { title: 'Get started', to: '/guide/introduction/', icon: 'tabler:rocket' },
+          { title: 'Markdown', to: '/guide/markdown/basic-writing/', icon: 'tabler:markdown' },
+          { title: 'Reference', to: '/reference/vite-plugin/', icon: 'tabler:code' },
+        ],
+        sidebar: {
+          '/guide/': [/* Get started pages */],
+          '/guide/markdown/': [/* Markdown pages */],
+          '/reference/': [/* Reference pages */],
+        },
+      }),
+    }),
+  ],
+})
+```
+
+Each tab can hold these props:
+
+* `title` - The tab label
+* `to` - The section's landing page. Like navbar links, it follows the active locale and documentation version. External URLs open in a new tab.
+* `icon` - Optional. An Iconify icon in `collection:name` form, such as `tabler:rocket`, or an HTML string such as an inline SVG. Iconify icons need the matching `@iconify-json/*` package. The theme pre-builds the icons of the `sectionTabs` passed to `defaultTheme()`; add icons used only by a locale's tabs to `preBuildIconifyIcons`.
+* `activeMatch` - Optional. A route prefix, or an array of prefixes, that makes the tab active.
+
+A tab is active while the current page is inside its section. By default, the section is the most specific sidebar key that contains the tab's `to` link: `/guide/markdown/` for the Markdown tab above. A tab whose link is under no sidebar key is active on its own page and the pages below it. Set `activeMatch` when sections don't line up with sidebar keys. When several tabs match, the most specific one wins.
+
+The tabs travel with the sidebar, so they stay hidden on the home page and on pages whose frontmatter sets `sidebar: false`, `header: false`, or `layout: false`. Below the `950px` breakpoint, they move to the top of the sidebar drawer.
+
+On a multi-language site, set `sectionTabs` in each locale's `theme`, as with `navbar`, and translate the navigation label with `i18n.sectionTabsLabel`. Historical documentation versions show the current tabs; each link stays inside the frozen version when that version has the page.
+:::

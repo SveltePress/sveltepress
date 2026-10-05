@@ -49,6 +49,21 @@ export default config
 * `items`
   子项，如果配置会展示下拉导航
 
+:::since[分区标签]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs 会在导航栏下方添加一行分区标签，侧边栏随当前标签切换。"}
+### `sectionTabs`
+
+在有侧边栏的页面上，显示在导航栏下方的一行标签，每个标签对应一个文档分区。在 `950px` 断点以下，它们会移入侧边栏抽屉。详见[分区标签](/guide/default-theme/navbar/#分区标签)。
+
+* `title`
+  标签文字。
+* `to`
+  分区的入口页面。与导航栏链接一样，它会跟随当前语言和文档版本；外部链接会在新标签页中打开。
+* `icon`
+  `collection:name` 形式的 Iconify 图标，例如 `tabler:rocket`，或一段 HTML 字符串，例如内联 SVG。传给 `defaultTheme()` 的 `sectionTabs` 中的图标会被自动预构建。
+* `activeMatch`
+  一个路由前缀或前缀数组，匹配时该标签处于激活状态。默认为包含 `to` 的最具体的侧边栏键；没有侧边栏键包含它时，默认为 `to` 本身。
+:::
+
 ### `discord`
 Discord 链接，如果提供将会展示一个 Discord 图标
 
@@ -199,6 +214,7 @@ const defaultGradient = {
   * `appReadyToWorkOffline`
   * `newContentAvailable`
 * `footnoteLabel` - 自动生成的脚注标题，默认为 `"Footnotes"`
+* `sectionTabsLabel` - [分区标签](#sectionTabs)导航的无障碍标签，默认为 `"Sections"`
 
 :::since[可选的标题行操作]{version="2026-09-09" id="theme-title-row-action" summary="PageLayout 可在页面标题和版本新增徽章之后渲染可选操作。"}
 ### 标题行操作
@@ -232,7 +248,7 @@ const defaultGradient = {
 
 为一个对象，键是分类名称，值是该分类下需要预构建的图标集合，下面是此站点的配置
 
-@code(/vite.config.ts,25,39)
+@code(/vite.config.ts,28,42)
 
 这些图标看起来像这样：
 ```svelte live

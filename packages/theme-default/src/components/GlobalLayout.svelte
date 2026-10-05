@@ -174,10 +174,18 @@
 
 <style>
   main {
-    --at-apply: 'pt-14 sm:pt-[73px]';
+    --at-apply: 'pt-14';
   }
   main.with-mobile-subnav {
-    --at-apply: 'pt-[100px] sm:pt-[73px]';
+    --at-apply: 'pt-[100px]';
+  }
+  /* `--svp-section-tabs-height` is set by the navbar while its section tabs
+     row is showing (see Navbar.svelte). */
+  @media (min-width: 950px) {
+    main,
+    main.with-mobile-subnav {
+      padding-top: calc(73px + var(--svp-section-tabs-height, 0px));
+    }
   }
   main.without-header {
     --at-apply: 'pt-0';
@@ -371,7 +379,13 @@
     --at-apply: 'px-3 py-2';
   }
   :global(.svp-anchor-item) {
-    --at-apply: 'relative bottom-[100px]';
+    --at-apply: 'relative';
+    bottom: calc(100px + var(--svp-section-tabs-height, 0px));
+  }
+  /* `:::since` sections are deep-link targets (What's new); keep their
+     `scroll-mt-24` clearance below the section tabs row too. */
+  :global(section.version-change-section) {
+    scroll-margin-top: calc(6rem + var(--svp-section-tabs-height, 0px));
   }
   :global(.svp-live-code--demo .svp-code-block-wrapper) {
     --at-apply: 'mb-0';

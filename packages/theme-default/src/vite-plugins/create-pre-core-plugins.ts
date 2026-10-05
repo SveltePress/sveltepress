@@ -11,6 +11,7 @@ import { generateSidebar, isAutoSidebarOptions } from '../auto-sidebar.js'
 import { SERVICE_WORKER_PATH } from '../constants.js'
 import { initHighlighter } from '../markdown/highlighter.js'
 import { buildCustomSearchModule, CUSTOM_SEARCH_MODULE, resolveCustomSearchFile } from './custom-search-module.js'
+import { getIconSafelist } from './icon-safelist.js'
 import { stripVersioningForManifestlessSite } from './strip-versioning.js'
 
 const THEME_OPTIONS_MODULE = 'virtual:sveltepress/theme-default'
@@ -51,19 +52,6 @@ const DEFAULT_PRIMARY = '#fb7185'
 const DEFAULT_PRIMARY_DEEP = '#e11d48'
 
 const DEFAULT_HOVER = '#f43f5e'
-
-function getIconSafelist(themeOptions?: DefaultThemeOptions): string[] {
-  const icons = themeOptions?.preBuildIconifyIcons
-  if (!icons)
-    return []
-  const iconSafelist: string[] = []
-  for (const prefix in icons) {
-    icons[prefix].forEach((name) => {
-      iconSafelist.push(`i-${prefix}-${name}`)
-    })
-  }
-  return iconSafelist
-}
 
 export default async (options?: DefaultThemeOptions, versionManifest?: VersionManifest | null) => {
   await initHighlighter(options?.highlighter)

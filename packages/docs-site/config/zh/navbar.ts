@@ -12,14 +12,6 @@ export default [
     to: '/playground/',
   },
   {
-    title: '参考',
-    to: '/reference/vite-plugin/',
-  },
-  {
-    title: '博客主题',
-    to: '/guide/blog-theme/getting-started/',
-  },
-  {
     title: '博客示例',
     to: 'https://sveltepress.github.io/sveltepress/blog-demo/',
     external: true,

@@ -60,6 +60,13 @@
   const home = $derived(fm?.home)
   const fmHeroImage = $derived(fm?.heroImage)
   const layout = $derived(fm?.layout ?? true)
+  // Section tabs travel with the sidebar. The navbar renders before this page
+  // knows its frontmatter, so this class is what reveals the tabs row (see
+  // `.svp-section-tabs-bar` in Navbar.svelte), already correct in the SSR HTML.
+  const hasSectionTabs = $derived(Boolean(localeOptions.sectionTabs?.length))
+  const withSectionTabs = $derived(
+    hasSectionTabs && fm?.sidebar !== false && fm?.header !== false,
+  )
 
   function resolveHomeLayout() {
     const logical = resolveLogicalRoute(page.route.id)
@@ -118,7 +125,11 @@
     {/if}
   {/snippet}
   {#if !isHome}
-    <div pb-4 class="theme-default--page-layout">
+    <div
+      pb-4
+      class="theme-default--page-layout"
+      class:svp-with-section-tabs={withSectionTabs}
+    >
       <div
         class="content"
         data-pagefind-body={!versionContext?.historical ? true : undefined}

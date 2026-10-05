@@ -86,3 +86,47 @@ export default defineConfig({
   ]
 })
 ```
+
+:::since[সেকশন ট্যাব]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs ন্যাভবারের নিচে সেকশন ট্যাবের একটি সারি যোগ করে, আর সাইডবার সক্রিয় ট্যাব অনুসরণ করে।"}
+## সেকশন ট্যাব
+
+ন্যাভবারের নিচে ট্যাবের একটি সারি দেখাতে `sectionTabs` দিন: প্রতিটি ডকুমেন্টেশন সেকশনের জন্য একটি ট্যাব, ঠিক এই সাইটের মতো। সাইডবার সক্রিয় ট্যাব অনুসরণ করে: প্রতিটি সেকশনকে নিজস্ব [সাইডবার](/guide/default-theme/sidebar/) key দিন, আর প্রতিটি ট্যাবকে সেই সেকশনের একটি পেজে লিংক করুন।
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        sectionTabs: [
+          { title: 'শুরু করুন', to: '/guide/introduction/', icon: 'tabler:rocket' },
+          { title: 'Markdown', to: '/guide/markdown/basic-writing/', icon: 'tabler:markdown' },
+          { title: 'রেফারেন্স', to: '/reference/vite-plugin/', icon: 'tabler:code' },
+        ],
+        sidebar: {
+          '/guide/': [/* শুরু করুন সেকশনের পেজ */],
+          '/guide/markdown/': [/* Markdown সেকশনের পেজ */],
+          '/reference/': [/* রেফারেন্স সেকশনের পেজ */],
+        },
+      }),
+    }),
+  ],
+})
+```
+
+প্রতিটি ট্যাবে এই props থাকতে পারে:
+
+* `title` - ট্যাবের লেবেল
+* `to` - সেকশনের ল্যান্ডিং পেজ। ন্যাভবার লিংকের মতোই এটি সক্রিয় ভাষা ও ডকুমেন্টেশন সংস্করণ অনুসরণ করে; এক্সটার্নাল URL নতুন ট্যাবে খোলে।
+* `icon` - ঐচ্ছিক। `collection:name` আকারে একটি Iconify আইকন, যেমন `tabler:rocket`, অথবা একটি HTML স্ট্রিং, যেমন inline SVG। Iconify আইকনের জন্য সংশ্লিষ্ট `@iconify-json/*` প্যাকেজ লাগবে। `defaultTheme()`-এ দেওয়া `sectionTabs`-এর আইকন থিম নিজেই pre-build করে; শুধু কোনো একটি ভাষার ট্যাবে ব্যবহৃত আইকন `preBuildIconifyIcons`-এ যোগ করুন।
+* `activeMatch` - ঐচ্ছিক। একটি route prefix বা prefix-এর array, যা মিললে ট্যাবটি সক্রিয় হয়।
+
+বর্তমান পেজ কোনো ট্যাবের সেকশনের ভেতরে থাকলে সেই ট্যাব সক্রিয় থাকে। ডিফল্টভাবে সেকশন হলো ট্যাবের `to` লিংক ধারণকারী সবচেয়ে নির্দিষ্ট সাইডবার key: উপরের Markdown ট্যাবের জন্য `/guide/markdown/`। যে ট্যাবের লিংক কোনো সাইডবার key-এর অধীনে নেই, সেটি নিজের পেজ ও তার নিচের পেজগুলোতে সক্রিয় হয়। সেকশন সাইডবার key-এর সাথে না মিললে `activeMatch` সেট করুন। একাধিক ট্যাব মিললে সবচেয়ে নির্দিষ্টটি জেতে।
+
+ট্যাবগুলো সাইডবারের সাথেই দেখা যায়, তাই হোম পেজে এবং যেসব পেজের frontmatter-এ `sidebar: false`, `header: false` বা `layout: false` আছে সেখানে লুকানো থাকে। `950px` breakpoint-এর নিচে এগুলো সাইডবার ড্রয়ারের উপরে চলে যায়।
+
+বহুভাষিক সাইটে `navbar`-এর মতোই প্রতিটি ভাষার `theme`-এ `sectionTabs` সেট করুন, এবং `i18n.sectionTabsLabel` দিয়ে নেভিগেশনের লেবেল অনুবাদ করুন। ঐতিহাসিক ডকুমেন্টেশন সংস্করণে বর্তমান ট্যাবগুলোই দেখায়; frozen সংস্করণে পেজটি থাকলে প্রতিটি লিংক সেই সংস্করণের ভেতরেই থাকে।
+:::

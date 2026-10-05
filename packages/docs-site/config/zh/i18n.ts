@@ -22,6 +22,7 @@ export default {
   onThisPage: '当前页面',
   localeSwitcher: '选择语言',
   navbarMenu: '切换导航菜单',
+  sectionTabsLabel: '文档分区',
   localePageUnavailable: '当前语言暂无该页面内容，已为您展示该语言首页。',
   versionSelector: '文档版本',
   versionDeprecated: '当前访问的是旧版站点，无法保证所有功能可用性，请切换至',

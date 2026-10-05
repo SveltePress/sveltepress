@@ -15,6 +15,7 @@ export default {
   onThisPage: 'এই পৃষ্ঠায়',
   localeSwitcher: 'ভাষা',
   navbarMenu: 'নেভিগেশন মেনু',
+  sectionTabsLabel: 'ডকুমেন্টেশন বিভাগ',
   localePageUnavailable:
     'এই পৃষ্ঠাটি এই ভাষায় উপলব্ধ নয়। আপনাকে হোম পেজে নিয়ে যাওয়া হয়েছে।',
   versionSelector: 'ডকুমেন্টেশন সংস্করণ',

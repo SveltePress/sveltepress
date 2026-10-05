@@ -1,11 +1,14 @@
 import type { LocalesConfig } from '@sveltepress/vite'
 import bnI18n from './bn/i18n.ts'
 import bnNavbar from './bn/navbar.ts'
+import bnSectionTabs from './bn/section-tabs.ts'
 import bnSidebar from './bn/sidebar.ts'
 import navbar from './navbar.ts'
+import sectionTabs from './section-tabs.ts'
 import sidebar from './sidebar.ts'
 import zhI18n from './zh/i18n.ts'
 import zhNavbar from './zh/navbar.ts'
+import zhSectionTabs from './zh/section-tabs.ts'
 import zhSidebar from './zh/sidebar.ts'
 
 /**
@@ -28,6 +31,7 @@ export const locales: LocalesConfig = {
     label: 'English',
     theme: {
       navbar,
+      sectionTabs,
       sidebar,
       editLink,
     },
@@ -37,6 +41,7 @@ export const locales: LocalesConfig = {
     label: '中文',
     theme: {
       navbar: zhNavbar,
+      sectionTabs: zhSectionTabs,
       sidebar: zhSidebar,
       editLink,
       i18n: zhI18n,
@@ -47,6 +52,7 @@ export const locales: LocalesConfig = {
     label: 'বাংলা',
     theme: {
       navbar: bnNavbar,
+      sectionTabs: bnSectionTabs,
       sidebar: bnSidebar,
       editLink,
       i18n: bnI18n,

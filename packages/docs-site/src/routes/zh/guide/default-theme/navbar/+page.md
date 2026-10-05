@@ -86,3 +86,47 @@ export default defineConfig({
   ]
 })
 ```
+
+:::since[分区标签]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs 会在导航栏下方添加一行分区标签，侧边栏随当前标签切换。"}
+## 分区标签
+
+传入 `sectionTabs`，即可在导航栏下方显示一行标签，每个标签对应一个文档分区，就像本站这样。侧边栏会跟随当前标签：为每个分区配置独立的[侧边栏](/guide/default-theme/sidebar/)键，并让每个标签指向该分区中的某个页面。
+
+```ts title="vite.config.(js|ts)"
+import { defaultTheme } from '@sveltepress/theme-default'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      theme: defaultTheme({
+        sectionTabs: [
+          { title: '开始使用', to: '/guide/introduction/', icon: 'tabler:rocket' },
+          { title: 'Markdown', to: '/guide/markdown/basic-writing/', icon: 'tabler:markdown' },
+          { title: '参考', to: '/reference/vite-plugin/', icon: 'tabler:code' },
+        ],
+        sidebar: {
+          '/guide/': [/* 开始使用分区的页面 */],
+          '/guide/markdown/': [/* Markdown 分区的页面 */],
+          '/reference/': [/* 参考分区的页面 */],
+        },
+      }),
+    }),
+  ],
+})
+```
+
+每个标签可以包含如下属性：
+
+* `title` - 标签文字
+* `to` - 分区的入口页面。与导航栏链接一样，它会跟随当前语言和文档版本；外部链接会在新标签页中打开。
+* `icon` - 可选。`collection:name` 形式的 Iconify 图标，例如 `tabler:rocket`，也可以是一段 HTML 字符串，例如内联 SVG。Iconify 图标需要安装对应的 `@iconify-json/*` 包。主题会自动预构建传给 `defaultTheme()` 的 `sectionTabs` 中的图标；只在某个语言的标签中用到的图标，请加入 `preBuildIconifyIcons`。
+* `activeMatch` - 可选。一个路由前缀或前缀数组，匹配时该标签处于激活状态。
+
+当前页面位于某个标签的分区内时，该标签处于激活状态。默认情况下，分区就是包含该标签 `to` 链接的最具体的侧边栏键：上例中 Markdown 标签对应 `/guide/markdown/`。如果标签的链接不在任何侧边栏键之下，它会在自身页面及其下级页面中激活。分区与侧边栏键对不上时，请设置 `activeMatch`。有多个标签同时匹配时，最具体的那个生效。
+
+分区标签与侧边栏同进同出：在首页，以及 frontmatter 设置了 `sidebar: false`、`header: false` 或 `layout: false` 的页面上都不会显示。在 `950px` 断点以下，它们会移到侧边栏抽屉的顶部。
+
+在多语言站点中，像 `navbar` 一样在每个语言的 `theme` 中设置 `sectionTabs`，并通过 `i18n.sectionTabsLabel` 翻译导航的无障碍标签。历史文档版本显示的是当前的标签；冻结版本中存在对应页面时，链接会保留在该版本内。
+:::

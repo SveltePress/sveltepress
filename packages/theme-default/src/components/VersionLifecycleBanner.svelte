@@ -108,7 +108,10 @@
       --svp-lifecycle-banner-height: 48px;
     }
     :global(body:has(.version-lifecycle) .toc) {
-      top: calc(80px + var(--svp-lifecycle-banner-height));
+      top: calc(
+        80px + var(--svp-lifecycle-banner-height) +
+          var(--svp-section-tabs-height, 0px)
+      );
     }
     :global(body:has(.version-lifecycle) .navbar-mobile) {
       top: calc(73px + var(--svp-lifecycle-banner-height));
@@ -116,7 +119,10 @@
     }
     :global(body:has(.version-lifecycle) main),
     :global(body:has(.version-lifecycle) main.with-mobile-subnav) {
-      padding-top: calc(73px + var(--svp-lifecycle-banner-height));
+      padding-top: calc(
+        73px + var(--svp-lifecycle-banner-height) +
+          var(--svp-section-tabs-height, 0px)
+      );
     }
     :global(body:has(.version-lifecycle) main.without-header) {
       padding-top: var(--svp-lifecycle-banner-height);

@@ -44,6 +44,21 @@ export default config
 * `items`
   চিলড্রেনের লিংক। এই প্রপ দেয়া হলে ড্রপডাউন দেখাবে সিংগেল ন্যাভ লিং না দেখিয়ে
 
+:::since[সেকশন ট্যাব]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs ন্যাভবারের নিচে সেকশন ট্যাবের একটি সারি যোগ করে, আর সাইডবার সক্রিয় ট্যাব অনুসরণ করে।"}
+### `sectionTabs`
+
+সাইডবারযুক্ত পেজে ন্যাভবারের নিচে একটি সারিতে দেখানো ট্যাব, প্রতিটি ডকুমেন্টেশন সেকশনের জন্য একটি। `950px` breakpoint-এর নিচে এগুলো সাইডবার ড্রয়ারে চলে যায়। বিস্তারিত দেখুন [সেকশন ট্যাব](/guide/default-theme/navbar/#সেকশন-ট্যাব)।
+
+* `title`
+  ট্যাবের লেবেল।
+* `to`
+  সেকশনের ল্যান্ডিং পেজ। ন্যাভবার লিংকের মতোই এটি সক্রিয় ভাষা ও ডকুমেন্টেশন সংস্করণ অনুসরণ করে; এক্সটার্নাল URL নতুন ট্যাবে খোলে।
+* `icon`
+  `collection:name` আকারে একটি Iconify আইকন, যেমন `tabler:rocket`, অথবা একটি HTML স্ট্রিং, যেমন inline SVG। `defaultTheme()`-এ দেওয়া `sectionTabs`-এর আইকন স্বয়ংক্রিয়ভাবে pre-build হয়।
+* `activeMatch`
+  একটি route prefix বা prefix-এর array, যা মিললে ট্যাবটি সক্রিয় হয়। ডিফল্ট হলো `to` ধারণকারী সবচেয়ে নির্দিষ্ট সাইডবার key; কোনো সাইডবার key-এর অধীনে না থাকলে `to` নিজেই।
+:::
+
 ### `discord`
 ডিসকর্ডের চ্যাট চ্যানেল লিংক
 এটি দেয়া হলে ন্যাভবারে ডিসকর্ডের আইকন দেখাবে।
@@ -181,6 +196,7 @@ const defaultGradient = {
   * `appReadyToWorkOffline`
   * `newContentAvailable`
 * `footnoteLabel` - অটো জেনারেটেড ফুটনোট টাইটেলে। ডিফল্ট হচ্ছে `"Footnotes"`
+* `sectionTabsLabel` - [সেকশন ট্যাব](#sectionTabs) নেভিগেশনের accessible লেবেল। ডিফল্ট হচ্ছে `"Sections"`
 
 :::since[ঐচ্ছিক টাইটেল-সারি অ্যাকশন]{version="2026-09-09" id="theme-title-row-action" summary="PageLayout পেজ টাইটেল ও version-new badge-এর পরে একটি ঐচ্ছিক অ্যাকশন রেন্ডার করতে পারে।"}
 ### Title-row action
@@ -215,7 +231,7 @@ const defaultGradient = {
 একটি অবজেক্ট, কী হচ্ছে কালেকশন নেম, ভ্যালু হচ্ছে আইকনের অ্যারে।
 উদাহরণস্বরূপ, এগুলো হচ্ছে ঐসব আইকন যা এই সাইটে ব্যবহার করা হচ্ছে
 
-@code(/vite.config.ts,25,39)
+@code(/vite.config.ts,28,42)
 
 এই আইকনগুলো দেখতে এমন:
 

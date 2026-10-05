@@ -19,6 +19,7 @@
   import NavbarMobile from './NavbarMobile.svelte'
   import NavItem from './NavItem.svelte'
   import LocalSearch from './search/LocalSearch.svelte'
+  import SectionTabs from './SectionTabs.svelte'
   import ToggleDark from './ToggleDark.svelte'
 
   const routeId = $derived(page.route.id)
@@ -61,6 +62,8 @@
         : {}),
     }
   })
+
+  const hasSectionTabs = $derived(Boolean(localeOptions.sectionTabs?.length))
 
   let docsearchComponent = $state<Component | undefined>()
   let searchComponent = $state<Component | undefined>()
@@ -213,6 +216,14 @@
       </div>
     </nav>
   </div>
+  {#if hasSectionTabs && !isHome && !hasError}
+    <!-- Revealed by CSS only on pages whose PageLayout marks itself
+         `svp-with-section-tabs`: page frontmatter is not known here during
+         SSR, and a CSS gate keeps the first paint free of layout shift. -->
+    <div class="svp-section-tabs-bar">
+      <SectionTabs />
+    </div>
+  {/if}
   {#if !isHome}
     <MobileSubNav />
   {/if}
@@ -224,7 +235,7 @@
      the colors here already match the page background, so translucency bought
      nothing but that artifact. */
   .header {
-    --at-apply: 'transition-transform fixed top-0 left-0 right-0 sm:h-[73px] z-888 bg-[#f6f6f6] dark:bg-[#18181b] b-b-1 b-b-solid b-b-black/5 dark:b-b-white/8';
+    --at-apply: 'transition-transform fixed top-0 left-0 right-0 z-888 bg-[#f6f6f6] dark:bg-[#18181b] b-b-1 b-b-solid b-b-black/5 dark:b-b-white/8';
   }
   .hidden-in-mobile {
     --at-apply: 'translate-y-[-100%] sm:translate-y-0';
@@ -242,7 +253,28 @@
     display: none;
   }
   .header-inner {
-    --at-apply: 'sm:max-w-[1440px] box-border px-3 sm:px-4 xl:px-6 h-14 sm:h-full flex items-stretch justify-between gap-2 mx-auto';
+    --at-apply: 'sm:max-w-[1440px] box-border px-3 sm:px-4 xl:px-6 h-14 sm:h-[73px] flex items-stretch justify-between gap-2 mx-auto';
+  }
+  /* Second header row. Its left edge follows the sidebar's own width formula
+     so the first tab lines up with the search pill at every desktop width. */
+  .svp-section-tabs-bar {
+    --at-apply: 'hidden box-border b-t-1 b-t-solid b-t-black/5 dark:b-t-white/8';
+    height: var(--svp-section-tabs-height);
+    padding-left: calc(
+      max(0px, (100vw - 1440px) / 2) + min(25vw, 288px) + 1rem
+    );
+    padding-right: calc(max(0px, (100vw - 1440px) / 2) + 1rem);
+  }
+  @media (min-width: 950px) {
+    .header {
+      height: calc(73px + var(--svp-section-tabs-height, 0px));
+    }
+    :global(body:has(.svp-with-section-tabs):has(.svp-section-tabs-bar)) {
+      --svp-section-tabs-height: 44px;
+    }
+    :global(body:has(.svp-with-section-tabs)) .svp-section-tabs-bar {
+      display: block;
+    }
   }
   .left {
     --at-apply: 'flex items-center gap-2 flex-none';

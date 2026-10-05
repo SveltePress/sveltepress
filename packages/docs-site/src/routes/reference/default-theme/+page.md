@@ -46,6 +46,21 @@ export default config
   Children links.
   If this prop is provided it would render a dropdown instead of a single link.
 
+:::since[Section tabs]{version="2026-09-17" id="theme-section-tabs" summary="sectionTabs adds a row of section tabs under the navbar, and the sidebar follows the active tab."}
+### `sectionTabs`
+
+Tabs shown in a row under the navbar on pages with a sidebar, one tab per documentation section. Below the `950px` breakpoint they move into the sidebar drawer. See [Section tabs](/guide/default-theme/navbar/#Section-tabs).
+
+* `title`
+  The tab label.
+* `to`
+  The section's landing page. Like navbar links, it follows the active locale and documentation version; external URLs open in a new tab.
+* `icon`
+  An Iconify icon in `collection:name` form, such as `tabler:rocket`, or an HTML string such as an inline SVG. The icons of the `sectionTabs` passed to `defaultTheme()` are pre-built automatically.
+* `activeMatch`
+  A route prefix, or an array of prefixes, that makes the tab active. Defaults to the most specific sidebar key that contains `to`, or to `to` itself when no sidebar key does.
+:::
+
 ### `discord`
 
 The web invite address to the project's Discord server.
@@ -204,6 +219,7 @@ The fixed text contents that can be replaced by your config.
   * `appReadyToWorkOffline`
   * `newContentAvailable`
 * `footnoteLabel` - The auto generated footnotes title. Default is `"Footnotes"`
+* `sectionTabsLabel` - The accessible label of the [section tabs](#sectionTabs) navigation. Default is `"Sections"`
 
 :::since[Optional title-row action]{version="2026-09-09" id="theme-title-row-action" summary="PageLayout can render an optional action after the page title and version-new badge."}
 ### Title-row action
@@ -238,7 +254,7 @@ The icons in [Iconify](https://iconify.design/) that you want to pre-build for f
 An object, key is the collection name, value is the icons array.
 For example these are the icons this site using:
 
-@code(/vite.config.ts,25,39)
+@code(/vite.config.ts,28,42)
 
 These icons looks like this:
 

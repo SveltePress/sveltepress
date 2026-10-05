@@ -12,6 +12,9 @@ const currentId = '2026-09-17'
 const versionIds = [currentId, previousId, '2026-09-03', '2026-08-31', '2026-08-28', historicalId]
 const currentChanges = [
   { route: 'guide/version-management', id: 'versions-overlay-html' },
+  { route: 'guide/default-theme/navbar', id: 'theme-section-tabs' },
+  { route: 'guide/default-theme/sidebar', id: 'sidebar-nested-keys' },
+  { route: 'reference/default-theme', id: 'theme-section-tabs' },
 ]
 const currentNewPageRoutes = []
 const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)

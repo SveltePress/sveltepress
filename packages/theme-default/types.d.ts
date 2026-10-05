@@ -23,6 +23,26 @@ declare module 'virtual:sveltepress/theme-default' {
     items?: LinkItem[]
   }
 
+  export interface SectionTab {
+    /** The tab label. */
+    title: string
+    /**
+     * The section's landing page. Internal links follow the active locale and
+     * documentation version, like navbar links; external URLs open in a new tab.
+     */
+    to: string
+    /**
+     * An Iconify icon in `collection:name` form, e.g. `tabler:rocket` (needs the
+     * matching `@iconify-json/*` package), or an HTML string such as an inline SVG.
+     */
+    icon?: string
+    /**
+     * Route prefixes that make this tab active. Defaults to the most specific
+     * sidebar key containing `to`, or to `to` itself when no sidebar key does.
+     */
+    activeMatch?: string | string[]
+  }
+
   export interface AutoSidebarOptions {
     /**
      * Enable auto-generated sidebar
@@ -41,6 +61,12 @@ declare module 'virtual:sveltepress/theme-default' {
 
   export interface DefaultThemeOptions {
     navbar?: Array<LinkItem>
+    /**
+     * Section tabs shown in a row under the navbar on pages with a sidebar.
+     * Each tab is a documentation section; the active tab follows the sidebar
+     * key of the current page. On small screens the tabs move into the sidebar drawer.
+     */
+    sectionTabs?: SectionTab[]
     github?: string
     logo?: string
     sidebar?: Record<string, LinkItem[]> | AutoSidebarOptions
@@ -105,6 +131,8 @@ declare module 'virtual:sveltepress/theme-default' {
     }
     i18n?: {
       navbarMenu?: string
+      /** Accessible label of the section tabs navigation. */
+      sectionTabsLabel?: string
       heroCode?: {
         title?: string
         messageBefore?: string

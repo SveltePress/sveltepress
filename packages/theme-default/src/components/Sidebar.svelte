@@ -4,12 +4,16 @@
   import Backdrop from './Backdrop.svelte'
   import Close from './icons/Close.svelte'
   import { resolvedSidebar, resolveSidebar, sidebarCollapsed } from './layout'
-  import { resolveLogicalRoute } from './locale'
+  import { resolveLocaleOptions, resolveLogicalRoute } from './locale'
   import Logo from './Logo.svelte'
+  import SectionTabs from './SectionTabs.svelte'
   import SidebarGroup from './SidebarGroup.svelte'
 
   const routeId = $derived(page.route.id)
   const isHome = $derived(resolveLogicalRoute(routeId) === '/')
+  const hasSectionTabs = $derived(
+    Boolean(resolveLocaleOptions(page.url.pathname).sectionTabs?.length),
+  )
 
   afterNavigate(() => {
     resolveSidebar(routeId)
@@ -37,6 +41,13 @@
       <Close />
     </div>
   </div>
+
+  {#if hasSectionTabs}
+    <!-- Desktop shows the tabs as a row under the navbar instead. -->
+    <div class="sidebar-section-tabs">
+      <SectionTabs variant="list" />
+    </div>
+  {/if}
 
   {#each $resolvedSidebar as sidebarItem}
     {@const hasItems = Array.isArray(sidebarItem.items)}
@@ -70,5 +81,8 @@
   }
   .close {
     --at-apply: 'text-5 flex items-center sm:hidden ml-4';
+  }
+  .sidebar-section-tabs {
+    --at-apply: 'sm:hidden mb-3 pb-3 border-b-solid border-b border-black/5 dark:border-b-white/8';
   }
 </style>

@@ -30,6 +30,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/markdown/': [
     {
       title: 'Markdown এর ফিচারসমূহ',
       items: [
@@ -47,6 +49,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/default-theme/': [
     {
       title: 'ডিফল্ট থিমের ফিচারসমূহ',
       collapsible: true,
@@ -105,6 +109,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/blog-theme/': [
     {
       title: 'ব্লগ থিমের ফিচারসমূহ',
       collapsible: true,

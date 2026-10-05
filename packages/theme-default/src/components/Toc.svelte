@@ -197,7 +197,12 @@
 
 <style>
   .toc {
-    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 sm:top-[80px] fixed text-3.5 w-[70vw] bg-white dark:bg-[#1c1c1f] sm:bg-transparent top-0 z-988 sm:dark:bg-transparent box-border sm:w-[calc(max(0px,(100vw-1440px)/2)+min(22vw,256px))] sm:pr-[max(0px,calc((100vw-1440px)/2))]';
+    --at-apply: 'transition-transform transition transition-300 py-4 text-gray-5 dark:text-gray-2 sm:z-3 leading-[2em] bottom-0 right-0 fixed text-3.5 w-[70vw] bg-white dark:bg-[#1c1c1f] sm:bg-transparent top-0 z-988 sm:dark:bg-transparent box-border sm:w-[calc(max(0px,(100vw-1440px)/2)+min(22vw,256px))] sm:pr-[max(0px,calc((100vw-1440px)/2))]';
+  }
+  @media (min-width: 950px) {
+    .toc {
+      top: calc(80px + var(--svp-section-tabs-height, 0px));
+    }
   }
   .toc a {
     --at-apply: 'text-zinc-6 dark:text-zinc-4 transition-colors transition-150';

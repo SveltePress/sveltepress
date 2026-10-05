@@ -30,6 +30,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/markdown/': [
     {
       title: 'Markdown features',
       items: [
@@ -47,6 +49,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/default-theme/': [
     {
       title: 'Default theme features',
       collapsible: true,
@@ -105,6 +109,8 @@ export default {
         },
       ],
     },
+  ],
+  '/guide/blog-theme/': [
     {
       title: 'Blog theme features',
       collapsible: true,
