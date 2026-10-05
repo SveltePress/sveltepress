@@ -1,5 +1,11 @@
 # @sveltepress/theme-blog
 
+## 1.0.4
+
+### Patch Changes
+
+- [#477](https://github.com/SveltePress/sveltepress/pull/477) [`0aa7298`](https://github.com/Blackman99/sveltepress/commit/0aa7298c38bec6e1b3fbb39824be313e4d562f88) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix blog theme startup in StackBlitz WebContainers and other environments that disable native addons. Probe whether native addons can load before importing the Open Graph renderer, load it only when generation is enabled, and warn and skip PNG generation if it cannot be loaded, preserving existing images and the rest of the blog. Native Node.js environments continue to generate OG images normally.
+
 ## 1.0.3
 
 ### Patch Changes
