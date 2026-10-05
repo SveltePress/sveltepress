@@ -6,6 +6,11 @@
   "description": "Docsearch component for sveltepress",
   "author": "Dongsheng Zhao",
   "license": "MIT",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/SveltePress/sveltepress",
+    "directory": "packages/docsearch"
+  },
   "publishConfig": {
     "access": "public"
   },
