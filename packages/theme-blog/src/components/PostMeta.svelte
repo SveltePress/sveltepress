@@ -1,8 +1,10 @@
 <!-- src/components/PostMeta.svelte -->
 <script lang="ts">
   import type { BlogPost } from '../types.js'
-  import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
+  import { getBase } from '../base-path.js'
+
+  const base = getBase()
 
   interface Props {
     post: BlogPost

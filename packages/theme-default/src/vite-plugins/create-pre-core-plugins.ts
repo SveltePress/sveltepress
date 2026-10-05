@@ -1,6 +1,6 @@
 import type { VersionManifest } from '@sveltepress/vite/versioning'
 import type { DefaultThemeOptions } from 'virtual:sveltepress/theme-default'
-import type { PluginOption } from 'vite'
+import type { Plugin, PluginOption } from 'vite'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
@@ -53,6 +53,17 @@ const DEFAULT_PRIMARY_DEEP = '#e11d48'
 
 const DEFAULT_HOVER = '#f43f5e'
 
+/**
+ * SvelteKit renders pages itself and never runs Vite's `transformIndexHtml`
+ * hook, and SvelteKit 3 warns about every plugin that defines one. UnoCSS only
+ * uses it for a root `index.html`, which SvelteKit apps don't have.
+ */
+function withoutTransformIndexHtml(plugins: Plugin[]) {
+  for (const plugin of plugins)
+    delete plugin.transformIndexHtml
+  return plugins
+}
+
 export default async (options?: DefaultThemeOptions, versionManifest?: VersionManifest | null) => {
   await initHighlighter(options?.highlighter)
   const { gradient = DEFAULT_GRADIENT, primary = DEFAULT_PRIMARY, hover = DEFAULT_HOVER } = options?.themeColor || {
@@ -85,9 +96,10 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
   // dynamic import so a static production build bundles the wrapper.
   let customSearchFile: string | null = null
   let customSearchRoot = process.cwd()
+  let isBuild = false
 
   const vitePluginsPre: PluginOption = [
-    Unocss({
+    ...withoutTransformIndexHtml(Unocss({
       extractors: [
         extractorSvelte(),
       ],
@@ -120,7 +132,7 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
       safelist: [
         ...iconSafelist,
       ],
-    }),
+    })),
     {
       name: '@sveltepress/default-theme',
       enforce: 'pre',
@@ -156,12 +168,18 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
           return buildCustomSearchModule(customSearchFile)
       },
       configResolved(config) {
+        isBuild = config.command === 'build'
         customSearchRoot = config.root
         customSearchFile = resolveCustomSearchFile(options?.search, customSearchRoot)
       },
       transform(source, id) {
-        if (!versionManifest)
-          return stripVersioningForManifestlessSite(source, id) ?? undefined
+        if (versionManifest)
+          return
+        const code = stripVersioningForManifestlessSite(source, id)
+        // No sourcemap for the stripped component; an explicit empty map avoids
+        // `SOURCEMAP_BROKEN` warnings in SvelteKit 3 server builds
+        if (code)
+          return isBuild ? { code, map: { mappings: '' } } : code
       },
       async config() {
         return {

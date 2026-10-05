@@ -1,12 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation'
-  import { base } from '$app/paths'
   import { page } from '$app/state'
   import { onDestroy, tick } from 'svelte'
   import { resolveVersionContext } from 'virtual:sveltepress/versions'
   import portal from '../actions/portal'
   import { resolveLocaleOptions } from '../locale.js'
-  import { getPathFromBase } from '../utils.js'
+  import { getBase, getPathFromBase } from '../utils.js'
 
   interface SearchResultItem {
     url: string
@@ -34,12 +33,12 @@
     if (versionContext?.historical) {
       const versionBasePath =
         versionContext.basePath ?? versionContext.manifest?.basePath ?? '/v'
-      return `${base}${versionBasePath}/${versionContext.versionId}/pagefind/`.replace(
+      return `${getBase()}${versionBasePath}/${versionContext.versionId}/pagefind/`.replace(
         /\/+/g,
         '/',
       )
     }
-    return `${base}/pagefind/`.replace(/\/+/g, '/')
+    return `${getBase()}/pagefind/`.replace(/\/+/g, '/')
   })
   const placeholder = $derived(
     localeOptions.i18n?.searchPlaceholder || 'Search documentation...',

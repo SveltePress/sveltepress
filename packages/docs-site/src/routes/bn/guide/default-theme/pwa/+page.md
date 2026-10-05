@@ -6,6 +6,10 @@ title: PWA
 
 এই ফিচারটি [@vite-pwa/sveltekit](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin) থেকে নেয়া।
 
+:::warning[আপাতত শুধু SvelteKit 2]
+`@vite-pwa/sveltekit` এখনও SvelteKit 3 সমর্থন করে না। SvelteKit 3 এ কোনো service worker তৈরি হয় না, এবং build একটি সতর্কবার্তা দেখায়। দেখুন [SvelteKit 3 এ আপগ্রেড](/guide/quick-start/#SvelteKit-3-এ-আপগ্রেড)।
+:::
+
 থিম ডিফল্টে `pwa` পাঠিয়ে দিয়ে pwa ব্যবহার করা যাবে। অপশঙ্গুলো হুবহু [SvelteKit PWA Plugin Options](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin-options) এর মতই, শুধু `darkManifest` বাদে, যা হচ্ছে ডার্ক থিমে ব্যবহারের জন্য manifest path
 
 এবং svelte.config.js -এ `files.serviceWorker` কনফিগ করতে হবে, `SERVICE_WORKER_PATH` ব্যবহার করুন যা `@sveltepress/theme-default` থেকে এক্সপোর্ট করা হয়।

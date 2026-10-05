@@ -46,14 +46,14 @@ Inspired by [VitePress](https://vitepress.dev/), built on [SvelteKit](https://ki
 - **i18n built in** — locales, switcher, version-aware navigation
 - **Docs + blog themes** — default docs theme, or [`theme-blog`](https://sveltepress.site/guide/blog-theme/getting-started/) for posts, RSS, OG images
 
-Requires Svelte 5, SvelteKit 2, Vite 8, and Node.js `^20.19.0` or `>=22.12.0`.
+Requires Svelte 5, SvelteKit 2 (`2.65.1`+) or 3, Vite 8, and Node.js `^20.19.0` or `>=22.12.0`.
 
 ### Comparison
 
 | Feature / Aspect | Sveltepress | VitePress | Astro (Starlight) | Docusaurus |
 |---|---|---|---|---|
 | **Ecosystem** | Svelte / SvelteKit | Vue 3 | Framework-agnostic | React |
-| **Build Engine** | Vite 8 + SvelteKit 2 | Vite + Vue 3 | Vite + Astro compiler | Webpack |
+| **Build Engine** | Vite 8 + SvelteKit 2/3 | Vite + Vue 3 | Vite + Astro compiler | Webpack |
 | **Fullstack Power** | Full SvelteKit surface (SSR, API routes, hooks) | Static-focused SSG | Requires SSR adapter | Requires Node plugins |
 | **Reactivity** | Svelte 5 Runes natively in `.md` | Vue 3 Composition API | Static by default (Islands) | React Hooks |
 | **Interactive Code** | Native live components + Twoslash hover | Vue components | Requires plugins | Requires react-live |

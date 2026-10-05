@@ -1,6 +1,9 @@
 <script lang="ts">
-  import { base } from '$app/paths'
+  import { resolve } from '$app/paths'
   import { tags } from 'virtual:sveltepress/blog-tags-index'
+
+  // `base` was removed from `$app/paths` in SvelteKit 3
+  const base = resolve('/').slice(0, -1)
 </script>
 
 <div class="sp-tags-page">

@@ -210,11 +210,7 @@ export const TIMELINE_PAGE = `<script lang="ts">
 `
 
 // Tags index — uses the pre-computed count list (no posts needed here).
-export const TAGS_INDEX_PAGE = `<script lang="ts">
-  import { base } from '$app/paths'
-  import { tags } from 'virtual:sveltepress/blog-tags-index'
-</script>
-
+const TAGS_INDEX_MARKUP = `
 <div class="sp-tags-page">
   <h1 class="sp-tags-page__title">All Tags</h1>
   <div class="sp-tags-page__grid">
@@ -263,3 +259,19 @@ export const TAGS_INDEX_PAGE = `<script lang="ts">
   }
 </style>
 `
+
+export const TAGS_INDEX_PAGE = `<script lang="ts">
+  import { resolve } from '$app/paths'
+  import { tags } from 'virtual:sveltepress/blog-tags-index'
+
+  // \`base\` was removed from \`$app/paths\` in SvelteKit 3
+  const base = resolve('/').slice(0, -1)
+</script>
+${TAGS_INDEX_MARKUP}`
+
+/** The tags index scaffolded before SvelteKit 3 support, which imports the removed `base`. */
+export const OUTDATED_TAGS_INDEX_PAGE = `<script lang="ts">
+  import { base } from '$app/paths'
+  import { tags } from 'virtual:sveltepress/blog-tags-index'
+</script>
+${TAGS_INDEX_MARKUP}`

@@ -6,6 +6,7 @@ import {
   CAT_PAGE_SERVER_LOAD,
   LIST_PAGE,
   LIST_PAGE_SERVER_LOAD,
+  OUTDATED_TAGS_INDEX_PAGE,
   PAGE_N_PAGE,
   PAGE_N_SERVER_LOAD,
   POST_PAGE,
@@ -53,6 +54,12 @@ const LEGACY_PATHS = [
 const DEAD_VIRTUAL_IMPORT
   = /from\s+['"]virtual:sveltepress\/blog-(?:posts|tags|categories)['"]|import\s*\(\s*[`'"]virtual:/
 
+/**
+ * Unmodified copies of earlier templates that no longer build — e.g. the tags
+ * index imported `base` from `$app/paths`, which SvelteKit 3 removed.
+ */
+const OUTDATED_TEMPLATES = [OUTDATED_TAGS_INDEX_PAGE]
+
 function scaffoldFiles(root: string): ScaffoldFile[] {
   const r = (p: string) => join(root, 'src', 'routes', p)
   return [
@@ -88,6 +95,10 @@ export async function scaffoldRoutes(root: string): Promise<void> {
     if (DEAD_VIRTUAL_IMPORT.test(content)) {
       await rm(p)
       console.warn(`[theme-blog] removed legacy scaffold file ${legacy} (imported dead virtual module)`)
+    }
+    else if (OUTDATED_TEMPLATES.includes(content)) {
+      await rm(p)
+      console.warn(`[theme-blog] removed legacy scaffold file ${legacy} (unmodified outdated template)`)
     }
     else {
       console.warn(`[theme-blog] skipped ${legacy}: file exists but does not import a dead virtual module — remove manually if you want it re-scaffolded`)

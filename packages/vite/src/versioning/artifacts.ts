@@ -298,7 +298,8 @@ function extractDependencies(file: string, source: string): string[] {
 
 function resolveDependency(siteRoot: string, importer: string, specifier: string): string | null {
   let target: string
-  if (specifier.startsWith('$lib/'))
+  // `$lib/` (SvelteKit 2) and the `#lib/` subpath import (SvelteKit 3) both map to `src/lib`
+  if (/^[$#]lib\//.test(specifier))
     target = resolve(siteRoot, 'src/lib', specifier.slice('$lib/'.length))
   else if (specifier.startsWith('/'))
     target = resolve(siteRoot, 'static', specifier.slice(1))

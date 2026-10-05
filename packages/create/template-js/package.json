@@ -7,11 +7,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build"
+    "build": "vite build",
+    "prepare": "svelte-kit sync || echo ''"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.70.3",
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@sveltepress/theme-default": "^8.9.0",
     "@sveltepress/vite": "^1.8.3",

@@ -6,6 +6,10 @@ title: PWA
 
 This feature integrated [@vite-pwa/sveltekit](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin)
 
+:::warning[SvelteKit 2 only for now]
+`@vite-pwa/sveltekit` does not support SvelteKit 3 yet. On SvelteKit 3 no service worker is generated and the build prints a warning. See [Upgrading to SvelteKit 3](/guide/quick-start/#Upgrading-to-SvelteKit-3).
+:::
+
 Pass `pwa` option to theme default to use pwa. The options are exactly the same as [SvelteKit PWA Plugin Options](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin-options) except for `darkManifest`, which is the manifest path that would used for dark theme
 
 And the svelte.config.js need to config `files.serviceWorker`, use the `SERVICE_WORKER_PATH` exported from `@sveltepress/theme-default`

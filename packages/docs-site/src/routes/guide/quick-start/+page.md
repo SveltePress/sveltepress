@@ -5,7 +5,7 @@ title: Quick Start
 ## Requirements
 
 - Node.js `^20.19.0` or `>=22.12.0`
-- Svelte 5, SvelteKit 2, and Vite 8
+- Svelte 5, SvelteKit 2 (`2.65.1` or later) or SvelteKit 3, and Vite 8
 - pnpm 10 is recommended; npm, Yarn, and Bun are also supported by the create command
 
 ## Creating a project
@@ -45,7 +45,35 @@ export default config
 `sveltepress()` already sets up SvelteKit for you. Keeping both `sveltekit()` and `sveltepress()` in `plugins` compiles every Svelte file twice and crashes the dev server with `Expected token }`.
 :::
 
-### Add `'.md'` extension to the `extensions` options in your svelte.config.js
+### Pass your SvelteKit config through `sveltepress()`
+
+:::since[SvelteKit 3 support]{version="2026-10-05" id="sveltekit-3" summary="Sveltepress supports SvelteKit 3. SvelteKit config goes through svelteKitOptions because svelte.config.js is no longer read."}
+SvelteKit 3 no longer reads `svelte.config.js`, and refuses to start while one exists. Move its options, including everything that was under `kit`, into `sveltepress({ svelteKitOptions })`, then delete `svelte.config.js`. Sveltepress adds the `'.md'` extension for you.
+
+```ts title="vite.config.ts"
+// @noErrors
+import adapter from '@sveltejs/adapter-static'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { sveltepress } from '@sveltepress/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    sveltepress({
+      svelteKitOptions: {
+        preprocess: [vitePreprocess()],
+        adapter: adapter({
+          pages: 'dist',
+        }),
+      },
+    }),
+  ],
+})
+```
+:::
+
+:::tip[Still on SvelteKit 2?]
+SvelteKit 2 accepts `svelteKitOptions` too. Alternatively, keep `svelte.config.js` and add `'.md'` to its `extensions`:
 
 ```ts title="svelte.config.js"
 // @noErrors
@@ -68,28 +96,15 @@ const config = {
 
 export default config
 ```
-
-:::tip[No `svelte.config.js`? (newer SvelteKit layout)]
-Projects scaffolded with a recent `npx sv create` keep their SvelteKit config inline in `vite.config.ts` and ship no `svelte.config.js`. Move those options into `sveltepress({ svelteKitOptions })` (Sveltepress adds the `'.md'` extension for you automatically) and remove the standalone `sveltekit()` plugin:
-
-```ts title="vite.config.ts"
-// @noErrors
-import adapter from '@sveltejs/adapter-auto'
-import { sveltepress } from '@sveltepress/vite'
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  plugins: [
-    sveltepress({
-      svelteKitOptions: {
-        compilerOptions: {
-          runes: ({ filename }) =>
-            filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
-        },
-        adapter: adapter(),
-      },
-    }),
-  ],
-})
-```
 :::
+
+## Upgrading to SvelteKit 3
+
+1. Upgrade `@sveltejs/kit` to `^3.0.0` and your adapter to its SvelteKit 3 release, for example `@sveltejs/adapter-static` `^4.0.0`. SvelteKit 3 needs Node.js `>=22.17`.
+2. Run `npx sv migrate sveltekit-3` to migrate your own code, such as `$app/stores`, `base` from `$app/paths`, and `$lib` imports.
+3. Make sure your SvelteKit config lives in `sveltepress({ svelteKitOptions })` as shown above. The migration moves `svelte.config.js` into a `sveltekit(...)` call in your Vite config: move that object into `svelteKitOptions` and remove the `sveltekit(...)` plugin.
+
+Sveltepress itself needs no other change. Keep these in mind:
+
+- `$lib` is replaced by the `#lib` subpath import. [Version management](/guide/version-management/) tracks `#lib/` imports like `$lib/` ones, so if your manifest shares `$lib/**`, add `#lib/**` to `content.shared` as well.
+- The Default Theme [`pwa`](/guide/default-theme/pwa/) option relies on `@vite-pwa/sveltekit`, which does not support SvelteKit 3 yet. On SvelteKit 3 no service worker is generated, and the build prints a warning.

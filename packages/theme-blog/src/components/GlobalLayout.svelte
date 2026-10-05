@@ -2,8 +2,8 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { onNavigate } from '$app/navigation'
-  import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
+  import { getBase } from '../base-path.js'
   import SearchModal from './SearchModal.svelte'
   import Sidebar from './Sidebar.svelte'
   import ThemeToggle from './ThemeToggle.svelte'
@@ -12,6 +12,8 @@
   import '@fontsource/inter/500.css'
   import '@fontsource/inter/600.css'
   import '@fontsource/inter/700.css'
+
+  const base = getBase()
 
   interface Props {
     children?: Snippet

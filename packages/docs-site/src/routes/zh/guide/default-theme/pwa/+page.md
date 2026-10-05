@@ -6,6 +6,10 @@ title: PWA
 
 此特性集成了 [@vite-pwa/sveltekit](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin)
 
+:::warning[目前仅支持 SvelteKit 2]
+`@vite-pwa/sveltekit` 暂不支持 SvelteKit 3。在 SvelteKit 3 下不会生成 service worker，构建时会输出警告。参见[升级到 SvelteKit 3](/guide/quick-start/#升级到-SvelteKit-3)。
+:::
+
 传递 `pwa` 选项给默认主题来使用 PWA，该选项与 [SvelteKit PWA Plugin Options](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html#sveltekit-pwa-plugin-options) 完全一致，并新增了 `darkManifest`，可以用来配置夜间模式下的 manifest 文件
 
 在 svelte.config.js 中使用从 `@sveltepress/theme-default` 导出的  `SERVICE_WORKER_PATH` 配置 `files.serviceWorker`

@@ -22,7 +22,7 @@ export default defineConfig({
       { find: '$app/state', replacement: resolve(import.meta.dirname, '__tests__/fixtures/app-state.svelte.ts') },
       { find: '$app/navigation', replacement: resolve(import.meta.dirname, '__tests__/fixtures/navigation.ts') },
       { find: '$app/paths', replacement: resolve(import.meta.dirname, '__tests__/fixtures/paths.ts') },
-      { find: '$app/environment', replacement: resolve(import.meta.dirname, '__tests__/fixtures/environment.ts') },
+      { find: '$app/env', replacement: resolve(import.meta.dirname, '__tests__/fixtures/env.ts') },
     ],
   },
   test: {

@@ -1,6 +1,16 @@
-import { base } from '$app/paths'
+import { resolve } from '$app/paths'
+
+/**
+ * The app's base path (`paths.base`). `base` was removed from `$app/paths` in
+ * SvelteKit 3, while `resolve('/')` returns the base path followed by `/` in
+ * both SvelteKit 2 and 3.
+ */
+export function getBase() {
+  return resolve('/').slice(0, -1)
+}
 
 export function getPathFromBase(path: string) {
+  const base = getBase()
   if (path === '/')
     return base || '/'
   if (!base || !path.startsWith('/') || (path === base || path.startsWith(`${base}/`)))

@@ -503,7 +503,8 @@ function analyzeDependencies(siteRoot: string, routesRoot: string, files: string
       : source
     for (const match of dependencySource.matchAll(/(?:from\s+|import\s*\(\s*|import\s+|require\s*\(\s*)['"]([^'"]+)['"]/g)) {
       const specifier = match[1]
-      if (specifier.startsWith('$lib/')) {
+      // `$lib/` (SvelteKit 2) and the `#lib/` subpath import (SvelteKit 3)
+      if (/^[$#]lib\//.test(specifier)) {
         report(specifier)
       }
       else if (specifier.startsWith('.')) {

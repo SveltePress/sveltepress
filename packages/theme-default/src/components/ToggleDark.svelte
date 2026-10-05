@@ -1,5 +1,5 @@
 <script>
-  import { browser } from '$app/environment'
+  import { browser } from '$app/env'
   import { onMount, tick } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
   import Moon from './icons/Moon.svelte'

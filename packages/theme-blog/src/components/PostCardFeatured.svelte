@@ -1,7 +1,9 @@
 <!-- src/components/PostCardFeatured.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
-  import { base } from '$app/paths'
+  import { getBase } from '../base-path.js'
+
+  const base = getBase()
 
   interface Props {
     post: BlogPostMeta

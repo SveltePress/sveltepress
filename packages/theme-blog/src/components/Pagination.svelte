@@ -1,6 +1,8 @@
 <script lang="ts">
-  import { base } from '$app/paths'
+  import { getBase } from '../base-path.js'
   import { paginationWindow } from '../pagination.js'
+
+  const base = getBase()
 
   interface Props {
     page: number

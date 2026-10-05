@@ -515,17 +515,19 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
           `
         }
         return `
-          import { base as appBase } from '$app/paths'
+          import { resolve as resolveAppPath } from '$app/paths'
           import {
             resolveLocale as resolveLocaleHelper,
             resolveLocalizedPath as resolveLocalizedPathHelper,
             resolveLocaleSwitch as resolveLocaleSwitchHelper,
           } from '@sveltepress/vite/locale'
+          // \`base\` was removed from $app/paths in SvelteKit 3; \`resolve('/')\` is the base path plus '/' in SvelteKit 2 and 3
+          const appBase = () => resolveAppPath('/').slice(0, -1)
           export const locales = ${JSON.stringify(resolvedLocales)}
-          export const resolveLocale = (pathname, base = appBase) => resolveLocaleHelper(pathname, locales, base)
-          export const resolveLocalizedPath = (to, locale, base = appBase) => resolveLocalizedPathHelper(to, locale, locales, base)
+          export const resolveLocale = (pathname, base = appBase()) => resolveLocaleHelper(pathname, locales, base)
+          export const resolveLocalizedPath = (to, locale, base = appBase()) => resolveLocalizedPathHelper(to, locale, locales, base)
           const versionManifests = ${JSON.stringify(slimLocaleVersionManifests(localeManifests))}
-          export const resolveLocaleSwitch = (pathname, targetPrefix, base = appBase) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base, versionManifests)
+          export const resolveLocaleSwitch = (pathname, targetPrefix, base = appBase()) => resolveLocaleSwitchHelper(pathname, targetPrefix, locales, base, versionManifests)
           export default { locales, resolveLocale, resolveLocalizedPath, resolveLocaleSwitch }
         `
       }
@@ -533,12 +535,13 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
     async transform(src, id) {
       if (PAGE_OR_LAYOUT_RE.test(id)) {
         if (src.includes('<!-- sveltepress:artifact-shell -->'))
-          return src
+          return
         const artifactWrapper = await resolveCurrentArtifactWrapper(id)
-        if (artifactWrapper)
-          return artifactWrapper
-        const code = await getWrappedCode(id, src)
-        return code
+        const code = artifactWrapper ?? await getWrappedCode(id, src)
+        // The generated page has no meaningful mapping back to its source. An
+        // explicit empty map keeps SvelteKit 3 builds (which emit server
+        // sourcemaps by default) from warning `SOURCEMAP_BROKEN` for every page.
+        return isDev ? code : { code, map: { mappings: '' } }
       }
     },
     async handleHotUpdate(ctx) {
@@ -654,13 +657,15 @@ const sveltepress: (options: SveltepressVitePluginOptions) => PluginOption = ({
         ? `\0${PAGE_ARTIFACT_GENERATED_VIRTUAL_PREFIX}${artifactHash}/${generatedPath}`
         : null
     }
-    if (!source.startsWith('.') && !source.startsWith('$lib/'))
+    // `$lib/` (SvelteKit 2) and the `#lib/` subpath import (SvelteKit 3) both map to `src/lib`
+    const libImport = /^[$#]lib\//.test(source)
+    if (!source.startsWith('.') && !libImport)
       return null
     const metadata = await readPageArtifactMetadata(storeRoot, artifactHash)
     const importerSource = prefix === `\0${PAGE_ARTIFACT_SOURCE_VIRTUAL_PREFIX}`
       ? value.slice(slash + 1)
       : metadata.sourceFile
-    const requested = source.startsWith('$lib/')
+    const requested = libImport
       ? `src/lib/${source.slice('$lib/'.length)}`
       : resolve(dirname(`/${importerSource}`), source).slice(1)
     const candidates = [

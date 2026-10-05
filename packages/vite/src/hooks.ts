@@ -1,6 +1,10 @@
-import type { Handle } from '@sveltejs/kit'
+import type { sequence } from '@sveltejs/kit/hooks'
 import type { LocalesConfig } from './types.js'
 import { resolveLocale } from './locale.js'
+
+// `Handle` is exported from `@sveltejs/kit` in SvelteKit 2 but moved to
+// `@sveltejs/kit/hooks` in SvelteKit 3; `sequence` returns it in both.
+type Handle = ReturnType<typeof sequence>
 
 export interface CreateLocaleHandleOptions {
   defaultLang?: string

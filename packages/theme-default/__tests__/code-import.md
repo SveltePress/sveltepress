@@ -2,4 +2,4 @@
 
 @code(./fake-file.ts)
 
-@code(/src/index.ts,24,43)
+@code(/src/index.ts,25,44)

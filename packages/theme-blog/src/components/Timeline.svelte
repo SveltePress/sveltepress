@@ -1,8 +1,10 @@
 <!-- src/components/Timeline.svelte -->
 <script lang="ts">
   import type { BlogPostMeta } from '../types.js'
-  import { base } from '$app/paths'
   import { onMount } from 'svelte'
+  import { getBase } from '../base-path.js'
+
+  const base = getBase()
 
   interface Props {
     posts: BlogPostMeta[]

@@ -435,6 +435,21 @@ describe('sveltepress versions CLI', () => {
     expect(metadata.sharedDependencies).toContain('$lib/Widget.svelte')
   })
 
+  it('treats SvelteKit 3 `#lib` subpath imports as shared dependencies', async () => {
+    const root = site()
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), '<script>\nimport Widget from \'#lib/Widget.svelte\'\n</script>\n# Guide')
+    await invoke(root, ['versions', 'init', '--current', 'v8'])
+
+    const blocked = await invoke(root, ['versions', 'create', 'v9'])
+    expect(blocked.code).toBe(1)
+    expect(blocked.stderr).toContain('#lib/Widget.svelte')
+
+    updateManifest(root, manifest => manifest.content.shared.push('#lib/**'))
+    expect(await invoke(root, ['versions', 'create', 'v9'])).toMatchObject({ code: 0 })
+    const metadata = JSON.parse(readFileSync(join(root, 'src/routes/v/v8/.sveltepress-version.json'), 'utf8'))
+    expect(metadata.sharedDependencies).toContain('#lib/Widget.svelte')
+  })
+
   it('ignores dependency-like examples in markdown fences', async () => {
     const root = site()
     writeFileSync(join(root, 'src/routes/guide/+page.md'), [

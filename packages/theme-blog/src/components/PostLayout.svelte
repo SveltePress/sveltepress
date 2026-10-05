@@ -1,9 +1,9 @@
 <!-- src/components/PostLayout.svelte -->
 <script lang="ts">
   import type { BlogPost, BlogPostMeta } from '../types.js'
-  import { base } from '$app/paths'
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
+  import { getBase } from '../base-path.js'
   import GiscusComments from './GiscusComments.svelte'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
@@ -11,6 +11,8 @@
   import ReadingProgress from './ReadingProgress.svelte'
   import RelatedPosts from './RelatedPosts.svelte'
   import TableOfContents from './TableOfContents.svelte'
+
+  const base = getBase()
 
   interface Props {
     post: BlogPost

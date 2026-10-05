@@ -203,6 +203,18 @@ describe('incremental version artifacts', () => {
     expect(after.find(input => input.route === '/guide/')?.dependencies).toContain('src/lib/Card.svelte')
   })
 
+  it('tracks SvelteKit 3 `#lib` subpath imports like `$lib`', () => {
+    const root = mkdtempSync(join(tmpdir(), 'sveltepress-artifacts-hash-lib-'))
+    mkdirSync(join(root, 'src/routes/guide'), { recursive: true })
+    mkdirSync(join(root, 'src/lib'), { recursive: true })
+    writeFileSync(join(root, 'src/routes/guide/+page.md'), '<script>import Card from \'#lib/Card.svelte\'</script>\n# Guide')
+    writeFileSync(join(root, 'src/lib/Card.svelte'), '<article>Card</article>')
+
+    const [guide] = collectPageArtifactInputs(root, { basePath: '/v' })
+
+    expect(guide.dependencies).toEqual(['src/lib/Card.svelte'])
+  })
+
   it('tracks source dependencies referenced inside svelte live code', () => {
     const root = mkdtempSync(join(tmpdir(), 'sveltepress-live-code-dependencies-'))
     mkdirSync(join(root, 'src/routes/guide'), { recursive: true })

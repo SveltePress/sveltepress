@@ -1,11 +1,18 @@
-import { describe, expect, it } from 'vitest'
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { afterEach, describe, expect, it } from 'vitest'
 import { assertSingleSvelteKit } from '../src/plugin'
-import { resolveSvelteKitOptions } from '../src/utils/resolve-svelte-kit-options'
+import { assertNoSvelteConfigFile, resolveSvelteKitOptions } from '../src/utils/resolve-svelte-kit-options'
 
 describe('resolveSvelteKitOptions', () => {
-  it('returns undefined when no options are provided (classic svelte.config.js layout)', () => {
-    expect(resolveSvelteKitOptions()).toBeUndefined()
-    expect(resolveSvelteKitOptions(undefined)).toBeUndefined()
+  it('returns undefined on SvelteKit 2 when no options are provided (classic svelte.config.js layout)', () => {
+    expect(resolveSvelteKitOptions(undefined, '2.70.3')).toBeUndefined()
+  })
+
+  it('always forwards options with `.md` on SvelteKit 3, which no longer reads svelte.config.js', () => {
+    expect(resolveSvelteKitOptions(undefined, '3.0.0')).toEqual({ extensions: ['.svelte', '.md'] })
+    expect(resolveSvelteKitOptions({ extensions: ['.svx'] }, '3.0.0')!.extensions).toEqual(['.svx', '.md'])
   })
 
   it('adds `.md` to the default extensions when options are provided', () => {
@@ -24,6 +31,36 @@ describe('resolveSvelteKitOptions', () => {
     const resolved = resolveSvelteKitOptions({ adapter, compilerOptions })
     expect(resolved!.adapter).toBe(adapter)
     expect(resolved!.compilerOptions).toBe(compilerOptions)
+  })
+})
+
+describe('assertNoSvelteConfigFile', () => {
+  let root: string | undefined
+
+  afterEach(() => {
+    if (root)
+      rmSync(root, { recursive: true, force: true })
+    root = undefined
+  })
+
+  function createRoot(files: string[]) {
+    root = mkdtempSync(join(tmpdir(), 'sveltepress-svelte-config-'))
+    for (const file of files)
+      writeFileSync(join(root, file), 'export default {}')
+    return root
+  }
+
+  it('allows svelte.config.js on SvelteKit 2', () => {
+    expect(() => assertNoSvelteConfigFile(createRoot(['svelte.config.js']), '2.70.3')).not.toThrow()
+  })
+
+  it('allows SvelteKit 3 projects without svelte.config.js', () => {
+    expect(() => assertNoSvelteConfigFile(createRoot([]), '3.0.0')).not.toThrow()
+  })
+
+  it('points SvelteKit 3 users with svelte.config.js at svelteKitOptions', () => {
+    expect(() => assertNoSvelteConfigFile(createRoot(['svelte.config.ts']), '3.0.0'))
+      .toThrow(/no longer reads `svelte\.config\.ts`[\s\S]*svelteKitOptions/)
   })
 })
 

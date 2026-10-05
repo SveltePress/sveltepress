@@ -1,8 +1,10 @@
 <!-- src/components/SearchModal.svelte -->
 <script lang="ts">
   import { goto } from '$app/navigation'
-  import { base } from '$app/paths'
+  import { getBase } from '../base-path.js'
   import { withBase } from '../search-url.js'
+
+  const base = getBase()
 
   interface Props {
     open: boolean

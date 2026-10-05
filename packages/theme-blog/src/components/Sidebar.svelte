@@ -2,8 +2,10 @@
      On mobile (<1024px) renders as a stacked top banner. -->
 <script lang="ts">
   import type { Snippet } from 'svelte'
-  import { base } from '$app/paths'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
+  import { getBase } from '../base-path.js'
+
+  const base = getBase()
 
   interface NavLink {
     title: string

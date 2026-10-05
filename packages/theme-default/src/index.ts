@@ -3,6 +3,7 @@ import type { loadVersionManifest } from '@sveltepress/vite/versioning'
 import type { SvelteKitPWAOptions } from '@vite-pwa/sveltekit'
 import type { DefaultThemeOptions, ThemeDefault } from 'virtual:sveltepress/theme-default'
 import process from 'node:process'
+import { VERSION as SVELTEKIT_VERSION } from '@sveltejs/kit'
 import { SvelteKitPWA } from '@vite-pwa/sveltekit'
 import { SERVICE_WORKER_PATH } from './constants.js'
 import admonitions from './markdown/admonitions.js'
@@ -43,6 +44,10 @@ const defaultTheme: ThemeDefault = (options) => {
       corePlugin,
     ]
     if (options?.pwa) {
+      if (Number.parseInt(SVELTEKIT_VERSION, 10) >= 3) {
+        // @vite-pwa/sveltekit only detects the server build of SvelteKit 1 and 2
+        console.warn(`[@sveltepress/theme-default] The \`pwa\` option relies on @vite-pwa/sveltekit, which does not support SvelteKit ${SVELTEKIT_VERSION} yet: no service worker will be generated.`)
+      }
       const pwaOptions = options.pwa as SvelteKitPWAOptions & {
         darkManifest?: string
         precachePages?: boolean | string[]

@@ -52,7 +52,7 @@ describe('page artifact vite integration', () => {
     expect(await (plugin.load as any)(dependency, { ssr: false })).toBe('<strong>Frozen widget</strong>')
 
     const wrapper = '<!-- sveltepress:artifact-shell -->\n<h1>Wrapper</h1>'
-    expect(await (plugin.transform as any)(wrapper, '/site/src/routes/guide/+page.svelte')).toBe(wrapper)
+    expect(await (plugin.transform as any)(wrapper, '/site/src/routes/guide/+page.svelte')).toBeUndefined()
   })
 
   it('loads generated modules and their frozen source dependencies from an artifact', async () => {
@@ -85,6 +85,7 @@ describe('page artifact vite integration', () => {
     const dependency = await (plugin.resolveId as any)('$lib/Widget.svelte', generatedId)
     expect(dependency).toContain('page-artifact-source')
     expect(await (plugin.load as any)(dependency, { ssr: false })).toBe('<strong>Frozen widget</strong>')
+    expect(await (plugin.resolveId as any)('#lib/Widget.svelte', generatedId)).toBe(dependency)
     const localDependency = await (plugin.resolveId as any)('./Local.svelte', generatedId)
     expect(localDependency).toBe(`\0virtual:sveltepress/page-artifact-source/${hash}/src/routes/guide/Local.svelte`)
     expect(await (plugin.load as any)(localDependency, { ssr: false })).toBe('<em>Frozen local widget</em>')
@@ -137,7 +138,8 @@ describe('page artifact vite integration', () => {
       versions: false,
       theme: { pageLayout: 'PageLayout.svelte' } as any,
     }) as Plugin
-    const transformed = await (plugin.transform as any)('# changed source', '/site/src/routes/guide/+page.md')
+    const { code: transformed, map } = await (plugin.transform as any)('# changed source', '/site/src/routes/guide/+page.md')
+    expect(map).toEqual({ mappings: '' })
 
     expect(transformed).toContain('<!-- sveltepress:artifact-shell -->')
     expect(transformed).toContain(`${PAGE_ARTIFACT_VIRTUAL_PREFIX}${hash}`)

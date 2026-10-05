@@ -140,7 +140,9 @@ export interface SveltepressVitePluginOptions {
    * `sveltepress()` and remove the standalone `sveltekit()` plugin. `'.md'` is
    * always added to `extensions` automatically.
    *
-   * When omitted, SvelteKit reads its config from `svelte.config.js` as before.
+   * SvelteKit 3 no longer reads `svelte.config.js`, so this is where all
+   * SvelteKit config goes there. On SvelteKit 2, when omitted, SvelteKit reads
+   * its config from `svelte.config.js` as before.
    */
   svelteKitOptions?: SvelteKitOptions
   /**
