@@ -192,6 +192,7 @@ The project uses a `catalog:` system in package.json for dependency management. 
 7. **Type safety matters** - this project uses TypeScript throughout
 8. **Performance is important** - Sveltepress aims for excellent Lighthouse scores
 9. **Functional UI must stay compatible** with responsive layout and light/dark theme
+10. **No AI attribution in commits** - commit messages and PR descriptions must not include `Co-Authored-By`, `Claude-Session`, "Generated with Claude Code", or any other AI attribution
 
 ## Getting Help
 
