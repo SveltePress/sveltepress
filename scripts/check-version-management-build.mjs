@@ -13,6 +13,7 @@ const versionIds = [currentId, previousId, '2026-09-09', '2026-09-03', '2026-08-
 const currentChanges = [
   { route: 'guide/default-theme/navbar', id: 'theme-section-tabs' },
   { route: 'guide/default-theme/sidebar', id: 'sidebar-nested-keys' },
+  { route: 'guide/quick-start', id: 'sveltekit-3' },
   { route: 'reference/default-theme', id: 'theme-section-tabs' },
 ]
 const currentNewPageRoutes = []
