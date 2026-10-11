@@ -85,4 +85,20 @@
   .sidebar-section-tabs {
     --at-apply: 'sm:hidden mb-3 pb-3 border-b-solid border-b border-black/5 dark:border-b-white/8';
   }
+  /* With the desktop section tabs row showing (Navbar.svelte), the header
+     spans the full width and carries the logo; the sidebar starts below it. */
+  @media (min-width: 950px) {
+    :global(body:has(.svp-with-section-tabs):has(.svp-section-tabs-bar))
+      .theme-default-sidebar {
+      --at-apply: 'pt-6';
+      top: calc(
+        var(--svp-lifecycle-banner-height, 0px) + 73px +
+          var(--svp-section-tabs-height, 0px)
+      );
+    }
+    :global(body:has(.svp-with-section-tabs):has(.svp-section-tabs-bar))
+      .sidebar-logo {
+      display: none;
+    }
+  }
 </style>

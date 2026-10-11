@@ -255,14 +255,13 @@
   .header-inner {
     --at-apply: 'sm:max-w-[1440px] box-border px-3 sm:px-4 xl:px-6 h-14 sm:h-[73px] flex items-stretch justify-between gap-2 mx-auto';
   }
-  /* Second header row. Its left edge follows the sidebar's own width formula
-     so the first tab lines up with the search pill at every desktop width. */
+  /* Second header row, spanning the full header width. While it shows, the
+     sidebar starts below the header (see Sidebar.svelte), so the first tab
+     lines up with the logo and the sidebar's content column. */
   .svp-section-tabs-bar {
     --at-apply: 'hidden box-border b-t-1 b-t-solid b-t-black/5 dark:b-t-white/8';
     height: var(--svp-section-tabs-height);
-    padding-left: calc(
-      max(0px, (100vw - 1440px) / 2) + min(25vw, 288px) + 1rem
-    );
+    padding-left: calc(max(0px, (100vw - 1440px) / 2) + 24px + 0.75rem);
     padding-right: calc(max(0px, (100vw - 1440px) / 2) + 1rem);
   }
   @media (min-width: 950px) {
@@ -274,6 +273,20 @@
     }
     :global(body:has(.svp-with-section-tabs)) .svp-section-tabs-bar {
       display: block;
+    }
+    /* The sidebar no longer covers the header's left zone, so the header
+       carries the logo itself, pinned to the sidebar's content column. The
+       search pill keeps its place in the flow. */
+    :global(body:has(.svp-with-section-tabs):has(.svp-section-tabs-bar))
+      .header-inner
+      .logo-container {
+      --at-apply: 'absolute top-0 h-[73px] flex items-center';
+      left: calc(max(0px, (100vw - 1440px) / 2) + 24px);
+    }
+    :global(body:has(.svp-with-section-tabs):has(.svp-section-tabs-bar))
+      .logo-container
+      :global(.title) {
+      display: inline;
     }
   }
   .left {
