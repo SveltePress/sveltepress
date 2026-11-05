@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 8.11.1
+
+### Patch Changes
+
+- [`e2db57b`](https://github.com/Blackman99/sveltepress/commit/e2db57b5d4dc28a7fae66408e5407f3a88ab1e40) Thanks [@Blackman99](https://github.com/Blackman99)! - Show the desktop section tabs row across the full header width. While it shows, the header carries the logo and the sidebar starts below the tabs, so the first tab lines up with the logo and the sidebar items.
+
 ## 8.11.0
 
 ### Minor Changes
