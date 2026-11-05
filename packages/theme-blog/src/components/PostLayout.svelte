@@ -99,7 +99,11 @@
       <GiscusComments />
     </div>
     <aside class="sp-post__toc">
-      <TableOfContents category={post.category} />
+      <!-- Keyed by slug: the TOC scans headings on mount, so prev/next
+           navigation (same route, component reused) must re-mount it. -->
+      {#key post.slug}
+        <TableOfContents category={post.category} />
+      {/key}
     </aside>
   </div>
 </article>
