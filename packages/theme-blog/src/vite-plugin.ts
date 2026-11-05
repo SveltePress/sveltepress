@@ -6,8 +6,9 @@ import type { BlogThemeOptions } from './types.js'
 import type { VirtualModules } from './virtual-modules.js'
 import { createReadStream } from 'node:fs'
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises'
-import { join, resolve, sep } from 'node:path'
+import { join, relative, resolve, sep } from 'node:path'
 import { initHighlighter } from './highlighter.js'
+import { resolveKitBase } from './kit-base.js'
 import { canLoadNativeAddons } from './native-addons.js'
 import { hashContent, loadCache, saveCache } from './parse-cache.js'
 import { parsePost } from './parse-post.js'
@@ -24,6 +25,13 @@ const V_CATS_INDEX = 'virtual:sveltepress/blog-categories-index'
 const V_CAT_PREFIX = 'virtual:sveltepress/blog-category/'
 const V_CONFIG = 'virtual:sveltepress/blog-config'
 const V_RUNTIME = 'virtual:sveltepress/blog-runtime'
+const V_LIVE_CODE = 'virtual:sveltepress/blog-live-code'
+const V_DEMOS = 'virtual:sveltepress/blog-demos'
+
+// Root-relative, like theme-default's live code: Vite resolves `/…` ids
+// against the project root, so the generated components compile as part of
+// the site with the user's Svelte config.
+const LIVE_CODE_DIR = '.sveltepress/live-code'
 
 const VIRTUAL_PREFIX = '\0virtual:sveltepress/blog-'
 
@@ -34,6 +42,22 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
   // Coalesce overlapping rebuilds (e.g. burst of fs events in dev): a second
   // caller reuses the in-flight promise instead of racing on the shared cache.
   let rebuildPromise: Promise<ParsedPost[]> | null = null
+  // Ids of the live code components on disk, from the last rebuild.
+  let liveCodeIds: string[] = []
+  // Names of the project's demo components, from the last rebuild.
+  let demoNames: string[] = []
+
+  function demosDirOf(root: string): string {
+    return resolve(root, options.demosDir ?? 'src/demos')
+  }
+
+  async function readDemoNames(root: string): Promise<string[]> {
+    const files = await readdir(demosDirOf(root)).catch(() => [] as string[])
+    return files
+      .filter(f => f.endsWith('.svelte'))
+      .map(f => f.slice(0, -'.svelte'.length))
+      .sort()
+  }
 
   async function rebuildIndex(root: string): Promise<ParsedPost[]> {
     if (rebuildPromise)
@@ -45,7 +69,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
   }
 
   async function doRebuild(root: string): Promise<ParsedPost[]> {
-    const base = (config?.base ?? '/').replace(/\/+$/, '')
+    const base = resolveKitBase(config)
     const postsDir = resolve(root, options.postsDir ?? 'src/posts')
     let files: string[] = []
     try {
@@ -55,18 +79,29 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       // postsDir doesn't exist yet — that's OK
     }
 
+    demoNames = await readDemoNames(root)
+
     const next: Cache = {}
     const parsed = await Promise.all(
       files.map(async (file) => {
         const raw = await readFile(join(postsDir, file), 'utf-8')
         const slug = file.replace(/\.md$/, '')
-        const hash = hashContent(raw, { highlighter: options.highlighter, base })
+        const hash = hashContent(raw, {
+          highlighter: options.highlighter,
+          base,
+          liveCode: options.liveCode,
+          demos: demoNames,
+        })
         const existing = cache[slug]
         if (existing && existing.hash === hash) {
           next[slug] = existing
           return existing.parsed
         }
-        const p = await parsePost(slug, raw, { base })
+        const p = await parsePost(slug, raw, {
+          base,
+          liveCodeLabel: options.liveCode?.sourceLabel,
+          demoNames,
+        })
         next[slug] = { hash, parsed: p }
         return p
       }),
@@ -92,8 +127,34 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       resolve(root, '.sveltepress/categories'),
       modules.postsByCategory,
     )
+    await writeLiveCode(root, parsed)
 
     return parsed
+  }
+
+  async function writeLiveCode(root: string, parsed: ParsedPost[]) {
+    const dir = resolve(root, LIVE_CODE_DIR)
+    await mkdir(dir, { recursive: true })
+    const sources = new Map<string, string>()
+    for (const p of parsed.filter(x => !x.draft)) {
+      for (const block of p.liveCode ?? [])
+        sources.set(block.id, block.code)
+    }
+    const existing = await readdir(dir).catch(() => [] as string[])
+    await Promise.all([
+      ...existing
+        .filter(f => f.endsWith('.svelte') && !sources.has(f.slice(0, -'.svelte'.length)))
+        .map(f => rm(join(dir, f))),
+      // Content-addressed, so an unchanged block keeps its file untouched
+      // and doesn't trigger a recompile.
+      ...[...sources].map(async ([id, code]) => {
+        const file = join(dir, `${id}.svelte`)
+        const current = await readFile(file, 'utf-8').catch(() => null)
+        if (current !== code)
+          await writeFile(file, code, 'utf-8')
+      }),
+    ])
+    liveCodeIds = [...sources.keys()].sort()
   }
 
   async function writeJsonDir(dir: string, records: Record<string, unknown>) {
@@ -252,7 +313,7 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
     },
 
     resolveId(id) {
-      if (id === V_META || id === V_TAGS_INDEX || id === V_CATS_INDEX || id === V_CONFIG || id === V_RUNTIME)
+      if (id === V_META || id === V_TAGS_INDEX || id === V_CATS_INDEX || id === V_CONFIG || id === V_RUNTIME || id === V_LIVE_CODE || id === V_DEMOS)
         return `\0${id}`
       if (id.startsWith(V_POST_PREFIX) || id.startsWith(V_TAG_PREFIX) || id.startsWith(V_CAT_PREFIX))
         return `\0${id}`
@@ -273,6 +334,22 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
           `export const tagsJsonDir = ${JSON.stringify(tagsJsonDir)}`,
           `export const categoriesJsonDir = ${JSON.stringify(categoriesJsonDir)}`,
         ].join('\n')
+      }
+      if (key === V_LIVE_CODE) {
+        // One lazy import per block, so a post only loads its own demos.
+        const entries = liveCodeIds.map(id =>
+          `  ${JSON.stringify(id)}: () => import(${JSON.stringify(`/${LIVE_CODE_DIR}/${id}.svelte`)}),`)
+        return ['export const liveCode = {', ...entries, '}'].join('\n')
+      }
+      if (key === V_DEMOS) {
+        // Root-relative when the directory is inside the project, like live
+        // code; one lazy import per component.
+        const dir = demosDirOf(config.root)
+        const rel = relative(config.root, dir).split(sep).join('/')
+        const prefix = rel.startsWith('..') ? dir.split(sep).join('/') : `/${rel}`
+        const entries = demoNames.map(name =>
+          `  ${JSON.stringify(name)}: () => import(${JSON.stringify(`${prefix}/${name}.svelte`)}),`)
+        return ['export const demos = {', ...entries, '}'].join('\n')
       }
       if (key === V_META)
         return modules?.metaModule ?? 'export const posts = []'
@@ -324,8 +401,16 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
       const postsDir = resolve(config.root, options.postsDir ?? 'src/posts')
       server.watcher.add(postsDir)
 
-      const handlePostChange = async (file: string) => {
-        if (!file.startsWith(postsDir + sep))
+      // Adding or removing a demo changes which tags posts turn into demos.
+      const demosDir = demosDirOf(config.root)
+      server.watcher.add(demosDir)
+
+      const handlePostChange = async (file: string, event: 'change' | 'add' | 'unlink') => {
+        const isPost = file.startsWith(postsDir + sep)
+        const isDemoListChange = event !== 'change'
+          && file.startsWith(demosDir + sep)
+          && file.endsWith('.svelte')
+        if (!isPost && !isDemoListChange)
           return
         await rebuildIndex(config.root)
         const toInvalidate = Array.from(server.moduleGraph.idToModuleMap.keys())
@@ -338,9 +423,9 @@ export function blogVitePlugin(options: BlogThemeOptions): Plugin {
         server.ws.send({ type: 'full-reload' })
       }
 
-      server.watcher.on('change', handlePostChange)
-      server.watcher.on('add', handlePostChange)
-      server.watcher.on('unlink', handlePostChange)
+      server.watcher.on('change', file => handlePostChange(file, 'change'))
+      server.watcher.on('add', file => handlePostChange(file, 'add'))
+      server.watcher.on('unlink', file => handlePostChange(file, 'unlink'))
     },
 
     // NOTE: transformIndexHtml is NOT used because SvelteKit's prerender

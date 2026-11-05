@@ -48,6 +48,8 @@ export default defineConfig({
 * `socials`: `AuthorSocials` - সোশ্যাল লিংকসমূহ (GitHub, Twitter/X, Mastodon, Bluesky, RSS, ইমেইল)।
 * `pwa`: `SvelteKitPWAOptions` - PWA সার্ভিস ওয়ার্কার অপশন।
 * `highlighter`: Shiki কোড হাইলাইটার কনফিগারেশন।
+* `demosDir`: `string` - যে ডিরেক্টরির Svelte কম্পোনেন্ট পোস্টে ট্যাগ হিসেবে ব্যবহার করা যায় (ডিফল্ট: `'src/demos'`)।
+* `liveCode`: `{ sourceLabel?: string }` - লাইভ কোড ব্লকের নিচের সোর্স দেখানো/লুকানোর টগলের লেবেল (ডিফল্ট: `'View code'`)।
 
 ## ভার্চুয়াল মডিউল
 
@@ -63,6 +65,8 @@ export default defineConfig({
 | `virtual:sveltepress/blog-categories-index` | `categories: Array<{ name, count }>` | সমস্ত ক্যাটাগরি এবং সংশ্লিষ্ট পোস্টের সংখ্যা। |
 | `virtual:sveltepress/blog-category/<cat>` | `default: BlogPostMeta[]` | নির্দিষ্ট ক্যাটাগরির সাথে মিলে যাওয়া পোস্টের তালিকা। |
 | `virtual:sveltepress/blog-runtime` | `postsJsonDir, tagsJsonDir, categoriesJsonDir` | সার্ভার লোড ফাংশনের জন্য ডিস্ক ক্যাশ পাথ। **শুধুমাত্র সার্ভারের জন্য**। |
+| `virtual:sveltepress/blog-demos` | `demos: Record<string, () => Promise<{ default: Component }>>` | `demosDir`-এর কম্পোনেন্টগুলোর lazy লোডার, ট্যাগের নাম অনুযায়ী key করা। |
+| `virtual:sveltepress/blog-live-code` | `liveCode: Record<string, () => Promise<{ default: Component }>>` | কম্পাইল হওয়া লাইভ কোড ব্লকের lazy লোডার, ব্লক id অনুযায়ী key করা। |
 
 ## পাবলিক কম্পোনেন্টসমূহ
 

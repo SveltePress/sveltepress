@@ -67,6 +67,7 @@ catalog:
   fs-extra: ^11.4.1
   happy-dom: ^20.14.5
   husky: ^9.1.7
+  katex: ^0.16.47
   lint-staged: ^16.4.0
   lru-cache: ^11.5.3
   mdast-util-from-markdown: ^2.1.0
@@ -78,12 +79,14 @@ catalog:
   playwright: ^1.63.0
   prettier: ~3.6.2
   prettier-plugin-svelte: ^3.5.2
+  rehype-katex: ^7.0.1
   rehype-stringify: ^10.0.1
   remark-directive: ^4.0.0
   remark-emoji: ^5.0.2
   remark-extract-frontmatter: ^3.2.0
   remark-frontmatter: ^5.0.0
   remark-gfm: ^4.0.1
+  remark-math: ^6.0.0
   remark-parse: ^11.0.0
   remark-rehype: ^11.1.2
   remark-stringify: ^11.0.0
@@ -115,3 +118,5 @@ catalog:
   workbox-window: ^7.4.1
   yaml: ^2.9.1
   zx: ^8.8.5
+allowBuilds:
+  esbuild: false

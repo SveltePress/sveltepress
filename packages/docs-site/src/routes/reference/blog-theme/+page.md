@@ -48,6 +48,8 @@ export default defineConfig({
 * `socials`: `AuthorSocials` - Links for GitHub, Twitter/X, Mastodon, Bluesky, RSS, and email.
 * `pwa`: `SvelteKitPWAOptions` - PWA service worker options.
 * `highlighter`: Shiki code highlighter configuration.
+* `demosDir`: `string` - Directory of Svelte components posts can use as tags (default: `'src/demos'`).
+* `liveCode`: `{ sourceLabel?: string }` - Label of the show/hide source toggle under live code blocks (default: `'View code'`).
 
 ## Virtual Modules
 
@@ -63,6 +65,8 @@ The blog theme Vite plugin provides several virtual modules for querying blog co
 | `virtual:sveltepress/blog-categories-index` | `categories: Array<{ name, count }>` | List of all categories and their post counts. |
 | `virtual:sveltepress/blog-category/<cat>` | `default: BlogPostMeta[]` | Posts matching a specific category. |
 | `virtual:sveltepress/blog-runtime` | `postsJsonDir, tagsJsonDir, categoriesJsonDir` | Absolute disk cache paths for server load functions. **Server only**. |
+| `virtual:sveltepress/blog-demos` | `demos: Record<string, () => Promise<{ default: Component }>>` | Lazy loaders for the components in `demosDir`, keyed by tag name. |
+| `virtual:sveltepress/blog-live-code` | `liveCode: Record<string, () => Promise<{ default: Component }>>` | Lazy loaders for the compiled live code blocks, keyed by block id. |
 
 ## Public Components
 

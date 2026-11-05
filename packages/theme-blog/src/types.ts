@@ -95,6 +95,12 @@ export interface BlogThemeOptions {
   themeColor?: ThemeColor
   themeColorLight?: ThemeColor // custom light mode overrides
   postsDir?: string // default 'src/posts'
+  /**
+   * Svelte components posts can use as tags: `src/demos/Chart.svelte` makes
+   * `<Chart title="x" />` in a post render that component in place, with the
+   * attributes as props. Default 'src/demos'.
+   */
+  demosDir?: string
   pageSize?: number // default 12
   defaultMode?: 'system' | 'dark' | 'light' // default 'system'
   /** Shiki syntax highlighter configuration. */
@@ -120,6 +126,13 @@ export interface BlogThemeOptions {
   about?: AboutConfig
   /** Auto-generated Open Graph images. Defaults to enabled. */
   ogImage?: OgImageConfig
+  /**
+   * ```svelte live blocks in posts render the component above its source.
+   * `sourceLabel` is the show/hide toggle on the source (default 'View code').
+   */
+  liveCode?: {
+    sourceLabel?: string
+  }
 }
 
 export interface PostIndex {

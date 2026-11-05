@@ -18,6 +18,8 @@ title: কনফিগারেশন
 | `themeColorLight` | [`ThemeColor`](#themecolor) | ক্রিম | লাইট মোড প্যালেট ওভাররাইড। |
 | `defaultMode` | `'system' \| 'dark' \| 'light'` | `'system'` | ইউজার টগল করার আগের ইনিশিয়াল কালার মোড। |
 | `postsDir` | `string` | `'src/posts'` | `*.md` পোস্ট স্ক্যান করার ডিরেক্টরি। |
+| `demosDir` | `string` | `'src/demos'` | যে ডিরেক্টরির Svelte কম্পোনেন্ট পোস্টে ট্যাগ হিসেবে ব্যবহার করা যায়। দেখুন [ডেমো কম্পোনেন্ট](../writing-posts/#ডেমো-কম্পোনেন্ট)। |
+| `liveCode` | `{ sourceLabel?: string }` | `{ sourceLabel: 'View code' }` | [লাইভ কোড](../writing-posts/#লাইভ-কোড) ব্লকের নিচের সোর্স দেখানো/লুকানোর টগলের লেবেল। |
 | `pageSize` | `number` | `12` | হোম লিস্টিং এ প্রতি পেজে পোস্টের সংখ্যা। |
 | `highlighter` | [`HighlighterOptions`](#highlighteroptions) | — | Shiki/Twoslash অপশন। |
 | `rss` | `{ enabled, limit, copyright }` | enabled, 20 | RSS ফিড তৈরি। `static/rss.xml` এ লেখে। |
@@ -61,10 +63,12 @@ interface ThemeColor {
 interface HighlighterOptions {
   themeDark?: string // Shiki থিম, ডিফল্ট 'night-owl'
   themeLight?: string // Shiki থিম, ডিফল্ট 'vitesse-light'
-  languages?: string[] // অতিরিক্ত ভাষা, ডিফল্টের সাথে মার্জ হবে
+  languages?: string[] // প্রিলোড করার ভাষা, ডিফল্টের সাথে মার্জ হবে
   twoslash?: boolean // Twoslash TypeScript হোভার তথ্য সক্রিয় করে
 }
 ```
+
+`languages` ঐচ্ছিক: Shiki-র অন্য যেকোনো ভাষা কোড ব্লকে প্রথমবার ব্যবহৃত হলে লোড হয়। ভাষার নাম case-insensitive (`Java` আর `java` একইভাবে কাজ করে), এবং অজানা নাম সাধারণ টেক্সট হিসেবে রেন্ডার হয়।
 
 ## `GiscusConfig`
 

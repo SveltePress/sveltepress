@@ -95,6 +95,18 @@ describe('parsePost', () => {
     expect(result.contentHtml).toContain('src="/images/diagram.svg"')
   })
 
+  it('renders $…$ and $$…$$ with KaTeX', async () => {
+    const post = await parsePost('math', '---\ntitle: M\ndate: 2026-04-10\n---\n点A（$x_1$, $y_1$）\n\n$$\\frac{1}{2}$$\n')
+    expect(post.contentHtml).toContain('<span class="katex">')
+    expect(post.contentHtml).toContain('<span class="katex-display">')
+    expect(post.contentHtml).not.toContain('$x_1$')
+  })
+
+  it('uses the TeX source of formulas in the auto excerpt', async () => {
+    const post = await parsePost('math', '---\ntitle: M\ndate: 2026-04-10\n---\n点A（$x_1$, $y_1$）到点B\n')
+    expect(post.excerpt).toBe('点A（ x_1 , y_1 ）到点B')
+  })
+
   it('returns draft flag', async () => {
     const result = await parsePost('draft-post', DRAFT)
     expect(result.draft).toBe(true)

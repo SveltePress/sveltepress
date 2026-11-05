@@ -74,6 +74,35 @@ describe('remarkCodeBlocks', () => {
     expect(html).not.toContain('&#123;')
   })
 
+  // Distinct token colours in the output: plain text renders in one colour.
+  function tokenColors(html: string): Set<string> {
+    return new Set([...html.matchAll(/style="color:(#[0-9A-Fa-f]{6})/g)].map(m => m[1]))
+  }
+
+  it.each([
+    ['vue', '<template>\n  <div :class="cls">{{ msg }}</div>\n</template>\n<script>\nexport default { data() { return { msg: \'hi\' } } }\n</script>'],
+    ['java', 'public class A {\n  private int x = 1;\n  public static void main(String[] args) {}\n}'],
+    ['php', '<?php\n$foo = function () use (&$bar) { return 1; };'],
+    ['python', 'def f(x):\n    return x + 1  # comment'],
+    ['lisp', '(defun double (x) (* x 2)) ; comment'],
+    ['sql', 'SELECT id, name FROM users WHERE id = 1;'],
+    ['xml', '<?xml version="1.0"?>\n<project><version>1.0</version></project>'],
+    ['less', '@color: #fff;\n.a { color: @color; }'],
+    ['stylus', '.a\n  color red\n  &:hover\n    color blue'],
+    ['yml', 'key: value\nlist:\n  - 1'],
+    ['Java', 'public class A {}'],
+  ])('highlights %s, which is not preloaded', async (lang, code) => {
+    const html = await process(`\`\`\`${lang}\n${code}\n\`\`\``)
+    expect(html).toContain(`>${lang}<`)
+    expect(tokenColors(html).size).toBeGreaterThan(1)
+  })
+
+  it('renders an unknown language as plain text', async () => {
+    const html = await process('```not-a-language\nfoo bar\n```')
+    expect(html).toContain('class="shiki')
+    expect(tokenColors(html).size).toBeLessThan(2)
+  })
+
   it('leaves non-code content untouched', async () => {
     const md = '# Hello\n\nSome text.\n\n```ts\ncode\n```\n\nMore text.'
     const html = await process(md)

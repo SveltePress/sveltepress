@@ -18,6 +18,8 @@ title: 配置
 | `themeColorLight` | [`ThemeColor`](#themecolor) | 暖色奶油 | 浅色模式调色板覆盖。 |
 | `defaultMode` | `'system' \| 'dark' \| 'light'` | `'system'` | 用户切换前的初始颜色模式。 |
 | `postsDir` | `string` | `'src/posts'` | 扫描 `*.md` 文章的目录。 |
+| `demosDir` | `string` | `'src/demos'` | 存放文章可作为标签使用的 Svelte 组件的目录。参见 [演示组件](../writing-posts/#演示组件)。 |
+| `liveCode` | `{ sourceLabel?: string }` | `{ sourceLabel: 'View code' }` | [实时代码](../writing-posts/#实时代码)块下方显示/隐藏源码切换按钮的文案。 |
 | `pageSize` | `number` | `12` | 首页每页展示的文章数。 |
 | `highlighter` | [`HighlighterOptions`](#highlighteroptions) | — | Shiki/Twoslash 选项。 |
 | `rss` | `{ enabled, limit, copyright }` | 开启，20 | RSS 生成。写入 `static/rss.xml`。 |
@@ -61,10 +63,12 @@ interface ThemeColor {
 interface HighlighterOptions {
   themeDark?: string // Shiki 主题，默认 'night-owl'
   themeLight?: string // Shiki 主题，默认 'vitesse-light'
-  languages?: string[] // 额外语言，会与默认合并
+  languages?: string[] // 预加载的语言，会与默认合并
   twoslash?: boolean // 启用 Twoslash TypeScript 悬浮信息
 }
 ```
+
+`languages` 是可选的：Shiki 支持的其他任何语言，都会在代码块首次用到时加载。语言名称不区分大小写（`Java` 与 `java` 等效），未知名称会按纯文本渲染。
 
 ## `GiscusConfig`
 

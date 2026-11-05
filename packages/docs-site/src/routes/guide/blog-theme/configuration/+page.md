@@ -18,6 +18,8 @@ All options are passed to `blogTheme()` in `vite.config.ts`.
 | `themeColorLight` | [`ThemeColor`](#themecolor) | warm cream | Light-mode palette override. |
 | `defaultMode` | `'system' \| 'dark' \| 'light'` | `'system'` | Initial colour mode before user toggles. |
 | `postsDir` | `string` | `'src/posts'` | Directory scanned for `*.md` posts. |
+| `demosDir` | `string` | `'src/demos'` | Directory of Svelte components posts can use as tags. See [Demo components](../writing-posts/#Demo-components). |
+| `liveCode` | `{ sourceLabel?: string }` | `{ sourceLabel: 'View code' }` | Label of the show/hide source toggle under a [live code](../writing-posts/#Live-code) block. |
 | `pageSize` | `number` | `12` | Posts per page on the home listing. |
 | `highlighter` | [`HighlighterOptions`](#highlighteroptions) | — | Shiki/Twoslash options. |
 | `rss` | `{ enabled, limit, copyright }` | enabled, 20 | RSS feed generation. Writes to `static/rss.xml`. |
@@ -61,10 +63,12 @@ interface ThemeColor {
 interface HighlighterOptions {
   themeDark?: string // Shiki theme, default 'night-owl'
   themeLight?: string // Shiki theme, default 'vitesse-light'
-  languages?: string[] // extra languages merged with defaults
+  languages?: string[] // languages to preload, merged with defaults
   twoslash?: boolean // enable Twoslash TypeScript hover info
 }
 ```
+
+`languages` is optional: any other language Shiki ships is loaded the first time a code block uses it. Language names are case-insensitive (`Java` works like `java`), and unknown names render as plain text.
 
 ## `GiscusConfig`
 

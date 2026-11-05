@@ -36,6 +36,85 @@ frontmatter এর নিচে markdown এ লিখুন।
 
 Site-এর নিজস্ব image `static/`-এ রাখুন এবং `/covers/new-beginning.jpg`-এর মতো site-absolute path দিয়ে reference করুন। Theme SvelteKit-এ configured base path অনুযায়ী cover path, Markdown image source এবং post body link-এ স্বয়ংক্রিয় prefix যোগ করে, তাই একই post site root ও GitHub Pages-এর মতো subpath—দুই জায়গাতেই কাজ করে। Fully qualified, protocol-relative, fragment, mail এবং relative URL অপরিবর্তিত থাকে।
 
+## গণিত
+
+সূত্র TeX-এ লেখা হয় এবং বিল্ড টাইমে KaTeX দিয়ে রেন্ডার হয়। ইনলাইন math `$…$`-এ এবং ডিসপ্লে math `$$…$$`-এ মুড়ে দিন:
+
+````md
+Binary search runs in $O(\log n)$ time.
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+````
+
+যে লাইনে শুধু `$$…$$` আছে, সেটিও মাঝখানে বসা ডিসপ্লে ব্লক হয়ে যায়, এমনকি আগের লাইনে টেক্সট থাকলেও। অন্য টেক্সটের সাথে একই লাইনে থাকা `$$…$$` ইনলাইনই থাকে।
+
+## কোড ট্যাব
+
+`::::code-tabs` কনটেইনার দিয়ে একাধিক ব্লককে এক সেট ট্যাবের নিচে গ্রুপ করুন। ভেতরের প্রথম heading-এর লেভেলের প্রতিটি heading একটি ট্যাব শুরু করে, এবং heading-এর টেক্সটই ট্যাবের লেবেল:
+
+````md
+::::code-tabs{active="pnpm"}
+### npm
+```sh
+npm install -D @sveltepress/theme-blog
+```
+### pnpm
+```sh
+pnpm add -D @sveltepress/theme-blog
+```
+::::
+````
+
+প্যানেলে heading-এর পরের সবকিছু থাকে: সাধারণত একটি কোড ব্লক, তবে টেক্সট, ছবি বা নেস্টেড `code-tabs`-ও চলে। ট্যাবগুলো collapse করা যায় এবং এতে কপি বাটন আছে।
+
+| অ্যাট্রিবিউট | প্রভাব |
+|---|---|
+| `active` | প্রথমে দেখানো ট্যাবের লেবেল। ডিফল্ট প্রথম ট্যাব। |
+| `vertical` | ট্যাব বাটনগুলো কোডের উপরের-ডান কোণে সাজায়, এবং ট্যাব বদলানোর সময় প্যানেল উপরে-নিচে স্লাইড করে। |
+| `hide-copy` | কপি বাটন সরিয়ে দেয়। |
+
+## লাইভ কোড
+
+` ```svelte ` ব্লকে `live` যোগ করলে কম্পোনেন্টটি তার সোর্সের উপরে রেন্ডার হয়:
+
+````md
+```svelte live
+<script>
+  let count = $state(0)
+</script>
+
+<button onclick={() => count++}>Clicked {count} times</button>
+```
+````
+
+সোর্স লুকানো অবস্থায় শুরু করতে `collapsed` যোগ করুন। `title="…"` বা লাইন হাইলাইটের মতো অন্য যেকোনো meta সোর্স ব্লকে প্রযোজ্য হয়। সোর্স দেখানো/লুকানোর টগলের লেবেল [`liveCode.sourceLabel`](../configuration/#BlogThemeOptions) দিয়ে সেট করা হয়।
+
+প্রতিটি ব্লক আপনার প্রজেক্টের Svelte কনফিগ দিয়ে আলাদা কম্পোনেন্ট হিসেবে কম্পাইল হয়, এবং একটি পোস্ট শুধু তার ব্যবহৃত ব্লকগুলোই লোড করে।
+
+## ডেমো কম্পোনেন্ট
+
+`src/demos/`-এর (`demosDir` দিয়ে কনফিগার করা যায়) যেকোনো `.svelte` ফাইল পোস্টে ফাইলের নামের ট্যাগ হিসেবে ব্যবহার করা যায়:
+
+```svelte title="src/demos/Badge.svelte"
+<script>
+  let { text, tone = 'info' } = $props()
+</script>
+
+<span class="badge badge--{tone}">{text}</span>
+```
+
+```md title="src/posts/my-post.md"
+The build is <Badge text="passing" tone="success" /> again.
+
+<Badge text="On its own line" />
+```
+
+অ্যাট্রিবিউট props হয়ে যায়: `text="x"` পাস করে `text: 'x'`, `package-name="y"` পাস করে `packageName: 'y'`, আর `dev`-এর মতো বেয়ার অ্যাট্রিবিউট পাস করে `dev: true`। সব ভ্যালু string। নিজের লাইনে থাকা ট্যাগ ব্লক হিসেবে মাউন্ট হয়; প্যারাগ্রাফ, heading বা টেবিল সেলের ভেতরের ট্যাগ ইনলাইন হিসেবে মাউন্ট হয়।
+
+শুধু ডেমো ডিরেক্টরির কোনো ফাইলের সাথে মিলে যাওয়া নামগুলোই কম্পোনেন্ট হিসেবে ধরা হয়; অন্য ট্যাগ সাধারণ HTML-ই থাকে। dev-এ ডেমো ফাইল যোগ বা মুছলে পোস্টগুলো রিবিল্ড হয়।
+
 ## লিস্টিং
 
 - হোম পেজ (`/`) সর্বশেষ পোস্টকে ফিচার করে সব পোস্ট ম্যাসনরি গ্রিডে দেখায়।

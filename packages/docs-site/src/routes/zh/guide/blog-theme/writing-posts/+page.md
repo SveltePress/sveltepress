@@ -36,6 +36,85 @@ draft: false
 
 站点自有图片应放在 `static/`，并使用 `/covers/new-beginning.jpg` 这样的站点绝对路径引用。主题会根据 SvelteKit 配置的基础路径，为封面路径、Markdown 图片地址和正文链接自动添加前缀，因此同一篇文章既可部署在站点根路径，也可部署到 GitHub Pages 等子路径。完整 URL、协议相对 URL、片段、邮件和相对路径保持不变。
 
+## 数学公式
+
+公式使用 TeX 书写，并在构建时由 KaTeX 渲染。行内公式用 `$…$` 包裹，独立公式用 `$$…$$` 包裹：
+
+````md
+Binary search runs in $O(\log n)$ time.
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+````
+
+只包含 `$$…$$` 的一行也会渲染为居中的独立公式块，即使它紧跟在一行文字之后。与其他文字处于同一行的 `$$…$$` 仍为行内公式。
+
+## 代码标签页
+
+使用 `::::code-tabs` 容器，可以把多个代码块归入同一组标签页。容器内与第一个标题同级的每个标题都会开启一个标签页，标题文字即为标签名：
+
+````md
+::::code-tabs{active="pnpm"}
+### npm
+```sh
+npm install -D @sveltepress/theme-blog
+```
+### pnpm
+```sh
+pnpm add -D @sveltepress/theme-blog
+```
+::::
+````
+
+每个面板包含其标题之后的全部内容：通常是一个代码块，但文字、图片或嵌套的 `code-tabs` 也可以。标签页可以折叠，并带有复制按钮。
+
+| 属性 | 作用 |
+|---|---|
+| `active` | 默认显示的标签名。默认为第一个标签页。 |
+| `vertical` | 将标签按钮叠放在代码右上角，切换时面板上下滑动。 |
+| `hide-copy` | 移除复制按钮。 |
+
+## 实时代码
+
+在 ` ```svelte ` 代码块上添加 `live`，即可在源码上方渲染该组件：
+
+````md
+```svelte live
+<script>
+  let count = $state(0)
+</script>
+
+<button onclick={() => count++}>Clicked {count} times</button>
+```
+````
+
+添加 `collapsed` 可让源码默认隐藏。其他元信息，例如 `title="…"` 或行高亮，会作用于源码块。显示/隐藏切换按钮的文案通过 [`liveCode.sourceLabel`](../configuration/#BlogThemeOptions) 设置。
+
+每个代码块都会使用你项目的 Svelte 配置单独编译为一个组件，文章只会加载它用到的代码块。
+
+## 演示组件
+
+`src/demos/`（可通过 `demosDir` 配置）下的任何 `.svelte` 文件，都可以在文章中以文件名作为标签使用：
+
+```svelte title="src/demos/Badge.svelte"
+<script>
+  let { text, tone = 'info' } = $props()
+</script>
+
+<span class="badge badge--{tone}">{text}</span>
+```
+
+```md title="src/posts/my-post.md"
+The build is <Badge text="passing" tone="success" /> again.
+
+<Badge text="On its own line" />
+```
+
+属性会变为 props：`text="x"` 传入 `text: 'x'`，`package-name="y"` 传入 `packageName: 'y'`，而 `dev` 这样的裸属性传入 `dev: true`。所有值都是字符串。独占一行的标签会作为块级元素挂载；位于段落、标题或表格单元格内的标签则作为行内元素挂载。
+
+只有与演示目录中某个文件同名的标签才会被当作组件，其他标签仍是普通 HTML。在开发模式下新增或删除演示文件会重新构建文章。
+
 ## 列表页
 
 - 首页（`/`）以瀑布流网格展示文章，最新一篇特色展示。

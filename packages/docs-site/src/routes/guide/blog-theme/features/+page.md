@@ -98,6 +98,12 @@ blogTheme({
 
 Code blocks also get a copy button, optional title, line numbers, line highlighting, diff markers, and focus dimming — see the default theme docs for the fence syntax (the same markdown extensions are shared).
 
+Any language Shiki ships is loaded the first time a post uses it, so `highlighter.languages` is only needed to preload. See [`HighlighterOptions`](../configuration/#HighlighterOptions).
+
+## Math, code tabs, live code and demos
+
+Posts can also contain KaTeX formulas, tabbed code groups, live Svelte examples, and your own Svelte components. See [Writing posts](../writing-posts/#Math) for the syntax.
+
 ## Theme toggle
 
 A sun/moon button in the sidebar cycles `system → dark → light`. An anti-FOWT script is injected into `src/app.html` on first build so the chosen theme is applied before paint.

@@ -48,6 +48,8 @@ export default defineConfig({
 * `socials`：`AuthorSocials` - 社交链接（GitHub、Twitter/X、Mastodon、Bluesky、RSS 及邮箱）。
 * `pwa`：`SvelteKitPWAOptions` - PWA 服务线程选项。
 * `highlighter`：Shiki 代码高亮配置选项。
+* `demosDir`：`string` - 存放文章可作为标签使用的 Svelte 组件的目录（默认：`'src/demos'`）。
+* `liveCode`：`{ sourceLabel?: string }` - 实时代码块下方显示/隐藏源码切换按钮的文案（默认：`'View code'`）。
 
 ## 虚拟模块
 
@@ -63,6 +65,8 @@ export default defineConfig({
 | `virtual:sveltepress/blog-categories-index` | `categories: Array<{ name, count }>` | 包含所有分类及其文章数量的列表。 |
 | `virtual:sveltepress/blog-category/<cat>` | `default: BlogPostMeta[]` | 匹配特定分类的所有文章列表。 |
 | `virtual:sveltepress/blog-runtime` | `postsJsonDir, tagsJsonDir, categoriesJsonDir` | 服务端 load 函数使用的绝对磁盘缓存路径。**仅限服务端**。 |
+| `virtual:sveltepress/blog-demos` | `demos: Record<string, () => Promise<{ default: Component }>>` | `demosDir` 中组件的懒加载函数，以标签名为键。 |
+| `virtual:sveltepress/blog-live-code` | `liveCode: Record<string, () => Promise<{ default: Component }>>` | 已编译实时代码块的懒加载函数，以代码块 id 为键。 |
 
 ## 公共组件
 

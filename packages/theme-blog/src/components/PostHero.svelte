@@ -20,7 +20,7 @@
 
 <header
   class="sp-post-hero"
-  style={`${coverSrc ? `--hero-bg: url(${coverSrc});` : ''} view-transition-name: sp-cover-${post.slug}`}
+  style={`${coverSrc ? `background-image: url(${JSON.stringify(coverSrc)});` : ''} view-transition-name: sp-cover-${post.slug}`}
 >
   <div class="sp-post-hero__overlay">
     {#if post.category}
@@ -48,7 +48,10 @@
     min-height: clamp(200px, 45vw, 280px);
     display: flex;
     align-items: flex-end;
-    background-image: var(--hero-bg, linear-gradient(135deg, #ea580c, #9a3412));
+    /* The cover is set inline: a relative url() inside a custom property
+       resolves against the theme's stylesheet (/_app/…), not the page, so
+       covers broke under SvelteKit's relative base. */
+    background-image: linear-gradient(135deg, #ea580c, #9a3412);
     background-size: cover;
     background-position: center;
     border-radius: 12px;

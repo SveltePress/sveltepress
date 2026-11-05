@@ -12,6 +12,7 @@
   import '@fontsource/inter/500.css'
   import '@fontsource/inter/600.css'
   import '@fontsource/inter/700.css'
+  import 'katex/dist/katex.min.css'
 
   const base = getBase()
 
@@ -219,6 +220,22 @@
     background: var(--sp-blog-bg, #1a0a00);
   }
 
+  /* Native UI (scrollbars, form controls) follows the active palette;
+     without this the browser draws light scrollbars on the dark theme. */
+  :global(html[data-theme='dark']) {
+    color-scheme: dark;
+  }
+  :global(html[data-theme='light']) {
+    color-scheme: light;
+  }
+
+  /* Scrollbars inside the layout (sidebar, code blocks, formulas, tables)
+     use the theme's warm tones instead of the system grey. */
+  .sp-blog-root {
+    scrollbar-color: color-mix(in srgb, var(--sp-blog-muted) 60%, transparent)
+      transparent;
+  }
+
   :global(code),
   :global(pre) {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -251,7 +268,12 @@
     margin: 0 0 1.15rem;
   }
 
-  /* Drop cap on the lead paragraph */
+  /* Drop cap on the lead paragraph. flow-root keeps the floated letter inside
+     a short lead paragraph so the next list or block starts below it. */
+  .sp-blog-root :global(.sp-post-content > p:first-of-type) {
+    display: flow-root;
+  }
+
   .sp-blog-root :global(.sp-post-content > p:first-of-type::first-letter) {
     font-family: var(--sp-font-serif);
     font-variation-settings:
@@ -353,6 +375,22 @@
   }
   .sp-blog-root :global(.sp-post-content blockquote.pull p:last-child) {
     margin-bottom: 0;
+  }
+
+  /* Images outside a figure (sharing a paragraph with text, or inline HTML)
+     must not overflow the column either. */
+  .sp-blog-root :global(.sp-post-content img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* KaTeX: a long display formula scrolls inside its own box instead of
+     widening the page. */
+  .sp-blog-root :global(.sp-post-content .katex-display) {
+    margin: 1.25em 0;
+    padding: 0.25em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   /* Figures with numbered captions */

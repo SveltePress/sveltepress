@@ -98,6 +98,12 @@ blogTheme({
 
 代码块还支持复制按钮、可选标题、行号、行高亮、diff 标记和聚焦变暗——围栏语法与默认主题共用，参见默认主题文档。
 
+Shiki 支持的任何语言都会在文章首次用到时加载，因此 `highlighter.languages` 仅用于预加载。参见 [`HighlighterOptions`](../configuration/#HighlighterOptions)。
+
+## 数学公式、代码标签页、实时代码与演示组件
+
+文章还可以包含 KaTeX 公式、分标签页的代码组、可实时运行的 Svelte 示例，以及你自己的 Svelte 组件。语法参见 [写文章](../writing-posts/#数学公式)。
+
 ## 主题切换
 
 侧边栏的日/月按钮循环切换 `system → dark → light`。首次构建时主题会向 `src/app.html` 注入防 FOWT 脚本，确保首屏前就应用正确主题。

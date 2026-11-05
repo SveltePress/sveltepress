@@ -4,7 +4,10 @@
   import { onMount } from 'svelte'
   import { blogConfig } from 'virtual:sveltepress/blog-config'
   import { getBase } from '../base-path.js'
+  import CodeTabs from './CodeTabs.svelte'
+  import Demos from './Demos.svelte'
   import GiscusComments from './GiscusComments.svelte'
+  import LiveCode from './LiveCode.svelte'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
   import PostNav from './PostNav.svelte'
@@ -44,11 +47,14 @@
   })
 
   onMount(() => {
-    const container = document.querySelector('.sp-post-content')
-    if (!container) return
+    // Listen on the document: the content element is re-created when the
+    // reader moves to another post (see the {#key} below).
+    const container = document
 
     const handler = (e: Event) => {
-      const btn = (e.target as Element).closest('.svp-code-block--copy-btn')
+      const btn = (e.target as Element).closest(
+        '.sp-post-content .svp-code-block--copy-btn',
+      )
       if (!btn) return
       const code =
         btn.closest('.svp-code-block')?.querySelector('.shiki')?.textContent ||
@@ -88,10 +94,17 @@
   <div class="sp-post__body">
     <div class="sp-post__content-wrap">
       <PostMeta {post} />
-      <div class="sp-post-content">
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-        {@html post.contentHtml}
-      </div>
+      <!-- Keyed by slug: moving to another post re-creates the content and
+           the components that hydrate it, so they scan the new post. -->
+      {#key post.slug}
+        <div class="sp-post-content">
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+          {@html post.contentHtml}
+        </div>
+        <Demos />
+        <CodeTabs />
+        <LiveCode />
+      {/key}
       <PostNav {prev} {next} />
       {#if post.related?.length}
         <RelatedPosts posts={post.related} />

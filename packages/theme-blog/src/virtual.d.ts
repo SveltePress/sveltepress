@@ -46,3 +46,17 @@ declare module 'virtual:sveltepress/blog-runtime' {
   export const tagsJsonDir: string
   export const categoriesJsonDir: string
 }
+
+declare module 'virtual:sveltepress/blog-demos' {
+  import type { Component } from 'svelte'
+
+  /** Lazy loaders for the project's demo components, keyed by tag name. */
+  export const demos: Record<string, () => Promise<{ default: Component<any> }>>
+}
+
+declare module 'virtual:sveltepress/blog-live-code' {
+  import type { Component } from 'svelte'
+
+  /** Lazy loaders for the compiled ```svelte live blocks, keyed by block id. */
+  export const liveCode: Record<string, () => Promise<{ default: Component }>>
+}

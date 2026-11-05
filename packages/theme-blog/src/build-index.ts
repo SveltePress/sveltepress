@@ -16,7 +16,7 @@ function toMeta(p: BlogPost): BlogPostMeta {
   }
 }
 
-function stripDraft({ draft: _d, ...rest }: ParsedPost): BlogPost {
+function stripDraft({ draft: _d, liveCode: _l, ...rest }: ParsedPost): BlogPost {
   return rest
 }
 
