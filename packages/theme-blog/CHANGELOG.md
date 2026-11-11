@@ -1,5 +1,11 @@
 # @sveltepress/theme-blog
 
+## 1.3.0
+
+### Minor Changes
+
+- [`ce00856`](https://github.com/Blackman99/sveltepress/commit/ce00856f29c2eda98a90effb5c6f8f58ed2d39ed) Thanks [@Blackman99](https://github.com/Blackman99)! - Click an image in a post to zoom it full screen. The image grows out of its place in the text to the middle of the viewport, with its caption underneath, and shrinks back when closed (click anywhere, `Esc`, the close button, or scrolling the page). Images can be opened from the keyboard with `Enter` or `Space`, and only fade in and out when the reader prefers reduced motion. Images inside links, live code and demo components don't zoom; wrap an image in an element with `data-no-zoom` to opt it out.
+
 ## 1.2.0
 
 ### Minor Changes
