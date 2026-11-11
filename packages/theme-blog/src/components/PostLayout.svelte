@@ -7,6 +7,7 @@
   import CodeTabs from './CodeTabs.svelte'
   import Demos from './Demos.svelte'
   import GiscusComments from './GiscusComments.svelte'
+  import ImageZoom from './ImageZoom.svelte'
   import LiveCode from './LiveCode.svelte'
   import PostHero from './PostHero.svelte'
   import PostMeta from './PostMeta.svelte'
@@ -104,6 +105,7 @@
         <Demos />
         <CodeTabs />
         <LiveCode />
+        <ImageZoom />
       {/key}
       <PostNav {prev} {next} />
       {#if post.related?.length}

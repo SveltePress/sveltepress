@@ -36,6 +36,16 @@ draft: false
 
 站点自有图片应放在 `static/`，并使用 `/covers/new-beginning.jpg` 这样的站点绝对路径引用。主题会根据 SvelteKit 配置的基础路径，为封面路径、Markdown 图片地址和正文链接自动添加前缀，因此同一篇文章既可部署在站点根路径，也可部署到 GitHub Pages 等子路径。完整 URL、协议相对 URL、片段、邮件和相对路径保持不变。
 
+读者点击图片即可[全屏放大](../features/#图片放大)。如需让某张图片不放大，用带 `data-no-zoom` 的元素包住它，并在图片前后留空行：
+
+```md
+<div data-no-zoom>
+
+![团队合影](/photos/team.jpg)
+
+</div>
+```
+
 ## 数学公式
 
 公式使用 TeX 书写，并在构建时由 KaTeX 渲染。行内公式用 `$…$` 包裹，独立公式用 `$$…$$` 包裹：

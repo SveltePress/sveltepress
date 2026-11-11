@@ -36,6 +36,16 @@ frontmatter এর নিচে markdown এ লিখুন।
 
 Site-এর নিজস্ব image `static/`-এ রাখুন এবং `/covers/new-beginning.jpg`-এর মতো site-absolute path দিয়ে reference করুন। Theme SvelteKit-এ configured base path অনুযায়ী cover path, Markdown image source এবং post body link-এ স্বয়ংক্রিয় prefix যোগ করে, তাই একই post site root ও GitHub Pages-এর মতো subpath—দুই জায়গাতেই কাজ করে। Fully qualified, protocol-relative, fragment, mail এবং relative URL অপরিবর্তিত থাকে।
 
+পাঠক কোনো ছবিতে ক্লিক করে সেটি [ফুল স্ক্রিনে জুম](../features/#ইমেজ-জুম) করতে পারেন। কোনো ছবি জুম হওয়া থেকে বিরত রাখতে, সেটিকে `data-no-zoom` যুক্ত একটি element দিয়ে ঘিরে দিন, আর ছবির আগে-পরে ফাঁকা লাইন রাখুন:
+
+```md
+<div data-no-zoom>
+
+![টিমের ছবি](/photos/team.jpg)
+
+</div>
+```
+
 ## গণিত
 
 সূত্র TeX-এ লেখা হয় এবং বিল্ড টাইমে KaTeX দিয়ে রেন্ডার হয়। ইনলাইন math `$…$`-এ এবং ডিসপ্লে math `$$…$$`-এ মুড়ে দিন:

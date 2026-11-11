@@ -1,6 +1,6 @@
 # @sveltepress/theme-blog
 
-A magazine-style Sveltepress theme for static editorial sites. It includes Markdown posts, a masonry index, pagination, tags and categories, RSS, per-post Open Graph images, Pagefind search, related posts, and optional Giscus comments.
+A magazine-style Sveltepress theme for static editorial sites. It includes Markdown posts, a masonry index, pagination, tags and categories, RSS, per-post Open Graph images, Pagefind search, related posts, click-to-zoom post images, and optional Giscus comments.
 
 ## Installation
 

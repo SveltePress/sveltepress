@@ -36,6 +36,16 @@ Write markdown below the frontmatter.
 
 Put site-owned images in `static/` and reference them with site-absolute paths such as `/covers/new-beginning.jpg`. The theme prefixes site-absolute cover paths, Markdown image sources, and links in post bodies with SvelteKit's configured base path, so the same post works at the site root and under a subpath such as GitHub Pages. Fully qualified, protocol-relative, fragment, mail, and relative URLs remain unchanged.
 
+Readers can click an image to [zoom it full screen](../features/#Image-zoom). To keep an image from zooming, wrap it in an element with `data-no-zoom`, leaving blank lines around the image:
+
+```md
+<div data-no-zoom>
+
+![Team photo](/photos/team.jpg)
+
+</div>
+```
+
 ## Math
 
 Formulas are written in TeX and rendered with KaTeX at build time. Wrap inline math in `$…$` and display math in `$$…$$`:

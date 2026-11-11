@@ -104,6 +104,12 @@ Any language Shiki ships is loaded the first time a post uses it, so `highlighte
 
 Posts can also contain KaTeX formulas, tabbed code groups, live Svelte examples, and your own Svelte components. See [Writing posts](../writing-posts/#Math) for the syntax.
 
+## Image zoom
+
+Click an image in a post to see it full screen: it grows out of its place in the text to the middle of the viewport, with its caption underneath, and shrinks back when closed. Click anywhere, press `Esc`, use the close button, or scroll the page to close it. Images can be focused with the keyboard and opened with `Enter` or `Space`. When the reader prefers reduced motion, the zoomed image fades in and out instead. No config.
+
+SVG images grow to fill the viewport; other images grow up to their own pixel size, so use a file large enough to look sharp full screen. Images inside links, live code, and demo components don't zoom. To turn it off for a single image, see [Writing posts](../writing-posts/#Images-and-links).
+
 ## Theme toggle
 
 A sun/moon button in the sidebar cycles `system → dark → light`. An anti-FOWT script is injected into `src/app.html` on first build so the chosen theme is applied before paint.
