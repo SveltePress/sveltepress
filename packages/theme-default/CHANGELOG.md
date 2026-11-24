@@ -1,5 +1,11 @@
 # @sveltepress/theme-default
 
+## 8.11.2
+
+### Patch Changes
+
+- [`420cbcd`](https://github.com/Blackman99/sveltepress/commit/420cbcd30d421994e42b88eb0bc3a5dbffa032cb) Thanks [@Blackman99](https://github.com/Blackman99)! - Remove the bundled commercial Dank Mono font files and `@font-face` rules from `@sveltepress/theme-default`, falling back to the built-in system monospace font stack (`--svp-code-font`).
+
 ## 8.11.1
 
 ### Patch Changes
