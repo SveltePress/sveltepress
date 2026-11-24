@@ -60,7 +60,7 @@
   ],
   "scripts": {
     "test": "vitest",
-    "cp:assets": "cp src/style.css dist && cp -r src/fonts dist",
+    "cp:assets": "cp src/style.css dist",
     "build:comps": "svelte-package -i src",
     "build": "pnpm build:comps && pnpm cp:assets",
     "prepare": "pnpm build"

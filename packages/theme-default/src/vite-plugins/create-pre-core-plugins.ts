@@ -193,7 +193,7 @@ export default async (options?: DefaultThemeOptions, versionManifest?: VersionMa
           },
           server: {
             fs: {
-              allow: [SERVICE_WORKER_PATH, 'node_modules/@sveltepress/theme-default/dist/fonts', '../theme-default/dist/fonts'],
+              allow: [SERVICE_WORKER_PATH],
             },
           },
         }

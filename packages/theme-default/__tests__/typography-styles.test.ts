@@ -1,10 +1,17 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 describe('default theme typography styling', () => {
   const cssPath = resolve(import.meta.dirname, '../src/style.css')
   const css = readFileSync(cssPath, 'utf8')
+
+  it('uses a system monospace stack for code without bundling commercial fonts', () => {
+    expect(css).toContain(`--svp-code-font: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Cascadia Code', Menlo, Consolas, monospace;`)
+    expect(css).not.toContain('Dank Mono')
+    expect(css).not.toContain('@font-face')
+    expect(existsSync(resolve(import.meta.dirname, '../src/fonts'))).toBe(false)
+  })
 
   it('defines inline code styles with padding, border-radius and color', () => {
     expect(css).toMatch(/:not\(pre\)\s*>\s*code\s*\{/)
