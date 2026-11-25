@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "Blackman99/sveltepress"
+      "repo": "SveltePress/sveltepress"
     }
   ],
   "commit": false,
