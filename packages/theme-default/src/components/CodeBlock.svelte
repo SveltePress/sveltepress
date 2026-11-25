@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import themeOptions from 'virtual:sveltepress/theme-default'
+  import { resolveShikiThemes } from '../shiki-themes'
 
   /**
    * @typedef {object} Props
@@ -17,10 +18,7 @@
     const { codeToHtml } = await import('shiki')
     highlightedCode = await codeToHtml(code, {
       lang,
-      themes: {
-        dark: themeOptions.highlighter.themeDark ?? 'night-owl',
-        light: themeOptions.highlighter.themeDark ?? 'vitesse-light',
-      },
+      themes: resolveShikiThemes(themeOptions.highlighter),
     })
   }
 

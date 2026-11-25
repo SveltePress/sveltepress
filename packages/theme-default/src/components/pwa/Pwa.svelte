@@ -18,7 +18,7 @@
 
 <svelte:head>
   {#if themeOptions?.pwa?.darkManifest && $isDark}
-    <meta rel="manifest" href={themeOptions.pwa.darkManifest} />
+    <link rel="manifest" href={themeOptions.pwa.darkManifest} />
   {:else}
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html webManifest}

@@ -66,7 +66,9 @@ export function resolvePrecacheGlobPatterns(
 
   if (Array.isArray(precachePages)) {
     const extra = precachePages.flatMap(prefixToPrerenderedGlobs)
-    return [...new Set([...client, PWA_HOME_GLOB, ...extra])]
+    // Not `[...new Set()]`: svelte-package compiles this file to ES5, where
+    // spreading a Set yields an empty array.
+    return Array.from(new Set([...client, PWA_HOME_GLOB, ...extra]))
   }
 
   return [...client, PWA_HOME_GLOB]

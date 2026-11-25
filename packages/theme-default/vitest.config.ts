@@ -25,6 +25,7 @@ export default defineConfig({
       { find: 'virtual:sveltepress/versions', replacement: resolve(import.meta.dirname, '__tests__/fixtures/versions.ts') },
       { find: 'virtual:sveltepress/site', replacement: resolve(import.meta.dirname, '__tests__/fixtures/site.ts') },
       { find: 'virtual:uno.css', replacement: resolve(import.meta.dirname, '__tests__/fixtures/empty.css') },
+      { find: 'virtual:pwa-info', replacement: resolve(import.meta.dirname, '__tests__/fixtures/pwa-info.ts') },
       { find: '$app/state', replacement: resolve(import.meta.dirname, '__tests__/fixtures/app-state.svelte.ts') },
       { find: '$app/navigation', replacement: resolve(import.meta.dirname, '__tests__/fixtures/navigation.ts') },
       { find: '$app/paths', replacement: resolve(import.meta.dirname, '__tests__/fixtures/paths.ts') },
