@@ -1,5 +1,14 @@
 # @sveltepress/cli
 
+## 0.5.2
+
+### Patch Changes
+
+- [`1e7279b`](https://github.com/SveltePress/sveltepress/commit/1e7279b244296fd0e18056219a7c765178f512fd) Thanks [@Blackman99](https://github.com/Blackman99)! - The versions manifest schema now accepts a `basePath` with more than one segment, such as `/zh/v`. That is the base path `versions init --locale` writes and the build accepts, but the schema rejected it, so editors reported an error in every per-locale manifest.
+
+- Updated dependencies []:
+  - @sveltepress/vite@1.10.0
+
 ## 0.5.1
 
 ### Patch Changes

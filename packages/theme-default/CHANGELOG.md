@@ -1,5 +1,23 @@
 # @sveltepress/theme-default
 
+## 8.12.0
+
+### Minor Changes
+
+- [`09d240e`](https://github.com/SveltePress/sveltepress/commit/09d240eb1acd79d40464cec1f9ed8678379f3daf) Thanks [@Blackman99](https://github.com/Blackman99)! - Code blocks can now use any language Shiki bundles. Only the languages in `highlighter.languages` were loaded before, so a `json`, `yaml` or `python` block failed the build with "Language not found" unless it was listed there. Other languages are now loaded the first time a code block uses them, aliases and upper case names such as `py` and `YML` are accepted, and a name Shiki does not know is rendered as plain text with one warning instead of an error. `highlighter.languages` keeps its default and now only decides which languages are loaded up front.
+
+### Patch Changes
+
+- [`d9c6329`](https://github.com/SveltePress/sveltepress/commit/d9c63297d5bc63b862705b66cc10e342220266c7) Thanks [@Blackman99](https://github.com/Blackman99)! - The home page install command now falls back to `pnpm create @sveltepress`. The previous fallback, `pnpm create sveltepress`, asks npm for a package that does not exist.
+
+- [`175d4bb`](https://github.com/SveltePress/sveltepress/commit/175d4bb483759e485c7ad198c0e41d6de0ffcbd5) Thanks [@Blackman99](https://github.com/Blackman99)! - Fix four defects in the default theme:
+  - The dark mode toggle did nothing in browsers without the View Transition API and for readers who ask for reduced motion, and it could not be operated from the keyboard. It is now a real button and switches in every case.
+  - On a first visit the page follows the system colour scheme from the first paint, instead of starting light and turning dark once the page hydrates. The `isDark` store is also correct on load when dark was chosen on an earlier visit.
+  - `CodeBlock` took its light theme from `highlighter.themeDark` and threw on mount when `highlighter` was not configured. It now uses `highlighter.themeLight` and falls back to the default themes.
+  - `pwa.precachePages` given as a list of route prefixes produced an empty list of precache patterns in the published package, so the listed pages were not precached. The patterns are generated again.
+
+  The dark web manifest set with `pwa.darkManifest` is now emitted as `<link rel="manifest">`. It was a `<meta>` element, which browsers ignore.
+
 ## 8.11.2
 
 ### Patch Changes
