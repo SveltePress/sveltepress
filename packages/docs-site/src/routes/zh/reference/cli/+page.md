@@ -28,21 +28,23 @@ sveltepress versions <command> [options]
 sveltepress versions init --current 1.0 --label "1.0"
 ```
 
-* `--current <id>`：初始版本标识符（默认为 `'current'`）。
-* `--label <label>`：当前版本的显示名称。
-* `--base-path <path>`：历史路由的基础前缀（默认为 `'/v'`）。
+* `--current <id>`：当前版本的标识符，必填。
+* `--label <label>`：当前版本的显示名称（默认与标识符相同）。
+* `--base-path <path>`：历史路由的基础前缀（默认为 `'/v'`；指定 `--locale` 时为 `'/<locale>/v'`）。
 * `--locale <id>`：目标语言（如 `zh`、`bn`）。会生成 `sveltepress.versions.<locale>.json`。
 
 ### `create`
 
-将当前文档快照冻结为不可变的历史版本：
+冻结当前正在使用的版本，并开启一个新的当前版本：
 
 ```sh
-sveltepress versions create 1.0 --label "v1.0"
+sveltepress versions create 1.1 --label "1.1"
 ```
 
-* `<version-id>`：冻结版本的唯一标识符。
-* `--label <label>`：在版本切换器中展示的文本（默认为 `<version-id>`）。
+假设当前版本是 `1.0`：这条命令会把 `1.0` 按它已有的标识符和显示名称冻结为不可变的历史版本，并让 `1.1` 成为新的当前版本。
+
+* `<version-id>`：**新的当前版本**的标识符，不能与已有版本重复。
+* `--label <label>`：新的当前版本的显示名称（默认为 `<version-id>`）。
 * `--locale <id>`：仅冻结指定语言的版本清单。
 * `--allow-dirty`：允许在 Git 工作区存在未提交更改时执行。
 
@@ -106,15 +108,20 @@ sveltepress versions compose
 
 ### `publish`
 
-在版本清单中更新生命周期状态（`stable`、`deprecated`、`eol`）以及提示信息：
+输出一个已冻结版本的标识信息，例如用于在 CI 中记录。它只读取产物存储，不会修改任何内容：
 
 ```sh
-sveltepress versions publish --status deprecated --message "请升级到最新版"
+sveltepress versions publish 1.0
 ```
 
-* `--status <stable|deprecated|eol>`：新的生命周期状态。
-* `--message <text>`：横幅警告提示文案。
+输出为 JSON，包含 `siteId`、`versionId`、`manifestHash` 以及页面数量 `pages`。
+
+* `<version-id>`：版本清单中一个已冻结的版本。
 * `--locale <id>`：目标语言。
+
+:::note[生命周期状态]
+目前还没有子命令可以修改已冻结版本的 `status` 或 `message`。版本清单现在接受哪些写法，见[版本管理](/guide/version-management/)。
+:::
 
 ### `migrate`
 
@@ -133,7 +140,9 @@ sveltepress versions migrate --site-id my-docs
 清理本地产物存储中孤立或未被引用的历史页面产物，释放磁盘空间：
 
 ```sh
+sveltepress versions gc --dry-run
 sveltepress versions gc
 ```
 
+* `--dry-run`：只报告将会清理多少产物，不实际删除。
 * `--locale <id>`：目标语言。

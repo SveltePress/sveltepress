@@ -212,7 +212,7 @@ See [Internationalization](/guide/i18n/) for how locales and version bases compo
 Each locale freeze is independent: run `build` then `create` per locale (default, then `--locale zh`, `--locale bn`, …). A default-locale create must only capture unprefixed English routes — never `src/routes/zh/` or `src/routes/bn/`. Locale creates write logical routes into `version-deltas-<locale>/` (no double `/zh/v/.../zh/...` prefixes). If a freeze accidentally included sibling locale trees, recreate it with the locale-scoped CLI rather than hand-editing deltas.
 :::
 
-`create` publishes the current draft manifest, writes only changed source pages and tombstones to `version-deltas/8.1/`, freezes route/sidebar/change metadata, moves `8.1` into history, and makes `8.2` current. It refuses stale drafts, duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.
+`create` publishes the current draft manifest, writes only changed source pages and tombstones to `version-deltas/8.1/`, freezes route and change metadata, moves `8.1` into history, and makes `8.2` current. It refuses stale drafts, duplicate IDs, symbolic links, a dirty Git worktree, and dependencies outside the frozen boundary. Use `--allow-dirty` only when the uncommitted state is intentionally the release source.
 
 Published versions also receive a generated `sourceHash`. Each delta binds the frozen route, sidebar, and change catalog with a metadata hash. `versions validate` reconstructs every committed delta and checks both hashes, so source or metadata drift is detected even when the artifact cache is empty. Do not edit the hashes or delta files by hand.
 
@@ -252,6 +252,13 @@ The operation is atomic: a failed preflight does not leave a partial delta or up
 Version IDs are URL-safe lowercase identifiers and may contain dots or hyphens. `include` and `exclude` select route files to freeze. `shared` explicitly allows dependencies that remain live instead of being copied; keep this list narrow because a later change can affect every historical version.
 
 Set `status` to `deprecated` or `eol` to show a prominent site-wide banner above the navigation. It warns that older-site functionality may be unavailable and links to the current version of the same logical page. `sourceRef` redirects historical edit links to a matching Git ref; set `editLink: false` to hide them. EOL versions default to `noindex`, and `noIndex: true` can opt another version out of indexing.
+
+:::warning[Incremental mode limits]
+Two limits apply to sites that use `artifacts.mode: "incremental"`:
+
+* A version is frozen as `stable`, and its `status` and `message` are part of the delta's metadata hash. Editing them afterwards makes `versions build` and `versions validate` fail with "frozen metadata drifted", so a version frozen in incremental mode cannot be marked `deprecated` or `eol` yet.
+* `versions create` does not capture the theme sidebar. Historical pages of such a version use the sidebar the site has when it is built.
+:::
 
 ## Navigation and missing pages
 
