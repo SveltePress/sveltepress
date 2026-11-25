@@ -4,7 +4,7 @@ title: দ্রুত শুরু
 
 ## প্রয়োজনীয় পরিবেশ
 
-- Node.js `^20.19.0` অথবা `>=22.12.0`
+- Node.js: SvelteKit 3 প্রজেক্টের জন্য `>=22.17` প্রয়োজন, আর create command SvelteKit 3 প্রজেক্টই তৈরি করে। SvelteKit 2-তে থাকা প্রজেক্ট `^20.19.0` অথবা `>=22.12.0`-তেও চলে
 - Svelte 5, SvelteKit 2 (`2.65.1` বা পরের সংস্করণ) অথবা SvelteKit 3, এবং Vite 8
 - pnpm 10 সুপারিশ করা হয়; create command npm, Yarn এবং Bun-ও সমর্থন করে
 

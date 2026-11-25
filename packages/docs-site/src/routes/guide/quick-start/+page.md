@@ -4,7 +4,7 @@ title: Quick Start
 
 ## Requirements
 
-- Node.js `^20.19.0` or `>=22.12.0`
+- Node.js `>=22.17` for a project on SvelteKit 3, which is what the create command scaffolds. A project that stays on SvelteKit 2 also runs on `^20.19.0` or `>=22.12.0`
 - Svelte 5, SvelteKit 2 (`2.65.1` or later) or SvelteKit 3, and Vite 8
 - pnpm 10 is recommended; npm, Yarn, and Bun are also supported by the create command
 

@@ -4,7 +4,7 @@ title: 快速开始
 
 ## 环境要求
 
-- Node.js `^20.19.0` 或 `>=22.12.0`
+- Node.js：SvelteKit 3 项目需要 `>=22.17`，创建命令生成的就是 SvelteKit 3 项目；停留在 SvelteKit 2 的项目也可以使用 `^20.19.0` 或 `>=22.12.0`
 - Svelte 5、SvelteKit 2（`2.65.1` 及以上）或 SvelteKit 3，以及 Vite 8
 - 推荐 pnpm 10；创建命令同时支持 npm、Yarn 和 Bun
 

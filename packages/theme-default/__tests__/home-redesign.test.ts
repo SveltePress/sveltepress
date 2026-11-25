@@ -29,15 +29,23 @@ describe('home redesign components', () => {
       })
 
       const view = render(InstallCommand, {
-        command: 'pnpm create sveltepress',
+        command: 'pnpm create @sveltepress',
       })
 
-      expect(view.getByText('pnpm create sveltepress')).toBeTruthy()
+      expect(view.getByText('pnpm create @sveltepress')).toBeTruthy()
       const copyButton = view.getByRole('button', { name: /copy/i })
       expect(copyButton).toBeTruthy()
 
       await fireEvent.click(copyButton)
-      expect(writeTextMock).toHaveBeenCalledWith('pnpm create sveltepress')
+      expect(writeTextMock).toHaveBeenCalledWith('pnpm create @sveltepress')
+    })
+
+    it('falls back to a command that resolves on npm', () => {
+      // The create package is `@sveltepress/create`, so the unscoped
+      // `create sveltepress` asks for a package that does not exist.
+      const view = render(InstallCommand)
+
+      expect(view.getByText('pnpm create @sveltepress')).toBeTruthy()
     })
   })
 
@@ -82,7 +90,7 @@ describe('home redesign components', () => {
           text: '⚡️ Svelte 5 + Runes Support',
           link: '/guide/introduction/',
         },
-        installCommand: 'pnpm create sveltepress',
+        installCommand: 'pnpm create @sveltepress',
         actions: [
           { label: 'Get Started', to: '/guide/' },
         ],
@@ -107,7 +115,7 @@ describe('home redesign components', () => {
       expect(badgeLink?.getAttribute('href')).toContain('/guide/introduction/')
 
       // Install command check
-      expect(view.getByText('pnpm create sveltepress')).toBeTruthy()
+      expect(view.getByText('pnpm create @sveltepress')).toBeTruthy()
 
       // Features check
       expect(view.getByText('Svelte in Markdown')).toBeTruthy()

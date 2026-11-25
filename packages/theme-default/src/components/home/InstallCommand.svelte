@@ -1,6 +1,6 @@
 <script lang="ts">
   const {
-    command = 'pnpm create sveltepress',
+    command = 'pnpm create @sveltepress',
     packageManager = 'pnpm',
   }: {
     command?: string

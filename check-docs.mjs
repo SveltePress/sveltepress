@@ -203,6 +203,7 @@ const forbidden = [
   [/pnpm install && pnpm dev/, 'ambiguous monorepo demo command'],
   [/search:\s*['"]@sveltepress\/meilisearch\/Search\.svelte['"]/, 'Meilisearch component without required props'],
   [/cn\.sveltepress\.site|bn\.sveltepress\.site/, 'stale per-language domain link; the LocaleSelector replaces it'],
+  [/\b(?:create|init) sveltepress\b|\bcreate-sveltepress\b/, 'scaffold command for a package that does not exist; the create package is scoped, so write `create @sveltepress`'],
 ]
 
 for (const path of activeFiles) {

@@ -4,7 +4,7 @@ description: 用 Markdown 写作，同时保留 SvelteKit 完整能力 — Svelt
 badge:
   text: '⚡️ 全面支持 Svelte 5 与 Runes 响应式特性'
   link: /guide/markdown/svelte-in-markdown/
-installCommand: pnpm create sveltepress
+installCommand: pnpm create @sveltepress
 actions:
   - label: 阅读文档
     to: /guide/introduction/

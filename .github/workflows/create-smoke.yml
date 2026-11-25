@@ -1,0 +1,105 @@
+name: Create Smoke
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/create/**'
+      - .github/workflows/create-smoke.yml
+  pull_request:
+    types: [opened, synchronize, ready_for_review, auto_merge_enabled]
+    paths:
+      - 'packages/create/**'
+      - .github/workflows/create-smoke.yml
+  schedule:
+    # A scaffolded project resolves @sveltepress/* from the registry, so it can
+    # break without anything in this repository changing.
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Scaffolds from the tarball this repository would publish. This is the gate
+  # for changes to the create package.
+  scaffold:
+    name: Scaffold from the packed CLI (${{ matrix.template }})
+    # Building the create package writes the workspace versions of
+    # @sveltepress/vite and @sveltepress/theme-default into the templates. On
+    # the release pull request, and on the push that merges it, those versions
+    # are not on npm yet, so the scaffolded project cannot install. The nightly
+    # run covers a release once it is published.
+    if: >-
+      github.head_ref != 'changeset-release/main'
+      && !(github.event_name == 'push'
+      && (contains(github.event.head_commit.message, 'changeset-release/main')
+      || contains(github.event.head_commit.message, 'Version Packages')))
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        template: [ts, js]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+      - name: Install Dependencies
+        run: pnpm i
+      - name: Pack the create package
+        run: pnpm --filter @sveltepress/create exec npm pack --pack-destination "$RUNNER_TEMP"
+      # Installing the tarball with npm is the point. npm leaves out files and
+      # rejects specifiers that pnpm accepts, and npm is what `npm create` runs.
+      - name: Install the CLI the way a user would
+        working-directory: ${{ runner.temp }}
+        run: |
+          mkdir -p runner
+          cd runner
+          npm init -y > /dev/null
+          npm install ../sveltepress-create-*.tgz
+      - name: Scaffold a project
+        working-directory: ${{ runner.temp }}
+        run: node runner/node_modules/@sveltepress/create/index.js my-app -t ${{ matrix.template }}
+      - name: Check the project starts with a .gitignore
+        working-directory: ${{ runner.temp }}/my-app
+        run: test -f .gitignore
+      - name: Install the scaffolded project
+        working-directory: ${{ runner.temp }}/my-app
+        run: npm install
+      - name: Build the scaffolded project
+        working-directory: ${{ runner.temp }}/my-app
+        run: npm run build
+      - name: Check the build produced a site
+        working-directory: ${{ runner.temp }}/my-app
+        run: test -f dist/index.html
+
+  # Scaffolds from what is on npm right now. Not a gate on changes: it answers
+  # whether the command in the docs works today.
+  published:
+    name: Scaffold from the published CLI
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Scaffold with the command the docs give
+        working-directory: ${{ runner.temp }}
+        run: npm create @sveltepress@latest my-app -- -t ts
+      - name: Install the scaffolded project
+        working-directory: ${{ runner.temp }}/my-app
+        run: npm install
+      - name: Build the scaffolded project
+        working-directory: ${{ runner.temp }}/my-app
+        run: npm run build
+      - name: Check the build produced a site
+        working-directory: ${{ runner.temp }}/my-app
+        run: test -f dist/index.html

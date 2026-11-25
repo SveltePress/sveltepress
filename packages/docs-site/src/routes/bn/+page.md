@@ -4,7 +4,7 @@ description: Write Markdown, keep the full power of SvelteKit — Svelte 5 Runes
 badge:
   text: '⚡️ Svelte 5 এবং Runes পূর্ণ সমর্থন'
   link: /guide/markdown/svelte-in-markdown/
-installCommand: pnpm create sveltepress
+installCommand: pnpm create @sveltepress
 actions:
   - label: ডক্‌স পড়ুন
     to: /guide/introduction/

@@ -46,7 +46,7 @@ Inspired by [VitePress](https://vitepress.dev/), built on [SvelteKit](https://ki
 - **i18n built in** — locales, switcher, version-aware navigation
 - **Docs + blog themes** — default docs theme, or [`theme-blog`](https://sveltepress.site/guide/blog-theme/getting-started/) for posts, RSS, OG images
 
-Requires Svelte 5, SvelteKit 2 (`2.65.1`+) or 3, Vite 8, and Node.js `^20.19.0` or `>=22.12.0`.
+Requires Svelte 5, SvelteKit 2 (`2.65.1`+) or 3, Vite 8, and Node.js `^20.19.0` or `>=22.12.0`. New projects are scaffolded on SvelteKit 3, which needs Node.js `>=22.17`.
 
 ### Comparison
 

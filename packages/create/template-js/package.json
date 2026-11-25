@@ -3,8 +3,10 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.34.6",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.17"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
