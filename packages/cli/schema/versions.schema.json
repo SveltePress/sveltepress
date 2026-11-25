@@ -6,7 +6,7 @@
   "required": ["basePath", "current", "versions", "content"],
   "properties": {
     "$schema": { "type": "string" },
-    "basePath": { "type": "string", "pattern": "^/[a-z0-9-]+$", "default": "/v" },
+    "basePath": { "type": "string", "pattern": "^/[a-z0-9-]+(?:/[a-z0-9-]+)*$", "default": "/v" },
     "current": { "$ref": "#/$defs/version" },
     "versions": { "type": "array", "items": { "$ref": "#/$defs/version" } },
     "content": {
