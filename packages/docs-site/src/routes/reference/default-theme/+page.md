@@ -112,12 +112,16 @@ Pass an object where each key is a group route prefix and each value is an array
 
 An object that contains custom highlight options.
 
-* `languages` - Customize the supported highlight languages.
+* `languages` - The languages loaded when the highlighter starts.
 Default is: `['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - The code theme that will be applied in light mode. Default is `vitesse-light`
 * `themeDark` - The code theme that will be applied in dark mode. Default is `night-owl`
 * `twoslash` - Set to `true` to enable [Twoslash](/guide/default-theme/twoslash/). Default is `false`
 * `codeCollapseLines` - Collapse code blocks taller than this number of lines. Default is `30`; set it to `0` to disable collapsing.
+
+:::since[Languages load on demand]{version="2026-10-05" id="theme-highlighter-languages-on-demand" summary="Code blocks can use any language Shiki bundles without listing it in highlighter.languages."}
+`languages` only decides what is loaded up front. A code block in any other language Shiki bundles, such as `json`, `yaml` or `python`, loads that language the first time it is used. Aliases and upper case names such as `py` and `YML` work too. A name Shiki does not know is rendered as plain text and reported once in the build output.
+:::
 
 :::important[TIP]
 You can get all the supported languages and themes in [Shiki Repo](https://github.com/shikijs/shiki)

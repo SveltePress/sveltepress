@@ -23,7 +23,7 @@ title: 代码相关
 ````
 
 :::tip[自定义高亮]
-您可以配置自定义支持的语言列表以及不同的高亮主题，阅读 [默认主题参考 - highlight 选项](/reference/default-theme/#highlighter) 来获得更多信息
+代码块可以使用 Shiki 内置的任何语言。您可以配置预先加载的语言列表以及不同的高亮主题，阅读 [默认主题参考 - highlight 选项](/reference/default-theme/#highlighter) 来获得更多信息
 :::
 
 ## 代码块标题

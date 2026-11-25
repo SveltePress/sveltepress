@@ -118,6 +118,11 @@ declare module 'virtual:sveltepress/theme-default' {
       }
     }
     highlighter?: {
+      /**
+       * Languages loaded when the highlighter starts. Every other language
+       * Shiki bundles is loaded the first time a code block uses it.
+       * @default ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']
+       */
       languages?: BundledLanguage[]
       themeLight?: BundledTheme
       themeDark?: BundledTheme
