@@ -62,6 +62,7 @@ pnpm test
 pnpm test:vite
 pnpm test:theme-default
 pnpm test:twoslash
+pnpm test:meilisearch
 pnpm test:docs-site
 
 # Lint code

@@ -593,6 +593,9 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
+      vitest:
+        specifier: 'catalog:'
+        version: 4.0.14(@opentelemetry/api@1.9.0)(@types/node@24.19.1)(happy-dom@20.14.5)(jiti@2.6.1)(lightningcss@1.33.0)(terser@5.44.1)(tsx@4.20.6)(yaml@2.9.1)
 
   packages/theme-blog:
     dependencies:

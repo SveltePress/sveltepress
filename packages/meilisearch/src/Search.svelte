@@ -2,6 +2,7 @@
   import type { MeilisearchProps, SearchResult } from './types.js'
   import { MeiliSearch } from 'meilisearch'
   import { onMount } from 'svelte'
+  import { HIGHLIGHT_POST, HIGHLIGHT_PRE, normalizeHits } from './results.js'
 
   const {
     host,
@@ -56,16 +57,13 @@
       const res = await index.search(query, {
         limit,
         attributesToHighlight: ['*'],
-        highlightPreTag: '<mark>',
-        highlightPostTag: '</mark>',
+        // Not `<mark>`: Meilisearch echoes the document's own field value
+        // back with the tags inserted and escapes nothing, and the result is
+        // rendered with `{@html}`. See results.ts.
+        highlightPreTag: HIGHLIGHT_PRE,
+        highlightPostTag: HIGHLIGHT_POST,
       })
-      results = res.hits.map(hit => ({
-        id: hit.id as string,
-        title: (hit._formatted?.title as string) || (hit.title as string) || '',
-        content:
-          (hit._formatted?.content as string) || (hit.content as string) || '',
-        url: (hit.url as string) || (hit.path as string) || '#',
-      }))
+      results = normalizeHits(res.hits)
     } catch (e) {
       console.error('[sveltepress] Meilisearch error:', e)
       results = []
