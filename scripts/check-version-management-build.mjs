@@ -15,6 +15,7 @@ const currentChanges = [
   { route: 'guide/default-theme/sidebar', id: 'sidebar-nested-keys' },
   { route: 'guide/quick-start', id: 'sveltekit-3' },
   { route: 'reference/default-theme', id: 'theme-section-tabs' },
+  { route: 'reference/default-theme', id: 'theme-highlighter-languages-on-demand' },
 ]
 const currentNewPageRoutes = []
 const currentChangeLinks = currentChanges.map(({ route, id }) => `/${route}/#${id}`)

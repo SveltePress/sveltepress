@@ -111,11 +111,15 @@ Logo 图片
 
 一个包含如下属性的代码块高亮相关配置：
 
-* `languages` - 自定义支持的语言列表，默认为：`['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
+* `languages` - 高亮器启动时预先加载的语言列表，默认为：`['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']`
 * `themeLight` - 日间模式所使用的高亮主题，默认为：`vitesse-light`
 * `themeDark` - 夜间模式所使用的高亮主题，默认为：`night-owl`
 * `twoslash` - 设置为 `true` 可以开启 [Twoslash](/guide/default-theme/twoslash/) 功能. 默认为 `false`
 * `codeCollapseLines` - 超过该行数的代码块会默认折叠，默认为 `30`；设为 `0` 可关闭折叠。
+
+:::since[语言按需加载]{version="2026-10-05" id="theme-highlighter-languages-on-demand" summary="代码块可以使用 Shiki 内置的任何语言，无需写进 highlighter.languages。"}
+`languages` 只决定预先加载哪些语言。代码块使用 Shiki 内置的其他语言（例如 `json`、`yaml`、`python`）时，会在第一次用到时自动加载；别名和大写写法（例如 `py`、`YML`）同样有效。Shiki 不认识的语言名会按纯文本渲染，并在构建输出中提示一次。
+:::
 
 :::important[TIP]
 你可以在 [Shiki Repo](https://github.com/shikijs/shiki) 获得所有支持的语言以及主题

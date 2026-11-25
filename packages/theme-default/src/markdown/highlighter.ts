@@ -7,10 +7,18 @@ import { createTransformerFactory } from '@shikijs/twoslash'
 import { createTwoslasher, rendererFloatingSvelte } from '@sveltepress/twoslash'
 import { prepareCodeBlock, wrapCodeBlock } from '@sveltepress/vite/highlight'
 import { LRUCache } from 'lru-cache'
-import { createHighlighter } from 'shiki'
+import { bundledLanguages, createHighlighter } from 'shiki'
 import { themeOptionsRef } from '../index.js'
+import { resolveShikiThemes } from '../shiki-themes.js'
 
+/**
+ * Loaded when the highlighter starts. Any other language shiki bundles is
+ * loaded the first time a code block uses it.
+ */
 const DEFAULT_SUPPORT_LANGUAGES: any[] = ['svelte', 'sh', 'js', 'html', 'ts', 'md', 'css', 'scss']
+
+/** Names shiki renders without loading a grammar. */
+const PLAIN_LANGUAGES = new Set(['text', 'plaintext', 'txt', 'plain', 'ansi'])
 
 const cache = new LRUCache<string, any>({ max: 200 })
 
@@ -21,17 +29,53 @@ const shikiHighlighterInstance: {
   value: null,
 }
 
-const _highlighter: Highlighter = async (code, lang) => {
-  const highlighterConfig = themeOptionsRef.value?.highlighter
-  const darkTheme = highlighterConfig?.themeDark ?? 'night-owl'
-  const lightTheme = highlighterConfig?.themeLight ?? 'vitesse-light'
+/** In-flight and finished on-demand loads, so pages compiled in parallel share one load per language. */
+let pendingLoads = new Map<string, Promise<void>>()
+const warnedLanguages = new Set<string>()
 
+/**
+ * Map the language of a code fence to a name the highlighter can use, loading
+ * its grammar when shiki bundles it but it is not loaded yet. Names are tried
+ * as written and then in lower case (`Python`, `YML`). A name shiki does not
+ * know renders as plain text instead of failing the whole build.
+ */
+async function resolveLanguage(lang?: string | null): Promise<string> {
+  if (!lang)
+    return 'text'
+  const lower = lang.toLowerCase()
+  if (PLAIN_LANGUAGES.has(lower))
+    return lower
+
+  const highlighter = shikiHighlighterInstance.value!
+  const loaded = highlighter.getLoadedLanguages()
+  // An array, not a Set: svelte-package compiles this file to ES5, where
+  // `for...of` over a Set never runs its body.
+  const candidates = lower === lang ? [lang] : [lang, lower]
+  for (const name of candidates) {
+    if (loaded.includes(name))
+      return name
+    if (name in bundledLanguages) {
+      let load = pendingLoads.get(name)
+      if (!load) {
+        load = highlighter.loadLanguage(name as BundledLanguage)
+        pendingLoads.set(name, load)
+      }
+      await load
+      return name
+    }
+  }
+
+  if (!warnedLanguages.has(lang)) {
+    warnedLanguages.add(lang)
+    console.warn(`[@sveltepress/theme-default] Unknown code block language "${lang}": rendered as plain text. Shiki lists the names it knows at https://shiki.style/languages`)
+  }
+  return 'text'
+}
+
+const _highlighter: Highlighter = async (code, lang) => {
   const shikiOptions: CodeToHastOptions<BundledLanguage, BundledTheme> = {
-    lang,
-    themes: {
-      dark: darkTheme,
-      light: lightTheme,
-    },
+    lang: await resolveLanguage(lang),
+    themes: resolveShikiThemes(themeOptionsRef.value?.highlighter),
     transformers: [],
   }
   if (shikiHighlighterInstance.twoslashTransformer) {
@@ -85,12 +129,12 @@ const highlighter: Highlighter = async (code, lang, meta) => {
 
 export async function initHighlighter(highlighterConfig: DefaultThemeOptions['highlighter'] = {}) {
   const langs = highlighterConfig?.languages || DEFAULT_SUPPORT_LANGUAGES
-  const darkTheme = highlighterConfig?.themeDark ?? 'night-owl'
-  const lightTheme = highlighterConfig?.themeLight ?? 'vitesse-light'
+  const { dark, light } = resolveShikiThemes(highlighterConfig)
   shikiHighlighterInstance.value = await createHighlighter({
     langs,
-    themes: [darkTheme, lightTheme],
+    themes: [dark, light],
   })
+  pendingLoads = new Map()
   if (highlighterConfig.twoslash) {
     shikiHighlighterInstance.twoslashTransformer = createTransformerFactory(
       await createTwoslasher(highlighterConfig.twoslash === true
