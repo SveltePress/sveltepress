@@ -201,7 +201,7 @@ sveltepress versions validate --locale bn
 বিস্তারিত: [আন্তর্জাতিকীকরণ](/guide/i18n/)।
 :::
 
-`create` current draft manifest publish করে, কেবল বদলানো page ও tombstone `version-deltas/8.1/`-এ লেখে, route/sidebar/change metadata freeze করে, `8.1`-কে history-তে রাখে এবং `8.2`-কে current করে। Stale draft, duplicate ID, symbolic link, dirty Git worktree এবং frozen boundary-এর বাইরের dependency প্রত্যাখ্যাত হয়। Uncommitted state-ই release source হলে শুধু তখন `--allow-dirty` ব্যবহার করুন। Failed preflight কোনো অসম্পূর্ণ delta বা manifest change রেখে যায় না।
+`create` current draft manifest publish করে, কেবল বদলানো page ও tombstone `version-deltas/8.1/`-এ লেখে, route ও change metadata freeze করে, `8.1`-কে history-তে রাখে এবং `8.2`-কে current করে। Stale draft, duplicate ID, symbolic link, dirty Git worktree এবং frozen boundary-এর বাইরের dependency প্রত্যাখ্যাত হয়। Uncommitted state-ই release source হলে শুধু তখন `--allow-dirty` ব্যবহার করুন। Failed preflight কোনো অসম্পূর্ণ delta বা manifest change রেখে যায় না।
 
 Published version-এ generated `sourceHash` লেখা হয় এবং প্রতিটি delta metadata hash দিয়ে frozen route, sidebar ও change catalog bind করে। `versions validate` প্রতিটি committed delta reconstruct করে দুই hash-ই পরীক্ষা করে, তাই artifact cache খালি থাকলেও source বা metadata drift ধরা পড়ে। Hash বা delta file হাতে edit করবেন না।
 
@@ -240,6 +240,13 @@ Published version-এ generated `sourceHash` লেখা হয় এবং �
 Version ID URL-safe lowercase হতে হবে; dot ও hyphen ব্যবহার করা যায়। `include` ও `exclude` কোন route file freeze হবে তা ঠিক করে। `shared` ইচ্ছাকৃত live dependency ঘোষণা করে; তালিকাটি ছোট রাখুন, কারণ ভবিষ্যৎ পরিবর্তন সব historical version-এ প্রভাব ফেলতে পারে।
 
 `status`-এ `deprecated` বা `eol` দিলে navigation-এর উপরে একটি স্পষ্ট site-wide পুরোনো-version banner দেখা যায়। এটি পুরোনো site-এর কিছু feature কাজ নাও করতে পারে বলে জানায় এবং একই logical page-এর current version-এ link দেয়। `sourceRef` historical edit link-কে সংশ্লিষ্ট Git ref-এ পাঠায়; `editLink: false` দিয়ে link লুকানো যায়। EOL version ডিফল্টভাবে `noindex` পায়।
+
+:::warning[Incremental mode-এর সীমাবদ্ধতা]
+`artifacts.mode: "incremental"` ব্যবহার করা site-এ এখন দুটি সীমাবদ্ধতা আছে:
+
+* Version সবসময় `stable` হিসেবে freeze হয়, এবং `status` ও `message` delta-র metadata hash-এর অংশ। Freeze-এর পরে এগুলো বদলালে `versions build` ও `versions validate` "frozen metadata drifted" error দিয়ে ব্যর্থ হয়, তাই incremental mode-এ freeze করা version-কে এখনো `deprecated` বা `eol` করা যায় না।
+* `versions create` theme-এর sidebar সংরক্ষণ করে না। এমন version-এর historical page-গুলো site build করার সময়কার current sidebar ব্যবহার করে।
+:::
 
 ## Navigation, search ও output
 

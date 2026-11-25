@@ -28,21 +28,23 @@ Initialize a new version manifest file (`sveltepress.versions.json`):
 sveltepress versions init --current 1.0 --label "1.0"
 ```
 
-* `--current <id>`: Initial version identifier (default: `'current'`).
-* `--label <label>`: Display label for the current version.
-* `--base-path <path>`: Root prefix for historical routes (default: `'/v'`).
+* `--current <id>`: Identifier of the current version. Required.
+* `--label <label>`: Display label for the current version (defaults to the ID).
+* `--base-path <path>`: Root prefix for historical routes (default: `'/v'`, or `'/<locale>/v'` with `--locale`).
 * `--locale <id>`: Target locale (e.g. `zh`, `bn`). Creates `sveltepress.versions.<locale>.json`.
 
 ### `create`
 
-Freeze the current documentation into an immutable historical version snapshot:
+Freeze the version that is current now and start a new current version:
 
 ```sh
-sveltepress versions create 1.0 --label "v1.0"
+sveltepress versions create 1.1 --label "1.1"
 ```
 
-* `<version-id>`: Unique identifier for the frozen release.
-* `--label <label>`: Display label in the version selector (defaults to `<version-id>`).
+With `1.0` current, this freezes `1.0` as an immutable historical version under the ID and label it already has, and makes `1.1` the current version.
+
+* `<version-id>`: Identifier of the **new current** version. It must not exist yet.
+* `--label <label>`: Display label of the new current version (defaults to `<version-id>`).
 * `--locale <id>`: Freeze only the specified locale manifest.
 * `--allow-dirty`: Allow creating a release with uncommitted git changes.
 
@@ -106,15 +108,20 @@ sveltepress versions compose
 
 ### `publish`
 
-Update lifecycle status (`stable`, `deprecated`, `eol`) and advisory messages in the manifest:
+Print the identity of a version that is already frozen, for example to record it in a CI job. It reads the artifact store and changes nothing:
 
 ```sh
-sveltepress versions publish --status deprecated --message "Please upgrade to v2"
+sveltepress versions publish 1.0
 ```
 
-* `--status <stable|deprecated|eol>`: New lifecycle status.
-* `--message <text>`: Advisory warning text for the lifecycle banner.
+The output is JSON with `siteId`, `versionId`, `manifestHash`, and the number of `pages`.
+
+* `<version-id>`: A frozen version from the manifest.
 * `--locale <id>`: Target locale.
+
+:::note[Lifecycle status]
+No subcommand changes the `status` or `message` of a frozen version yet. See [Version management](/guide/version-management/) for what the manifest accepts today.
+:::
 
 ### `migrate`
 
@@ -133,7 +140,9 @@ sveltepress versions migrate --site-id my-docs
 Clean up orphaned or unreferenced page artifacts from the local artifact store:
 
 ```sh
+sveltepress versions gc --dry-run
 sveltepress versions gc
 ```
 
+* `--dry-run`: Report how many artifacts would be removed without deleting anything.
 * `--locale <id>`: Target locale.

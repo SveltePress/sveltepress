@@ -203,7 +203,7 @@ sveltepress versions validate --locale zh
 语言与版本基路径如何组合（`/zh/v`、`/bn/v`）见[国际化](/guide/i18n/)。
 :::
 
-`create` 会发布当前草稿清单，只把变化页面和 tombstone 写入 `version-deltas/8.1/`，冻结路由、侧栏和变化元数据，把 `8.1` 移入历史版本，并将 `8.2` 设为当前版本。过期草稿、重复 ID、符号链接、脏 Git 工作区和冻结边界外的依赖都会被拒绝。只有当未提交内容就是本次发版来源时才使用 `--allow-dirty`。
+`create` 会发布当前草稿清单，只把变化页面和 tombstone 写入 `version-deltas/8.1/`，冻结路由和变化元数据，把 `8.1` 移入历史版本，并将 `8.2` 设为当前版本。过期草稿、重复 ID、符号链接、脏 Git 工作区和冻结边界外的依赖都会被拒绝。只有当未提交内容就是本次发版来源时才使用 `--allow-dirty`。
 
 已发布版本还会获得自动生成的 `sourceHash`，每个 delta 还会用元数据哈希绑定冻结的路由、侧栏和变化目录。`versions validate` 会重建每个已提交 delta 并检查这两个哈希，因此即使产物缓存为空也能发现源码或元数据漂移。不要手工修改哈希或 delta 文件。
 
@@ -243,6 +243,13 @@ sveltepress versions validate --locale zh
 版本 ID 必须是适合 URL 的小写标识，可包含点和连字符。`include`、`exclude` 决定冻结哪些路由文件；`shared` 明确声明不复制、继续引用当前文件的依赖。共享清单应尽量小，因为未来修改会影响所有历史版本。
 
 把 `status` 设为 `deprecated` 或 `eol` 会在全站导航上方显示醒目的旧版横条，提示旧版站点的功能可能不可用，并链接到最新版的同一逻辑页面。`sourceRef` 让历史页面的编辑链接指向对应 Git ref，也可用 `editLink: false` 隐藏。EOL 版本默认输出 `noindex`，其他版本可用 `noIndex: true` 主动关闭索引。
+
+:::warning[增量模式的限制]
+使用 `artifacts.mode: "incremental"` 的站点目前有两个限制：
+
+* 版本冻结时的状态固定为 `stable`，并且 `status` 和 `message` 会计入 delta 的元数据哈希。冻结后再修改它们，`versions build` 和 `versions validate` 会报 “frozen metadata drifted” 并失败，所以增量模式下冻结的版本还不能标记为 `deprecated` 或 `eol`。
+* `versions create` 不会记录主题的侧栏。这类版本的历史页面使用构建站点时的当前侧栏。
+:::
 
 ## 导航、搜索与构建输出
 
