@@ -8,75 +8,63 @@
   import { darkMode, isDark } from './layout'
 
   const key = 'SVELTEPRESS_DARK_MODE'
+  const darkQuery = '(prefers-color-scheme: dark)'
+  const nextMode = { light: 'dark', dark: 'auto', auto: 'light' }
 
-  const themeColor = themeOptions.themeColor || { light: '#fff', dark: '#000' }
-  function addOrRemoveClass() {
+  const themeColor = {
+    light: themeOptions.themeColor?.light || '#fff',
+    dark: themeOptions.themeColor?.dark || '#000',
+  }
+
+  // Anything stored other than an explicit light or dark choice, including
+  // nothing at all on a first visit, means "follow the system".
+  function normalizeMode(stored) {
+    return stored === 'light' || stored === 'dark' ? stored : 'auto'
+  }
+
+  function resolveDark(mode) {
+    return (
+      mode === 'dark' ||
+      (mode === 'auto' && window.matchMedia(darkQuery).matches)
+    )
+  }
+
+  function applyAppearance() {
     localStorage.setItem(key, $darkMode)
-    if ($isDark) {
-      document.querySelector('html').classList.add('dark')
-      if (themeColor) {
-        document
-          .getElementById('theme-color')
-          ?.setAttribute('content', themeColor.dark)
-      }
-    } else {
-      document.querySelector('html').classList.remove('dark')
-      if (themeColor) {
-        document
-          .getElementById('theme-color')
-          ?.setAttribute('content', themeColor.light)
-      }
-    }
+    document.documentElement.classList.toggle('dark', $isDark)
+    document
+      .getElementById('theme-color')
+      ?.setAttribute('content', $isDark ? themeColor.dark : themeColor.light)
   }
 
   function toggle(evt) {
-    const isAppearanceTransition =
-      document.startViewTransition &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const wasDark = $isDark
+    $darkMode = nextMode[$darkMode] ?? 'light'
+    $isDark = resolveDark($darkMode)
 
-    if (!isAppearanceTransition) {
-      if (darkMode === 'light') {
-        $darkMode = 'dark'
-        $isDark = true
-      } else if (darkMode === 'dark') {
-        $darkMode = 'auto'
-        $isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      } else if (darkMode === 'auto') {
-        $darkMode = 'light'
-        $isDark = false
-      }
-      addOrRemoveClass()
+    const animate =
+      document.startViewTransition &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      $isDark !== wasDark
+
+    if (!animate) {
+      applyAppearance()
       return
     }
 
-    const x = evt.clientX
-    const y = evt.clientY
+    // A keyboard activation carries no pointer position, so the reveal
+    // starts from the control itself.
+    const rect = evt.currentTarget.getBoundingClientRect()
+    const fromKeyboard = evt.detail === 0
+    const x = fromKeyboard ? rect.left + rect.width / 2 : evt.clientX
+    const y = fromKeyboard ? rect.top + rect.height / 2 : evt.clientY
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y),
     )
-    let needTransition = false
-    if ($darkMode === 'light') {
-      $darkMode = 'dark'
-      $isDark = true
-      needTransition = true
-    } else if ($darkMode === 'dark') {
-      $darkMode = 'auto'
-      $isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      needTransition = !$isDark
-    } else if ($darkMode === 'auto') {
-      $darkMode = 'light'
-      $isDark = false
-      needTransition = window.matchMedia('(prefers-color-scheme: dark)').matches
-    }
-
-    if (!needTransition) {
-      tick().then(addOrRemoveClass)
-      return
-    }
     const transition = document.startViewTransition(async () => {
       await tick()
-      addOrRemoveClass()
+      applyAppearance()
     })
     transition.ready.then(() => {
       const clipPath = [
@@ -100,30 +88,18 @@
 
   function handleColorSchemeChange(e) {
     if ($darkMode === 'auto') {
-      if (e.matches) {
-        $isDark = true
-      } else {
-        $isDark = false
-      }
-      addOrRemoveClass()
+      $isDark = e.matches
+      applyAppearance()
     }
   }
 
   let mediaQuery
 
   if (browser) {
-    let storedMode = window.localStorage.getItem(key)
-    if (
-      storedMode !== 'light' &&
-      storedMode !== 'dark' &&
-      storedMode !== 'auto'
-    ) {
-      storedMode = 'auto'
-      window.localStorage.setItem(key, storedMode)
-    }
-    $darkMode = storedMode
-    mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    handleColorSchemeChange(mediaQuery)
+    mediaQuery = window.matchMedia(darkQuery)
+    $darkMode = normalizeMode(window.localStorage.getItem(key))
+    $isDark = resolveDark($darkMode)
+    applyAppearance()
   }
   onMount(() => {
     mediaQuery?.addEventListener('change', handleColorSchemeChange)
@@ -132,39 +108,30 @@
       mediaQuery?.removeEventListener('change', handleColorSchemeChange)
     }
   })
+
+  // Runs before the bundle loads, so the first paint already has the right
+  // colours. It has to agree with normalizeMode and resolveDark above.
+  const bootScript = `(function () {
+  var themeColor = ${JSON.stringify(themeColor).replace(/</g, '\\u003c')}
+  var stored = window.localStorage.getItem('${key}')
+  var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia('${darkQuery}').matches)
+  document.documentElement.classList.toggle('dark', dark)
+  var meta = document.getElementById('theme-color')
+  if (meta) meta.setAttribute('content', dark ? themeColor.dark : themeColor.light)
+})()`
 </script>
 
-<!-- eslint-disable no-template-curly-in-string -->
-
 <svelte:head>
-  <meta
-    id="theme-color"
-    name="theme-color"
-    content={themeColor.light || '#fff'}
-  />
+  <meta id="theme-color" name="theme-color" content={themeColor.light} />
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-  {@html `
-<${'script'}>
-  const themeColor = JSON.parse('${JSON.stringify(themeColor)}')
-  const storedMode = window.localStorage.getItem('${key}')
-  if (storedMode === 'dark' || (storedMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.querySelector('html').classList.add('dark')
-    document.getElementById('theme-color')?.setAttribute('content', themeColor ? themeColor.dark : '#ffffff')
-  }
-  else {
-    document.querySelector('html').classList.remove('dark')
-    document.getElementById('theme-color')?.setAttribute('content', themeColor ? themeColor.light : '#ffffff')
-  }
-</${'script'}>`}
+  {@html `<${'script'}>${bootScript}</${'script'}>`}
 </svelte:head>
 
-<div
+<button
+  type="button"
   class="toggle"
-  onclick={toggle}
-  onkeyup={() => {}}
   aria-label="Toggle dark mode"
-  role="button"
-  tabindex="0"
+  onclick={toggle}
 >
   {#if $darkMode === 'auto'}
     <SystemDefault />
@@ -173,10 +140,10 @@
   {:else if $darkMode === 'light'}
     <Sun />
   {/if}
-</div>
+</button>
 
 <style>
   .toggle {
-    --at-apply: 'h-[28px] text-[24px] cursor-pointer px-3 flex items-center h-100% hover:opacity-80 relative';
+    --at-apply: 'h-[28px] text-[24px] cursor-pointer px-3 py-0 flex items-center h-100% hover:opacity-80 relative bg-transparent b-0 text-inherit';
   }
 </style>
