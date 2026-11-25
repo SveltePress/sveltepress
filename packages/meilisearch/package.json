@@ -36,6 +36,7 @@
   ],
   "scripts": {
     "build": "svelte-package -i src -o dist",
+    "test": "vitest",
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
@@ -48,6 +49,7 @@
     "@sveltejs/package": "catalog:",
     "@sveltejs/vite-plugin-svelte": "catalog:",
     "svelte": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }
