@@ -1,5 +1,11 @@
 # @sveltepress/create
 
+## 1.4.1
+
+### Patch Changes
+
+- [`d9c6329`](https://github.com/SveltePress/sveltepress/commit/d9c63297d5bc63b862705b66cc10e342220266c7) Thanks [@Blackman99](https://github.com/Blackman99)! - Scaffolded projects now start with a `.gitignore`. The templates carried a file named `.gitignore`, which npm leaves out of every published package, so `npm create @sveltepress` produced projects without one. The templates also no longer pin `packageManager` to pnpm, which made Corepack refuse to run Yarn in a new project, and they declare the Node.js version SvelteKit 3 needs (`>=22.17`) in `engines`.
+
 ## 1.4.0
 
 ### Minor Changes
